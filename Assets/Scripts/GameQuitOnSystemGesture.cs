@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameQuitOnSystemGesture : MonoBehaviour
 {
     [SerializeField] private OVRHand hand;
-    [SerializeField] private float gestureTime = 5;
+    [SerializeField] private float gestureTime = 3;
     private float timer = 0;
 
     // Start is called before the first frame update
@@ -17,17 +17,14 @@ public class GameQuitOnSystemGesture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (hand != null)
+        if (hand.IsTracked)
         {
-            if (hand.IsTracked)
+            if (hand.IsSystemGestureInProgress)
             {
-                if (hand.IsSystemGestureInProgress)
-                {
-                    timer += Time.deltaTime;
+                timer += Time.deltaTime;
 
-                    if (timer > gestureTime)
-                        Application.Quit();
-                }
+                if (timer > gestureTime)
+                    Application.Quit();
             }
         }
     }
