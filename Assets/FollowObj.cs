@@ -18,7 +18,7 @@ public class FollowObj : MonoBehaviour
     void Update()
     {
         transform.eulerAngles = new Vector3(0, objToFollow.transform.eulerAngles.y, 0);
-        transform.position = objToFollow.transform.position - objToFollow.transform.forward * ownInitialPos.z;
+        transform.position = objToFollow.transform.position + objToFollow.transform.forward * ownInitialPos.z;
         if (lockYAxisTo0)
             transform.position = new Vector3(transform.position.x, 0, transform.position.z);
     }
