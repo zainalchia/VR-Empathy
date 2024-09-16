@@ -11,6 +11,12 @@ using Oculus.Interaction.Input;
 
 public class CaneTeleport : MonoBehaviour
 {
+    /* NOTE:
+     *      If teleport not working, or if teleport location is off...
+     *      Disable ControllerTurnerInteractor for both controllers
+     *      and remove it from the LocomotionControllerInteractorGroup scripts in the OVR GameObject
+     */
+
     [SerializeField] GameObject ovrCamRig;
     [SerializeField] GameObject middleEyeAnchor;
     [SerializeField] float maxDistanceMoveable = 0.6f;
