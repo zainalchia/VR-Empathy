@@ -83,11 +83,11 @@ public class Disappear : MonoBehaviour
         // moving to original or next point
         transform.position = Vector3.Lerp(locationPoints[direction == 0 ? 1 : 0], locationPoints[direction], interpolateRatio);
 
-
-        if (timer <= timeTaken/2.5f) // making object visible
-            _renderer.material.color = Color.Lerp(transparent, opaque, interpolateRatio * 2);
-        else if (timer >= timeTaken - timeTaken/2.5f) // making object invisible
-            _renderer.material.color = Color.Lerp(opaque, transparent, (interpolateRatio - 0.5f) * 2);
+        float fullyVisiblePoint = (timeTaken - fullyVisibleTime) / 2;
+        if (timer <= fullyVisiblePoint)// making object visible
+            _renderer.material.color = Color.Lerp(transparent, opaque, interpolateRatio * (timeTaken / fullyVisiblePoint));
+        else if (timer >= timeTaken - fullyVisiblePoint) // making object invisible
+            _renderer.material.color = Color.Lerp(opaque, transparent, (interpolateRatio - (fullyVisiblePoint + fullyVisibleTime) / timeTaken) * (timeTaken / fullyVisiblePoint));
     }
 
     void SetNextMove()
