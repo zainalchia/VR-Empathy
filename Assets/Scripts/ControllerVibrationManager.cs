@@ -1,3 +1,5 @@
+using Oculus.Interaction;
+using Oculus.Interaction.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +17,10 @@ public class ControllerVibrationManager : MonoBehaviour
     }
     #endregion
 
-    bool isVibrating = false;
+    [SerializeField] private GrabInteractor[] grabInteractors;
+    [SerializeField] bool allowControllerVibration = true;
+    [SerializeField] int vibrationStrength = 255; // 0 - 255
+    [SerializeField] int vibrationFrequency = 2; // lower == more frequent vibration
 
     public void TriggerVibration(int iteration, int frequency, int strength, OVRInput.Controller controllerSide)
     {
@@ -36,21 +41,20 @@ public class ControllerVibrationManager : MonoBehaviour
         }
     }
 
-    public void TriggerVibration(float frequency, float amplitude)
+    void CheckIfHolding()
     {
-        if (!isVibrating)
+        foreach (GrabInteractor grabInteractor in grabInteractors) 
         {
-            isVibrating = true;
-            OVRInput.SetControllerVibration(frequency, amplitude);
-        }            
+            if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
+                TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.LTouch);
+            else if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+                TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.RTouch);
+        }
     }
 
-    public void NoVibration()
+    void Update()
     {
-        if (isVibrating)
-        {
-            isVibrating = false;
-            OVRInput.SetControllerVibration(0, 0);
-        }
+        if (allowControllerVibration)
+            CheckIfHolding(); 
     }
 }

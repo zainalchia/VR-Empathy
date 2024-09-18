@@ -881,7 +881,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049139383}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: b45daf46dca54974d982db0ab470b8fe, type: 2}
 --- !u!4 &1049139385
 Transform:
@@ -920,6 +920,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: 5
   timer: 0
+  targetWeight: 1
+  initalWeight: 0.75
 --- !u!1001 &1089426994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -951,7 +953,7 @@ PrefabInstance:
     - target: {fileID: 2514675399181695721, guid: f54012181eacade4ea242c65f804720f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.46
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 2514675399181695721, guid: f54012181eacade4ea242c65f804720f,
         type: 3}
@@ -1513,6 +1515,8 @@ MonoBehaviour:
   - {fileID: 1089426999}
   interval: 5
   timer: 0
+  audioSource_player: {fileID: 0}
+  audioClip_sighAfterDrop: {fileID: 0}
 --- !u!114 &1115407451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2519,7 +2523,8 @@ MonoBehaviour:
   - {x: 10, y: 0, z: 0}
   - {x: -10, y: 0, z: 0}
   timeTaken: 5
-  delayBeforeNextMove: 2
+  fullyVisibleTime: 2
+  timeDelayBeforeNextMove: 2
   canMove: 0
 --- !u!65 &1654415772
 BoxCollider:
@@ -2669,6 +2674,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251fd79afc122d540a9e35899a8d297d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabInteractors:
+  - {fileID: 1089426998}
+  - {fileID: 1089426997}
+  allowControllerVibration: 1
 --- !u!4 &1914694430
 Transform:
   m_ObjectHideFlags: 0

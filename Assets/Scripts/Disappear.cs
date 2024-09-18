@@ -26,6 +26,45 @@ public class Disappear : MonoBehaviour
     Color opaque;
     Color transparent;
 
+
+    public void AllowedToMove(bool trueOrFalse) // call this in manager script
+    {
+        canMove = trueOrFalse;
+        toReset = true;
+    }
+
+    void AppearXDisappear()
+    {
+        interpolateRatio += Time.deltaTime / timeTaken;
+
+        // moving to original or next point
+        transform.position = Vector3.Lerp(locationPoints[direction == 0 ? 1 : 0], locationPoints[direction], interpolateRatio);
+
+        float fullyVisiblePoint = (timeTaken - fullyVisibleTime) / 2;
+        if (timer <= fullyVisiblePoint)// making object visible
+            _renderer.material.color = Color.Lerp(transparent, opaque, interpolateRatio * (timeTaken / fullyVisiblePoint));
+        else if (timer >= timeTaken - fullyVisiblePoint) // making object invisible
+            _renderer.material.color = Color.Lerp(opaque, transparent, (interpolateRatio - (fullyVisiblePoint + fullyVisibleTime) / timeTaken) * (timeTaken / fullyVisiblePoint));
+    }
+
+    void SetNextMove()
+    {
+        // set values to move to the orignal or next point
+        transform.Rotate(new Vector3(0, 1, 0), 180);
+        direction = direction == 0 ? 1 : 0;
+        interpolateRatio = 0;
+        timer = 0;
+    }
+
+    void ResetGameObject()
+    {
+        transform.SetPositionAndRotation(locationPoints[0], originalRotation);
+        _renderer.material.color = transparent;
+        direction = 1;
+        interpolateRatio = 0;
+        timer = 0;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,43 +107,5 @@ public class Disappear : MonoBehaviour
         {
             AllowedToMove(false);
         }
-    }
-
-    public void AllowedToMove(bool trueOrFalse) // call this in manager script
-    {
-        canMove = trueOrFalse;
-        toReset = true;
-    }
-
-    void AppearXDisappear()
-    {
-        interpolateRatio += Time.deltaTime / timeTaken;
-
-        // moving to original or next point
-        transform.position = Vector3.Lerp(locationPoints[direction == 0 ? 1 : 0], locationPoints[direction], interpolateRatio);
-
-        float fullyVisiblePoint = (timeTaken - fullyVisibleTime) / 2;
-        if (timer <= fullyVisiblePoint)// making object visible
-            _renderer.material.color = Color.Lerp(transparent, opaque, interpolateRatio * (timeTaken / fullyVisiblePoint));
-        else if (timer >= timeTaken - fullyVisiblePoint) // making object invisible
-            _renderer.material.color = Color.Lerp(opaque, transparent, (interpolateRatio - (fullyVisiblePoint + fullyVisibleTime) / timeTaken) * (timeTaken / fullyVisiblePoint));
-    }
-
-    void SetNextMove()
-    {
-        // set values to move to the orignal or next point
-        transform.Rotate(new Vector3(0, 1, 0), 180);
-        direction = direction == 0 ? 1 : 0;
-        interpolateRatio = 0;
-        timer = 0;
-    }
-
-    void ResetGameObject()
-    {
-        transform.SetPositionAndRotation(locationPoints[0], originalRotation);
-        _renderer.material.color = transparent;
-        direction = 1;
-        interpolateRatio = 0;
-        timer = 0;
     }
 }

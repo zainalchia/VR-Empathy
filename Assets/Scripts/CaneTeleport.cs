@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 using System.Linq;
 using Oculus.Interaction;
 
 using TMPro;
-using Oculus.Interaction.Input;
 
 public class CaneTeleport : MonoBehaviour
 {
@@ -32,59 +30,6 @@ public class CaneTeleport : MonoBehaviour
     float posX = 0;
     float posZ = 0;
     float timer = 0;
-
-    bool isVibrating = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.DrawRay(transform.position, -transform.forward / 2, Color.yellow);
-
-        if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() != null)
-        {
-            if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable)
-            {
-                // move this to a general vibration script if possible
-                if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
-                    ControllerVibrationManager.instance.TriggerVibration(40, 2, 255, OVRInput.Controller.LTouch);
-                else if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
-                    ControllerVibrationManager.instance.TriggerVibration(40, 2, 255, OVRInput.Controller.RTouch);
-
-                CheckIfCanMove();
-
-                // move input to a manager script if possible
-                if (OVRInput.GetDown(OVRInput.Button.One) && !buttonPressed)
-                {
-                    buttonPressed = true;
-                    MoveToLocation();
-                }
-                else if (OVRInput.GetUp(OVRInput.Button.One))
-                {
-                    buttonPressed = false;
-                }
-            }
-        }
-        else
-        {
-            //indicator.SetActive(false);
-            if (lastHitGameObject != null) // disable any hotspot indicator when not holding cane
-            {
-                lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
-                lastHitGameObject = null;
-            }
-        }
-
-
-        timer += Time.deltaTime;
-
-        debug_text.text = ovrCamRig.transform.localPosition.ToString() + '\n' + middleEyeAnchor.transform.localPosition.ToString();
-    }
 
     void CheckIfCanMove()
     {
@@ -114,7 +59,7 @@ public class CaneTeleport : MonoBehaviour
                 lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
             }
         }
-        
+
     }
 
     void MoveToLocation()
@@ -127,5 +72,54 @@ public class CaneTeleport : MonoBehaviour
             ovrCamRig.transform.position = new Vector3(posX - offsetX, ovrCamRig.transform.position.y, posZ - offsetZ);
             timer = 0;
         }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Debug.DrawRay(transform.position, -transform.forward / 2, Color.yellow);
+
+        if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() != null)
+        {
+            if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable)
+            {
+                //// move this to a general vibration script if possible
+                //if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
+                //    ControllerVibrationManager.instance.TriggerVibration(40, 2, 255, OVRInput.Controller.LTouch);
+                //else if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+                //    ControllerVibrationManager.instance.TriggerVibration(40, 2, 255, OVRInput.Controller.RTouch);
+
+                CheckIfCanMove();
+
+                // move input to a manager script if possible
+                if (OVRInput.GetDown(OVRInput.Button.One) && !buttonPressed)
+                {
+                    buttonPressed = true;
+                    MoveToLocation();
+                }
+                else if (OVRInput.GetUp(OVRInput.Button.One))
+                {
+                    buttonPressed = false;
+                }
+            }
+        }
+        else
+        {
+            //indicator.SetActive(false);
+            if (lastHitGameObject != null) // disable any hotspot indicator when not holding cane
+            {
+                lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+                lastHitGameObject = null;
+            }
+        }
+
+        timer += Time.deltaTime;
+
+        debug_text.text = ovrCamRig.transform.localPosition.ToString() + '\n' + middleEyeAnchor.transform.localPosition.ToString();
     }
 }
