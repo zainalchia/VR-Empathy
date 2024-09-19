@@ -17,8 +17,8 @@ public class ControllerVibrationManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private GrabInteractor[] grabInteractors;
-    [SerializeField] bool allowControllerVibration = true;
+
+    public bool allowControllerVibration = true;
     [SerializeField] int vibrationStrength = 255; // 0 - 255
     [SerializeField] int vibrationFrequency = 2; // lower == more frequent vibration
 
@@ -43,7 +43,7 @@ public class ControllerVibrationManager : MonoBehaviour
 
     void CheckIfHolding()
     {
-        foreach (GrabInteractor grabInteractor in grabInteractors) 
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors) 
         {
             if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
                 TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.LTouch);

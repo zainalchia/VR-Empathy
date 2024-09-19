@@ -15,13 +15,11 @@ public class CaneTeleport : MonoBehaviour
      *      and remove it from the LocomotionControllerInteractorGroup scripts in the OVR GameObject
      */
 
-    [SerializeField] GameObject ovrCamRig;
-    [SerializeField] GameObject middleEyeAnchor;
+
     [SerializeField] float maxDistanceMoveable = 0.6f;
     [SerializeField] LayerMask floorLayer;
     [SerializeField] float defaultTimeBeforeNextMove = 2;
-    //[SerializeField] GameObject indicator;
-    [SerializeField] TMP_Text debug_text;
+    //[SerializeField] TMP_Text debug_text;
 
     bool buttonPressed = false;
 
@@ -45,15 +43,10 @@ public class CaneTeleport : MonoBehaviour
 
             // enable hotspot indicator when pointing cane at hotspot
             lastHitGameObject.GetComponent<MeshRenderer>().enabled = true;
-            //indicator.SetActive(true);
-            //indicator.transform.position = new Vector3(hit.point.x, hit.point.y + 0.05f, hit.point.z);
-            //indicator.transform.eulerAngles = new Vector3(0, 0, 0);
-
         }
         else
         {
             canMove = false;
-            //indicator.SetActive(false);
             if (lastHitGameObject != null) // disable hotspot indicator when not pointing at hotspot
             {
                 lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -67,9 +60,9 @@ public class CaneTeleport : MonoBehaviour
         if (canMove && timer >= defaultTimeBeforeNextMove)
         {
             // Move OVRCameraRig gameobject with offset
-            float offsetX = middleEyeAnchor.transform.localPosition.x;
-            float offsetZ = middleEyeAnchor.transform.localPosition.z;
-            ovrCamRig.transform.position = new Vector3(posX - offsetX, ovrCamRig.transform.position.y, posZ - offsetZ);
+            float offsetX = GameManager.instance.middleEyeAnchor.transform.localPosition.x;
+            float offsetZ = GameManager.instance.middleEyeAnchor.transform.localPosition.z;
+            GameManager.instance.ovrCamRig.transform.position = new Vector3(posX - offsetX, GameManager.instance.ovrCamRig.transform.position.y, posZ - offsetZ);
             timer = 0;
         }
     }
@@ -88,12 +81,6 @@ public class CaneTeleport : MonoBehaviour
         {
             if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable)
             {
-                //// move this to a general vibration script if possible
-                //if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
-                //    ControllerVibrationManager.instance.TriggerVibration(40, 2, 255, OVRInput.Controller.LTouch);
-                //else if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
-                //    ControllerVibrationManager.instance.TriggerVibration(40, 2, 255, OVRInput.Controller.RTouch);
-
                 CheckIfCanMove();
 
                 // move input to a manager script if possible
@@ -110,7 +97,6 @@ public class CaneTeleport : MonoBehaviour
         }
         else
         {
-            //indicator.SetActive(false);
             if (lastHitGameObject != null) // disable any hotspot indicator when not holding cane
             {
                 lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -120,6 +106,6 @@ public class CaneTeleport : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        debug_text.text = ovrCamRig.transform.localPosition.ToString() + '\n' + middleEyeAnchor.transform.localPosition.ToString();
+        //debug_text.text = ovrCamRig.transform.localPosition.ToString() + '\n' + middleEyeAnchor.transform.localPosition.ToString();
     }
 }

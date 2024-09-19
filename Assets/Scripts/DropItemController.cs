@@ -1,20 +1,38 @@
 using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 
 public class DropItemController : MonoBehaviour
 {
-    [SerializeField] private GrabInteractor[] grabInteractors;
     [SerializeField] private HandGrabInteractor[] handGrabInteractors;
     [SerializeField] private float interval = 10;
     [SerializeField] private float timer = 0;
 
+    [SerializeField] private AudioSource audioSource_player;
+    [SerializeField] private AudioClip audioClip_sighAfterDrop;
+
+    void EnableDropTimer()
+    {
+        bool timerOn = false;
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+        {
+            if (grabInteractor.HasSelectedInteractable)
+                timerOn = true;
+        }
+
+        if (timerOn)
+            timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            ActivateItemDrop();
+            timer = interval;
+        }
+    }
+
     private void ActivateItemDrop()
     {
-        foreach (GrabInteractor grabInteractor in grabInteractors)
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
             grabInteractor.ForceRelease();
         }
@@ -22,6 +40,8 @@ public class DropItemController : MonoBehaviour
         {
             handGrabInteractor.ForceRelease();
         }
+
+        //audioSource_player.PlayOneShot(audioClip_sighAfterDrop);
     }
 
     // Start is called before the first frame update
@@ -33,12 +53,6 @@ public class DropItemController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer <= 0)
-        {
-            ActivateItemDrop();
-            timer = interval;
-        }
-        else
-            timer -= Time.deltaTime;
+        EnableDropTimer();
     }
 }
