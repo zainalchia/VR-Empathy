@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     public GameObject middleEyeAnchor;
     public GrabInteractor[] grabInteractors;
 
+    // IMPORTANT SCENE GAMEOBJECTS
+    public GameObject glasses;
+
     // Start is called before the first frame update
     void Start()
     {

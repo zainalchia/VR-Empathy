@@ -19,7 +19,7 @@ public class MovingFurniture : MonoBehaviour
             //int movesToMake = Random.Range(1, 4);
             MoveRandomiser();
             timer = 0;
-            nextTimeToMove = Random.Range(0.2f, 1f);
+            nextTimeToMove = Random.Range(0.05f, 0.5f);
         }
     }
 

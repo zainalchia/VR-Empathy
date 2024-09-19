@@ -5,8 +5,10 @@ using UnityEngine.Rendering;
 
 public class PostProcessingController : MonoBehaviour
 {
+
+    #region Blurry Effect
     [SerializeField] private float interval = 10;
-    
+
     [SerializeField, Tooltip("Max weight of Post-Processing Volume")] float targetWeight = 1f;
     [SerializeField, Tooltip("Min weight of Post-Processing Volume")] float initalWeight = 0.75f;
     float interpolateRatio = 0;
@@ -16,7 +18,6 @@ public class PostProcessingController : MonoBehaviour
     {
         gameObject.GetComponent<Volume>().enabled = !gameObject.GetComponent<Volume>().enabled;
     }
-
     private void VisionBlurEffect()
     {
         interpolateRatio += Time.deltaTime / interval;
@@ -43,6 +44,7 @@ public class PostProcessingController : MonoBehaviour
 
         isUsingGlasses = trueOrFalse;
     }
+    #endregion
 
     // Start is called before the first frame update
     void Start()
