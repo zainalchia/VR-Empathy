@@ -54,7 +54,7 @@ public class MinigameManager : MonoBehaviour
 
     #region Medication Minigame (Scene 3)
     [Header("Medication Minigame")]
-    [SerializeField] GameObject[] medicationsToEat;
+    [SerializeField] List<GameObject> medicationsToEat;
     public bool toEatMedication = false;
     bool medicationWasEaten = false;
 
@@ -67,14 +67,12 @@ public class MinigameManager : MonoBehaviour
     {
         if (toEatMedication)
         {
-            foreach (GameObject medicine in medicationsToEat)
+            if (medicationsToEat.Contains(obj))
             {
-                if (obj == medicine)
-                {
-                    obj.SetActive(false);
-                    medicationWasEaten = true;
-                    debugText.text = "Medication eaten";
-                }
+                // right now only checks if medicine obj in list (probably need to change to use name instead if want to have multiple of the same medicine)
+                obj.SetActive(false);
+                medicationWasEaten = true;
+                debugText.text = "Medication eaten";
             }
 
             if (!medicationWasEaten)
