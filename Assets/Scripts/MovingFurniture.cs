@@ -91,8 +91,5 @@ public class MovingFurniture : MonoBehaviour
             FurnitureMove();
         else
             transform.position = originalPos;
-
-        if (Input.GetKeyDown(KeyCode.P))
-            isLookedAt = !isLookedAt;
     }
 }

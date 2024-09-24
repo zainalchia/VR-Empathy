@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Oculus.Interaction;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,12 +19,23 @@ public class GameManager : MonoBehaviour
     #endregion
 
     // OVR PLAYER
+    [Header("OVR PLAYER")]
     public GameObject ovrCamRig;
     public GameObject middleEyeAnchor;
     public GrabInteractor[] grabInteractors;
 
-    // IMPORTANT SCENE GAMEOBJECTS
+    // PUTTING ON & TAKING OFF GLASSES
+    [Header("GLASSES")]
     public GameObject glasses;
+    public bool toPutGlassesOn = false;
+    public bool toTakeGlassesOff = false;
+    public UnityEvent OnGlassesTakeOff;
+
+    public void TakeOffGlasses()
+    {
+        glasses.SetActive(true);
+        OnGlassesTakeOff.Invoke();
+    }
 
     // Start is called before the first frame update
     void Start()

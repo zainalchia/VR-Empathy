@@ -5,8 +5,6 @@ using UnityEngine;
 using System.Linq;
 using Oculus.Interaction;
 
-using TMPro;
-
 public class CaneTeleport : MonoBehaviour
 {
     /* NOTE:
@@ -52,7 +50,6 @@ public class CaneTeleport : MonoBehaviour
                 lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
             }
         }
-
     }
 
     void MoveToLocation()
@@ -105,7 +102,5 @@ public class CaneTeleport : MonoBehaviour
         }
 
         timer += Time.deltaTime;
-
-        //debug_text.text = ovrCamRig.transform.localPosition.ToString() + '\n' + middleEyeAnchor.transform.localPosition.ToString();
     }
 }

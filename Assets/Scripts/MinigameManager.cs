@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MinigameManager : MonoBehaviour
 {
@@ -19,17 +20,47 @@ public class MinigameManager : MonoBehaviour
 
     [SerializeField] TextMeshPro debugText;
 
-    #region Medication Minigame
+    #region TaiChi Minigame (Scene ???)
+    #endregion
+    [Header("TaiChi Minigame")]
+    [SerializeField] GameObject taichiInstructor;
+    [SerializeField] int numOfPoses;
+    public UnityEvent OnPosesFinish;
+    public bool toDoTaiChi = false;
+
+    int currentPose = 0;
+
+    public void TaiChiMinigameEnabled(bool trueOrFalse)
+    {
+        toDoTaiChi = trueOrFalse;
+    }
+
+    public void NextPose()
+    {
+        if (toDoTaiChi)
+        {
+            if (currentPose < numOfPoses)
+            {
+                taichiInstructor.GetComponent<Animator>().SetInteger("Pose", currentPose);
+                currentPose += 1;
+            }
+            else
+            {
+                toDoTaiChi = false;
+                OnPosesFinish.Invoke();
+            }
+        }
+    }
+
+    #region Medication Minigame (Scene 3)
     [Header("Medication Minigame")]
     [SerializeField] GameObject[] medicationsToEat;
-    [SerializeField] PlayerFace playerFace; // rmb to disable in hierarchy
     public bool toEatMedication = false;
     bool medicationWasEaten = false;
 
     public void MedicationMinigameEnabled(bool trueOrFalse)
     {
         toEatMedication = trueOrFalse;
-        playerFace.enabled = trueOrFalse;
     }
 
     public void EatMedication(GameObject obj)

@@ -56,7 +56,7 @@ public class PostProcessingController : MonoBehaviour
     void Update()
     {
         if (!isUsingGlasses)
-            VisionBlurEffect();           
+            VisionBlurEffect();
 
     }
 }
