@@ -15,7 +15,7 @@ public class CaneTeleport : MonoBehaviour
 
 
     [SerializeField] float maxDistanceMoveable = 0.6f;
-    [SerializeField] LayerMask floorLayer;
+    [SerializeField] LayerMask teleportLayer;
     [SerializeField] float defaultTimeBeforeNextMove = 2;
     //[SerializeField] TMP_Text debug_text;
 
@@ -32,7 +32,7 @@ public class CaneTeleport : MonoBehaviour
         // Raycast to floor to check there are any hotspot
         Ray ray = new Ray(transform.position, -transform.forward);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, maxDistanceMoveable, floorLayer, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out hit, maxDistanceMoveable, teleportLayer, QueryTriggerInteraction.Ignore))
         {
             canMove = true;
             lastHitGameObject = hit.collider.gameObject;

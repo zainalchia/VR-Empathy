@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject ovrCamRig;
     public GameObject middleEyeAnchor;
     public GrabInteractor[] grabInteractors;
+    public GameObject characterModel;
 
     // PUTTING ON & TAKING OFF GLASSES
     [Header("GLASSES")]

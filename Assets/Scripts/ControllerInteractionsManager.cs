@@ -217,6 +217,24 @@ public class ControllerInteractionsManager : MonoBehaviour
                 ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
             }
         }
+
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+        {
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", true);
+        }
+        else if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
+        {
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", false);
+        }
+
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+        {
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", true);
+        }
+        else if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
+        {
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", false);
+        }
         #endregion
 
         #region Dropping Items
