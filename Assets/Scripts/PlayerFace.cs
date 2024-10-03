@@ -48,7 +48,7 @@ public class PlayerFace : MonoBehaviour
         }
 
         // medication minigame
-        if (MinigameManager.instance.toEatMedication)
+        if (GameManager.instance.toEatMedication)
         {
             if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(other.gameObject)) // checks if it is held in hand
                 MinigameManager.instance.EatMedication(other.gameObject);

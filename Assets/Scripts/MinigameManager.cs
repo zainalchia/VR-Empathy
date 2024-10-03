@@ -21,23 +21,21 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] TextMeshPro debugText;
 
     #region TaiChi Minigame (Scene ???)
-    #endregion
     [Header("TaiChi Minigame")]
     [SerializeField] GameObject taichiInstructor;
     [SerializeField] int numOfPoses;
     public UnityEvent OnPosesFinish;
-    public bool toDoTaiChi = false;
 
     int currentPose = 0;
 
     public void TaiChiMinigameEnabled(bool trueOrFalse)
     {
-        toDoTaiChi = trueOrFalse;
+        GameManager.instance.toDoTaiChi = trueOrFalse;
     }
 
     public void NextPose()
     {
-        if (toDoTaiChi)
+        if (GameManager.instance.toDoTaiChi)
         {
             if (currentPose < numOfPoses)
             {
@@ -46,40 +44,43 @@ public class MinigameManager : MonoBehaviour
             }
             else
             {
-                toDoTaiChi = false;
+                GameManager.instance.toDoTaiChi = false;
                 OnPosesFinish.Invoke();
             }
         }
     }
+    #endregion
 
     #region Medication Minigame (Scene 3)
     [Header("Medication Minigame")]
     [SerializeField] List<GameObject> medicationsToEat;
-    public bool toEatMedication = false;
+    public UnityEvent OnMedicationFinish;
     bool medicationWasEaten = false;
-
-    public void MedicationMinigameEnabled(bool trueOrFalse)
-    {
-        toEatMedication = trueOrFalse;
-    }
 
     public void EatMedication(GameObject obj)
     {
-        if (toEatMedication)
+        if (GameManager.instance.toEatMedication)
         {
             if (medicationsToEat.Contains(obj))
             {
                 // right now only checks if medicine obj in list (probably need to change to use name instead if want to have multiple of the same medicine)
                 obj.SetActive(false);
                 medicationWasEaten = true;
-                debugText.text = "Medication eaten";
+                medicationsToEat.Remove(obj);
+                //debugText.text = "Medication eaten";
             }
 
             if (!medicationWasEaten)
             {
-                debugText.text = "This is not the medicine to take";
+                //debugText.text = "This is not the medicine to take";
             }
             medicationWasEaten = false;
+
+            if (medicationsToEat.Count == 0)
+            {
+                GameManager.instance.toEatMedication = false;
+                //OnMedicationFinish.Invoke();
+            }
         }
     }
 

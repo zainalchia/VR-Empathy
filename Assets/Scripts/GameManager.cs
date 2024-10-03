@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     public bool toTakeGlassesOff = false;
     public UnityEvent OnGlassesTakeOff;
 
+    // MINIGAMES
+    [Header("MINIGAMES")]
+    public bool toDoTaiChi = false;
+    public bool toEatMedication = false;
+
     public void TakeOffGlasses()
     {
         glasses.SetActive(true);

@@ -866,7 +866,7 @@ GameObject:
   - component: {fileID: 396531648}
   - component: {fileID: 396531647}
   m_Layer: 0
-  m_Name: Debug Text Test ItemsGrabbed
+  m_Name: SceneText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -892,7 +892,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: For check items grab
+  m_text: SceneText
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1014,12 +1014,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 396531645}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 5.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1843377248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2866,6 +2866,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  toDoTaiChi: 0
+  toEatMedication: 0
 --- !u!114 &1115407452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4645,16 +4647,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe4128d7e964eb4aa1d77a95b5f3f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 396531647}
+  debugText: {fileID: 0}
   taichiInstructor: {fileID: 0}
   numOfPoses: 0
   OnPosesFinish:
     m_PersistentCalls:
       m_Calls: []
-  toDoTaiChi: 0
   medicationsToEat:
   - {fileID: 1745943243}
-  toEatMedication: 1
+  OnMedicationFinish:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1837906174
 Transform:
   m_ObjectHideFlags: 0
@@ -4714,6 +4717,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 965707187}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1843377246
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1843377248}
+  - component: {fileID: 1843377247}
+  m_Layer: 0
+  m_Name: TestingScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1843377247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843377246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beaea841c3f5c37469faa1bf83b0b6ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneText: {fileID: 396531647}
+--- !u!4 &1843377248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1843377246}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 396531649}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1855289879 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8092570672683494507, guid: f54012181eacade4ea242c65f804720f,
@@ -5276,7 +5325,6 @@ SceneRoots:
   - {fileID: 200560973}
   - {fileID: 1089426994}
   - {fileID: 2036579284}
-  - {fileID: 396531649}
   - {fileID: 1215471076}
   - {fileID: 1875158271}
   - {fileID: 811807499}
@@ -5285,3 +5333,4 @@ SceneRoots:
   - {fileID: 432448424}
   - {fileID: 853365511}
   - {fileID: 965707187}
+  - {fileID: 1843377248}
