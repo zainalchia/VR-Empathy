@@ -19,28 +19,26 @@ public class MinigameManager : MonoBehaviour
 
 
     [SerializeField] TextMeshPro debugText;
+    bool debugStart = false;
 
     #region TaiChi Minigame (Scene ???)
     [Header("TaiChi Minigame")]
     [SerializeField] GameObject taichiInstructor;
     [SerializeField] int numOfPoses;
+    public float timeForEachPose;
+    public float timeDelayBeforeNextPose;
     public UnityEvent OnPosesFinish;
 
     int currentPose = 0;
 
-    public void TaiChiMinigameEnabled(bool trueOrFalse)
-    {
-        GameManager.instance.toDoTaiChi = trueOrFalse;
-    }
-
-    public void NextPose()
+    public void NextPose() // call to start minigame as well
     {
         if (GameManager.instance.toDoTaiChi)
         {
             if (currentPose < numOfPoses)
             {
-                taichiInstructor.GetComponent<Animator>().SetInteger("Pose", currentPose);
                 currentPose += 1;
+                taichiInstructor.GetComponent<Animator>().SetInteger("Pose", currentPose);
             }
             else
             {
@@ -95,6 +93,10 @@ public class MinigameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.P) && !debugStart)
+        {
+            debugStart = true;
+            NextPose();
+        }
     }
 }
