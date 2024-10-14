@@ -21,6 +21,7 @@ public class ControllerInteractionsManager : MonoBehaviour
     #region Grabbing Items
     private List<GrabInteractor> grabInteractorsWithinRange = new List<GrabInteractor>();
     bool canTakeOffGlasses = false;
+    bool canTakeOffDentures = false;
     bool toReleaseLeftHand = false;
     bool toReleaseRightHand = false;
 
@@ -40,7 +41,7 @@ public class ControllerInteractionsManager : MonoBehaviour
         return items;
     }
 
-    // for glasses
+    #region Glasses
     public void CanTakeOffGlasses(GrabInteractor addGrabInteractor)
     {
         if (!grabInteractorsWithinRange.Contains(addGrabInteractor))
@@ -64,8 +65,10 @@ public class ControllerInteractionsManager : MonoBehaviour
             if ((controllerSide == OVRInput.Controller.LTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left))
             {
                 canTakeOffGlasses = false;
+                grabInteractorsWithinRange.Clear();
                 GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
-                GameManager.instance.TakeOffGlasses();
+                GameManager.instance.glasses.SetActive(true);
+                GameManager.instance.OnGlassesTakeOff.Invoke();
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
                 GameManager.instance.glasses.GetComponent<Rigidbody>().useGravity = true;
                 toReleaseLeftHand = true;
@@ -74,8 +77,10 @@ public class ControllerInteractionsManager : MonoBehaviour
             else if (controllerSide == OVRInput.Controller.RTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
             {
                 canTakeOffGlasses = false;
+                grabInteractorsWithinRange.Clear();
                 GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
-                GameManager.instance.TakeOffGlasses();
+                GameManager.instance.glasses.SetActive(true);
+                GameManager.instance.OnGlassesTakeOff.Invoke();
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
                 GameManager.instance.glasses.GetComponent<Rigidbody>().useGravity = true;
                 toReleaseRightHand = true;
@@ -83,6 +88,56 @@ public class ControllerInteractionsManager : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region Dentures
+    public void CanTakeOffDentures(GrabInteractor addGrabInteractor)
+    {
+        if (!grabInteractorsWithinRange.Contains(addGrabInteractor))
+        {
+            grabInteractorsWithinRange.Add(addGrabInteractor);
+            canTakeOffDentures = true;
+        }
+    }
+    public void CannotTakeOffDentures(GrabInteractor removeGrabInteractor)
+    {
+        if (grabInteractorsWithinRange.Contains(removeGrabInteractor))
+            grabInteractorsWithinRange.Remove(removeGrabInteractor);
+
+        if (grabInteractorsWithinRange.Count == 0)
+            canTakeOffDentures = false;
+    }
+    void RemoveDentures(OVRInput.Controller controllerSide)
+    {
+        foreach (GrabInteractor grabInteractorWithinRange in grabInteractorsWithinRange)
+        {
+            if ((controllerSide == OVRInput.Controller.LTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left))
+            {
+                canTakeOffDentures = false;
+                grabInteractorsWithinRange.Clear();
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.OnDenturesTakeOff.Invoke();
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
+                GameManager.instance.dentures.GetComponent<Rigidbody>().useGravity = true;
+                toReleaseLeftHand = true;
+                GameManager.instance.toTakeDenturesOff = false;
+            }
+            else if (controllerSide == OVRInput.Controller.RTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+            {
+                canTakeOffDentures = false;
+                grabInteractorsWithinRange.Clear();
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.OnDenturesTakeOff.Invoke();
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
+                GameManager.instance.dentures.GetComponent<Rigidbody>().useGravity = true;
+                toReleaseRightHand = true;
+                GameManager.instance.toTakeDenturesOff = false;
+            }
+        }
+    }
+    #endregion
 
     #endregion
 
@@ -220,6 +275,19 @@ public class ControllerInteractionsManager : MonoBehaviour
             if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
             {
                 RemoveGlasses(OVRInput.Controller.RTouch);
+            }
+        }
+
+        if (canTakeOffDentures)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+            {
+                RemoveDentures(OVRInput.Controller.LTouch);
+            }
+
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+            {
+                RemoveDentures(OVRInput.Controller.RTouch);
             }
         }
 

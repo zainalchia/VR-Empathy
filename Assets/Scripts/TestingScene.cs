@@ -14,7 +14,9 @@ public class TestingScene : MonoBehaviour
     {
         SCENE1,
         SCENE2,
-        SCENE3
+        SCENE3,
+        SCENE4,
+        SCENE5
     }
 
     void Scene1()
@@ -25,14 +27,26 @@ public class TestingScene : MonoBehaviour
 
     void Scene2()
     {
-        sceneText.text = "Eat medication";
-        GameManager.instance.toEatMedication = true;
+        sceneText.text = "Put on dentures";
+        GameManager.instance.toPutDenturesOn = true;
     }
 
     void Scene3()
     {
+        sceneText.text = "Eat medication";
+        GameManager.instance.toEatMedication = true;
+    }
+
+    void Scene4()
+    {
         sceneText.text = "Take off glasses";
         GameManager.instance.toTakeGlassesOff = true;
+    }
+
+    void Scene5()
+    {
+        sceneText.text = "Take off dentures";
+        GameManager.instance.toTakeDenturesOff = true;
     }
 
     // Start is called before the first frame update
@@ -55,6 +69,18 @@ public class TestingScene : MonoBehaviour
             buttonPressed = true;
             Scene3();
             sceneToPlay = SceneToPlay.SCENE3;
+        }
+        if (sceneToPlay == SceneToPlay.SCENE3 && OVRInput.GetDown(OVRInput.Button.Three) && !buttonPressed)
+        {
+            buttonPressed = true;
+            Scene4();
+            sceneToPlay = SceneToPlay.SCENE4;
+        }
+        if (sceneToPlay == SceneToPlay.SCENE4 && OVRInput.GetDown(OVRInput.Button.Three) && !buttonPressed)
+        {
+            buttonPressed = true;
+            Scene5();
+            sceneToPlay = SceneToPlay.SCENE5;
         }
 
         if (OVRInput.GetUp(OVRInput.Button.Three) && buttonPressed)

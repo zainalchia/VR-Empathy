@@ -25,7 +25,6 @@ public class MinigameManager : MonoBehaviour
     [Header("TaiChi Minigame")]
     [SerializeField] GameObject taichiInstructor;
     [SerializeField] int numOfPoses;
-    public float timeForEachPose;
     public float timeDelayBeforeNextPose;
     public UnityEvent OnPosesFinish;
 

@@ -32,16 +32,17 @@ public class GameManager : MonoBehaviour
     public bool toTakeGlassesOff = false;
     public UnityEvent OnGlassesTakeOff;
 
+    // PUTTING ON & TAKING OFF DENTURES
+    [Header("DENTURES")]
+    public GameObject dentures;
+    public bool toPutDenturesOn = false;
+    public bool toTakeDenturesOff = false;
+    public UnityEvent OnDenturesTakeOff;
+
     // MINIGAMES
     [Header("MINIGAMES")]
     public bool toDoTaiChi = false;
     public bool toEatMedication = false;
-
-    public void TakeOffGlasses()
-    {
-        glasses.SetActive(true);
-        OnGlassesTakeOff.Invoke();
-    }
 
     // Start is called before the first frame update
     void Start()
