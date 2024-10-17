@@ -84,6 +84,14 @@ public class PlayerFace : MonoBehaviour
             if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(other.gameObject)) // checks if it is held in hand
                 MinigameManager.instance.EatMedication(other.gameObject);
         }
+
+        if (other.gameObject.GetComponent<IObjectInteractable>() != null)
+        {
+            if (other.gameObject.GetComponent<IObjectInteractable>().ShouldInteractWithFace())
+            {
+                other.gameObject.GetComponent<IObjectInteractable>().OnInteract();
+            }
+        }
     }
 
     private void OnTriggerExit(Collider other)
