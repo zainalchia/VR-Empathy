@@ -44,6 +44,7 @@ public class Mug : MonoBehaviour, IObjectInteractable
             {
                 hadWater = true;
                 this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                GetComponent<AudioSource>().Play();
                 canInteract = true;
             }
         }

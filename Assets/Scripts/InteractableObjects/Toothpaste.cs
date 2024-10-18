@@ -1,6 +1,8 @@
+using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Toothpaste : MonoBehaviour
 {
@@ -14,33 +16,44 @@ public class Toothpaste : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // must set to isTrigger when grabbed as collision does not work when grabbed
+        if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() != null && !hasBeenUsed)
+        {
+            if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable)
+                GetComponent<BoxCollider>().isTrigger = true;
+            else
+                GetComponent<BoxCollider>().isTrigger = false;
+        }
+        else
+            GetComponent<BoxCollider>().isTrigger = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (hasBeenUsed) return;
+
+    //    if (collision.gameObject.name == "Toothbrush")
+    //    {
+    //        GetComponent<AudioSource>().Play();
+    //        hasBeenUsed = true;
+    //        collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+    //        collision.gameObject.GetComponent<IObjectInteractable>().SetInteractive(true);
+
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
     {
         if (hasBeenUsed) return;
 
-
-        if (collision.gameObject.name == "Toothbrush")
+        if (other.gameObject.name == "Toothbrush")
         {
-            bool haveToothpaste = false;
-            bool haveToothbrush = false;
-            foreach (GameObject go in ControllerInteractionsManager.instance.GetItemsGrabbedInHand())
-            {
-                if (go.name == this.gameObject.name)
-                    haveToothpaste = true;
-                else if (go.name == collision.gameObject.name)
-                    haveToothbrush = true;
-            }
-
-            //if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(this.gameObject))
-            if (haveToothpaste && haveToothbrush)
+            if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(other.gameObject))
             {
                 GetComponent<AudioSource>().Play();
                 hasBeenUsed = true;
-                collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-                collision.gameObject.GetComponent<IObjectInteractable>().SetInteractive(true);
+                other.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                other.gameObject.GetComponent<IObjectInteractable>().SetInteractive(true);
             }
         }
     }
