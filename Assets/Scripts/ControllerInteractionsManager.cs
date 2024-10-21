@@ -148,19 +148,45 @@ public class ControllerInteractionsManager : MonoBehaviour
     [Header("Drop Items Variables")]
     public bool allowDropItems = true;
     [SerializeField] private float dropInterval = 10;
-    
+    [SerializeField] private float dropGlassesInterval = 1;
+    [SerializeField] private int dropGlassesCount = 2;
+
     [SerializeField] private AudioSource audioSource_player;
     [SerializeField] private AudioClip audioClip_sighAfterDrop;
 
-    private float dropTimer = 0;
+    private float dropTimer = 10;
+    private float dropGlassesTimer = 1;
 
     void EnableDropTimer()
     {
         bool timerOn = false;
+        bool glassesTimerOn = false;
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
             if (grabInteractor.HasSelectedInteractable)
-                timerOn = true;
+            {
+                if (GameManager.instance.glasses != null)
+                {
+                    if (grabInteractor.SelectedInteractable.gameObject == GameManager.instance.glasses && dropGlassesCount > 0 && GameManager.instance.toPutGlassesOn)
+                        glassesTimerOn = true;
+                    else
+                        timerOn = true;
+                }
+                else
+                {
+                    timerOn = true;
+                }
+            }
+        }
+
+        if (glassesTimerOn)
+            dropGlassesTimer -= Time.deltaTime;
+
+        if (dropGlassesTimer <= 0)
+        {
+            ActivateItemDrop();
+            dropGlassesCount -= 1;
+            dropGlassesTimer = dropGlassesInterval;
         }
 
         if (timerOn)
@@ -241,7 +267,8 @@ public class ControllerInteractionsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dropTimer = dropInterval;
+        dropGlassesTimer = dropGlassesInterval;
     }
 
     // Update is called once per frame
