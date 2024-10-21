@@ -4,7 +4,6 @@ using UnityEngine;
 
 using Oculus.Interaction;
 using Oculus.Interaction.Input;
-using TMPro;
 
 public class ControllerInteractionsManager : MonoBehaviour
 {
@@ -19,7 +18,6 @@ public class ControllerInteractionsManager : MonoBehaviour
     }
     #endregion
 
-    public TextMeshPro textDebug;
 
     #region Grabbing Items
     private List<GrabInteractor> grabInteractorsWithinRange = new List<GrabInteractor>();
@@ -346,16 +344,6 @@ public class ControllerInteractionsManager : MonoBehaviour
         if (allowControllerVibration)
             CheckIfHolding();
         #endregion
-
-        if (OVRInput.GetDown(OVRInput.Button.Four))
-        {
-            textDebug.text = string.Empty;
-            foreach (GameObject go in GetItemsGrabbedInHand())
-            {
-                textDebug.text += go.name + ", ";
-            }
-            
-        }
             
     }
 }

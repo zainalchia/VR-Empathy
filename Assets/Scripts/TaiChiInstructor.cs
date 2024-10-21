@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TaiChiInstructor : MonoBehaviour
 {
-    float timerForPose = 0f;
     float timerToGoNext = 0f;
 
     public void ReadyForNextPose() // called in animation event 1 frame before the last frame
