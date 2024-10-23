@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
     public bool toTakeDenturesOff = false;
     public UnityEvent OnDenturesTakeOff;
 
+    [Header("MOBILE PHONE")]
+    public bool canAnswerPhone = false;
+
     // MINIGAMES
     [Header("MINIGAMES")]
     public bool toDoTaiChi = false;

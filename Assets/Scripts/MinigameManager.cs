@@ -21,7 +21,7 @@ public class MinigameManager : MonoBehaviour
     [SerializeField] TextMeshPro debugText;
     bool debugStart = false;
 
-    #region TaiChi Minigame (Scene ???)
+    #region TaiChi Minigame
     [Header("TaiChi Minigame")]
     [SerializeField] GameObject taichiInstructor;
     [SerializeField] int numOfPoses;
@@ -30,7 +30,7 @@ public class MinigameManager : MonoBehaviour
 
     int currentPose = 0;
 
-    public void NextPose() // call to start minigame as well
+    public void NextPose() // call to start taichi in scenario manager, will invoke UnityEvent once all taichi animations have been played
     {
         if (GameManager.instance.toDoTaiChi)
         {
@@ -48,7 +48,7 @@ public class MinigameManager : MonoBehaviour
     }
     #endregion
 
-    #region Medication Minigame (Scene 3)
+    #region Medication Minigame
     [Header("Medication Minigame")]
     [SerializeField] List<GameObject> medicationsToEat;
     public UnityEvent OnMedicationFinish;
@@ -92,7 +92,7 @@ public class MinigameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P) && !debugStart)
+        if (Input.GetKeyDown(KeyCode.P) && !debugStart) // for debugging to start taichi animations, remember to remove
         {
             debugStart = true;
             NextPose();

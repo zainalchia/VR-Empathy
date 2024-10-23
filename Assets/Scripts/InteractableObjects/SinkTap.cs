@@ -25,7 +25,7 @@ public class SinkTap : MonoBehaviour
     {
         if (!canInteract) return;
 
-        if (other.gameObject.transform.parent.gameObject.GetComponent<GrabInteractor>() != null)
+        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null) // when touched by hand
         {
             if (waterIsOn)
             {
@@ -45,7 +45,7 @@ public class SinkTap : MonoBehaviour
     {
         if (canInteract) return;
 
-        if (other.gameObject.transform.parent.gameObject.GetComponent<GrabInteractor>() != null)
+        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null)
         {
             canInteract = true;
         }

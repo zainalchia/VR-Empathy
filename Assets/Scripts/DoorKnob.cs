@@ -8,10 +8,10 @@ using Oculus.Interaction;
 public class DoorKnob : MonoBehaviour
 {
     [SerializeField] GameObject Door;
-    [SerializeField] bool canOpenDoor = false;
+    [SerializeField] bool canOpenDoor = false; // if true, player can open door anytime
     public UnityEvent OnDoorOpen;
     
-    public void AllowDoorOpen()
+    public void AllowDoorOpen() // call this if you want the door to be able to open after a scritped event
     {
         canOpenDoor = true;
     }
@@ -31,7 +31,7 @@ public class DoorKnob : MonoBehaviour
     {
         if (canOpenDoor)
         {
-            if (other.gameObject.transform.parent.gameObject.GetComponent<GrabInteractor>() != null)
+            if (other.gameObject.GetComponentInParent<GrabInteractor>() != null)
             {
                 OnDoorOpen.Invoke();
                 canOpenDoor = false;

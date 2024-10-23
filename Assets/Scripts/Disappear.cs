@@ -99,7 +99,7 @@ public class Disappear : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.K)) // for debugging only
+        if (Input.GetKeyDown(KeyCode.K)) // for debugging only, remember to remove
         {
             AllowedToMove(true);
         }

@@ -10,16 +10,17 @@ public class MovingFurniture : MonoBehaviour
     bool isLookedAt = false;
     float timer = 0;
     float nextTimeToMove = 0;
+    float minTimeBeforeNextMove = 0.05f;
+    float maxTimeBeforeNextMove = 0.5f;
 
     void FurnitureMove()
     {
         timer += Time.deltaTime;
         if (timer >= nextTimeToMove) 
         {
-            //int movesToMake = Random.Range(1, 4);
             MoveRandomiser();
             timer = 0;
-            nextTimeToMove = Random.Range(0.05f, 0.5f);
+            nextTimeToMove = Random.Range(minTimeBeforeNextMove, maxTimeBeforeNextMove); // change timing here
         }
     }
 
@@ -72,7 +73,7 @@ public class MovingFurniture : MonoBehaviour
         }
     }
 
-    public void SetIsLookedAt(bool trueOrFalse)
+    public void SetIsLookedAt(bool trueOrFalse) // called in InViewDetector script
     {
         isLookedAt = trueOrFalse;
     }
@@ -81,7 +82,7 @@ public class MovingFurniture : MonoBehaviour
     void Start()
     {
         originalPos = transform.position;
-        nextTimeToMove = Random.Range(0.5f, 2f);
+        nextTimeToMove = Random.Range(minTimeBeforeNextMove, maxTimeBeforeNextMove);
     }
 
     // Update is called once per frame

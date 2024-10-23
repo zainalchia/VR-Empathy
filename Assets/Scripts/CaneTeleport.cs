@@ -17,7 +17,6 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] float maxDistanceMoveable = 0.6f;
     [SerializeField] LayerMask teleportLayer;
     [SerializeField] float defaultTimeBeforeNextMove = 2;
-    //[SerializeField] TMP_Text debug_text;
 
     bool buttonPressed = false;
 
@@ -72,8 +71,6 @@ public class CaneTeleport : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.DrawRay(transform.position, -transform.forward / 2, Color.yellow);
-
         if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() != null)
         {
             if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable)

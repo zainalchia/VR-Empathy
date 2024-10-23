@@ -85,7 +85,7 @@ public class PlayerFace : MonoBehaviour
                 MinigameManager.instance.EatMedication(other.gameObject);
         }
 
-        if (other.gameObject.GetComponent<IObjectInteractable>() != null)
+        if (other.gameObject.GetComponent<IObjectInteractable>() != null) // mug, toothbrush etc.
         {
             if (other.gameObject.GetComponent<IObjectInteractable>().ShouldInteractWithFace())
             {

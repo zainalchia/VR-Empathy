@@ -59,7 +59,7 @@ public class ControllerInteractionsManager : MonoBehaviour
         if (grabInteractorsWithinRange.Count == 0)
             canTakeOffGlasses = false;
     }
-    void RemoveGlasses(OVRInput.Controller controllerSide)
+    void RemoveGlasses(OVRInput.Controller controllerSide) // will force select the glasses to corresponding hand
     {
         foreach (GrabInteractor grabInteractorWithinRange in grabInteractorsWithinRange)
         {
@@ -108,7 +108,7 @@ public class ControllerInteractionsManager : MonoBehaviour
         if (grabInteractorsWithinRange.Count == 0)
             canTakeOffDentures = false;
     }
-    void RemoveDentures(OVRInput.Controller controllerSide)
+    void RemoveDentures(OVRInput.Controller controllerSide) // will force select dentures to corresponding hand
     {
         foreach (GrabInteractor grabInteractorWithinRange in grabInteractorsWithinRange)
         {
@@ -163,7 +163,7 @@ public class ControllerInteractionsManager : MonoBehaviour
         {
             if (grabInteractor.HasSelectedInteractable)
             {
-                if (GameManager.instance.glasses != null)
+                if (GameManager.instance.glasses != null) // only for glasses scripted event
                 {
                     if (grabInteractor.SelectedInteractable.gameObject == GameManager.instance.glasses && dropGlassesCount > 0 && GameManager.instance.toPutGlassesOn)
                         glassesTimerOn = true;
@@ -319,14 +319,14 @@ public class ControllerInteractionsManager : MonoBehaviour
             }
         }
 
-        if (toReleaseLeftHand)
+        if (toReleaseLeftHand) // when force select has been used
         {
             if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
             {
                 ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
             }
         }
-        if (toReleaseRightHand)
+        if (toReleaseRightHand) // when force select has been used
         {
             if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
             {
