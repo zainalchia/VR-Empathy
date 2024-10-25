@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     public GrabInteractor[] grabInteractors;
     public GameObject characterModel;
 
+    // ALERT TEXT
+    [Header("ALERT TEXT")]
+    public GameObject alertText;
+
     // PUTTING ON & TAKING OFF GLASSES
     [Header("GLASSES")]
     public GameObject glasses;
@@ -46,6 +50,43 @@ public class GameManager : MonoBehaviour
     [Header("MINIGAMES")]
     public bool toDoTaiChi = false;
     public bool toEatMedication = false;
+
+
+    public void ShowAlert(string textToShow)
+    {
+        alertText.SetActive(true);
+        AlertTextController.instance.ShowAlert(textToShow);
+    }
+    public void ShowAlert(string textToShow, float length)
+    {
+        alertText.SetActive(true);
+        AlertTextController.instance.ShowAlert(textToShow, length);
+    }
+    public void ShowAlert(string textToShow, Color color)
+    {
+        alertText.SetActive(true);
+        AlertTextController.instance.ShowAlert(textToShow, color);
+    }
+    public void ShowAlert(string textToShow, float length, Color color)
+    {
+        alertText.SetActive(true);
+        AlertTextController.instance.ShowAlert(textToShow, length, color);
+    }
+
+    public void ShowAlertWithDelay(string textToShow, float length, float delay)
+    {
+        StartCoroutine(ShowAlertWithDelay_Coroutine(textToShow, length, delay));
+    }
+    public IEnumerator ShowAlertWithDelay_Coroutine(string textToShow, float length, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        alertText.SetActive(true);
+        AlertTextController.instance.ShowAlert(textToShow, length);
+    }
+    public void HideAlert()
+    {
+        AlertTextController.instance.HideAlert();
+    }
 
     // Start is called before the first frame update
     void Start()
