@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnDenturesTakeOff;
 
     [Header("MOBILE PHONE")]
+    public bool toPickUpPhone = false;
     public bool canAnswerPhone = false;
 
     // MINIGAMES
@@ -51,7 +52,7 @@ public class GameManager : MonoBehaviour
     public bool toDoTaiChi = false;
     public bool toEatMedication = false;
 
-
+    #region Alert Text Functions
     public void ShowAlert(string textToShow)
     {
         alertText.SetActive(true);
@@ -87,6 +88,8 @@ public class GameManager : MonoBehaviour
     {
         AlertTextController.instance.HideAlert();
     }
+    #endregion
+
 
     // Start is called before the first frame update
     void Start()

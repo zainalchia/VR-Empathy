@@ -12,12 +12,8 @@ public class PostProcessingController : MonoBehaviour
     [SerializeField, Tooltip("Max weight of Post-Processing Volume")] float targetWeight = 1f;
     [SerializeField, Tooltip("Min weight of Post-Processing Volume")] float initalWeight = 0.75f;
     float interpolateRatio = 0;
-    bool isUsingGlasses = false;
+    [SerializeField] bool isUsingGlasses = false;
 
-    private void TogglePostProcessing()
-    {
-        gameObject.GetComponent<Volume>().enabled = !gameObject.GetComponent<Volume>().enabled;
-    }
     private void VisionBlurEffect()
     {
         interpolateRatio += Time.deltaTime / interval;

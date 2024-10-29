@@ -6,8 +6,10 @@ using UnityEngine.Events;
 
 public class MobilePhone : MonoBehaviour
 {
+    public UnityEvent OnPickUpPhoneFirstTime;
     public UnityEvent OnAnswerPhone;
 
+    bool hasBeenPickedUpFirstTime = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,17 @@ public class MobilePhone : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!hasBeenPickedUpFirstTime) // trigger narration to use glasses
+        {
+            if (GameManager.instance.toPickUpPhone)
+            {
+                if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(this.gameObject))
+                {
+                    hasBeenPickedUpFirstTime = true;
+                    OnPickUpPhoneFirstTime.Invoke();
+                }
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
