@@ -60,6 +60,7 @@ public class CaneTeleport : MonoBehaviour
             float offsetZ = GameManager.instance.middleEyeAnchor.transform.localPosition.z;
             GameManager.instance.ovrCamRig.transform.position = new Vector3(posX - offsetX, GameManager.instance.ovrCamRig.transform.position.y, posZ - offsetZ);
             timer = 0;
+            lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
         }
     }
 

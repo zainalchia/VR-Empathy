@@ -65,7 +65,9 @@ public class ScenarioManager : MonoBehaviour
 
     IEnumerator Segment1Part1()
     {
-        yield return new WaitForSeconds(1);
+        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+
+        yield return new WaitForSeconds(4f);
 
         GameManager.instance.ShowAlert(narration_1[0], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
@@ -144,6 +146,8 @@ public class ScenarioManager : MonoBehaviour
 
     IEnumerator Segment1Part3_1()
     {
+        PostProcessingController.instance.UsingGlasses(false); // start blur effect
+
         yield return new WaitForSeconds(1f);
 
         // play phone calling
@@ -203,6 +207,8 @@ public class ScenarioManager : MonoBehaviour
         mobilePhone.SetPhoneHangUp();
 
         // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
 
         // load next scene here
         //SceneManager.LoadScene("", LoadSceneMode.Single);
@@ -232,10 +238,10 @@ public class ScenarioManager : MonoBehaviour
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             #region Going to living room
-            // check here when player reaches sofa, call segment3
+            // check here when player reaches sofa, start segment1Part3
             if (toGoLivingRoom)
             {
-                if (GameManager.instance.IsPlayerWithinPosition(-4.5f, -1.7f))
+                if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
                 {
                     toGoLivingRoom = false;
                     PlaySegment1Part3_1();

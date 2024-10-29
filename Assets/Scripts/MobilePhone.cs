@@ -71,19 +71,6 @@ public class MobilePhone : MonoBehaviour
                 }
             }
         }
-
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    SetPhoneCalling();
-        //}
-        //if (Input.GetKeyDown(KeyCode.Y))
-        //{
-        //    SetPhoneAnswered();
-        //}
-        //if (Input.GetKeyDown(KeyCode.U))
-        //{
-        //    SetPhoneHangUp();
-        //}
     }
 
     private void OnTriggerEnter(Collider other)

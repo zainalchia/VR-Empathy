@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     [Header("ALERT TEXT")]
     public GameObject alertText;
 
+    // UI FADE IN-OUT
+    [Header("FADE IN-OUT PANEL")]
+    public GameObject fadePanel;
+
     // PUTTING ON & TAKING OFF GLASSES
     [Header("GLASSES")]
     public GameObject glasses;
@@ -91,13 +95,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Player's Position
-    public bool IsPlayerWithinPosition(float minXInclusive, float minZInclusive)
-    {
-        if (ovrCamRig.transform.position.x >= minXInclusive && ovrCamRig.transform.position.z >= minZInclusive)
-            return true;
-        else
-            return false;
-    }
 
     public bool IsPlayerWithinPosition(float minXInclusive, float minZInclusive, float maxXInclusive, float maxZInclusive)
     {
