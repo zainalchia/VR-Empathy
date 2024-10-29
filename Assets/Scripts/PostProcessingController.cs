@@ -5,6 +5,16 @@ using UnityEngine.Rendering;
 
 public class PostProcessingController : MonoBehaviour
 {
+    #region Singleton Stuff
+    public static PostProcessingController instance = null;
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != null)
+            Destroy(gameObject);
+    }
+    #endregion
 
     #region Blurry Effect
     [SerializeField] private float interval = 10;

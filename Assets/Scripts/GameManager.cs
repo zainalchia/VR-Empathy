@@ -90,7 +90,24 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region Player's Position
+    public bool IsPlayerWithinPosition(float minXInclusive, float minZInclusive)
+    {
+        if (ovrCamRig.transform.position.x >= minXInclusive && ovrCamRig.transform.position.z >= minZInclusive)
+            return true;
+        else
+            return false;
+    }
 
+    public bool IsPlayerWithinPosition(float minXInclusive, float minZInclusive, float maxXInclusive, float maxZInclusive)
+    {
+        if ((ovrCamRig.transform.position.x >= minXInclusive && ovrCamRig.transform.position.x <= maxZInclusive) 
+            && (ovrCamRig.transform.position.z >= minZInclusive && ovrCamRig.transform.position.z <= maxZInclusive))
+            return true;
+        else
+            return false;
+    }
+    #endregion
     // Start is called before the first frame update
     void Start()
     {

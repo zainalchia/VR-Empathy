@@ -134,7 +134,8 @@ public class ScenarioManager : MonoBehaviour
     #endregion
 
     #region Segment 1 Part 3 (Living room)
-    
+    [Header("In living room")]
+    [SerializeField] MobilePhone mobilePhone;
 
     public void PlaySegment1Part3_1()
     {
@@ -145,7 +146,8 @@ public class ScenarioManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        // play phone ringing sound here!
+        // play phone calling
+        mobilePhone.SetPhoneCalling();
 
         GameManager.instance.ShowAlert(narration_1[8], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
@@ -198,6 +200,7 @@ public class ScenarioManager : MonoBehaviour
         yield return new WaitForSeconds(3f + 1.1f);
 
         // play phone hang up here
+        mobilePhone.SetPhoneHangUp();
 
         // fade screen here
 
@@ -232,7 +235,11 @@ public class ScenarioManager : MonoBehaviour
             // check here when player reaches sofa, call segment3
             if (toGoLivingRoom)
             {
-
+                if (GameManager.instance.IsPlayerWithinPosition(-4.5f, -1.7f))
+                {
+                    toGoLivingRoom = false;
+                    PlaySegment1Part3_1();
+                }
             }
 
             #endregion
