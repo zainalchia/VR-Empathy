@@ -74,6 +74,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part1()
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+        ControllerInteractionsManager.instance.allowDropItems = false; // no dropping item yet
 
         yield return new WaitForSeconds(4f);
 
@@ -154,6 +155,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part3_1()
     {
         PostProcessingController.instance.UsingGlasses(false); // start blur effect
+        ControllerInteractionsManager.instance.allowDropItems = true; // will drop items from here
 
         yield return new WaitForSeconds(1f);
 
@@ -185,6 +187,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
     {
+        ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after glasses put on
         GameManager.instance.ShowAlert(narration_1[11]);
         GameManager.instance.canAnswerPhone = true;
     }
@@ -223,7 +226,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     #endregion
 
-    #region Segment 2 Part 1 (Taking off glasses and dentures)
+    #region Segment 2 Part 1 (Bedroom - Taking off glasses and dentures)
 
     public void PlaySegment2Part1()
     {
@@ -262,7 +265,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // allow take glasses off from here
         GameManager.instance.toTakeGlassesOff = true;
 
-        GameManager.instance.ShowAlert(narration_2[2], 6f);
+        GameManager.instance.ShowAlert(narration_2[3], 6f);
         yield return new WaitForSeconds(6f + 1.1f);
     }
 
@@ -272,9 +275,41 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         lastRoutine = StartCoroutine(Segment2Part2());
     }
 
+    #endregion
+
+    #region Segment 2 Part 2 (Bedroom - Medicine)
+    [Header("Bedroom")]
+    [SerializeField] GameObject[] movingFurnitures;
+    [SerializeField] GameObject tableWithMedicine;
+
     IEnumerator Segment2Part2()
     {
+        // start furniture moving here
+        GameManager.instance.toStartSpasming = true;
+
+        // wait a while to let players look around
         yield return new WaitForSeconds(4f);
+
+        // clouds and sheep illusions here
+
+        GameManager.instance.ShowAlert(narration_2[4], 3f);
+        yield return new WaitForSeconds(3f + 1.1f);
+
+        GameManager.instance.ShowAlert(narration_2[5], 5f);
+        yield return new WaitForSeconds(5f + 1.1f);
+
+        GameManager.instance.ShowAlert(narration_2[6], 5f);
+        yield return new WaitForSeconds(5f + 1.1f);
+    }
+
+    public void CorrectMedicine()
+    {
+
+    }
+
+    public void WrongMedicine()
+    {
+
     }
     #endregion
 

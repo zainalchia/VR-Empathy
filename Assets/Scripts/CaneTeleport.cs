@@ -17,6 +17,7 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] float maxDistanceMoveable = 0.6f;
     [SerializeField] LayerMask teleportLayer;
     [SerializeField] float defaultTimeBeforeNextMove = 2;
+    [SerializeField] GameObject[] teleportHotspots;
 
     bool buttonPressed = false;
 
@@ -25,6 +26,8 @@ public class CaneTeleport : MonoBehaviour
     float posX = 0;
     float posZ = 0;
     float timer = 0;
+
+    int currentHotspotIndex = -1;
 
     void CheckIfCanMove()
     {
@@ -39,14 +42,16 @@ public class CaneTeleport : MonoBehaviour
             posZ = lastHitGameObject.transform.position.z;
 
             // enable hotspot indicator when pointing cane at hotspot
-            lastHitGameObject.GetComponent<MeshRenderer>().enabled = true;
+            //lastHitGameObject.GetComponent<MeshRenderer>().enabled = true;
+            
+
         }
         else
         {
             canMove = false;
             if (lastHitGameObject != null) // disable hotspot indicator when not pointing at hotspot
             {
-                lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+                //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
             }
         }
     }
@@ -60,7 +65,28 @@ public class CaneTeleport : MonoBehaviour
             float offsetZ = GameManager.instance.middleEyeAnchor.transform.localPosition.z;
             GameManager.instance.ovrCamRig.transform.position = new Vector3(posX - offsetX, GameManager.instance.ovrCamRig.transform.position.y, posZ - offsetZ);
             timer = 0;
-            lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+
+            currentHotspotIndex += 1;
+            ShowNextHotspot();
+            //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
+
+    void ShowNextHotspot()
+    {
+        if (currentHotspotIndex == 0)
+        {
+            teleportHotspots[currentHotspotIndex].gameObject.SetActive(false);
+            teleportHotspots[currentHotspotIndex + 1].gameObject.SetActive(true);
+        }
+        else if (currentHotspotIndex == teleportHotspots.Length - 1)
+        {
+            teleportHotspots[currentHotspotIndex].gameObject.SetActive(false);
+        }
+        else
+        {
+            teleportHotspots[currentHotspotIndex].gameObject.SetActive(false);
+            teleportHotspots[currentHotspotIndex + 1].gameObject.SetActive(true);
         }
     }
 
@@ -94,11 +120,16 @@ public class CaneTeleport : MonoBehaviour
         {
             if (lastHitGameObject != null) // disable any hotspot indicator when not holding cane
             {
-                lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+                //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
                 lastHitGameObject = null;
             }
         }
 
         timer += Time.deltaTime;
+
+        if (Vector3.Distance(this.gameObject.transform.position, GameManager.instance.middleEyeAnchor.transform.position) > 5f)
+        {
+            this.gameObject.transform.position = GameManager.instance.middleEyeAnchor.transform.position + GameManager.instance.middleEyeAnchor.transform.forward;
+        }
     }
 }

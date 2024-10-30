@@ -2114,6 +2114,17 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   defaultTimeBeforeNextMove: 2
+  teleportHotspots:
+  - {fileID: 494444110}
+  - {fileID: 1092479195}
+  - {fileID: 2138493842}
+  - {fileID: 1709069243}
+  - {fileID: 1426053112}
+  - {fileID: 1613801119}
+  - {fileID: 1716715472}
+  - {fileID: 1365476798}
+  - {fileID: 1913179773}
+  - {fileID: 1231675834}
 --- !u!1 &421615959
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,6 +2428,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 452412690}
   m_CullTransparentMesh: 1
+--- !u!1 &459449278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 459449279}
+  - component: {fileID: 459449280}
+  m_Layer: 0
+  m_Name: WallCollider1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &459449279
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459449278}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 974042078}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &459449280
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459449278}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.4908128, y: 0.69756985, z: 2.3710732}
+  m_Center: {x: 0.00897409, y: 1.58, z: 0.68553543}
 --- !u!1 &478722975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2561,7 +2625,7 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
@@ -2576,6 +2640,12 @@ PrefabInstance:
 --- !u!4 &494444109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 494444108}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &494444110 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 494444108}
   m_PrefabAsset: {fileID: 0}
@@ -2987,7 +3057,7 @@ PrefabInstance:
     - target: {fileID: 324473985054942007, guid: f91f595805e900b4cb6b9c1b4574d834,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.6767
+      value: 0.684
       objectReference: {fileID: 0}
     - target: {fileID: 324473985054942007, guid: f91f595805e900b4cb6b9c1b4574d834,
         type: 3}
@@ -3751,6 +3821,33 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 664353884}
   m_Mesh: {fileID: 2619086233303812490, guid: e83ae4d5f384a2841831d0ea252b60fe, type: 3}
+--- !u!1 &691959425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: fcc75402dac726a44812cee732b0eefc,
+    type: 3}
+  m_PrefabInstance: {fileID: 2101182421}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &691959429
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691959425}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011319532, y: 0.02337114, z: 0.008418938}
+  m_Center: {x: -0.000000019092113, y: -0.00000060070295, z: -0.00035446236}
 --- !u!1 &708233233
 GameObject:
   m_ObjectHideFlags: 0
@@ -4564,6 +4661,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 373692580}
+    - targetCorrespondingSourceObject: {fileID: 4041590117622062, guid: 93d6183e10b02e047b91802002e352aa,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 459449279}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1456674172109016, guid: 93d6183e10b02e047b91802002e352aa,
         type: 3}
@@ -4916,12 +5017,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4931,6 +5037,12 @@ PrefabInstance:
 --- !u!4 &1092479194 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1092479193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1092479195 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1092479193}
   m_PrefabAsset: {fileID: 0}
@@ -5092,6 +5204,8 @@ MonoBehaviour:
   timeForWashingUp: 30
   bathroomDoor: {fileID: 982161141}
   mobilePhone: {fileID: 576931597}
+  movingFurnitures: []
+  tableWithMedicine: {fileID: 0}
 --- !u!20 &1123568409 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2045798063959952117, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -5256,12 +5370,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5271,6 +5390,12 @@ PrefabInstance:
 --- !u!4 &1231675833 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1231675832}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1231675834 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1231675832}
   m_PrefabAsset: {fileID: 0}
@@ -5625,7 +5750,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 48ad882e6dc9d4d49b82c7fb29a0899c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.696
+      value: 0.708
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 48ad882e6dc9d4d49b82c7fb29a0899c,
         type: 3}
@@ -5992,12 +6117,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6007,6 +6137,12 @@ PrefabInstance:
 --- !u!4 &1365476797 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1365476796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1365476798 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1365476796}
   m_PrefabAsset: {fileID: 0}
@@ -6154,12 +6290,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6169,6 +6310,12 @@ PrefabInstance:
 --- !u!4 &1426053111 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1426053110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1426053112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1426053110}
   m_PrefabAsset: {fileID: 0}
@@ -6675,12 +6822,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6690,6 +6842,12 @@ PrefabInstance:
 --- !u!4 &1613801118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1613801117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1613801119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1613801117}
   m_PrefabAsset: {fileID: 0}
@@ -7282,12 +7440,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7297,6 +7460,12 @@ PrefabInstance:
 --- !u!4 &1709069242 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1709069241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1709069243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1709069241}
   m_PrefabAsset: {fileID: 0}
@@ -7361,12 +7530,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7376,6 +7550,12 @@ PrefabInstance:
 --- !u!4 &1716715471 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1716715470}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1716715472 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1716715470}
   m_PrefabAsset: {fileID: 0}
@@ -8030,12 +8210,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8045,6 +8230,12 @@ PrefabInstance:
 --- !u!4 &1913179772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 1913179771}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1913179773 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1913179771}
   m_PrefabAsset: {fileID: 0}
@@ -13530,7 +13721,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fcc75402dac726a44812cee732b0eefc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 691959429}
   m_SourcePrefab: {fileID: 100100000, guid: fcc75402dac726a44812cee732b0eefc, type: 3}
 --- !u!1 &2103008095
 GameObject:
@@ -13885,12 +14080,17 @@ PrefabInstance:
     - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_Name
       value: Cane Teleport Hotspot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13900,6 +14100,12 @@ PrefabInstance:
 --- !u!4 &2138493841 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
+    type: 3}
+  m_PrefabInstance: {fileID: 2138493840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2138493842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 2138493840}
   m_PrefabAsset: {fileID: 0}

@@ -102,8 +102,8 @@ public class GameManager : MonoBehaviour
 
     public bool IsPlayerWithinPosition(float minXInclusive, float minZInclusive, float maxXInclusive, float maxZInclusive)
     {
-        if ((ovrCamRig.transform.position.x >= minXInclusive && ovrCamRig.transform.position.x <= maxZInclusive) 
-            && (ovrCamRig.transform.position.z >= minZInclusive && ovrCamRig.transform.position.z <= maxZInclusive))
+        if ((middleEyeAnchor.transform.position.x >= minXInclusive && middleEyeAnchor.transform.position.x <= maxZInclusive) 
+            && (middleEyeAnchor.transform.position.z >= minZInclusive && middleEyeAnchor.transform.position.z <= maxZInclusive))
             return true;
         else
             return false;
