@@ -43,8 +43,7 @@ public class CaneTeleport : MonoBehaviour
 
             // enable hotspot indicator when pointing cane at hotspot
             //lastHitGameObject.GetComponent<MeshRenderer>().enabled = true;
-            
-
+            lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", true);
         }
         else
         {
@@ -52,6 +51,7 @@ public class CaneTeleport : MonoBehaviour
             if (lastHitGameObject != null) // disable hotspot indicator when not pointing at hotspot
             {
                 //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+                lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", false);
             }
         }
     }
