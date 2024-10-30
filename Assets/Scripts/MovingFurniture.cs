@@ -13,6 +13,9 @@ public class MovingFurniture : MonoBehaviour
     float minTimeBeforeNextMove = 0.05f;
     float maxTimeBeforeNextMove = 0.5f;
 
+    bool hasBeenLookedAt = false; // to check if it has been looked at once, so that it will disappear once look away
+    bool disappearedOnce = false;
+
     void FurnitureMove()
     {
         timer += Time.deltaTime;
@@ -76,6 +79,18 @@ public class MovingFurniture : MonoBehaviour
     public void SetIsLookedAt(bool trueOrFalse) // called in InViewDetector script
     {
         isLookedAt = trueOrFalse;
+
+        if (trueOrFalse && !hasBeenLookedAt && GameManager.instance.toStartSpasming) // first time look at furniture
+        {
+            hasBeenLookedAt = true;
+        }
+        else if (!trueOrFalse && hasBeenLookedAt && !disappearedOnce && GameManager.instance.toStartSpasming) // looking away after first time look at (disappear)
+        {
+            disappearedOnce = true; // for the table that contains the medicine since it will disappear again
+            transform.position = originalPos;
+            this.gameObject.SetActive(false);
+        }
+
     }
 
     // Start is called before the first frame update
@@ -88,7 +103,7 @@ public class MovingFurniture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isLookedAt)
+        if (!isLookedAt && GameManager.instance.toStartSpasming)
             FurnitureMove();
         else
             transform.position = originalPos;

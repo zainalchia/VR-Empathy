@@ -56,6 +56,10 @@ public class GameManager : MonoBehaviour
     public bool toDoTaiChi = false;
     public bool toEatMedication = false;
 
+    // FURNITURE SPASMING (Bedroom Scene of Present-Bad)
+    [Header("FURNITURE SPASMING")]
+    public bool toStartSpasming = false;
+
     #region Alert Text Functions
     public void ShowAlert(string textToShow)
     {
