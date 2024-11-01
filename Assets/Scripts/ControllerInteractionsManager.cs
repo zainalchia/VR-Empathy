@@ -155,6 +155,8 @@ public class ControllerInteractionsManager : MonoBehaviour
     private float dropTimer = 10;
     private float dropGlassesTimer = 1;
 
+    private Handedness lastHandToHold;
+
     void EnableDropTimer()
     {
         bool timerOn = false;
@@ -166,9 +168,14 @@ public class ControllerInteractionsManager : MonoBehaviour
                 if (GameManager.instance.glasses != null) // only for glasses scripted event
                 {
                     if (grabInteractor.SelectedInteractable.gameObject == GameManager.instance.glasses && dropGlassesCount > 0 && GameManager.instance.toPutGlassesOn)
+                    {
                         glassesTimerOn = true;
-                    else
-                        timerOn = true;
+                        lastHandToHold = grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness;
+                        
+                    }
+                        
+                    //else
+                    //    timerOn = true;
                 }
                 else
                 {
@@ -182,7 +189,22 @@ public class ControllerInteractionsManager : MonoBehaviour
 
         if (dropGlassesTimer <= 0)
         {
-            ActivateItemDrop();
+            //ActivateItemDrop();
+            if (lastHandToHold == Handedness.Left)
+            {
+                ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
+
+                //audioSource_player.PlayOneShot(audioClip_sighAfterDrop);
+                // add drop effect here
+            }
+            else if (lastHandToHold == Handedness.Right)
+            {
+                ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
+
+                //audioSource_player.PlayOneShot(audioClip_sighAfterDrop);
+                // add drop effect here
+            }
+
             dropGlassesCount -= 1;
             dropGlassesTimer = dropGlassesInterval;
         }

@@ -51,12 +51,15 @@ public class MinigameManager : MonoBehaviour
     #region Medication Minigame
     [Header("Medication Minigame")]
     [SerializeField] List<GameObject> medicationsToEat;
-    public UnityEvent OnMedicationFinish;
+    [SerializeField] LayerMask medicationLayer;
+    public UnityEvent OnCorrectMedicationEaten;
+    public UnityEvent OnWrongMedicationEaten;
     bool medicationWasEaten = false;
+    float wrongMedicineCooldown = 5f;
 
     public void EatMedication(GameObject obj)
     {
-        if (GameManager.instance.toEatMedication)
+        if (GameManager.instance.toEatMedication && obj.layer == medicationLayer.value)
         {
             if (medicationsToEat.Contains(obj))
             {
@@ -64,20 +67,19 @@ public class MinigameManager : MonoBehaviour
                 obj.SetActive(false);
                 medicationWasEaten = true;
                 medicationsToEat.Remove(obj);
-                //debugText.text = "Medication eaten";
+                OnCorrectMedicationEaten.Invoke();
             }
 
             if (!medicationWasEaten)
             {
-                //debugText.text = "This is not the medicine to take";
+                if (wrongMedicineCooldown >= 5f)
+                {
+                    wrongMedicineCooldown = 0f;
+                    OnWrongMedicationEaten.Invoke();
+                }
+
             }
             medicationWasEaten = false;
-
-            if (medicationsToEat.Count == 0)
-            {
-                GameManager.instance.toEatMedication = false;
-                //OnMedicationFinish.Invoke();
-            }
         }
     }
 
@@ -96,6 +98,11 @@ public class MinigameManager : MonoBehaviour
         {
             debugStart = true;
             NextPose();
+        }
+
+        if (wrongMedicineCooldown < 5f)
+        {
+            wrongMedicineCooldown += Time.deltaTime;
         }
     }
 }

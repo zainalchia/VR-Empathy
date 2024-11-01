@@ -57,7 +57,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_2[5] = "I'm seeing things because I forgot to take my medicine.";
         narration_2[6] = "I need to check the calender so I know which medicine to eat.";
         narration_2[7] = "This is not the medicine to eat";
-        narration_2[8] = "Correct medicine taken";
+        narration_2[8] = "Correct medicine taken. ";
+        narration_2[9] = " more to go";
+        narration_2[10] = "Aite it's time to go to bed.";
+        narration_2[11] = "Turn off the lights.";
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -114,6 +117,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 2 (From bathroom to living room)
     [Header("Moving towards living room")]
     [SerializeField] DoorKnob bathroomDoor;
+    [SerializeField] GameObject firstTeleportHotspot;
     bool toGoLivingRoom = false;
 
     public void PlaySegment1Part2()
@@ -132,6 +136,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
+
+        firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
 
         GameManager.instance.ShowAlert(narration_1[6], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
@@ -176,13 +182,14 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_2()
     {
+        GameManager.instance.toPutGlassesOn = true;
+
         GameManager.instance.ShowAlert(narration_1[9], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
         GameManager.instance.ShowAlert(narration_1[10], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
-
-        GameManager.instance.toPutGlassesOn = true;
+        
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -272,7 +279,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     public void GlassesTakeOff() // called in UnityEvent in GameManager
     {
         StopPrevDialogue();
-        lastRoutine = StartCoroutine(Segment2Part2());
+        lastRoutine = StartCoroutine(Segment2Part2_1());
     }
 
     #endregion
@@ -281,8 +288,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [Header("Bedroom")]
     [SerializeField] GameObject[] movingFurnitures;
     [SerializeField] GameObject tableWithMedicine;
+    [SerializeField] int medicineLeft = 5;
 
-    IEnumerator Segment2Part2()
+    IEnumerator Segment2Part2_1()
     {
         // start furniture moving here
         GameManager.instance.toStartSpasming = true;
@@ -298,19 +306,48 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.ShowAlert(narration_2[5], 5f);
         yield return new WaitForSeconds(5f + 1.1f);
 
+        tableWithMedicine.SetActive(true); // table with medicine will re-appear here 
+
         GameManager.instance.ShowAlert(narration_2[6], 5f);
         yield return new WaitForSeconds(5f + 1.1f);
     }
 
-    public void CorrectMedicine()
-    {
-
-    }
-
     public void WrongMedicine()
     {
-
+        StopPrevDialogue();
+        GameManager.instance.ShowAlert(narration_2[7], 3f);
     }
+
+    public void CorrectMedicine()
+    {
+        StopPrevDialogue();
+        medicineLeft--;
+
+        if (medicineLeft == 0) // when all medicine has been eaten
+        {
+            GameManager.instance.toEatMedication = false;
+            lastRoutine = StartCoroutine(Segment2Part2_2());
+        }
+        else
+            GameManager.instance.ShowAlert(narration_2[8] + medicineLeft.ToString() + narration_2[9], 5f);
+    }
+
+    IEnumerator Segment2Part2_2()
+    {
+        // all furnitures to appear again
+        foreach (GameObject obj in movingFurnitures)
+        {
+            obj.SetActive(true);
+        }
+
+        GameManager.instance.ShowAlert(narration_2[10], 5f);
+        yield return new WaitForSeconds(5f + 1.1f);
+
+        GameManager.instance.ShowAlert(narration_2[11], 5f);
+        yield return new WaitForSeconds(5f + 1.1f);
+    }
+
+
     #endregion
 
 

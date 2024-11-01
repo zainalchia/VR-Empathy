@@ -121,6 +121,7 @@ public class CaneTeleport : MonoBehaviour
             if (lastHitGameObject != null) // disable any hotspot indicator when not holding cane
             {
                 //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+                lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", false);
                 lastHitGameObject = null;
             }
         }
