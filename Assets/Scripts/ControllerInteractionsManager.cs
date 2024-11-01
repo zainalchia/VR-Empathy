@@ -152,6 +152,10 @@ public class ControllerInteractionsManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource_player;
     [SerializeField] private AudioClip audioClip_sighAfterDrop;
 
+    [SerializeField] private GameObject dropItemFX;
+    [SerializeField] private GameObject leftHandAnchor;
+    [SerializeField] private GameObject rightHandAnchor;
+
     private float dropTimer = 10;
     private float dropGlassesTimer = 1;
 
@@ -199,6 +203,7 @@ public class ControllerInteractionsManager : MonoBehaviour
 
                 //audioSource_player.PlayOneShot(audioClip_sighAfterDrop);
                 // add drop effect here
+                Instantiate(dropItemFX, leftHandAnchor.transform);
             }
             else if (lastHandToHold == Handedness.Right)
             {
@@ -206,6 +211,7 @@ public class ControllerInteractionsManager : MonoBehaviour
 
                 //audioSource_player.PlayOneShot(audioClip_sighAfterDrop);
                 // add drop effect here
+                Instantiate(dropItemFX, rightHandAnchor.transform);
             }
 
             dropGlassesCount -= 1;
