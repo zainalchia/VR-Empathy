@@ -165,19 +165,22 @@ public class ControllerInteractionsManager : MonoBehaviour
         {
             if (grabInteractor.HasSelectedInteractable)
             {
-                if (GameManager.instance.glasses != null) // only for glasses scripted event
+                if (GameManager.instance.toPutGlassesOn) // only for glasses scripted event
                 {
-                    if (grabInteractor.SelectedInteractable.gameObject == GameManager.instance.glasses && dropGlassesCount > 0 && GameManager.instance.toPutGlassesOn)
+                    if (GameManager.instance.glasses != null)
                     {
-                        glassesTimerOn = true;
-                        lastHandToHold = grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness;
-                        
+                        if (grabInteractor.SelectedInteractable.gameObject == GameManager.instance.glasses && dropGlassesCount > 0)
+                        {
+                            glassesTimerOn = true;
+                            lastHandToHold = grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness;
+
+                        }
+
+                        //else
+                        //    timerOn = true;
                     }
-                        
-                    //else
-                    //    timerOn = true;
                 }
-                else
+                else // when drop item is enabled during bedroom scene then medicine or other stuff held will drop
                 {
                     timerOn = true;
                 }
