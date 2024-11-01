@@ -191,6 +191,7 @@ public class ControllerInteractionsManager : MonoBehaviour
             }
         }
 
+        #region Glasses scripted dropping
         if (glassesTimerOn)
             dropGlassesTimer -= Time.deltaTime;
 
@@ -217,18 +218,38 @@ public class ControllerInteractionsManager : MonoBehaviour
             dropGlassesCount -= 1;
             dropGlassesTimer = dropGlassesInterval;
         }
+        #endregion
 
         if (timerOn)
             dropTimer -= Time.deltaTime;
 
-        if (dropTimer <= 0)
+        if (dropTimer <= 0) // for all other gameobjects
         {
-            ActivateItemDrop();
+            foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+            {
+                if (grabInteractor.SelectedInteractable.gameObject.layer == GameManager.instance.medicationLayer.value) // medicine
+                {
+                    if (grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
+                    {
+                        ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
+
+                        Instantiate(dropItemFX, leftHandAnchor.transform);
+                    }
+                    else if (grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+                    {
+                        ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
+
+                        Instantiate(dropItemFX, rightHandAnchor.transform);
+                    }
+                }
+            }
+
+            //audioSource_player.PlayOneShot(audioClip_sighAfterDrop);
             dropTimer = dropInterval;
         }
     }
 
-    private void ActivateItemDrop()
+    private void ActivateItemDrop() // not used anymore but is used to drop object from both hands
     {
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {

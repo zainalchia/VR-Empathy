@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     [Header("MINIGAMES")]
     public bool toDoTaiChi = false;
     public bool toEatMedication = false;
+    public LayerMask medicationLayer;
 
     // FURNITURE SPASMING (Bedroom Scene of Present-Bad)
     [Header("FURNITURE SPASMING")]
