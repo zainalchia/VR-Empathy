@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Oculus.Interaction;
 using Oculus.Interaction.Input;
+using UnityEngine.Events;
 
 public class ControllerInteractionsManager : MonoBehaviour
 {
@@ -145,7 +146,7 @@ public class ControllerInteractionsManager : MonoBehaviour
     #region Dropping Items
     [Header("Drop Items Variables")]
     public bool allowDropItems = true;
-    [SerializeField] private float dropInterval = 10;
+    //[SerializeField] private float dropInterval = 10;
     [SerializeField] private float dropGlassesInterval = 1;
     [SerializeField] private int dropGlassesCount = 2;
 
@@ -156,14 +157,15 @@ public class ControllerInteractionsManager : MonoBehaviour
     [SerializeField] private GameObject leftHandAnchor;
     [SerializeField] private GameObject rightHandAnchor;
 
-    private float dropTimer = 10;
+    public UnityEvent OnGlassesDrop;
+    
     private float dropGlassesTimer = 1;
 
     private Handedness lastHandToHold;
 
     void EnableDropTimer()
     {
-        bool timerOn = false;
+        //bool timerOn = false;
         bool glassesTimerOn = false;
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
@@ -179,18 +181,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                             lastHandToHold = grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness;
 
                         }
-
-                        //else
-                        //    timerOn = true;
                     }
-                }
-                else // when drop item is enabled during bedroom scene then medicine
-                {
-                    if (grabInteractor.SelectedInteractable.gameObject.layer == GameManager.instance.medicationLayer.value)
-                    {
-                        timerOn = true;
-                    }
-                    
                 }
             }
         }
@@ -219,38 +210,13 @@ public class ControllerInteractionsManager : MonoBehaviour
                 Instantiate(dropItemFX, rightHandAnchor.transform);
             }
 
+            OnGlassesDrop.Invoke();
             dropGlassesCount -= 1;
             dropGlassesTimer = dropGlassesInterval;
         }
         #endregion
 
-        if (timerOn)
-            dropTimer -= Time.deltaTime;
-
-        if (dropTimer <= 0) // for all other gameobjects
-        {
-            foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
-            {
-                if (grabInteractor.SelectedInteractable.gameObject.layer == GameManager.instance.medicationLayer.value) // medicine
-                {
-                    if (grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
-                    {
-                        ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
-
-                        Instantiate(dropItemFX, leftHandAnchor.transform);
-                    }
-                    else if (grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
-                    {
-                        ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
-
-                        Instantiate(dropItemFX, rightHandAnchor.transform);
-                    }
-                }
-            }
-
-            //audioSource_player.PlayOneShot(audioClip_sighAfterDrop);
-            dropTimer = dropInterval;
-        }
+        
     }
 
     private void ActivateItemDrop() // not used anymore but is used to drop object from both hands
@@ -321,7 +287,6 @@ public class ControllerInteractionsManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dropTimer = dropInterval;
         dropGlassesTimer = dropGlassesInterval;
     }
 

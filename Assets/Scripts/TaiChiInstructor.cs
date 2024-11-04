@@ -1,14 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TaiChiInstructor : MonoBehaviour
 {
+    [SerializeField] int numOfPoses = 8;
+    [SerializeField] float timeDelayBeforeNextPose;
+    public UnityEvent OnPosesFinish;
     float timerToGoNext = 0f;
+
+    int currentPose = 0;
 
     public void ReadyForNextPose() // called in animation event 1 frame before the last frame
     {
-        timerToGoNext = MinigameManager.instance.timeDelayBeforeNextPose;
+        timerToGoNext = timeDelayBeforeNextPose;
+    }
+
+    public void NextPose() // call to start taichi in scenario manager, will invoke UnityEvent once all taichi animations have been played
+    {
+        if (GameManager.instance.toDoTaiChi)
+        {
+            if (currentPose < numOfPoses)
+            {
+                currentPose += 1;
+                GetComponent<Animator>().SetInteger("Pose", currentPose);
+            }
+            else
+            {
+                GameManager.instance.toDoTaiChi = false;
+                OnPosesFinish.Invoke();
+            }
+        }
     }
 
     // Start is called before the first frame update
@@ -25,7 +48,7 @@ public class TaiChiInstructor : MonoBehaviour
             timerToGoNext -= Time.deltaTime;
             if (timerToGoNext <= 0)
             {
-                MinigameManager.instance.NextPose();
+                NextPose();
             }
         }
     }

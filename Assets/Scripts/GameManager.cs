@@ -51,11 +51,14 @@ public class GameManager : MonoBehaviour
     public bool toPickUpPhone = false;
     public bool canAnswerPhone = false;
 
-    // MINIGAMES
-    [Header("MINIGAMES")]
+    //// MEDICATION
+    //[Header("MEDICATION")]
+    //public bool toEatMedication = false;
+    //public LayerMask medicationLayer;
+
+    [Header("TAICHI")]
+    public TaiChiInstructor taiChiInstructor;
     public bool toDoTaiChi = false;
-    public bool toEatMedication = false;
-    public LayerMask medicationLayer;
 
     // FURNITURE SPASMING (Bedroom Scene of Present-Bad)
     [Header("FURNITURE SPASMING")]
