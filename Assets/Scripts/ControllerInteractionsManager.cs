@@ -184,9 +184,13 @@ public class ControllerInteractionsManager : MonoBehaviour
                         //    timerOn = true;
                     }
                 }
-                else // when drop item is enabled during bedroom scene then medicine or other stuff held will drop
+                else // when drop item is enabled during bedroom scene then medicine
                 {
-                    timerOn = true;
+                    if (grabInteractor.SelectedInteractable.gameObject.layer == GameManager.instance.medicationLayer.value)
+                    {
+                        timerOn = true;
+                    }
+                    
                 }
             }
         }
