@@ -211,11 +211,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     public void DropGlassesReaction() // called in UnityEvent in ControllerInteractionsManager
     {
         StopPrevDialogue();
+
         dropGlassesCount++;
+
+        
         if (dropGlassesCount == 1)
             GameManager.instance.ShowAlert(narration_1[11], 3f);
         else if (dropGlassesCount == 2)
             GameManager.instance.ShowAlert(narration_1[12], 3f);
+
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -389,6 +393,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             #region Going to living room
+            // remove alert after first teleport
             if (!alertRemovedAfterFirstTP)
             {
                 if (cane.GetComponent<CaneTeleport>().HasTeleportedOnce())
@@ -406,8 +411,21 @@ public class ScenarioManagerPresentBad : MonoBehaviour
                     PlaySegment1Part3_1();
                 }
             }
-
+            // disable arrow when glasses picked up
+            if (GameManager.instance.toPutGlassesOn)
+            {
+                if (GameManager.instance.glasses.GetComponent<GrabInteractable>().SelectingInteractors.Count > 0)
+                {
+                    arrowToGlasses.SetActive(false);
+                }
+                else
+                {
+                    arrowToGlasses.SetActive(true);
+                    arrowToGlasses.transform.position = GameManager.instance.glasses.transform.position + new Vector3(0, 0.25f, 0); // move arrow above glasses 
+                }
+            }
             #endregion
+
         }
 
     }
