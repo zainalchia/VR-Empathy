@@ -54,12 +54,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         narration_2[0] = "Another day goes by again";
         narration_2[1] = "Time to get ready to sleep";
-        narration_2[2] = "I have to take my dentures off. [Grab your face area]";
-        narration_2[3] = "And my glasses as well. [Grab your face area]";
-        narration_2[4] = "Is this real? Am I going mad";
-        narration_2[5] = "I'm seeing things because I forgot to take my medicine.";
-        narration_2[6] = "I need to check the calendar so I know which medicine to eat.";
-        narration_2[7] = "Haiz it spilled everywhere.";
+        narration_2[2] = "I have to take off my glasses. [Grab your face area]";
+        narration_2[3] = "Is this real? Am I going mad";
+        narration_2[4] = "I'm seeing things because I forgot to take my medicine.";
+        narration_2[5] = "I need to check the calendar so I know which medicine to eat.";
+        narration_2[6] = "Haiz it spilled everywhere.";
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -262,7 +261,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         // load next scene here
-        //SceneManager.LoadScene("", LoadSceneMode.Single);
+        SceneManager.LoadScene(1, LoadSceneMode.Single); // Or whatever number present bad bedroom scene is
     }
 
 
@@ -272,10 +271,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PlaySegment2Part1()
     {
-        lastRoutine = StartCoroutine(Segment2Part1_1());
+        lastRoutine = StartCoroutine(Segment2Part1());
     }
 
-    IEnumerator Segment2Part1_1()
+    IEnumerator Segment2Part1()
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         ControllerInteractionsManager.instance.allowDropItems = false; // no dropping items (can also disable in scene)
@@ -288,27 +287,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.ShowAlert(narration_2[1], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
-        // allow take dentures off from here
-        GameManager.instance.toTakeDenturesOff = true;
-
-        GameManager.instance.ShowAlert(narration_2[2], 6f);
-        yield return new WaitForSeconds(6f + 1.1f);
-    }
-
-    public void DenturesTakeOff() // called in UnityEvent in GameManager
-    {
-        StopPrevDialogue();
-        lastRoutine = StartCoroutine(Segment2Part1_2());
-    }
-
-    IEnumerator Segment2Part1_2()
-    {
-        yield return new WaitForSeconds(4f);
-
         // allow take glasses off from here
         GameManager.instance.toTakeGlassesOff = true;
 
-        GameManager.instance.ShowAlert(narration_2[3], 6f);
+        GameManager.instance.ShowAlert(narration_2[2], 6f);
         yield return new WaitForSeconds(6f + 1.1f);
     }
 
@@ -322,7 +304,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     #region Segment 2 Part 2 (Bedroom - Medicine)
     [Header("Bedroom")]
-    [SerializeField] GameObject[] movingFurnitures;
     [SerializeField] GameObject tableWithMedicine;
 
     IEnumerator Segment2Part2_1()
@@ -335,16 +316,16 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // clouds and sheep illusions here
 
+        //yield return new WaitForSecodns(?);
+
         GameManager.instance.ShowAlert(narration_2[4], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
+
+        tableWithMedicine.SetActive(true); // table with medicine will re-appear here
 
         GameManager.instance.ShowAlert(narration_2[5], 5f);
         yield return new WaitForSeconds(5f + 1.1f);
 
-        tableWithMedicine.SetActive(true); // table with medicine will re-appear here 
-
-        GameManager.instance.ShowAlert(narration_2[6], 5f);
-        yield return new WaitForSeconds(5f + 1.1f);
     }
 
     public void MedicationDropped()
@@ -361,7 +342,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //    obj.SetActive(true);
         //}
 
-        GameManager.instance.ShowAlert(narration_2[7], 5f);
+        GameManager.instance.ShowAlert(narration_2[6], 5f);
         yield return new WaitForSeconds(5f + 1.1f);
         // play sobbing sound instead of text above also can
 
@@ -369,7 +350,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
 
-        //SceneManager.LoadScene(1, LoadSceneMode.Single); // Or whatever number present bad bedroom scene is
+        
     }
 
 
@@ -387,6 +368,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
             SetupNarrationBedroom();
+            PlaySegment2Part1();
         }
     }
 

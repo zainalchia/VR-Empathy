@@ -27,6 +27,10 @@ public class ControllerInteractionsManager : MonoBehaviour
     bool toReleaseLeftHand = false;
     bool toReleaseRightHand = false;
 
+    // dropping glasses as glasses collider may be to small for force select to work properly
+    bool glassesInHand = false;
+    GrabInteractor handUsedForGlasses;
+
     public List<GameObject> GetItemsGrabbedInHand()
     {
         List<GameObject> items = new List<GameObject>();
@@ -69,6 +73,8 @@ public class ControllerInteractionsManager : MonoBehaviour
                 canTakeOffGlasses = false;
                 grabInteractorsWithinRange.Clear();
                 GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                handUsedForGlasses = grabInteractorWithinRange;
+                glassesInHand = true;
                 GameManager.instance.glasses.SetActive(true);
                 GameManager.instance.OnGlassesTakeOff.Invoke();
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
@@ -81,6 +87,8 @@ public class ControllerInteractionsManager : MonoBehaviour
                 canTakeOffGlasses = false;
                 grabInteractorsWithinRange.Clear();
                 GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                handUsedForGlasses = grabInteractorWithinRange;
+                glassesInHand = true;
                 GameManager.instance.glasses.SetActive(true);
                 GameManager.instance.OnGlassesTakeOff.Invoke();
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
@@ -119,7 +127,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                 grabInteractorsWithinRange.Clear();
                 GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 GameManager.instance.dentures.SetActive(true);
-                GameManager.instance.OnDenturesTakeOff.Invoke();
+                //GameManager.instance.OnDenturesTakeOff.Invoke();
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
                 GameManager.instance.dentures.GetComponent<Rigidbody>().useGravity = true;
                 toReleaseLeftHand = true;
@@ -131,7 +139,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                 grabInteractorsWithinRange.Clear();
                 GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 GameManager.instance.dentures.SetActive(true);
-                GameManager.instance.OnDenturesTakeOff.Invoke();
+                //GameManager.instance.OnDenturesTakeOff.Invoke();
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
                 GameManager.instance.dentures.GetComponent<Rigidbody>().useGravity = true;
                 toReleaseRightHand = true;
@@ -359,6 +367,25 @@ public class ControllerInteractionsManager : MonoBehaviour
         #region Dropping Items
         if (allowDropItems)
             EnableDropTimer();
+
+        // only for glasses
+        if (glassesInHand)
+        {
+            if (handUsedForGlasses.HasSelectedInteractable)
+            {
+                if (handUsedForGlasses.SelectedInteractable == GameManager.instance.glasses.GetComponent<GrabInteractable>())
+                    GameManager.instance.glasses.transform.position = handUsedForGlasses.gameObject.transform.position;
+                else
+                    glassesInHand = false;
+            }
+            else
+            {
+                glassesInHand = false;
+                GameManager.instance.glasses.GetComponent<Rigidbody>().isKinematic = false;
+            }
+                
+
+        }
         #endregion
 
         #region Vibrating Controllers

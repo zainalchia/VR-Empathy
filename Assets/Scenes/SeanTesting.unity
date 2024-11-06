@@ -1425,7 +1425,7 @@ MonoBehaviour:
   fadePanel: {fileID: 0}
   glasses: {fileID: 1570781994}
   toPutGlassesOn: 0
-  toTakeGlassesOff: 0
+  toTakeGlassesOff: 1
   OnGlassesTakeOff:
     m_PersistentCalls:
       m_Calls:
@@ -1444,11 +1444,8 @@ MonoBehaviour:
   dentures: {fileID: 1973788612}
   toPutDenturesOn: 0
   toTakeDenturesOff: 0
-  OnDenturesTakeOff:
-    m_PersistentCalls:
-      m_Calls: []
   toPickUpPhone: 0
-  canAnswerPhone: 1
+  canAnswerPhone: 0
   taiChiInstructor: {fileID: 0}
   toDoTaiChi: 0
   toStartSpasming: 0
@@ -1503,6 +1500,9 @@ MonoBehaviour:
   dropItemFX: {fileID: 0}
   leftHandAnchor: {fileID: 0}
   rightHandAnchor: {fileID: 0}
+  OnGlassesDrop:
+    m_PersistentCalls:
+      m_Calls: []
   allowControllerVibration: 1
   vibrationStrength: 255
   vibrationFrequency: 2
