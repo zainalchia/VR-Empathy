@@ -278,6 +278,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment2Part1_1()
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+        ControllerInteractionsManager.instance.allowDropItems = false; // no dropping items (can also disable in scene)
 
         yield return new WaitForSeconds(4f);
 
@@ -367,6 +368,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
+
+        //SceneManager.LoadScene(1, LoadSceneMode.Single); // Or whatever number present bad bedroom scene is
     }
 
 
