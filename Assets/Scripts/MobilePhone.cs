@@ -29,12 +29,12 @@ public class MobilePhone : MonoBehaviour
         GetComponent<Renderer>().SetMaterials(materials); // to switch to the video material
         videoPlayer.clip = phoneCalling;
         videoPlayer.Play();
-        //GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().Play();
     }
 
     public void SetPhoneAnswered()
     {
-        //GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().Stop();
         videoPlayer.Stop();
         videoPlayer.clip = phoneAnswered;
         videoPlayer.Play();
