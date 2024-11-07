@@ -65,7 +65,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_2[5] = "I'm seeing things because I forgot to take my medicine.";
         narration_2[6] = "Use the cane to move towards the medicine table.";
         narration_2[7] = "I need to check the calendar so I know which medicine to eat.";
-        narration_2[8] = "Haiz it spilled everywhere.";
+        narration_2[8] = "This is not the medicine. Put it aside.";
+        narration_2[9] = "Haiz it spilled everywhere.";
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -328,7 +329,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     #region Segment 2 Part 2 (Bedroom - Medicine)
     [Header("Bedroom 2nd Part")]
+    [SerializeField] GameObject flyingShip;
     [SerializeField] GameObject tableWithMedicine;
+    [SerializeField] GameObject arrowToPlaceMedicine;
 
     bool toGoMedicineTable = false;
 
@@ -338,11 +341,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.toStartSpasming = true;
 
         // wait a while to let players look around
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(8f);
 
-        // clouds and sheep illusions here
+        // clouds and ship illusions here
+        flyingShip.SetActive(true);
+        flyingShip.GetComponent<Disappear>().AllowedToMove(true);
+        yield return new WaitForSeconds(5f);
 
-        //yield return new WaitForSecodns(?);
+        flyingShip.GetComponent<Disappear>().AllowedToMove(false);
+        flyingShip.SetActive(false);
 
         GameManager.instance.ShowAlert(narration_2[4], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
@@ -367,6 +374,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.ShowAlert(narration_2[7], 5f);
     }
 
+    public void WrongMedicineGrabbed()
+    {
+        StopPrevDialogue();
+        GameManager.instance.ShowAlert(narration_2[9], 5f);
+    }
+
     public void MedicationDropped()
     {
         StopPrevDialogue();
@@ -381,7 +394,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //    obj.SetActive(true);
         //}
 
-        GameManager.instance.ShowAlert(narration_2[8], 5f);
+        GameManager.instance.ShowAlert(narration_2[9], 5f);
         yield return new WaitForSeconds(5f + 1.1f);
         // play sobbing sound instead of text above also can
 

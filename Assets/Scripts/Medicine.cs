@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Medicine : MonoBehaviour
 {
     [SerializeField] GameObject otherMedicineBottle;
+    public UnityEvent OnGrabbedMedicine;
     public UnityEvent OnDroppedMedication;
 
     bool pickUpFirstTime = false;
@@ -18,8 +20,12 @@ public class Medicine : MonoBehaviour
             pickUpFirstTime = true;
 
             // change color here
-            //GetComponent<Renderer>().material = ???
-            //otherMedicineBottle.GetComponent<Renderer>().material = ???
+            this.gameObject.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.color = Color.green;
+            this.gameObject.transform.GetChild(1).gameObject.GetComponent<Renderer>().material.color = Color.green;
+            otherMedicineBottle.transform.GetChild(0).gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+            otherMedicineBottle.transform.GetChild(1).gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+
+            OnGrabbedMedicine.Invoke();
         }
     }
 
@@ -30,9 +36,11 @@ public class Medicine : MonoBehaviour
             droppedFirstTime = true;
 
             // play drop animation here
-            //GetComponent<Animator>().
+            
 
             //OnDroppedMedication.Invoke();
+
+            
         }
     }
 
