@@ -330,10 +330,18 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 2 Part 2 (Bedroom - Medicine)
     [Header("Bedroom 2nd Part")]
     [SerializeField] GameObject flyingShip;
+    [SerializeField] GameObject cloudy1;
+    [SerializeField] GameObject cloudy2;
     [SerializeField] GameObject tableWithMedicine;
     [SerializeField] GameObject arrowToPlaceMedicine;
+    [SerializeField] GameObject originallyHeldMedicine;
+    [SerializeField] GameObject animatedMedicine;
 
     bool toGoMedicineTable = false;
+
+    float animatedMedicineHeight = 1.078f;
+    float medicineOffsetX = -0.046f;
+    float medicineOffsetZ = -0.007f;
 
     IEnumerator Segment2Part2_1()
     {
@@ -346,8 +354,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // clouds and ship illusions here
         flyingShip.SetActive(true);
         flyingShip.GetComponent<Disappear>().AllowedToMove(true);
-        yield return new WaitForSeconds(5f);
+        cloudy1.GetComponent<ParticleSystem>().Play();
+        cloudy2.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(6f);
 
+        cloudy1.GetComponent<ParticleSystem>().Stop();
+        cloudy2.GetComponent<ParticleSystem>().Stop();
         flyingShip.GetComponent<Disappear>().AllowedToMove(false);
         flyingShip.SetActive(false);
 
@@ -377,12 +389,19 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     public void WrongMedicineGrabbed()
     {
         StopPrevDialogue();
-        GameManager.instance.ShowAlert(narration_2[9], 5f);
+        GameManager.instance.ShowAlert(narration_2[8], 5f);
+        arrowToPlaceMedicine.SetActive(true);
     }
 
     public void MedicationDropped()
     {
         StopPrevDialogue();
+
+        arrowToPlaceMedicine.SetActive(false);
+        originallyHeldMedicine.SetActive(false);
+        animatedMedicine.transform.position = new Vector3(originallyHeldMedicine.transform.position.x + medicineOffsetX, animatedMedicineHeight, originallyHeldMedicine.transform.position.z + medicineOffsetZ);
+        animatedMedicine.SetActive(true);
+        animatedMedicine.GetComponent<Animator>().enabled = true;
         lastRoutine = StartCoroutine(Segment2Part2_2());
     }
 
