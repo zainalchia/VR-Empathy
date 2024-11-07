@@ -5111,6 +5111,9 @@ MonoBehaviour:
   dentures: {fileID: 1539590057}
   toPutDenturesOn: 0
   toTakeDenturesOff: 0
+  OnDenturesTakeOff:
+    m_PersistentCalls:
+      m_Calls: []
   toPickUpPhone: 0
   canAnswerPhone: 0
   taiChiInstructor: {fileID: 0}
@@ -5171,14 +5174,15 @@ MonoBehaviour:
   narrationAudioSource: {fileID: 1115407454}
   narrationAudioClips_1: []
   narrationAudioClips_2: []
-  timeForWashingUp: 30
-  bathroomDoor: {fileID: 982161141}
   cane: {fileID: 412595808}
   firstTeleportHotspot: {fileID: 494444110}
+  timeForWashingUp: 30
+  bathroomDoor: {fileID: 982161141}
   arrowToCane: {fileID: 1134985821}
   mobilePhone: {fileID: 576931597}
   arrowToPhone: {fileID: 750489522}
   arrowToGlasses: {fileID: 81998793}
+  arrowToCup: {fileID: 0}
   tableWithMedicine: {fileID: 0}
 --- !u!82 &1115407454
 AudioSource:
@@ -6786,6 +6790,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Denture
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c5d57bcbb4944c641a170b819829904b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14506,6 +14515,11 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,

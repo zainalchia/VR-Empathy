@@ -71,8 +71,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 30f;
-    bool hasWashedUp = false;
-    bool isDenturesOn = false;
+    //bool hasWashedUp = false;
+    //bool isDenturesOn = false;
 
     public void PlaySegment1Part1()
     {
@@ -95,28 +95,29 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         GameManager.instance.ShowAlert(narration_1[2], 6f);
 
-        GameManager.instance.toPutDenturesOn = true;
+        //GameManager.instance.toPutDenturesOn = true;
 
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
-        hasWashedUp = true;
-
-        if (!isDenturesOn)
-        {
-            GameManager.instance.ShowAlert(narration_1[3], Color.red);
-        }
-        else
-            PlaySegment1Part2();
+        
+        //hasWashedUp = true;
+        //if (!isDenturesOn)
+        //{
+        //    GameManager.instance.ShowAlert(narration_1[3], Color.red);
+        //}
+        //else
+        //    PlaySegment1Part2();
+        PlaySegment1Part2();
     }
 
-    public void DenturesPutOn() // called in UnityEvent from PlayerFace
-    {
-        isDenturesOn = true;
-        if (hasWashedUp)
-        {
-            PlaySegment1Part2();
-        }
-    }
+    //public void DenturesPutOn() // called in UnityEvent from PlayerFace
+    //{
+    //    isDenturesOn = true;
+    //    if (hasWashedUp)
+    //    {
+    //        PlaySegment1Part2();
+    //    }
+    //}
 
     #endregion
 
