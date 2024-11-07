@@ -13,6 +13,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         Bedroom
     }
 
+    [Header("Narration Variables")]
     [SerializeField] AudioSource narrationAudioSource;
 
     // for bathroom and living room scene
@@ -22,6 +23,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     // for bedroom scene
     [SerializeField] AudioClip[] narrationAudioClips_2;
     string[] narration_2 = new string[50];
+
+    [Header("Multi-Scene Objects")]
+    [SerializeField] GameObject cane;
+    [SerializeField] GameObject firstTeleportHotspot;
 
     Coroutine lastRoutine = null;
 
@@ -54,11 +59,13 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         narration_2[0] = "Another day goes by again";
         narration_2[1] = "Time to get ready to sleep";
-        narration_2[2] = "I have to take off my glasses. [Grab your face area]";
-        narration_2[3] = "Is this real? Am I going mad";
-        narration_2[4] = "I'm seeing things because I forgot to take my medicine.";
-        narration_2[5] = "I need to check the calendar so I know which medicine to eat.";
-        narration_2[6] = "Haiz it spilled everywhere.";
+        narration_2[2] = "I have to take off my dentures and place in the cup. [Grab your face area]"; // stay on screen until placed in cup
+        narration_2[3] = "I need to take off my glasses as well. [Grab your face area]"; // stay on screen until take off
+        narration_2[4] = "Is this real? Am I going mad";
+        narration_2[5] = "I'm seeing things because I forgot to take my medicine.";
+        narration_2[6] = "Use the cane to move towards the medicine table.";
+        narration_2[7] = "I need to check the calendar so I know which medicine to eat.";
+        narration_2[8] = "Haiz it spilled everywhere.";
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -116,8 +123,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 2 (From bathroom to living room)
     [Header("Moving towards living room")]
     [SerializeField] DoorKnob bathroomDoor;
-    [SerializeField] GameObject cane;
-    [SerializeField] GameObject firstTeleportHotspot;
     [SerializeField] GameObject arrowToCane;
     bool toGoLivingRoom = false;
     bool alertRemovedAfterFirstTP = false;
@@ -268,16 +273,18 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #endregion
 
     #region Segment 2 Part 1 (Bedroom - Taking off glasses and dentures)
+    [Header("Bedroom 1st Part")]
+    [SerializeField] GameObject arrowToCup;
 
     public void PlaySegment2Part1()
     {
-        lastRoutine = StartCoroutine(Segment2Part1());
+        lastRoutine = StartCoroutine(Segment2Part1_1());
     }
-
-    IEnumerator Segment2Part1()
+    IEnumerator Segment2Part1_1()
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         ControllerInteractionsManager.instance.allowDropItems = false; // no dropping items (can also disable in scene)
+        cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
         yield return new WaitForSeconds(4f);
 
@@ -287,11 +294,27 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.ShowAlert(narration_2[1], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
+        // allow take dentures off from here
+        GameManager.instance.toTakeDenturesOff = true;
+
+        GameManager.instance.ShowAlert(narration_2[2]); 
+    }
+
+    public void DenturesPlacedInCup() // called in UnityEvent in denture cup
+    {
+        StopPrevDialogue();
+        lastRoutine = StartCoroutine(Segment2Part1_2());
+    }
+
+    IEnumerator Segment2Part1_2()
+    {
+        arrowToCup.SetActive(false);
+        yield return new WaitForSeconds(1f);
+
         // allow take glasses off from here
         GameManager.instance.toTakeGlassesOff = true;
 
-        GameManager.instance.ShowAlert(narration_2[2], 6f);
-        yield return new WaitForSeconds(6f + 1.1f);
+        GameManager.instance.ShowAlert(narration_2[3]);
     }
 
     public void GlassesTakeOff() // called in UnityEvent in GameManager
@@ -303,8 +326,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #endregion
 
     #region Segment 2 Part 2 (Bedroom - Medicine)
-    [Header("Bedroom")]
+    [Header("Bedroom 2nd Part")]
     [SerializeField] GameObject tableWithMedicine;
+
+    bool toGoMedicineTable = false;
 
     IEnumerator Segment2Part2_1()
     {
@@ -326,6 +351,19 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.ShowAlert(narration_2[5], 5f);
         yield return new WaitForSeconds(5f + 1.1f);
 
+        cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
+        firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
+        toGoMedicineTable = true;
+
+        GameManager.instance.ShowAlert(narration_2[6], 5f);
+        yield return new WaitForSeconds(5f + 1.1f);
+
+    }
+
+    void NearMedicineTable() // called when player is in front of the table
+    {
+        StopPrevDialogue();
+        GameManager.instance.ShowAlert(narration_2[7], 5f);
     }
 
     public void MedicationDropped()
@@ -342,7 +380,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //    obj.SetActive(true);
         //}
 
-        GameManager.instance.ShowAlert(narration_2[6], 5f);
+        GameManager.instance.ShowAlert(narration_2[8], 5f);
         yield return new WaitForSeconds(5f + 1.1f);
         // play sobbing sound instead of text above also can
 
@@ -352,8 +390,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         
     }
-
-
     #endregion
 
 
@@ -410,7 +446,19 @@ public class ScenarioManagerPresentBad : MonoBehaviour
                 }
             }
             #endregion
-
+        }
+        else if (sceneToPlay == SceneToPlay.Bedroom)
+        {
+            #region Going towards medicine table
+            if (toGoMedicineTable)
+            {
+                if (cane.GetComponent<CaneTeleport>().HasTeleportedOnce())
+                {
+                    toGoMedicineTable = false;
+                    NearMedicineTable();
+                }
+            }
+            #endregion
         }
 
     }

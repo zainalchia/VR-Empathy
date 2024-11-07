@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [Header("OVR PLAYER")]
     public GameObject ovrCamRig;
     public GameObject middleEyeAnchor;
-    public GrabInteractor[] grabInteractors;
+    public GrabInteractor[] grabInteractors; // if can left controller should be index 0, right controller should be index 1
     public GameObject characterModel;
 
     // ALERT TEXT
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     public GameObject dentures;
     public bool toPutDenturesOn = false;
     public bool toTakeDenturesOff = false;
-    //public UnityEvent OnDenturesTakeOff; 
+    public UnityEvent OnDenturesTakeOff; 
 
     [Header("MOBILE PHONE")]
     public bool toPickUpPhone = false;

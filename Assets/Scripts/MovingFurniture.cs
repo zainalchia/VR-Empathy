@@ -103,7 +103,7 @@ public class MovingFurniture : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isLookedAt && GameManager.instance.toStartSpasming)
+        if (!isLookedAt && GameManager.instance.toStartSpasming && !disappearedOnce)
             FurnitureMove();
         else
             transform.position = originalPos;
