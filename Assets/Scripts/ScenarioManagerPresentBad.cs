@@ -339,8 +339,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     bool toGoMedicineTable = false;
 
-    float animatedMedicineHeight = 1.078f;
-    float medicineOffsetX = -0.046f;
+    // don't change this it's the offset as the animated medicine object origin is different
+    float animatedMedicineHeight = 1.0766f;
+    float medicineOffsetX = -0.0446f;
     float medicineOffsetZ = -0.007f;
 
     IEnumerator Segment2Part2_1()
@@ -383,7 +384,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     void NearMedicineTable() // called when player is in front of the table
     {
         StopPrevDialogue();
-        GameManager.instance.ShowAlert(narration_2[7], 5f);
+        GameManager.instance.ShowAlert(narration_2[7]);
     }
 
     public void WrongMedicineGrabbed()
