@@ -9,6 +9,16 @@ public class DentureCup : MonoBehaviour
 {
     public UnityEvent OnDenturePlaced;
 
+    void PositionDentureInCup(GameObject denture)
+    {
+        denture.GetComponent<Rigidbody>().isKinematic = true;
+        denture.GetComponent<BoxCollider>().enabled = false;
+        denture.transform.localScale = Vector3.one;
+        denture.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, -1.3616f);
+
+        OnDenturePlaced.Invoke();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,20 +39,12 @@ public class DentureCup : MonoBehaviour
             {
                 if (!other.gameObject.GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable)
                 {
-                    other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                    other.gameObject.GetComponent<BoxCollider>().enabled = false;
-                    other.gameObject.transform.position = this.gameObject.transform.position;
-                    
-                    OnDenturePlaced.Invoke();
+                    PositionDentureInCup(other.gameObject);
                 }
             }
             else if (other.gameObject.GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() == null)
             {
-                other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                other.gameObject.GetComponent<BoxCollider>().enabled = false;
-                other.gameObject.transform.position = this.gameObject.transform.position;
-
-                OnDenturePlaced.Invoke();
+                PositionDentureInCup(other.gameObject);
             }
         }
     }
