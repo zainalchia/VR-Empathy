@@ -34,7 +34,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         narration_1[0] = "I am balding.";
         narration_1[1] = "Cool mirror.";
-        narration_1[2] = "I need to put my dentures on and wash up.";
+        narration_1[2] = "I need to wash up.";
         narration_1[3] = "Can't forget my dentures!"; // stay on screen until dentures put on
 
         narration_1[4] = "Time to relax in the living room.";
