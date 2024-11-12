@@ -96,29 +96,38 @@ public class ControllerInteractionsManager : MonoBehaviour
                 canTakeOffGlasses = false;
                 grabInteractorsWithinRange.Clear();
 
-                GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                // for force selected objects
                 leftHandForceSelected = true;
                 lastHeldObjLeftHand = GameManager.instance.glasses;
-                GameManager.instance.glasses.SetActive(true);
-                GameManager.instance.OnGlassesTakeOff.Invoke();
-                grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
                 GameManager.instance.glasses.GetComponent<Rigidbody>().isKinematic = true;
 
-                toReleaseLeftHand = true;
+                // positions glasses to hand that force selected
+                GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.glasses.SetActive(true);
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
+                
+
+                GameManager.instance.OnGlassesTakeOff.Invoke();
+                toReleaseLeftHand = true; // so that object can be let go once the grab button is released
                 GameManager.instance.toTakeGlassesOff = false;
             }
             else if (controllerSide == OVRInput.Controller.RTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
             {
                 canTakeOffGlasses = false;
                 grabInteractorsWithinRange.Clear();
-                GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+
+                // for force selected objects
                 rightHandForceSelected = true;
                 lastHeldObjRightHand = GameManager.instance.glasses;
-                GameManager.instance.glasses.SetActive(true);
-                GameManager.instance.OnGlassesTakeOff.Invoke();
-                grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
                 GameManager.instance.glasses.GetComponent<Rigidbody>().isKinematic = true;
-                toReleaseRightHand = true;
+
+                // positions glasses to hand that force selected
+                GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.glasses.SetActive(true);
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
+
+                GameManager.instance.OnGlassesTakeOff.Invoke();
+                toReleaseRightHand = true; // so that object can be let go once the grab button is released
                 GameManager.instance.toTakeGlassesOff = false;
             }
         }
@@ -150,28 +159,38 @@ public class ControllerInteractionsManager : MonoBehaviour
             {
                 canTakeOffDentures = false;
                 grabInteractorsWithinRange.Clear();
-                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+
+                // for force selected objects
                 leftHandForceSelected = true;
                 lastHeldObjLeftHand = GameManager.instance.dentures;
-                GameManager.instance.dentures.SetActive(true);
-                GameManager.instance.OnDenturesTakeOff.Invoke();
-                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
                 GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
-                toReleaseLeftHand = true;
+
+                // positions dentures to hand that force selected
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.SetActive(true);
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
+
+                GameManager.instance.OnDenturesTakeOff.Invoke();
+                toReleaseLeftHand = true; // so that object can be let go once the grab button is released
                 GameManager.instance.toTakeDenturesOff = false;
             }
             else if (controllerSide == OVRInput.Controller.RTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
             {
                 canTakeOffDentures = false;
                 grabInteractorsWithinRange.Clear();
-                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+
+                // for force selected objects
                 rightHandForceSelected = true;
                 lastHeldObjRightHand = GameManager.instance.dentures;
-                GameManager.instance.dentures.SetActive(true);
-                GameManager.instance.OnDenturesTakeOff.Invoke();
-                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
                 GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
-                toReleaseRightHand = true;
+
+                // positions dentures to hand that force selected
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.SetActive(true);
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
+
+                GameManager.instance.OnDenturesTakeOff.Invoke();
+                toReleaseRightHand = true; // so that object can be let go once the grab button is released
                 GameManager.instance.toTakeDenturesOff = false;
             }
         }

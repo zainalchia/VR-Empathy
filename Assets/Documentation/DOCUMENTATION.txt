@@ -1,0 +1,84 @@
+DOCUMENTATION
+
+[Scenes, Prefabs, GameObjects]
+Player IK Rig - Drag OVRMainCharacter prefab into scene, enable shoes for character model when necessary
+-> https://www.youtube.com/watch?v=v47lmqfrQ9s - YouTube video in case got error
+-> DO NOT DELETE MAINCHARACTERMODEL PREFAB, that one is for the rig
+-> CenterEyeAnchor - contains InViewDetector similar to SKKU MR project
+-> Face - GameObject in CenterEyeAnchor, to detect collisions with face
+
+Floor - Ensure all walkable floor has Layer set to "Floor" for leg IK to work
+
+UI - for UI Canvas use UI Cam and not centerEyeAnchor cam
+
+FadeScreen UI Object - Auto FadeOut at the start of the scene, is in ScenarioManagerPresentBad.cs so can follow and see how to end the game with FadeIn
+
+
+
+
+[Scripts]
+GameManager.cs - has all the main variables used for scenario
+
+ScenarioManagerPresentBad.cs - sceneToPlay enum is used to select where the flow of event starts from (Bathroom/Bedroom)
+-> narration_1 & narrationAudioClips_1 is for Bathroom+LivingRoom Scene / narration_2 & narrationAudioClips_2 is for Bedroom Scene
+-> drop glasses sound effect can play together with the narration clip (In function DropGlassesReaction(), line 196)
+
+ControllerInteractionsManager.cs - contains controller related functions like vibrating, dropping, grabbing and hand animations as well
+-> https://www.youtube.com/watch?v=9KJqZBoc8m4 - YouTube video on controller vibration
+-> taking off Glasses/Dentures from face is also triggered from this script
+-> Oculus Interactions Force Select function may not work as intended (grabbed object does not follow hand) so theres a function that forces the object to follow the hand (wont affect the rotation of object). Can see from RemoveGlasses() or RemoveDentures() functions on how its done. (Line 90 and 154)
+
+PostProcessingController.cs - blurry effect for when player does not have glasses on
+-> can play around with the weight in the inspector until you find the desired effect
+-> try not to change the one I set in the scenes already
+
+PlayerFace.cs - any collision with face is her
+-> UnityEvents for putting on Glasses is here
+-> is used to check if hand is near face area, allowing actions such as taking off glasses or dentures
+
+CaneTeleport.cs - Teleportation using cane
+-> Raycasts from the cane to hotspots, allowing player to teleport to it when button A is pressed
+-> Reference all teleport hotspots in order
+-> Teleport hotspots in scene should be disabled (To allow teleportation, enable the first teleport hotspot in the scene or by script
+
+InViewDetector.cs - for getting objects in players' view
+-> Used for MovingFurniture objects during the illusion in PresentBadBedroom scene
+
+MovingFurniture.cs - used on bedroom props during the illusion in PresentBadBedroom scene
+-> Objects will "spasm" on the spot until player looks at it the first time, afterwards when player looks away it will disappear
+
+DisappearObject.cs - used on the illusion ship during the illusion in PresentBadBedroom scene
+-> Set location points in the inspector and the object will move between those points
+-> Set material surface type to transparent
+
+DoorKnob.cs - currently only used on bathroom door in PresentBadBathroom scene
+-> can copy from the scene and use on other scene
+-> similar to SKKU MR project also so Zainal should know how it works
+
+TaiChiInstructor.cs - Used for playing the taichi animations
+-> To start the animations, call this line in scenario manager that you created, GameManager.instance.taiChiInstructor.GetComponent<TaiChiInstructor>().NextPose()
+-> It will auto play all the animations
+-> To continue the flow of event after animations finish, add your scenario manager function into the UnityEvent OnPosesFinish()
+
+MobilePhone.cs - Used on mobile phone object located in the living room
+-> Will play the recorded video on the phone
+
+DentureCup.cs - Used on denture cup object in PresentBadRedroom scene
+-> Just to position dentures into the cup and continue the flow of events in scenario manager
+
+IObjectInteractable.cs - Interface for misc/non-important objects that can be interacted with, mostly is on the toiletries
+-> GenericToiletries, Mug and Toothpaste uses this
+
+GenericToiletries.cs, Mug.cs, Toothpaste.cs, SinkTap.cs - misc objects that are interactable
+-> Nothing much about this
+
+IKFootSolver.cs, IKTargetFollowVRRig.cs - used for player rig
+-> Do not delete if not gg
+
+AlertTextController.cs - Copied over from SKKU MR project
+-> Can ask Zainal if unsure
+
+DebugTextTest.cs, FollowObj.cs, SlowDownHands - Zainal's script, can ask him if unsure
+
+
+
