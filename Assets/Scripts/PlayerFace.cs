@@ -8,7 +8,7 @@ public class PlayerFace : MonoBehaviour
 {
     // script is on GameObject "Face", in middleEyeAnchor
     public UnityEvent OnGlassesPutOn;
-    public UnityEvent OnDenturesPutOn;
+    //public UnityEvent OnDenturesPutOn;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +37,7 @@ public class PlayerFace : MonoBehaviour
             }                
         }
 
-        // taking off glasses
+        // checks if hand is in range to take off glasses
         if (GameManager.instance.toTakeGlassesOff)
         {
             foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
@@ -52,19 +52,19 @@ public class PlayerFace : MonoBehaviour
         #endregion
 
         #region Dentures
-        // putting on dentures
-        if (GameManager.instance.toPutDenturesOn && ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(other.gameObject))
-        {
-            if (other.gameObject == GameManager.instance.dentures)
-            {
-                GameManager.instance.dentures.GetComponent<Rigidbody>().useGravity = false;
-                GameManager.instance.dentures.SetActive(false);
-                OnDenturesPutOn.Invoke();
-                GameManager.instance.toPutDenturesOn = false;
-            }
-        }
+        //// putting on dentures
+        //if (GameManager.instance.toPutDenturesOn && ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(other.gameObject))
+        //{
+        //    if (other.gameObject == GameManager.instance.dentures)
+        //    {
+        //        GameManager.instance.dentures.GetComponent<Rigidbody>().useGravity = false;
+        //        GameManager.instance.dentures.SetActive(false);
+        //        OnDenturesPutOn.Invoke();
+        //        GameManager.instance.toPutDenturesOn = false;
+        //    }
+        //}
 
-        // taking off dentures
+        // checks if hand is in range to take off dentures
         if (GameManager.instance.toTakeDenturesOff)
         {
             foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
@@ -78,7 +78,7 @@ public class PlayerFace : MonoBehaviour
         }
         #endregion
 
-        
+
 
         if (other.gameObject.GetComponent<IObjectInteractable>() != null) // mug, toothbrush etc.
         {

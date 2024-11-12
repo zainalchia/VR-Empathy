@@ -28,20 +28,6 @@ public class Toothpaste : MonoBehaviour
             GetComponent<BoxCollider>().isTrigger = false;
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    if (hasBeenUsed) return;
-
-    //    if (collision.gameObject.name == "Toothbrush")
-    //    {
-    //        GetComponent<AudioSource>().Play();
-    //        hasBeenUsed = true;
-    //        collision.gameObject.transform.GetChild(0).gameObject.SetActive(true);
-    //        collision.gameObject.GetComponent<IObjectInteractable>().SetInteractive(true);
-
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if (hasBeenUsed) return;

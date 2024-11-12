@@ -29,12 +29,12 @@ public class MobilePhone : MonoBehaviour
         GetComponent<Renderer>().SetMaterials(materials); // to switch to the video material
         videoPlayer.clip = phoneCalling;
         videoPlayer.Play();
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().Play(); // will play ringing sound until phone is answered
     }
 
     public void SetPhoneAnswered()
     {
-        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().Stop(); // stop ringing sound once phone is answered
         videoPlayer.Stop();
         videoPlayer.clip = phoneAnswered;
         videoPlayer.Play();

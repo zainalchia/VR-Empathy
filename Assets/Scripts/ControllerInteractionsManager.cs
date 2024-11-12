@@ -95,6 +95,7 @@ public class ControllerInteractionsManager : MonoBehaviour
             {
                 canTakeOffGlasses = false;
                 grabInteractorsWithinRange.Clear();
+
                 GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 leftHandForceSelected = true;
                 lastHeldObjLeftHand = GameManager.instance.glasses;
@@ -102,6 +103,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                 GameManager.instance.OnGlassesTakeOff.Invoke();
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
                 GameManager.instance.glasses.GetComponent<Rigidbody>().isKinematic = true;
+
                 toReleaseLeftHand = true;
                 GameManager.instance.toTakeGlassesOff = false;
             }

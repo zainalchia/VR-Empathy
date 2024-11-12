@@ -16,7 +16,7 @@ public class CaneTeleport : MonoBehaviour
 
     [SerializeField] float maxDistanceMoveable = 0.6f;
     [SerializeField] LayerMask teleportLayer;
-    [SerializeField] float defaultTimeBeforeNextMove = 2;
+    [SerializeField] float defaultTimeBeforeNextMove = 0; // adds a delay in between teleports, set to 0 for no delay
     [SerializeField] GameObject[] teleportHotspots;
 
     bool buttonPressed = false;
@@ -79,7 +79,7 @@ public class CaneTeleport : MonoBehaviour
             teleportHotspots[currentHotspotIndex].gameObject.SetActive(false);
             teleportHotspots[currentHotspotIndex + 1].gameObject.SetActive(true);
         }
-        else if (currentHotspotIndex == teleportHotspots.Length - 1)
+        else if (currentHotspotIndex == teleportHotspots.Length - 1) // when last teleport hotspot, no need to enable next one
         {
             teleportHotspots[currentHotspotIndex].gameObject.SetActive(false);
         }
@@ -90,7 +90,7 @@ public class CaneTeleport : MonoBehaviour
         }
     }
 
-    public bool HasTeleportedOnce()
+    public bool HasTeleportedOnce() // check if player has teleported first time
     {
         if (currentHotspotIndex != -1)
             return true;
@@ -110,7 +110,7 @@ public class CaneTeleport : MonoBehaviour
         {
             if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() != null)
             {
-                if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable)
+                if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable) // only runs when player is holding cane
                 {
                     CheckIfCanMove();
 
@@ -139,7 +139,7 @@ public class CaneTeleport : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (Vector3.Distance(this.gameObject.transform.position, GameManager.instance.middleEyeAnchor.transform.position) > 5f)
+        if (Vector3.Distance(this.gameObject.transform.position, GameManager.instance.middleEyeAnchor.transform.position) > 5f) // cane will appear in front of user if it is too far away
         {
             this.gameObject.transform.position = GameManager.instance.middleEyeAnchor.transform.position + GameManager.instance.middleEyeAnchor.transform.forward;
         }

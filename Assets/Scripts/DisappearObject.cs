@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Disappear : MonoBehaviour
+public class DisappearObject : MonoBehaviour
 {
     /* NOTE:
      *      Set material surface type to Transparent
@@ -97,15 +97,6 @@ public class Disappear : MonoBehaviour
                 ResetGameObject();
                 toReset = false;
             }
-        }
-        
-        if (Input.GetKeyDown(KeyCode.K)) // for debugging only, remember to remove
-        {
-            AllowedToMove(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.L))
-        {
-            AllowedToMove(false);
         }
     }
 }

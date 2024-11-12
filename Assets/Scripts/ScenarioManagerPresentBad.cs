@@ -18,11 +18,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     // for bathroom and living room scene
     [SerializeField] AudioClip[] narrationAudioClips_1;
-    string[] narration_1 = new string[50];
+    string[] narration_1 = new string[30];
 
     // for bedroom scene
     [SerializeField] AudioClip[] narrationAudioClips_2;
-    string[] narration_2 = new string[50];
+    string[] narration_2 = new string[30];
 
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject cane;
@@ -35,24 +35,23 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[0] = "I am balding.";
         narration_1[1] = "Cool mirror.";
         narration_1[2] = "I need to wash up.";
-        narration_1[3] = "Can't forget my dentures!"; // stay on screen until dentures put on
 
-        narration_1[4] = "Time to relax in the living room.";
-        narration_1[5] = "I have to use the cane and move to living room.";
-        narration_1[6] = "Open the door and go to the sofa."; // stay on screen until open
-        narration_1[7] = "[Use the cane to find spots to move to and then press 'A']"; // stay on screen until first tp
+        narration_1[3] = "Time to relax in the living room.";
+        narration_1[4] = "I have to use the cane and move to living room.";
+        narration_1[5] = "Open the door and go to the sofa."; // stay on screen until open
+        narration_1[6] = "[Use the cane to find spots to move to and then press 'A']"; // stay on screen until first tp
 
-        narration_1[8] = "Someone is calling. Pick up the phone.";
-        narration_1[9] = "I can't see that well.";
-        narration_1[10] = "I need to use my glasses.";
-        narration_1[11] = "Aiya... dropped my glasses.";
-        narration_1[12] = "Aiya... dropped my glasses again.";
-        narration_1[13] = "Grab the phone with one hand and tap with the other hand to answer."; // stay on screen until phone is answered
+        narration_1[7] = "Someone is calling. Pick up the phone.";
+        narration_1[8] = "I can't see that well.";
+        narration_1[9] = "I need to use my glasses.";
+        narration_1[10] = "Aiya... dropped my glasses.";
+        narration_1[11] = "Aiya... dropped my glasses again.";
+        narration_1[12] = "Grab the phone with one hand and tap with the other hand to answer."; // stay on screen until phone is answered
 
-        narration_1[14] = "Dialogue from man";
-        narration_1[15] = "reply";
-        narration_1[16] = "...";
-        narration_1[17] = "...";
+        narration_1[13] = "Dialogue Placeholder 1";
+        narration_1[14] = "Dialogue Placeholder 2";
+        narration_1[15] = "Dialogue Placeholder 3";
+        narration_1[16] = "Dialogue Placeholder 4";
     }
 
     void SetupNarrationBedroom()
@@ -72,8 +71,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 30f;
-    //bool hasWashedUp = false;
-    //bool isDenturesOn = false;
 
     public void PlaySegment1Part1()
     {
@@ -86,7 +83,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         ControllerInteractionsManager.instance.allowDropItems = false; // no dropping item yet
         cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(4f); // screen fade in timing
 
         GameManager.instance.ShowAlert(narration_1[0], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
@@ -96,29 +93,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         GameManager.instance.ShowAlert(narration_1[2], 6f);
 
-        //GameManager.instance.toPutDenturesOn = true;
-
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
-        
-        //hasWashedUp = true;
-        //if (!isDenturesOn)
-        //{
-        //    GameManager.instance.ShowAlert(narration_1[3], Color.red);
-        //}
-        //else
-        //    PlaySegment1Part2();
+
         PlaySegment1Part2();
     }
-
-    //public void DenturesPutOn() // called in UnityEvent from PlayerFace
-    //{
-    //    isDenturesOn = true;
-    //    if (hasWashedUp)
-    //    {
-    //        PlaySegment1Part2();
-    //    }
-    //}
 
     #endregion
 
@@ -140,13 +119,13 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         arrowToCane.SetActive(true);
 
+        GameManager.instance.ShowAlert(narration_1[3], 3f);
+        yield return new WaitForSeconds(3f + 1.1f);
+
         GameManager.instance.ShowAlert(narration_1[4], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
-        GameManager.instance.ShowAlert(narration_1[5], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
-
-        GameManager.instance.ShowAlert(narration_1[6]);
+        GameManager.instance.ShowAlert(narration_1[5]);
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
@@ -157,7 +136,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         StopPrevDialogue();
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        GameManager.instance.ShowAlert(narration_1[7]);
+        GameManager.instance.ShowAlert(narration_1[6]);
         toGoLivingRoom = true;
     }
 
@@ -187,7 +166,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         mobilePhone.SetPhoneCalling();
         arrowToPhone.SetActive(true);
 
-        GameManager.instance.ShowAlert(narration_1[8], 3f);
+        GameManager.instance.ShowAlert(narration_1[7], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
         GameManager.instance.toPickUpPhone = true;
@@ -205,11 +184,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         ControllerInteractionsManager.instance.allowDropItems = true; // will drop items from here
         GameManager.instance.toPutGlassesOn = true;
 
-        GameManager.instance.ShowAlert(narration_1[9], 3f);
+        GameManager.instance.ShowAlert(narration_1[8], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
         arrowToGlasses.SetActive(true);
-        GameManager.instance.ShowAlert(narration_1[10], 3f);
+        GameManager.instance.ShowAlert(narration_1[9], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
         
     }
@@ -220,11 +199,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         dropGlassesCount++;
 
-        
+        // Narration when player drops glasses, can play audio here each time player drops glasses
         if (dropGlassesCount == 1)
-            GameManager.instance.ShowAlert(narration_1[11], 3f);
+            GameManager.instance.ShowAlert(narration_1[10], 3f);
         else if (dropGlassesCount == 2)
-            GameManager.instance.ShowAlert(narration_1[12], 3f);
+            GameManager.instance.ShowAlert(narration_1[11], 3f);
 
     }
 
@@ -234,7 +213,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         arrowToGlasses.SetActive(false);
 
         ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after glasses put on
-        GameManager.instance.ShowAlert(narration_1[13]);
+        GameManager.instance.ShowAlert(narration_1[12]);
         GameManager.instance.canAnswerPhone = true;
     }
 
@@ -246,7 +225,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_3() // Dialogue between player and caller
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f); // the call takes a few second to be answered so wait a few seconds first
+
+        GameManager.instance.ShowAlert(narration_1[13], 3f);
+        yield return new WaitForSeconds(3f + 1.1f);
 
         GameManager.instance.ShowAlert(narration_1[14], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
@@ -255,9 +237,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(3f + 1.1f);
 
         GameManager.instance.ShowAlert(narration_1[16], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
-
-        GameManager.instance.ShowAlert(narration_1[17], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
         // play phone hang up here
@@ -270,7 +249,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // load next scene here
         SceneManager.LoadScene(1, LoadSceneMode.Single); // Or whatever number present bad bedroom scene is
     }
-
 
     #endregion
 
@@ -288,7 +266,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         ControllerInteractionsManager.instance.allowDropItems = false; // no dropping items (can also disable in scene)
         cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(4f); // screen fade in timing
 
         GameManager.instance.ShowAlert(narration_2[0], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
@@ -354,14 +332,16 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // clouds and ship illusions here
         flyingShip.SetActive(true);
-        flyingShip.GetComponent<Disappear>().AllowedToMove(true);
+        flyingShip.GetComponent<DisappearObject>().AllowedToMove(true);
         cloudy1.GetComponent<ParticleSystem>().Play();
         cloudy2.GetComponent<ParticleSystem>().Play();
+
         yield return new WaitForSeconds(6f);
 
+        // stop all illusions
         cloudy1.GetComponent<ParticleSystem>().Stop();
         cloudy2.GetComponent<ParticleSystem>().Stop();
-        flyingShip.GetComponent<Disappear>().AllowedToMove(false);
+        flyingShip.GetComponent<DisappearObject>().AllowedToMove(false);
         flyingShip.SetActive(false);
 
         GameManager.instance.ShowAlert(narration_2[4], 3f);
@@ -387,7 +367,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.ShowAlert(narration_2[7]);
     }
 
-    public void WrongMedicineGrabbed()
+    public void WrongMedicineGrabbed() // called when UnityEvent in Medicine script when player grab
     {
         StopPrevDialogue();
         GameManager.instance.ShowAlert(narration_2[8], 5f);
@@ -398,31 +378,24 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         StopPrevDialogue();
 
+        // for the scripted animation of medicine getting toppled over
         arrowToPlaceMedicine.SetActive(false);
         originallyHeldMedicine.SetActive(false);
         animatedMedicine.transform.position = new Vector3(originallyHeldMedicine.transform.position.x + medicineOffsetX, animatedMedicineHeight, originallyHeldMedicine.transform.position.z + medicineOffsetZ);
         animatedMedicine.SetActive(true);
         animatedMedicine.GetComponent<Animator>().enabled = true;
+
         lastRoutine = StartCoroutine(Segment2Part2_2());
     }
 
     IEnumerator Segment2Part2_2()
     {
-        //// all furnitures to appear again
-        //foreach (GameObject obj in movingFurnitures)
-        //{
-        //    obj.SetActive(true);
-        //}
-
         GameManager.instance.ShowAlert(narration_2[9], 5f);
         yield return new WaitForSeconds(5f + 1.1f);
-        // play sobbing sound instead of text above also can
 
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(4f);
-
-        
+        yield return new WaitForSeconds(4f);        
     }
     #endregion
 
@@ -484,6 +457,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
             #region Going towards medicine table
+            // call when player teleports in front of the medicine table
             if (toGoMedicineTable)
             {
                 if (cane.GetComponent<CaneTeleport>().HasTeleportedOnce())

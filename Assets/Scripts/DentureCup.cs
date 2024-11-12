@@ -9,14 +9,14 @@ public class DentureCup : MonoBehaviour
 {
     public UnityEvent OnDenturePlaced;
 
-    void PositionDentureInCup(GameObject denture)
+    void PositionDentureInCup(GameObject denture) // fits the dentures into the cup, making the dentures not grabbable afterwards
     {
         denture.GetComponent<Rigidbody>().isKinematic = true;
         denture.GetComponent<BoxCollider>().enabled = false;
         denture.transform.localScale = Vector3.one;
         denture.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, -1.3616f);
 
-        OnDenturePlaced.Invoke();
+        OnDenturePlaced.Invoke(); // continues the flow of events in scenario manager
     }
 
     // Start is called before the first frame update
@@ -33,7 +33,7 @@ public class DentureCup : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == GameManager.instance.dentures) // placed dentures into cup
+        if (other.gameObject == GameManager.instance.dentures) // place dentures into cup if not holding anymore
         {
             if (other.gameObject.GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() != null)
             {

@@ -40,7 +40,7 @@ public class Mug : MonoBehaviour, IObjectInteractable
     {
         if (!hadWater)
         {
-            if (collision.gameObject.name == "WaterCollider")
+            if (collision.gameObject.name == "WaterCollider") // adds water into mug
             {
                 hadWater = true;
                 this.gameObject.transform.GetChild(0).gameObject.SetActive(true);

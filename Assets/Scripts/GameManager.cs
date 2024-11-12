@@ -43,18 +43,13 @@ public class GameManager : MonoBehaviour
     // PUTTING ON & TAKING OFF DENTURES
     [Header("DENTURES")]
     public GameObject dentures;
-    public bool toPutDenturesOn = false;
+    //public bool toPutDenturesOn = false;      // not used anymore
     public bool toTakeDenturesOff = false;
     public UnityEvent OnDenturesTakeOff; 
 
     [Header("MOBILE PHONE")]
     public bool toPickUpPhone = false;
     public bool canAnswerPhone = false;
-
-    //// MEDICATION
-    //[Header("MEDICATION")]
-    //public bool toEatMedication = false;
-    //public LayerMask medicationLayer;
 
     [Header("TAICHI")]
     public TaiChiInstructor taiChiInstructor;
@@ -103,7 +98,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Player's Position
-
     public bool IsPlayerWithinPosition(float minXInclusive, float minZInclusive, float maxXInclusive, float maxZInclusive)
     {
         if ((middleEyeAnchor.transform.position.x >= minXInclusive && middleEyeAnchor.transform.position.x <= maxZInclusive) 
@@ -113,6 +107,7 @@ public class GameManager : MonoBehaviour
             return false;
     }
     #endregion
+
     // Start is called before the first frame update
     void Start()
     {
