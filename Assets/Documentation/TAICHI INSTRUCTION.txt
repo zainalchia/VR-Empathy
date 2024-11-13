@@ -1,0 +1,11 @@
+See TaiChi Scene for reference
+
+TaiChi Model - Does not need animation rigging, need the following components
+-> Animator, TaiChiInstructor script, capsule collider, rigidbody
+-> can copy the component values
+
+GameManager - Must reference the TaiChi Model and enable boolean ToDoTaiChi
+
+To start the animation, in your scenario manager - GameManager.instance.taiChiInstructor.GetComponent<TaiChiInstructor>().NextPose()
+
+There is a UnityEvent in TaiChiInstructor script, reference the function you want to invoke when all the taichi animations are finished
