@@ -32,26 +32,23 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     void SetupNarrationBathroomLivingRoom()
     {
-        narration_1[0] = "I am balding.";
-        narration_1[1] = "Cool mirror.";
-        narration_1[2] = "I need to wash up.";
+        narration_1[0] = "Sigh, I am balding even more.";
+        narration_1[1] = "Let me wash up so I can rest. ";
 
-        narration_1[3] = "Time to relax in the living room.";
-        narration_1[4] = "I have to use the cane and move to living room.";
-        narration_1[5] = "Open the door and go to the sofa."; // stay on screen until open
+        narration_1[2] = "My legs are tired from all this standing.";
+        narration_1[3] = "I have to use the cane and move to living room.";
+        narration_1[4] = "Let me take a break at the living room."; // stay on screen until open
+        narration_1[5] = "Let me grab my trusty cane.";
         narration_1[6] = "[Use the cane to find spots to move to and then press 'A']"; // stay on screen until first tp
 
         narration_1[7] = "Someone is calling. Pick up the phone.";
         narration_1[8] = "I can't see that well.";
-        narration_1[9] = "I need to use my glasses.";
+        narration_1[9] = "Aiya, old already cannot see. I need my glasses.";
         narration_1[10] = "Aiya... dropped my glasses.";
         narration_1[11] = "Aiya... dropped my glasses again.";
         narration_1[12] = "Grab the phone with one hand and tap with the other hand to answer."; // stay on screen until phone is answered
 
-        narration_1[13] = "Dialogue Placeholder 1";
-        narration_1[14] = "Dialogue Placeholder 2";
-        narration_1[15] = "Dialogue Placeholder 3";
-        narration_1[16] = "Dialogue Placeholder 4";
+        narration_1[13] = "HELLO, SON IS THAT YOU? HOW ARE YOU? WHEN YOU WANT COME";
     }
 
     void SetupNarrationBedroom()
@@ -85,13 +82,13 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
-        GameManager.instance.ShowAlert(narration_1[0], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
+
+        PlayAudioAndNarration(narrationAudioClips_1[0], narration_1[0], 7.0f);
+        yield return new WaitForSeconds(7.0f + 1.5f);
 
         GameManager.instance.ShowAlert(narration_1[1], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
-        GameManager.instance.ShowAlert(narration_1[2], 6f);
 
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
