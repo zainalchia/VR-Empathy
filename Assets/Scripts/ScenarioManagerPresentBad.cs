@@ -36,19 +36,21 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[1] = "Let me wash up so I can rest. ";
 
         narration_1[2] = "My legs are tired from all this standing.";
-        narration_1[3] = "I have to use the cane and move to living room.";
-        narration_1[4] = "Let me take a break at the living room."; // stay on screen until open
-        narration_1[5] = "Let me grab my trusty cane.";
+        narration_1[3] = "I need to take a break in the living room.";
+        narration_1[4] = "Let me grab my trusty cane.";
+        narration_1[5] = "Place your hand on the door handle to open the door.";
         narration_1[6] = "[Use the cane to find spots to move to and then press 'A']"; // stay on screen until first tp
 
         narration_1[7] = "Someone is calling. Pick up the phone.";
-        narration_1[8] = "I can't see that well.";
-        narration_1[9] = "Aiya, old already cannot see. I need my glasses.";
-        narration_1[10] = "Aiya... dropped my glasses.";
-        narration_1[11] = "Aiya... dropped my glasses again.";
-        narration_1[12] = "Grab the phone with one hand and tap with the other hand to answer."; // stay on screen until phone is answered
+        narration_1[8] = "Aiya, old already cannot see. I need my glasses.";
+        narration_1[9] = "Useless hand cannot hold my glasses.";
+        narration_1[10] = "Aiya... dropped my glasses again.";
+        narration_1[11] = "Grab the phone with one hand and tap with the other hand to answer."; // stay on screen until phone is answered
 
-        narration_1[13] = "HELLO, SON IS THAT YOU? HOW ARE YOU? WHEN YOU WANT COME";
+        narration_1[12] = "Swipe on the phone to answer the call";
+        narration_1[13] = "Pa, Hello Pa.";
+        narration_1[14] = "Hellllllo Pa. This deaf father so hard to talk to him.";
+        narration_1[15] = "HELLO, SON IS THAT YOU? HOW ARE YOU? WHEN YOU WANT COME";
     }
 
     void SetupNarrationBedroom()
@@ -82,7 +84,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
-
+        //Lines 1-2
         PlayAudioAndNarration(narrationAudioClips_1[0], narration_1[0], 7.0f);
         yield return new WaitForSeconds(7.0f + 1.5f);
 
@@ -116,11 +118,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         arrowToCane.SetActive(true);
 
-        GameManager.instance.ShowAlert(narration_1[3], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
+        PlayAudioAndNarration(narrationAudioClips_1[1], narration_1[2], 4.0f);
+        //GameManager.instance.ShowAlert(narration_1[3], 3f);
+        yield return new WaitForSeconds(4.0f);
 
-        GameManager.instance.ShowAlert(narration_1[4], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
+        GameManager.instance.ShowAlert(narration_1[3], 2.5f);
+        yield return new WaitForSeconds(2.5f);
+
+        GameManager.instance.ShowAlert(narration_1[4], 2.5f);
+        yield return new WaitForSeconds(2.5f + 1.1f);
 
         GameManager.instance.ShowAlert(narration_1[5]);
 
@@ -163,8 +169,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         mobilePhone.SetPhoneCalling();
         arrowToPhone.SetActive(true);
 
-        GameManager.instance.ShowAlert(narration_1[7], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
+        GameManager.instance.ShowAlert(narration_1[7], 2.5f);
+        yield return new WaitForSeconds(2.5f + 1.1f);
 
         GameManager.instance.toPickUpPhone = true;
     }
@@ -181,11 +187,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         ControllerInteractionsManager.instance.allowDropItems = true; // will drop items from here
         GameManager.instance.toPutGlassesOn = true;
 
-        GameManager.instance.ShowAlert(narration_1[8], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
+        // Trying to pick up glasses 1st time
+        PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
+        yield return new WaitForSeconds(1f);
 
         arrowToGlasses.SetActive(true);
-        GameManager.instance.ShowAlert(narration_1[9], 3f);
+        //GameManager.instance.ShowAlert(narration_1[9], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
         
     }
@@ -198,9 +205,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // Narration when player drops glasses, can play audio here each time player drops glasses
         if (dropGlassesCount == 1)
-            GameManager.instance.ShowAlert(narration_1[10], 3f);
+            PlayAudioAndNarration(narrationAudioClips_1[3], narration_1[9], 9f);
         else if (dropGlassesCount == 2)
-            GameManager.instance.ShowAlert(narration_1[11], 3f);
+            GameManager.instance.ShowAlert(narration_1[10], 3f);
 
     }
 
@@ -224,17 +231,14 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         yield return new WaitForSeconds(3f); // the call takes a few second to be answered so wait a few seconds first
 
-        GameManager.instance.ShowAlert(narration_1[13], 3f);
+        PlayAudioAndNarration(narrationAudioClips_1[4], narration_1[13], 3f);
         yield return new WaitForSeconds(3f + 1.1f);
 
-        GameManager.instance.ShowAlert(narration_1[14], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
+        GameManager.instance.ShowAlert(narration_1[14], 8f);
+        yield return new WaitForSeconds(8f + 1.1f);
 
-        GameManager.instance.ShowAlert(narration_1[15], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
-
-        GameManager.instance.ShowAlert(narration_1[16], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
+        PlayAudioAndNarration(narrationAudioClips_1[5], narration_1[15], narrationAudioClips_1[4].length);
+        yield return new WaitForSeconds(narrationAudioClips_1[4].length - 3f);
 
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
@@ -482,24 +486,28 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     void PlayAudioAndNarration(AudioClip clipToPlay, string narrationText) // use if text is to stay on screen
     {
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(clipToPlay);
         GameManager.instance.ShowAlert(narrationText);
     }
 
     void PlayAudioAndNarration(AudioClip clipToPlay, string narrationText, float clipLength) // use if text is to fade after time
     {
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(clipToPlay);
         GameManager.instance.ShowAlert(narrationText, clipLength);
     }
 
     void PlayAudioAndNarration(AudioClip clipToPlay, string narrationText, Color textColor) // use if text is to be different color
     {
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(clipToPlay);
         GameManager.instance.ShowAlert(narrationText, textColor);
     }
 
     void PlayAudioAndNarration(AudioClip clipToPlay, string narrationText, float clipLength, Color textColor) // use if text is to fade after time and be different color
     {
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(clipToPlay);
         GameManager.instance.ShowAlert(narrationText, clipLength, textColor);
     }
