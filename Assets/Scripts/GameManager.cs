@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     [Header("FADE IN-OUT PANEL")]
     public GameObject fadePanel;
 
+    [Header("Goodbye Text Panel")]
+    public GameObject goodbyeText;
+
     // PUTTING ON & TAKING OFF GLASSES
     [Header("GLASSES")]
     public GameObject glasses;
