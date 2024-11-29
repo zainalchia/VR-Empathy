@@ -28,6 +28,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject cane;
+    [SerializeField] GameObject caneOutline;
     [SerializeField] GameObject firstTeleportHotspot;
 
     Coroutine lastRoutine = null;
@@ -89,6 +90,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //Lines 1-2
         //PlayAudioAndNarration(narrationAudioClips_1[0], narration_1[0], 7.0f);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(7.0f + 1.5f);
 
@@ -121,22 +123,21 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part2()
     {
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
+        caneOutline.SetActive(true);
+        knob.GetComponent<Outline>().enabled = true;
         arrowToCane.SetActive(true);
 
         //PlayAudioAndNarration(narrationAudioClips_1[1], narration_1[2], 4.0f);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(4.0f);
 
         //GameManager.instance.ShowAlert(narration_1[3], 2.5f);
         yield return new WaitForSeconds(2.5f);
-
         //GameManager.instance.ShowAlert(narration_1[4], 2.5f);
         yield return new WaitForSeconds(2.5f + 1.1f);
 
-        cane.GetComponent<Outline>().enabled = true;
-
         //GameManager.instance.ShowAlert(narration_1[5]);
-        knob.GetComponent<Outline>().enabled = true;
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
@@ -146,7 +147,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         StopPrevDialogue();
 
-        cane.GetComponent<Outline>().enabled = false;
+        caneOutline.SetActive(false);
         knob.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
@@ -165,6 +166,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject arrowToGlasses;
     [SerializeField] GameObject glasses;
     [SerializeField] AudioClip glassesDrop;
+    [SerializeField] GameObject phoneOutline;
+    [SerializeField] GameObject glassesOutline;
 
     int dropGlassesCount = 0;
 
@@ -182,18 +185,18 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // play phone calling
         mobilePhone.SetPhoneCalling();
         arrowToPhone.SetActive(true);
+        phoneOutline.SetActive(true);
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
         yield return new WaitForSeconds(2.5f + 1.1f);
 
         GameManager.instance.toPickUpPhone = true;
-        phone.GetComponent<Outline>().enabled = true;
     }
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
         StopPrevDialogue();
-        phone.GetComponent<Outline>().enabled = false;
+        phoneOutline.SetActive(false);
         lastRoutine = StartCoroutine(Segment1Part3_2());
     }
 
@@ -205,11 +208,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // Trying to pick up glasses 1st time
         //PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
         yield return new WaitForSeconds(1f);
 
         arrowToGlasses.SetActive(true);
-        glasses.GetComponent<Outline>().enabled = true;
+        glassesOutline.SetActive(true);
         yield return new WaitForSeconds(3f + 1.1f);
         
     }
@@ -224,8 +228,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // Narration when player drops glasses, can play audio here each time player drops glasses
         if (dropGlassesCount == 1)
+        {
             //PlayAudioAndNarration(narrationAudioClips_1[3], narration_1[9], 9f);
+            narrationAudioSource.Stop();
             narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        }
+
         //else if (dropGlassesCount == 2)
             //GameManager.instance.ShowAlert(narration_1[10], 3f);
 
@@ -235,8 +243,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         StopPrevDialogue();
         arrowToGlasses.SetActive(false);
-        glasses.GetComponent<Outline>().enabled = false;
-
+        glassesOutline.SetActive(false);
         ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after glasses put on
         //GameManager.instance.ShowAlert(narration_1[12]);
         GameManager.instance.canAnswerPhone = true;
@@ -253,6 +260,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(3f); // the call takes a few second to be answered so wait a few seconds first
 
         //PlayAudioAndNarration(narrationAudioClips_1[4], narration_1[13], 3f);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
         yield return new WaitForSeconds(3f + 1.1f);
 
@@ -260,6 +268,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(8f + 1.1f);
 
         //PlayAudioAndNarration(narrationAudioClips_1[5], narration_1[15], narrationAudioClips_1[4].length);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
         yield return new WaitForSeconds(narrationAudioClips_1[4].length - 3f);
 
@@ -280,6 +289,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [Header("Bedroom 1st Part")]
     [SerializeField] GameObject arrowToCup;
     [SerializeField] GameObject Glass;
+    [SerializeField] GameObject CupOutline;
 
 
     public void PlaySegment2Part1()
@@ -294,6 +304,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[0]);
 
         yield return new WaitForSeconds(3f);
@@ -311,8 +322,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
-        Glass.GetComponent<Outline>().enabled = true;
-
+        CupOutline.SetActive(true);
     }
 
     public void DenturesPlacedInCup() // called in UnityEvent in denture cup
@@ -324,13 +334,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment2Part1_2()
     {
         arrowToCup.SetActive(false);
-        Glass.GetComponent<Outline>().enabled = false;
+        CupOutline.SetActive(false);
+
         yield return new WaitForSeconds(1f);
 
         // allow take glasses off from here
         GameManager.instance.toTakeGlassesOff = true;
 
         //PlayAudioAndNarration(narrationAudioClips_2[1], narration_2[4]);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
     }
 
@@ -389,6 +401,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         flyingShip.GetComponent<DisappearObject>().AllowedToMove(false);
         flyingShip.SetActive(false);
 
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]); // play audio, got a space in the beginning
         yield return new WaitForSeconds(3.5f);
 
@@ -401,7 +414,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(12f + 1.1f);
 
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
-        cane.GetComponent<Outline>().enabled = true;
+        caneOutline.SetActive(true);
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
         toGoMedicineTable = true;
 
@@ -412,17 +425,19 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     void NearMedicineTable() // called when player is in front of the table
     {
         StopPrevDialogue();
-        cane.GetComponent<Outline>().enabled = false;
-        PillBottleHighlight.GetComponent<Outline>().enabled = true;
+        caneOutline.SetActive(false);
+        PillBottleHighlight.SetActive(true);
         //PlayAudioAndNarration(narrationAudioClips_2[3], narration_2[8], narrationAudioClips_2[3].length);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
     }
 
     public void WrongMedicineGrabbed() // called when UnityEvent in Medicine script when player grab
     {
         StopPrevDialogue();
-        PillBottleHighlight.GetComponent<Outline>().enabled = false;
+        PillBottleHighlight.SetActive(false);
         //PlayAudioAndNarration(narrationAudioClips_2[4], narration_2[9], narrationAudioClips_2[4].length);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
         arrowToPlaceMedicine.SetActive(true);
     }
@@ -443,6 +458,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment2Part2_2()
     {
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
         //PlayAudioAndNarration(narrationAudioClips_2[5], narration_2[10], narrationAudioClips_2[5].length);
         yield return new WaitForSeconds(narrationAudioClips_2[5].length + 1.1f);
