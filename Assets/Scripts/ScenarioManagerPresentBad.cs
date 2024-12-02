@@ -280,7 +280,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         // load next scene here
-        SceneManager.LoadScene(1, LoadSceneMode.Single); // Or whatever number present bad bedroom scene is
+        SceneManager.LoadScene("PresentBadBedroom", LoadSceneMode.Single); // Or whatever number present bad bedroom scene is
     }
 
     #endregion

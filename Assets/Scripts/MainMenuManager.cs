@@ -1,18 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static bool isGenderMale = true; //true = male, false = female
+    [SerializeField]
+    Image genderImage;
+    [SerializeField]
+    TextMeshProUGUI genderText;
+
+    public void LoadLevel(string levelname)
     {
-        
+        SceneManager.LoadScene(levelname);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ToggleGender()
     {
-        
+        if (isGenderMale)
+        {
+            isGenderMale = false;
+            genderImage.color = new Color32(255, 20, 147, 100);
+            genderText.text = "Female";
+        }
+        else
+        {
+            isGenderMale = true;
+            genderImage.color = Color.blue;
+            genderText.text = "Male";
+        }
     }
 }

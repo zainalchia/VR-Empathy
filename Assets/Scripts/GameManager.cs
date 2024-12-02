@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     public GameObject ovrCamRig;
     public GameObject middleEyeAnchor;
     public GrabInteractor[] grabInteractors; // if can left controller should be index 0, right controller should be index 1
+    [SerializeField]
+    GameObject MaleModel, FemaleModel;
+    [HideInInspector]
     public GameObject characterModel;
 
     // ALERT TEXT
@@ -114,7 +117,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (MainMenuManager.isGenderMale)
+        {
+            characterModel = MaleModel;
+            FemaleModel.SetActive(false);
+        }
+        else {
+            characterModel = FemaleModel;
+            MaleModel.SetActive(false);
+        }
     }
 
     // Update is called once per frame
