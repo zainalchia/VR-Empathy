@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public static bool isGenderMale = true; //true = male, false = female
+    public static bool isGenderMale = false; //true = male, false = female
     [SerializeField]
     Image genderImage;
     [SerializeField]
