@@ -252,6 +252,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             PlaySegment2Part1();
+            GameManager.instance.taiChiInstructor.GetComponent<TaiChiInstructor>().NextPose();
         }
     }
 

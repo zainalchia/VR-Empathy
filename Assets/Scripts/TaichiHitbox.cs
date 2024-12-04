@@ -2,10 +2,12 @@ using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TaichiHitbox : MonoBehaviour
 {
     public bool isHit = false;
+    public UnityEvent nextHitbox;
 
     private void Awake()
     {
@@ -15,7 +17,7 @@ public class TaichiHitbox : MonoBehaviour
     IEnumerator Runtime()
     {
         yield return new WaitForSeconds(3f);
-        gameObject.SetActive(false);
+        nextHitbox.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,6 +26,7 @@ public class TaichiHitbox : MonoBehaviour
         {
             isHit = true;
             gameObject.SetActive(false);
+            nextHitbox.Invoke();
         }
 
     }

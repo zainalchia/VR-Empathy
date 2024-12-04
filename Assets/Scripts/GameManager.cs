@@ -117,14 +117,18 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (MainMenuManager.isGenderMale)
+        if (MaleModel != null && FemaleModel != null)
         {
-            characterModel = MaleModel;
-            FemaleModel.SetActive(false);
-        }
-        else {
-            characterModel = FemaleModel;
-            MaleModel.SetActive(false);
+            if (MainMenuManager.isGenderMale)
+            {
+                characterModel = MaleModel;
+                FemaleModel.SetActive(false);
+            }
+            else
+            {
+                characterModel = FemaleModel;
+                MaleModel.SetActive(false);
+            }
         }
     }
 

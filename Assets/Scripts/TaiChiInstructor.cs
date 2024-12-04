@@ -9,18 +9,22 @@ public class TaiChiInstructor : MonoBehaviour
     [SerializeField] float timeDelayBeforeNextPose;
     public UnityEvent OnPosesFinish;
     float timerToGoNext = 0f;
+    bool timerstart = false;
 
     int currentPose = 0;
 
     public void ReadyForNextPose() // called in animation event 1 frame before the last frame
     {
         timerToGoNext = timeDelayBeforeNextPose;
+        timerstart = true;
     }
 
     public void NextPose() // call to start taichi in scenario manager, will invoke UnityEvent once all taichi animations have been played
     {
         if (GameManager.instance.toDoTaiChi)
         {
+            timerstart = false;
+            Debug.Log("Current pose:" + currentPose);
             if (currentPose < numOfPoses)
             {
                 currentPose += 1;
@@ -43,14 +47,18 @@ public class TaiChiInstructor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timerToGoNext > 0)
+        if (timerstart)
         {
-            timerToGoNext -= Time.deltaTime;
-            if (timerToGoNext <= 0)
+            if (timerToGoNext > 0)
             {
-                NextPose();
+                timerToGoNext -= Time.deltaTime;
+                if (timerToGoNext <= 0)
+                {
+                    NextPose();
+                }
             }
         }
+        Debug.Log(timerToGoNext);
     }
 
     
