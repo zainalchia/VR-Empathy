@@ -350,20 +350,20 @@ public class ControllerInteractionsManager : MonoBehaviour
     void Update()
     {
         #region Hand Animations
-        if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
             GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", true);
         }
-        else if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
+        else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
         {
             GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", false);
         }
 
-        if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
             GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", true);
         }
-        else if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
+        else if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
             GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", false);
         }
@@ -372,12 +372,12 @@ public class ControllerInteractionsManager : MonoBehaviour
         #region Grabbing Items
         if (canTakeOffGlasses)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
             {
                 RemoveGlasses(OVRInput.Controller.LTouch);
             }
 
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
                 RemoveGlasses(OVRInput.Controller.RTouch);
             }
@@ -385,12 +385,12 @@ public class ControllerInteractionsManager : MonoBehaviour
 
         if (canTakeOffDentures)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger))
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
             {
                 RemoveDentures(OVRInput.Controller.LTouch);
             }
 
-            if (OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger))
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
             {
                 RemoveDentures(OVRInput.Controller.RTouch);
             }
@@ -398,14 +398,14 @@ public class ControllerInteractionsManager : MonoBehaviour
 
         if (toReleaseLeftHand) // when force select has been used
         {
-            if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
+            if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
             {
                 ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
             }
         }
         if (toReleaseRightHand) // when force select has been used
         {
-            if (OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger))
+            if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
             {
                 ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
             }
