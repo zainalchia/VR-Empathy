@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2440,6 +2440,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 447146653}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9cfefc47c7513a84a8bd93ff92002587,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1322557012}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cfefc47c7513a84a8bd93ff92002587,
         type: 3}
@@ -2554,7 +2558,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 412595812}
   _rigidbody: {fileID: 412595813}
-  _grabSource: {fileID: 0}
+  _grabSource: {fileID: 1322557012}
   _useClosestPointAsGrabSource: 0
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
@@ -2566,7 +2570,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412595808}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
@@ -8840,6 +8844,37 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.002524047, y: 0.0027251048, z: 0.0009063266}
   m_Center: {x: -0.0009356284, y: 0.000000391039, z: -0.0000043654572}
+--- !u!1 &1322557011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1322557012}
+  m_Layer: 0
+  m_Name: Grab Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1322557012
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322557011}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: 0, w: 0}
+  m_LocalPosition: {x: -0.0021400005, y: 0, z: 0.01859}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 798185059}
+  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 270}
 --- !u!1001 &1352166672
 PrefabInstance:
   m_ObjectHideFlags: 0
