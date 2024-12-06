@@ -7,30 +7,30 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public static bool isGenderMale = false; //true = male, false = female
+    public static bool isGenderMale = true; //true = male, false = female
     [SerializeField]
-    Image genderImage;
-    [SerializeField]
-    TextMeshProUGUI genderText;
+    GameObject scenarioScreen, genderScreen;
+    string levelSelected;
 
     public void LoadLevel(string levelname)
     {
         SceneManager.LoadScene(levelname);
     }
 
-    public void ToggleGender()
+    public void SelectGender(bool isMale)
     {
-        if (isGenderMale)
-        {
-            isGenderMale = false;
-            genderImage.color = new Color32(255, 20, 147, 100);
-            genderText.text = "Female";
-        }
-        else
-        {
-            isGenderMale = true;
-            genderImage.color = Color.blue;
-            genderText.text = "Male";
-        }
+        isGenderMale = isMale;
+        LoadLevel(levelSelected);
+    }
+
+    public void SelectLevel(string levelname)
+    {
+        levelSelected = levelname;
+    }
+
+    public void toGenderScreen()
+    {
+        scenarioScreen.SetActive(false);
+        genderScreen.SetActive(true);
     }
 }

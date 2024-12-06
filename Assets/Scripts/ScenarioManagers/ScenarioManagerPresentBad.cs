@@ -54,6 +54,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[13] = "Pa, Hello Pa.";
         narration_1[14] = "Hellllllo Pa. This deaf father so hard to talk to him.";
         narration_1[15] = "HELLO, SON IS THAT YOU? HOW ARE YOU? WHEN YOU WANT COME";
+
+
+        // Text prompts
+        narration_1[16] = "Open the door and head to the sofa";
+        narration_1[17] = "Aim the tip of the cane on the floor and press the 'Grip' button";
+        narration_1[18] = "Someone is calling, pick up the phone.";
     }
 
     void SetupNarrationBedroom()
@@ -110,7 +116,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [Header("Moving towards living room")]
     [SerializeField] DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
-    [SerializeField] GameObject arrowToCane;
     bool toGoLivingRoom = false;
     bool alertRemovedAfterFirstTP = false;
 
@@ -125,7 +130,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         caneOutline.SetActive(true);
         knob.GetComponent<Outline>().enabled = true;
-        arrowToCane.SetActive(true);
 
         //PlayAudioAndNarration(narrationAudioClips_1[1], narration_1[2], 4.0f);
         narrationAudioSource.Stop();
@@ -141,6 +145,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
+        GameManager.instance.ShowAlert(narration_1[16]);
     }
 
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
@@ -151,7 +156,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         knob.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        //GameManager.instance.ShowAlert(narration_1[6]);
+        GameManager.instance.ShowAlert(narration_1[17]);
         toGoLivingRoom = true;
     }
 
@@ -162,8 +167,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [Header("In living room")]
     [SerializeField] GameObject phone;
     [SerializeField] MobilePhone mobilePhone;
-    [SerializeField] GameObject arrowToPhone;
-    [SerializeField] GameObject arrowToGlasses;
     [SerializeField] GameObject glasses;
     [SerializeField] AudioClip glassesDrop;
     [SerializeField] GameObject phoneOutline;
@@ -184,8 +187,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // play phone calling
         mobilePhone.SetPhoneCalling();
-        arrowToPhone.SetActive(true);
         phoneOutline.SetActive(true);
+        GameManager.instance.ShowAlert(narration_1[18]);
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
         yield return new WaitForSeconds(2.5f + 1.1f);
@@ -195,6 +198,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
+        GameManager.instance.HideAlert();
         StopPrevDialogue();
         phoneOutline.SetActive(false);
         lastRoutine = StartCoroutine(Segment1Part3_2());
@@ -202,7 +206,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_2()
     {
-        arrowToPhone.SetActive(false);
         ControllerInteractionsManager.instance.allowDropItems = true; // will drop items from here
         GameManager.instance.toPutGlassesOn = true;
 
@@ -212,7 +215,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
         yield return new WaitForSeconds(1f);
 
-        arrowToGlasses.SetActive(true);
         glassesOutline.SetActive(true);
         yield return new WaitForSeconds(3f + 1.1f);
         
@@ -242,7 +244,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
     {
         StopPrevDialogue();
-        arrowToGlasses.SetActive(false);
         glassesOutline.SetActive(false);
         ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after glasses put on
         //GameManager.instance.ShowAlert(narration_1[12]);
@@ -287,7 +288,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     #region Segment 2 Part 1 (Bedroom - Taking off glasses and dentures)
     [Header("Bedroom 1st Part")]
-    [SerializeField] GameObject arrowToCup;
     [SerializeField] GameObject Glass;
     [SerializeField] GameObject CupOutline;
 
@@ -333,7 +333,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment2Part1_2()
     {
-        arrowToCup.SetActive(false);
         CupOutline.SetActive(false);
 
         yield return new WaitForSeconds(1f);
@@ -360,7 +359,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject cloudy1;
     [SerializeField] GameObject cloudy2;
     [SerializeField] GameObject tableWithMedicine;
-    [SerializeField] GameObject arrowToPlaceMedicine;
     [SerializeField] GameObject originallyHeldMedicine;
     [SerializeField] GameObject animatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
@@ -439,7 +437,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //PlayAudioAndNarration(narrationAudioClips_2[4], narration_2[9], narrationAudioClips_2[4].length);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
-        arrowToPlaceMedicine.SetActive(true);
     }
 
     public void MedicationDropped()
@@ -447,7 +444,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         StopPrevDialogue();
 
         // for the scripted animation of medicine getting toppled over
-        arrowToPlaceMedicine.SetActive(false);
         originallyHeldMedicine.SetActive(false);
         animatedMedicine.transform.position = new Vector3(originallyHeldMedicine.transform.position.x + medicineOffsetX, animatedMedicineHeight, originallyHeldMedicine.transform.position.z + medicineOffsetZ);
         animatedMedicine.SetActive(true);
@@ -509,19 +505,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
                 {
                     toGoLivingRoom = false;
                     PlaySegment1Part3_1();
-                }
-            }
-            // disable arrow when glasses picked up
-            if (GameManager.instance.toPutGlassesOn)
-            {
-                if (GameManager.instance.glasses.GetComponent<GrabInteractable>().SelectingInteractors.Count > 0)
-                {
-                    arrowToGlasses.SetActive(false);
-                }
-                else
-                {
-                    arrowToGlasses.SetActive(true);
-                    arrowToGlasses.transform.position = GameManager.instance.glasses.transform.position + new Vector3(0, 0.25f, 0); // move arrow above glasses 
                 }
             }
             #endregion

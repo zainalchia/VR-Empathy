@@ -19,7 +19,6 @@ public class DoorKnob : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        OnDoorOpen.Invoke();
     }
 
     // Update is called once per frame
