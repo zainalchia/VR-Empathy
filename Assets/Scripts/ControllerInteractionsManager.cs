@@ -45,7 +45,6 @@ public class ControllerInteractionsManager : MonoBehaviour
                     items.Add(grabInteractor.SelectedInteractable.gameObject);
             }
         }
-
         return items;
     }
 

@@ -80,6 +80,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 30f;
+    [SerializeField] Outline mouthWash, mug, toothbrush, toothpaste, soap;
+    [SerializeField] GameObject allBathroomPropOutline;
 
     public void PlaySegment1Part1()
     {
@@ -106,6 +108,14 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
+
+        mouthWash.enabled = false;
+        mug.enabled = false;
+        toothbrush.enabled = false;
+        toothpaste.enabled = false;
+        soap.enabled = false;
+
+        allBathroomPropOutline.SetActive(false);
 
         PlaySegment1Part2();
     }

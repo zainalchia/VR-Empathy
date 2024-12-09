@@ -8,6 +8,7 @@ public class SinkTap : MonoBehaviour
     [SerializeField] GameObject water;
     bool waterIsOn = false;
     bool canInteract = true;
+    [SerializeField] GameObject handle;
 
     // Start is called before the first frame update
     void Start()
@@ -19,6 +20,21 @@ public class SinkTap : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void TurnHandle()
+    {
+        float desiredRotation;
+        if (waterIsOn)
+        {
+            desiredRotation = 30f;
+        }
+        else
+        {
+            desiredRotation = 0f;
+        }
+        float rY = Mathf.Lerp(handle.transform.localRotation.y, desiredRotation, 1f);
+        handle.transform.localRotation= Quaternion.Euler(0, rY, 0);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -37,6 +53,7 @@ public class SinkTap : MonoBehaviour
                 waterIsOn = true;
                 water.SetActive(true);
             }
+            TurnHandle();
             canInteract = false;
         }
     }
