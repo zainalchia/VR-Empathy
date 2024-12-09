@@ -181,6 +181,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] AudioClip glassesDrop;
     [SerializeField] GameObject phoneOutline;
     [SerializeField] GameObject glassesOutline;
+    [SerializeField] GameObject tvAudio;
+
 
     int dropGlassesCount = 0;
 
@@ -191,6 +193,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_1()
     {
+        tvAudio.GetComponent<AudioSource>().enabled = true;
         PostProcessingController.instance.UsingGlasses(false); // start blur effect
         
         yield return new WaitForSeconds(1f);
@@ -304,13 +307,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PlaySegment2Part1()
     {
-        lastRoutine = StartCoroutine(Segment2Part1_1());
+        lastRoutine = StartCoroutine(Segment2Part2_1());// edit this back to 1_1
     }
     IEnumerator Segment2Part1_1()
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         ControllerInteractionsManager.instance.allowDropItems = false; // no dropping items (can also disable in scene)
-        cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
@@ -338,26 +340,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     public void DenturesPlacedInCup() // called in UnityEvent in denture cup
     {
         StopPrevDialogue();
-        lastRoutine = StartCoroutine(Segment2Part1_2());
-    }
-
-    IEnumerator Segment2Part1_2()
-    {
-        CupOutline.SetActive(false);
-
-        yield return new WaitForSeconds(1f);
-
-        // allow take glasses off from here
-        GameManager.instance.toTakeGlassesOff = true;
-
-        //PlayAudioAndNarration(narrationAudioClips_2[1], narration_2[4]);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
-    }
-
-    public void GlassesTakeOff() // called in UnityEvent in GameManager
-    {
-        StopPrevDialogue();
         lastRoutine = StartCoroutine(Segment2Part2_1());
     }
 
@@ -373,16 +355,20 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject animatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
     [SerializeField] AudioFade fade;
-
-    bool toGoMedicineTable = false;
+    static public bool canMedicineSpill;
 
     // don't change this it's the offset as the animated medicine object origin is different
-    float animatedMedicineHeight = 1.0766f;
+    float animatedMedicineHeight = 0.8f;
     float medicineOffsetX = -0.0446f;
     float medicineOffsetZ = -0.007f;
 
     IEnumerator Segment2Part2_1()
     {
+        canMedicineSpill = false;
+        CupOutline.SetActive(false);
+        // Buffer time for them to put dentures in cup
+        yield return new WaitForSeconds(3f);
+
         // start furniture moving here
         GameManager.instance.toStartSpasming = true;
 
@@ -421,32 +407,14 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //GameManager.instance.ShowAlert(narration_2[6], 12f);
         yield return new WaitForSeconds(12f + 1.1f);
 
-        cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
-        caneOutline.SetActive(true);
-        firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        toGoMedicineTable = true;
-
         //GameManager.instance.ShowAlert(narration_2[7]);
 
-    }
-
-    void NearMedicineTable() // called when player is in front of the table
-    {
-        StopPrevDialogue();
-        caneOutline.SetActive(false);
         PillBottleHighlight.SetActive(true);
         //PlayAudioAndNarration(narrationAudioClips_2[3], narration_2[8], narrationAudioClips_2[3].length);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
-    }
 
-    public void WrongMedicineGrabbed() // called when UnityEvent in Medicine script when player grab
-    {
-        StopPrevDialogue();
-        PillBottleHighlight.SetActive(false);
-        //PlayAudioAndNarration(narrationAudioClips_2[4], narration_2[9], narrationAudioClips_2[4].length);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
+        canMedicineSpill = true;
     }
 
     public void MedicationDropped()
@@ -455,7 +423,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // for the scripted animation of medicine getting toppled over
         originallyHeldMedicine.SetActive(false);
-        animatedMedicine.transform.position = new Vector3(originallyHeldMedicine.transform.position.x + medicineOffsetX, animatedMedicineHeight, originallyHeldMedicine.transform.position.z + medicineOffsetZ);
         animatedMedicine.SetActive(true);
         animatedMedicine.GetComponent<Animator>().enabled = true;
 
@@ -519,21 +486,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             }
             #endregion
         }
-        else if (sceneToPlay == SceneToPlay.Bedroom)
-        {
-            #region Going towards medicine table
-            // call when player teleports in front of the medicine table
-            if (toGoMedicineTable)
-            {
-                if (cane.GetComponent<CaneTeleport>().HasTeleportedOnce())
-                {
-                    toGoMedicineTable = false;
-                    NearMedicineTable();
-                }
-            }
-            #endregion
-        }
-
     }
 
     void StopPrevDialogue()
