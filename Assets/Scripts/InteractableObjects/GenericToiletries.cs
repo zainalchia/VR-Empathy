@@ -22,7 +22,9 @@ public class GenericToiletries : MonoBehaviour, IObjectInteractable
     public bool ShouldInteractWithFace()
     {
         return canInteract;
-    }
+    }    
+    
+    
 
     // Start is called before the first frame update
     void Start()

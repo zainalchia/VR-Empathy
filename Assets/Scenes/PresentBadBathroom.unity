@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1848,6 +1848,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 281866968}
+    - targetCorrespondingSourceObject: {fileID: -8513424388201257645, guid: be9ff42758ced7d44a25f8e89405a845,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 281866973}
   m_SourcePrefab: {fileID: 100100000, guid: be9ff42758ced7d44a25f8e89405a845, type: 3}
 --- !u!4 &281866961 stripped
 Transform:
@@ -2108,6 +2112,19 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 281866960}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &281866973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281866962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 2060494867}
 --- !u!1 &286767186
 GameObject:
   m_ObjectHideFlags: 0
@@ -9218,7 +9235,7 @@ MonoBehaviour:
   cane: {fileID: 412595808}
   caneOutline: {fileID: 447146652}
   firstTeleportHotspot: {fileID: 494444110}
-  timeForWashingUp: 1
+  timeForWashingUp: 20
   mouthWash: {fileID: 2060494867}
   mug: {fileID: 2031957894}
   toothbrush: {fileID: 1144496037}
@@ -13682,6 +13699,7 @@ GameObject:
   - component: {fileID: 1936565566}
   - component: {fileID: 1936565565}
   - component: {fileID: 1936565564}
+  - component: {fileID: 1936565572}
   m_Layer: 0
   m_Name: Toothpaste
   m_TagString: BathroomProp
@@ -13968,6 +13986,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6044622, y: 0.38996464, z: 2.2947183}
   m_Center: {x: 0.053382132, y: 0.08840674, z: 0.06422773}
+--- !u!114 &1936565572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936565560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 1038686354}
 --- !u!1 &1966430223
 GameObject:
   m_ObjectHideFlags: 0
@@ -21754,6 +21785,7 @@ GameObject:
   - component: {fileID: 8718233878095769982}
   - component: {fileID: 8718233878095769981}
   - component: {fileID: 8718233878095769980}
+  - component: {fileID: 8718233878095769985}
   m_Layer: 0
   m_Name: SoapBar
   m_TagString: BathroomProp
@@ -21835,6 +21867,7 @@ GameObject:
   - component: {fileID: 8032421237078485437}
   - component: {fileID: 8032421237078485436}
   - component: {fileID: 8032421237078485435}
+  - component: {fileID: 8032421237078485442}
   m_Layer: 0
   m_Name: Mug
   m_TagString: BathroomProp
@@ -21991,6 +22024,7 @@ GameObject:
   - component: {fileID: 8705098870684757319}
   - component: {fileID: 8705098870684757318}
   - component: {fileID: 8705098870684757317}
+  - component: {fileID: 8705098870684757323}
   m_Layer: 0
   m_Name: Toothbrush
   m_TagString: BathroomProp
@@ -22663,6 +22697,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8032421237078485442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4961946615217511000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 2031957894}
 --- !u!33 &8241682730805645243
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23062,6 +23109,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8705098870684757323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6066117601475022383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 1144496037}
 --- !u!33 &8718233878095769979
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23175,6 +23235,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.033333465, y: 0.020000005, z: 0.008904378}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8718233878095769985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4140864653740968207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 572066360}
 --- !u!23 &8778168820609154310
 MeshRenderer:
   m_ObjectHideFlags: 0
