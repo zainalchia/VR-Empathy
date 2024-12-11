@@ -13,6 +13,7 @@ public class InViewDetector : MonoBehaviour
         if (!objsInView.Contains(other.gameObject))
             objsInView.Add(other.gameObject);
 
+        PhotoFrameCheck(other.gameObject,true);
         FurnitureMoveCheck(other.gameObject, true);
 
     }
@@ -23,6 +24,8 @@ public class InViewDetector : MonoBehaviour
             objsInView.Remove(other.gameObject);
 
         FurnitureMoveCheck(other.gameObject, false);
+        PhotoFrameCheck(other.gameObject, false);
+
     }
 
     void FurnitureMoveCheck(GameObject obj, bool lookingAt)
@@ -33,6 +36,13 @@ public class InViewDetector : MonoBehaviour
         }
     }
 
+    public void PhotoFrameCheck(GameObject obj, bool lookingAt)
+    {
+        if (obj.CompareTag("LookAtInteract"))
+        {
+            obj.GetComponent<LookAtObjective>().beingLookedAtTrigger(lookingAt);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

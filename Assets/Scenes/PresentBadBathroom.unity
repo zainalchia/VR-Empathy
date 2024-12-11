@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -390,7 +390,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86426417}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e4023f295360bc14daf60b3cfcdba848, type: 3}
@@ -398,7 +398,7 @@ AudioSource:
   m_Volume: 0.003
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -9166,6 +9166,7 @@ MonoBehaviour:
   OnDenturesTakeOff:
     m_PersistentCalls:
       m_Calls: []
+  toLookatPhotoFrame: 0
   toPickUpPhone: 0
   canAnswerPhone: 0
   taiChiInstructor: {fileID: 0}
@@ -9250,7 +9251,7 @@ MonoBehaviour:
   glassesDrop: {fileID: 8300000, guid: fc43ccc5b25f2c7478d1a69422adc001, type: 3}
   phoneOutline: {fileID: 175287959}
   glassesOutline: {fileID: 1611369496}
-  tvAudio: {fileID: 0}
+  tvAudio: {fileID: 86426417}
   Glass: {fileID: 0}
   CupOutline: {fileID: 0}
   flyingShip: {fileID: 0}
@@ -9261,6 +9262,7 @@ MonoBehaviour:
   animatedMedicine: {fileID: 0}
   PillBottleHighlight: {fileID: 0}
   fade: {fileID: 0}
+  photoFrame: {fileID: 0}
 --- !u!82 &1115407454
 AudioSource:
   m_ObjectHideFlags: 0

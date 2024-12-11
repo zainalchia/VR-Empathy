@@ -51,7 +51,10 @@ public class GameManager : MonoBehaviour
     public GameObject dentures;
     //public bool toPutDenturesOn = false;      // not used anymore
     public bool toTakeDenturesOff = false;
-    public UnityEvent OnDenturesTakeOff; 
+    public UnityEvent OnDenturesTakeOff;
+
+    [Header("PhotoFrame")]
+    public bool toLookatPhotoFrame = false;
 
     [Header("MOBILE PHONE")]
     public bool toPickUpPhone = false;

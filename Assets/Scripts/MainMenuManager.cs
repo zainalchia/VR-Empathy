@@ -19,7 +19,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
     {
-        ShowSnippetOnHover(0);
+        //ShowSnippetOnHover(0);
     }
     public void LoadLevel(string levelname)
     {

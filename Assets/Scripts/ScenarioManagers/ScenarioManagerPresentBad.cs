@@ -193,7 +193,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_1()
     {
-        tvAudio.GetComponent<AudioSource>().enabled = true;
+        tvAudio.GetComponent<AudioSource>().mute = false;
         PostProcessingController.instance.UsingGlasses(false); // start blur effect
         
         yield return new WaitForSeconds(1f);
@@ -307,7 +307,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PlaySegment2Part1()
     {
-        lastRoutine = StartCoroutine(Segment2Part2_1());// edit this back to 1_1
+        lastRoutine = StartCoroutine(Segment2Part1_1());
     }
     IEnumerator Segment2Part1_1()
     {
@@ -355,12 +355,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject animatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
     [SerializeField] AudioFade fade;
+    [SerializeField] GameObject photoFrame;
     static public bool canMedicineSpill;
-
-    // don't change this it's the offset as the animated medicine object origin is different
-    float animatedMedicineHeight = 0.8f;
-    float medicineOffsetX = -0.0446f;
-    float medicineOffsetZ = -0.007f;
 
     IEnumerator Segment2Part2_1()
     {
@@ -409,32 +405,46 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //GameManager.instance.ShowAlert(narration_2[7]);
 
-        PillBottleHighlight.SetActive(true);
         //PlayAudioAndNarration(narrationAudioClips_2[3], narration_2[8], narrationAudioClips_2[3].length);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
 
+        yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1.1f);
+
         canMedicineSpill = true;
+        PillBottleHighlight.SetActive(true);
     }
 
     public void MedicationDropped()
     {
         StopPrevDialogue();
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
 
         // for the scripted animation of medicine getting toppled over
         originallyHeldMedicine.SetActive(false);
         animatedMedicine.SetActive(true);
         animatedMedicine.GetComponent<Animator>().enabled = true;
-
         lastRoutine = StartCoroutine(Segment2Part2_2());
     }
 
     IEnumerator Segment2Part2_2()
     {
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
-        //PlayAudioAndNarration(narrationAudioClips_2[5], narration_2[10], narrationAudioClips_2[5].length);
-        yield return new WaitForSeconds(narrationAudioClips_2[5].length + 1.1f);
+        yield return new WaitForSeconds(10f); // buffer time
+        GameManager.instance.toLookatPhotoFrame = true;
+        // add new dialogue here
+        yield return null;
+    }
+
+
+    public void StaredAtPhoto()
+    {
+        lastRoutine = StartCoroutine(Segment2Part2_3());
+    }
+
+
+    IEnumerator Segment2Part2_3()
+    { 
 
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");

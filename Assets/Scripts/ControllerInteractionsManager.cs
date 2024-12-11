@@ -169,7 +169,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                 GameManager.instance.dentures.SetActive(true);
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
-                GameManager.instance.OnDenturesTakeOff.Invoke();
+                //GameManager.instance.OnDenturesTakeOff.Invoke();
                 toReleaseLeftHand = true; // so that object can be let go once the grab button is released
                 GameManager.instance.toTakeDenturesOff = false;
             }
@@ -188,7 +188,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                 GameManager.instance.dentures.SetActive(true);
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
-                GameManager.instance.OnDenturesTakeOff.Invoke();
+                //GameManager.instance.OnDenturesTakeOff.Invoke();
                 toReleaseRightHand = true; // so that object can be let go once the grab button is released
                 GameManager.instance.toTakeDenturesOff = false;
             }
