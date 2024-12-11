@@ -8,6 +8,7 @@ public class Mug : MonoBehaviour, IObjectInteractable
     bool hadWater = false;
     bool canInteract = false;
     public UnityEvent OnInteractEvent;
+    [SerializeField] GameObject waterInMug;
 
     public void OnInteract()
     {
@@ -38,12 +39,14 @@ public class Mug : MonoBehaviour, IObjectInteractable
 
     private void OnTriggerEnter(Collider collision)
     {
+        Debug.Log(collision.gameObject.name);
+
         if (!hadWater)
         {
             if (collision.gameObject.name == "WaterCollider") // adds water into mug
             {
                 hadWater = true;
-                this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                waterInMug.SetActive(true);
                 GetComponent<AudioSource>().Play();
                 canInteract = true;
             }
