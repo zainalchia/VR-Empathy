@@ -307,7 +307,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PlaySegment2Part1()
     {
-        lastRoutine = StartCoroutine(Segment2Part1_1());
+        lastRoutine = StartCoroutine(Segment2Part2_1());
     }
     IEnumerator Segment2Part1_1()
     {
@@ -350,6 +350,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject flyingShip;
     [SerializeField] GameObject cloudy1;
     [SerializeField] GameObject cloudy2;
+    [SerializeField] GameObject rain;
     [SerializeField] GameObject tableWithMedicine;
     [SerializeField] GameObject originallyHeldMedicine;
     [SerializeField] GameObject animatedMedicine;
@@ -376,6 +377,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         flyingShip.GetComponent<DisappearObject>().AllowedToMove(true);
         cloudy1.GetComponent<ParticleSystem>().Play();
         cloudy2.GetComponent<ParticleSystem>().Play();
+        rain.SetActive(true);
 
         StartCoroutine(fade.FadeIn(4f, 0.4f));
 
@@ -388,6 +390,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // stop all illusions
         cloudy1.GetComponent<ParticleSystem>().Stop();
         cloudy2.GetComponent<ParticleSystem>().Stop();
+        rain.SetActive(false);
         flyingShip.GetComponent<DisappearObject>().AllowedToMove(false);
         flyingShip.SetActive(false);
 

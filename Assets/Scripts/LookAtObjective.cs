@@ -1,3 +1,4 @@
+using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class LookAtObjective : MonoBehaviour
     bool beingLookedAt = false;
     float timer;
     bool eventHasBeenTrigerred = false;
+    bool held = false;
 
     public void beingLookedAtTrigger(bool isbeinglooked)
     {
@@ -25,22 +27,33 @@ public class LookAtObjective : MonoBehaviour
     {
         if (GameManager.instance.toLookatPhotoFrame)
         {
-            if (beingLookedAt)
+            if (held)
             {
-                if (timer < timeToLook)
+                if (beingLookedAt)
                 {
-                    timer += Time.deltaTime;
-                }
-                else
-                {
-                    if (!eventHasBeenTrigerred)
+                    if (timer < timeToLook)
                     {
-                        lookedAtComplete.Invoke();
-                        gameObject.SetActive(false);
-                        eventHasBeenTrigerred = true;
+                        timer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        if (!eventHasBeenTrigerred)
+                        {
+                            lookedAtComplete.Invoke();
+                            eventHasBeenTrigerred = true;
+                        }
                     }
                 }
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(this.gameObject.transform.parent.gameObject))// check if holding phone
+        {
+            held = true;
+        } 
+
     }
 }

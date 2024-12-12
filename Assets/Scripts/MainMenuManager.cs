@@ -68,7 +68,7 @@ public class MainMenuManager : MonoBehaviour
             snippetsBg[num].GetComponent <Image>().sprite = snippets[i];
             if (i == maxRange -1)
                     i = minRange-1;
-            await Task.Delay(1000);
+            await Task.Delay(3000);
         }
     }
 }
