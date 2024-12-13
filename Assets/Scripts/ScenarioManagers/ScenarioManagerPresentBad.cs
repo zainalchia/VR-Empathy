@@ -383,16 +383,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
-        StartCoroutine(fade.FadeOut(5f, 0f));
-
         yield return new WaitForSeconds(1f);
-
-        // stop all illusions
-        cloudy1.GetComponent<ParticleSystem>().Stop();
-        cloudy2.GetComponent<ParticleSystem>().Stop();
-        rain.SetActive(false);
-        flyingShip.GetComponent<DisappearObject>().AllowedToMove(false);
-        flyingShip.SetActive(false);
 
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]); // play audio, got a space in the beginning
@@ -402,9 +393,20 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(6f + 1.1f);
 
         tableWithMedicine.SetActive(true); // table with medicine will re-appear here
+        StartCoroutine(fade.FadeOut(5f, 0f));
+        flyingShip.GetComponent<DisappearObject>().AllowedToMove(false);
+        flyingShip.SetActive(false);
+
 
         //GameManager.instance.ShowAlert(narration_2[6], 12f);
         yield return new WaitForSeconds(12f + 1.1f);
+
+        // stop all illusions
+
+        cloudy1.GetComponent<ParticleSystem>().Stop();
+        cloudy2.GetComponent<ParticleSystem>().Stop();
+        rain.SetActive(false);
+
 
         //GameManager.instance.ShowAlert(narration_2[7]);
 
