@@ -12,10 +12,15 @@ public class LookAtObjective : MonoBehaviour
     [SerializeField]
     UnityEvent lookedAtComplete;
 
+    [SerializeField]
+    GameObject centerEyeAnchor;
+
+    [SerializeField]
+    float distanceRequired;
+
     bool beingLookedAt = false;
     float timer;
     bool eventHasBeenTrigerred = false;
-    bool held = false;
 
     public void beingLookedAtTrigger(bool isbeinglooked)
     {
@@ -27,7 +32,7 @@ public class LookAtObjective : MonoBehaviour
     {
         if (GameManager.instance.toLookatPhotoFrame)
         {
-            if (held)
+            if(Vector3.Distance(centerEyeAnchor.transform.position, gameObject.transform.position) <= distanceRequired || centerEyeAnchor == null)
             {
                 if (beingLookedAt)
                 {
@@ -48,12 +53,15 @@ public class LookAtObjective : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(this.gameObject.transform.parent.gameObject))// check if holding phone
-        {
-            held = true;
-        } 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(this.gameObject.transform.parent.gameObject))// check if holding picture
+    //    {
+    //        held = true;
+    //    }
 
-    }
+    //}
+
+
+
 }

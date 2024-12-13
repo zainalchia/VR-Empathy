@@ -18,6 +18,9 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] LayerMask teleportLayer;
     [SerializeField] float defaultTimeBeforeNextMove = 0; // adds a delay in between teleports, set to 0 for no delay
     [SerializeField] GameObject[] teleportHotspots;
+    [SerializeField] AudioSource playerAudio;
+    [SerializeField] AudioClip maleGrunt;
+    [SerializeField] AudioClip femaleGrunt;
 
     bool buttonPressed = false;
 
@@ -68,6 +71,15 @@ public class CaneTeleport : MonoBehaviour
 
             currentHotspotIndex += 1;
             ShowNextHotspot();
+            if (MainMenuManager.isGenderMale)
+            {
+                playerAudio.volume = 0.8f;
+                playerAudio.PlayOneShot(maleGrunt);
+            }
+            else
+            {
+                playerAudio.PlayOneShot(femaleGrunt, 1);
+            }
             //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
         }
     }

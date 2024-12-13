@@ -307,7 +307,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PlaySegment2Part1()
     {
-        lastRoutine = StartCoroutine(Segment2Part2_1());
+        lastRoutine = StartCoroutine(Segment2Part1_1());
     }
     IEnumerator Segment2Part1_1()
     {
@@ -357,6 +357,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject PillBottleHighlight;
     [SerializeField] AudioFade fade;
     [SerializeField] GameObject photoFrame;
+    [SerializeField] GameObject photoFrameOutline;
     static public bool canMedicineSpill;
 
     IEnumerator Segment2Part2_1()
@@ -437,6 +438,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookatPhotoFrame = true;
+        photoFrame.GetComponent<Grabbable>().enabled = true;
+        photoFrameOutline.SetActive(true);
         // add new dialogue here
         yield return null;
     }
@@ -449,8 +452,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
 
     IEnumerator Segment2Part2_3()
-    { 
-
+    {
+        photoFrameOutline.SetActive(false);
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
