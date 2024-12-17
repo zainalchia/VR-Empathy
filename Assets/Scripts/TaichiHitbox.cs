@@ -8,6 +8,7 @@ public class TaichiHitbox : MonoBehaviour
 {
     public bool isHit = false;
     public UnityEvent nextHitbox;
+    private bool isActivated = false;
 
     private void Awake()
     {
@@ -16,18 +17,29 @@ public class TaichiHitbox : MonoBehaviour
 
     IEnumerator Runtime()
     {
+        yield return new WaitForSeconds(1f);
+        isActivated = true;
+
         yield return new WaitForSeconds(2f);
         nextHitbox.Invoke();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null)
+        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
         {
             isHit = true;
             this.GetComponent<Renderer>().material.color = Color.green;
-            //gameObject.SetActive(false);
         }
 
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
+        {
+            isHit = true;
+            this.GetComponent<Renderer>().material.color = Color.green;
+        }
     }
 }

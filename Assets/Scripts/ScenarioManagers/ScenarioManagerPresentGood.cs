@@ -236,10 +236,19 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator playTaichi()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2f);
         taiChiManager.startSegment1();
     }
 
+    public void playnextTaichiPose()
+    {
+        taiChiManager.nextTaichiPose();
+    }
+
+    public void TaichiFinished()
+    {
+        GameManager.instance.ShowAlert("Taichi Finished");
+    }
     #endregion
 
     // Start is called before the first frame update

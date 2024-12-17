@@ -7,6 +7,7 @@ public class TaiChiInstructor : MonoBehaviour
 {
     [SerializeField] int numOfPoses = 8;
     [SerializeField] float timeDelayBeforeNextPose;
+    public UnityEvent OnNextPose;
     public UnityEvent OnPosesFinish;
     float timerToGoNext = 0f;
     bool timerstart = false;
@@ -24,11 +25,15 @@ public class TaiChiInstructor : MonoBehaviour
         if (GameManager.instance.toDoTaiChi)
         {
             timerstart = false;
-            Debug.Log("Current pose:" + currentPose);
             if (currentPose < numOfPoses)
             {
                 currentPose += 1;
                 GetComponent<Animator>().SetInteger("Pose", currentPose);
+                Debug.Log("Current pose:" + currentPose);
+                if (currentPose > 1)
+                {
+                    OnNextPose.Invoke();
+                }
             }
             else
             {
@@ -49,16 +54,12 @@ public class TaiChiInstructor : MonoBehaviour
     {
         if (timerstart)
         {
-            if (timerToGoNext > 0)
+            timerToGoNext -= Time.deltaTime;
+            if (timerToGoNext <= 0)
             {
-                timerToGoNext -= Time.deltaTime;
-                if (timerToGoNext <= 0)
-                {
-                    NextPose();
-                }
+                NextPose();
             }
         }
-        Debug.Log(timerToGoNext);
     }
 
     
