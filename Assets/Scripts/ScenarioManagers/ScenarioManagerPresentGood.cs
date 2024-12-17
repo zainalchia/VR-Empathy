@@ -225,10 +225,19 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment2 Part 1 (Voiddeck, Tai chi)
 
+    [Header("Voiddeck - Taichi")]
+    [SerializeField]
+    TaiChiManager taiChiManager;
     void PlaySegment2Part1()
     {
         PostProcessingController.instance.UsingGlasses(true); // no blur effect
+        StartCoroutine(playTaichi());
+    }
 
+    IEnumerator playTaichi()
+    {
+        yield return new WaitForSeconds(10f);
+        taiChiManager.startSegment1();
     }
 
     #endregion
@@ -243,8 +252,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
-            PlaySegment2Part1();
             GameManager.instance.taiChiInstructor.GetComponent<TaiChiInstructor>().NextPose();
+            PlaySegment2Part1();
         }
     }
 

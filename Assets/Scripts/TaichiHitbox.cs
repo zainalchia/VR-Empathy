@@ -16,7 +16,7 @@ public class TaichiHitbox : MonoBehaviour
 
     IEnumerator Runtime()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         nextHitbox.Invoke();
     }
 
@@ -25,8 +25,8 @@ public class TaichiHitbox : MonoBehaviour
         if (other.gameObject.GetComponentInParent<GrabInteractor>() != null)
         {
             isHit = true;
-            gameObject.SetActive(false);
-            nextHitbox.Invoke();
+            this.GetComponent<Renderer>().material.color = Color.green;
+            //gameObject.SetActive(false);
         }
 
     }

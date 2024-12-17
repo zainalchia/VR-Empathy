@@ -12,11 +12,6 @@ public class TaiChiManager : MonoBehaviour
     private int current = 0;
     private bool lastHitbox = false;
 
-    private void Awake()
-    {
-        leftTaichiHitboxes[current].SetActive(true);
-        rightTaichiHitboxes[current].SetActive(true);
-    }
 
     public void nextHitbox()
     {
@@ -42,6 +37,11 @@ public class TaiChiManager : MonoBehaviour
         }
     }
 
+    public void startSegment1()
+    {
+        leftTaichiHitboxes[current].SetActive(true);
+        rightTaichiHitboxes[current].SetActive(true);
+    }
     private void OnDrawGizmos() // Gizmos to see how the hitbox are connected drawing a line from one to the other
     {
         Gizmos.color = Color.green;
