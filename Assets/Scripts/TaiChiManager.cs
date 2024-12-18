@@ -14,43 +14,19 @@ public class TaiChiManager : MonoBehaviour
     private int current = 0;
     private bool lastHitbox = false;
     private int segment = 1;
+    private bool firstHitbox = true;
+
+
 
     public UnityEvent taichiFinished;
+    public UnityEvent resumeTaichi;
 
-    public void nextHitbox()
+    public void deactivateCurrent()
     {
         if (!lastHitbox) {
             // Deactivate current hitbox
             leftTaichiHitboxes[current].SetActive(false);
             rightTaichiHitboxes[current].SetActive(false);
-
-
-            current++;
-            leftTaichiHitboxes[current].SetActive(true);
-            rightTaichiHitboxes[current].SetActive(true);
-
-            switch (segment)
-            {
-                case 1:
-                    if(current == 3)
-                    {
-                        lastHitbox = true;
-                    }
-                    break;
-                case 2:
-                    if (current == 7) {
-                        lastHitbox = true;
-                    }
-                    break;
-                case 3:
-                    if (current == 12) {
-                        lastHitbox = true;
-                    }
-                    break;
-                default:
-                    lastHitbox= false; 
-                    break;
-            }
         }
         else
         {
@@ -62,23 +38,63 @@ public class TaiChiManager : MonoBehaviour
         }
     }
 
+    public void spawnNext()
+    {
+        if (firstHitbox) 
+        {
+            firstHitbox = false;
+        }
+        else
+        {
+            current++;
+        }
+        leftTaichiHitboxes[current].SetActive(true);
+        rightTaichiHitboxes[current].SetActive(true);
+
+        switch (segment)
+        {
+            case 1:
+                if (current == 3)
+                {
+                    lastHitbox = true;
+                }
+                break;
+            case 2:
+                if (current == 7)
+                {
+                    lastHitbox = true;
+                }
+                break;
+            case 3:
+                if (current == 12)
+                {
+                    lastHitbox = true;
+                }
+                break;
+            default:
+                lastHitbox = false;
+                break;
+        }
+    }
+
     public void startSegment1()
     {
-        leftTaichiHitboxes[0].SetActive(true);
-        rightTaichiHitboxes[0].SetActive(true);
+        //leftTaichiHitboxes[0].SetActive(true);
+        //rightTaichiHitboxes[0].SetActive(true);
+
     }
 
     public void startSegment2()
     {
         lastHitbox = false;
-        leftTaichiHitboxes[4].SetActive(true);
-        rightTaichiHitboxes[4].SetActive(true);
+        //leftTaichiHitboxes[4].SetActive(true);
+        //rightTaichiHitboxes[4].SetActive(true);
     }
     public void startSegment3()
     {
         lastHitbox = false;
-        leftTaichiHitboxes[8].SetActive(true);
-        rightTaichiHitboxes[8].SetActive(true);
+        //leftTaichiHitboxes[8].SetActive(true);
+        //rightTaichiHitboxes[8].SetActive(true);
     }
 
     private void taichiHasFinished()
@@ -99,6 +115,16 @@ public class TaiChiManager : MonoBehaviour
                 break;
         }
     }
+
+    private void FixedUpdate()
+    {
+        if(leftTaichiHitboxes[current].GetComponent<TaichiHitbox>().isHit && rightTaichiHitboxes[current].GetComponent<TaichiHitbox>().isHit)
+        {
+            deactivateCurrent();
+            resumeTaichi.Invoke();
+        }
+    }
+
     private void OnDrawGizmos() // Gizmos to see how the hitbox are connected drawing a line from one to the other
     {
         Gizmos.color = Color.green;

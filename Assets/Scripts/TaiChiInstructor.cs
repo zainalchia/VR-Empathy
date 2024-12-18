@@ -9,6 +9,7 @@ public class TaiChiInstructor : MonoBehaviour
     [SerializeField] float timeDelayBeforeNextPose;
     public UnityEvent OnNextPose;
     public UnityEvent OnPosesFinish;
+    public UnityEvent spawnNextHitboxes;
     float timerToGoNext = 0f;
     bool timerstart = false;
 
@@ -41,6 +42,18 @@ public class TaiChiInstructor : MonoBehaviour
                 OnPosesFinish.Invoke();
             }
         }
+    }
+
+    public void PausePose()
+    {
+        GetComponent<Animator>().speed = 0f;
+
+        spawnNextHitboxes.Invoke();
+    }
+
+    public void UnpausePose()
+    {
+        GetComponent<Animator>().speed = 1f;
     }
 
     // Start is called before the first frame update
