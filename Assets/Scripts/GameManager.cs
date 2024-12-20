@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     public bool canAnswerPhone = false;
 
     [Header("TAICHI")]
-    public TaiChiInstructor taiChiInstructor;
+    public TaiChiInstructor[] taiChiAnimations;
     public bool toDoTaiChi = false;
 
     // FURNITURE SPASMING (Bedroom Scene of Present-Bad)
