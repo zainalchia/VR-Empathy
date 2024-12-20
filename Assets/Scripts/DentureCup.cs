@@ -14,7 +14,6 @@ public class DentureCup : MonoBehaviour
         denture.GetComponent<Rigidbody>().isKinematic = true;
         denture.GetComponent<BoxCollider>().enabled = false;
         denture.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
-        denture.transform.rotation = Quaternion.identity;
         denture.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z - 0.02f);
 
         OnDenturePlaced.Invoke(); // continues the flow of events in scenario manager
