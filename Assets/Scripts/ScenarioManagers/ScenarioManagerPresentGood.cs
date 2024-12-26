@@ -236,7 +236,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator playTaichi()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f); // screen fade in timing
         taiChiManager.startSegment1();
     }
 
@@ -245,12 +245,59 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         taiChiManager.nextTaichiPose();
     }
 
-    public void TaichiFinished()
+    public void TaichiFinished() // Event called in Taichi instructor
     {
-        GameManager.instance.ShowAlert("Taichi Finished");
+        StartCoroutine(MovingFromTaichiToChess());
     }
     #endregion
 
+    [Header("Voiddeck - Transition Taichi to Chess")]
+    [SerializeField] GameObject TaichiNPC;
+    [SerializeField] GameObject ChessNPC;
+    [SerializeField] GameObject TeleportPoint;
+    [SerializeField] GameObject Player;
+    IEnumerator MovingFromTaichiToChess()
+    {
+        PostProcessingController.instance.UsingGlasses(true); // no blur effect
+
+        // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        Player.transform.position = TeleportPoint.transform.position;
+        TaichiNPC.SetActive(false);
+        ChessNPC.SetActive(true);
+        yield return new WaitForSeconds(4f);
+    }
+
+    [Header("Voiddeck - Chess")]
+    [SerializeField] GameObject NPC;
+    [SerializeField] GameObject Piece;
+    [SerializeField] GameObject Bishop;
+
+    public void TriggerNPC()
+    {
+        NPC.GetComponent<Animator>().SetTrigger("move");
+        StartCoroutine(movePiece());
+    }
+
+    IEnumerator movePiece()
+    {
+        float timeSinceStarted = 0f;
+        while (true)
+        {
+            timeSinceStarted += Time.deltaTime;
+            Piece.transform.localPosition = Vector3.Lerp(Piece.transform.localPosition, new Vector3(0.22f, 0f, -0.66f), timeSinceStarted);
+            if (Piece.transform.localPosition == new Vector3(0.22f, 0f, -0.66f))
+            {
+                Bishop.GetComponent<Outline>().enabled = true;
+                Bishop.GetComponent<Grabbable>().enabled = true;
+                yield break;
+            }
+            yield return null;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -261,11 +308,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
-            foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
-            {
-                anim.NextPose();
-            }
-            PlaySegment2Part1();
+            //foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
+            //{
+            //    anim.NextPose();
+            //}
+            //PlaySegment2Part1();
+            StartCoroutine(MovingFromTaichiToChess());
         }
     }
 

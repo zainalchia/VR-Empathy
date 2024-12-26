@@ -7,6 +7,7 @@ public class TaiChiInstructor : MonoBehaviour
 {
     [SerializeField] int numOfPoses = 8;
     [SerializeField] float timeDelayBeforeNextPose;
+    [SerializeField] bool triggerHitbox;
     public UnityEvent OnNextPose;
     public UnityEvent OnPosesFinish;
     public UnityEvent spawnNextHitboxes;
@@ -48,7 +49,10 @@ public class TaiChiInstructor : MonoBehaviour
     {
         GetComponent<Animator>().speed = 0f;
 
-        spawnNextHitboxes.Invoke();
+        if (triggerHitbox)
+        {
+            spawnNextHitboxes.Invoke();
+        }
     }
 
     public void UnpausePose()

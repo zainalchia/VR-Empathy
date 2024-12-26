@@ -52,16 +52,4 @@ public class LookAtObjective : MonoBehaviour
             }
         }
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(this.gameObject.transform.parent.gameObject))// check if holding picture
-    //    {
-    //        held = true;
-    //    }
-
-    //}
-
-
-
 }

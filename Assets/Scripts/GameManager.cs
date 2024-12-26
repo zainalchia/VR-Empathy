@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     // PUTTING ON & TAKING OFF DENTURES
     [Header("DENTURES")]
     public GameObject dentures;
-    //public bool toPutDenturesOn = false;      // not used anymore
     public bool toTakeDenturesOff = false;
     public UnityEvent OnDenturesTakeOff;
 
