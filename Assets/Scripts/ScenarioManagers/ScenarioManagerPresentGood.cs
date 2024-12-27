@@ -313,6 +313,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator MovingFromChessToReadingCorner()
     {
+        // NPC lose animation
+        NPC.GetComponent<Animator>().SetTrigger("lose");
+        yield return new WaitForSeconds(5); // lose animation is around 5 secs
+
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
