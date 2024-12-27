@@ -52,8 +52,8 @@ public class GameManager : MonoBehaviour
     public bool toTakeDenturesOff = false;
     public UnityEvent OnDenturesTakeOff;
 
-    [Header("PhotoFrame")]
-    public bool toLookatPhotoFrame = false;
+    [Header("Any Look at Objectives")]
+    public bool toLookAtObjective = false;
 
     [Header("MOBILE PHONE")]
     public bool toPickUpPhone = false;

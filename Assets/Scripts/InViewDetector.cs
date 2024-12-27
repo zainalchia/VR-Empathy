@@ -13,7 +13,7 @@ public class InViewDetector : MonoBehaviour
         if (!objsInView.Contains(other.gameObject))
             objsInView.Add(other.gameObject);
 
-        PhotoFrameCheck(other.gameObject,true);
+        ObjectiveCheck(other.gameObject,true);
         FurnitureMoveCheck(other.gameObject, true);
 
     }
@@ -24,7 +24,7 @@ public class InViewDetector : MonoBehaviour
             objsInView.Remove(other.gameObject);
 
         FurnitureMoveCheck(other.gameObject, false);
-        PhotoFrameCheck(other.gameObject, false);
+        ObjectiveCheck(other.gameObject, false);
 
     }
 
@@ -36,7 +36,7 @@ public class InViewDetector : MonoBehaviour
         }
     }
 
-    public void PhotoFrameCheck(GameObject obj, bool lookingAt)
+    public void ObjectiveCheck(GameObject obj, bool lookingAt)
     {
         if (obj.CompareTag("LookAtInteract"))
         {

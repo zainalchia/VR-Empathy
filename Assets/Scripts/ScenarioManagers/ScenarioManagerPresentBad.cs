@@ -437,7 +437,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment2Part2_2()
     {
         yield return new WaitForSeconds(10f); // buffer time
-        GameManager.instance.toLookatPhotoFrame = true;
+        GameManager.instance.toLookAtObjective = true;
         photoFrame.GetComponent<Grabbable>().enabled = true;
         photoFrameOutline.SetActive(true);
         // add new dialogue here

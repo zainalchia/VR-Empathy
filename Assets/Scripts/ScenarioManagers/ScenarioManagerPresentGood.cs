@@ -266,6 +266,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         Player.transform.position = TeleportPoint.transform.position;
+        Player.transform.rotation = TeleportPoint.transform.rotation;
         TaichiNPC.SetActive(false);
         ChessNPC.SetActive(true);
         yield return new WaitForSeconds(4f);
@@ -298,6 +299,51 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             yield return null;
         }
     }
+
+    public void EndOfChess()
+    {
+        StartCoroutine(MovingFromChessToReadingCorner());
+    }
+
+    [Header("Voiddeck - Transition Chess to Reading Corner")]
+    [SerializeField]
+    GameObject TeleportPointReadingCorner;
+    [SerializeField]
+    GameObject TVScreen;
+
+    IEnumerator MovingFromChessToReadingCorner()
+    {
+        // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        Player.transform.position = TeleportPointReadingCorner.transform.position;
+        Player.transform.rotation = TeleportPointReadingCorner.transform.rotation;
+
+        ChessNPC.SetActive(false);
+
+        //Set Reading corner NPC active here!
+        TVScreen.SetActive(true);
+        GameManager.instance.toLookAtObjective = true;
+
+        yield return new WaitForSeconds(4f);
+    }
+
+    public void FinishedLookingAtTV()
+    {
+        StartCoroutine(EndOfScenario());
+    }
+
+    IEnumerator EndOfScenario()
+    {
+        // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+
+        GameManager.instance.goodbyeText.SetActive(true);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -308,12 +354,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
-            //foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
-            //{
-            //    anim.NextPose();
-            //}
-            //PlaySegment2Part1();
-            StartCoroutine(MovingFromTaichiToChess());
+            foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
+            {
+                anim.NextPose();
+            }
+            PlaySegment2Part1();
         }
     }
 

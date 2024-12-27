@@ -30,7 +30,7 @@ public class LookAtObjective : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.toLookatPhotoFrame)
+        if (GameManager.instance.toLookAtObjective)
         {
             if(Vector3.Distance(centerEyeAnchor.transform.position, gameObject.transform.position) <= distanceRequired || centerEyeAnchor == null)
             {
