@@ -252,10 +252,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     #endregion
 
     [Header("Voiddeck - Transition Taichi to Chess")]
-    [SerializeField] GameObject TaichiNPC;
-    [SerializeField] GameObject ChessNPC;
-    [SerializeField] GameObject TeleportPoint;
-    [SerializeField] GameObject Player;
+    [SerializeField] GameObject taichiNPC;
+    [SerializeField] GameObject chessNPC;
+    [SerializeField] GameObject teleportPoint;
+    [SerializeField] GameObject player;
     IEnumerator MovingFromTaichiToChess()
     {
         PostProcessingController.instance.UsingGlasses(true); // no blur effect
@@ -265,10 +265,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
-        Player.transform.position = TeleportPoint.transform.position;
-        Player.transform.rotation = TeleportPoint.transform.rotation;
-        TaichiNPC.SetActive(false);
-        ChessNPC.SetActive(true);
+        player.transform.position = teleportPoint.transform.position;
+        player.transform.rotation = teleportPoint.transform.rotation;
+        taichiNPC.SetActive(false);
+        chessNPC.SetActive(true);
         yield return new WaitForSeconds(4f);
     }
 
@@ -310,6 +310,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     GameObject TeleportPointReadingCorner;
     [SerializeField]
     GameObject TVScreen;
+    [SerializeField]
+    GameObject readingCornerNPCs;
 
     IEnumerator MovingFromChessToReadingCorner()
     {
@@ -322,10 +324,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
-        Player.transform.position = TeleportPointReadingCorner.transform.position;
-        Player.transform.rotation = TeleportPointReadingCorner.transform.rotation;
+        player.transform.position = TeleportPointReadingCorner.transform.position;
+        player.transform.rotation = TeleportPointReadingCorner.transform.rotation;
 
-        ChessNPC.SetActive(false);
+        chessNPC.SetActive(false);
+        readingCornerNPCs.SetActive(true);
 
         //Set Reading corner NPC active here!
         TVScreen.SetActive(true);
