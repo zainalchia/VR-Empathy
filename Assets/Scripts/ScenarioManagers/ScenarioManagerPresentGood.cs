@@ -285,6 +285,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator movePiece()
     {
+        yield return new WaitForSeconds(2f);
         float timeSinceStarted = 0f;
         while (true)
         {
@@ -296,6 +297,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 Bishop.GetComponent<Grabbable>().enabled = true;
                 yield break;
             }
+            yield return new WaitForSeconds(2f);
             yield return null;
         }
     }
