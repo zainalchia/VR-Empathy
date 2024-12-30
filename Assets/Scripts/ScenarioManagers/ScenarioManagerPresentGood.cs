@@ -297,7 +297,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 Bishop.GetComponent<Grabbable>().enabled = true;
                 yield break;
             }
-            yield return new WaitForSeconds(2f);
             yield return null;
         }
     }
