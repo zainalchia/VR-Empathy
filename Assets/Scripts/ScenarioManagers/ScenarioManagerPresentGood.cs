@@ -295,6 +295,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             {
                 Bishop.GetComponent<Outline>().enabled = true;
                 Bishop.GetComponent<Grabbable>().enabled = true;
+                Bishop.GetComponent<GrabInteractable>().enabled = true;
+                Bishop.GetComponent<PhysicsGrabbable>().enabled = true;
                 yield break;
             }
             yield return null;

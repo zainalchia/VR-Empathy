@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8648,8 +8648,8 @@ MonoBehaviour:
   grabInteractors:
   - {fileID: 308433641}
   - {fileID: 308433640}
-  MaleModel: {fileID: 0}
-  FemaleModel: {fileID: 0}
+  MaleModel: {fileID: 2276772900260340214}
+  FemaleModel: {fileID: 2276772900260340215}
   characterModel: {fileID: 0}
   alertText: {fileID: 1615119055}
   fadePanel: {fileID: 1178772239}
@@ -8677,10 +8677,10 @@ MonoBehaviour:
   OnDenturesTakeOff:
     m_PersistentCalls:
       m_Calls: []
-  toLookatPhotoFrame: 0
+  toLookAtObjective: 0
   toPickUpPhone: 0
   canAnswerPhone: 0
-  taiChiInstructor: {fileID: 0}
+  taiChiAnimations: []
   toDoTaiChi: 0
   toStartSpasming: 0
 --- !u!114 &1115407452
@@ -8832,7 +8832,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToPlay: 0
   narrationAudioSource: {fileID: 1115407454}
-  narrationAudioClips_1: []
+  narrationAudioClips_1:
+  - {fileID: 8300000, guid: cb3bfad90de64e344a2622c1509c74be, type: 3}
+  - {fileID: 8300000, guid: 9b82c5651f5467249897f84727a3e644, type: 3}
+  - {fileID: 8300000, guid: 63607145959df734aabc477d4166d112, type: 3}
+  - {fileID: 8300000, guid: 0663e3352ae9ad14a9eaa9ace651f4bf, type: 3}
+  - {fileID: 8300000, guid: 4b9128c93aee33f4bafb6be4099ec6be, type: 3}
+  - {fileID: 8300000, guid: b8a31d9d6346b4c49a2199823267f3de, type: 3}
   narrationAudioClips_2: []
   cane: {fileID: 412595808}
   caneOutline: {fileID: 447146652}
@@ -8846,6 +8852,16 @@ MonoBehaviour:
   phoneOutline: {fileID: 175287959}
   glassesOutline: {fileID: 1611369496}
   taiChiManager: {fileID: 0}
+  taichiNPC: {fileID: 0}
+  chessNPC: {fileID: 0}
+  teleportPoint: {fileID: 0}
+  player: {fileID: 0}
+  NPC: {fileID: 0}
+  Piece: {fileID: 0}
+  Bishop: {fileID: 0}
+  TeleportPointReadingCorner: {fileID: 0}
+  TVScreen: {fileID: 0}
+  readingCornerNPCs: {fileID: 0}
 --- !u!20 &1123568409 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2045798063959952117, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -20559,6 +20575,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
+--- !u!1 &2276772900260340214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3613870999640532293, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2276772900260340215 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 34111136647625535, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!33 &2286461475122577643
 MeshFilter:
   m_ObjectHideFlags: 0
