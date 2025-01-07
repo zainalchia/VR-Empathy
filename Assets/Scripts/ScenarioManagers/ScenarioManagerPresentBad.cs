@@ -28,7 +28,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject cane;
-    [SerializeField] GameObject caneOutline;
+    [SerializeField] Outline caneOutline;
     [SerializeField] GameObject firstTeleportHotspot;
 
     Coroutine lastRoutine = null;
@@ -80,8 +80,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 30f;
-    [SerializeField] Outline mouthWash, mug, toothbrush, toothpaste, soap;
-    [SerializeField] GameObject allBathroomPropOutline;
 
     public void PlaySegment1Part1()
     {
@@ -109,14 +107,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
 
-        mouthWash.enabled = false;
-        mug.enabled = false;
-        toothbrush.enabled = false;
-        toothpaste.enabled = false;
-        soap.enabled = false;
-
-        allBathroomPropOutline.SetActive(false);
-
         PlaySegment1Part2();
     }
 
@@ -138,7 +128,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part2()
     {
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
-        caneOutline.SetActive(true);
+        caneOutline.enabled = true;
         knob.GetComponent<Outline>().enabled = true;
 
         //PlayAudioAndNarration(narrationAudioClips_1[1], narration_1[2], 4.0f);
@@ -162,7 +152,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         StopPrevDialogue();
 
-        caneOutline.SetActive(false);
+        ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after picking up cane
+        caneOutline.enabled = false;
         knob.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
@@ -179,8 +170,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] MobilePhone mobilePhone;
     [SerializeField] GameObject glasses;
     [SerializeField] AudioClip glassesDrop;
-    [SerializeField] GameObject phoneOutline;
-    [SerializeField] GameObject glassesOutline;
+    [SerializeField] Outline phoneOutline;
+    [SerializeField] Outline glassesOutline;
     [SerializeField] GameObject tvAudio;
 
 
@@ -195,12 +186,13 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         tvAudio.GetComponent<AudioSource>().mute = false;
         PostProcessingController.instance.UsingGlasses(false); // start blur effect
-        
+        ControllerInteractionsManager.instance.allowDropItems = true; // Can drop cane
+
         yield return new WaitForSeconds(1f);
 
         // play phone calling
         mobilePhone.SetPhoneCalling();
-        phoneOutline.SetActive(true);
+        phoneOutline.enabled = true;
         GameManager.instance.ShowAlert(narration_1[18]);
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
@@ -213,7 +205,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         GameManager.instance.HideAlert();
         StopPrevDialogue();
-        phoneOutline.SetActive(false);
+        phoneOutline.enabled = false;
         lastRoutine = StartCoroutine(Segment1Part3_2());
     }
 
@@ -228,7 +220,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
         yield return new WaitForSeconds(1f);
 
-        glassesOutline.SetActive(true);
+        glassesOutline.enabled = true;
         yield return new WaitForSeconds(3f + 1.1f);
         
     }
@@ -257,7 +249,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
     {
         StopPrevDialogue();
-        glassesOutline.SetActive(false);
+        glassesOutline.enabled = false;
         ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after glasses put on
         //GameManager.instance.ShowAlert(narration_1[12]);
         GameManager.instance.canAnswerPhone = true;
@@ -302,7 +294,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 2 Part 1 (Bedroom - Taking off glasses and dentures)
     [Header("Bedroom 1st Part")]
     [SerializeField] GameObject Glass;
-    [SerializeField] GameObject CupOutline;
+    [SerializeField] Outline CupOutline;
 
 
     public void PlaySegment2Part1()
@@ -334,7 +326,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
-        CupOutline.SetActive(true);
+        CupOutline.enabled = true;
     }
 
     public void DenturesPlacedInCup() // called in UnityEvent in denture cup
@@ -357,13 +349,13 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject PillBottleHighlight;
     [SerializeField] AudioFade fade;
     [SerializeField] GameObject photoFrame;
-    [SerializeField] GameObject photoFrameOutline;
+    [SerializeField] Outline photoFrameOutline;
     static public bool canMedicineSpill;
 
     IEnumerator Segment2Part2_1()
     {
         canMedicineSpill = false;
-        CupOutline.SetActive(false);
+        CupOutline.enabled = false;
         // Buffer time for them to put dentures in cup
         yield return new WaitForSeconds(3f);
 
@@ -439,7 +431,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookAtObjective = true;
         photoFrame.GetComponent<Grabbable>().enabled = true;
-        photoFrameOutline.SetActive(true);
+        photoFrameOutline.enabled = true;
         // add new dialogue here
         yield return null;
     }
@@ -453,7 +445,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment2Part2_3()
     {
-        photoFrameOutline.SetActive(false);
+        photoFrameOutline.enabled = false;
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
