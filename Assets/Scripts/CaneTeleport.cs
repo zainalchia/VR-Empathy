@@ -80,7 +80,7 @@ public class CaneTeleport : MonoBehaviour
             {
                 playerAudio.PlayOneShot(femaleGrunt, 1);
             }
-            //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+            PostProcessingController.instance.targetWeight += 0.2f;
         }
     }
 

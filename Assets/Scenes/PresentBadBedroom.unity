@@ -2558,9 +2558,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1553778622609761828, guid: 85b062a5517cf8345bb6784ffbed4877,
         type: 3}
+      propertyPath: m_RenderMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553778622609761828, guid: 85b062a5517cf8345bb6784ffbed4877,
+        type: 3}
+      propertyPath: m_MaxParticleSize
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553778622609761828, guid: 85b062a5517cf8345bb6784ffbed4877,
+        type: 3}
+      propertyPath: m_MinParticleSize
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1553778622609761828, guid: 85b062a5517cf8345bb6784ffbed4877,
+        type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1553778622609761828, guid: 85b062a5517cf8345bb6784ffbed4877,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9ff4585d5d3df2945b6b02ee4ff389bb, type: 2}
     - target: {fileID: 7305185502956871417, guid: 85b062a5517cf8345bb6784ffbed4877,
         type: 3}
       propertyPath: m_Name
@@ -2569,13 +2589,33 @@ PrefabInstance:
     - target: {fileID: 7305185502956871417, guid: 85b062a5517cf8345bb6784ffbed4877,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373965720183865277, guid: 85b062a5517cf8345bb6784ffbed4877,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373965720183865277, guid: 85b062a5517cf8345bb6784ffbed4877,
+        type: 3}
+      propertyPath: m_MaxParticleSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373965720183865277, guid: 85b062a5517cf8345bb6784ffbed4877,
+        type: 3}
+      propertyPath: m_MinParticleSize
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8373965720183865277, guid: 85b062a5517cf8345bb6784ffbed4877,
         type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8373965720183865277, guid: 85b062a5517cf8345bb6784ffbed4877,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 35237ea33857dfc4e86c96692e18cd71, type: 2}
     - target: {fileID: 8953909735390984801, guid: 85b062a5517cf8345bb6784ffbed4877,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -3961,6 +4001,8 @@ MonoBehaviour:
   cloudy2: {fileID: 424130697}
   rain: {fileID: 715179910}
   tableWithMedicine: {fileID: 1187788872}
+  chair: {fileID: 1728101240}
+  cabinet: {fileID: 6014503084830996457}
   originallyHeldMedicine: {fileID: 2006039829}
   animatedMedicine: {fileID: 422728089}
   PillBottleHighlight: {fileID: 1951452155}
@@ -4199,8 +4241,7 @@ Transform:
   m_LocalPosition: {x: -3.5550983, y: 0.5969831, z: -30.3986}
   m_LocalScale: {x: 73.94753, y: 73.9475, z: 73.9475}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2059470071}
+  m_Children: []
   m_Father: {fileID: 543450653348331587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1187788874
@@ -4265,7 +4306,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff7827e019077f41b973ed7e9d0d276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 0.1
+  toDissappear: 0
+  minScale: 20
+  maxScale: 30
+  ScaleChange: {x: 1, y: 1, z: 1}
 --- !u!65 &1187788877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7072,7 +7116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff7827e019077f41b973ed7e9d0d276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 0.1
+  toDissappear: 0
+  minScale: 20
+  maxScale: 30
+  ScaleChange: {x: 1, y: 1, z: 1}
 --- !u!65 &1728101245
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8893,59 +8940,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058901648}
   m_Mesh: {fileID: -5623197077056949267, guid: b523c845761398843b854474ac36c619, type: 3}
---- !u!1 &2059470070
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2059470071}
-  - component: {fileID: 2059470072}
-  m_Layer: 0
-  m_Name: PlaceMedicineSpot
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2059470071
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059470070}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.001, y: 0.007, z: 0.0066}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1187788873}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2059470072
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2059470070}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.006, y: 0.008, z: 0.0005}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2117732089
 GameObject:
   m_ObjectHideFlags: 0
@@ -11457,7 +11451,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff7827e019077f41b973ed7e9d0d276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 0.1
+  toDissappear: 0
+  minScale: 20
+  maxScale: 30
+  ScaleChange: {x: 1, y: 1, z: 1}
 --- !u!54 &6014503084830996459
 Rigidbody:
   m_ObjectHideFlags: 0

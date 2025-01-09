@@ -217,7 +217,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Trying to pick up glasses 1st time
         //PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(1f);
 
         glassesOutline.enabled = true;
@@ -238,7 +238,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         {
             //PlayAudioAndNarration(narrationAudioClips_1[3], narration_1[9], 9f);
             narrationAudioSource.Stop();
-            narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+            narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
         }
 
         //else if (dropGlassesCount == 2)
@@ -267,7 +267,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //PlayAudioAndNarration(narrationAudioClips_1[4], narration_1[13], 3f);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
         yield return new WaitForSeconds(3f + 1.1f);
 
         //GameManager.instance.ShowAlert(narration_1[14], 8f);
@@ -275,7 +275,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //PlayAudioAndNarration(narrationAudioClips_1[5], narration_1[15], narrationAudioClips_1[4].length);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
         yield return new WaitForSeconds(narrationAudioClips_1[4].length - 3f);
 
         // play phone hang up here
@@ -344,6 +344,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject cloudy2;
     [SerializeField] GameObject rain;
     [SerializeField] GameObject tableWithMedicine;
+    [SerializeField] GameObject chair;
+    [SerializeField] GameObject cabinet;
     [SerializeField] GameObject originallyHeldMedicine;
     [SerializeField] GameObject animatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
@@ -385,7 +387,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //GameManager.instance.ShowAlert(narration_2[5], 6f);
         yield return new WaitForSeconds(6f + 1.1f);
 
-        tableWithMedicine.SetActive(true); // table with medicine will re-appear here
+        //Re enable the furniture
+        GameManager.instance.toStartSpasming = false;
+        tableWithMedicine.SetActive(true);
+        cabinet.SetActive(true);
+        chair.SetActive(true);
+
         StartCoroutine(fade.FadeOut(5f, 0f));
         flyingShip.GetComponent<DisappearObject>().AllowedToMove(false);
         flyingShip.SetActive(false);

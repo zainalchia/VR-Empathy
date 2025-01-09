@@ -19,8 +19,8 @@ public class PostProcessingController : MonoBehaviour
     #region Blurry Effect
     [SerializeField] private float interval = 10;
 
-    [SerializeField, Tooltip("Max weight of Post-Processing Volume")] float targetWeight = 1f;
-    [SerializeField, Tooltip("Min weight of Post-Processing Volume")] float initalWeight = 0.75f;
+    [SerializeField, Tooltip("Max weight of Post-Processing Volume")] public float targetWeight = 1f;
+    [SerializeField, Tooltip("Min weight of Post-Processing Volume")] public float initalWeight = 0.75f;
     float interpolateRatio = 0;
     [SerializeField] bool isUsingGlasses = false;
 
