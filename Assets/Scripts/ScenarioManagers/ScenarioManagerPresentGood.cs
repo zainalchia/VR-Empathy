@@ -256,10 +256,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject chessNPC;
     [SerializeField] GameObject teleportPoint;
     [SerializeField] GameObject player;
+    int times;
     IEnumerator MovingFromTaichiToChess()
     {
-        PostProcessingController.instance.UsingGlasses(true); // no blur effect
-
+        times++;
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
@@ -398,6 +398,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             }
             #endregion
         }
+
+        Debug.Log(times);
 
     }
 

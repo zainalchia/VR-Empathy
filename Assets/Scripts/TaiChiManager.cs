@@ -9,6 +9,8 @@ public class TaiChiManager : MonoBehaviour
     GameObject[] leftTaichiHitboxes;
     [SerializeField]
     GameObject[] rightTaichiHitboxes;
+    [SerializeField]
+    LineRenderer rightLinerenderer, leftLinerenderer;
 
     // Segment 1 - 0 to 4, Segment 2 - 4 to 8, Segment 3 - 8 to 13
     private int current = 0;
@@ -16,30 +18,33 @@ public class TaiChiManager : MonoBehaviour
     private int segment = 1;
     private bool firstHitbox = true;
 
-
+    private bool segmentResetter = false;
 
     public UnityEvent taichiFinished;
     public UnityEvent resumeTaichi;
 
+
+    private void Start()
+    {
+    }
     public void deactivateCurrent()
     {
         if (!lastHitbox) {
             // Deactivate current hitbox
             leftTaichiHitboxes[current].SetActive(false);
             rightTaichiHitboxes[current].SetActive(false);
+            SetLineRenderer();
         }
         else
         {
             leftTaichiHitboxes[current].SetActive(false);
             rightTaichiHitboxes[current].SetActive(false);
-            if (segment == 3) {
-                taichiHasFinished();
-            }
         }
     }
 
     public void spawnNext()
     {
+        segmentResetter = false;
         if (firstHitbox) 
         {
             firstHitbox = false;
@@ -51,6 +56,9 @@ public class TaiChiManager : MonoBehaviour
         leftTaichiHitboxes[current].SetActive(true);
         rightTaichiHitboxes[current].SetActive(true);
 
+        rightLinerenderer.enabled = false;
+        leftLinerenderer.enabled = false;
+
         switch (segment)
         {
             case 1:
@@ -60,58 +68,52 @@ public class TaiChiManager : MonoBehaviour
                 }
                 break;
             case 2:
-                if (current == 7)
+                if (current == 6)
                 {
                     lastHitbox = true;
                 }
                 break;
             case 3:
-                if (current == 12)
+                if (current == 11)
                 {
                     lastHitbox = true;
                 }
-                break;
-            default:
-                lastHitbox = false;
                 break;
         }
     }
 
     public void startSegment1()
     {
-        //leftTaichiHitboxes[0].SetActive(true);
-        //rightTaichiHitboxes[0].SetActive(true);
 
     }
 
     public void startSegment2()
     {
         lastHitbox = false;
-        //leftTaichiHitboxes[4].SetActive(true);
-        //rightTaichiHitboxes[4].SetActive(true);
     }
     public void startSegment3()
     {
         lastHitbox = false;
-        //leftTaichiHitboxes[8].SetActive(true);
-        //rightTaichiHitboxes[8].SetActive(true);
-    }
-
-    private void taichiHasFinished()
-    {
-        taichiFinished.Invoke();
     }
     public void nextTaichiPose()
     {
         switch (segment)
         {
             case 1:
-                segment = 2;
-                startSegment2();
+                if (!segmentResetter)
+                {
+                    segment = 2;
+                    startSegment2();
+                    segmentResetter = true;
+                }
                 break;
             case 2:
-                segment = 3;
-                startSegment3();
+                if (!segmentResetter)
+                {
+                    segment = 3;
+                    startSegment3();
+                    segmentResetter = true;
+                }
                 break;
         }
     }
@@ -142,5 +144,15 @@ public class TaiChiManager : MonoBehaviour
                 Gizmos.DrawLine(rightTaichiHitboxes[i].transform.position, rightTaichiHitboxes[i + 1].transform.position);
             }
         }
+    }
+
+    private void SetLineRenderer()
+    {
+        rightLinerenderer.enabled = true;
+        rightLinerenderer.SetPosition(0,rightTaichiHitboxes[current].transform.position);
+        rightLinerenderer.SetPosition(1,rightTaichiHitboxes[current + 1].transform.position);
+        leftLinerenderer.enabled = true;
+        leftLinerenderer.SetPosition(0, leftTaichiHitboxes[current].transform.position);
+        leftLinerenderer.SetPosition(1, leftTaichiHitboxes[current + 1].transform.position);
     }
 }
