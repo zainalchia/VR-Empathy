@@ -187,6 +187,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         tvAudio.GetComponent<AudioSource>().mute = false;
         PostProcessingController.instance.UsingGlasses(false); // start blur effect
         ControllerInteractionsManager.instance.allowDropItems = true; // Can drop cane
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
 
         yield return new WaitForSeconds(1f);
 
