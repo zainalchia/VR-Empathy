@@ -70,6 +70,7 @@ public class CaneTeleport : MonoBehaviour
             timer = 0;
 
             currentHotspotIndex += 1;
+
             ShowNextHotspot();
             if (MainMenuManager.isGenderMale)
             {
@@ -79,8 +80,21 @@ public class CaneTeleport : MonoBehaviour
             else
             {
                 playerAudio.PlayOneShot(femaleGrunt, 1);
+
+
             }
-            PostProcessingController.instance.targetWeight += 0.2f;
+
+            if (PostProcessingController.instance.targetWeight < 0.95f)
+            {
+                PostProcessingController.instance.targetWeight += 0.1f;
+            }
+            else
+            {
+                if(currentHotspotIndex == teleportHotspots.Length - 1)
+                {
+                    PostProcessingController.instance.targetWeight = 1f;
+                }
+            }
         }
     }
 

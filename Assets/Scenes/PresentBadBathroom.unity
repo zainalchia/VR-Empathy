@@ -2156,8 +2156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5552a41dcc3516a4f8524dea92c4224b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 20
-  targetWeight: 0
+  interval: 5
+  targetWeight: 0.4
   initalWeight: 0
   isUsingGlasses: 0
 --- !u!114 &421615961
@@ -5869,17 +5869,16 @@ MonoBehaviour:
   tvAudio: {fileID: 86426417}
   Glass: {fileID: 0}
   CupOutline: {fileID: 0}
-  flyingShip: {fileID: 0}
-  cloudy1: {fileID: 0}
-  cloudy2: {fileID: 0}
+  parents: {fileID: 0}
   rain: {fileID: 0}
   tableWithMedicine: {fileID: 0}
   chair: {fileID: 0}
   cabinet: {fileID: 0}
+  cloudy1: {fileID: 0}
+  cloudy2: {fileID: 0}
   originallyHeldMedicine: {fileID: 0}
   animatedMedicine: {fileID: 0}
   PillBottleHighlight: {fileID: 0}
-  fade: {fileID: 0}
   photoFrame: {fileID: 0}
   photoFrameOutline: {fileID: 0}
 --- !u!82 &1115407454
@@ -15030,7 +15029,7 @@ PrefabInstance:
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 595
+      value: 2643
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15549,6 +15548,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 34111136647625535, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 701150727804894353, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15599,6 +15608,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3282362525937682268, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_UpdateWhenOffscreen
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613870999640532293, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726326582486773029, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5462015967090025615, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15609,10 +15638,25 @@ PrefabInstance:
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1115407453}
+    - target: {fileID: 6638273903435007589, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944844053228656671, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 8531340850437012666, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_Name
       value: OVRMainCharacter
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132878739047755199, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

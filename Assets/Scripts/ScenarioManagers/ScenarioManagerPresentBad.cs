@@ -158,6 +158,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
         GameManager.instance.ShowAlert(narration_1[17]);
+        PostProcessingController.instance.UsingGlasses(false); // start blur effect
         toGoLivingRoom = true;
     }
 
@@ -185,7 +186,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part3_1()
     {
         tvAudio.GetComponent<AudioSource>().mute = false;
-        PostProcessingController.instance.UsingGlasses(false); // start blur effect
         ControllerInteractionsManager.instance.allowDropItems = true; // Can drop cane
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
 
@@ -340,17 +340,16 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     #region Segment 2 Part 2 (Bedroom - Medicine)
     [Header("Bedroom 2nd Part")]
-    [SerializeField] GameObject flyingShip;
-    [SerializeField] GameObject cloudy1;
-    [SerializeField] GameObject cloudy2;
+    [SerializeField] GameObject parents;
     [SerializeField] GameObject rain;
     [SerializeField] GameObject tableWithMedicine;
     [SerializeField] GameObject chair;
     [SerializeField] GameObject cabinet;
+    [SerializeField] GameObject cloudy1;
+    [SerializeField] GameObject cloudy2;
     [SerializeField] GameObject originallyHeldMedicine;
     [SerializeField] GameObject animatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
-    [SerializeField] AudioFade fade;
     [SerializeField] GameObject photoFrame;
     [SerializeField] Outline photoFrameOutline;
     static public bool canMedicineSpill;
@@ -369,13 +368,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(8f);
 
         // clouds and ship illusions here
-        flyingShip.SetActive(true);
-        flyingShip.GetComponent<DisappearObject>().AllowedToMove(true);
+        parents.SetActive(true);
+        rain.SetActive(true);
         cloudy1.GetComponent<ParticleSystem>().Play();
         cloudy2.GetComponent<ParticleSystem>().Play();
-        rain.SetActive(true);
-
-        StartCoroutine(fade.FadeIn(4f, 0.4f));
 
         yield return new WaitForSeconds(5f);
 
@@ -394,20 +390,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cabinet.SetActive(true);
         chair.SetActive(true);
 
-        StartCoroutine(fade.FadeOut(5f, 0f));
-        flyingShip.GetComponent<DisappearObject>().AllowedToMove(false);
-        flyingShip.SetActive(false);
-
+        parents.GetComponent<ParentsMoving>().parentsMoveAway();
 
         //GameManager.instance.ShowAlert(narration_2[6], 12f);
         yield return new WaitForSeconds(12f + 1.1f);
 
         // stop all illusions
-
+        rain.SetActive(false);
         cloudy1.GetComponent<ParticleSystem>().Stop();
         cloudy2.GetComponent<ParticleSystem>().Stop();
-        rain.SetActive(false);
-
 
         //GameManager.instance.ShowAlert(narration_2[7]);
 

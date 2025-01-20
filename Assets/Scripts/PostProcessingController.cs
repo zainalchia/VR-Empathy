@@ -17,7 +17,7 @@ public class PostProcessingController : MonoBehaviour
     #endregion
 
     #region Blurry Effect
-    [SerializeField] private float interval = 10;
+    [SerializeField] private float interval = 2;
 
     [SerializeField, Tooltip("Max weight of Post-Processing Volume")] public float targetWeight = 1f;
     [SerializeField, Tooltip("Min weight of Post-Processing Volume")] public float initalWeight = 0.75f;
@@ -26,20 +26,21 @@ public class PostProcessingController : MonoBehaviour
 
     private void VisionBlurEffect()
     {
-        interpolateRatio += Time.deltaTime / interval;
-        GetComponent<Volume>().weight = Mathf.Lerp(initalWeight, targetWeight, interpolateRatio);
-
-        if (interpolateRatio >= 1) 
-        {
-            interpolateRatio = 0;
-            (initalWeight, targetWeight) = (targetWeight, initalWeight);
-        }
+        print("visionblureffect");
+        //interpolateRatio += Time.deltaTime / interval;
+        GetComponent<Volume>().weight = targetWeight;
+        //if (interpolateRatio >= 1) 
+        //{
+        //    interpolateRatio = 0;
+        //    (initalWeight, targetWeight) = (targetWeight, initalWeight);
+        //}
     }
 
     public void UsingGlasses(bool trueOrFalse) // call when glasses has been put on or taken off
     {
         if (trueOrFalse == false) // reset vision blur effect
         {
+            print("blur?");
             interpolateRatio = 0;
             if (initalWeight > targetWeight)
                 (initalWeight, targetWeight) = (targetWeight, initalWeight);
@@ -62,7 +63,11 @@ public class PostProcessingController : MonoBehaviour
     void Update()
     {
         if (!isUsingGlasses)
+        {
             VisionBlurEffect();
+            print("isblurring");
+        }
+            
 
     }
 }
