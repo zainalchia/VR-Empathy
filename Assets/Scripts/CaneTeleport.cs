@@ -72,19 +72,12 @@ public class CaneTeleport : MonoBehaviour
             currentHotspotIndex += 1;
 
             ShowNextHotspot();
-            if (MainMenuManager.isGenderMale)
+            if(currentHotspotIndex == 2 || currentHotspotIndex == 7)
             {
-                playerAudio.volume = 0.8f;
-                playerAudio.PlayOneShot(maleGrunt);
-            }
-            else
-            {
-                playerAudio.PlayOneShot(femaleGrunt, 1);
-
-
+                PlaySound();
             }
 
-            if (PostProcessingController.instance.targetWeight < 0.95f)
+            if (PostProcessingController.instance.targetWeight < 0.9f)
             {
                 PostProcessingController.instance.targetWeight += 0.1f;
             }
@@ -98,6 +91,18 @@ public class CaneTeleport : MonoBehaviour
         }
     }
 
+    private void PlaySound()
+    {
+        if (MainMenuManager.isGenderMale)
+        {
+            playerAudio.volume = 0.8f;
+            playerAudio.PlayOneShot(maleGrunt);
+        }
+        else
+        {
+            playerAudio.PlayOneShot(femaleGrunt, 1);
+        }
+    }
     void ShowNextHotspot()
     {
         if (currentHotspotIndex == 0)

@@ -19,11 +19,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] AudioSource narrationAudioSource;
 
     // for bathroom and living room scene
-    [SerializeField] AudioClip[] narrationAudioClips_1;
+    [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Female;
+    AudioClip[] narrationAudioClips_Bathroom;
     string[] narration_1 = new string[30];
 
     // for bedroom scene
-    [SerializeField] AudioClip[] narrationAudioClips_2;
+    [SerializeField] AudioClip[] narrationAudioClips_Bedroom_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_Bedroom_Female;
+    AudioClip[] narrationAudioClips_2;
     string[] narration_2 = new string[30];
 
     [Header("Multi-Scene Objects")]
@@ -60,6 +64,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[16] = "Open the door and head to the sofa";
         narration_1[17] = "Aim the tip of the cane on the floor and press the 'Grip' button";
         narration_1[18] = "Someone is calling, pick up the phone.";
+
+        if (MainMenuManager.isGenderMale)
+        {
+            narrationAudioClips_Bathroom = narrationAudioClips_Bathroom_Male;
+        }
+        else
+        {
+            narrationAudioClips_Bathroom = narrationAudioClips_Bathroom_Female;
+        }
     }
 
     void SetupNarrationBedroom()
@@ -75,6 +88,19 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_2[8] = "Calendar where? Calendar wall. Okay. Hmmm Okay. [Grab the yellow pill bottle]";
         narration_2[9] = "This is not the medicine. Put it aside.";
         narration_2[10] = "Aiya spilled everywhere already. Useless hand. Wish my son is here to help.";
+
+        narration_2[11] = "Grab near your face to take out your dentures.";
+
+
+        if (MainMenuManager.isGenderMale)
+        {
+            narrationAudioClips_2 = narrationAudioClips_Bedroom_Male;
+        }
+        else
+        {
+            narrationAudioClips_2 = narrationAudioClips_Bedroom_Female;
+        }
+
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -97,7 +123,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //Lines 1-2
         //PlayAudioAndNarration(narrationAudioClips_1[0], narration_1[0], 7.0f);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[0]);
         yield return new WaitForSeconds(7.0f + 1.5f);
 
         //GameManager.instance.ShowAlert(narration_1[1], 3f);
@@ -133,7 +159,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //PlayAudioAndNarration(narrationAudioClips_1[1], narration_1[2], 4.0f);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[1]);
         yield return new WaitForSeconds(4.0f);
 
         //GameManager.instance.ShowAlert(narration_1[3], 2.5f);
@@ -187,7 +213,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         tvAudio.GetComponent<AudioSource>().mute = false;
         ControllerInteractionsManager.instance.allowDropItems = true; // Can drop cane
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
 
         yield return new WaitForSeconds(1f);
 
@@ -218,7 +244,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Trying to pick up glasses 1st time
         //PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[3]);
         yield return new WaitForSeconds(1f);
 
         glassesOutline.enabled = true;
@@ -239,7 +265,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         {
             //PlayAudioAndNarration(narrationAudioClips_1[3], narration_1[9], 9f);
             narrationAudioSource.Stop();
-            narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
+            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[4]);
         }
 
         //else if (dropGlassesCount == 2)
@@ -268,19 +294,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //PlayAudioAndNarration(narrationAudioClips_1[4], narration_1[13], 3f);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
-        yield return new WaitForSeconds(3f + 1.1f);
-
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);
         //GameManager.instance.ShowAlert(narration_1[14], 8f);
-        yield return new WaitForSeconds(8f + 1.1f);
+
+        yield return new WaitForSeconds(narrationAudioClips_Bathroom[5].length - 5f);
+        mobilePhone.SetPhoneHangUp();
+
+        yield return new WaitForSeconds(5f + 1.1f);
 
         //PlayAudioAndNarration(narrationAudioClips_1[5], narration_1[15], narrationAudioClips_1[4].length);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
-        yield return new WaitForSeconds(narrationAudioClips_1[4].length - 3f);
-
-        // play phone hang up here
-        mobilePhone.SetPhoneHangUp();
 
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
@@ -327,6 +349,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
+        GameManager.instance.ShowAlert(narration_2[11]);
         CupOutline.enabled = true;
     }
 
@@ -356,6 +379,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment2Part2_1()
     {
+        StopPrevDialogue();
         canMedicineSpill = false;
         CupOutline.enabled = false;
         // Buffer time for them to put dentures in cup
@@ -378,35 +402,36 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]); // play audio, got a space in the beginning
-        yield return new WaitForSeconds(3.5f);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
+        yield return new WaitForSeconds(narrationAudioClips_2[1].length + 1f);
 
-        //GameManager.instance.ShowAlert(narration_2[5], 6f);
-        yield return new WaitForSeconds(6f + 1.1f);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
+        yield return new WaitForSeconds(narrationAudioClips_2[2].length + 1f);
 
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
+        yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1f);
+
+        parents.GetComponent<ParentsMoving>().parentsMoveAway();
+
+        //GameManager.instance.ShowAlert(narration_2[6], 12f);
+        yield return new WaitForSeconds(2f);
+
+        // stop all illusions
+        rain.SetActive(false);
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
 
-        parents.GetComponent<ParentsMoving>().parentsMoveAway();
-
-        //GameManager.instance.ShowAlert(narration_2[6], 12f);
-        yield return new WaitForSeconds(12f + 1.1f);
-
-        // stop all illusions
-        rain.SetActive(false);
         cloudy1.GetComponent<ParticleSystem>().Stop();
         cloudy2.GetComponent<ParticleSystem>().Stop();
 
         //GameManager.instance.ShowAlert(narration_2[7]);
 
         //PlayAudioAndNarration(narrationAudioClips_2[3], narration_2[8], narrationAudioClips_2[3].length);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
-
-        yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1.1f);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
+        yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1.1f);
 
         canMedicineSpill = true;
         PillBottleHighlight.SetActive(true);

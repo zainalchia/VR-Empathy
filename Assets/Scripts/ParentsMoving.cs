@@ -40,8 +40,8 @@ public class ParentsMoving : MonoBehaviour
             {
                 oldManAnimator.SetTrigger("Idle");
                 oldWomanAnimator.SetTrigger("Idle");
-                float rY = Mathf.Lerp(0, 30, Time.time * 0.1f);
-                transform.localRotation = Quaternion.Euler(0, rY, 0);
+                transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0,30,0), Time.time * 0.05f);
+                Debug.Log(transform.localRotation.eulerAngles.ToVector3f());
                 if(transform.localRotation.eulerAngles == new Vector3(0, 30, 0))
                 {
                     toPlayer = false;
@@ -54,9 +54,8 @@ public class ParentsMoving : MonoBehaviour
         {
             oldManAnimator.SetTrigger("Walk");
             oldWomanAnimator.SetTrigger("Walk");
-            float rY = Mathf.Lerp(30, 0, Time.time * 0.1f);
-            transform.localRotation = Quaternion.Euler(0, rY, 0);
-            if (transform.localRotation.eulerAngles.y == 0)
+            transform.localRotation = Quaternion.RotateTowards(transform.localRotation, Quaternion.Euler(0, 0, 0), Time.time * 0.05f);
+            if (transform.localRotation.eulerAngles == new Vector3(0, 0, 0))
             {
                 Vector3 destination = waypoints[index].transform.position;
                 Vector3 newPos = Vector3.MoveTowards(transform.position, destination, 1 * Time.deltaTime);
