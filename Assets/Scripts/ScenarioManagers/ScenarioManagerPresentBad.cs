@@ -364,12 +364,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 2 Part 2 (Bedroom - Medicine)
     [Header("Bedroom 2nd Part")]
     [SerializeField] GameObject parents;
-    [SerializeField] GameObject rain;
     [SerializeField] GameObject tableWithMedicine;
     [SerializeField] GameObject chair;
     [SerializeField] GameObject cabinet;
-    [SerializeField] GameObject cloudy1;
-    [SerializeField] GameObject cloudy2;
     [SerializeField] GameObject originallyHeldMedicine;
     [SerializeField] GameObject animatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
@@ -393,13 +390,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // clouds and ship illusions here
         parents.SetActive(true);
-        rain.SetActive(true);
-        cloudy1.GetComponent<ParticleSystem>().Play();
-        cloudy2.GetComponent<ParticleSystem>().Play();
 
         yield return new WaitForSeconds(5f);
 
-        yield return new WaitForSeconds(1f);
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+        // Turn to old room
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(4f);
+
 
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
@@ -411,21 +410,21 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
         yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1f);
 
-        parents.GetComponent<ParentsMoving>().parentsMoveAway();
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+        //Turn back to normal here
 
-        //GameManager.instance.ShowAlert(narration_2[6], 12f);
-        yield return new WaitForSeconds(2f);
-
-        // stop all illusions
-        rain.SetActive(false);
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
 
-        cloudy1.GetComponent<ParticleSystem>().Stop();
-        cloudy2.GetComponent<ParticleSystem>().Stop();
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(4f);
+
+        //GameManager.instance.ShowAlert(narration_2[6], 12f);
+        yield return new WaitForSeconds(2f);
 
         //GameManager.instance.ShowAlert(narration_2[7]);
 
