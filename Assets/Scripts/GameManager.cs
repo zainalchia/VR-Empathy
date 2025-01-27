@@ -15,8 +15,10 @@ public class GameManager : MonoBehaviour
             instance = this;
         else if (instance != null)
             Destroy(gameObject);
+
     }
     #endregion
+
 
     // OVR PLAYER
     [Header("OVR PLAYER")]
@@ -133,7 +135,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     // Update is called once per frame
     void Update()
     {

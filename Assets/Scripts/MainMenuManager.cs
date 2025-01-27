@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -5,31 +6,59 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class MainMenuManager : MonoBehaviour
 {
     public static bool isGenderMale = true; //true = male, false = female
+    public static bool videoOrMenu = false; // false = menu, true = video
+    public static VideoToPlay video = VideoToPlay.BeforePresentBad;
     [SerializeField]
-    GameObject scenarioScreen, genderScreen;
+    GameObject scenarioScreen, genderScreen, videoScreen, proceedButton;
+    [SerializeField]
+    VideoClip[] videos;
+
+    [SerializeField]
+    Material mainMenuSkybox;
+
     string levelSelected;
 
     [SerializeField] Sprite[] snippets;
     [SerializeField] Image[] snippetsBg;
     int minRange, maxRange;
 
+    public enum VideoToPlay
+    {
+        BeforePresentBad,
+        AfterPresentBad
+    }
+
     private void Start()
     {
+        RenderSettings.skybox = mainMenuSkybox;
         //ShowSnippetOnHover(0);
     }
-    public void LoadLevel(string levelname)
+
+    private void Awake()
     {
-        SceneManager.LoadScene(levelname);
+        if (videoOrMenu) // check if menu or video
+        {
+            scenarioScreen.SetActive(false);
+            videoScreen.SetActive(true);
+            PlayVideo();
+        }
+    }
+    public void LoadLevel()
+    {
+        SceneManager.LoadScene(levelSelected);
     }
 
     public void SelectGender(bool isMale)
     {
         isGenderMale = isMale;
-        LoadLevel(levelSelected);
+        genderScreen.SetActive(false);
+        videoScreen.SetActive(true);
+        toVideoScreen();
     }
 
     public void SelectLevel(string levelname)
@@ -43,6 +72,32 @@ public class MainMenuManager : MonoBehaviour
         genderScreen.SetActive(true);
     }
 
+    public void toVideoScreen()
+    {
+        StartCoroutine(VideoPlaying());
+    }
+
+    IEnumerator VideoPlaying()
+    {
+        PlayVideo();
+        yield return new WaitForSeconds((float)videoScreen.GetComponent<VideoPlayer>().clip.length);
+
+        if (!videoOrMenu) {
+            proceedButton.SetActive(true);
+        }
+    }
+    private void PlayVideo()
+    {
+        switch (video)
+        {
+            case VideoToPlay.BeforePresentBad:
+                videoScreen.GetComponent<VideoPlayer>().clip = videos[0];
+                break;
+            case VideoToPlay.AfterPresentBad:
+                videoScreen.GetComponent<VideoPlayer>().clip = videos[1];
+                break;
+        }
+    }
     /// <summary>
     /// Preview gameplay by playing an array of image when hover over image. 
     /// Set min and max range to play the right set of image
@@ -70,5 +125,10 @@ public class MainMenuManager : MonoBehaviour
                     i = minRange-1;
             await Task.Delay(3000);
         }
+    }
+
+    private void Update()
+    {
+        Debug.Log(video);
     }
 }

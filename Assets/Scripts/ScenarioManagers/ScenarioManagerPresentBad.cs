@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using static UnityEngine.Rendering.DebugUI;
 using static Unity.VisualScripting.Member;
+using static MainMenuManager;
 
 public class ScenarioManagerPresentBad : MonoBehaviour
 {
+    [SerializeField]
+    Material normalSkybox;
+
     [SerializeField] SceneToPlay sceneToPlay = SceneToPlay.Bathroom;
     enum SceneToPlay
     {
@@ -388,13 +392,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // wait a while to let players look around
         yield return new WaitForSeconds(8f);
 
-        // clouds and ship illusions here
-        parents.SetActive(true);
-
-        yield return new WaitForSeconds(5f);
-
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
+
+        parents.SetActive(true);
+
         // Turn to old room
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
@@ -419,6 +421,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
+        parents.SetActive(false);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
@@ -472,8 +475,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
-
-        GameManager.instance.goodbyeText.SetActive(true);
+        MainMenuManager.videoOrMenu = true;
+        MainMenuManager.video = VideoToPlay.AfterPresentBad;
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
     #endregion
 
@@ -485,6 +489,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         {
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
+            RenderSettings.skybox = normalSkybox;
+
         }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
