@@ -353,7 +353,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
-        GameManager.instance.ShowAlert(narration_2[11]);
+        //GameManager.instance.ShowAlert(narration_2[11]);
         CupOutline.enabled = true;
     }
 
