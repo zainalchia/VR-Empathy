@@ -375,6 +375,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject animatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
     [SerializeField] GameObject photoFrame;
+    [SerializeField] GameObject oldMode;
+    [SerializeField] GameObject newMode;
     [SerializeField] Outline photoFrameOutline;
     static public bool canMedicineSpill;
 
@@ -396,6 +398,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         parents.SetActive(true);
+        oldMode.SetActive(true);
+        newMode.SetActive(false);
 
         // Turn to old room
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
@@ -415,6 +419,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
         //Turn back to normal here
+        oldMode.SetActive(false);
+        newMode.SetActive(true);
+
 
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
