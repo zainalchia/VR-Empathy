@@ -77,16 +77,9 @@ public class CaneTeleport : MonoBehaviour
                 PlaySound();
             }
 
-            if (PostProcessingController.instance.targetWeight < 0.9f)
+            if (PostProcessingController.instance.targetWeight > 2f)
             {
-                PostProcessingController.instance.targetWeight += 0.1f;
-            }
-            else
-            {
-                if(currentHotspotIndex == teleportHotspots.Length - 1)
-                {
-                    PostProcessingController.instance.targetWeight = 1f;
-                }
+                PostProcessingController.instance.targetWeight -= 3f;
             }
         }
     }

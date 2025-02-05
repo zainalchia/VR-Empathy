@@ -97,6 +97,8 @@ public class MainMenuManager : MonoBehaviour
                 videoScreen.GetComponent<VideoPlayer>().clip = videos[1];
                 break;
         }
+
+        videoScreen.GetComponent<VideoPlayer>().SetTargetAudioSource(0, videoScreen.GetComponent<AudioSource>());
     }
     /// <summary>
     /// Preview gameplay by playing an array of image when hover over image. 

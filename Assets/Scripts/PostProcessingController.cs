@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class PostProcessingController : MonoBehaviour
 {
@@ -23,12 +24,13 @@ public class PostProcessingController : MonoBehaviour
     [SerializeField, Tooltip("Min weight of Post-Processing Volume")] public float initalWeight = 0.75f;
     float interpolateRatio = 0;
     [SerializeField] bool isUsingGlasses = false;
+    private DepthOfField DepthOfField;
 
     private void VisionBlurEffect()
     {
         print("visionblureffect");
         //interpolateRatio += Time.deltaTime / interval;
-        GetComponent<Volume>().weight = targetWeight;
+        DepthOfField.aperture.value = targetWeight;
         //if (interpolateRatio >= 1) 
         //{
         //    interpolateRatio = 0;
@@ -38,16 +40,10 @@ public class PostProcessingController : MonoBehaviour
 
     public void UsingGlasses(bool trueOrFalse) // call when glasses has been put on or taken off
     {
-        if (trueOrFalse == false) // reset vision blur effect
+        if (trueOrFalse == true) 
         {
-            print("blur?");
-            interpolateRatio = 0;
-            if (initalWeight > targetWeight)
-                (initalWeight, targetWeight) = (targetWeight, initalWeight);
-            GetComponent<Volume>().weight = initalWeight;
+            DepthOfField.aperture.value = initalWeight;
         }
-        else
-            GetComponent<Volume>().weight = 0;
 
         isUsingGlasses = trueOrFalse;
     }
@@ -56,7 +52,7 @@ public class PostProcessingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GetComponent<Volume>().profile.TryGet(out DepthOfField);
     }
 
     // Update is called once per frame
@@ -65,7 +61,6 @@ public class PostProcessingController : MonoBehaviour
         if (!isUsingGlasses)
         {
             VisionBlurEffect();
-            print("isblurring");
         }
             
 

@@ -2024,7 +2024,7 @@ MonoBehaviour:
   videoScreen: {fileID: 1715616653}
   proceedButton: {fileID: 924485332}
   videos:
-  - {fileID: 32900000, guid: effbc0e12cceb194ab530ee36ea4c174, type: 3}
+  - {fileID: 32900000, guid: 095a8ddf755b554439cdaea3c333ba3f, type: 3}
   - {fileID: 32900000, guid: 3d93cbf129a7a1b40b1fbdbdc35dcd48, type: 3}
   mainMenuSkybox: {fileID: 2100000, guid: a04af44a8201acb428f1ea1a6b897293, type: 2}
   snippets:
@@ -2607,7 +2607,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2712,13 +2712,15 @@ VideoPlayer:
   m_DataSource: 0
   m_TimeUpdateMode: 2
   m_PlaybackSpeed: 1
-  m_AudioOutputMode: 0
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
+  m_AudioOutputMode: 1
+  m_TargetAudioSources:
+  - {fileID: 1715616654}
+  m_DirectAudioVolumes:
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 0

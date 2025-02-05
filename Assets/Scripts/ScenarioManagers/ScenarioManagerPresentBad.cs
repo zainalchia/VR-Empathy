@@ -49,7 +49,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[2] = "My legs are tired from all this standing.";
         narration_1[3] = "I need to take a break in the living room.";
         narration_1[4] = "Let me grab my trusty cane.";
-        narration_1[5] = "Place your hand on the door handle to open the door.";
+        narration_1[5] = "Grab your cane and place your hand on the door handle to open the door.";
         narration_1[6] = "[Use the cane to find spots to move to and then press 'A']"; // stay on screen until first tp
 
         narration_1[7] = "Someone is calling. Pick up the phone.";
@@ -68,6 +68,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[16] = "Open the door and head to the sofa";
         narration_1[17] = "Aim the tip of the cane on the floor and press the 'Grip' button";
         narration_1[18] = "Someone is calling, pick up the phone.";
+        narration_1[19] = "Grab your glasses.";
 
         if (MainMenuManager.isGenderMale)
         {
@@ -215,7 +216,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_1()
     {
-        tvAudio.GetComponent<AudioSource>().mute = false;
+        //tvAudio.GetComponent<AudioSource>().mute = false;
         ControllerInteractionsManager.instance.allowDropItems = true; // Can drop cane
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
 
@@ -242,6 +243,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_2()
     {
+        GameManager.instance.ShowAlert(narration_1[19]);
+
         ControllerInteractionsManager.instance.allowDropItems = true; // will drop items from here
         GameManager.instance.toPutGlassesOn = true;
 
@@ -349,7 +352,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //GameManager.instance.ShowAlert(narration_2[2], 2f);
         yield return new WaitForSeconds(2f + 1.1f);
 
-        //GameManager.instance.ShowAlert(narration_2[3]);
+        GameManager.instance.ShowAlert(narration_2[3]);
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
@@ -377,7 +380,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject photoFrame;
     [SerializeField] GameObject oldMode;
     [SerializeField] GameObject newMode;
-    [SerializeField] Outline photoFrameOutline;
+    [SerializeField] GameObject photoFrameOutline;
     static public bool canMedicineSpill;
 
     IEnumerator Segment2Part2_1()
@@ -458,13 +461,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         animatedMedicine.GetComponent<Animator>().enabled = true;
         lastRoutine = StartCoroutine(Segment2Part2_2());
     }
-
     IEnumerator Segment2Part2_2()
     {
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookAtObjective = true;
         photoFrame.GetComponent<Grabbable>().enabled = true;
-        photoFrameOutline.enabled = true;
+        photoFrameOutline.SetActive(true);
         // add new dialogue here
         yield return null;
     }
@@ -478,7 +480,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment2Part2_3()
     {
-        photoFrameOutline.enabled = false;
+        photoFrameOutline.SetActive(false);
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
@@ -495,7 +497,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             SetupNarrationBathroomLivingRoom();
-            PlaySegment1Part1();
+            //PlaySegment1Part1();
+            PlaySegment1Part2();
             RenderSettings.skybox = normalSkybox;
 
         }
