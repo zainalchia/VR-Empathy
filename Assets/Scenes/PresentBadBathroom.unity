@@ -1063,10 +1063,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 281866974}
-    - targetCorrespondingSourceObject: {fileID: -8513424388201257645, guid: be9ff42758ced7d44a25f8e89405a845,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 281866973}
   m_SourcePrefab: {fileID: 100100000, guid: be9ff42758ced7d44a25f8e89405a845, type: 3}
 --- !u!4 &281866961 stripped
 Transform:
@@ -1321,19 +1317,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &281866973
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 281866962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: 281866974}
 --- !u!114 &281866974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5757,7 +5740,7 @@ MonoBehaviour:
   grabInteractors:
   - {fileID: 308433641}
   - {fileID: 308433640}
-  MaleModel: {fileID: 1357760969}
+  MaleModel: {fileID: 2276772900260340214}
   FemaleModel: {fileID: 758137579}
   characterModel: {fileID: 0}
   alertText: {fileID: 1615119055}
@@ -5879,6 +5862,8 @@ MonoBehaviour:
   animatedMedicine: {fileID: 0}
   PillBottleHighlight: {fileID: 0}
   photoFrame: {fileID: 0}
+  oldMode: {fileID: 0}
+  newMode: {fileID: 0}
   photoFrameOutline: {fileID: 0}
 --- !u!82 &1115407454
 AudioSource:
@@ -6836,12 +6821,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aac0cf42448b3ed4f8c66ba66fbdb2ea, type: 3}
---- !u!1 &1357760969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3613870999640532293, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 2276772900260340213}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1358817241
 GameObject:
   m_ObjectHideFlags: 0
@@ -8775,7 +8754,6 @@ GameObject:
   - component: {fileID: 1936565566}
   - component: {fileID: 1936565565}
   - component: {fileID: 1936565564}
-  - component: {fileID: 1936565572}
   - component: {fileID: 1936565573}
   m_Layer: 0
   m_Name: Toothpaste
@@ -9063,19 +9041,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.6044622, y: 0.38996464, z: 2.2947183}
   m_Center: {x: 0.053382132, y: 0.08840674, z: 0.06422773}
---- !u!114 &1936565572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936565560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: 1936565573}
 --- !u!114 &1936565573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15547,16 +15512,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 34111136647625535, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 701150727804894353, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15607,26 +15562,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3282362525937682268, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_UpdateWhenOffscreen
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3613870999640532293, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3726326582486773029, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462015967090025615, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -15637,31 +15572,22 @@ PrefabInstance:
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1115407453}
-    - target: {fileID: 6638273903435007589, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 7944844053228656671, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 8531340850437012666, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_Name
       value: OVRMainCharacter
-      objectReference: {fileID: 0}
-    - target: {fileID: 9132878739047755199, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
+--- !u!1 &2276772900260340214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2596148559515123696, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!33 &2286461475122577643
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15805,7 +15731,6 @@ GameObject:
   - component: {fileID: 8718233878095769982}
   - component: {fileID: 8718233878095769981}
   - component: {fileID: 8718233878095769980}
-  - component: {fileID: 8718233878095769985}
   - component: {fileID: 8718233878095769986}
   m_Layer: 0
   m_Name: SoapBar
@@ -15882,7 +15807,6 @@ GameObject:
   - component: {fileID: 8032421237078485437}
   - component: {fileID: 8032421237078485436}
   - component: {fileID: 8032421237078485435}
-  - component: {fileID: 8032421237078485442}
   - component: {fileID: 8032421237078485443}
   m_Layer: 0
   m_Name: Mug
@@ -16040,7 +15964,6 @@ GameObject:
   - component: {fileID: 8705098870684757319}
   - component: {fileID: 8705098870684757318}
   - component: {fileID: 8705098870684757317}
-  - component: {fileID: 8705098870684757323}
   - component: {fileID: 8705098870684757324}
   m_Layer: 0
   m_Name: Toothbrush
@@ -16715,19 +16638,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8032421237078485442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4961946615217511000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: 8032421237078485443}
 --- !u!114 &8032421237078485443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17613,19 +17523,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8705098870684757323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6066117601475022383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: 8705098870684757324}
 --- !u!114 &8705098870684757324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19434,19 +19331,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.033333465, y: 0.020000005, z: 0.008904378}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8718233878095769985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4140864653740968207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a180d96189d4af98ef8b58ddee1eef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outline: {fileID: 8718233878095769986}
 --- !u!114 &8718233878095769986
 MonoBehaviour:
   m_ObjectHideFlags: 0
