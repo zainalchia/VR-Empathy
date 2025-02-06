@@ -65,7 +65,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
 
         // Text prompts
-        narration_1[16] = "Open the door and head to the sofa";
+        narration_1[16] = "Take your cane and place your hand on the door to open it.";
         narration_1[17] = "Aim the tip of the cane on the floor and press the 'Grip' button";
         narration_1[18] = "Someone is calling, pick up the phone.";
         narration_1[19] = "Grab your glasses.";
@@ -371,6 +371,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 2 Part 2 (Bedroom - Medicine)
     [Header("Bedroom 2nd Part")]
     [SerializeField] GameObject parents;
+    [SerializeField] GameObject mother;
+    [SerializeField] GameObject father;
     [SerializeField] GameObject tableWithMedicine;
     [SerializeField] GameObject chair;
     [SerializeField] GameObject cabinet;
@@ -400,9 +402,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
 
-        parents.SetActive(true);
         oldMode.SetActive(true);
         newMode.SetActive(false);
+        parents.SetActive(true);
 
         // Turn to old room
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
@@ -411,6 +413,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
+        father.GetComponent<Animator>().SetTrigger("Wave");
+        mother.GetComponent<Animator>().SetTrigger("Wave");
         yield return new WaitForSeconds(narrationAudioClips_2[1].length + 1f);
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
@@ -497,8 +501,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             SetupNarrationBathroomLivingRoom();
-            //PlaySegment1Part1();
-            PlaySegment1Part2();
+            PlaySegment1Part1();
             RenderSettings.skybox = normalSkybox;
 
         }

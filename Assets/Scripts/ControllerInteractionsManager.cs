@@ -234,7 +234,6 @@ public class ControllerInteractionsManager : MonoBehaviour
                         {
                             glassesTimerOn = true;
                             lastHandToHold = grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness;
-
                         }
                     }
                 }
