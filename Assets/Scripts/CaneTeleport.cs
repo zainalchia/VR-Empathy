@@ -85,9 +85,7 @@ public class CaneTeleport : MonoBehaviour
                 PostProcessingController.instance.targetWeight -= 3f;
             }
 
-            if (currentHotspotIndex == 2)            
-                OnFirstTeleport.Invoke();
-            else if (currentHotspotIndex == teleportHotspots.Length - 1)
+            if (currentHotspotIndex == teleportHotspots.Length - 1)
                 OnLastTeleport.Invoke();
         }
     }

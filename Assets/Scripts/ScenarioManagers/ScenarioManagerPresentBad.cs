@@ -159,6 +159,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part2()
     {
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
+        cane.GetComponent<ForceStayGrabbed>().active = true;
         caneOutline.enabled = true;
         knob.GetComponent<Outline>().enabled = true;
 
