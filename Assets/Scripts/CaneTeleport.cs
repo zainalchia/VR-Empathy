@@ -4,6 +4,7 @@ using UnityEngine;
 
 using System.Linq;
 using Oculus.Interaction;
+using UnityEngine.Events;
 
 public class CaneTeleport : MonoBehaviour
 {
@@ -21,6 +22,8 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] AudioSource playerAudio;
     [SerializeField] AudioClip maleGrunt;
     [SerializeField] AudioClip femaleGrunt;
+    public UnityEvent OnFirstTeleport;
+    public UnityEvent OnLastTeleport;
 
     bool buttonPressed = false;
 
@@ -81,6 +84,11 @@ public class CaneTeleport : MonoBehaviour
             {
                 PostProcessingController.instance.targetWeight -= 3f;
             }
+
+            if (currentHotspotIndex == 2)            
+                OnFirstTeleport.Invoke();
+            else if (currentHotspotIndex == teleportHotspots.Length - 1)
+                OnLastTeleport.Invoke();
         }
     }
 

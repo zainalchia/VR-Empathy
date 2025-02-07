@@ -1666,6 +1666,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 798185060}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cfefc47c7513a84a8bd93ff92002587,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 798185061}
   m_SourcePrefab: {fileID: 100100000, guid: 9cfefc47c7513a84a8bd93ff92002587, type: 3}
 --- !u!1 &412595808 stripped
 GameObject:
@@ -1850,6 +1854,36 @@ MonoBehaviour:
   playerAudio: {fileID: 1726075247}
   maleGrunt: {fileID: 8300000, guid: a0eed95a082fca448bdaf56c7fff199a, type: 3}
   femaleGrunt: {fileID: 8300000, guid: 02bd857cf47602d488aae9bd75300cb7, type: 3}
+  OnFirstTeleport:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798185061}
+        m_TargetAssemblyTypeName: ForceStayGrabbed, Assembly-CSharp
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+  OnLastTeleport:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 798185061}
+        m_TargetAssemblyTypeName: ForceStayGrabbed, Assembly-CSharp
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &412595818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4111,6 +4145,19 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &798185061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412595808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef49f28b4d7f247458490d76d6c25c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
 --- !u!1 &816375819
 GameObject:
   m_ObjectHideFlags: 0
@@ -5555,6 +5602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leftGrabInteractor: {fileID: 308433641}
+  rightGrabInteractor: {fileID: 308433640}
   autoDropItems: 1
   dropGlassesInterval: 0.5
   dropGlassesCount: 2
