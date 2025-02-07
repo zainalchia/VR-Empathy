@@ -200,7 +200,7 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     #region Dropping Items
     [Header("Drop Items Variables")]
-    public bool allowDropItems = true;
+    public bool autoDropItems = true;
     //[SerializeField] private float dropInterval = 10;
     [SerializeField] private float dropGlassesInterval = 1;
     [SerializeField] private int dropGlassesCount = 2;
@@ -420,7 +420,7 @@ public class ControllerInteractionsManager : MonoBehaviour
         #endregion
 
         #region Dropping Items
-        if (allowDropItems)
+        if (autoDropItems)
             EnableDropTimer();
         #endregion
 

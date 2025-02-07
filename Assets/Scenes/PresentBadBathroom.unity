@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1831,7 +1831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d3227871b1614243929a59fc3003cb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistanceMoveable: 0.6
+  maxDistanceMoveable: 1
   teleportLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -2367,6 +2367,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3823771955445948653, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
@@ -5550,7 +5555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowDropItems: 1
+  autoDropItems: 1
   dropGlassesInterval: 0.5
   dropGlassesCount: 2
   audioSource_player: {fileID: 1726075247}

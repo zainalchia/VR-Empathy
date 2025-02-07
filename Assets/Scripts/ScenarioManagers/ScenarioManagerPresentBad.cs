@@ -44,7 +44,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     void SetupNarrationBathroomLivingRoom()
     {
         narration_1[0] = "Sigh, I am balding even more.";
-        narration_1[1] = "Let me wash up so I can rest. ";
+        narration_1[1] = "Let me wash up so I can rest.?";
 
         narration_1[2] = "My legs are tired from all this standing.";
         narration_1[3] = "I need to take a break in the living room.";
@@ -120,7 +120,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part1()
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
-        ControllerInteractionsManager.instance.allowDropItems = false; // no dropping item yet
+        ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
         cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
         yield return new WaitForSeconds(4f); // screen fade in timing
@@ -183,7 +183,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         StopPrevDialogue();
 
-        ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after picking up cane
+        ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after picking up cane
         caneOutline.enabled = false;
         knob.GetComponent<Outline>().enabled = false;
 
@@ -217,7 +217,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part3_1()
     {
         //tvAudio.GetComponent<AudioSource>().mute = false;
-        ControllerInteractionsManager.instance.allowDropItems = true; // Can drop cane
+        //ControllerInteractionsManager.instance.allowDropItems = true; // Can drop cane
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
 
         yield return new WaitForSeconds(1f);
@@ -245,7 +245,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         GameManager.instance.ShowAlert(narration_1[19]);
 
-        ControllerInteractionsManager.instance.allowDropItems = true; // will drop items from here
+        ControllerInteractionsManager.instance.autoDropItems = true; // will drop items from here
         GameManager.instance.toPutGlassesOn = true;
 
         // Trying to pick up glasses 1st time
@@ -284,7 +284,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         StopPrevDialogue();
         glassesOutline.enabled = false;
-        ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after glasses put on
+        ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
         //GameManager.instance.ShowAlert(narration_1[12]);
         GameManager.instance.canAnswerPhone = true;
     }
@@ -334,7 +334,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment2Part1_1()
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
-        ControllerInteractionsManager.instance.allowDropItems = false; // no dropping items (can also disable in scene)
+        ControllerInteractionsManager.instance.autoDropItems = false; // no dropping items (can also disable in scene)
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 

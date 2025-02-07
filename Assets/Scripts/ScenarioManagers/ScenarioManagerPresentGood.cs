@@ -55,7 +55,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator Segment1Part1()
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
-        ControllerInteractionsManager.instance.allowDropItems = false; // no dropping item yet
+        ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
         cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
         yield return new WaitForSeconds(4f); // screen fade in timing
@@ -182,7 +182,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
         glassesOutline.SetActive(false);
         GameManager.instance.canAnswerPhone = true;
-        ControllerInteractionsManager.instance.allowDropItems = false; // no more dropping after glasses put on
+        ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
         //GameManager.instance.ShowAlert(narration_1[12]);
     }
 
