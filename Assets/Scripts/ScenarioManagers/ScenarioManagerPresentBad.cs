@@ -232,6 +232,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(2.5f + 1.1f);
 
         GameManager.instance.toPickUpPhone = true;
+
+        phone.GetComponent<ForceStayGrabbed>().active = true;
     }
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
