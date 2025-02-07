@@ -68,7 +68,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[16] = "Take your cane and place your hand on the door to open it.";
         narration_1[17] = "Aim the tip of the cane on the floor and press the 'Grip' button";
         narration_1[18] = "Someone is calling, pick up the phone.";
-        narration_1[19] = "Grab your glasses.";
+        narration_1[19] = "Use your other hand to put on your glasses.";
 
         if (MainMenuManager.isGenderMale)
         {
