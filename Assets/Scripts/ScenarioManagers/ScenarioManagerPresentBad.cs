@@ -109,6 +109,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
+
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 30f;
 
@@ -144,6 +145,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #endregion
 
     #region Segment 1 Part 2 (From bathroom to living room)
+
     [Header("Moving towards living room")]
     [SerializeField] DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
@@ -218,7 +220,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator Segment1Part3_1()
     {
         //tvAudio.GetComponent<AudioSource>().mute = false;
-        //ControllerInteractionsManager.instance.allowDropItems = true; // Can drop cane
+
+        // Can drop cane
+        //ControllerInteractionsManager.instance.allowDropItems = true; // old implementation, not working
+        cane.GetComponent<ForceStayGrabbed>().active = false;
+
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
 
         yield return new WaitForSeconds(1f);

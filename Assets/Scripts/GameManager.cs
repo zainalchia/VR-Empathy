@@ -4,6 +4,7 @@ using UnityEngine;
 
 using Oculus.Interaction;
 using UnityEngine.Events;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public TextMeshPro debugText;
 
     // OVR PLAYER
     [Header("OVR PLAYER")]
@@ -68,6 +70,11 @@ public class GameManager : MonoBehaviour
     // FURNITURE SPASMING (Bedroom Scene of Present-Bad)
     [Header("FURNITURE SPASMING")]
     public bool toStartSpasming = false;
+
+    public void DebugLog(string text)
+    {
+        debugText.text = text;
+    }
 
     #region Alert Text Functions
     public void ShowAlert(string textToShow)

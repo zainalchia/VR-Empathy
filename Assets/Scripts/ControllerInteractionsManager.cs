@@ -50,6 +50,24 @@ public class ControllerInteractionsManager : MonoBehaviour
         return items;
     }
 
+    // 0 = left hand, 1 = right hand, 2 = not holding
+    public int ObjInWhichHand(GameObject obj)
+    {
+        int i = 0;
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+        {
+            if (grabInteractor.HasSelectedInteractable)
+            {
+                if (grabInteractor.SelectedInteractable.gameObject == obj)
+                {
+                    return i;
+                }
+            }
+            i++;
+        }
+        return i;
+    }
+
     public void ForceSelectedObjectFollow(GrabInteractor grabInteractor) // called when force select is used as object does not follow hand, this function makes it follow the hand until it is let go
     {
         if (grabInteractor.HasSelectedInteractable)
@@ -275,7 +293,7 @@ public class ControllerInteractionsManager : MonoBehaviour
         
     }
 
-    private void ActivateItemDrop() // not used anymore but is used to drop object from both hands
+    public void ActivateItemDrop() // not used anymore but is used to drop object from both hands
     {
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
