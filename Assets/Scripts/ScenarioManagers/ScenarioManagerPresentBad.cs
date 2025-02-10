@@ -223,8 +223,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // Can drop cane
         //ControllerInteractionsManager.instance.allowDropItems = true; // old implementation, not working
-        cane.GetComponent<ForceStayGrabbed>().active = false;
-
+        
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
 
         yield return new WaitForSeconds(1f);
@@ -239,7 +238,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         GameManager.instance.toPickUpPhone = true;
 
-        phone.GetComponent<ForceStayGrabbed>().active = true;
+        phone.GetComponent<ForceStayGrabbed>().SetActive(true);
     }
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone

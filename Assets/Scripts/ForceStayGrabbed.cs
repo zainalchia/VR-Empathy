@@ -70,11 +70,13 @@ public class ForceStayGrabbed : MonoBehaviour
             }
         }
 
+        /*
         string debug = "";
         foreach (GameObject go in ControllerInteractionsManager.instance.GetItemsGrabbedInHand())
         {
             debug += go.name;
         }
         GameManager.instance.DebugLog(active.ToString() + ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(gameObject).ToString() + forceStay.ToString() + ControllerInteractionsManager.instance.ObjInWhichHand(gameObject) +  leftHandGrabbing.ToString() + rightHandGrabbing.ToString() + debug);
+        */
     }    
 }
