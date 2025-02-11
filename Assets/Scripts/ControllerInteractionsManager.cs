@@ -184,9 +184,11 @@ public class ControllerInteractionsManager : MonoBehaviour
                 lastHeldObjLeftHand = GameManager.instance.dentures;
                 GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
 
-                // positions dentures to hand that force selected
-                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                // positions dentures to hand that force selected                
                 GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
+                GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
                 //GameManager.instance.OnDenturesTakeOff.Invoke();
@@ -204,8 +206,10 @@ public class ControllerInteractionsManager : MonoBehaviour
                 GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
 
                 // positions dentures to hand that force selected
-                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
+                GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
                 //GameManager.instance.OnDenturesTakeOff.Invoke();
@@ -213,7 +217,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                 GameManager.instance.toTakeDenturesOff = false;
             }
         }
-    }
+    }    
     #endregion
 
     #endregion
