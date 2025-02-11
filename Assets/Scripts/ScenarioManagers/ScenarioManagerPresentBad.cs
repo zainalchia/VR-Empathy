@@ -531,6 +531,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             {
                 if (cane.GetComponent<CaneTeleport>().HasTeleportedOnce())
                 {
+                    questControllerImage.SetActive(false);
                     StopPrevDialogue();
                     alertRemovedAfterFirstTP = true;
                 }

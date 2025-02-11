@@ -22,7 +22,6 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] AudioSource playerAudio;
     [SerializeField] AudioClip maleGrunt;
     [SerializeField] AudioClip femaleGrunt;
-    public UnityEvent OnFirstTeleport;
     public UnityEvent OnLastTeleport;
 
     bool buttonPressed = false;

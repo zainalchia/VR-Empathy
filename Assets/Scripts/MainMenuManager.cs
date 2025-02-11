@@ -80,7 +80,8 @@ public class MainMenuManager : MonoBehaviour
     IEnumerator VideoPlaying()
     {
         PlayVideo();
-        yield return new WaitForSeconds((float)videoScreen.GetComponent<VideoPlayer>().clip.length);
+        //yield return new WaitForSeconds((float)videoScreen.GetComponent<VideoPlayer>().clip.length);
+        yield return new WaitForSeconds(2); // to short cut, change it back to the line above after this
 
         if (!videoOrMenu) {
             proceedButton.SetActive(true);
