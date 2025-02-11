@@ -149,6 +149,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [Header("Moving towards living room")]
     [SerializeField] DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
+    [SerializeField] GameObject questControllerImage;
     bool toGoLivingRoom = false;
     bool alertRemovedAfterFirstTP = false;
 
@@ -192,11 +193,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
         GameManager.instance.ShowAlert(narration_1[17]);
+        questControllerImage.SetActive(true);
         PostProcessingController.instance.UsingGlasses(false); // start blur effect
         toGoLivingRoom = true;
     }
-
-
     #endregion
 
     #region Segment 1 Part 3 (Living room)
