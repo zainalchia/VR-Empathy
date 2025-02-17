@@ -1,3 +1,6 @@
+//******************************************************************************************************
+//  Use to control where the cockroach fly
+//******************************************************************************************************
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,11 +12,12 @@ public class WaypointManager : MonoBehaviour
     [SerializeField] float moveSpeed, rotSpeed;
     bool isMoving;
     bool isLoop = true;
+    int loopRound = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        BeginMovement();
+        BeginRoachMovement();
     }
 
     // Update is called once per frame
@@ -37,13 +41,18 @@ public class WaypointManager : MonoBehaviour
                     if(isLoop && wayPointIndex>=wayPoints.Count)
                     {
                         wayPointIndex = 0;
+                        loopRound++;
+                        if(loopRound >= 2)
+                        { 
+                            Destroy(gameObject); 
+                        }
                     }
                 }
             }
         }
         
     }
-    public void BeginMovement()
+    public void BeginRoachMovement()
     {
         wayPointIndex = 0;
         isMoving = true;
