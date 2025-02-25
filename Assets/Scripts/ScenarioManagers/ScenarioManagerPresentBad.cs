@@ -403,9 +403,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // start furniture moving here
         GameManager.instance.toStartSpasming = true;
+        yield return new WaitForSeconds(2f);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
 
         // wait a while to let players look around
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(6f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
