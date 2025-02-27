@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     public GrabInteractor[] grabInteractors; // if can left controller should be index 0, right controller should be index 1
     [SerializeField]
     GameObject MaleModel, FemaleModel;
+    public GameObject maleHandsModel;
     [HideInInspector]
     public GameObject characterModel;
 
