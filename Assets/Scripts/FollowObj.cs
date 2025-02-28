@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class FollowObj : MonoBehaviour
 {
+    Vector3 initialPos;
+    Quaternion initialRot;
     [SerializeField] Transform objToFollow;
-    [SerializeField] Vector3 offset;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        initialPos = transform.position;
+        initialRot = transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = objToFollow.transform.rotation;
-        transform.position = objToFollow.transform.position + offset;
+        transform.rotation = initialRot * objToFollow.transform.rotation;
+        transform.position = initialPos + objToFollow.transform.position;
     }
 }
