@@ -36,6 +36,7 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         RenderSettings.skybox = mainMenuSkybox;
+        Debug.Log("Character gender: " + isGenderMale);
         //ShowSnippetOnHover(0);
     }
 

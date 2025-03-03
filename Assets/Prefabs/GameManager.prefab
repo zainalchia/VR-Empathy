@@ -1,0 +1,289 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8229746979710151412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8823738621174217314}
+  - component: {fileID: 4965633947369261991}
+  - component: {fileID: 5044884339828837852}
+  - component: {fileID: 1136511620325022944}
+  - component: {fileID: 5400385780027695598}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8823738621174217314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229746979710151412}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4965633947369261991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229746979710151412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugText: {fileID: 0}
+  ovrCamRig: {fileID: 0}
+  middleEyeAnchor: {fileID: 0}
+  grabInteractors:
+  - {fileID: 0}
+  - {fileID: 0}
+  MaleModel: {fileID: 0}
+  FemaleModel: {fileID: 0}
+  maleHandsModelLeft: {fileID: 0}
+  maleHandsModelRight: {fileID: 0}
+  characterModel: {fileID: 0}
+  alertText: {fileID: 0}
+  fadePanel: {fileID: 0}
+  goodbyeText: {fileID: 0}
+  glasses: {fileID: 0}
+  toPutGlassesOn: 0
+  toTakeGlassesOff: 0
+  OnGlassesTakeOff:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PostProcessingController, Assembly-CSharp
+        m_MethodName: UsingGlasses
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  dentures: {fileID: 0}
+  toTakeDenturesOff: 0
+  OnDenturesTakeOff:
+    m_PersistentCalls:
+      m_Calls: []
+  toLookAtObjective: 0
+  toPickUpPhone: 0
+  canAnswerPhone: 0
+  taiChiAnimations: []
+  toDoTaiChi: 0
+  toStartSpasming: 0
+--- !u!114 &5044884339828837852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229746979710151412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftGrabInteractor: {fileID: 0}
+  rightGrabInteractor: {fileID: 0}
+  autoDropItems: 1
+  dropGlassesInterval: 0.5
+  dropGlassesCount: 2
+  audioSource_player: {fileID: 0}
+  audioClip_sighAfterDrop: {fileID: 0}
+  dropItemFX: {fileID: 1429954232896169633, guid: d67309e7f1b0a4cb5b6e68d1c27493c7,
+    type: 3}
+  leftHandAnchor: {fileID: 0}
+  rightHandAnchor: {fileID: 0}
+  OnGlassesDrop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1136511620325022944}
+        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
+        m_MethodName: DropGlassesReaction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  allowControllerVibration: 1
+  vibrationStrength: 255
+  vibrationFrequency: 2
+--- !u!114 &1136511620325022944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229746979710151412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27d2eff92ffe04743943e3b2ed758679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  sceneToPlay: 0
+  narrationAudioSource: {fileID: 5400385780027695598}
+  narrationAudioClips_Bathroom_Male:
+  - {fileID: 8300000, guid: 9296556217bb2374180b4a1070711861, type: 3}
+  - {fileID: 8300000, guid: 180f474e2ef59f34391e2d1a8902c4f1, type: 3}
+  - {fileID: 8300000, guid: 00500573e91e84c43bf7974b2ab9a55f, type: 3}
+  - {fileID: 8300000, guid: e9eda67018c715946842364a903aaf04, type: 3}
+  - {fileID: 8300000, guid: 325eea877516aef43858e5aefc013d53, type: 3}
+  - {fileID: 8300000, guid: d104ae44ca956cd4db4f245444a8f78b, type: 3}
+  narrationAudioClips_Bathroom_Female:
+  - {fileID: 8300000, guid: 8f8109deb5acf4d4693b58c2f2a4dca3, type: 3}
+  - {fileID: 8300000, guid: d78b7bfbbe8abb3459ec1796d1845bfa, type: 3}
+  - {fileID: 8300000, guid: ae75ef53aaf3cc04fabce200831daa06, type: 3}
+  - {fileID: 8300000, guid: e5ede90301738dd4bb94c92908fe8ec3, type: 3}
+  - {fileID: 8300000, guid: 473a5a3927602dc4d9aac42f34097c3f, type: 3}
+  - {fileID: 8300000, guid: e248eb87e2c3d07438e02c0649e0d046, type: 3}
+  narrationAudioClips_Bedroom_Male: []
+  narrationAudioClips_Bedroom_Female: []
+  cane: {fileID: 0}
+  caneOutline: {fileID: 0}
+  firstTeleportHotspot: {fileID: 0}
+  timeForWashingUp: 10
+  bathroomDoor: {fileID: 0}
+  knob: {fileID: 0}
+  questControllerImage: {fileID: 0}
+  phone: {fileID: 0}
+  mobilePhone: {fileID: 0}
+  glasses: {fileID: 0}
+  glassesDrop: {fileID: 8300000, guid: fc43ccc5b25f2c7478d1a69422adc001, type: 3}
+  phoneOutline: {fileID: 0}
+  glassesOutline: {fileID: 0}
+  tvAudio: {fileID: 0}
+  Glass: {fileID: 0}
+  CupOutline: {fileID: 0}
+  parents: {fileID: 0}
+  mother: {fileID: 0}
+  father: {fileID: 0}
+  tableWithMedicine: {fileID: 0}
+  chair: {fileID: 0}
+  cabinet: {fileID: 0}
+  originallyHeldMedicine: {fileID: 0}
+  animatedMedicine: {fileID: 0}
+  PillBottleHighlight: {fileID: 0}
+  photoFrame: {fileID: 0}
+  oldMode: {fileID: 0}
+  newMode: {fileID: 0}
+  photoFrameOutline: {fileID: 0}
+--- !u!82 &5400385780027695598
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8229746979710151412}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
