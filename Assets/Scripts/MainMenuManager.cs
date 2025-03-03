@@ -48,6 +48,7 @@ public class MainMenuManager : MonoBehaviour
             PlayVideo();
         }
     }
+
     public void LoadLevel()
     {
         SceneManager.LoadScene(levelSelected);
@@ -87,6 +88,7 @@ public class MainMenuManager : MonoBehaviour
             proceedButton.SetActive(true);
         }
     }
+
     private void PlayVideo()
     {
         switch (video)
@@ -101,6 +103,7 @@ public class MainMenuManager : MonoBehaviour
 
         videoScreen.GetComponent<VideoPlayer>().SetTargetAudioSource(0, videoScreen.GetComponent<AudioSource>());
     }
+
     /// <summary>
     /// Preview gameplay by playing an array of image when hover over image. 
     /// Set min and max range to play the right set of image
@@ -116,7 +119,6 @@ public class MainMenuManager : MonoBehaviour
                 Task task = ImageLoop(num, minRange, maxRange);
                 break;
         }
-
     }
 
     private async Task ImageLoop(int num, int minRange, int maxRange)

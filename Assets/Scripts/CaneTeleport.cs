@@ -14,7 +14,6 @@ public class CaneTeleport : MonoBehaviour
      *      and remove it from the LocomotionControllerInteractorGroup scripts in the OVR GameObject
      */
 
-
     [SerializeField] float maxDistanceMoveable = 1f;
     [SerializeField] LayerMask teleportLayer;
     [SerializeField] float defaultTimeBeforeNextMove = 0; // adds a delay in between teleports, set to 0 for no delay
