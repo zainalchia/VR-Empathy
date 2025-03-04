@@ -6,6 +6,7 @@ using Oculus.Interaction;
 using static UnityEngine.Rendering.DebugUI;
 using static Unity.VisualScripting.Member;
 using static MainMenuManager;
+using TMPro;
 
 public class ScenarioManagerPresentBad : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Male;
     [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Female;
     AudioClip[] narrationAudioClips_Bathroom;
+    private bool hasBlurredEyes = false;
     string[] narration_1 = new string[30];
 
     // for bedroom scene
@@ -38,6 +40,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject cane;
     [SerializeField] Outline caneOutline;
     [SerializeField] GameObject firstTeleportHotspot;
+
+    // for debugging
+    [SerializeField] TextMeshPro DebugText;
 
     Coroutine lastRoutine = null;
 
@@ -182,7 +187,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         bathroomDoor.AllowDoorOpen();
         GameManager.instance.ShowAlert(narration_1[16]);
     }
-
+    
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
     {
         StopPrevDialogue();
@@ -194,7 +199,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
         GameManager.instance.ShowAlert(narration_1[17]);
         questControllerImage.SetActive(true);
-        PostProcessingController.instance.UsingGlasses(false); // start blur effect
         toGoLivingRoom = true;
     }
     #endregion
@@ -209,7 +213,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] Outline glassesOutline;
     [SerializeField] GameObject tvAudio;
 
-
     int dropGlassesCount = 0;
 
     public void PlaySegment1Part3_1()
@@ -223,8 +226,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // Can drop cane
         //ControllerInteractionsManager.instance.allowDropItems = true; // old implementation, not working
-        
-        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
 
         yield return new WaitForSeconds(1f);
 
@@ -366,6 +367,18 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.toTakeDenturesOff = true;
         //GameManager.instance.ShowAlert(narration_2[11]);
         CupOutline.enabled = true;
+    }
+
+    public void PlayBlurEffect()
+    {
+        StartCoroutine(BlurEffect());
+    }
+    IEnumerator BlurEffect()
+    {
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
+        PostProcessingController.instance.UsingGlasses(false);
+
+        yield return null;
     }
 
     public void DenturesPlacedInCup() // called in UnityEvent in denture cup
@@ -541,12 +554,22 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             // check here when player reaches sofa, start segment1Part3
             if (toGoLivingRoom)
             {
+                if (!hasBlurredEyes)
+                {
+                    if (cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 5)
+                    { 
+                        hasBlurredEyes = true;
+                        PlayBlurEffect(); // plays sound of old man saying eyes blurring and blur post processing effect
+                    }
+                }
+
                 if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
                 {
                     toGoLivingRoom = false;
                     PlaySegment1Part3_1();
                 }
             }
+
             #endregion
         }
     }

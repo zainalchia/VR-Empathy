@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Linq;
 using Oculus.Interaction;
 using UnityEngine.Events;
+using TMPro;
 
 public class CaneTeleport : MonoBehaviour
 {
@@ -76,11 +77,6 @@ public class CaneTeleport : MonoBehaviour
             if(currentHotspotIndex == 2 || currentHotspotIndex == 7)
             {
                 PlaySound();
-            }
-
-            if (PostProcessingController.instance.targetWeight > 2f)
-            {
-                PostProcessingController.instance.targetWeight -= 3f;
             }
 
             if (currentHotspotIndex == teleportHotspots.Length - 1)
@@ -171,5 +167,11 @@ public class CaneTeleport : MonoBehaviour
         {
             this.gameObject.transform.position = GameManager.instance.middleEyeAnchor.transform.position + GameManager.instance.middleEyeAnchor.transform.forward;
         }
+    }
+
+    // returns current hotspot index
+    public int GetCurrentHotspotIndex()
+    {
+        return currentHotspotIndex;
     }
 }

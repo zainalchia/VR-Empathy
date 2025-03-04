@@ -25,26 +25,23 @@ public class PostProcessingController : MonoBehaviour
     float interpolateRatio = 0;
     [SerializeField] bool isUsingGlasses = false;
     private DepthOfField DepthOfField;
+    private float BlurTime = 0;
+    private Coroutine currentCoroutine = null;
 
-    private void VisionBlurEffect()
+    private IEnumerator VisionBlurEffect()
     {
-        print("visionblureffect");
-        //interpolateRatio += Time.deltaTime / interval;
+        while (BlurTime < interval)
+        {
+            BlurTime += Time.deltaTime;
+            DepthOfField.aperture.value = Mathf.Lerp(DepthOfField.aperture.value, targetWeight, BlurTime / interval);
+            yield return null; // This yields control back to Unity until the next frame
+        }
         DepthOfField.aperture.value = targetWeight;
-        //if (interpolateRatio >= 1) 
-        //{
-        //    interpolateRatio = 0;
-        //    (initalWeight, targetWeight) = (targetWeight, initalWeight);
-        //}
+        currentCoroutine = null;
     }
 
     public void UsingGlasses(bool trueOrFalse) // call when glasses has been put on or taken off
     {
-        if (trueOrFalse == true) 
-        {
-            DepthOfField.aperture.value = initalWeight;
-        }
-
         isUsingGlasses = trueOrFalse;
     }
     #endregion
@@ -53,6 +50,7 @@ public class PostProcessingController : MonoBehaviour
     void Start()
     {
         GetComponent<Volume>().profile.TryGet(out DepthOfField);
+        DepthOfField.aperture.value = 32;
     }
 
     // Update is called once per frame
@@ -60,7 +58,17 @@ public class PostProcessingController : MonoBehaviour
     {
         if (!isUsingGlasses)
         {
-            VisionBlurEffect();
+            targetWeight = 1;
+        }
+        else
+        {
+            targetWeight = 32;
+        }
+
+        if(DepthOfField.aperture.value != targetWeight && currentCoroutine == null) // ensures that only one coroutine runs at any time and that it only runs when the target weight changes
+        {
+            BlurTime = 0f; // reset blur time
+            currentCoroutine = StartCoroutine(VisionBlurEffect()); // sets current coroutine to new coroutine started to keep track of current coroutine running
         }
     }
 

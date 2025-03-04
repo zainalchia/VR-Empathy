@@ -124,7 +124,6 @@ public class ControllerInteractionsManager : MonoBehaviour
                 GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 GameManager.instance.glasses.SetActive(true);
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
-                
 
                 GameManager.instance.OnGlassesTakeOff.Invoke();
                 toReleaseLeftHand = true; // so that object can be let go once the grab button is released
