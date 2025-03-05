@@ -41,9 +41,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] Outline caneOutline;
     [SerializeField] GameObject firstTeleportHotspot;
 
-    // for debugging
-    [SerializeField] TextMeshPro DebugText;
-
     Coroutine lastRoutine = null;
 
     void SetupNarrationBathroomLivingRoom()
