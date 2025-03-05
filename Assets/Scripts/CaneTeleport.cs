@@ -22,6 +22,8 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] AudioSource playerAudio;
     [SerializeField] AudioClip maleGrunt;
     [SerializeField] AudioClip femaleGrunt;
+    [SerializeField] AudioClip maleDialogue;
+    [SerializeField] AudioClip femaleDialogue;
     public UnityEvent OnLastTeleport;
 
     bool buttonPressed = false;
@@ -74,17 +76,17 @@ public class CaneTeleport : MonoBehaviour
             currentHotspotIndex += 1;
 
             ShowNextHotspot();
-            if(currentHotspotIndex == 2 || currentHotspotIndex == 7)
-            {
-                PlaySound();
-            }
+            if (currentHotspotIndex == 2 || currentHotspotIndex == 7)
+                PlaySighSound();
+            else if (currentHotspotIndex == 5)
+                PlayDialogue();
 
             if (currentHotspotIndex == teleportHotspots.Length - 1)
                 OnLastTeleport.Invoke();
         }
     }
 
-    private void PlaySound()
+    private void PlaySighSound()
     {
         if (MainMenuManager.isGenderMale)
         {
@@ -96,6 +98,20 @@ public class CaneTeleport : MonoBehaviour
             playerAudio.PlayOneShot(femaleGrunt, 1);
         }
     }
+
+    private void PlayDialogue()
+    {
+        if (MainMenuManager.isGenderMale)
+        {
+            playerAudio.volume = 0.8f;
+            playerAudio.PlayOneShot(maleDialogue);
+        }
+        else
+        {
+            playerAudio.PlayOneShot(femaleDialogue, 1);
+        }
+    }
+
     void ShowNextHotspot()
     {
         if (currentHotspotIndex == 0)

@@ -227,7 +227,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Can drop cane
         //ControllerInteractionsManager.instance.allowDropItems = true; // old implementation, not working
 
-        yield return new WaitForSeconds(1f);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
+
+        yield return new WaitForSeconds(narrationAudioClips_Bathroom[2].length);
 
         // play phone calling
         mobilePhone.SetPhoneCalling();
