@@ -419,7 +419,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // start furniture moving here
         GameManager.instance.toStartSpasming = true;
         yield return new WaitForSeconds(2f);
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
 
         // wait a while to let players look around
         yield return new WaitForSeconds(6f);
@@ -437,16 +437,16 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
 
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
         father.GetComponent<Animator>().SetTrigger("Wave");
         mother.GetComponent<Animator>().SetTrigger("Wave");
-        yield return new WaitForSeconds(narrationAudioClips_2[1].length + 1f);
-
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
         yield return new WaitForSeconds(narrationAudioClips_2[2].length + 1f);
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
         yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1f);
+
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
+        yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
@@ -462,6 +462,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         chair.SetActive(true);
         parents.SetActive(false);
 
+        // play this voiceover while the screen is black
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
+        yield return new WaitForSeconds(narrationAudioClips_2[5].length + 1f);
+
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
 
@@ -471,8 +475,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //GameManager.instance.ShowAlert(narration_2[7]);
 
         //PlayAudioAndNarration(narrationAudioClips_2[3], narration_2[8], narrationAudioClips_2[3].length);
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
-        yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1.1f);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
+        yield return new WaitForSeconds(narrationAudioClips_2[6].length + 1.1f);
 
         canMedicineSpill = true;
         PillBottleHighlight.SetActive(true);
@@ -482,7 +486,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         StopPrevDialogue();
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[7]);
 
         // for the scripted animation of medicine getting toppled over
         originallyHeldMedicine.SetActive(false);
@@ -509,6 +513,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment2Part2_3()
     {
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[8]);
+        yield return new WaitForSeconds(narrationAudioClips_2[8].length + 1.1f);
+
         photoFrameOutline.SetActive(false);
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
