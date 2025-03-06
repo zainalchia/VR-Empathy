@@ -6,6 +6,7 @@ using System.Linq;
 using Oculus.Interaction;
 using UnityEngine.Events;
 using TMPro;
+using System.Diagnostics;
 
 public class CaneTeleport : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class CaneTeleport : MonoBehaviour
 
     [SerializeField] float maxDistanceMoveable = 1f;
     [SerializeField] LayerMask teleportLayer;
-    [SerializeField] float defaultTimeBeforeNextMove = 0; // adds a delay in between teleports, set to 0 for no delay
+    [SerializeField] float defaultTimeBeforeNextMove = 2; // adds a delay in between teleports, set to 0 for no delay
     [SerializeField] GameObject[] teleportHotspots;
     [SerializeField] AudioSource playerAudio;
     [SerializeField] AudioClip maleGrunt;
@@ -33,8 +34,11 @@ public class CaneTeleport : MonoBehaviour
     float posX = 0;
     float posZ = 0;
     float timer = 0;
+    float showWaypointTimer = 0;
 
     int currentHotspotIndex = -1;
+
+    private bool moved = false;
 
     void CheckIfCanMove()
     {
@@ -50,7 +54,7 @@ public class CaneTeleport : MonoBehaviour
 
             // enable hotspot indicator when pointing cane at hotspot
             //lastHitGameObject.GetComponent<MeshRenderer>().enabled = true;
-            lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", true);
+            if(lastHitGameObject.activeSelf && timer >= defaultTimeBeforeNextMove && showWaypointTimer <= 0) lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", true);
         }
         else
         {
@@ -72,14 +76,22 @@ public class CaneTeleport : MonoBehaviour
             float offsetZ = GameManager.instance.middleEyeAnchor.transform.localPosition.z;
             GameManager.instance.ovrCamRig.transform.position = new Vector3(posX - offsetX, GameManager.instance.ovrCamRig.transform.position.y, posZ - offsetZ);
             timer = 0;
+            defaultTimeBeforeNextMove = 1.5f; // in general
 
             currentHotspotIndex += 1;
 
-            ShowNextHotspot();
             if (currentHotspotIndex == 2 || currentHotspotIndex == 7)
+            {
                 PlaySighSound();
+            }
             else if (currentHotspotIndex == 5)
-                PlayDialogue();
+            {
+                defaultTimeBeforeNextMove = 24; // delay showing of next hotspot for blurring of eyes and voicelines
+            }
+
+            teleportHotspots[currentHotspotIndex].gameObject.SetActive(false); // hide current hotspot instantly
+
+            StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
             if (currentHotspotIndex == teleportHotspots.Length - 1)
                 OnLastTeleport.Invoke();
@@ -101,6 +113,8 @@ public class CaneTeleport : MonoBehaviour
 
     private void PlayDialogue()
     {
+        PostProcessingController.instance.UsingGlasses(false); // start blur effect
+
         if (MainMenuManager.isGenderMale)
         {
             playerAudio.volume = 0.8f;
@@ -116,8 +130,8 @@ public class CaneTeleport : MonoBehaviour
     {
         if (currentHotspotIndex == 0)
         {
-            teleportHotspots[currentHotspotIndex].gameObject.SetActive(false);
             teleportHotspots[currentHotspotIndex + 1].gameObject.SetActive(true);
+            teleportHotspots[currentHotspotIndex + 1].gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
         else if (currentHotspotIndex == teleportHotspots.Length - 1) // when last teleport hotspot, no need to enable next one
         {
@@ -125,8 +139,8 @@ public class CaneTeleport : MonoBehaviour
         }
         else
         {
-            teleportHotspots[currentHotspotIndex].gameObject.SetActive(false);
             teleportHotspots[currentHotspotIndex + 1].gameObject.SetActive(true);
+            teleportHotspots[currentHotspotIndex + 1].gameObject.transform.GetChild(0).gameObject.SetActive(true);
         }
     }
 
@@ -146,6 +160,8 @@ public class CaneTeleport : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+
         if (GetComponent<Grabbable>().enabled)
         {
             if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() != null)
@@ -177,8 +193,6 @@ public class CaneTeleport : MonoBehaviour
             }
         }
 
-        timer += Time.deltaTime;
-
         if (Vector3.Distance(this.gameObject.transform.position, GameManager.instance.middleEyeAnchor.transform.position) > 5f) // cane will appear in front of user if it is too far away
         {
             this.gameObject.transform.position = GameManager.instance.middleEyeAnchor.transform.position + GameManager.instance.middleEyeAnchor.transform.forward;
@@ -190,4 +204,12 @@ public class CaneTeleport : MonoBehaviour
     {
         return currentHotspotIndex;
     }
+
+    IEnumerator ShowingNextHotspot(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        ShowNextHotspot();
+    }
+
 }

@@ -65,7 +65,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[14] = "Hellllllo Pa. This deaf father so hard to talk to him.";
         narration_1[15] = "HELLO, SON IS THAT YOU? HOW ARE YOU? WHEN YOU WANT COME";
 
-
         // Text prompts
         narration_1[16] = "Take your cane and place your hand on the door to open it.";
         narration_1[17] = "Aim the tip of the cane on the floor and press the 'Grip' button";
@@ -132,11 +131,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //PlayAudioAndNarration(narrationAudioClips_1[0], narration_1[0], 7.0f);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[0]);
-        yield return new WaitForSeconds(7.0f + 1.5f);
-
-        //GameManager.instance.ShowAlert(narration_1[1], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
-
 
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
@@ -163,22 +157,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part2()
     {
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[1]);
+
+        yield return new WaitForSeconds(narrationAudioClips_Bathroom[1].length);
+
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         cane.GetComponent<ForceStayGrabbed>().active = true;
         caneOutline.enabled = true;
         knob.GetComponent<Outline>().enabled = true;
-
-        //PlayAudioAndNarration(narrationAudioClips_1[1], narration_1[2], 4.0f);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[1]);
-        yield return new WaitForSeconds(4.0f);
-
-        //GameManager.instance.ShowAlert(narration_1[3], 2.5f);
-        yield return new WaitForSeconds(2.5f);
-        //GameManager.instance.ShowAlert(narration_1[4], 2.5f);
-        yield return new WaitForSeconds(2.5f + 1.1f);
-
-        //GameManager.instance.ShowAlert(narration_1[5]);
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
@@ -197,7 +184,31 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.ShowAlert(narration_1[17]);
         questControllerImage.SetActive(true);
         toGoLivingRoom = true;
+        lastRoutine = null;
     }
+
+    #endregion
+
+    #region Segment 1 Part 2.5 (Reached sidetable with food)
+
+    public void PlaySegment1Part2Half()
+    {
+        lastRoutine = StartCoroutine(Segment1Part2Half());
+    }
+
+    IEnumerator Segment1Part2Half()
+    {
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
+
+        yield return new WaitForSeconds(6); // food cold voiceline plus a bit of delay
+
+        PostProcessingController.instance.UsingGlasses(false);
+
+        yield return new WaitForSeconds(1);
+
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[3]);
+    }
+
     #endregion
 
     #region Segment 1 Part 3 (Living room)
@@ -224,9 +235,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Can drop cane
         //ControllerInteractionsManager.instance.allowDropItems = true; // old implementation, not working
 
-        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
-
-        yield return new WaitForSeconds(narrationAudioClips_Bathroom[2].length);
+        yield return new WaitForSeconds(2); // delay for sighing voiceline
 
         // play phone calling
         mobilePhone.SetPhoneCalling();
@@ -259,7 +268,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Trying to pick up glasses 1st time
         //PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[3]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[4]);
         yield return new WaitForSeconds(1f);
 
         glassesOutline.enabled = true;
@@ -280,12 +289,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         {
             //PlayAudioAndNarration(narrationAudioClips_1[3], narration_1[9], 9f);
             narrationAudioSource.Stop();
-            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[4]);
+            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);
         }
 
         //else if (dropGlassesCount == 2)
             //GameManager.instance.ShowAlert(narration_1[10], 3f);
-
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -309,10 +317,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //PlayAudioAndNarration(narrationAudioClips_1[4], narration_1[13], 3f);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[6]);
         //GameManager.instance.ShowAlert(narration_1[14], 8f);
 
-        yield return new WaitForSeconds(narrationAudioClips_Bathroom[5].length - 5f);
+        yield return new WaitForSeconds(narrationAudioClips_Bathroom[6].length - 5f);
         mobilePhone.SetPhoneHangUp();
 
         yield return new WaitForSeconds(5f + 1.1f);
@@ -366,18 +374,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.toTakeDenturesOff = true;
         //GameManager.instance.ShowAlert(narration_2[11]);
         CupOutline.enabled = true;
-    }
-
-    public void PlayBlurEffect()
-    {
-        StartCoroutine(BlurEffect());
-    }
-    IEnumerator BlurEffect()
-    {
-        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
-        PostProcessingController.instance.UsingGlasses(false);
-
-        yield return null;
     }
 
     public void DenturesPlacedInCup() // called in UnityEvent in denture cup
@@ -507,7 +503,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         lastRoutine = StartCoroutine(Segment2Part2_3());
     }
 
-
     IEnumerator Segment2Part2_3()
     {
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[8]);
@@ -523,7 +518,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     }
     #endregion
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -532,7 +526,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
             RenderSettings.skybox = normalSkybox;
-
         }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
@@ -557,18 +550,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
                     alertRemovedAfterFirstTP = true;
                 }
             }
+
             // check here when player reaches sofa, start segment1Part3
             if (toGoLivingRoom)
             {
-                if (!hasBlurredEyes)
+                if(cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 5 && lastRoutine == null)
                 {
-                    if (cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 5)
-                    { 
-                        hasBlurredEyes = true;
-                        PlayBlurEffect(); // plays sound of old man saying eyes blurring and blur post processing effect
-                    }
+                    PlaySegment1Part2Half();
                 }
-
+                
                 if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
                 {
                     toGoLivingRoom = false;
