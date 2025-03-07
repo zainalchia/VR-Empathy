@@ -67,8 +67,10 @@ public class CaneTeleport : MonoBehaviour
         }
     }
 
-    void MoveToLocation()
+    public void MoveToLocation()
     {
+        canMove = true;
+
         if (canMove && timer >= defaultTimeBeforeNextMove)
         {
             // Move OVRCameraRig gameobject with offset

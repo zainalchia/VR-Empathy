@@ -18,7 +18,7 @@ public class FollowObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = initialRot * objToFollow.transform.rotation;
+        transform.localRotation = initialRot * objToFollow.transform.rotation;
         transform.position = initialPos + objToFollow.transform.position;
     }
 }
