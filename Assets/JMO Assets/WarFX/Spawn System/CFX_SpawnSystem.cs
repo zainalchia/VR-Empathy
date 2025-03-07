@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 // Cartoon FX  - (c) 2012-2016 Jean Moreno
 
-// Spawn System:
+// S
+// System:
 // Preload GameObject to reuse them later, avoiding to Instantiate them.
 // Very useful for mobile platforms.
 

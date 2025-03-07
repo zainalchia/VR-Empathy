@@ -40,7 +40,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     void SetupNarrationVoiddeck()
     {
-
+        narration_2[0] = "[Pick up highlighted othello piece and place it on outlined spot]";
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -222,7 +222,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #endregion
 
-
     #region Segment2 Part 1 (Voiddeck, Tai chi)
 
     [Header("Voiddeck - Taichi")]
@@ -256,6 +255,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject chessNPC;
     [SerializeField] GameObject teleportPoint;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject FirstPlayerPieceDestination;
+    [SerializeField] GameObject SecondPlayerPieceDestination;
     int times;
     IEnumerator MovingFromTaichiToChess()
     {
@@ -269,43 +270,67 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         player.transform.rotation = teleportPoint.transform.rotation;
         taichiNPC.SetActive(false);
         chessNPC.SetActive(true);
+        FirstPlayerPieceDestination.SetActive(true);
+        GameManager.instance.ShowAlert(narration_2[0]);
         yield return new WaitForSeconds(4f);
     }
 
     [Header("Voiddeck - Chess")]
     [SerializeField] GameObject NPC;
-    [SerializeField] GameObject Piece;
-    [SerializeField] GameObject Bishop;
-
+    [SerializeField] GameObject FirstFriendOthelloPiece;
+    [SerializeField] GameObject SecondPlayerOthelloPiece;
+    [SerializeField] GameObject SecondFriendOthelloPiece;
+    [SerializeField] GameObject FirstDestination;
+    [SerializeField] GameObject SecondDestination;
+    
     public void TriggerNPC()
     {
+        StopPrevDialogue(); // hides alert
         NPC.GetComponent<Animator>().SetTrigger("move");
-        StartCoroutine(movePiece());
+        StartCoroutine(MovePiece());
     }
 
-    IEnumerator movePiece()
+    IEnumerator MovePiece()
     {
         yield return new WaitForSeconds(2f);
         float timeSinceStarted = 0f;
-        while (true)
+        float duration = 2f; // Total movement time
+
+        Vector3 startPosition = FirstFriendOthelloPiece.transform.localPosition;
+        Vector3 targetPosition = FirstDestination.transform.localPosition;
+
+        while (timeSinceStarted < duration)
         {
             timeSinceStarted += Time.deltaTime;
-            Piece.transform.localPosition = Vector3.Lerp(Piece.transform.localPosition, new Vector3(0.22f, 0f, -0.66f), timeSinceStarted);
-            if (Piece.transform.localPosition == new Vector3(0.22f, 0f, -0.66f))
-            {
-                Bishop.GetComponent<Outline>().enabled = true;
-                Bishop.GetComponent<Grabbable>().enabled = true;
-                Bishop.GetComponent<GrabInteractable>().enabled = true;
-                Bishop.GetComponent<PhysicsGrabbable>().enabled = true;
-                yield break;
-            }
+            float t = timeSinceStarted / duration; // Normalized time (0 to 1)
+
+            // Calculate position with linear interpolation
+            Vector3 currentPosition = Vector3.Lerp(startPosition, targetPosition, t);
+
+            // Add height using a parabolic function (highest at t=0.5)
+            float height = 0.25f * Mathf.Sin(t * Mathf.PI); // Peak height of 0.5 units
+            currentPosition.y += height;
+
+            // Apply the position
+            FirstFriendOthelloPiece.transform.localPosition = currentPosition;
+
             yield return null;
         }
+
+        // Ensure final position is exactly at destination
+        FirstFriendOthelloPiece.transform.localPosition = targetPosition;
+
+        // Enable interaction with the second piece
+        SecondPlayerOthelloPiece.GetComponent<Outline>().enabled = true;
+        SecondPlayerOthelloPiece.GetComponent<Grabbable>().enabled = true;
+        SecondPlayerOthelloPiece.GetComponent<GrabInteractable>().enabled = true;
+        SecondPlayerOthelloPiece.GetComponent<PhysicsGrabbable>().enabled = true;
+        SecondPlayerPieceDestination.SetActive(true);
     }
 
     public void EndOfChess()
     {
-        StartCoroutine(MovingFromChessToReadingCorner());
+        StartCoroutine(FinalMove());
     }
 
     [Header("Voiddeck - Transition Chess to Reading Corner")]
@@ -315,6 +340,39 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     GameObject TVScreen;
     [SerializeField]
     GameObject readingCornerNPCs;
+
+    IEnumerator FinalMove()
+    {
+        yield return new WaitForSeconds(2f);
+        float timeSinceStarted = 0f;
+        float duration = 2f; // Total movement time
+
+        Vector3 startPosition = SecondFriendOthelloPiece.transform.localPosition;
+        Vector3 targetPosition = SecondDestination.transform.localPosition;
+
+        while (timeSinceStarted < duration)
+        {
+            timeSinceStarted += Time.deltaTime;
+            float t = timeSinceStarted / duration; // Normalized time (0 to 1)
+
+            // Calculate position with linear interpolation
+            Vector3 currentPosition = Vector3.Lerp(startPosition, targetPosition, t);
+
+            // Add height using a parabolic function (highest at t=0.5)
+            float height = 0.25f * Mathf.Sin(t * Mathf.PI); // Peak height of 0.5 units
+            currentPosition.y += height;
+
+            // Apply the position
+            SecondFriendOthelloPiece.transform.localPosition = currentPosition;
+
+            yield return null;
+        }
+
+        // Ensure final position is exactly at destination
+        SecondFriendOthelloPiece.transform.localPosition = targetPosition;
+
+        StartCoroutine(MovingFromChessToReadingCorner());
+    }
 
     IEnumerator MovingFromChessToReadingCorner()
     {
@@ -364,6 +422,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
+            SetupNarrationVoiddeck();
             foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
             {
                 anim.NextPose();
@@ -383,7 +442,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             {
                 if (cane.GetComponent<CaneTeleport>().HasTeleportedOnce())
                 {
-                    StopPrevDialogue();
+                    StopPrevDialogue(); // removes alert text of picking up cane lmao
                     alertRemovedAfterFirstTP = true;
                 }
             }

@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class ChessPieceChecker : MonoBehaviour
 {
     [SerializeField]
-    GameObject Pawn, Bishop;
+    GameObject FirstOthelloPiece,SecondOthelloPiece;
 
     [SerializeField]
     UnityEvent TriggerNPCMove;
@@ -28,27 +28,27 @@ public class ChessPieceChecker : MonoBehaviour
 
     private void SetPieceInPlace(GameObject piece)
     {
-        if(piece == Pawn)
+        if(piece == FirstOthelloPiece)
         {
-            Pawn.GetComponent<Rigidbody>().isKinematic = true;
-            Pawn.GetComponent<BoxCollider>().enabled = false;
-            Pawn.GetComponent<Outline>().enabled = false;
-            Pawn.transform.localRotation = Quaternion.identity;
-
-            Pawn.transform.localPosition = new Vector3(0.06f,0.01f,-0.57f);
+            FirstOthelloPiece.GetComponent<Rigidbody>().isKinematic = true;
+            FirstOthelloPiece.GetComponent<BoxCollider>().enabled = false;
+            FirstOthelloPiece.GetComponent<Outline>().enabled = false;
+            FirstOthelloPiece.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+            FirstOthelloPiece.transform.localPosition = transform.localPosition;
             TriggerNPCMove.Invoke();
         }
-        else if(piece == Bishop)
+        else if(piece == SecondOthelloPiece)
         {
-            Bishop.GetComponent<Rigidbody>().isKinematic = true;
-            Bishop.GetComponent<BoxCollider>().enabled = false;
-            Bishop.GetComponent<Outline>().enabled = false;
-            Bishop.transform.localRotation = Quaternion.identity;
-
+            SecondOthelloPiece.GetComponent<Rigidbody>().isKinematic = true;
+            SecondOthelloPiece.GetComponent<BoxCollider>().enabled = false;
+            SecondOthelloPiece.GetComponent<Outline>().enabled = false;
+            SecondOthelloPiece.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
+            SecondOthelloPiece.transform.localPosition = transform.localPosition;
             EndOfChess.Invoke();
         }
 
         piece.GetComponent<Grabbable>().enabled = false;
+        GetComponent<Outline>().enabled = false; // disable its own outline
     }
 
 }
