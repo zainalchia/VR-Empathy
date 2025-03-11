@@ -380,7 +380,6 @@ public class ControllerInteractionsManager : MonoBehaviour
     void Update()
     {
         #region Hand Animations
-        GameManager.instance.DebugLog(timerToOpenCloseFistLeft.ToString() + "," + timerToOpenCloseFistRight.ToString());
 
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {

@@ -35,7 +35,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     void SetupNarrationBathroomLivingRoom()
     {
         narration_1[0] = "Open the door and head to the sofa";
-        narration_1[1] = "Someone is calling,pick up the call";
+        narration_1[1] = "Press GRIP button to move to highlighted circle";
+        narration_1[2] = "Someone is calling,pick up the call";
     }
 
     void SetupNarrationVoiddeck()
@@ -105,6 +106,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StopPrevDialogue();
 
+        GameManager.instance.ShowAlert(narration_1[1]);
+
         knob.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
@@ -122,6 +125,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject phoneOutline;
     [SerializeField] GameObject glassesOutline;
 
+
     public void PlaySegment1Part3_1()
     {
         lastRoutine = StartCoroutine(Segment1Part3_1());
@@ -138,38 +142,23 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         mobilePhone.SetPhoneCalling();
         phoneOutline.SetActive(true);
 
-        GameManager.instance.ShowAlert(narration_1[1]);
-
         yield return new WaitForSeconds(2.5f + 1.1f);
+
+        GameManager.instance.ShowAlert(narration_1[2]);
 
         GameManager.instance.toPickUpPhone = true;
     }
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
-        PostProcessingController.instance.UsingGlasses(false); // start blur effect
         StopPrevDialogue();
         phoneOutline.SetActive(false);
-        lastRoutine = StartCoroutine(Segment1Part3_2());
-    }
-
-    IEnumerator Segment1Part3_2()
-    {
-        GameManager.instance.toPutGlassesOn = true;
-
-        // Trying to pick up glasses 1st time
-        //PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
-        yield return new WaitForSeconds(narrationAudioClips_1[2].length);
-
-        glassesOutline.SetActive(true);        
+        GlassesPutOn();
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
     {
         StopPrevDialogue();
-        glassesOutline.SetActive(false);
         GameManager.instance.canAnswerPhone = true;
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
         //GameManager.instance.ShowAlert(narration_1[12]);
@@ -201,17 +190,42 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
 
-        // fade screen here
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(4f);
-
-        // load next scene here
-        SceneManager.LoadScene("PresentGoodVoidDeck", LoadSceneMode.Single); // Or whatever number present bad bedroom scene is
+        PlaySegment1Part4();
     }
 
     #endregion
 
-    #region Segment2 Part 1 (Voiddeck, Tai chi)
+    #region Segment 1 Part 4(From living room to main door)
+
+    [Header("Living room to main door")]
+    [SerializeField] DoorKnob mainDoor;
+    [SerializeField] AudioSource RingingSoundSource;
+
+    public void PlaySegment1Part4()
+    {
+        lastRoutine = StartCoroutine(Segment1Part3_1());
+    }
+
+    IEnumerator Segment1Part4_1()
+    {
+        yield return new WaitForSeconds(1f); // delay between phone hang up and door ring
+
+        mainDoor.GetComponent<Outline>().enabled = true;
+
+        RingingSoundSource.Play();
+
+        GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards door
+    }
+
+    // used as unity event in main door 
+    public void MainDoorOpen()
+    {
+
+    }
+
+    #endregion 
+
+    #region Segment 2 Part 1 (Voiddeck, Tai chi)
 
     [Header("Voiddeck - Taichi")]
     [SerializeField]
