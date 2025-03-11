@@ -28,15 +28,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     string[] narration_2 = new string[30];
 
     [Header("Multi-Scene Objects")]
-    [SerializeField] GameObject cane;
-    [SerializeField] GameObject caneOutline;
     [SerializeField] GameObject firstTeleportHotspot;
 
     Coroutine lastRoutine = null;
 
     void SetupNarrationBathroomLivingRoom()
     {
-
+        narration_1[0] = "Open the door and head to the sofa";
+        narration_1[1] = "Someone is calling,pick up the call";
     }
 
     void SetupNarrationVoiddeck()
@@ -57,7 +56,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
-        cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
@@ -65,14 +63,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //PlayAudioAndNarration(narrationAudioClips_1[0], narration_1[0], 7.0f);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
-        yield return new WaitForSeconds(7.0f + 1.5f);
-
-        //GameManager.instance.ShowAlert(narration_1[1], 3f);
-        yield return new WaitForSeconds(3f + 1.1f);
-
 
         // Give time for player to wash up
-        yield return new WaitForSeconds(timeForWashingUp);
+        yield return new WaitForSeconds(narrationAudioClips_1[0].length + timeForWashingUp);
+
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+
+        yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
         PlaySegment1Part2();
     }
@@ -94,38 +91,26 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part2()
     {
-        cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
-        caneOutline.SetActive(true);
         knob.GetComponent<Outline>().enabled = true;
 
-        //PlayAudioAndNarration(narrationAudioClips_1[1], narration_1[2], 4.0f);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
-        yield return new WaitForSeconds(4.0f);
-
-        //GameManager.instance.ShowAlert(narration_1[3], 2.5f);
-        yield return new WaitForSeconds(2.5f);
-        //GameManager.instance.ShowAlert(narration_1[4], 2.5f);
-        yield return new WaitForSeconds(2.5f + 1.1f);
-
-        //GameManager.instance.ShowAlert(narration_1[5]);
+        GameManager.instance.ShowAlert(narration_1[0]);
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
+
+        yield return null;
     }
 
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
     {
         StopPrevDialogue();
 
-        caneOutline.SetActive(false);
         knob.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        //GameManager.instance.ShowAlert(narration_1[6]);
+      
         toGoLivingRoom = true;
     }
-
 
     #endregion
 
@@ -140,19 +125,21 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     public void PlaySegment1Part3_1()
     {
         lastRoutine = StartCoroutine(Segment1Part3_1());
+
+        // clip to play is the lighthearted music clip
+
+        //narrationAudioSource.Stop();
+        //narrationAudioSource.PlayOneShot(clipToPlay);
     }
 
     IEnumerator Segment1Part3_1()
     {
-        PostProcessingController.instance.UsingGlasses(false); // start blur effect
-        
-        yield return new WaitForSeconds(1f);
-
         // play phone calling
         mobilePhone.SetPhoneCalling();
         phoneOutline.SetActive(true);
 
-        //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
+        GameManager.instance.ShowAlert(narration_1[1]);
+
         yield return new WaitForSeconds(2.5f + 1.1f);
 
         GameManager.instance.toPickUpPhone = true;
@@ -160,6 +147,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
+        PostProcessingController.instance.UsingGlasses(false); // start blur effect
         StopPrevDialogue();
         phoneOutline.SetActive(false);
         lastRoutine = StartCoroutine(Segment1Part3_2());
@@ -173,7 +161,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(narrationAudioClips_1[2].length);
 
         glassesOutline.SetActive(true);        
     }
@@ -436,12 +424,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
-            //SetupNarrationVoiddeck();
-            //foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
-            //{
-            //    anim.NextPose();
-            //}
-            StartCoroutine(MovingFromTaichiToChess());
+            SetupNarrationVoiddeck();
+            foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
+            {
+                anim.NextPose();
+            }
+            PlaySegment2Part1();
+            //StartCoroutine(MovingFromTaichiToChess());
         }
     }
 
@@ -454,11 +443,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             // remove alert after first teleport
             if (!alertRemovedAfterFirstTP)
             {
-                if (cane.GetComponent<CaneTeleport>().HasTeleportedOnce())
-                {
-                    StopPrevDialogue(); // removes alert text of picking up cane lmao
-                    alertRemovedAfterFirstTP = true;
-                }
+                //if (/*cane.GetComponent<CaneTeleport>().HasTeleportedOnce()*/)
+                //{
+                //    StopPrevDialogue(); // removes alert text of picking up cane lmao
+                //    alertRemovedAfterFirstTP = true;
+                //}
             }
             // check here when player reaches sofa, start segment1Part3
             if (toGoLivingRoom)
