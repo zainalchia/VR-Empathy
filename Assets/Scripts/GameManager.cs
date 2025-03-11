@@ -5,6 +5,7 @@ using UnityEngine;
 using Oculus.Interaction;
 using UnityEngine.Events;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class GameManager : MonoBehaviour
 {
@@ -127,6 +128,134 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region Othello Stuff
+
+     private Vector3[] directions = new Vector3[] // directions to raycast from for each piece
+    {
+         Vector3.forward,              // North
+         new Vector3(1, 0, 1),         // Northeast
+         Vector3.right,                // East
+         new Vector3(1, 0, -1),        // Southeast
+         Vector3.back,                 // South
+         new Vector3(-1, 0, -1),       // Southwest
+         Vector3.left,                 // West
+         new Vector3(-1, 0, 1)         // Northwest
+    };
+
+    public List<GameObject> FindPiecesToFlip(GameObject pieceToCheck)
+    {
+        List<GameObject> piecesToFlip = new List<GameObject>();
+
+        List<GameObject> possiblePiecesToFlip = new List<GameObject>();
+
+        // Start with one cell distance
+        float currentDistance = 0.1f; // 0.05f is the length and height of one square on the othello board
+
+        for(int i = 0; i < directions.Length; i++)
+        { 
+            // how this method works is that i am going to change the position of the raycast to check each square individually
+            GameObject currentPieceToCheck = pieceToCheck;
+
+            possiblePiecesToFlip.Clear();
+
+            while (true)
+            {
+                RaycastHit hit;
+
+                if (Physics.Raycast(currentPieceToCheck.transform.position, directions[i],out hit,currentDistance))
+                {
+                    if(Mathf.Abs(hit.transform.rotation.eulerAngles.z - pieceToCheck.transform.rotation.eulerAngles.z) > 10) // means the piece colors are different
+                    {
+                        possiblePiecesToFlip.Add(hit.transform.gameObject);
+                        currentPieceToCheck = hit.transform.gameObject; // raycast from next piece
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    possiblePiecesToFlip.Clear();
+
+                    break;
+                }
+            }
+
+            if (possiblePiecesToFlip != null)
+            {
+                if (possiblePiecesToFlip.Count > 0)
+                {
+                    foreach (var piece in possiblePiecesToFlip)
+                    {
+                        piecesToFlip.Add(piece);
+                    }
+                }
+            }
+        }
+
+        return piecesToFlip;
+    }
+
+    public IEnumerator AnimateFlippingPieces(List<GameObject> piecesToFlip)
+    {
+        float durationPerPiece = 0.5f; // Time for each individual piece to flip
+
+        // Flip each piece one at a time
+        if (piecesToFlip != null)
+        {
+            if (piecesToFlip.Count > 0)
+            {
+                foreach (GameObject piece in piecesToFlip)
+                {
+                    // Store initial and target rotations
+                    Quaternion startRotation = piece.transform.rotation;
+
+                    Vector3 currentEuler = piece.transform.rotation.eulerAngles;
+
+                    float targetZ = 0;
+
+                    switch (currentEuler.z)
+                    {
+                        case >= 90:
+                            targetZ = 0f;
+                            break;
+
+                        case < 90:
+                            targetZ = 180f;
+                            break;
+                    }
+
+                    Quaternion targetRotation = Quaternion.Euler(currentEuler.x, currentEuler.y, targetZ);
+
+                    // Animate this single piece
+                    float timer = 0f;
+                    while (timer < durationPerPiece)
+                    {
+                        float t = timer / durationPerPiece; // Normalized time (0 to 1)
+
+                        // Update rotation for this piece
+                        piece.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+
+                        timer += Time.deltaTime;
+                        yield return null; // Wait for next frame
+                    }
+
+                    // Ensure the piece ends at exactly its target rotation
+                    piece.transform.rotation = targetRotation;
+
+                    // Optional small pause between pieces
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }
+        }
+
+        // Small delay after all animations complete
+        yield return new WaitForSeconds(0.2f);
+    }
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -148,6 +277,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+       
     }
 }

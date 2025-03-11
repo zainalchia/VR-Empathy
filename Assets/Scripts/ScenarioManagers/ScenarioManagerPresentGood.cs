@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using static UnityEngine.Rendering.DebugUI;
 using static Unity.VisualScripting.Member;
+using UnityEngine.Events;
 
 public class ScenarioManagerPresentGood : MonoBehaviour
 {
@@ -264,7 +265,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
-
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         player.transform.position = teleportPoint.transform.position;
         player.transform.rotation = teleportPoint.transform.rotation;
@@ -320,6 +320,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // Ensure final position is exactly at destination
         FirstFriendOthelloPiece.transform.localPosition = targetPosition;
 
+        yield return StartCoroutine(FindPiecesToFlip(FirstFriendOthelloPiece)); // wait until flipping animation is done
+
         // Enable interaction with the second piece
         SecondPlayerOthelloPiece.GetComponent<Outline>().enabled = true;
         SecondPlayerOthelloPiece.GetComponent<Grabbable>().enabled = true;
@@ -330,6 +332,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void EndOfChess()
     {
+        StopPrevDialogue(); // hides alert
+        NPC.GetComponent<Animator>().ResetTrigger("move");
+        NPC.GetComponent<Animator>().SetTrigger("move");
         StartCoroutine(FinalMove());
     }
 
@@ -412,6 +417,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         GameManager.instance.goodbyeText.SetActive(true);
     }
 
+    private IEnumerator FindPiecesToFlip(GameObject pieceToCheck)
+    {
+        List<GameObject> piecesToFlip = new List<GameObject>();
+
+        piecesToFlip = GameManager.instance.FindPiecesToFlip(pieceToCheck);
+
+        yield return StartCoroutine(GameManager.instance.AnimateFlippingPieces(piecesToFlip));
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -422,12 +436,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
-            SetupNarrationVoiddeck();
-            foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
-            {
-                anim.NextPose();
-            }
-            PlaySegment2Part1();
+            //SetupNarrationVoiddeck();
+            //foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
+            //{
+            //    anim.NextPose();
+            //}
+            StartCoroutine(MovingFromTaichiToChess());
         }
     }
 

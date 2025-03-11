@@ -15,6 +15,8 @@ public class ChessPieceChecker : MonoBehaviour
     [SerializeField]
     UnityEvent EndOfChess;
 
+    private List<GameObject> piecesToFlip = new List<GameObject>();
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>() != null)
@@ -31,24 +33,31 @@ public class ChessPieceChecker : MonoBehaviour
         if(piece == FirstOthelloPiece)
         {
             FirstOthelloPiece.GetComponent<Rigidbody>().isKinematic = true;
-            FirstOthelloPiece.GetComponent<BoxCollider>().enabled = false;
             FirstOthelloPiece.GetComponent<Outline>().enabled = false;
             FirstOthelloPiece.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
             FirstOthelloPiece.transform.localPosition = transform.localPosition;
-            TriggerNPCMove.Invoke();
+            StartCoroutine(FindPiecesToFlip(piece,TriggerNPCMove));
         }
         else if(piece == SecondOthelloPiece)
         {
             SecondOthelloPiece.GetComponent<Rigidbody>().isKinematic = true;
-            SecondOthelloPiece.GetComponent<BoxCollider>().enabled = false;
             SecondOthelloPiece.GetComponent<Outline>().enabled = false;
             SecondOthelloPiece.transform.localRotation = Quaternion.Euler(0f, 0f, 180f);
             SecondOthelloPiece.transform.localPosition = transform.localPosition;
-            EndOfChess.Invoke();
+            StartCoroutine(FindPiecesToFlip(piece,EndOfChess));
         }
 
         piece.GetComponent<Grabbable>().enabled = false;
-        GetComponent<Outline>().enabled = false; // disable its own outline
+        transform.GetChild(0).gameObject.SetActive(false);
+        GetComponent<Collider>().enabled = false;
     }
 
+    private IEnumerator FindPiecesToFlip(GameObject pieceToCheck,UnityEvent unityEvent)
+    {
+        piecesToFlip = GameManager.instance.FindPiecesToFlip(pieceToCheck);
+
+        yield return StartCoroutine(GameManager.instance.AnimateFlippingPieces(piecesToFlip));
+
+        unityEvent.Invoke();
+    }
 }
