@@ -19,7 +19,6 @@ public class ControllerInteractionsManager : MonoBehaviour
     }
     #endregion
 
-
     #region Grabbing Items
     private List<GrabInteractor> grabInteractorsWithinRange = new List<GrabInteractor>();
     public GrabInteractor leftGrabInteractor;
@@ -34,6 +33,14 @@ public class ControllerInteractionsManager : MonoBehaviour
     bool rightHandForceSelected;
     GameObject lastHeldObjLeftHand;
     GameObject lastHeldObjRightHand;
+
+    // time taken to close/open fist
+    [SerializeField] float timeToOpenCloseFist = 0.2f;
+    float speedToOpenCloseFist = 5.0f;
+    bool leftFistClosed = false;
+    bool rightFistClosed = false;
+    float timerToOpenCloseFistLeft = 0.0f;
+    float timerToOpenCloseFistRight = 0.0f;
 
     public List<GameObject> GetItemsGrabbedInHand()
     {
@@ -365,33 +372,66 @@ public class ControllerInteractionsManager : MonoBehaviour
     void Start()
     {
         dropGlassesTimer = dropGlassesInterval;
+
+        float speedToOpenCloseFist = 1 / timeToOpenCloseFist;
     }
 
     // Update is called once per frame
     void Update()
     {
         #region Hand Animations
+        GameManager.instance.DebugLog(timerToOpenCloseFistLeft.ToString() + "," + timerToOpenCloseFistRight.ToString());
+
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
             //GameManager.instance.leftHand.GetComponent<Animator>().SetBool("isLeftGrabbing", true);
-            GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", 1);
+            //GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", 1);
+            leftFistClosed = true;            
         }
         else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
         {
             //GameManager.instance.maleHandsModelLeft.GetComponent<Animator>().SetBool("isLeftGrabbing", false);
-            GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", 0);
+            //GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", 0);
+            leftFistClosed = false;            
         }
+
+        if (leftFistClosed)
+        {
+            if (timerToOpenCloseFistLeft < 1.0f)
+                timerToOpenCloseFistLeft += Time.deltaTime * speedToOpenCloseFist;
+        }
+        else
+        {
+            if (timerToOpenCloseFistLeft > 0.0f)
+                timerToOpenCloseFistLeft -= Time.deltaTime * speedToOpenCloseFist;
+        }
+        GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistLeft);
+
 
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
             //GameManager.instance.maleHandsModelRight.GetComponent<Animator>().SetBool("isRightGrabbing", true);
-            GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", 1);
+            //GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", 1);
+            rightFistClosed = true;
         }
         else if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
             //GameManager.instance.maleHandsModelRight.GetComponent<Animator>().SetBool("isRightGrabbing", false);
-            GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", 0);
+            //GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", 0);
+            rightFistClosed = false;
         }
+
+        if (rightFistClosed)
+        {
+            if (timerToOpenCloseFistRight < 1.0f)
+                timerToOpenCloseFistRight += Time.deltaTime * speedToOpenCloseFist;
+        }
+        else
+        {
+            if (timerToOpenCloseFistRight > 0.0f)
+                timerToOpenCloseFistRight -= Time.deltaTime * speedToOpenCloseFist;
+        }
+        GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistRight);
         #endregion
 
         #region Grabbing Items
