@@ -19570,21 +19570,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2281462124764411875}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1155942851945915638
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750601898310710368}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1163032857553499538
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19958,26 +19943,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8606669930137925528}
   m_Mesh: {fileID: -4119317738140548247, guid: a88eb176bb3aa794fb18bce322269dd1, type: 3}
---- !u!1 &1750601898310710368
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1155942851945915638}
-  - component: {fileID: 3357422135080932659}
-  - component: {fileID: 3205872392655426376}
-  - component: {fileID: 7330522279698956916}
-  - component: {fileID: 2345401382498451322}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!23 &1753211533627536867
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20282,102 +20247,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5345032221292428155}
   m_Mesh: {fileID: 4493585093827132993, guid: f106dbbfe9f99854ea931930712e084d, type: 3}
---- !u!82 &2345401382498451322
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750601898310710368}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!33 &2371451925595540453
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -20522,6 +20391,11 @@ PrefabInstance:
       propertyPath: teleportHotspots.Array.data[9]
       value: 
       objectReference: {fileID: 1231675834}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnLastTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20828,48 +20702,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &3205872392655426376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750601898310710368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  leftGrabInteractor: {fileID: 308433641}
-  rightGrabInteractor: {fileID: 308433640}
-  timeToOpenCloseFist: 0.2
-  autoDropItems: 1
-  dropGlassesInterval: 0.5
-  dropGlassesCount: 2
-  audioSource_player: {fileID: 1726075247}
-  audioClip_sighAfterDrop: {fileID: 0}
-  dropItemFX: {fileID: 1429954232896169633, guid: d67309e7f1b0a4cb5b6e68d1c27493c7,
-    type: 3}
-  leftHandAnchor: {fileID: 1762427431}
-  rightHandAnchor: {fileID: 277287913}
-  OnGlassesDrop:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7330522279698956916}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: DropGlassesReaction
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  allowControllerVibration: 1
-  vibrationStrength: 255
-  vibrationFrequency: 2
 --- !u!1 &3334252357329219579
 GameObject:
   m_ObjectHideFlags: 0
@@ -20888,61 +20720,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
   m_IsActive: 1
---- !u!114 &3357422135080932659
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750601898310710368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  debugText: {fileID: 1945195396}
-  ovrCamRig: {fileID: 308433642}
-  middleEyeAnchor: {fileID: 308433646}
-  grabInteractors:
-  - {fileID: 308433641}
-  - {fileID: 308433640}
-  MaleModel: {fileID: 2276772900260340214}
-  FemaleModel: {fileID: 758137579}
-  leftHand: {fileID: 2104424427}
-  rightHand: {fileID: 1743754498}
-  characterModel: {fileID: 0}
-  alertText: {fileID: 1615119055}
-  fadePanel: {fileID: 1178772239}
-  goodbyeText: {fileID: 0}
-  glasses: {fileID: 1301409468}
-  toPutGlassesOn: 0
-  toTakeGlassesOff: 0
-  OnGlassesTakeOff:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 421615960}
-        m_TargetAssemblyTypeName: PostProcessingController, Assembly-CSharp
-        m_MethodName: UsingGlasses
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  dentures: {fileID: 1539590057}
-  toTakeDenturesOff: 0
-  OnDenturesTakeOff:
-    m_PersistentCalls:
-      m_Calls: []
-  toLookAtObjective: 0
-  toPickUpPhone: 0
-  canAnswerPhone: 0
-  taiChiAnimations: []
-  toDoTaiChi: 0
-  toStartSpasming: 0
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0
@@ -21693,6 +21470,224 @@ Transform:
   - {fileID: 5914924554777064626}
   m_Father: {fileID: 3416319793519597667}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5817889223404952107
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: cane
+      value: 
+      objectReference: {fileID: 412595808}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: knob
+      value: 
+      objectReference: {fileID: 982161137}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: phone
+      value: 
+      objectReference: {fileID: 1407789967}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: glasses
+      value: 
+      objectReference: {fileID: 1301409468}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: caneOutline
+      value: 
+      objectReference: {fileID: 1753885426}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: mobilePhone
+      value: 
+      objectReference: {fileID: 576931597}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: bathroomDoor
+      value: 
+      objectReference: {fileID: 982161141}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: phoneOutline
+      value: 
+      objectReference: {fileID: 1407789968}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: glassesOutline
+      value: 
+      objectReference: {fileID: 1301409474}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: firstTeleportHotspot
+      value: 
+      objectReference: {fileID: 494444110}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: questControllerImage
+      value: 
+      objectReference: {fileID: 1382929688}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: glasses
+      value: 
+      objectReference: {fileID: 1301409468}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: dentures
+      value: 
+      objectReference: {fileID: 1539590057}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: leftHand
+      value: 
+      objectReference: {fileID: 2104424427}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: MaleModel
+      value: 
+      objectReference: {fileID: 2276772900260340214}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: alertText
+      value: 
+      objectReference: {fileID: 1615119055}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: debugText
+      value: 
+      objectReference: {fileID: 1945195396}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: fadePanel
+      value: 
+      objectReference: {fileID: 1178772239}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: ovrCamRig
+      value: 
+      objectReference: {fileID: 308433642}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: rightHand
+      value: 
+      objectReference: {fileID: 1743754498}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: FemaleModel
+      value: 
+      objectReference: {fileID: 758137579}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: middleEyeAnchor
+      value: 
+      objectReference: {fileID: 308433646}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: grabInteractors.Array.data[0]
+      value: 
+      objectReference: {fileID: 308433641}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: grabInteractors.Array.data[1]
+      value: 
+      objectReference: {fileID: 308433640}
+    - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: OnGlassesTakeOff.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 421615960}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4159931587961368547, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4947871553479497366, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7277603912207185784, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: leftHandAnchor
+      value: 
+      objectReference: {fileID: 1762427431}
+    - target: {fileID: 7277603912207185784, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: rightHandAnchor
+      value: 
+      objectReference: {fileID: 277287913}
+    - target: {fileID: 7277603912207185784, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: audioSource_player
+      value: 
+      objectReference: {fileID: 1726075247}
+    - target: {fileID: 7277603912207185784, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: leftGrabInteractor
+      value: 
+      objectReference: {fileID: 308433641}
+    - target: {fileID: 7277603912207185784, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: rightGrabInteractor
+      value: 
+      objectReference: {fileID: 308433640}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 762801de029432c44a40e4065bb93349, type: 3}
 --- !u!23 &5826196371451106257
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22258,76 +22253,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 232962304186029133}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7330522279698956916
+--- !u!114 &7330522279698956916 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+    type: 3}
+  m_PrefabInstance: {fileID: 5817889223404952107}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750601898310710368}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27d2eff92ffe04743943e3b2ed758679, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
-  sceneToPlay: 0
-  narrationAudioSource: {fileID: 2345401382498451322}
-  narrationAudioClips_Bathroom_Male:
-  - {fileID: 8300000, guid: 3e43158c4efdff746a7f5ebc16ce4329, type: 3}
-  - {fileID: 8300000, guid: d38fde46d16b2344088ebf549a775f72, type: 3}
-  - {fileID: 8300000, guid: 6093b3dfd20fe414a8157e4e76243eab, type: 3}
-  - {fileID: 8300000, guid: 408a38b84385e18458a6478b6b775cc2, type: 3}
-  - {fileID: 8300000, guid: 1edc609c813842a4893db2b35c8b3485, type: 3}
-  - {fileID: 8300000, guid: 6fcb0f460aab2fc44af0ff3291966ad3, type: 3}
-  - {fileID: 8300000, guid: 8b6396bea13b1634e8bec45a90ede8c7, type: 3}
-  narrationAudioClips_Bathroom_Female:
-  - {fileID: 8300000, guid: 8f8109deb5acf4d4693b58c2f2a4dca3, type: 3}
-  - {fileID: 8300000, guid: d78b7bfbbe8abb3459ec1796d1845bfa, type: 3}
-  - {fileID: 8300000, guid: ae75ef53aaf3cc04fabce200831daa06, type: 3}
-  - {fileID: 8300000, guid: e5ede90301738dd4bb94c92908fe8ec3, type: 3}
-  - {fileID: 8300000, guid: 473a5a3927602dc4d9aac42f34097c3f, type: 3}
-  - {fileID: 8300000, guid: e248eb87e2c3d07438e02c0649e0d046, type: 3}
-  narrationAudioClips_Bedroom_Male:
-  - {fileID: 8300000, guid: e1fd277fef2d7cf44b5bfd2c2b7b6e2d, type: 3}
-  - {fileID: 8300000, guid: 273373b574637aa418c94e694fb8bace, type: 3}
-  - {fileID: 8300000, guid: 2d4eca06f681b3644be5f444974e230f, type: 3}
-  - {fileID: 8300000, guid: 0bff06e94526f2c44acfc55691596813, type: 3}
-  - {fileID: 8300000, guid: e2ea7e262d7f8c440bb5d70fa2bf6602, type: 3}
-  - {fileID: 8300000, guid: be0d7b31c0f9f4147a1b03e786e5a4aa, type: 3}
-  - {fileID: 8300000, guid: 857518b877792ee418922c835af90629, type: 3}
-  - {fileID: 8300000, guid: 78dbaee5962c46b4d969268e0669a461, type: 3}
-  - {fileID: 8300000, guid: dbc084f3e2e810241aefcfa1da0dc943, type: 3}
-  narrationAudioClips_Bedroom_Female: []
-  cane: {fileID: 412595808}
-  caneOutline: {fileID: 1753885426}
-  firstTeleportHotspot: {fileID: 494444110}
-  timeForWashingUp: 42
-  bathroomDoor: {fileID: 982161141}
-  knob: {fileID: 982161137}
-  questControllerImage: {fileID: 1382929688}
-  phone: {fileID: 1407789967}
-  mobilePhone: {fileID: 576931597}
-  glasses: {fileID: 1301409468}
-  glassesDrop: {fileID: 8300000, guid: fc43ccc5b25f2c7478d1a69422adc001, type: 3}
-  phoneOutline: {fileID: 1407789968}
-  glassesOutline: {fileID: 1301409474}
-  tvAudio: {fileID: 0}
-  Glass: {fileID: 0}
-  CupOutline: {fileID: 0}
-  parents: {fileID: 0}
-  mother: {fileID: 0}
-  father: {fileID: 0}
-  tableWithMedicine: {fileID: 0}
-  chair: {fileID: 0}
-  cabinet: {fileID: 0}
-  originallyHeldMedicine: {fileID: 0}
-  animatedMedicine: {fileID: 0}
-  PillBottleHighlight: {fileID: 0}
-  photoFrame: {fileID: 0}
-  oldMode: {fileID: 0}
-  newMode: {fileID: 0}
-  photoFrameOutline: {fileID: 0}
 --- !u!23 &7379588798260057532
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26018,7 +25955,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1155942851945915638}
+  - {fileID: 5817889223404952107}
   - {fileID: 410087041}
   - {fileID: 421615962}
   - {fileID: 2276772900260340213}

@@ -30,6 +30,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject firstTeleportHotspot;
 
+    [Header("Player Movement")]
+    [SerializeField] PlayerTeleport playerTeleport;
+
     Coroutine lastRoutine = null;
 
     void SetupNarrationBathroomLivingRoom()
@@ -37,6 +40,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         narration_1[0] = "Open the door and head to the sofa";
         narration_1[1] = "Press GRIP button to move to highlighted circle";
         narration_1[2] = "Someone is calling,pick up the call";
+        narration_1[3] = "Open door by interacting with door knob";
     }
 
     void SetupNarrationVoiddeck()
@@ -81,6 +85,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Moving towards living room")]
     [SerializeField] DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
+    [SerializeField] GameObject mug;
+    [SerializeField] GameObject toothpaste;
+    [SerializeField] GameObject toothbrush;
+    [SerializeField] GameObject soap;
     bool toGoLivingRoom = false;
     bool alertRemovedAfterFirstTP = false;
 
@@ -110,8 +118,18 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         knob.GetComponent<Outline>().enabled = false;
 
+        mug.GetComponent<Outline>().enabled = false;
+
+        toothpaste.GetComponent<Outline>().enabled = false;
+
+        toothbrush.GetComponent<Outline>().enabled = false;
+
+        soap.GetComponent<Outline>().enabled = false;
+
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-      
+
+        playerTeleport.MovingToLivingRoom = true;
+
         toGoLivingRoom = true;
     }
 
@@ -121,10 +139,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("In living room")]
     [SerializeField] GameObject phone;
     [SerializeField] MobilePhone mobilePhone;
-    [SerializeField] GameObject glasses;
-    [SerializeField] GameObject phoneOutline;
-    [SerializeField] GameObject glassesOutline;
-
 
     public void PlaySegment1Part3_1()
     {
@@ -140,7 +154,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         // play phone calling
         mobilePhone.SetPhoneCalling();
-        phoneOutline.SetActive(true);
+        phone.GetComponent<Outline>().enabled = true;
 
         yield return new WaitForSeconds(2.5f + 1.1f);
 
@@ -152,7 +166,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
         StopPrevDialogue();
-        phoneOutline.SetActive(false);
+        phone.GetComponent<Outline>().enabled = false;
         GlassesPutOn();
     }
 
@@ -174,21 +188,23 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         yield return new WaitForSeconds(3f); // the call takes a few second to be answered so wait a few seconds first
 
-        //PlayAudioAndNarration(narrationAudioClips_1[4], narration_1[13], 3f);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
-        yield return new WaitForSeconds(3f + 1.1f);
+        ////PlayAudioAndNarration(narrationAudioClips_1[4], narration_1[13], 3f);
+        //narrationAudioSource.Stop();
+        //narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        //yield return new WaitForSeconds(3f + 1.1f);
 
-        //GameManager.instance.ShowAlert(narration_1[14], 8f);
-        yield return new WaitForSeconds(8f + 1.1f);
+        ////GameManager.instance.ShowAlert(narration_1[14], 8f);
+        //yield return new WaitForSeconds(8f + 1.1f);
 
         //PlayAudioAndNarration(narrationAudioClips_1[5], narration_1[15], narrationAudioClips_1[4].length);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
-        yield return new WaitForSeconds(narrationAudioClips_1[4].length - 3f);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        yield return new WaitForSeconds(narrationAudioClips_1[2].length - 3f);
 
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
+
+        playerTeleport.SetCurrentHotspotIndex(-1); // reset back to prepare for move to main door
 
         PlaySegment1Part4();
     }
@@ -200,10 +216,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Living room to main door")]
     [SerializeField] DoorKnob mainDoor;
     [SerializeField] AudioSource RingingSoundSource;
+    [SerializeField] GameObject firstToDoorHotspot;
 
     public void PlaySegment1Part4()
     {
-        lastRoutine = StartCoroutine(Segment1Part3_1());
+        lastRoutine = StartCoroutine(Segment1Part4_1());
     }
 
     IEnumerator Segment1Part4_1()
@@ -212,15 +229,29 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         mainDoor.GetComponent<Outline>().enabled = true;
 
-        RingingSoundSource.Play();
+        //RingingSoundSource.Play(); // need ring sfx
 
         GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards door
+
+        playerTeleport.MovingToMainDoor = true;
+
+        firstToDoorHotspot.SetActive(true);
     }
 
+    // used as unity event in player teleport
+    public void OpenDoorPrompt()
+    {
+        StopPrevDialogue();
+        GameManager.instance.ShowAlert(narration_1[3]);
+        mainDoor.AllowDoorOpen();
+    }
+    
     // used as unity event in main door 
     public void MainDoorOpen()
     {
+        StopPrevDialogue();
 
+        mainDoor.GetComponent<Outline>().enabled = false;
     }
 
     #endregion 
@@ -457,18 +488,18 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             // remove alert after first teleport
             if (!alertRemovedAfterFirstTP)
             {
-                //if (/*cane.GetComponent<CaneTeleport>().HasTeleportedOnce()*/)
-                //{
-                //    StopPrevDialogue(); // removes alert text of picking up cane lmao
-                //    alertRemovedAfterFirstTP = true;
-                //}
+                if(playerTeleport.GetCurrentHotspotIndex() == 0) // which means player either at first hotspot toward main door or living room
+                {
+                    StopPrevDialogue(); // stop alert text
+                    alertRemovedAfterFirstTP = true;
+                }
             }
             // check here when player reaches sofa, start segment1Part3
             if (toGoLivingRoom)
             {
                 if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
                 {
-                    toGoLivingRoom = false;
+                    toGoLivingRoom = false;  
                     PlaySegment1Part3_1();
                 }
             }
@@ -476,7 +507,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
 
         Debug.Log(times);
-
     }
 
     void StopPrevDialogue()
