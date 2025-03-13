@@ -89,6 +89,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject toothpaste;
     [SerializeField] GameObject toothbrush;
     [SerializeField] GameObject soap;
+    [SerializeField] GameObject comb;
     bool toGoLivingRoom = false;
     bool alertRemovedAfterFirstTP = false;
 
@@ -125,6 +126,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         toothbrush.GetComponent<Outline>().enabled = false;
 
         soap.GetComponent<Outline>().enabled = false;
+
+        comb.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
 
@@ -199,7 +202,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //PlayAudioAndNarration(narrationAudioClips_1[5], narration_1[15], narrationAudioClips_1[4].length);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
-        yield return new WaitForSeconds(narrationAudioClips_1[2].length - 3f);
+        yield return new WaitForSeconds(narrationAudioClips_1[2].length - 5f);
 
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
