@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class TurnOffOutlineWhenGrabbed : MonoBehaviour
 {
-    Outline outline;
+    [SerializeField] Outline outline;
 
     private void Start()
     {
-        outline = GetComponent<Outline>();
+        if (outline == null)
+            outline = GetComponent<Outline>();
     }
 
     private void Update()
