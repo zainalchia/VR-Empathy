@@ -497,7 +497,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return null;
     }
 
-
     public void StaredAtPhoto()
     {
         lastRoutine = StartCoroutine(Segment2Part2_3());
