@@ -69,8 +69,6 @@ public class CaneTeleport : MonoBehaviour
 
     public void MoveToLocation()
     {
-        canMove = true;
-
         if (canMove && timer >= defaultTimeBeforeNextMove)
         {
             // Move OVRCameraRig gameobject with offset
@@ -173,7 +171,7 @@ public class CaneTeleport : MonoBehaviour
                     CheckIfCanMove();
 
                     // move input to a manager script if possible
-                    if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) && !buttonPressed)
+                    if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
                     {
                         buttonPressed = true;
                         MoveToLocation();

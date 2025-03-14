@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class PlayerTeleport : MonoBehaviour
 {
-    [SerializeField] GameObject[] MoveToLivingRoomHotspots;
+    public GameObject[] MoveToLivingRoomHotspots;
     [SerializeField] GameObject[] MoveToMainDoorHotspots;
     [SerializeField] float defaultTimeBeforeNextMove = 2;
     bool buttonPressed = false;
@@ -60,7 +60,7 @@ public class PlayerTeleport : MonoBehaviour
 
             hotspot.SetActive(false);
 
-            StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 1f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
+            StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
             if (currentHotspotIndex == hotspotArray.Length - 1)
             {

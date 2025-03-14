@@ -33,6 +33,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Player Movement")]
     [SerializeField] PlayerTeleport playerTeleport;
 
+    bool alertAtLastTeleport = false;
+
     Coroutine lastRoutine = null;
 
     void SetupNarrationBathroomLivingRoom()
@@ -158,8 +160,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // play phone calling
         mobilePhone.SetPhoneCalling();
         phone.GetComponent<Outline>().enabled = true;
-
-        GameManager.instance.ShowAlert(narration_1[2]);
 
         yield return new WaitForSeconds(2.5f + 1.1f);
 
@@ -533,6 +533,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                     PlaySegment1Part3_1();
                 }
             }
+
+            if (!alertAtLastTeleport)
+            {
+                if (playerTeleport.GetCurrentHotspotIndex() == playerTeleport.MoveToLivingRoomHotspots.Length - 1)
+                {
+                    GameManager.instance.ShowAlert(narration_1[2]); // only show pick up phone after player reached last hotspot
+                    alertAtLastTeleport = true;
+                }
+            }
+
             #endregion
         }
 
