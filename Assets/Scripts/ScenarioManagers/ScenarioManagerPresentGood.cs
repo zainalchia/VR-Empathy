@@ -159,9 +159,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         mobilePhone.SetPhoneCalling();
         phone.GetComponent<Outline>().enabled = true;
 
-        yield return new WaitForSeconds(2.5f + 1.1f);
-
         GameManager.instance.ShowAlert(narration_1[2]);
+
+        yield return new WaitForSeconds(2.5f + 1.1f);
 
         GameManager.instance.toPickUpPhone = true;
     }
@@ -223,16 +223,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlaySegment1Part4()
     {
-        lastRoutine = StartCoroutine(Segment1Part4_1());
+        lastRoutine = StartCoroutine(Segment1Part4());
     }
 
-    IEnumerator Segment1Part4_1()
+    IEnumerator Segment1Part4()
     {
-        yield return new WaitForSeconds(1f); // delay between phone hang up and door ring
+        yield return new WaitForSeconds(2f); // delay between phone hang up and door ring
 
         mainDoor.GetComponent<Outline>().enabled = true;
 
-        //RingingSoundSource.Play(); // need ring sfx
+        RingingSoundSource.Play(); // need ring sfx
 
         GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards door
 
@@ -255,9 +255,36 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
 
         mainDoor.GetComponent<Outline>().enabled = false;
+
+        PlaySegment1Part5();
     }
 
-    #endregion 
+    #endregion
+
+    #region Segment 1 Part 5 (Interaction with friends outside main door)
+
+    [Header("At main door")]
+    [SerializeField] private GameObject Friends;
+
+    public void PlaySegment1Part5()
+    {
+        lastRoutine = StartCoroutine(Segment1Part5());
+    }
+
+    IEnumerator Segment1Part5()
+    {
+        Friends.SetActive(true);
+
+        yield return new WaitForSeconds(1f);
+
+        Friends.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Wave");
+
+        yield return new WaitForSeconds(0.5f);
+
+        Friends.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Wave");
+    }
+
+    #endregion
 
     #region Segment 2 Part 1 (Voiddeck, Tai chi)
 

@@ -342,7 +342,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject Glass;
     [SerializeField] Outline CupOutline;
 
-
     public void PlaySegment2Part1()
     {
         lastRoutine = StartCoroutine(Segment2Part1_1());
@@ -357,16 +356,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[0]);
 
-        yield return new WaitForSeconds(3f);
-
-        //GameManager.instance.ShowAlert(narration_2[0], 2f);
-        yield return new WaitForSeconds(2f + 1.1f);
-
-        //GameManager.instance.ShowAlert(narration_2[1], 5f);
-        yield return new WaitForSeconds(5f + 1.1f);
-
-        //GameManager.instance.ShowAlert(narration_2[2], 2f);
-        yield return new WaitForSeconds(2f + 1.1f);
+        yield return new WaitForSeconds(narrationAudioClips_2[0].length);
 
         GameManager.instance.ShowAlert(narration_2[3]);
 
@@ -399,6 +389,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject oldMode;
     [SerializeField] GameObject newMode;
     [SerializeField] GameObject photoFrameOutline;
+    [SerializeField] AnimationClip HandsUp;
+    [SerializeField] AnimationClip HandsDown;
+    Animator animator;
     static public bool canMedicineSpill;
 
     IEnumerator Segment2Part2_1()
@@ -412,6 +405,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // start furniture moving here
         GameManager.instance.toStartSpasming = true;
         yield return new WaitForSeconds(2f);
+        narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
 
         // wait a while to let players look around
@@ -428,15 +422,27 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
 
-
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
-        father.GetComponent<Animator>().SetTrigger("Wave");
-        mother.GetComponent<Animator>().SetTrigger("Wave");
         yield return new WaitForSeconds(narrationAudioClips_2[2].length + 1f);
+
+        if (MainMenuManager.isGenderMale)
+        {
+            animator = father.GetComponent<Animator>();
+        }
+        else
+        {
+            animator = mother.GetComponent<Animator>();
+        }
+
+        animator.SetTrigger("TalkBegin");
+        yield return new WaitForSeconds(HandsUp.length); // wait for hands up animation to finish before start talking
+        animator.SetTrigger("Talking");
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
         yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1f);
+
+        animator.SetTrigger("TalkEnd");
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
         yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1f);
@@ -446,7 +452,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //Turn back to normal here
         oldMode.SetActive(false);
         newMode.SetActive(true);
-
 
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
