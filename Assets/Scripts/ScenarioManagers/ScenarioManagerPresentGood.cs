@@ -43,6 +43,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         narration_1[1] = "Press GRIP button to move to highlighted circle";
         narration_1[2] = "Someone is calling,pick up the call";
         narration_1[3] = "Open door by interacting with door knob";
+        narration_1[4] = "Open gate and leave to void deck by interacting with gate knob";
     }
 
     void SetupNarrationVoiddeck()
@@ -147,7 +148,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlaySegment1Part3_1()
     {
-        lastRoutine = StartCoroutine(Segment1Part3_1());
+        lastRoutine = StartCoroutine(Segment1Part3_3());
 
         // clip to play is the lighthearted music clip
 
@@ -265,6 +266,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     [Header("At main door")]
     [SerializeField] private GameObject Friends;
+    [SerializeField] private DoorKnob MainGate;
 
     public void PlaySegment1Part5()
     {
@@ -282,6 +284,29 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         Friends.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Wave");
+
+        MainGate.GetComponent<Outline>().enabled = true;
+
+        GameManager.instance.ShowAlert(narration_1[4]);
+        
+        yield return new WaitForSeconds(2f); // delay before allowing gate to be open
+
+        MainGate.AllowDoorOpen();
+
+        MainGate.GetComponent<Collider>().enabled = true;
+    }
+
+    public void PlayMainGateOpen()
+    {
+        lastRoutine = StartCoroutine(MainGateOpen());
+    }
+
+    IEnumerator MainGateOpen()
+    {
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+
+        SceneManager.LoadScene("PresentGoodVoiddeck", LoadSceneMode.Single); 
     }
 
     #endregion
