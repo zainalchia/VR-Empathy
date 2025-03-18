@@ -35,6 +35,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     bool alertAtLastTeleport = false;
 
+    bool canSeeWindow = false; // if can see window then can say weather looks good
+
     Coroutine lastRoutine = null;
 
     void SetupNarrationBathroomLivingRoom()
@@ -202,8 +204,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         //PlayAudioAndNarration(narrationAudioClips_1[5], narration_1[15], narrationAudioClips_1[4].length);
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
-        yield return new WaitForSeconds(narrationAudioClips_1[2].length - 5f);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
@@ -265,8 +267,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     #region Segment 1 Part 5 (Interaction with friends outside main door)
 
     [Header("At main door")]
-    [SerializeField] private GameObject Friends;
+    [SerializeField] private GameObject[] MaleFriends;
+    [SerializeField] private GameObject[] FemaleFriends;
     [SerializeField] private DoorKnob MainGate;
+    private GameObject[] friends;
 
     public void PlaySegment1Part5()
     {
@@ -275,15 +279,48 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part5()
     {
-        Friends.SetActive(true);
+        if (MainMenuManager.isGenderMale)
+        {
+            friends = MaleFriends;
+
+            foreach(var friend in MaleFriends)
+            {
+                friend.SetActive(true);
+            }
+        }
+        else
+        {
+            friends = FemaleFriends;
+
+            foreach (var friend in FemaleFriends)
+            {
+                friend.SetActive(true);
+            }
+        }
+
+        friends[0].GetComponent<Animator>().SetTrigger("Wave");
 
         yield return new WaitForSeconds(1f);
 
-        Friends.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Wave");
+        friends[1].GetComponent<Animator>().SetTrigger("Wave");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3.2f); // make sure waving animation is done first
 
-        Friends.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Wave");
+        friends[0].GetComponent<Animator>().SetTrigger("TalkBegin");
+
+        yield return new WaitForSeconds(1.2f);
+
+        friends[0].GetComponent<AudioSource>().clip = narrationAudioClips_1[4];
+
+        friends[0].GetComponent<AudioSource>().Play();
+
+        friends[0].GetComponent<Animator>().SetTrigger("Talking");
+
+        yield return new WaitForSeconds(narrationAudioClips_1[4].length);
+
+        friends[0].GetComponent<Animator>().SetTrigger("TalkEnd");
+
+        yield return new WaitForSeconds(2f);
 
         MainGate.GetComponent<Outline>().enabled = true;
 
@@ -316,6 +353,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Voiddeck - Taichi")]
     [SerializeField]
     TaiChiManager taiChiManager;
+    [SerializeField] GameObject taichiInstructor;
+
     void PlaySegment2Part1()
     {
         PostProcessingController.instance.UsingGlasses(true); // no blur effect
@@ -325,9 +364,21 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator playTaichi()
     {
         yield return new WaitForSeconds(4f); // screen fade in timing
+
+        taichiInstructor.GetComponent<AudioSource>().clip = narrationAudioClips_2[0];
+
+        taichiInstructor.GetComponent<AudioSource>().Play();
+
+        yield return new WaitForSeconds(narrationAudioClips_2[0].length);
+
+        foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
+        {
+            anim.NextPose();
+        }
+
         taiChiManager.startSegment1();
     }
-
+    
     public void playnextTaichiPose()
     {
         taiChiManager.nextTaichiPose();
@@ -469,9 +520,17 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator MovingFromChessToReadingCorner()
     {
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
+
         // NPC lose animation
         NPC.GetComponent<Animator>().SetTrigger("lose");
         yield return new WaitForSeconds(5); // lose animation is around 5 secs
+
+        NPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[3];
+
+        NPC.GetComponent<AudioSource>().Play();
+        
+        yield return new WaitForSeconds(narrationAudioClips_2[3].length);
 
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
@@ -525,10 +584,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
-            foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
-            {
-                anim.NextPose();
-            }
             PlaySegment2Part1();
             //StartCoroutine(MovingFromTaichiToChess());
         }
@@ -549,6 +604,17 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                     alertRemovedAfterFirstTP = true;
                 }
             }
+
+            if (!canSeeWindow)
+            {
+                if (playerTeleport.GetCurrentHotspotIndex() == 5)
+                {
+                    StopPrevDialogue();
+                    narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+                    canSeeWindow = true;
+                }
+            }    
+
             // check here when player reaches sofa, start segment1Part3
             if (toGoLivingRoom)
             {
