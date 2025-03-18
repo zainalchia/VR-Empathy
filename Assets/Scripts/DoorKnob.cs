@@ -7,8 +7,8 @@ using Oculus.Interaction;
 
 public class DoorKnob : MonoBehaviour
 {
-    [SerializeField] GameObject Door;
-    [SerializeField] GameObject DoorHandle;
+    [SerializeField] GameObject Door_Anchor;
+    [SerializeField] GameObject DoorHandle_Anchor;
     [SerializeField] bool canOpenDoor = false; // if true, player can open door anytime
     [SerializeField] AudioSource GateOpenSource;
     public UnityEvent OnDoorOpen;
@@ -63,16 +63,16 @@ public class DoorKnob : MonoBehaviour
                 AlertTextController.instance.SetInactive();
         }
 
-        DoorHandle.GetComponent<Animator>().SetTrigger("HandleOpen");
+        DoorHandle_Anchor.GetComponent<Animator>().SetTrigger("HandleOpen");
 
         yield return new WaitForSeconds(0.7f);
 
-        Door.GetComponent<Animator>().SetTrigger("OpenGate");
+        Door_Anchor.GetComponent<Animator>().SetTrigger("OpenGate");
         GateOpenSource.Play();
 
         yield return new WaitForSeconds(0.7f);
 
-        DoorHandle.GetComponent<Animator>().SetTrigger("HandleClose");
+        DoorHandle_Anchor.GetComponent<Animator>().SetTrigger("HandleClose");
 
         yield return new WaitForSeconds(0.7f);
 
