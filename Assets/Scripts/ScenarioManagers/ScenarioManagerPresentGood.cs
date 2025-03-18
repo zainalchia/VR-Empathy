@@ -148,7 +148,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlaySegment1Part3_1()
     {
-        lastRoutine = StartCoroutine(Segment1Part3_3());
+        lastRoutine = StartCoroutine(Segment1Part3_1());
 
         // clip to play is the lighthearted music clip
 
