@@ -397,10 +397,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject FirstPlayerPieceDestination;
     [SerializeField] GameObject SecondPlayerPieceDestination;
+    [SerializeField] GameObject FirstPlayerPiece;
     int times;
     IEnumerator MovingFromTaichiToChess()
     {
         times++;
+
+        chessNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[1];
+
+        chessNPC.GetComponent<AudioSource>().Play();
+
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
@@ -410,6 +416,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         taichiNPC.SetActive(false);
         chessNPC.SetActive(true);
         FirstPlayerPieceDestination.SetActive(true);
+        FirstPlayerPiece.GetComponent<Outline>().enabled = true;
         GameManager.instance.ShowAlert(narration_2[0]);
         yield return new WaitForSeconds(4f);
     }
