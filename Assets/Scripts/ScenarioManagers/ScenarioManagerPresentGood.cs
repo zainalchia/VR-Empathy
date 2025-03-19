@@ -6,6 +6,7 @@ using Oculus.Interaction;
 using static UnityEngine.Rendering.DebugUI;
 using static Unity.VisualScripting.Member;
 using UnityEngine.Events;
+using UnityEngine.UIElements;
 
 public class ScenarioManagerPresentGood : MonoBehaviour
 {
@@ -365,16 +366,29 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         yield return new WaitForSeconds(4f); // screen fade in timing
 
+        taichiInstructor.GetComponent<Animator>().SetTrigger("TalkBegin");
+
+        yield return new WaitForSeconds(0.7f);
+
+        taichiInstructor.GetComponent<Animator>().SetTrigger("Talking");
+
         taichiInstructor.GetComponent<AudioSource>().clip = narrationAudioClips_2[0];
 
         taichiInstructor.GetComponent<AudioSource>().Play();
 
         yield return new WaitForSeconds(narrationAudioClips_2[0].length);
 
-        foreach (TaiChiInstructor anim in GameManager.instance.taiChiAnimations)
-        {
-            anim.NextPose();
-        }
+        taichiInstructor.GetComponent<Animator>().SetTrigger("TalkEnd");
+
+        yield return new WaitForSeconds(1f);
+
+        taichiInstructor.GetComponent<TaiChiInstructor>().NextPose();
+
+        yield return new WaitForSeconds(3f);
+
+        GameManager.instance.taiChiAnimations[1].NextPose();
+
+        GameManager.instance.taiChiAnimations[2].NextPose();
 
         taiChiManager.startSegment1();
     }
@@ -399,13 +413,20 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject SecondPlayerPieceDestination;
     [SerializeField] GameObject FirstPlayerPiece;
     int times;
+
     IEnumerator MovingFromTaichiToChess()
     {
         times++;
 
+        chessNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
+
+        chessNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
+
         chessNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[1];
 
         chessNPC.GetComponent<AudioSource>().Play();
+
+        yield return new WaitForSeconds(narrationAudioClips_2[1].length);
 
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
