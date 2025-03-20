@@ -171,12 +171,12 @@ public class CaneTeleport : MonoBehaviour
                     CheckIfCanMove();
 
                     // move input to a manager script if possible
-                    if (OVRInput.GetDown(OVRInput.Button.PrimaryHandTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryHandTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+                    if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
                     {
                         buttonPressed = true;
                         MoveToLocation();
                     }
-                    else if (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger) && buttonPressed)
+                    else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
                     {
                         buttonPressed = false;
                     }
