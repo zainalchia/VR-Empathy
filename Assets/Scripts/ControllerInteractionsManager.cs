@@ -383,13 +383,13 @@ public class ControllerInteractionsManager : MonoBehaviour
 
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
-            //GameManager.instance.leftHand.GetComponent<Animator>().SetBool("isLeftGrabbing", true);
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", true);
             //GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", 1);
             leftFistClosed = true;            
         }
         else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
         {
-            //GameManager.instance.maleHandsModelLeft.GetComponent<Animator>().SetBool("isLeftGrabbing", false);
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", false);
             //GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", 0);
             leftFistClosed = false;            
         }
@@ -409,13 +409,13 @@ public class ControllerInteractionsManager : MonoBehaviour
 
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
-            //GameManager.instance.maleHandsModelRight.GetComponent<Animator>().SetBool("isRightGrabbing", true);
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", true);
             //GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", 1);
             rightFistClosed = true;
         }
         else if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
-            //GameManager.instance.maleHandsModelRight.GetComponent<Animator>().SetBool("isRightGrabbing", false);
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", false);
             //GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", 0);
             rightFistClosed = false;
         }
