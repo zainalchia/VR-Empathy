@@ -58,10 +58,10 @@ public class TaiChiManager : MonoBehaviour
         }
 
         // automate hitboxes position according to where taichi npc hands(aka their middle fingers center of their hands) are at
-        leftTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCLeftMiddleFinger.transform.position.x,TaichiNPCLeftMiddleFinger.transform.position.y, TaichiNPCLeftMiddleFinger.transform.position.z + 1.2f);
+        leftTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCLeftMiddleFinger.transform.position.x,TaichiNPCLeftMiddleFinger.transform.position.y, TaichiNPCLeftMiddleFinger.transform.position.z + 1.5f);
         leftTaichiHitboxes[current].transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
-        rightTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCRightMiddleFinger.transform.position.x,TaichiNPCRightMiddleFinger.transform.position.y,TaichiNPCRightMiddleFinger.transform.position.z + 1.2f);
+        rightTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCRightMiddleFinger.transform.position.x,TaichiNPCRightMiddleFinger.transform.position.y,TaichiNPCRightMiddleFinger.transform.position.z + 1.5f);
         rightTaichiHitboxes[current].transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
 
         leftTaichiHitboxes[current].SetActive(true);
@@ -106,6 +106,7 @@ public class TaiChiManager : MonoBehaviour
     {
         lastHitbox = false;
     }
+
     public void nextTaichiPose()
     {
         switch (segment)

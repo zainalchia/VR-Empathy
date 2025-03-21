@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 
 public class LookDetection : MonoBehaviour
 {
     [SerializeField] string tagName;
+
+    public UnityEvent HitResponse;
+
+    bool hitTarget = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,9 +23,10 @@ public class LookDetection : MonoBehaviour
     {
         ShootRay();
     }
+
     void ShootRay()
     {
-        float length = 10.0f;
+        float length = 50.0f;
         RaycastHit hit;
         Vector3 rayDirection = gameObject.transform.TransformDirection(Vector3.forward);
         Vector3 rayStart = gameObject.transform.position + rayDirection;     // Start the ray away from the player to avoid hitting itself
@@ -30,8 +38,15 @@ public class LookDetection : MonoBehaviour
             {
                 print("Hit object");
 
-                gameObject.GetComponent<Outline>().enabled = false;
+                hit.collider.gameObject.GetComponent<Outline>().enabled = false;
+
+                if(!hitTarget) // ensures hit response is only triggered once
+                {
+                    hitTarget = true;
+                    HitResponse.Invoke();
+                }
             }
         }
     }
+
 }

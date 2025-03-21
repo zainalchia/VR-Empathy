@@ -9,13 +9,18 @@ public class PlayerTeleport : MonoBehaviour
 {
     public GameObject[] MoveToLivingRoomHotspots;
     [SerializeField] GameObject[] MoveToMainDoorHotspots;
+    [SerializeField] GameObject[] MoveToOthelloChairHotspots;
+    [SerializeField] GameObject[] MoveToReadingCornerHotspots;
     [SerializeField] float defaultTimeBeforeNextMove = 2;
     bool buttonPressed = false;
-    public UnityEvent OnLastTeleport;
+    public UnityEvent OnLastTeleport; // for othello transition and main door opening (both different scenes so can use same unity event)
+    public UnityEvent OnLastTeleport2;// for reading corner (othello and reading corner same scene so need 2 unity events)
     int currentHotspotIndex = -1;
     float timer = 0;
     public bool MovingToLivingRoom = false;
     public bool MovingToMainDoor = false;
+    public bool MovingToOthelloChair = false;
+    public bool MovingToReadingCorner = false;
 
     // Update is called once per frame
     void Update()
@@ -38,6 +43,18 @@ public class PlayerTeleport : MonoBehaviour
                 currentHotspotIndex += 1;
 
                 MoveToLocation(MoveToMainDoorHotspots[currentHotspotIndex], MoveToMainDoorHotspots);
+            }
+            else if (MovingToOthelloChair && currentHotspotIndex != MoveToOthelloChairHotspots.Length - 1)
+            {
+                currentHotspotIndex += 1;
+
+                MoveToLocation(MoveToOthelloChairHotspots[currentHotspotIndex], MoveToOthelloChairHotspots);
+            }
+            else if(MovingToReadingCorner && currentHotspotIndex != MoveToReadingCornerHotspots.Length - 1)
+            {
+                currentHotspotIndex += 1;
+
+                MoveToLocation(MoveToReadingCornerHotspots[currentHotspotIndex], MoveToReadingCornerHotspots);
             }
         }
         else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
@@ -72,6 +89,16 @@ public class PlayerTeleport : MonoBehaviour
                 {
                     OnLastTeleport.Invoke();
                     MovingToMainDoor = false;
+                }
+                else if(hotspotArray == MoveToOthelloChairHotspots)
+                {
+                    OnLastTeleport.Invoke();
+                    MovingToOthelloChair = false;
+                }
+                else if(hotspotArray == MoveToReadingCornerHotspots)
+                {
+                    OnLastTeleport2.Invoke();
+                    MovingToReadingCorner = false;
                 }
             }
         }

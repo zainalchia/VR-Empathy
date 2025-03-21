@@ -2541,6 +2541,7 @@ MonoBehaviour:
   - {fileID: 105550481}
   - {fileID: 462965727}
   - {fileID: 1941465660}
+  MoveToOthelloChairHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -2559,6 +2560,7 @@ MonoBehaviour:
         m_CallState: 2
   MovingToLivingRoom: 0
   MovingToMainDoor: 0
+  MovingToOthelloChair: 0
 --- !u!1 &478722975
 GameObject:
   m_ObjectHideFlags: 0
@@ -2710,7 +2712,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -7999,7 +8002,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8377,7 +8381,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -8822,7 +8827,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9238,7 +9244,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -9994,7 +10001,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10379,7 +10387,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -10464,7 +10473,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13152,7 +13162,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -20366,7 +20377,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22264,12 +22276,15 @@ MonoBehaviour:
   - {fileID: 1991541711}
   MainGate: {fileID: 7937684469574571141}
   taiChiManager: {fileID: 0}
+  taichiInstructor: {fileID: 0}
   taichiNPC: {fileID: 0}
   chessNPC: {fileID: 0}
   teleportPoint: {fileID: 0}
   player: {fileID: 0}
   FirstPlayerPieceDestination: {fileID: 0}
   SecondPlayerPieceDestination: {fileID: 0}
+  FirstPlayerPiece: {fileID: 0}
+  lookDetection: {fileID: 0}
   NPC: {fileID: 0}
   FirstFriendOthelloPiece: {fileID: 0}
   SecondPlayerOthelloPiece: {fileID: 0}
@@ -24047,7 +24062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 0.9254902, b: 0, a: 1}
-  outlineWidth: 2
+  outlineWidth: 12
   precomputeOutline: 1
   bakeKeys:
   - {fileID: -8973827277141622061, guid: 25cb2cf34a5c125418aead4f011d828e, type: 3}

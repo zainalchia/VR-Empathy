@@ -13,7 +13,6 @@ public class TaiChiInstructor : MonoBehaviour
     public UnityEvent spawnNextHitboxes;
     float timerToGoNext = 0f;
     bool timerstart = false;
-
     int currentPose = 0;
 
     public void ReadyForNextPose() // called in animation event 1 frame before the last frame
@@ -47,7 +46,10 @@ public class TaiChiInstructor : MonoBehaviour
 
     public void PausePose()
     {
-        GetComponent<Animator>().speed = 0f;
+        foreach (var anim in GameManager.instance.taiChiAnimations)
+        {
+            anim.GetComponent<Animator>().speed = 0f;
+        }
 
         if (triggerHitbox)
         {
@@ -57,7 +59,10 @@ public class TaiChiInstructor : MonoBehaviour
 
     public void UnpausePose()
     {
-        GetComponent<Animator>().speed = 1f;
+        foreach (var anim in GameManager.instance.taiChiAnimations)
+        {
+            anim.GetComponent<Animator>().speed = 1f;
+        }
     }
 
     // Start is called before the first frame update
