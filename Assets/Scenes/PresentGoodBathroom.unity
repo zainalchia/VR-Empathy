@@ -2408,7 +2408,7 @@ PrefabInstance:
     - target: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.994
+      value: -5.514
       objectReference: {fileID: 0}
     - target: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
@@ -2542,6 +2542,7 @@ MonoBehaviour:
   - {fileID: 462965727}
   - {fileID: 1941465660}
   MoveToOthelloChairHotspots: []
+  MoveToReadingCornerHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -2558,9 +2559,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnLastTeleport2:
+    m_PersistentCalls:
+      m_Calls: []
   MovingToLivingRoom: 0
   MovingToMainDoor: 0
   MovingToOthelloChair: 0
+  MovingToReadingCorner: 0
 --- !u!1 &478722975
 GameObject:
   m_ObjectHideFlags: 0
@@ -13954,7 +13959,7 @@ PrefabInstance:
     - target: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.75
+      value: 2.192
       objectReference: {fileID: 0}
     - target: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
@@ -22285,6 +22290,8 @@ MonoBehaviour:
   SecondPlayerPieceDestination: {fileID: 0}
   FirstPlayerPiece: {fileID: 0}
   lookDetection: {fileID: 0}
+  ChessNPCRotationTime: 2
+  firstOthelloHotspot: {fileID: 0}
   NPC: {fileID: 0}
   FirstFriendOthelloPiece: {fileID: 0}
   SecondPlayerOthelloPiece: {fileID: 0}
@@ -22294,6 +22301,7 @@ MonoBehaviour:
   TeleportPointReadingCorner: {fileID: 0}
   TVScreen: {fileID: 0}
   readingCornerNPCs: {fileID: 0}
+  firstToReadingCornerHotspot: {fileID: 0}
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0
