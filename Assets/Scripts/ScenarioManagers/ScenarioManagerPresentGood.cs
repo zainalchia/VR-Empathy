@@ -43,17 +43,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     void SetupNarrationBathroomLivingRoom()
     {
         narration_1[0] = "Open the door and head to the sofa";
-        narration_1[1] = "Press GRIP button to move to highlighted circle";
+        narration_1[1] = "Press TRIGGER button to move to highlighted circle";
         narration_1[2] = "Someone is calling,pick up the call";
-        narration_1[3] = "Open door by interacting with door knob";
-        narration_1[4] = "Open gate and leave to void deck by interacting with gate knob";
+        narration_1[3] = "Open gate and leave to void deck by interacting with gate knob";
     }
 
     void SetupNarrationVoiddeck()
     {
         narration_2[0] = "[Pick up highlighted othello piece and place it on outlined spot]";
         narration_2[1] = "[Look at highlighted othello NPC to start othello minigame]";
-        narration_2[2] = "[Press GRIP button to move to highlighted circle]";
+        narration_2[2] = "[Press TRIGGER button to move to highlighted circle]";
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -232,6 +231,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] DoorKnob mainDoor;
     [SerializeField] AudioSource RingingSoundSource;
     [SerializeField] GameObject firstToDoorHotspot;
+    [SerializeField] private DoorKnob MainGate;
 
     public void PlaySegment1Part4()
     {
@@ -242,11 +242,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); // delay between phone hang up and door ring
 
-        mainDoor.GetComponent<Outline>().enabled = true;
+        MainGate.gameObject.GetComponent<Outline>().enabled = true;
 
         RingingSoundSource.Play(); // need ring sfx
 
-        GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards door
+        GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
 
         playerTeleport.MovingToMainDoor = true;
 
@@ -257,18 +257,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     public void OpenDoorPrompt()
     {
         StopPrevDialogue();
-        GameManager.instance.ShowAlert(narration_1[3]);
-        mainDoor.AllowDoorOpen();
-    }
-    
-    // used as unity event in main door 
-    public void MainDoorOpen()
-    {
-        StopPrevDialogue();
-
-        mainDoor.GetComponent<Outline>().enabled = false;
-
-        PlaySegment1Part5();
+        StartCoroutine(Segment1Part5());
     }
 
     #endregion
@@ -278,7 +267,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("At main door")]
     [SerializeField] private GameObject[] MaleFriends;
     [SerializeField] private GameObject[] FemaleFriends;
-    [SerializeField] private DoorKnob MainGate;
     private GameObject[] friends;
 
     public void PlaySegment1Part5()
@@ -331,15 +319,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        MainGate.GetComponent<Outline>().enabled = true;
-
-        GameManager.instance.ShowAlert(narration_1[4]);
-        
-        yield return new WaitForSeconds(2f); // delay before allowing gate to be open
+        GameManager.instance.ShowAlert(narration_1[3]);
 
         MainGate.AllowDoorOpen();
-
-        MainGate.GetComponent<Collider>().enabled = true;
     }
 
     public void PlayMainGateOpen()

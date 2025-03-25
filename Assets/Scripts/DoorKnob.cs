@@ -26,15 +26,6 @@ public class DoorKnob : MonoBehaviour
         canOpenDoor = true;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        if(type == DoorType.Gate)
-        {
-            GetComponent<Collider>().enabled = false;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
