@@ -27,6 +27,7 @@ public class PostProcessingController : MonoBehaviour
     private DepthOfField DepthOfField;
     private float BlurTime = 0;
     private Coroutine currentCoroutine = null;
+    public bool initialBlurDone = false;
 
     private IEnumerator VisionBlurEffect()
     {
@@ -58,7 +59,15 @@ public class PostProcessingController : MonoBehaviour
     {
         if (!isUsingGlasses)
         {
-            targetWeight = 1;
+            if (!initialBlurDone)
+            {
+                targetWeight = 1;
+            }
+            else
+            {
+                interval = 3; // decreases bluriness across a span of 3 seconds
+                targetWeight = 3;
+            }
         }
         else
         {

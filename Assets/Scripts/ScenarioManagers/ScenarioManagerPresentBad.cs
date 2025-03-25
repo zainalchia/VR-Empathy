@@ -207,6 +207,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[3]);
+
+        yield return new WaitForSeconds(narrationAudioClips_Bathroom[3].length);
+
+        PostProcessingController.instance.initialBlurDone = true;
     }
 
     #endregion

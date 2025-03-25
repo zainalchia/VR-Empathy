@@ -2408,7 +2408,7 @@ PrefabInstance:
     - target: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.994
+      value: -5.501
       objectReference: {fileID: 0}
     - target: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
@@ -2542,6 +2542,7 @@ MonoBehaviour:
   - {fileID: 462965727}
   - {fileID: 1941465660}
   MoveToOthelloChairHotspots: []
+  MoveToReadingCornerHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -2558,9 +2559,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnLastTeleport2:
+    m_PersistentCalls:
+      m_Calls: []
   MovingToLivingRoom: 0
   MovingToMainDoor: 0
   MovingToOthelloChair: 0
+  MovingToReadingCorner: 0
 --- !u!1 &478722975
 GameObject:
   m_ObjectHideFlags: 0
@@ -7034,6 +7039,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.666
       objectReference: {fileID: 0}
+    - target: {fileID: 4219752781704486, guid: 93d6183e10b02e047b91802002e352aa, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.39
+      objectReference: {fileID: 0}
     - target: {fileID: 4236747746001662, guid: 93d6183e10b02e047b91802002e352aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.196
@@ -9174,7 +9183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef49f28b4d7f247458490d76d6c25c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   forceStay: 0
 --- !u!1001 &1426053110
 PrefabInstance:
@@ -10150,7 +10159,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ce55b5533729224489e3f1e7e3f6b476,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.7517102
+      value: 2.779
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ce55b5533729224489e3f1e7e3f6b476,
         type: 3}
@@ -20634,7 +20643,7 @@ Transform:
   m_GameObject: {fileID: 5345032221292428155}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.065, y: 0.935, z: 0.783}
+  m_LocalPosition: {x: 1.065, y: 0.798, z: 0.783}
   m_LocalScale: {x: 1.626075, y: 1.08405, z: 0.2710125}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -22285,6 +22294,8 @@ MonoBehaviour:
   SecondPlayerPieceDestination: {fileID: 0}
   FirstPlayerPiece: {fileID: 0}
   lookDetection: {fileID: 0}
+  ChessNPCRotationTime: 2
+  firstOthelloHotspot: {fileID: 0}
   NPC: {fileID: 0}
   FirstFriendOthelloPiece: {fileID: 0}
   SecondPlayerOthelloPiece: {fileID: 0}
@@ -22294,6 +22305,7 @@ MonoBehaviour:
   TeleportPointReadingCorner: {fileID: 0}
   TVScreen: {fileID: 0}
   readingCornerNPCs: {fileID: 0}
+  firstToReadingCornerHotspot: {fileID: 0}
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0
@@ -22695,6 +22707,7 @@ GameObject:
   - component: {fileID: 6432067307027011964}
   - component: {fileID: 6432067307027011963}
   - component: {fileID: 6432067307027011969}
+  - component: {fileID: 6432067307027011970}
   m_Layer: 0
   m_Name: Comb
   m_TagString: BathroomProp
@@ -23703,6 +23716,19 @@ MonoBehaviour:
     - {x: 0.70666534, y: 0.08027335, z: 0.7029796}
     - {x: 0.56876177, y: 0.5944377, z: -0.5684661}
     - {x: 0.56876194, y: 0.5944379, z: 0.5684659}
+--- !u!114 &6432067307027011970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5345032221292428155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6286d2b1ee1bc048b5fd91b5d693570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outline: {fileID: 6432067307027011969}
 --- !u!33 &6504278988237744521
 MeshFilter:
   m_ObjectHideFlags: 0

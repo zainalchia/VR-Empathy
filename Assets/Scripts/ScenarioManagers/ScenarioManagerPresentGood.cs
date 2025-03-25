@@ -176,6 +176,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StopPrevDialogue();
         phone.GetComponent<Outline>().enabled = false;
+        phone.GetComponent<ForceStayGrabbed>().SetActive(true);
         GlassesPutOn();
     }
 
@@ -212,6 +213,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
+
+        yield return new WaitForSeconds(1.5f);
+
+        phone.GetComponent<ForceStayGrabbed>().SetActive(false); // drops phone
+        phone.GetComponent<Grabbable>().enabled = false; // ensures that phone cannot be grabbed again
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset back to prepare for move to main door
 
@@ -498,7 +504,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         chessNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
     }
-
+    
     public void PlayOthelloTransition()
     {
         taichiNPC.SetActive(false);
@@ -619,7 +625,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // NPC lose animation
         NPC.GetComponent<Animator>().SetTrigger("lose");
 
-        yield return new WaitForSeconds(5); // lose animation is around 5 secs
+        yield return new WaitForSeconds(6f); // lose animation is around 5 secs
 
         chessNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
@@ -686,13 +692,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             targetRotationY,
             chessNPC.transform.localRotation.eulerAngles.z
         );
-
-        readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("IdleSeat");
     }
 
     IEnumerator ReadingCornerTransition()
     {
         yield return StartCoroutine(SetReadingCornerNPCToPlayPos(-70));
+
+        readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("IdleSeat");
 
         yield return new WaitForSeconds(0.5f);
 

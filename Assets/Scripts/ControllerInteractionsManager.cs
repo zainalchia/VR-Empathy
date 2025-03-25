@@ -189,16 +189,15 @@ public class ControllerInteractionsManager : MonoBehaviour
                 leftHandForceSelected = true;
                 lastHeldObjLeftHand = GameManager.instance.dentures;
                 GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
-
                 // positions dentures to hand that force selected                
                 GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetActive(true); // force dentures to be on hand of player (basically cant drop)
                 GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
                 GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
                 //GameManager.instance.OnDenturesTakeOff.Invoke();
-                toReleaseLeftHand = true; // so that object can be let go once the grab button is released
                 GameManager.instance.toTakeDenturesOff = false;
             }
             else if (controllerSide == OVRInput.Controller.RTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
@@ -213,13 +212,13 @@ public class ControllerInteractionsManager : MonoBehaviour
 
                 // positions dentures to hand that force selected
                 GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetActive(true);
                 GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
                 GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
                 grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
                 //GameManager.instance.OnDenturesTakeOff.Invoke();
-                toReleaseRightHand = true; // so that object can be let go once the grab button is released
                 GameManager.instance.toTakeDenturesOff = false;
             }
         }
