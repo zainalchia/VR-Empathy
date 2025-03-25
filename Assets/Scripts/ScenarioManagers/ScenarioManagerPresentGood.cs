@@ -232,6 +232,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] AudioSource RingingSoundSource;
     [SerializeField] GameObject firstToDoorHotspot;
     [SerializeField] private DoorKnob MainGate;
+    [SerializeField] private Outline MainGateOutline;
 
     public void PlaySegment1Part4()
     {
@@ -242,7 +243,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); // delay between phone hang up and door ring
 
-        MainGate.gameObject.GetComponent<Outline>().enabled = true;
+        MainGateOutline.enabled = true;
 
         RingingSoundSource.Play(); // need ring sfx
 
