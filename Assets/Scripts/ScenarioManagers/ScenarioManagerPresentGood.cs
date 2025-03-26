@@ -243,8 +243,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         yield return new WaitForSeconds(2f); // delay between phone hang up and door ring
 
-        MainGateOutline.enabled = true;
-
         RingingSoundSource.Play(); // need ring sfx
 
         GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
@@ -323,6 +321,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         GameManager.instance.ShowAlert(narration_1[3]);
 
         MainGate.AllowDoorOpen();
+
+        MainGateOutline.enabled = true;
     }
 
     public void PlayMainGateOpen()
