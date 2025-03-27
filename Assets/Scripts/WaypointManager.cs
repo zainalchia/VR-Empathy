@@ -17,7 +17,7 @@ public class WaypointManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BeginRoachMovement();
+        BeginMovement();
     }
 
     // Update is called once per frame
@@ -52,7 +52,7 @@ public class WaypointManager : MonoBehaviour
         }
         
     }
-    public void BeginRoachMovement()
+    public void BeginMovement()
     {
         wayPointIndex = 0;
         isMoving = true;
