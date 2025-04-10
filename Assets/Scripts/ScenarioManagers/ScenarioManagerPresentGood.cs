@@ -148,8 +148,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     #region Segment 1 Part 3 (Living room)
     [Header("In living room")]
     [SerializeField] GameObject phone;
+    [SerializeField] GameObject secondPhone;
     [SerializeField] MobilePhone mobilePhone;
-
+    
     public void PlaySegment1Part3_1()
     {
         lastRoutine = StartCoroutine(Segment1Part3_1());
@@ -213,10 +214,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(3f);
 
         phone.GetComponent<ForceStayGrabbed>().SetActive(false); // drops phone
         phone.GetComponent<Grabbable>().enabled = false; // ensures that phone cannot be grabbed again
+        phone.SetActive(false);
+        secondPhone.SetActive(true);
+
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset back to prepare for move to main door
 
@@ -320,9 +324,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         GameManager.instance.ShowAlert(narration_1[3]);
 
-        MainGate.AllowDoorOpen();
-
         MainGateOutline.enabled = true;
+
+        MainGate.AllowDoorOpen();
+    }
+
+    public void OffMainGateOutline()
+    {
+        MainGateOutline.enabled = false;
     }
 
     public void PlayMainGateOpen()

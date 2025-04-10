@@ -12,6 +12,7 @@ public class DoorKnob : MonoBehaviour
     [SerializeField] bool canOpenDoor = false; // if true, player can open door anytime
     [SerializeField] AudioSource GateOpenSource;
     public UnityEvent OnDoorOpen;
+    public UnityEvent OffDoorOutline;
 
     public enum DoorType
     {
@@ -38,7 +39,11 @@ public class DoorKnob : MonoBehaviour
             if (other.gameObject.GetComponentInParent<GrabInteractor>() != null)
             {
                 if(type == DoorType.Door) OnDoorOpen.Invoke();
-                if(type == DoorType.Gate) StartCoroutine(DoorOpen());
+                if (type == DoorType.Gate)
+                {
+                    OffDoorOutline.Invoke(); // because apparantly using getComponent<Outline>().enabled = false does not work??
+                    StartCoroutine(DoorOpen());
+                }
                 canOpenDoor = false;
             }
         }
@@ -46,8 +51,6 @@ public class DoorKnob : MonoBehaviour
 
     IEnumerator DoorOpen()
     {
-        transform.GetComponent<Outline>().enabled = false; // hides gate handle outline
-
         if (AlertTextController.instance) // hide alert text
         {
             if (AlertTextController.instance.gameObject.activeInHierarchy)
