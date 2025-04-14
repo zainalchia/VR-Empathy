@@ -1,12 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Oculus.Interaction;
-using static UnityEngine.Rendering.DebugUI;
-using static Unity.VisualScripting.Member;
 using static MainMenuManager;
-using TMPro;
 
 public class ScenarioManagerPresentBad : MonoBehaviour
 {
@@ -220,7 +216,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] MobilePhone mobilePhone;
     [SerializeField] GameObject glasses;
     [SerializeField] AudioClip glassesDrop;
-    [SerializeField] Outline phoneOutline;
     [SerializeField] Outline glassesOutline;
     [SerializeField] GameObject tvAudio;
 
@@ -242,7 +237,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // play phone calling
         mobilePhone.SetPhoneCalling();
-        phoneOutline.enabled = true;
+        phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
         GameManager.instance.ShowAlert(narration_1[18]);
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
@@ -255,15 +250,17 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
+        phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         GameManager.instance.HideAlert();
         StopPrevDialogue();
-        phoneOutline.enabled = false;
         lastRoutine = StartCoroutine(Segment1Part3_2());
     }
 
     IEnumerator Segment1Part3_2()
     {
         GameManager.instance.ShowAlert(narration_1[19]);
+
+        glassesOutline.enabled = true;
 
         ControllerInteractionsManager.instance.autoDropItems = true; // will drop items from here
         GameManager.instance.toPutGlassesOn = true;
@@ -274,9 +271,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[4]);
         yield return new WaitForSeconds(1f);
 
-        glassesOutline.enabled = true;
         yield return new WaitForSeconds(3f + 1.1f);
-        
     }
 
     public void DropGlassesReaction() // called in UnityEvent in ControllerInteractionsManager
@@ -495,12 +490,14 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         animatedMedicine.GetComponent<Animator>().enabled = true;
         lastRoutine = StartCoroutine(Segment2Part2_2());
     }
+
     IEnumerator Segment2Part2_2()
     {
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookAtObjective = true;
         photoFrame.GetComponent<Grabbable>().enabled = true;
         photoFrameOutline.SetActive(true);
+        photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
         // add new dialogue here
         yield return null;
     }
