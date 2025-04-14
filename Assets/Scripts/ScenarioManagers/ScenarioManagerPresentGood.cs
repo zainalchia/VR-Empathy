@@ -78,7 +78,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         // Give time for player to wash up
         yield return new WaitForSeconds(narrationAudioClips_1[0].length + timeForWashingUp);
-
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
 
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
@@ -221,6 +220,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         phone.SetActive(false);
         secondPhone.SetActive(true);
 
+        secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        secondPhone.transform.GetComponent<MeshRenderer>().enabled = true;
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset back to prepare for move to main door
 
@@ -442,6 +446,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        chessNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
+
+        yield return StartCoroutine(SetNPCToPlayPos(chessNPC,90,2));
+
         GameManager.instance.ShowAlert(narration_2[1]);
 
         chessNPC.GetComponent<Outline>().enabled = true;
@@ -457,48 +465,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         lookDetection.enabled = false;
         firstOthelloHotspot.SetActive(true);
         playerTeleport.MovingToOthelloChair = true;
+        GameManager.instance.ShowAlert(narration_2[2]);
         chessNPC.GetComponent<Animator>().ResetTrigger("IdleSeat");
         chessNPC.GetComponent<Animator>().ResetTrigger("TalkBegin");
         chessNPC.GetComponent<Animator>().ResetTrigger("Talking");
         chessNPC.GetComponent<Animator>().ResetTrigger("TalkEnd");
-        StartCoroutine(SetOthelloNPCToPlayPos());
-    }
-
-    IEnumerator SetOthelloNPCToPlayPos()
-    {
-        float startRotationY = chessNPC.transform.localRotation.eulerAngles.y;
-        float targetRotationY = 280f;
-        currentRotationTime = 0f;
-
-        while (currentRotationTime < ChessNPCRotationTime)
-        {
-            currentRotationTime += Time.deltaTime;
-            float t = currentRotationTime / ChessNPCRotationTime;
-
-            // Create a new rotation with the lerped y value
-            Quaternion newRotation = Quaternion.Euler(
-                chessNPC.transform.localRotation.eulerAngles.x,
-                Mathf.LerpAngle(startRotationY, targetRotationY, t),
-                chessNPC.transform.localRotation.eulerAngles.z
-            );
-
-            chessNPC.transform.localRotation = newRotation;
-
-            yield return null;
-        }
-
-        // Ensure we end at exactly the target rotation
-        chessNPC.transform.localRotation = Quaternion.Euler(
-            chessNPC.transform.localRotation.eulerAngles.x,
-            targetRotationY,
-            chessNPC.transform.localRotation.eulerAngles.z
-        );
-
-        chessNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
     }
     
     public void PlayOthelloTransition()
     {
+        StopPrevDialogue();
         taichiNPC.SetActive(false);
         FirstPlayerPieceDestination.SetActive(true);
         FirstPlayerPiece.GetComponent<Outline>().enabled = true;
@@ -655,40 +631,40 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StartCoroutine(ReadingCornerTransition());
     }
 
-    IEnumerator SetReadingCornerNPCToPlayPos(float TargetRotationY)
+    IEnumerator SetNPCToPlayPos(GameObject NPCToRotate,float TargetRotationY,float NPCRotationTime)
     {
-        float startRotationY = readingCornerNPCs.transform.GetChild(0).localRotation.eulerAngles.y;
+        float startRotationY = NPCToRotate.transform.GetChild(0).localRotation.eulerAngles.y;
         float targetRotationY = TargetRotationY;
         currentRotationTime = 0f;
 
-        while (currentRotationTime < ChessNPCRotationTime)
+        while (currentRotationTime < NPCRotationTime)
         {
             currentRotationTime += Time.deltaTime;
-            float t = currentRotationTime / ChessNPCRotationTime;
+            float t = currentRotationTime / NPCRotationTime;
 
             // Create a new rotation with the lerped y value
             Quaternion newRotation = Quaternion.Euler(
-                 readingCornerNPCs.transform.GetChild(0).localRotation.eulerAngles.x,
+                 NPCToRotate.transform.GetChild(0).localRotation.eulerAngles.x,
                  Mathf.LerpAngle(startRotationY, targetRotationY, t),
-                 readingCornerNPCs.transform.GetChild(0).localRotation.eulerAngles.z
+                 NPCToRotate.transform.GetChild(0).localRotation.eulerAngles.z
             );
 
-            readingCornerNPCs.transform.GetChild(0).localRotation = newRotation;
+            NPCToRotate.transform.GetChild(0).localRotation = newRotation;
 
             yield return null;
         }
 
         // Ensure we end at exactly the target rotation
-        chessNPC.transform.localRotation = Quaternion.Euler(
-            chessNPC.transform.localRotation.eulerAngles.x,
+        NPCToRotate.transform.localRotation = Quaternion.Euler(
+            NPCToRotate.transform.localRotation.eulerAngles.x,
             targetRotationY,
-            chessNPC.transform.localRotation.eulerAngles.z
+            NPCToRotate.transform.localRotation.eulerAngles.z
         );
     }
 
     IEnumerator ReadingCornerTransition()
     {
-        yield return StartCoroutine(SetReadingCornerNPCToPlayPos(-70));
+        yield return StartCoroutine(SetNPCToPlayPos(readingCornerNPCs,-70,2));
 
         readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("IdleSeat");
 
@@ -710,7 +686,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        yield return StartCoroutine(SetReadingCornerNPCToPlayPos(-130));
+        yield return StartCoroutine(SetNPCToPlayPos(readingCornerNPCs,-130,2));
 
         readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("BackToIdle");
 
@@ -751,6 +727,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         {
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
+            secondPhone.GetComponent<MeshRenderer>().enabled = false;
+            secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
