@@ -1,16 +1,12 @@
 using Oculus.Interaction;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
 
 public class Medicine : MonoBehaviour
 {
     public UnityEvent OnDroppedMedication;
 
     bool hasTriggeredEvent = false;
-
     
     // Start is called before the first frame update
     void Start()

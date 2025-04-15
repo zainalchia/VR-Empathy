@@ -19,6 +19,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [Header("Narration Variables")]
     [SerializeField] AudioSource narrationAudioSource;
 
+    // for general audio clips used in both scenes
+    [SerializeField] AudioClip[] narrationAudioClips_General_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_General_Female;
+    AudioClip[] narrationAudioClips_General;
+
     // for bathroom and living room scene
     [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Male;
     [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Female;
@@ -38,6 +43,18 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject firstTeleportHotspot;
 
     Coroutine lastRoutine = null;
+
+    void SetupNarrationGeneral()
+    {
+        if (MainMenuManager.isGenderMale)
+        {
+            narrationAudioClips_General = narrationAudioClips_General_Male;
+        }
+        else
+        {
+            narrationAudioClips_General = narrationAudioClips_General_Female;
+        }
+    }
 
     void SetupNarrationBathroomLivingRoom()
     {
@@ -383,7 +400,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject cabinet;
     [SerializeField] GameObject originallyHeldMedicine;
     [SerializeField] GameObject animatedMedicine;
+    [SerializeField] GameObject SecondOriginallyHeldMedicine;
+    [SerializeField] GameObject SecondAnimatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
+    [SerializeField] GameObject SecondPillBottleHighlight;
     [SerializeField] GameObject photoFrame;
     [SerializeField] GameObject oldMode;
     [SerializeField] GameObject newMode;
@@ -480,17 +500,40 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         PillBottleHighlight.SetActive(true);
     }
 
-    public void MedicationDropped()
+    public void FirstMedicationDropped()
     {
         StopPrevDialogue();
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[7]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_General[0]); // sigh sfx
 
         // for the scripted animation of medicine getting toppled over
         originallyHeldMedicine.SetActive(false);
         animatedMedicine.SetActive(true);
         animatedMedicine.GetComponent<Animator>().enabled = true;
-        lastRoutine = StartCoroutine(Segment2Part2_2());
+        StartCoroutine(ShowSecondPillBottleOutline());
+    }
+
+    IEnumerator ShowSecondPillBottleOutline()
+    {
+        yield return new WaitForSeconds(2);
+
+        SecondPillBottleHighlight.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f); // add a bit of delay between outline showing and being able to interact with 2nd pill bottle
+
+        SecondOriginallyHeldMedicine.GetComponent<Medicine>().enabled = true;
+    }
+
+    public void SecondMedicationDropped()
+    {
+        StopPrevDialogue();
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[7]);
+
+        SecondOriginallyHeldMedicine.SetActive(false);
+        SecondAnimatedMedicine.SetActive(true);
+        SecondAnimatedMedicine.GetComponent<Animator>().enabled = true;
+        StartCoroutine(Segment2Part2_2());
     }
 
     IEnumerator Segment2Part2_2()
@@ -527,6 +570,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupNarrationGeneral();
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             SetupNarrationBathroomLivingRoom();

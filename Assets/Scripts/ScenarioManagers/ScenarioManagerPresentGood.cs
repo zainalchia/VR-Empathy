@@ -164,7 +164,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         // play phone calling
         mobilePhone.SetPhoneCalling();
-        phone.GetComponent<Outline>().enabled = true;
+        phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
 
         yield return new WaitForSeconds(2.5f + 1.1f);
 
@@ -174,7 +174,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
         StopPrevDialogue();
-        phone.GetComponent<Outline>().enabled = false;
+        phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         phone.GetComponent<ForceStayGrabbed>().SetActive(true);
         GlassesPutOn();
     }
