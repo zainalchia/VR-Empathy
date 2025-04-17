@@ -510,6 +510,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         originallyHeldMedicine.SetActive(false);
         animatedMedicine.SetActive(true);
         animatedMedicine.GetComponent<Animator>().enabled = true;
+        animatedMedicine.GetComponent<AudioSource>().Play(); // play pill dropping sound
+
         StartCoroutine(ShowSecondPillBottleOutline());
     }
 
@@ -533,6 +535,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         SecondOriginallyHeldMedicine.SetActive(false);
         SecondAnimatedMedicine.SetActive(true);
         SecondAnimatedMedicine.GetComponent<Animator>().enabled = true;
+        SecondAnimatedMedicine.GetComponent<AudioSource>().Play(); // play pill dropping sound
+
         StartCoroutine(Segment2Part2_2());
     }
 
