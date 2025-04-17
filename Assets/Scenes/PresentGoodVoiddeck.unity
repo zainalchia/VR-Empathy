@@ -1389,7 +1389,7 @@ PrefabInstance:
     - target: {fileID: 6596230070822618579, guid: 3b83bc11360734e30b275a3d6c6978e2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.951
+      value: -2.165
       objectReference: {fileID: 0}
     - target: {fileID: 6596230070822618579, guid: 3b83bc11360734e30b275a3d6c6978e2,
         type: 3}
@@ -3251,7 +3251,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.028
+      value: -0.417
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
@@ -3261,27 +3261,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.318
+      value: -8.548
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
@@ -3291,7 +3291,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
@@ -5025,6 +5025,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1987931242}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1845531751}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aaa8c679189f5834fa0680f5a4914ace,
         type: 3}
@@ -7214,6 +7218,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 472961479060806077, guid: e347fa8fa11545448acb9c4fda8f7de8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.87
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e347fa8fa11545448acb9c4fda8f7de8,
         type: 3}
       propertyPath: m_Name
@@ -7710,7 +7719,7 @@ PrefabInstance:
     - target: {fileID: 4564687952224690832, guid: a4f4a633a15b849a99513198d31fb66a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.361
+      value: -1.593
       objectReference: {fileID: 0}
     - target: {fileID: 4564687952224690832, guid: a4f4a633a15b849a99513198d31fb66a,
         type: 3}
@@ -13443,15 +13452,18 @@ MonoBehaviour:
   phone: {fileID: 0}
   secondPhone: {fileID: 0}
   mobilePhone: {fileID: 0}
+  OutsideHouse: {fileID: 0}
+  MaleFriends: []
+  FemaleFriends: []
+  moveSpeed: 0
   mainDoor: {fileID: 0}
   RingingSoundSource: {fileID: 0}
   firstToDoorHotspot: {fileID: 0}
   MainGate: {fileID: 0}
   MainGateOutline: {fileID: 0}
-  MaleFriends: []
-  FemaleFriends: []
   taiChiManager: {fileID: 2009993761}
   taichiInstructor: {fileID: 485374213}
+  taichiTargetDestination: {fileID: 1845531751}
   taichiNPC: {fileID: 2137654383}
   chessNPC: {fileID: 463748745}
   teleportPoint: {fileID: 1901481972}
@@ -24980,6 +24992,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831507888}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1845531750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1845531751}
+  m_Layer: 0
+  m_Name: TargetDestination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1845531751
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1845531750}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.099, y: 0, z: 3.678}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 485374215}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1849843034 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5137dc2244120f64fb5bbc39bdd78016,
