@@ -7,6 +7,7 @@ using static UnityEngine.Rendering.DebugUI;
 using static Unity.VisualScripting.Member;
 using UnityEngine.Events;
 using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class ScenarioManagerPresentGood : MonoBehaviour
 {
@@ -149,7 +150,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject phone;
     [SerializeField] GameObject secondPhone;
     [SerializeField] MobilePhone mobilePhone;
-    
+    [SerializeField] Transform OutsideHouse; // just outside house for friends to walk to
+    [SerializeField] private GameObject[] MaleFriends;
+    [SerializeField] private GameObject[] FemaleFriends;
+    private GameObject[] friends;
+    [SerializeField] private float moveSpeed;
+
     public void PlaySegment1Part3_1()
     {
         lastRoutine = StartCoroutine(Segment1Part3_1());
@@ -195,19 +201,22 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part3_3() // Dialogue between player and caller
     {
+        if (MainMenuManager.isGenderMale)
+        {
+            friends = MaleFriends;
+        }
+        else
+        {
+            friends = FemaleFriends;
+        }
+
+        StartCoroutine(MoveFriendsWithDelay(1));
+
         yield return new WaitForSeconds(3f); // the call takes a few second to be answered so wait a few seconds first
 
-        ////PlayAudioAndNarration(narrationAudioClips_1[4], narration_1[13], 3f);
-        //narrationAudioSource.Stop();
-        //narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
-        //yield return new WaitForSeconds(3f + 1.1f);
-
-        ////GameManager.instance.ShowAlert(narration_1[14], 8f);
-        //yield return new WaitForSeconds(8f + 1.1f);
-
-        //PlayAudioAndNarration(narrationAudioClips_1[5], narration_1[15], narrationAudioClips_1[4].length);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
         // play phone hang up here
@@ -229,6 +238,31 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         playerTeleport.SetCurrentHotspotIndex(-1); // reset back to prepare for move to main door
 
         PlaySegment1Part4();
+    }
+
+    IEnumerator MoveFriendsWithDelay(float delayBetweenFriends)
+    {
+        StartCoroutine(MoveFriendPosition(friends[0],0.5f,OutsideHouse.position,180));
+        yield return new WaitForSeconds(delayBetweenFriends);
+        StartCoroutine(MoveFriendPosition(friends[1],1f,OutsideHouse.position,180));
+    }
+
+    IEnumerator MoveFriendPosition(GameObject friend,float stopDistance,Vector3 targetDestination,float targetYRotation)
+    {
+        var directionVector = (targetDestination - friend.transform.position).normalized;
+
+        friend.GetComponent<Animator>().SetBool("isWalking", true);
+
+        while (Vector3.Distance(targetDestination,friend.transform.position) > stopDistance)
+        {
+            friend.transform.position += directionVector * moveSpeed * Time.deltaTime;
+
+            yield return null;
+        }
+
+        friend.GetComponent<Animator>().SetBool("isWalking", false);
+        Vector3 currentRotation = friend.transform.rotation.eulerAngles;
+        friend.transform.rotation = Quaternion.Euler(currentRotation.x, targetYRotation, currentRotation.z);
     }
 
     #endregion
@@ -271,11 +305,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 1 Part 5 (Interaction with friends outside main door)
 
-    [Header("At main door")]
-    [SerializeField] private GameObject[] MaleFriends;
-    [SerializeField] private GameObject[] FemaleFriends;
-    private GameObject[] friends;
-
     public void PlaySegment1Part5()
     {
         lastRoutine = StartCoroutine(Segment1Part5());
@@ -283,25 +312,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part5()
     {
-        if (MainMenuManager.isGenderMale)
-        {
-            friends = MaleFriends;
-
-            foreach(var friend in MaleFriends)
-            {
-                friend.SetActive(true);
-            }
-        }
-        else
-        {
-            friends = FemaleFriends;
-
-            foreach (var friend in FemaleFriends)
-            {
-                friend.SetActive(true);
-            }
-        }
-
         friends[0].GetComponent<Animator>().SetTrigger("Wave");
 
         yield return new WaitForSeconds(1f);
@@ -406,6 +416,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StartCoroutine(MovingFromTaichiToChess());
     }
+
     #endregion
 
     [Header("Voiddeck - Transition Taichi to Chess")]
