@@ -9732,7 +9732,6 @@ GameObject:
   - component: {fileID: 1484599797}
   - component: {fileID: 1484599796}
   - component: {fileID: 1484599795}
-  - component: {fileID: 1484599794}
   - component: {fileID: 1484599801}
   m_Layer: 0
   m_Name: Pill_Bottle Correct
@@ -9759,21 +9758,6 @@ Transform:
   - {fileID: 433582226}
   m_Father: {fileID: 1621671052}
   m_LocalEulerAnglesHint: {x: 0, y: 44.981, z: 0}
---- !u!114 &1484599794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484599792}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bedaac29a943f844a7074b53c8bdf9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pointable: {fileID: 1484599796}
-  _rigidbody: {fileID: 1484599797}
-  _scaleMassWithSize: 1
 --- !u!114 &1484599795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9796,7 +9780,7 @@ MonoBehaviour:
   _useClosestPointAsGrabSource: 0
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
-  _physicsGrabbable: {fileID: 1484599794}
+  _physicsGrabbable: {fileID: 0}
 --- !u!114 &1484599796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9931,7 +9915,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1115407453}
         m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: SecondMedicationDropped
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10104,10 +10088,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c1cab01d99fcd344ae26feac73a7e3b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1518123007}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c1cab01d99fcd344ae26feac73a7e3b,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 1518123008}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c1cab01d99fcd344ae26feac73a7e3b,
         type: 3}
@@ -10195,21 +10175,6 @@ MonoBehaviour:
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 0}
---- !u!114 &1518123007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1518123002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bedaac29a943f844a7074b53c8bdf9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pointable: {fileID: 1518123005}
-  _rigidbody: {fileID: 1518123004}
-  _scaleMassWithSize: 1
 --- !u!114 &1518123008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14805,7 +14770,6 @@ GameObject:
   - component: {fileID: 2006039838}
   - component: {fileID: 2006039833}
   - component: {fileID: 2006039832}
-  - component: {fileID: 2006039831}
   m_Layer: 0
   m_Name: Pill_Bottle Main
   m_TagString: Untagged
@@ -14831,21 +14795,6 @@ Transform:
   - {fileID: 1951452156}
   m_Father: {fileID: 1621671052}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2006039831
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006039829}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bedaac29a943f844a7074b53c8bdf9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pointable: {fileID: 2006039833}
-  _rigidbody: {fileID: 2006039834}
-  _scaleMassWithSize: 1
 --- !u!114 &2006039832
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14868,7 +14817,7 @@ MonoBehaviour:
   _useClosestPointAsGrabSource: 0
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
-  _physicsGrabbable: {fileID: 2006039831}
+  _physicsGrabbable: {fileID: 0}
 --- !u!114 &2006039833
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15003,7 +14952,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1115407453}
         m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: FirstMedicationDropped
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15521,6 +15470,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2267428453696300525, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.00025
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267428453696300525, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00099
+      objectReference: {fileID: 0}
+    - target: {fileID: 2267428453696300525, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.00018
+      objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -15589,7 +15553,7 @@ PrefabInstance:
     - target: {fileID: 5037048907636774657, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99473166
+      value: 0.9947317
       objectReference: {fileID: 0}
     - target: {fileID: 5037048907636774657, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -15599,7 +15563,7 @@ PrefabInstance:
     - target: {fileID: 5037048907636774657, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.024290893
+      value: 0.024290895
       objectReference: {fileID: 0}
     - target: {fileID: 5037048907636774657, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -15884,7 +15848,7 @@ PrefabInstance:
     - target: {fileID: 5037048907636774681, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.95869786
+      value: 0.95869774
       objectReference: {fileID: 0}
     - target: {fileID: 5037048907636774681, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -15894,7 +15858,7 @@ PrefabInstance:
     - target: {fileID: 5037048907636774681, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.0065782913
+      value: -0.0065782904
       objectReference: {fileID: 0}
     - target: {fileID: 5037048907636774681, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -18399,6 +18363,7 @@ GameObject:
   - component: {fileID: 7416691524095962651}
   - component: {fileID: 8401952775049721579}
   - component: {fileID: 8401952775049721580}
+  - component: {fileID: 8401952775049721581}
   m_Layer: 0
   m_Name: Cube.005
   m_TagString: Untagged
@@ -18498,6 +18463,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8401952775049721581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7623545440912542551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3439b0de2ac5fbd4ba70a0fb5d37c14a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8622353168195623060
 Transform:
   m_ObjectHideFlags: 0
@@ -18616,5 +18593,5 @@ SceneRoots:
   - {fileID: 1350899398}
   - {fileID: 929722806}
   - {fileID: 1746968595}
-  - {fileID: 715179909}
   - {fileID: 883178009}
+  - {fileID: 715179909}

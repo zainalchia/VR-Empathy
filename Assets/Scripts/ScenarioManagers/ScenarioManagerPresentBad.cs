@@ -4,6 +4,13 @@ using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using static MainMenuManager;
 
+public class  Trans2
+{
+    public Vector3 position;
+    public Vector3 scale;
+    public Quaternion rotation;
+}
+
 public class ScenarioManagerPresentBad : MonoBehaviour
 {
     [SerializeField]
@@ -410,6 +417,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject photoFrameOutline;
     [SerializeField] AnimationClip HandsUp;
     [SerializeField] AnimationClip HandsDown;
+    Trans2 photoFrameOriginalPosition = new();
     Animator animator;
     static public bool canMedicineSpill;
 
@@ -420,6 +428,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         CupOutline.enabled = false;
         // Buffer time for them to put dentures in cup
         yield return new WaitForSeconds(3f);
+
+        SaveGOTransform(photoFrame.transform,photoFrameOriginalPosition);
 
         // start furniture moving here
         GameManager.instance.toStartSpasming = true;
@@ -475,6 +485,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
+        sideTable.SetActive(true);
+        SetGOTransform(photoFrame.transform,photoFrameOriginalPosition);
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
@@ -489,8 +501,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //GameManager.instance.ShowAlert(narration_2[6], 12f);
         yield return new WaitForSeconds(2f);
-
-        //GameManager.instance.ShowAlert(narration_2[7]);
 
         //PlayAudioAndNarration(narrationAudioClips_2[3], narration_2[8], narrationAudioClips_2[3].length);
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
@@ -663,4 +673,19 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(clipToPlay);
         GameManager.instance.ShowAlert(narrationText, clipLength, textColor);
     }
+
+    public void SetGOTransform(Transform gameObjectTransform,Trans2 desiredTransform) // set go transform to previously saved transform
+    {
+        gameObjectTransform.position = desiredTransform.position;
+        gameObjectTransform.rotation = desiredTransform.rotation;
+        gameObjectTransform.localScale = desiredTransform.scale;
+    }
+
+    public void SaveGOTransform(Transform gameObjectTransform,Trans2 savedGOTransform) // saves gameobject transform to a variable
+    {
+        savedGOTransform.position = gameObjectTransform.position;
+        savedGOTransform.rotation = gameObjectTransform.rotation;
+        savedGOTransform.scale = gameObjectTransform.localScale;
+    }
+
 }
