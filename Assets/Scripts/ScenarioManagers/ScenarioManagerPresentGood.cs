@@ -446,73 +446,73 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void TaichiFinished() // Event called in Taichi instructor
     {
-        StartCoroutine(MovingFromTaichiToChess());
+        StartCoroutine(MovingFromTaichiToCheckers());
     }
 
     #endregion
 
-    [Header("Voiddeck - Transition Taichi to Chess")]
+    [Header("Voiddeck - Transition Taichi to Checkers")]
     [SerializeField] GameObject taichiNPC;
-    [SerializeField] GameObject chessNPC;
+    [SerializeField] GameObject checkersNPC;
     [SerializeField] GameObject teleportPoint;
     [SerializeField] GameObject player;
     [SerializeField] GameObject FirstPlayerPieceDestination;
     [SerializeField] GameObject SecondPlayerPieceDestination;
     [SerializeField] GameObject FirstPlayerPiece;
     [SerializeField] LookDetection lookDetection;
-    [SerializeField] float ChessNPCRotationTime = 2;
-    [SerializeField] GameObject firstOthelloHotspot;
+    [SerializeField] float checkersNPCRotationTime = 2;
+    [SerializeField] GameObject firstCheckersHotspot;
     private float currentRotationTime;
     int times;
 
-    IEnumerator MovingFromTaichiToChess()
+    IEnumerator MovingFromTaichiToCheckers()
     {
         times++;
 
-        chessNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
+        checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
         yield return new WaitForSeconds(0.5f);
 
-        chessNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
+        checkersNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
 
         yield return new WaitForSeconds(0.7f);
 
-        chessNPC.GetComponent<Animator>().SetTrigger("Talking");
+        checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
-        chessNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[1];
+        checkersNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[1];
 
-        chessNPC.GetComponent<AudioSource>().Play();
+        checkersNPC.GetComponent<AudioSource>().Play();
 
         yield return new WaitForSeconds(narrationAudioClips_2[1].length);
 
-        chessNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
+        checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
 
         yield return new WaitForSeconds(2f);
 
-        chessNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
+        checkersNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
 
-        yield return StartCoroutine(SetNPCToPlayPos(chessNPC,90,2));
+        yield return StartCoroutine(SetNPCToPlayPos(checkersNPC,90,2));
 
         GameManager.instance.ShowAlert(narration_2[1]);
 
-        chessNPC.GetComponent<Outline>().enabled = true;
+        checkersNPC.GetComponent<Outline>().enabled = true;
 
         yield return new WaitForSeconds(1f);
 
         lookDetection.enabled = true;
     }
 
-    public void StartWalkingToOthello()
+    public void StartWalkingToCheckers()
     {
         StopPrevDialogue(); // hide alert text
         lookDetection.enabled = false;
-        firstOthelloHotspot.SetActive(true);
+        firstCheckersHotspot.SetActive(true);
         playerTeleport.MovingToOthelloChair = true;
         GameManager.instance.ShowAlert(narration_2[2]);
-        chessNPC.GetComponent<Animator>().ResetTrigger("IdleSeat");
-        chessNPC.GetComponent<Animator>().ResetTrigger("TalkBegin");
-        chessNPC.GetComponent<Animator>().ResetTrigger("Talking");
-        chessNPC.GetComponent<Animator>().ResetTrigger("TalkEnd");
+        checkersNPC.GetComponent<Animator>().ResetTrigger("IdleSeat");
+        checkersNPC.GetComponent<Animator>().ResetTrigger("TalkBegin");
+        checkersNPC.GetComponent<Animator>().ResetTrigger("Talking");
+        checkersNPC.GetComponent<Animator>().ResetTrigger("TalkEnd");
     }
     
     public void PlayOthelloTransition()
@@ -536,7 +536,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StopPrevDialogue(); // hides alert
         NPC.GetComponent<Animator>().SetTrigger("move");
-        StartCoroutine(MovePiece());
+        //StartCoroutine(MovePiece());
     }
 
     IEnumerator MovePiece()
@@ -568,15 +568,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         // Ensure final position is exactly at destination
         FirstFriendOthelloPiece.transform.localPosition = targetPosition;
-
-        yield return StartCoroutine(FindPiecesToFlip(FirstFriendOthelloPiece)); // wait until flipping animation is done
-
-        // Enable interaction with the second piece
-        SecondPlayerOthelloPiece.GetComponent<Outline>().enabled = true;
-        SecondPlayerOthelloPiece.GetComponent<Grabbable>().enabled = true;
-        SecondPlayerOthelloPiece.GetComponent<GrabInteractable>().enabled = true;
-        SecondPlayerOthelloPiece.GetComponent<PhysicsGrabbable>().enabled = true;
-        SecondPlayerPieceDestination.SetActive(true);
     }
 
     public void EndOfChess()
@@ -584,7 +575,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue(); // hides alert
         NPC.GetComponent<Animator>().ResetTrigger("move");
         NPC.GetComponent<Animator>().SetTrigger("move");
-        StartCoroutine(FinalMove());
     }
 
     [Header("Voiddeck - Transition Chess to Reading Corner")]
@@ -596,39 +586,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     GameObject readingCornerNPCs;
     [SerializeField] GameObject firstToReadingCornerHotspot;
 
-    IEnumerator FinalMove()
-    {
-        yield return new WaitForSeconds(2f);
-        float timeSinceStarted = 0f;
-        float duration = 2f; // Total movement time
-
-        Vector3 startPosition = SecondFriendOthelloPiece.transform.localPosition;
-        Vector3 targetPosition = SecondDestination.transform.localPosition;
-
-        while (timeSinceStarted < duration)
-        {
-            timeSinceStarted += Time.deltaTime;
-            float t = timeSinceStarted / duration; // Normalized time (0 to 1)
-
-            // Calculate position with linear interpolation
-            Vector3 currentPosition = Vector3.Lerp(startPosition, targetPosition, t);
-
-            // Add height using a parabolic function (highest at t=0.5)
-            float height = 0.25f * Mathf.Sin(t * Mathf.PI); // Peak height of 0.5 units
-            currentPosition.y += height;
-
-            // Apply the position
-            SecondFriendOthelloPiece.transform.localPosition = currentPosition;
-
-            yield return null;
-        }
-
-        // Ensure final position is exactly at destination
-        SecondFriendOthelloPiece.transform.localPosition = targetPosition;
-
-        StartCoroutine(MovingFromChessToReadingCorner());
-    }
-
     IEnumerator MovingFromChessToReadingCorner()
     {
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
@@ -638,15 +595,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(6f); // lose animation is around 5 secs
 
-        chessNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
+        checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
         yield return new WaitForSeconds(0.5f);
 
-        chessNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
+        checkersNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
 
         yield return new WaitForSeconds(0.7f);
 
-        chessNPC.GetComponent<Animator>().SetTrigger("Talking");
+        checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
         NPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[3];
 
@@ -654,13 +611,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         
         yield return new WaitForSeconds(narrationAudioClips_2[3].length);
 
-        chessNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
+        checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
 
         yield return new WaitForSeconds(2f);
 
-        chessNPC.GetComponent<Animator>().ResetTrigger("BackToIdle");
+        checkersNPC.GetComponent<Animator>().ResetTrigger("BackToIdle");
 
-        chessNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
+        checkersNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset hotspot index
 
