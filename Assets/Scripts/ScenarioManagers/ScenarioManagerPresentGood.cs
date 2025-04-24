@@ -51,8 +51,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     void SetupNarrationVoiddeck()
     {
-        narration_2[0] = "[Pick up highlighted othello piece and place it on outlined spot]";
-        narration_2[1] = "[Look at highlighted othello NPC to start othello minigame]";
+        narration_2[0] = "[Look at highlighted othello NPC to start othello minigame]";
+        narration_2[1] = "[Pick up highlighted checkers piece and place it on highlighted spot]";
         narration_2[2] = "[Press TRIGGER button to move to highlighted circle]";
     }
 
@@ -456,9 +456,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject checkersNPC;
     [SerializeField] GameObject teleportPoint;
     [SerializeField] GameObject player;
-    [SerializeField] GameObject FirstPlayerPieceDestination;
-    [SerializeField] GameObject SecondPlayerPieceDestination;
-    [SerializeField] GameObject FirstPlayerPiece;
+  
     [SerializeField] LookDetection lookDetection;
     [SerializeField] float checkersNPCRotationTime = 2;
     [SerializeField] GameObject firstCheckersHotspot;
@@ -493,7 +491,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return StartCoroutine(SetNPCToPlayPos(checkersNPC,90,2));
 
-        GameManager.instance.ShowAlert(narration_2[1]);
+        GameManager.instance.ShowAlert(narration_2[0]);
 
         checkersNPC.GetComponent<Outline>().enabled = true;
 
@@ -507,46 +505,80 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue(); // hide alert text
         lookDetection.enabled = false;
         firstCheckersHotspot.SetActive(true);
-        playerTeleport.MovingToOthelloChair = true;
+        playerTeleport.MovingToCheckersChair = true;
         GameManager.instance.ShowAlert(narration_2[2]);
         checkersNPC.GetComponent<Animator>().ResetTrigger("IdleSeat");
         checkersNPC.GetComponent<Animator>().ResetTrigger("TalkBegin");
         checkersNPC.GetComponent<Animator>().ResetTrigger("Talking");
         checkersNPC.GetComponent<Animator>().ResetTrigger("TalkEnd");
     }
-    
-    public void PlayOthelloTransition()
+
+    [Header("Voiddeck - Chess")]
+    [SerializeField] GameObject FirstEnemyCheckerPiece;
+    [SerializeField] GameObject SecondEnemyCheckerPiece;
+    [SerializeField] GameObject EnemyPieceFirstDestination;
+    [SerializeField] GameObject EnemyPieceSecondDestination;
+    [SerializeField] GameObject EnemyPieceThirdDestination;
+    [SerializeField] GameObject PlayerPieceFirstDestination;
+    [SerializeField] GameObject PlayerPieceSecondDestination;
+    [SerializeField] GameObject PlayerPiece;
+    [SerializeField] GameObject PlayerPieceOutline;
+
+    public void PlayCheckersTransition()
+    {
+        StartCoroutine(CheckersTransition());
+    }
+
+    IEnumerator CheckersTransition()
     {
         StopPrevDialogue();
         taichiNPC.SetActive(false);
-        FirstPlayerPieceDestination.SetActive(true);
-        FirstPlayerPiece.GetComponent<Outline>().enabled = true;
-        GameManager.instance.ShowAlert(narration_2[0]);
+        checkersNPC.GetComponent<Animator>().SetTrigger("move");
+        yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceFirstDestination,0));
+        GameManager.instance.ShowAlert(narration_2[1]);
+        PlayerPiece.GetComponent<Grabbable>().enabled = true;
+        PlayerPieceOutline.SetActive(true);
+        PlayerPieceFirstDestination.SetActive(true);
     }
 
-    [Header("Voiddeck - Chess")]
-    [SerializeField] GameObject NPC;
-    [SerializeField] GameObject FirstFriendOthelloPiece;
-    [SerializeField] GameObject SecondPlayerOthelloPiece;
-    [SerializeField] GameObject SecondFriendOthelloPiece;
-    [SerializeField] GameObject FirstDestination;
-    [SerializeField] GameObject SecondDestination;
-    
-    public void TriggerNPC()
+    public void PlayFirstPieceCaptured()
     {
-        StopPrevDialogue(); // hides alert
-        NPC.GetComponent<Animator>().SetTrigger("move");
-        //StartCoroutine(MovePiece());
+        StartCoroutine(FirstPieceCaptured());
     }
 
-    IEnumerator MovePiece()
+    IEnumerator FirstPieceCaptured()
+    {
+        StopPrevDialogue();
+        PlayerPieceOutline.SetActive(false);
+        yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceSecondDestination)); // moves enemy piece to symbolise it being captured
+        GameManager.instance.ShowAlert(narration_2[1]);
+        PlayerPiece.GetComponent<Grabbable>().enabled = true;
+        PlayerPieceOutline.SetActive(true);
+        PlayerPieceSecondDestination.SetActive(true);
+    }
+    
+    public void PlaySecondPieceCaptured()
+    {
+        StartCoroutine(SecondPieceCaptured());
+    }
+
+    IEnumerator SecondPieceCaptured()
+    {
+        StopPrevDialogue();
+        PlayerPieceOutline.SetActive(false);
+        yield return StartCoroutine(MovePiece(SecondEnemyCheckerPiece, EnemyPieceThirdDestination));
+        yield return new WaitForSeconds(1);
+        StartCoroutine(MovingFromChessToReadingCorner());
+    }
+
+    IEnumerator MovePiece(GameObject checkerPiece,GameObject Destination,float heightMultiplier = 0.25f)
     {
         yield return new WaitForSeconds(2f);
         float timeSinceStarted = 0f;
         float duration = 2f; // Total movement time
 
-        Vector3 startPosition = FirstFriendOthelloPiece.transform.localPosition;
-        Vector3 targetPosition = FirstDestination.transform.localPosition;
+        Vector3 startPosition = checkerPiece.transform.localPosition;
+        Vector3 targetPosition = Destination.transform.localPosition;
 
         while (timeSinceStarted < duration)
         {
@@ -557,24 +589,17 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             Vector3 currentPosition = Vector3.Lerp(startPosition, targetPosition, t);
 
             // Add height using a parabolic function (highest at t=0.5)
-            float height = 0.25f * Mathf.Sin(t * Mathf.PI); // Peak height of 0.5 units
+            float height = heightMultiplier * Mathf.Sin(t * Mathf.PI); // Peak height of 0.25 units
             currentPosition.y += height;
 
             // Apply the position
-            FirstFriendOthelloPiece.transform.localPosition = currentPosition;
+            checkerPiece.transform.localPosition = currentPosition;
 
             yield return null;
         }
 
         // Ensure final position is exactly at destination
-        FirstFriendOthelloPiece.transform.localPosition = targetPosition;
-    }
-
-    public void EndOfChess()
-    {
-        StopPrevDialogue(); // hides alert
-        NPC.GetComponent<Animator>().ResetTrigger("move");
-        NPC.GetComponent<Animator>().SetTrigger("move");
+        checkerPiece.transform.localPosition = targetPosition;
     }
 
     [Header("Voiddeck - Transition Chess to Reading Corner")]
@@ -591,9 +616,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
 
         // NPC lose animation
-        NPC.GetComponent<Animator>().SetTrigger("lose");
+        checkersNPC.GetComponent<Animator>().SetTrigger("lose");
 
-        yield return new WaitForSeconds(6f); // lose animation is around 5 secs
+        yield return new WaitForSeconds(5f); // lose animation is around 5 secs
 
         checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
@@ -605,9 +630,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
-        NPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[3];
+        checkersNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[3];
 
-        NPC.GetComponent<AudioSource>().Play();
+        checkersNPC.GetComponent<AudioSource>().Play();
         
         yield return new WaitForSeconds(narrationAudioClips_2[3].length);
 
@@ -784,8 +809,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
             #endregion
         }
-
-        Debug.Log(times);
     }
 
     void StopPrevDialogue()
