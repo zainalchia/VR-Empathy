@@ -230,7 +230,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         phone.GetComponent<ForceStayGrabbed>().SetActive(false); // drops phone
         phone.GetComponent<Grabbable>().enabled = false; // ensures that phone cannot be grabbed again
         phone.SetActive(false);
+        secondPhone.SetActive(true);
 
+        secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        secondPhone.transform.GetComponent<MeshRenderer>().enabled = true;
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset back to prepare for move to main door
 
