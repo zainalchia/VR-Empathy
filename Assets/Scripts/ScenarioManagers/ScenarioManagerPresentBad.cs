@@ -1,12 +1,15 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Oculus.Interaction;
-using static UnityEngine.Rendering.DebugUI;
-using static Unity.VisualScripting.Member;
 using static MainMenuManager;
-using TMPro;
+
+public class  Trans2
+{
+    public Vector3 position;
+    public Vector3 scale;
+    public Quaternion rotation;
+}
 
 public class ScenarioManagerPresentBad : MonoBehaviour
 {
@@ -22,6 +25,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     [Header("Narration Variables")]
     [SerializeField] AudioSource narrationAudioSource;
+
+    // for general audio clips used in both scenes
+    [SerializeField] AudioClip[] narrationAudioClips_General_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_General_Female;
+    AudioClip[] narrationAudioClips_General;
 
     // for bathroom and living room scene
     [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Male;
@@ -42,6 +50,18 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject firstTeleportHotspot;
 
     Coroutine lastRoutine = null;
+
+    void SetupNarrationGeneral()
+    {
+        if (MainMenuManager.isGenderMale)
+        {
+            narrationAudioClips_General = narrationAudioClips_General_Male;
+        }
+        else
+        {
+            narrationAudioClips_General = narrationAudioClips_General_Female;
+        }
+    }
 
     void SetupNarrationBathroomLivingRoom()
     {
@@ -220,7 +240,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] MobilePhone mobilePhone;
     [SerializeField] GameObject glasses;
     [SerializeField] AudioClip glassesDrop;
-    [SerializeField] Outline phoneOutline;
     [SerializeField] Outline glassesOutline;
     [SerializeField] GameObject tvAudio;
 
@@ -242,7 +261,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // play phone calling
         mobilePhone.SetPhoneCalling();
-        phoneOutline.enabled = true;
+        phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
         GameManager.instance.ShowAlert(narration_1[18]);
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
@@ -255,15 +274,17 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
+        phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         GameManager.instance.HideAlert();
         StopPrevDialogue();
-        phoneOutline.enabled = false;
         lastRoutine = StartCoroutine(Segment1Part3_2());
     }
 
     IEnumerator Segment1Part3_2()
     {
         GameManager.instance.ShowAlert(narration_1[19]);
+
+        glassesOutline.enabled = true;
 
         ControllerInteractionsManager.instance.autoDropItems = true; // will drop items from here
         GameManager.instance.toPutGlassesOn = true;
@@ -274,9 +295,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[4]);
         yield return new WaitForSeconds(1f);
 
-        glassesOutline.enabled = true;
         yield return new WaitForSeconds(3f + 1.1f);
-        
     }
 
     public void DropGlassesReaction() // called in UnityEvent in ControllerInteractionsManager
@@ -383,17 +402,22 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject mother;
     [SerializeField] GameObject father;
     [SerializeField] GameObject tableWithMedicine;
+    [SerializeField] GameObject sideTable;
     [SerializeField] GameObject chair;
     [SerializeField] GameObject cabinet;
     [SerializeField] GameObject originallyHeldMedicine;
     [SerializeField] GameObject animatedMedicine;
+    [SerializeField] GameObject SecondOriginallyHeldMedicine;
+    [SerializeField] GameObject SecondAnimatedMedicine;
     [SerializeField] GameObject PillBottleHighlight;
+    [SerializeField] GameObject SecondPillBottleHighlight;
     [SerializeField] GameObject photoFrame;
     [SerializeField] GameObject oldMode;
     [SerializeField] GameObject newMode;
     [SerializeField] GameObject photoFrameOutline;
     [SerializeField] AnimationClip HandsUp;
     [SerializeField] AnimationClip HandsDown;
+    Trans2 photoFrameOriginalPosition = new();
     Animator animator;
     static public bool canMedicineSpill;
 
@@ -405,8 +429,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Buffer time for them to put dentures in cup
         yield return new WaitForSeconds(3f);
 
+        SaveGOTransform(photoFrame.transform,photoFrameOriginalPosition);
+
         // start furniture moving here
         GameManager.instance.toStartSpasming = true;
+        sideTable.GetComponent<Animator>().SetTrigger("move");
         yield return new WaitForSeconds(2f);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
@@ -458,6 +485,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
+        sideTable.SetActive(true);
+        SetGOTransform(photoFrame.transform,photoFrameOriginalPosition);
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
@@ -473,8 +502,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //GameManager.instance.ShowAlert(narration_2[6], 12f);
         yield return new WaitForSeconds(2f);
 
-        //GameManager.instance.ShowAlert(narration_2[7]);
-
         //PlayAudioAndNarration(narrationAudioClips_2[3], narration_2[8], narrationAudioClips_2[3].length);
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
         yield return new WaitForSeconds(narrationAudioClips_2[6].length + 1.1f);
@@ -483,24 +510,53 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         PillBottleHighlight.SetActive(true);
     }
 
-    public void MedicationDropped()
+    public void FirstMedicationDropped()
     {
         StopPrevDialogue();
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[7]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_General[0]); // sigh sfx
 
         // for the scripted animation of medicine getting toppled over
         originallyHeldMedicine.SetActive(false);
         animatedMedicine.SetActive(true);
         animatedMedicine.GetComponent<Animator>().enabled = true;
-        lastRoutine = StartCoroutine(Segment2Part2_2());
+        animatedMedicine.GetComponent<AudioSource>().Play(); // play pill dropping sound
+
+        StartCoroutine(ShowSecondPillBottleOutline());
     }
+
+    IEnumerator ShowSecondPillBottleOutline()
+    {
+        yield return new WaitForSeconds(2);
+
+        SecondPillBottleHighlight.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f); // add a bit of delay between outline showing and being able to interact with 2nd pill bottle
+
+        SecondOriginallyHeldMedicine.GetComponent<Medicine>().enabled = true;
+    }
+
+    public void SecondMedicationDropped()
+    {
+        StopPrevDialogue();
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[7]);
+
+        SecondOriginallyHeldMedicine.SetActive(false);
+        SecondAnimatedMedicine.SetActive(true);
+        SecondAnimatedMedicine.GetComponent<Animator>().enabled = true;
+        SecondAnimatedMedicine.GetComponent<AudioSource>().Play(); // play pill dropping sound
+
+        StartCoroutine(Segment2Part2_2());
+    }
+
     IEnumerator Segment2Part2_2()
     {
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookAtObjective = true;
         photoFrame.GetComponent<Grabbable>().enabled = true;
         photoFrameOutline.SetActive(true);
+        photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
         // add new dialogue here
         yield return null;
     }
@@ -528,6 +584,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetupNarrationGeneral();
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             SetupNarrationBathroomLivingRoom();
@@ -616,4 +673,19 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(clipToPlay);
         GameManager.instance.ShowAlert(narrationText, clipLength, textColor);
     }
+
+    public void SetGOTransform(Transform gameObjectTransform,Trans2 desiredTransform) // set go transform to previously saved transform
+    {
+        gameObjectTransform.position = desiredTransform.position;
+        gameObjectTransform.rotation = desiredTransform.rotation;
+        gameObjectTransform.localScale = desiredTransform.scale;
+    }
+
+    public void SaveGOTransform(Transform gameObjectTransform,Trans2 savedGOTransform) // saves gameobject transform to a variable
+    {
+        savedGOTransform.position = gameObjectTransform.position;
+        savedGOTransform.rotation = gameObjectTransform.rotation;
+        savedGOTransform.scale = gameObjectTransform.localScale;
+    }
+
 }

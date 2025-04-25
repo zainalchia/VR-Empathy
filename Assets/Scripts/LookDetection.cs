@@ -29,7 +29,8 @@ public class LookDetection : MonoBehaviour
         float length = 50.0f;
         RaycastHit hit;
         Vector3 rayDirection = gameObject.transform.TransformDirection(Vector3.forward);
-        Vector3 rayStart = gameObject.transform.position + rayDirection;     // Start the ray away from the player to avoid hitting itself
+        Vector3 rayStart = gameObject.transform.position + rayDirection;  // Start the ray away from the player to avoid hitting itself
+        rayStart.y = rayStart.y + 0.5f;
         Debug.DrawRay(rayStart, rayDirection * length, Color.green);
         if (Physics.Raycast(rayStart, rayDirection, out hit, length))
         {

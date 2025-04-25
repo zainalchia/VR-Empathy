@@ -9,17 +9,17 @@ public class PlayerTeleport : MonoBehaviour
 {
     public GameObject[] MoveToLivingRoomHotspots;
     [SerializeField] GameObject[] MoveToMainDoorHotspots;
-    [SerializeField] GameObject[] MoveToOthelloChairHotspots;
+    [SerializeField] GameObject[] MoveToCheckersChairHotspots;
     [SerializeField] GameObject[] MoveToReadingCornerHotspots;
     [SerializeField] float defaultTimeBeforeNextMove = 2;
     bool buttonPressed = false;
-    public UnityEvent OnLastTeleport; // for othello transition and main door opening (both different scenes so can use same unity event)
+    public UnityEvent OnLastTeleport; // for checkers transition and main door opening (both different scenes so can use same unity event)
     public UnityEvent OnLastTeleport2;// for reading corner (othello and reading corner same scene so need 2 unity events)
     int currentHotspotIndex = -1;
     float timer = 0;
     public bool MovingToLivingRoom = false;
     public bool MovingToMainDoor = false;
-    public bool MovingToOthelloChair = false;
+    public bool MovingToCheckersChair = false;
     public bool MovingToReadingCorner = false;
 
     // Update is called once per frame
@@ -52,7 +52,7 @@ public class PlayerTeleport : MonoBehaviour
 
                 MoveToLocation(MoveToMainDoorHotspots[currentHotspotIndex], MoveToMainDoorHotspots);
             }
-            else if (MovingToOthelloChair && currentHotspotIndex != MoveToOthelloChairHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+            else if (MovingToCheckersChair && currentHotspotIndex != MoveToCheckersChairHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
             {
                 timer = 0;
 
@@ -60,7 +60,7 @@ public class PlayerTeleport : MonoBehaviour
 
                 currentHotspotIndex += 1;
 
-                MoveToLocation(MoveToOthelloChairHotspots[currentHotspotIndex], MoveToOthelloChairHotspots);
+                MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
             }
             else if(MovingToReadingCorner && currentHotspotIndex != MoveToReadingCornerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
             {
@@ -77,7 +77,6 @@ public class PlayerTeleport : MonoBehaviour
         {
             buttonPressed = false;
         }
-
     }
 
     public void MoveToLocation(GameObject hotspot, GameObject[] hotspotArray)
@@ -102,10 +101,10 @@ public class PlayerTeleport : MonoBehaviour
                OnLastTeleport.Invoke();
                MovingToMainDoor = false;
            }
-           else if(hotspotArray == MoveToOthelloChairHotspots)
+           else if(hotspotArray == MoveToCheckersChairHotspots)
            {
                OnLastTeleport.Invoke();
-               MovingToOthelloChair = false;
+               MovingToCheckersChair = false;
            }
            else if(hotspotArray == MoveToReadingCornerHotspots)
            {

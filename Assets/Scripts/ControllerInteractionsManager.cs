@@ -359,9 +359,9 @@ public class ControllerInteractionsManager : MonoBehaviour
     {
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
-            if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
+            if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
                 TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.LTouch);
-            else if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+            else if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
                 TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.RTouch);
         }
     }
