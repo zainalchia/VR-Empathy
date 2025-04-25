@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Oculus.Interaction;
-using static UnityEngine.Rendering.DebugUI;
-using static Unity.VisualScripting.Member;
-using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class ScenarioManagerPresentGood : MonoBehaviour
@@ -39,6 +36,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     bool canSeeWindow = false; // if can see window then can say weather looks good
 
     Coroutine lastRoutine = null;
+
+    [SerializeField] private float MaxAlertHideTimer = 3;
+
+    private float AlertHideTimer = 0;
 
     void SetupNarrationBathroomLivingRoom()
     {
@@ -122,7 +123,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StopPrevDialogue();
 
-        GameManager.instance.ShowAlert(narration_1[1]);
+        AlertHideTimer = MaxAlertHideTimer;
+
+        GameManager.instance.ShowAlert(narration_1[1]); 
 
         knob.GetComponent<Outline>().enabled = false;
 
@@ -150,6 +153,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject phone;
     [SerializeField] GameObject secondPhone;
     [SerializeField] MobilePhone mobilePhone;
+    [SerializeField] MobilePhone secondmobilePhone;
     
     public void PlaySegment1Part3_1()
     {
@@ -219,8 +223,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         phone.GetComponent<ForceStayGrabbed>().SetActive(false); // drops phone
         phone.GetComponent<Grabbable>().enabled = false; // ensures that phone cannot be grabbed again
         phone.SetActive(false);
-        secondPhone.SetActive(true);
 
+        secondmobilePhone.SetPhoneHangUp();
+
+        secondPhone.SetActive(true);
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset back to prepare for move to main door
 
@@ -232,7 +238,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     #region Segment 1 Part 4(From living room to main door)
 
     [Header("Living room to main door")]
-    [SerializeField] DoorKnob mainDoor;
     [SerializeField] AudioSource RingingSoundSource;
     [SerializeField] GameObject firstToDoorHotspot;
     [SerializeField] private DoorKnob MainGate;
@@ -764,14 +769,22 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
+            if(AlertHideTimer > 0)
+            {
+                AlertHideTimer -= Time.deltaTime;
+            }
+
             #region Going to living room
             // remove alert after first teleport
             if (!alertRemovedAfterFirstTP)
             {
-                if(playerTeleport.GetCurrentHotspotIndex() == 0) // which means player either at first hotspot toward main door or living room
+                if (AlertHideTimer <= 0)
                 {
-                    StopPrevDialogue(); // stop alert text
-                    alertRemovedAfterFirstTP = true;
+                    if (playerTeleport.GetCurrentHotspotIndex() >= 0) // which means player either at first hotspot toward main door or living room
+                    {
+                        StopPrevDialogue(); // stop alert text
+                        alertRemovedAfterFirstTP = true;
+                    }
                 }
             }
 
