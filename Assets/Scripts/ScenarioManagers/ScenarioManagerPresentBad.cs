@@ -149,6 +149,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //Lines 1-2
         //PlayAudioAndNarration(narrationAudioClips_1[0], narration_1[0], 7.0f);
+        narrationAudioSource.volume = 1;
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[0]);
 

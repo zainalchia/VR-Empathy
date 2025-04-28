@@ -22,6 +22,7 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] GameObject[] teleportHotspots;
     [SerializeField] AudioSource playerAudio;
     [SerializeField] AudioClip maleGrunt;
+    [SerializeField] AudioClip maleGrunt2;
     [SerializeField] AudioClip femaleGrunt;
     [SerializeField] AudioClip maleDialogue;
     [SerializeField] AudioClip femaleDialogue;
@@ -103,7 +104,8 @@ public class CaneTeleport : MonoBehaviour
         if (MainMenuManager.isGenderMale)
         {
             playerAudio.volume = 0.8f;
-            playerAudio.PlayOneShot(maleGrunt);
+            if (currentHotspotIndex == 2) playerAudio.PlayOneShot(maleGrunt);
+            else if (currentHotspotIndex == 7) playerAudio.PlayOneShot(maleGrunt2);
         }
         else
         {
