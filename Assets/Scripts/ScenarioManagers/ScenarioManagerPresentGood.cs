@@ -642,6 +642,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
+
+        yield return new WaitForSeconds(narrationAudioClips_2[4].length);
+
         checkersNPC.GetComponent<Animator>().ResetTrigger("BackToIdle");
 
         checkersNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
