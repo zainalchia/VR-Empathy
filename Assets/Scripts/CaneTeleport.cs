@@ -73,8 +73,8 @@ public class CaneTeleport : MonoBehaviour
         if (canMove && timer >= defaultTimeBeforeNextMove)
         {
             // Move OVRCameraRig gameobject with offset
-            float offsetX = GameManager.instance.middleEyeAnchor.transform.localPosition.x;
-            float offsetZ = GameManager.instance.middleEyeAnchor.transform.localPosition.z;
+            float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
+            float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
             GameManager.instance.ovrCamRig.transform.position = new Vector3(posX - offsetX, GameManager.instance.ovrCamRig.transform.position.y, posZ - offsetZ);
             timer = 0;
             defaultTimeBeforeNextMove = 1.5f; // in general
@@ -195,9 +195,9 @@ public class CaneTeleport : MonoBehaviour
             }
         }
 
-        if (Vector3.Distance(this.gameObject.transform.position, GameManager.instance.middleEyeAnchor.transform.position) > 5f) // cane will appear in front of user if it is too far away
+        if (Vector3.Distance(this.gameObject.transform.position, GameManager.instance.centerEyeAnchor.transform.position) > 5f) // cane will appear in front of user if it is too far away
         {
-            this.gameObject.transform.position = GameManager.instance.middleEyeAnchor.transform.position + GameManager.instance.middleEyeAnchor.transform.forward;
+            this.gameObject.transform.position = GameManager.instance.centerEyeAnchor.transform.position + GameManager.instance.centerEyeAnchor.transform.forward;
         }
     }
 

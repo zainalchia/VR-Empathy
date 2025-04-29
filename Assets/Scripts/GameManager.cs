@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     // OVR PLAYER
     [Header("OVR PLAYER")]
     public GameObject ovrCamRig;
-    public GameObject middleEyeAnchor;
+    public GameObject centerEyeAnchor;
     public GrabInteractor[] grabInteractors; // if can left controller should be index 0, right controller should be index 1
     [SerializeField]
     GameObject MaleModel, FemaleModel;
@@ -120,8 +120,8 @@ public class GameManager : MonoBehaviour
     #region Player's Position
     public bool IsPlayerWithinPosition(float minXInclusive, float minZInclusive, float maxXInclusive, float maxZInclusive)
     {
-        if ((middleEyeAnchor.transform.position.x >= minXInclusive && middleEyeAnchor.transform.position.x <= maxZInclusive) 
-            && (middleEyeAnchor.transform.position.z >= minZInclusive && middleEyeAnchor.transform.position.z <= maxZInclusive))
+        if ((centerEyeAnchor.transform.position.x >= minXInclusive && centerEyeAnchor.transform.position.x <= maxZInclusive) 
+            && (centerEyeAnchor.transform.position.z >= minZInclusive && centerEyeAnchor.transform.position.z <= maxZInclusive))
             return true;
         else
             return false;

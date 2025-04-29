@@ -82,8 +82,8 @@ public class PlayerTeleport : MonoBehaviour
     public void MoveToLocation(GameObject hotspot, GameObject[] hotspotArray)
     {
        // Move OVRCameraRig gameobject with offset
-       float offsetX = GameManager.instance.middleEyeAnchor.transform.localPosition.x;
-       float offsetZ = GameManager.instance.middleEyeAnchor.transform.localPosition.z;
+       float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
+       float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
        GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX, GameManager.instance.ovrCamRig.transform.position.y,hotspot.transform.position.z - offsetZ);
        
        hotspot.SetActive(false);
