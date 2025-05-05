@@ -113,7 +113,11 @@ public class GameManager : MonoBehaviour
     }
     public void HideAlert()
     {
-        AlertTextController.instance.HideAlert();
+        if (AlertTextController.instance)
+        {
+            if (AlertTextController.instance.gameObject.activeInHierarchy)
+                AlertTextController.instance.SetInactive();
+        }
     }
     #endregion
 

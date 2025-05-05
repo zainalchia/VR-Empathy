@@ -10,7 +10,7 @@ public class PlayerTeleport : MonoBehaviour
     public GameObject[] MoveToLivingRoomHotspots;
     [SerializeField] GameObject[] MoveToMainDoorHotspots;
     [SerializeField] GameObject[] MoveToCheckersChairHotspots;
-    [SerializeField] GameObject[] MoveToReadingCornerHotspots;
+    [SerializeField] GameObject[] MoveToKaraokeCornerHotspots;
     [SerializeField] float defaultTimeBeforeNextMove = 2;
     bool buttonPressed = false;
     public UnityEvent OnLastTeleport; // for checkers transition and main door opening (both different scenes so can use same unity event)
@@ -20,7 +20,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool MovingToLivingRoom = false;
     public bool MovingToMainDoor = false;
     public bool MovingToCheckersChair = false;
-    public bool MovingToReadingCorner = false;
+    public bool MovingToKaraokeCorner = false;
 
     // Update is called once per frame
     void Update()
@@ -62,7 +62,7 @@ public class PlayerTeleport : MonoBehaviour
 
                 MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
             }
-            else if(MovingToReadingCorner && currentHotspotIndex != MoveToReadingCornerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+            else if(MovingToKaraokeCorner && currentHotspotIndex != MoveToKaraokeCornerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
             {
                 timer = 0;
 
@@ -70,7 +70,7 @@ public class PlayerTeleport : MonoBehaviour
 
                 currentHotspotIndex += 1;
 
-                MoveToLocation(MoveToReadingCornerHotspots[currentHotspotIndex], MoveToReadingCornerHotspots);
+                MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
             }
         }
         else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
@@ -106,10 +106,10 @@ public class PlayerTeleport : MonoBehaviour
                OnLastTeleport.Invoke();
                MovingToCheckersChair = false;
            }
-           else if(hotspotArray == MoveToReadingCornerHotspots)
+           else if(hotspotArray == MoveToKaraokeCornerHotspots)
            {
                OnLastTeleport2.Invoke();
-               MovingToReadingCorner = false;
+               MovingToKaraokeCorner = false;
            }
        }
     }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using UnityEngine.Video;
 
 public class ScenarioManagerPresentGood : MonoBehaviour
 {
@@ -55,6 +56,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         narration_2[0] = "[Look at highlighted othello NPC to start othello minigame]";
         narration_2[1] = "[Pick up highlighted checkers piece and place it on highlighted spot]";
         narration_2[2] = "[Press TRIGGER button to move to highlighted circle]";
+        narration_2[3] = "[Pick up highlighted mic and hold near face]";
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -570,7 +572,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         PlayerPieceOutline.SetActive(false);
         yield return StartCoroutine(MovePiece(SecondEnemyCheckerPiece, EnemyPieceThirdDestination));
         yield return new WaitForSeconds(1);
-        StartCoroutine(MovingFromChessToReadingCorner());
+        StartCoroutine(MovingFromChessToKaraokeCorner());
     }
 
     IEnumerator MovePiece(GameObject checkerPiece,GameObject Destination,float heightMultiplier = 0.25f)
@@ -604,16 +606,20 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         checkerPiece.transform.localPosition = targetPosition;
     }
 
-    [Header("Voiddeck - Transition Chess to Reading Corner")]
+    [Header("Voiddeck - Transition Chess to Karaoke Corner")]
     [SerializeField]
-    GameObject TeleportPointReadingCorner;
-    [SerializeField]
-    GameObject TVScreen;
-    [SerializeField]
-    GameObject readingCornerNPCs;
-    [SerializeField] GameObject firstToReadingCornerHotspot;
+    GameObject KaraokeCornerNPCs;
+    [SerializeField] GameObject firstToKaraokeCornerHotspot;
+    [SerializeField] GameObject[] TaichiToKaraokeCornerNPCs;
+    [SerializeField] GameObject KaraokeMic;
+    [SerializeField] GameObject TVScreen;
+    private bool KaraokeTransitionAfterFirstTP = false;
+    private bool hasFinishedSinging = false;
+    private float narrationPlaybackPosition = 0f;
+    private float tvPlaybackPosition = 0f;
+    private bool firstTimeSing = true;
 
-    IEnumerator MovingFromChessToReadingCorner()
+    IEnumerator MovingFromChessToKaraokeCorner()
     {
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
 
@@ -650,16 +656,42 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
 
+        KaraokeCornerNPCs.transform.GetChild(0).gameObject.SetActive(true);
+
+        yield return StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs.transform.GetChild(0).gameObject, 210, 1));
+
+        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkBegin");
+
+        yield return new WaitForSeconds(1.2f);
+
+        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Talking");
+
+        //KaraokeCornerNPCs.transform.GetChild(0).GetComponent<AudioSource>().clip = narrationAudioClips_2[5];
+
+        //KaraokeCornerNPCs.transform.GetChild(0).GetComponent<AudioSource>().Play();
+
+        //yield return new WaitForSeconds(narrationAudioClips_2[5].length);
+
+        yield return new WaitForSeconds(3); // placeholder until ah guan voiceline comes in
+
+        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkEnd");
+
+        yield return new WaitForSeconds(2f);
+
+        lastRoutine = null;
+
         playerTeleport.SetCurrentHotspotIndex(-1); // reset hotspot index
 
-        playerTeleport.MovingToReadingCorner = true;
+        playerTeleport.MovingToKaraokeCorner = true;
 
-        firstToReadingCornerHotspot.SetActive(true);
+        firstToKaraokeCornerHotspot.SetActive(true);
+
+        GameManager.instance.ShowAlert(narration_2[2]);
     }
 
-    public void PlayReadingCornerTransition()
+    public void PlayKaraokeCornerTransition()
     {
-        StartCoroutine(ReadingCornerTransition());
+        StartCoroutine(KaraokeCornerTransition());
     }
 
     IEnumerator SetNPCToPlayPos(GameObject NPCToRotate,float TargetRotationY,float NPCRotationTime)
@@ -693,39 +725,70 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         );
     }
 
-    IEnumerator ReadingCornerTransition()
+    IEnumerator KaraokeCornerTransition()
     {
-        yield return StartCoroutine(SetNPCToPlayPos(readingCornerNPCs,-70,2));
+        GameManager.instance.ShowAlert(narration_2[3]);
 
-        readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("IdleSeat");
+        StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs.transform.GetChild(0).gameObject, 250, 1));
 
-        yield return new WaitForSeconds(0.5f);
+        KaraokeMic.GetComponent<Grabbable>().enabled = true;
+        KaraokeMic.GetComponent<Outline>().enabled = true;
+        KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
+        narrationAudioSource.clip = narrationAudioClips_2[5];
+        lastRoutine = null;
 
-        readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkBegin");
+        yield return null;
+    }
 
-        yield return new WaitForSeconds(0.7f);
+    public void PlayMicOnFace()
+    {
+        if(!TVScreen.activeInHierarchy) TVScreen.SetActive(true);
+        if (!TVScreen.GetComponent<VideoPlayer>().isPlaying) TVScreen.GetComponent<VideoPlayer>().Play();
+        if (!narrationAudioSource.isPlaying && !firstTimeSing) narrationAudioSource.Play();
+        // Start checking for completion
+        if(lastRoutine == null && !firstTimeSing) lastRoutine = StartCoroutine(CheckSingingCompletion());
+    }
 
-        readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Talking");
+    public void PlayMicOffFace()
+    {
+        if(lastRoutine != null) StopCoroutine(lastRoutine);
+        lastRoutine = null; // Reset the reference to allow starting again
+        if (TVScreen.GetComponent<VideoPlayer>().isPlaying) TVScreen.GetComponent<VideoPlayer>().Pause();
+        // Store current playback position before pausing
+        if (narrationAudioSource.isPlaying)
+        {
+            narrationPlaybackPosition = narrationAudioSource.time;
+            narrationAudioSource.Pause();
+        }
+    }
 
-        readingCornerNPCs.transform.GetChild(0).GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
+    private IEnumerator CheckSingingCompletion()
+    {
+        // Wait until the narration is not playing anymore (either paused or finished)
+        while (narrationAudioSource.isPlaying)
+        {
+            // Check if we're very close to the end of the clip
+            if (narrationAudioSource.clip != null &&
+                narrationAudioSource.time >= narrationAudioSource.clip.length - 0.1f)
+            {
+                hasFinishedSinging = true;
+                KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
+                PlayAfterSingingTransition();
+                yield break;
+            }
 
-        readingCornerNPCs.transform.GetChild(0).GetComponent<AudioSource>().Play();
+            yield return null;
+        }
+    }
 
-        yield return new WaitForSeconds(narrationAudioClips_2[4].length);
+    private void PlayAfterSingingTransition()
+    {
+        lastRoutine = StartCoroutine(AfterSingingTransition());
+    }
 
-        readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkEnd");
-
-        yield return new WaitForSeconds(2f);
-
-        yield return StartCoroutine(SetNPCToPlayPos(readingCornerNPCs,-130,2));
-
-        readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("BackToIdle");
-
-        readingCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("BackToIdle");
-
-        TVScreen.SetActive(true);
-
-        GameManager.instance.toLookAtObjective = true;
+    private IEnumerator AfterSingingTransition()
+    {
+        yield return null;
     }
 
     public void FinishedLookingAtTV()
@@ -740,15 +803,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         GameManager.instance.goodbyeText.SetActive(true);
-    }
-
-    private IEnumerator FindPiecesToFlip(GameObject pieceToCheck)
-    {
-        List<GameObject> piecesToFlip = new List<GameObject>();
-
-        piecesToFlip = GameManager.instance.FindPiecesToFlip(pieceToCheck);
-
-        yield return StartCoroutine(GameManager.instance.AnimateFlippingPieces(piecesToFlip));
     }
 
     // Start is called before the first frame update
@@ -823,6 +877,51 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
             #endregion
         }
+        else if(sceneToPlay == SceneToPlay.Voiddeck)
+        {
+            if(!KaraokeTransitionAfterFirstTP && playerTeleport.MovingToKaraokeCorner)
+            {
+                if (playerTeleport.GetCurrentHotspotIndex() == 0)
+                {
+                    checkersNPC.SetActive(false);
+
+                    if (lastRoutine == null) lastRoutine = StartCoroutine(TaichiToKaraokeNPCsTransition()); // ensures that only one coroutine is ran
+
+                    KaraokeTransitionAfterFirstTP = true;
+                }
+            }
+
+            if (TVScreen.GetComponent<VideoPlayer>().time >= 17.0f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+            {
+                narrationAudioSource.Play();
+                TVScreen.GetComponent<VideoPlayer>().Play();
+                firstTimeSing = false;
+            }
+        }
+    }
+
+    private IEnumerator TaichiToKaraokeNPCsTransition()
+    {
+        foreach (var npc in TaichiToKaraokeCornerNPCs)
+        {
+            npc.transform.SetParent(KaraokeCornerNPCs.transform);
+
+            npc.GetComponent<Animator>().Play("Talk");
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
+        KaraokeCornerNPCs.transform.GetChild(1).gameObject.SetActive(true);
+
+        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().Play("Talk");
+
+        TaichiToKaraokeCornerNPCs[0].transform.localPosition = new Vector3(33.2f, 7.5f, -21);
+
+        TaichiToKaraokeCornerNPCs[1].transform.localPosition = new Vector3(31.85f, 7.5f, -21);
+
+        TaichiToKaraokeCornerNPCs[1].transform.localRotation = Quaternion.Euler(0, 105, 0);
+
+        KaraokeCornerNPCs.SetActive(true);
     }
 
     void StopPrevDialogue()

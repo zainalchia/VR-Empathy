@@ -9,6 +9,7 @@ public class MicController : MonoBehaviour
     public bool toBeginKaraokeMinigame = false; // set this to true when karaoke game is to begin
     public bool active = false;
     public bool micOnFace = false;
+    [SerializeField] GameObject TVScreen;
 
     public UnityEvent OnMicOnFace;
     public UnityEvent OnMicNotOnFace;
@@ -20,6 +21,8 @@ public class MicController : MonoBehaviour
             // touching the mic will trigger this
             if (other.gameObject.GetComponentInParent<GrabInteractor>() != null)
             {
+                GameManager.instance.HideAlert(); // hides narration text
+                GetComponent<Outline>().enabled = false;
                 SetMicDetectionActive(true);
                 toBeginKaraokeMinigame = false;
             }
