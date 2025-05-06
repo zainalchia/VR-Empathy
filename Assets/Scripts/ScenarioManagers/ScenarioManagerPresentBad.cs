@@ -404,6 +404,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject father;
     [SerializeField] GameObject tableWithMedicine;
     [SerializeField] GameObject sideTable;
+    [SerializeField] GameObject hallucinationParticleFX;
     [SerializeField] GameObject chair;
     [SerializeField] GameObject cabinet;
     [SerializeField] GameObject originallyHeldMedicine;
@@ -435,6 +436,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // start furniture moving here
         GameManager.instance.toStartSpasming = true;
         sideTable.GetComponent<Animator>().SetTrigger("move");
+        hallucinationParticleFX.SetActive(true);
         yield return new WaitForSeconds(2f);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
