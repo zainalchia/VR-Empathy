@@ -735,6 +735,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeMic.GetComponent<Outline>().enabled = true;
         KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
         narrationAudioSource.clip = narrationAudioClips_2[5];
+
         lastRoutine = null;
 
         yield return null;
@@ -818,7 +819,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
-            PlaySegment2Part1();
+            TaichiFinished();
         }
     }
 
@@ -894,6 +895,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             if (TVScreen.GetComponent<VideoPlayer>().time >= 17.0f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
+                TVScreen.GetComponent<VideoPlayer>().Pause();
                 TVScreen.GetComponent<VideoPlayer>().Play();
                 firstTimeSing = false;
             }
@@ -915,7 +917,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().Play("Talk");
 
-        TaichiToKaraokeCornerNPCs[0].transform.localPosition = new Vector3(33.2f, 7.5f, -21);
+        TaichiToKaraokeCornerNPCs[0].transform.localPosition = new Vector3(33.2f, 7.7f, -21);
 
         TaichiToKaraokeCornerNPCs[1].transform.localPosition = new Vector3(31.85f, 7.5f, -21);
 

@@ -84,7 +84,7 @@ public class PlayerTeleport : MonoBehaviour
        // Move OVRCameraRig gameobject with offset
        float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
        float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
-       GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX, GameManager.instance.ovrCamRig.transform.position.y,hotspot.transform.position.z - offsetZ);
+       GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX,hotspot.transform.position.y,hotspot.transform.position.z - offsetZ);
        
        hotspot.SetActive(false);
        
@@ -113,7 +113,7 @@ public class PlayerTeleport : MonoBehaviour
            }
        }
     }
-                  
+
     IEnumerator ShowingNextHotspot(float delay, GameObject[] hotspotArray)
     {
         yield return new WaitForSeconds(delay);
