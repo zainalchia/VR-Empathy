@@ -6,6 +6,18 @@ using UnityEngine.Experimental.AI;
 
 public class TaiChiManager : MonoBehaviour
 {
+    #region Singleton Stuff
+    public static TaiChiManager instance = null;
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else if (instance != null)
+            Destroy(gameObject);
+
+    }
+    #endregion
+
     [SerializeField]
     GameObject[] leftTaichiHitboxes;
     [SerializeField]
@@ -15,6 +27,8 @@ public class TaiChiManager : MonoBehaviour
     [SerializeField] GameObject TaichiNPCLeftMiddleFinger; // npc left middle finger position
     [SerializeField] GameObject TaichiNPCRightMiddleFinger; // npc right middle finger position
     [SerializeField] GameObject TaichiNPCHip; // npc hip position
+    public GameObject TaichiNPCLeftBall; // not what you're thinking. it's the ball at the hand, showing whether your hand is in the correct place ;)
+    public GameObject TaichiNPCRightBall;
 
     // Segment 1 - 0 to 4, Segment 2 - 4 to 8, Segment 3 - 8 to 13
     private int current = 0;
@@ -37,12 +51,19 @@ public class TaiChiManager : MonoBehaviour
             // Deactivate current hitbox
             leftTaichiHitboxes[current].SetActive(false);
             rightTaichiHitboxes[current].SetActive(false);
+
+            TaichiNPCLeftBall.SetActive(false);
+            TaichiNPCRightBall.SetActive(false);
+
             SetLineRenderer();
         }
         else
         {
             leftTaichiHitboxes[current].SetActive(false);
             rightTaichiHitboxes[current].SetActive(false);
+
+            TaichiNPCLeftBall.SetActive(false);
+            TaichiNPCRightBall.SetActive(false);
         }
     }
 
@@ -61,13 +82,19 @@ public class TaiChiManager : MonoBehaviour
         // automate hitboxes position according to where taichi npc hands(aka their middle fingers center of their hands) are at
         // the player one is mirror image of the instructor one
         leftTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCRightMiddleFinger.transform.position.x + (2.3f - 2 * (TaichiNPCRightMiddleFinger.transform.position.x - TaichiNPCHip.transform.position.x)), TaichiNPCRightMiddleFinger.transform.position.y, TaichiNPCRightMiddleFinger.transform.position.z);
-        leftTaichiHitboxes[current].transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        leftTaichiHitboxes[current].transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
         rightTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCLeftMiddleFinger.transform.position.x + (2.3f - 2 * (TaichiNPCLeftMiddleFinger.transform.position.x - TaichiNPCHip.transform.position.x)), TaichiNPCLeftMiddleFinger.transform.position.y, TaichiNPCLeftMiddleFinger.transform.position.z);
-        rightTaichiHitboxes[current].transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
+        rightTaichiHitboxes[current].transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
         leftTaichiHitboxes[current].SetActive(true);
         rightTaichiHitboxes[current].SetActive(true);
+
+        TaichiNPCLeftBall.SetActive(true);
+        TaichiNPCRightBall.SetActive(true);
+        TaichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
+        TaichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
+
 
         rightLinerenderer.enabled = false;
         leftLinerenderer.enabled = false;
