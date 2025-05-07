@@ -14,6 +14,7 @@ public class TaiChiManager : MonoBehaviour
     LineRenderer rightLinerenderer, leftLinerenderer;
     [SerializeField] GameObject TaichiNPCLeftMiddleFinger; // npc left middle finger position
     [SerializeField] GameObject TaichiNPCRightMiddleFinger; // npc right middle finger position
+    [SerializeField] GameObject TaichiNPCHip; // npc hip position
 
     // Segment 1 - 0 to 4, Segment 2 - 4 to 8, Segment 3 - 8 to 13
     private int current = 0;
@@ -58,11 +59,12 @@ public class TaiChiManager : MonoBehaviour
         }
 
         // automate hitboxes position according to where taichi npc hands(aka their middle fingers center of their hands) are at
-        leftTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCLeftMiddleFinger.transform.position.x,TaichiNPCLeftMiddleFinger.transform.position.y, TaichiNPCLeftMiddleFinger.transform.position.z + 1.5f);
-        leftTaichiHitboxes[current].transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        // the player one is mirror image of the instructor one
+        leftTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCRightMiddleFinger.transform.position.x + (2.3f - 2 * (TaichiNPCRightMiddleFinger.transform.position.x - TaichiNPCHip.transform.position.x)), TaichiNPCRightMiddleFinger.transform.position.y, TaichiNPCRightMiddleFinger.transform.position.z);
+        leftTaichiHitboxes[current].transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
-        rightTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCRightMiddleFinger.transform.position.x,TaichiNPCRightMiddleFinger.transform.position.y,TaichiNPCRightMiddleFinger.transform.position.z + 1.5f);
-        rightTaichiHitboxes[current].transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+        rightTaichiHitboxes[current].transform.position = new Vector3(TaichiNPCLeftMiddleFinger.transform.position.x + (2.3f - 2 * (TaichiNPCLeftMiddleFinger.transform.position.x - TaichiNPCHip.transform.position.x)), TaichiNPCLeftMiddleFinger.transform.position.y, TaichiNPCLeftMiddleFinger.transform.position.z);
+        rightTaichiHitboxes[current].transform.localScale = new Vector3(0.4f, 0.4f, 0.4f);
 
         leftTaichiHitboxes[current].SetActive(true);
         rightTaichiHitboxes[current].SetActive(true);

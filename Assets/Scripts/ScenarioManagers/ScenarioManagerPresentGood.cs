@@ -819,7 +819,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
-            TaichiFinished();
+            PlaySegment2Part1();
         }
     }
 
