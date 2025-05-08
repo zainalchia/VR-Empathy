@@ -743,7 +743,18 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlayMicOnFace()
     {
-        if(!TVScreen.activeInHierarchy) TVScreen.SetActive(true);
+        if (!TVScreen.activeInHierarchy)
+        {
+            foreach (var npc in TaichiToKaraokeCornerNPCs)
+            {
+                npc.GetComponent<Animator>().SetTrigger("TalkEnd");
+                StartCoroutine(SetNPCToPlayPos(npc, 0, 1));
+            }
+
+            KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("TalkEnd");
+
+            TVScreen.SetActive(true);
+        }
         if (!TVScreen.GetComponent<VideoPlayer>().isPlaying) TVScreen.GetComponent<VideoPlayer>().Play();
         if (!narrationAudioSource.isPlaying && !firstTimeSing) narrationAudioSource.Play();
         // Start checking for completion
@@ -908,16 +919,22 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         {
             npc.transform.SetParent(KaraokeCornerNPCs.transform);
 
-            npc.GetComponent<Animator>().Play("Talk");
+            npc.GetComponent<Animator>().SetTrigger("TalkBegin");
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
+
+            npc.GetComponent<Animator>().SetTrigger("Talking");
         }
 
         KaraokeCornerNPCs.transform.GetChild(1).gameObject.SetActive(true);
 
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().Play("Talk");
+        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("TalkBegin");
 
-        TaichiToKaraokeCornerNPCs[0].transform.localPosition = new Vector3(33.2f, 7.7f, -21);
+        yield return new WaitForSeconds(0.7f);
+
+        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Talking");
+
+        TaichiToKaraokeCornerNPCs[0].transform.localPosition = new Vector3(33.2f, 7.52f, -21);
 
         TaichiToKaraokeCornerNPCs[1].transform.localPosition = new Vector3(31.85f, 7.5f, -21);
 

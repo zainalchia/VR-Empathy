@@ -11,6 +11,7 @@ public class MicController : MonoBehaviour
     public bool micOnFace = false;
     [SerializeField] GameObject TVScreen;
 
+    public UnityEvent OnMicPickUp;
     public UnityEvent OnMicOnFace;
     public UnityEvent OnMicNotOnFace;
 
@@ -25,6 +26,7 @@ public class MicController : MonoBehaviour
                 GetComponent<Outline>().enabled = false;
                 SetMicDetectionActive(true);
                 toBeginKaraokeMinigame = false;
+                OnMicPickUp.Invoke();
             }
         }
 
