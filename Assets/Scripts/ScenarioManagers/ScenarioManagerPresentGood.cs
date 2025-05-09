@@ -752,44 +752,36 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             }
 
             KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("TalkEnd");
+            StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs.transform.GetChild(1).gameObject, 0, 1));
+
+            TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping",true);
+            TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", true);
+            KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering",true);
+            KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isArmsUpCheering", true);
 
             TVScreen.SetActive(true);
         }
-        if (!TVScreen.GetComponent<VideoPlayer>().isPlaying) TVScreen.GetComponent<VideoPlayer>().Play();
+
+        if (!TVScreen.GetComponent<VideoPlayer>().isPlaying)
+        {
+            TVScreen.GetComponent<VideoPlayer>().Play();
+        }
         if (!narrationAudioSource.isPlaying && !firstTimeSing) narrationAudioSource.Play();
-        // Start checking for completion
-        if(lastRoutine == null && !firstTimeSing) lastRoutine = StartCoroutine(CheckSingingCompletion());
     }
 
     public void PlayMicOffFace()
     {
         if(lastRoutine != null) StopCoroutine(lastRoutine);
         lastRoutine = null; // Reset the reference to allow starting again
-        if (TVScreen.GetComponent<VideoPlayer>().isPlaying) TVScreen.GetComponent<VideoPlayer>().Pause();
+        if (TVScreen.GetComponent<VideoPlayer>().isPlaying)
+        {
+            TVScreen.GetComponent<VideoPlayer>().Pause();
+        }
         // Store current playback position before pausing
         if (narrationAudioSource.isPlaying)
         {
             narrationPlaybackPosition = narrationAudioSource.time;
             narrationAudioSource.Pause();
-        }
-    }
-
-    private IEnumerator CheckSingingCompletion()
-    {
-        // Wait until the narration is not playing anymore (either paused or finished)
-        while (narrationAudioSource.isPlaying)
-        {
-            // Check if we're very close to the end of the clip
-            if (narrationAudioSource.clip != null &&
-                narrationAudioSource.time >= narrationAudioSource.clip.length - 0.1f)
-            {
-                hasFinishedSinging = true;
-                KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
-                PlayAfterSingingTransition();
-                yield break;
-            }
-
-            yield return null;
         }
     }
 
@@ -830,7 +822,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
-            PlaySegment2Part1();
+            TaichiFinished();
         }
     }
 
@@ -906,9 +898,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             if (TVScreen.GetComponent<VideoPlayer>().time >= 17.0f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
-                TVScreen.GetComponent<VideoPlayer>().Pause();
                 TVScreen.GetComponent<VideoPlayer>().Play();
                 firstTimeSing = false;
+            }
+
+            if (narrationAudioSource.clip != null &&
+             narrationAudioSource.time >= narrationAudioSource.clip.length - 1f && !firstTimeSing && !hasFinishedSinging)
+            {
+                hasFinishedSinging = true;
+                KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
+                PlayAfterSingingTransition();
             }
         }
     }
