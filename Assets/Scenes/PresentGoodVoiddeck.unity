@@ -6086,7 +6086,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfPoses: 2
   timeDelayBeforeNextPose: 1
-  triggerHitbox: 0
+  triggerHitbox: 1
   OnNextPose:
     m_PersistentCalls:
       m_Calls:
@@ -6119,7 +6119,19 @@ MonoBehaviour:
         m_CallState: 2
   spawnNextHitboxes:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2009993761}
+        m_TargetAssemblyTypeName: TaiChiManager, Assembly-CSharp
+        m_MethodName: spawnNext
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &485374215 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aaa8c679189f5834fa0680f5a4914ace,
@@ -6286,7 +6298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfPoses: 2
   timeDelayBeforeNextPose: 1
-  triggerHitbox: 1
+  triggerHitbox: 0
   OnNextPose:
     m_PersistentCalls:
       m_Calls:
@@ -6319,19 +6331,7 @@ MonoBehaviour:
         m_CallState: 2
   spawnNextHitboxes:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2009993761}
-        m_TargetAssemblyTypeName: TaiChiManager, Assembly-CSharp
-        m_MethodName: spawnNext
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1001 &498446027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16082,7 +16082,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258cc155ba19cca4c8fff0d5356dc93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
 --- !u!1001 &1299373225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18925,7 +18924,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 258cc155ba19cca4c8fff0d5356dc93a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
 --- !u!1 &1459805587
 GameObject:
   m_ObjectHideFlags: 0
@@ -27296,11 +27294,11 @@ MonoBehaviour:
   - {fileID: 169200029}
   rightLinerenderer: {fileID: 42058152}
   leftLinerenderer: {fileID: 923836742}
-  TaichiNPCLeftMiddleFinger: {fileID: 397992969}
-  TaichiNPCRightMiddleFinger: {fileID: 605421579}
-  TaichiNPCHip: {fileID: 2030380419}
-  TaichiNPCLeftBall: {fileID: 1055455237}
-  TaichiNPCRightBall: {fileID: 1710856831}
+  taichiNPCLeftMiddleFinger: {fileID: 397992969}
+  taichiNPCRightMiddleFinger: {fileID: 605421579}
+  taichiNPCHip: {fileID: 2030380419}
+  taichiNPCLeftBall: {fileID: 1055455237}
+  taichiNPCRightBall: {fileID: 1710856831}
   taichiFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -27343,6 +27341,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  toSpawnSmallBalls: 0
 --- !u!1001 &2020466730
 PrefabInstance:
   m_ObjectHideFlags: 0

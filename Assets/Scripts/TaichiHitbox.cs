@@ -10,6 +10,7 @@ public class TaichiHitbox : MonoBehaviour
     private bool isActivated = false;
     private enum Hand { left, right }
     [SerializeField] private Hand hand = Hand.left;
+    public GameObject linkedBall; // this ball is linked to a ball on the instructor side. u hit this one, the corresponding one at instructor side will disappear too
 
     private void Awake()
     {
@@ -33,10 +34,24 @@ public class TaichiHitbox : MonoBehaviour
             if (hand == Hand.left)
             {
                 TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+
+                // for the small balls to get wiped out
+                if (linkedBall != null)
+                {
+                    Destroy(linkedBall);
+                    Destroy(gameObject);
+                }
             }
             else if (hand == Hand.right)
             {
                 TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+
+                // for the small balls to get wiped out
+                if (linkedBall != null)
+                {
+                    Destroy(linkedBall);
+                    Destroy(gameObject);
+                }
             }
         }
 
@@ -53,10 +68,24 @@ public class TaichiHitbox : MonoBehaviour
             if (hand == Hand.left)
             {
                 TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+
+                // for the small balls to get wiped out
+                if (linkedBall != null)
+                {
+                    Destroy(linkedBall);
+                    Destroy(gameObject);
+                }
             }
             else if (hand == Hand.right)
             {
                 TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+
+                // for the small balls to get wiped out
+                if (linkedBall != null)
+                {
+                    Destroy(linkedBall);
+                    Destroy(gameObject);
+                }
             }
         }
     }

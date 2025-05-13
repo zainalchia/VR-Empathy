@@ -443,7 +443,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         taiChiManager.startSegment1();
     }
 
-    public void playnextTaichiPose()
+    public void playnextTaichiPose() // called on taichi instructor in scene, OnNextPost event
     {
         taiChiManager.nextTaichiPose();
     }
@@ -902,7 +902,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
-            TaichiFinished();
+            PlaySegment2Part1();
         }
     }
 
