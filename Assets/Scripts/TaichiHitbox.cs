@@ -29,7 +29,7 @@ public class TaichiHitbox : MonoBehaviour
         if (linkedBall != null)
         {
             linkedBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-            Destroy(linkedBall, 0.5f);
+            Destroy(linkedBall, 0.3f);
             Destroy(gameObject);
         }
     }
