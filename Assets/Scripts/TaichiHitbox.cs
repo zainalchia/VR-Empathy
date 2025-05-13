@@ -23,6 +23,17 @@ public class TaichiHitbox : MonoBehaviour
         isActivated = true;
     }
 
+    void LinkedBallDisappear()
+    {
+        // for the small balls to get wiped out
+        if (linkedBall != null)
+        {
+            linkedBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+            Destroy(linkedBall, 0.5f);
+            Destroy(gameObject);
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
@@ -34,24 +45,12 @@ public class TaichiHitbox : MonoBehaviour
             if (hand == Hand.left)
             {
                 TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-
-                // for the small balls to get wiped out
-                if (linkedBall != null)
-                {
-                    Destroy(linkedBall);
-                    Destroy(gameObject);
-                }
+                LinkedBallDisappear();
             }
             else if (hand == Hand.right)
             {
                 TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-
-                // for the small balls to get wiped out
-                if (linkedBall != null)
-                {
-                    Destroy(linkedBall);
-                    Destroy(gameObject);
-                }
+                LinkedBallDisappear();
             }
         }
 
@@ -62,30 +61,18 @@ public class TaichiHitbox : MonoBehaviour
         if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
         {
             isHit = true;
-            this.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.02f);
+            // this.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.05f);
 
             // the player one is mirror image of the instructor one. so left = right and vice versa
             if (hand == Hand.left)
             {
                 TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-
-                // for the small balls to get wiped out
-                if (linkedBall != null)
-                {
-                    Destroy(linkedBall);
-                    Destroy(gameObject);
-                }
+                LinkedBallDisappear();
             }
             else if (hand == Hand.right)
             {
                 TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-
-                // for the small balls to get wiped out
-                if (linkedBall != null)
-                {
-                    Destroy(linkedBall);
-                    Destroy(gameObject);
-                }
+                LinkedBallDisappear();
             }
         }
     }

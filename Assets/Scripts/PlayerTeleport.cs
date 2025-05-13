@@ -84,9 +84,10 @@ public class PlayerTeleport : MonoBehaviour
        // Move OVRCameraRig gameobject with offset
        float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
        float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
-       GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX,hotspot.transform.position.y,hotspot.transform.position.z - offsetZ);
-       
-       hotspot.SetActive(false);
+       //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX,hotspot.transform.position.y,hotspot.transform.position.z - offsetZ);
+       GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
+
+        hotspot.SetActive(false);
        
        StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
        

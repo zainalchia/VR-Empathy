@@ -613,6 +613,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject[] TaichiToKaraokeCornerNPCs;
     [SerializeField] GameObject KaraokeMic;
     [SerializeField] GameObject TVScreen;
+    [SerializeField] GameObject TVScreen2;
     private bool KaraokeTransitionAfterFirstTP = false;
     private bool hasFinishedSinging = false;
     private float narrationPlaybackPosition = 0f;
@@ -752,21 +753,29 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             }
 
             KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("TalkEnd");
-            StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs.transform.GetChild(1).gameObject, 0, 1));
-
-            TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping",true);
-            TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", true);
-            KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering",true);
-            KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isArmsUpCheering", true);
+            StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs.transform.GetChild(1).gameObject, 0, 1));            
 
             TVScreen.SetActive(true);
+            TVScreen2.SetActive(true);            
         }
+
+        TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping", true);
+        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", true);
+        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering", true);
+        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isArmsUpCheering", true);
 
         if (!TVScreen.GetComponent<VideoPlayer>().isPlaying)
         {
             TVScreen.GetComponent<VideoPlayer>().Play();
         }
-        if (!narrationAudioSource.isPlaying && !firstTimeSing) narrationAudioSource.Play();
+        if (!TVScreen2.GetComponent<VideoPlayer>().isPlaying)
+        {
+            TVScreen2.GetComponent<VideoPlayer>().Play();
+        }
+        if (!narrationAudioSource.isPlaying && !firstTimeSing)
+        {
+            narrationAudioSource.Play();
+        }
     }
 
     public void PlayMicOffFace()
@@ -777,12 +786,21 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         {
             TVScreen.GetComponent<VideoPlayer>().Pause();
         }
+        if (TVScreen2.GetComponent<VideoPlayer>().isPlaying)
+        {
+            TVScreen2.GetComponent<VideoPlayer>().Pause();
+        }
         // Store current playback position before pausing
         if (narrationAudioSource.isPlaying)
         {
             narrationPlaybackPosition = narrationAudioSource.time;
             narrationAudioSource.Pause();
         }
+
+        TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping", false);
+        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", false);
+        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering", false);
+        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isArmsUpCheering", false);
     }
 
     private void PlayAfterSingingTransition()
@@ -932,7 +950,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
             if (!canSeeWindow)
             {
-                if (playerTeleport.GetCurrentHotspotIndex() == 5)
+                if (playerTeleport.GetCurrentHotspotIndex() == 6)
                 {
                     StopPrevDialogue();
                     narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
@@ -975,7 +993,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 }
             }
 
-            if (TVScreen.GetComponent<VideoPlayer>().time >= 17.0f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+            if (TVScreen.GetComponent<VideoPlayer>().time >= 18.0f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
                 TVScreen.GetComponent<VideoPlayer>().Play();

@@ -41,7 +41,7 @@ public class TaiChiManager : MonoBehaviour
     public bool toSpawnSmallBalls = false;
     private float spawnSmallBallsTimer = 0;
     private float spawnSmallBallsInterval = 0.5f;
-    public List<GameObject> smallBalls = new List<GameObject>();
+    private List<GameObject> smallBalls = new List<GameObject>();
 
     private void Start()
     {
@@ -103,10 +103,10 @@ public class TaiChiManager : MonoBehaviour
         // automate hitboxes position according to where taichi npc hands(aka their middle fingers center of their hands) are at
         // the player one is mirror image of the instructor one
         leftTaichiHitboxes[current].transform.position = new Vector3(taichiNPCRightMiddleFinger.transform.position.x + (2.3f - 2 * (taichiNPCRightMiddleFinger.transform.position.x - taichiNPCHip.transform.position.x)), taichiNPCRightMiddleFinger.transform.position.y, taichiNPCRightMiddleFinger.transform.position.z);
-        leftTaichiHitboxes[current].transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        leftTaichiHitboxes[current].transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
         rightTaichiHitboxes[current].transform.position = new Vector3(taichiNPCLeftMiddleFinger.transform.position.x + (2.3f - 2 * (taichiNPCLeftMiddleFinger.transform.position.x - taichiNPCHip.transform.position.x)), taichiNPCLeftMiddleFinger.transform.position.y, taichiNPCLeftMiddleFinger.transform.position.z);
-        rightTaichiHitboxes[current].transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        rightTaichiHitboxes[current].transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
         leftTaichiHitboxes[current].SetActive(true);
         rightTaichiHitboxes[current].SetActive(true);
