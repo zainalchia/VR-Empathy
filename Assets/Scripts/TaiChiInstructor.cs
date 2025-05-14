@@ -46,10 +46,7 @@ public class TaiChiInstructor : MonoBehaviour
 
     public void PausePose()
     {
-        foreach (var anim in GameManager.instance.taiChiAnimations)
-        {
-            anim.GetComponent<Animator>().speed = 0f;
-        }
+        gameObject.GetComponent<Animator>().speed = 0f;        
 
         if (triggerHitbox)
         {

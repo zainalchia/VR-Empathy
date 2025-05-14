@@ -9,7 +9,6 @@ public class MicController : MonoBehaviour
     public bool toBeginKaraokeMinigame = false; // set this to true when karaoke game is to begin
     public bool active = false;
     public bool micOnFace = false;
-    [SerializeField] GameObject TVScreen;
 
     public UnityEvent OnMicPickUp;
     public UnityEvent OnMicOnFace;

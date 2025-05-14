@@ -494,6 +494,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cabinet.SetActive(true);
         chair.SetActive(true);
         parents.SetActive(false);
+        hallucinationParticleFX.SetActive(false);
 
         // play this voiceover while the screen is black
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
