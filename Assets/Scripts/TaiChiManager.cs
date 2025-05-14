@@ -188,6 +188,7 @@ public class TaiChiManager : MonoBehaviour
     {
         if(leftTaichiHitboxes[current].GetComponent<TaichiHitbox>().isHit && rightTaichiHitboxes[current].GetComponent<TaichiHitbox>().isHit)
         {
+            GameManager.instance.HideAlert();
             deactivateCurrent();
             resumeTaichi.Invoke();
         }

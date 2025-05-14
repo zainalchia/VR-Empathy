@@ -56,7 +56,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         narration_2[0] = "[Look at highlighted othello NPC to start othello minigame]";
         narration_2[1] = "[Pick up highlighted checkers piece and place it on highlighted spot]";
         narration_2[2] = "[Press TRIGGER button to move to highlighted circle]";
-        narration_2[3] = "[Pick up highlighted mic and hold near face]";
+        narration_2[3] = "[Pick up highlighted mic]";
+        narration_2[4] = "[Follow taichi instructor's movements]"; // this narration appears at the start but the number is 4 cus i got lazy to change everything by 1 if i put this as narration_2[0]
+        narration_2[5] = "[Put mic to face]";
     }
 
     #region Segment 1 Part 1 (In the Bathroom)
@@ -436,6 +438,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2.8f);
 
+        GameManager.instance.ShowAlert(narration_2[4]);
+
         GameManager.instance.taiChiAnimations[1].NextPose();
 
         GameManager.instance.taiChiAnimations[2].NextPose();
@@ -577,9 +581,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator MovePiece(GameObject checkerPiece,GameObject Destination,float heightMultiplier = 0.25f)
     {
-        yield return new WaitForSeconds(2f);
         float timeSinceStarted = 0f;
-        float duration = 2f; // Total movement time
+        float duration = 1f; // Total movement time
 
         Vector3 startPosition = checkerPiece.transform.localPosition;
         Vector3 targetPosition = Destination.transform.localPosition;
@@ -758,7 +761,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             TVScreen.SetActive(true);
             TVScreen2.SetActive(true);            
         }
-
+        GameManager.instance.HideAlert();
         TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping", true);
         TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", true);
         KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering", true);
@@ -780,7 +783,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlayMicOffFace()
     {
-        if(lastRoutine != null) StopCoroutine(lastRoutine);
+
+        if (lastRoutine != null) StopCoroutine(lastRoutine);
         lastRoutine = null; // Reset the reference to allow starting again
         if (TVScreen.GetComponent<VideoPlayer>().isPlaying)
         {
@@ -796,7 +800,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             narrationPlaybackPosition = narrationAudioSource.time;
             narrationAudioSource.Pause();
         }
-
+        GameManager.instance.ShowAlert(narration_2[5]);
         TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping", false);
         TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", false);
         KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering", false);
@@ -1008,9 +1012,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             {
                 hasFinishedSinging = true;
                 KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
+                KaraokeMic.GetComponent<ForceStayGrabbed>().SetActive(false);
                 PlayAfterSingingTransition();
             }
-
         }
     }
 

@@ -22,9 +22,11 @@ public class MicController : MonoBehaviour
             if (other.gameObject.GetComponentInParent<GrabInteractor>() != null)
             {
                 GameManager.instance.HideAlert(); // hides narration text
+                GameManager.instance.ShowAlert("[Put mic to face]");
                 GetComponent<Outline>().enabled = false;
                 SetMicDetectionActive(true);
                 toBeginKaraokeMinigame = false;
+                GetComponent<ForceStayGrabbed>().SetActive(true);
                 OnMicPickUp.Invoke();
             }
         }
