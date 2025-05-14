@@ -993,10 +993,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 }
             }
 
-            if (TVScreen.GetComponent<VideoPlayer>().time >= 18.0f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+            if (TVScreen2.GetComponent<VideoPlayer>().time >= 18.0f && firstTimeSing && TVScreen2.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
+                TVScreen.GetComponent<VideoPlayer>().Pause();
+                TVScreen2.GetComponent<VideoPlayer>().Pause();
                 TVScreen.GetComponent<VideoPlayer>().Play();
+                TVScreen2.GetComponent<VideoPlayer>().Play();
                 firstTimeSing = false;
             }
 
