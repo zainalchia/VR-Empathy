@@ -64,6 +64,7 @@ public class MicController : MonoBehaviour
 
         // disable isKinematic to disable the floating in mid air
         gameObject.GetComponent<Rigidbody>().isKinematic = !trueOrFalse;
+        gameObject.GetComponent<Rigidbody>().useGravity = !trueOrFalse;
 
         // disable isTrigger
         gameObject.GetComponent<BoxCollider>().isTrigger = !trueOrFalse;

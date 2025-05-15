@@ -398,6 +398,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 2 Part 1 (Voiddeck, Tai chi)
 
+    [Header("Voiddeck - General")]
+    [SerializeField]
+    GameObject[] KaraokeCornerNPCs;
+
     [Header("Voiddeck - Taichi")]
     [SerializeField]
     TaiChiManager taiChiManager;
@@ -412,6 +416,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator playTaichi()
     {
+        StartCoroutine(SetKaraokeNPCs());
+
         yield return new WaitForSeconds(4f); // screen fade in timing
 
         yield return StartCoroutine(MoveFriendPosition(taichiInstructor, 0.25f, taichiTargetDestination.position, 90));
@@ -445,6 +451,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         GameManager.instance.taiChiAnimations[2].NextPose();
 
         taiChiManager.startSegment1();
+    }
+
+    IEnumerator SetKaraokeNPCs()
+    {
+        for(int i = 0; i < 4; i++)
+        {
+            KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkBegin");
+            yield return new WaitForSeconds(0.7f);
+            KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("Talking");
+        }    
     }
 
     public void playnextTaichiPose() // called on taichi instructor in scene, OnNextPost event
@@ -610,10 +626,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     }
 
     [Header("Voiddeck - Transition Chess to Karaoke Corner")]
-    [SerializeField]
-    GameObject KaraokeCornerNPCs;
     [SerializeField] GameObject firstToKaraokeCornerHotspot;
-    [SerializeField] GameObject[] TaichiToKaraokeCornerNPCs;
     [SerializeField] GameObject KaraokeMic;
     [SerializeField] GameObject TVScreen;
     [SerializeField] GameObject TVScreen2;
@@ -660,25 +673,25 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
 
-        KaraokeCornerNPCs.transform.GetChild(0).gameObject.SetActive(true);
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        yield return StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs.transform.GetChild(0).gameObject, 210, 1));
+        yield return new WaitForSeconds(1);
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkBegin");
+        yield return StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0], 220, 1));
+
+        KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkBegin");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("Talking");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkEnd");
+
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkBegin");
 
         yield return new WaitForSeconds(1.2f);
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Talking");
-
-        //KaraokeCornerNPCs.transform.GetChild(0).GetComponent<AudioSource>().clip = narrationAudioClips_2[5];
-
-        //KaraokeCornerNPCs.transform.GetChild(0).GetComponent<AudioSource>().Play();
-
-        //yield return new WaitForSeconds(narrationAudioClips_2[5].length);
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         yield return new WaitForSeconds(3); // placeholder until ah guan voiceline comes in
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkEnd");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
         yield return new WaitForSeconds(2f);
 
@@ -733,7 +746,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         GameManager.instance.ShowAlert(narration_2[3]);
 
-        StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs.transform.GetChild(0).gameObject, 250, 1));
+        StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
 
         KaraokeMic.GetComponent<Grabbable>().enabled = true;
         KaraokeMic.GetComponent<Outline>().enabled = true;
@@ -749,62 +762,41 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         if (!TVScreen.activeInHierarchy)
         {
-            foreach (var npc in TaichiToKaraokeCornerNPCs)
+            for(int i = 1; i < 4; i++)
             {
-                npc.GetComponent<Animator>().SetTrigger("TalkEnd");
-                StartCoroutine(SetNPCToPlayPos(npc, 0, 1));
+                KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkEnd");
+                StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[i],0,1));
             }
-
-            KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("TalkEnd");
-            StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs.transform.GetChild(1).gameObject, 0, 1));            
 
             TVScreen.SetActive(true);
             TVScreen2.SetActive(true);            
         }
         GameManager.instance.HideAlert();
-        TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping", true);
-        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", true);
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering", true);
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isArmsUpCheering", true);
-
-        if (!TVScreen.GetComponent<VideoPlayer>().isPlaying)
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", true);
+        KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", true);
+        KaraokeCornerNPCs[2].GetComponent<Animator>().SetBool("isClapping", true);
+        KaraokeCornerNPCs[3].GetComponent<Animator>().SetBool("isDancing", true);
+        if (narrationAudioSource.isPlaying && !firstTimeSing)
         {
-            TVScreen.GetComponent<VideoPlayer>().Play();
-        }
-        if (!TVScreen2.GetComponent<VideoPlayer>().isPlaying)
-        {
-            TVScreen2.GetComponent<VideoPlayer>().Play();
-        }
-        if (!narrationAudioSource.isPlaying && !firstTimeSing)
-        {
-            narrationAudioSource.Play();
+            narrationAudioSource.volume = 1.0f;
         }
     }
-
+    
     public void PlayMicOffFace()
     {
-
         if (lastRoutine != null) StopCoroutine(lastRoutine);
         lastRoutine = null; // Reset the reference to allow starting again
-        if (TVScreen.GetComponent<VideoPlayer>().isPlaying)
-        {
-            TVScreen.GetComponent<VideoPlayer>().Pause();
-        }
-        if (TVScreen2.GetComponent<VideoPlayer>().isPlaying)
-        {
-            TVScreen2.GetComponent<VideoPlayer>().Pause();
-        }
         // Store current playback position before pausing
         if (narrationAudioSource.isPlaying)
         {
             narrationPlaybackPosition = narrationAudioSource.time;
-            narrationAudioSource.Pause();
+            narrationAudioSource.volume = 0;
         }
         GameManager.instance.ShowAlert(narration_2[5]);
-        TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping", false);
-        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", false);
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering", false);
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isArmsUpCheering", false);
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", false);
+        KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", false);
+        KaraokeCornerNPCs[2].GetComponent<Animator>().SetBool("isClapping", false);
+        KaraokeCornerNPCs[3].GetComponent<Animator>().SetBool("isDancing", false);
     }
 
     private void PlayAfterSingingTransition()
@@ -814,79 +806,53 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     private IEnumerator AfterSingingTransition()
     {
-        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isDancing", false);
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isCheering", false);
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isArmsUpCheering", false);
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", false);
+        KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", false);
+        KaraokeCornerNPCs[2].GetComponent<Animator>().SetBool("isClapping", false);
+        KaraokeCornerNPCs[3].GetComponent<Animator>().SetBool("isDancing", false);
 
-        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isClapping", true);
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isClapping", true);
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isClapping", true);
-
-        yield return new WaitForSeconds(3);
-
-        TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isClapping", false);
-        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isClapping", false);
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetBool("isClapping", false);
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetBool("isClapping",false);
-
-        StartCoroutine(SetNPCToPlayPos(TaichiToKaraokeCornerNPCs[1], 105, 1));
-        StartCoroutine(SetNPCToPlayPos(TaichiToKaraokeCornerNPCs[0], 270, 1));
-
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("TalkBegin");
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("Talking");
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().ResetTrigger("TalkBegin");
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().ResetTrigger("Talking");
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("TalkBegin");
-
-        for (int i = 0; i < 2; i++)
+        for (int i = 1; i < 4; i++)
         {
-            TaichiToKaraokeCornerNPCs[i].GetComponent<Animator>().ResetTrigger("TalkBegin");
-            TaichiToKaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkBegin");
-            yield return new WaitForSeconds(0.25f);
+            KaraokeCornerNPCs[i].GetComponent<Animator>().ResetTrigger("TalkBegin");
+            KaraokeCornerNPCs[i].GetComponent<Animator>().ResetTrigger("Talking");
+            KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkBegin");
+            yield return new WaitForSeconds(0.7f);
+            KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("Talking");
         }
 
-        yield return new WaitForSeconds(0.2f);
+        StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[2], 270, 1));
 
-        TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("Talking");
-        TaichiToKaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Talking");
+        StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[3], 90, 1));
 
-        yield return new WaitForSeconds(0.25f);
-
-        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().ResetTrigger("Talking");
-        TaichiToKaraokeCornerNPCs[1].GetComponent<Animator>().SetTrigger("Talking");
-
-        yield return new WaitForSeconds(1);
-
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkBegin");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkBegin");
 
         yield return new WaitForSeconds(0.7f);
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Talking");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         yield return new WaitForSeconds(2f); // placeholder length for length of clip of ah guan voiceline
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkEnd");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
 
         yield return new WaitForSeconds(narrationAudioClips_2[6].length);
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("TalkBegin");
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("Talking");
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().ResetTrigger("TalkEnd");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkBegin");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("Talking");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkEnd");
 
         yield return new WaitForSeconds(0.5f);
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkBegin");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkBegin");
 
         yield return new WaitForSeconds(0.7f);
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("Talking");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         yield return new WaitForSeconds(2f); // placeholder length for length of clip of ah guan voiceline
 
-        KaraokeCornerNPCs.transform.GetChild(0).GetComponent<Animator>().SetTrigger("TalkEnd");
+        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[7]);
 
@@ -991,17 +957,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 {
                     checkersNPC.SetActive(false);
 
-                    if (lastRoutine == null) lastRoutine = StartCoroutine(TaichiToKaraokeNPCsTransition()); // ensures that only one coroutine is ran
-
                     KaraokeTransitionAfterFirstTP = true;
                 }
             }
 
-            if (TVScreen2.GetComponent<VideoPlayer>().time >= 18.0f && firstTimeSing && TVScreen2.GetComponent<VideoPlayer>().isPlaying)
+            if (TVScreen.GetComponent<VideoPlayer>().time >= 16.5f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
-                TVScreen.GetComponent<VideoPlayer>().Pause();
-                TVScreen2.GetComponent<VideoPlayer>().Pause();
                 TVScreen.GetComponent<VideoPlayer>().Play();
                 TVScreen2.GetComponent<VideoPlayer>().Play();
                 firstTimeSing = false;
@@ -1016,36 +978,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 PlayAfterSingingTransition();
             }
         }
-    }
-
-    private IEnumerator TaichiToKaraokeNPCsTransition()
-    {
-        foreach (var npc in TaichiToKaraokeCornerNPCs)
-        {
-            npc.transform.SetParent(KaraokeCornerNPCs.transform);
-
-            npc.GetComponent<Animator>().SetTrigger("TalkBegin");
-
-            yield return new WaitForSeconds(0.7f);
-
-            npc.GetComponent<Animator>().SetTrigger("Talking");
-        }
-
-        KaraokeCornerNPCs.transform.GetChild(1).gameObject.SetActive(true);
-
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("TalkBegin");
-
-        yield return new WaitForSeconds(0.7f);
-
-        KaraokeCornerNPCs.transform.GetChild(1).GetComponent<Animator>().SetTrigger("Talking");
-
-        TaichiToKaraokeCornerNPCs[0].transform.localPosition = new Vector3(33.2f, 7.52f, -21);
-
-        TaichiToKaraokeCornerNPCs[1].transform.localPosition = new Vector3(31.85f, 7.5f, -21);
-
-        TaichiToKaraokeCornerNPCs[1].transform.localRotation = Quaternion.Euler(0, 105, 0);
-
-        KaraokeCornerNPCs.SetActive(true);
     }
 
     void StopPrevDialogue()
