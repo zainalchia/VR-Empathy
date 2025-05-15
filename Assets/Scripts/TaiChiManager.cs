@@ -20,7 +20,6 @@ public class TaiChiManager : MonoBehaviour
 
     [SerializeField] GameObject[] leftTaichiHitboxes;
     [SerializeField] GameObject[] rightTaichiHitboxes;
-    [SerializeField] LineRenderer rightLinerenderer, leftLinerenderer;
     [SerializeField] GameObject taichiNPCLeftMiddleFinger; // npc left middle finger position
     [SerializeField] GameObject taichiNPCRightMiddleFinger; // npc right middle finger position
     [SerializeField] GameObject taichiNPCHip; // npc hip position
@@ -56,9 +55,7 @@ public class TaiChiManager : MonoBehaviour
 
             taichiNPCLeftBall.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
             taichiNPCRightBall.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
-
-            SetLineRenderer();
-
+            
             DestroySmallBalls();
             toSpawnSmallBalls = true;
         }
@@ -118,9 +115,6 @@ public class TaiChiManager : MonoBehaviour
         taichiNPCRightBall.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
         taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
         taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
-
-        rightLinerenderer.enabled = false;
-        leftLinerenderer.enabled = false;
 
         switch (segment)
         {
@@ -252,15 +246,5 @@ public class TaiChiManager : MonoBehaviour
                 Gizmos.DrawLine(rightTaichiHitboxes[i].transform.position, rightTaichiHitboxes[i + 1].transform.position);
             }
         }
-    }
-
-    private void SetLineRenderer()
-    {
-        rightLinerenderer.enabled = true;
-        rightLinerenderer.SetPosition(0,rightTaichiHitboxes[current].transform.position);
-        rightLinerenderer.SetPosition(1,rightTaichiHitboxes[current + 1].transform.position);
-        leftLinerenderer.enabled = true;
-        leftLinerenderer.SetPosition(0, leftTaichiHitboxes[current].transform.position);
-        leftLinerenderer.SetPosition(1, leftTaichiHitboxes[current + 1].transform.position);
     }
 }

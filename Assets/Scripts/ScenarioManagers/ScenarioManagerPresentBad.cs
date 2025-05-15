@@ -434,10 +434,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         SaveGOTransform(photoFrame.transform,photoFrameOriginalPosition);
 
         // start furniture moving here
-        GameManager.instance.toStartSpasming = true;
         sideTable.GetComponent<Animator>().SetTrigger("move");
         hallucinationParticleFX.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(5f); // side table move to center of room first to direct player attention to center of room
+        GameManager.instance.toStartSpasming = true;
+        yield return new WaitForSeconds(5f);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
 
