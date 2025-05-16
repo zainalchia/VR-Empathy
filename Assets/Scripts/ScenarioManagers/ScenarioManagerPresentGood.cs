@@ -1,10 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Oculus.Interaction;
-using UnityEngine.UIElements;
-using Unity.VisualScripting;
 using UnityEngine.Video;
 
 public class ScenarioManagerPresentGood : MonoBehaviour
@@ -444,13 +441,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2.8f);
 
-        GameManager.instance.ShowAlert(narration_2[4]);
-
         GameManager.instance.taiChiAnimations[1].NextPose();
 
         GameManager.instance.taiChiAnimations[2].NextPose();
 
         taiChiManager.startSegment1();
+
+        GameManager.instance.ShowAlert(narration_2[4]);
     }
 
     IEnumerator SetKaraokeNPCs()

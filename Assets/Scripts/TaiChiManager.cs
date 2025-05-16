@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.Experimental.AI;
 
 public class TaiChiManager : MonoBehaviour
 {
@@ -177,12 +176,10 @@ public class TaiChiManager : MonoBehaviour
                 break;
         }        
     }
-
     private void FixedUpdate()
     {
         if(leftTaichiHitboxes[current].GetComponent<TaichiHitbox>().isHit && rightTaichiHitboxes[current].GetComponent<TaichiHitbox>().isHit)
         {
-            GameManager.instance.HideAlert();
             deactivateCurrent();
             resumeTaichi.Invoke();
         }

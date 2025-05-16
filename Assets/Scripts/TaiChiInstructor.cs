@@ -62,6 +62,11 @@ public class TaiChiInstructor : MonoBehaviour
         }
     }
 
+    public void HideAlert()
+    {
+        GameManager.instance.HideAlert();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
