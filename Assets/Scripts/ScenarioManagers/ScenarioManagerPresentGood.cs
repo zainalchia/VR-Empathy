@@ -214,19 +214,21 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             friends = FemaleFriends;
         }
 
-        StartCoroutine(MoveFriendsWithDelay(1));
-
         yield return new WaitForSeconds(3f); // the call takes a few second to be answered so wait a few seconds first
 
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
 
-        yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+        yield return new WaitForSeconds(2f);
+
+        StartCoroutine(MoveFriendsWithDelay(1));
+
+        yield return new WaitForSeconds(narrationAudioClips_1[3].length - 2f);
 
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         phone.GetComponent<ForceStayGrabbed>().SetActive(false); // drops phone
         phone.GetComponent<Grabbable>().enabled = false; // ensures that phone cannot be grabbed again
