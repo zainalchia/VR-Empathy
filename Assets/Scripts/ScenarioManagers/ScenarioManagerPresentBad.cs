@@ -554,7 +554,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         StartCoroutine(Segment2Part2_2());
     }
-
+    
     IEnumerator Segment2Part2_2()
     {
         yield return new WaitForSeconds(10f); // buffer time
@@ -562,6 +562,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         photoFrame.GetComponent<Grabbable>().enabled = true;
         photoFrameOutline.SetActive(true);
         photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
+        photoFrame.GetComponent<ForceStayGrabbed>().SetActive(true);
         // add new dialogue here
         yield return null;
     }
