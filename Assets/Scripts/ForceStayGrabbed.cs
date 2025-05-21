@@ -41,12 +41,10 @@ public class ForceStayGrabbed : MonoBehaviour
                 {
                     if (ControllerInteractionsManager.instance.ObjInWhichHand(gameObject) == 0)
                     {
-                        GameManager.instance.ShowAlert("Photo Frame Grabbed LH");
                         leftHandGrabbing = true;
                     }
                     else if (ControllerInteractionsManager.instance.ObjInWhichHand(gameObject) == 1)
                     {
-                        GameManager.instance.ShowAlert("Photo Frame Grabbed RH");
                         rightHandGrabbing = true;
                     }
 
