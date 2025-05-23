@@ -13,9 +13,6 @@ UI - for UI Canvas use UI Cam and not centerEyeAnchor cam
 
 FadeScreen UI Object - Auto FadeOut at the start of the scene, is in ScenarioManagerPresentBad.cs so can follow and see how to end the game with FadeIn
 
-
-
-
 [Scripts]
 GameManager.cs - has all the main variables used for scenario
 
@@ -102,4 +99,12 @@ MainMenuManager.cs - Script used to manage all functions of the main menu
 
 TaichiManager.cs & TaichiHitbox.cs - Used together, every circle has the TaichiHitbox.cs that basically tells the manager that it has been hit etc.
 
+----23/05/2025----
 
+PlayerTeleport.cs - Used to teleport the player without having to use the cane by setting player position to the next hotspot index- 
+in the current hotspot index array
+
+CheckersHighlightChecker.cs - Used to invoke unity events for opponent pieces to move after player checker piece has moved to its highlighted position 
+(each higlight has this script attached to it)
+
+MicController.cs - Used to detect if mic has been picked up and if mic is on player's face 
