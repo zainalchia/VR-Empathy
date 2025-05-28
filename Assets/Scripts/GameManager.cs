@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public TextMeshPro consoleText;
+    public TextMeshPro debugText;
 
     // OVR PLAYER
     [Header("OVR PLAYER")]
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     public void DebugLog(string text)
     {
-        consoleText.text = text;
+        debugText.text = text;
     }
 
     #region Alert Text Functions
@@ -276,8 +276,6 @@ public class GameManager : MonoBehaviour
                 MaleModel.SetActive(false);
             }
         }
-
-        Debug.Log(characterModel.transform.position);
     }
 
     // Update is called once per frame
