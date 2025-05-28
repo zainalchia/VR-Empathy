@@ -62,6 +62,7 @@ public class ForceStayGrabbed : MonoBehaviour
                     // force select left hand
                     ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
                 }
+                Debug.Log("[Interaction]Left");
             }
 
             if (rightHandGrabbing)
@@ -71,7 +72,10 @@ public class ForceStayGrabbed : MonoBehaviour
                     // force select right hand
                     ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
                 }
+                Debug.Log("[Interaction]Right");
             }
+
+            Debug.Log("[Interaction] Force Grabbed in hand");
         }
 
         /*
