@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public TextMeshPro debugText;
+    public TMP_Text consoleText;
 
     // OVR PLAYER
     [Header("OVR PLAYER")]
@@ -76,8 +76,13 @@ public class GameManager : MonoBehaviour
 
     public void DebugLog(string text)
     {
-        debugText.text = text;
+        if (DebugTextTest.Instance != null)
+            DebugTextTest.Instance.AddToConsole("[GM] " + text);
+        else
+            Debug.LogWarning("DebugTextTest not found. Falling back to Debug.Log.");
+
     }
+
 
     #region Alert Text Functions
     public void ShowAlert(string textToShow)
@@ -263,6 +268,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (consoleText != null && GameManager.instance != null)
+        {
+            GameManager.instance.DebugLog("[Startup] " + consoleText.text);
+        }
+        else
+        {
+            Debug.LogWarning("ConsoleText or GameManager.instance is not assigned yet.");
+        }
+
         if (MaleModel != null && FemaleModel != null)
         {
             if (MainMenuManager.isGenderMale)
