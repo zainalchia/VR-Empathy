@@ -557,12 +557,13 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     
     IEnumerator Segment2Part2_2()
     {
-        yield return new WaitForSeconds(10f); // buffer time
+        yield return new WaitForSeconds(2f); // buffer time
         GameManager.instance.toLookAtObjective = true;
         photoFrame.GetComponent<Grabbable>().enabled = true;
         photoFrameOutline.SetActive(true);
         photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
         photoFrame.GetComponent<ForceStayGrabbed>().SetActive(true);
+        photoFrame.GetComponent<ForceStayGrabbed>().forceStay = true;
         // add new dialogue here
         yield return null;
     }
