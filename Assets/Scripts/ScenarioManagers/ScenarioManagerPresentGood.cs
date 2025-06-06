@@ -885,11 +885,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             PlaySegment1Part1();
             secondPhone.GetComponent<MeshRenderer>().enabled = false;
             secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            //StartCoroutine(Segment1Part3_3());
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
             PlaySegment2Part1();
+            //PlayKaraokeCornerTransition();
+            //PlayMicOnFace();
         }
     }
 
