@@ -21,7 +21,7 @@ public class AlertTextController : MonoBehaviour
     float alertTextTimer = 0;
     [SerializeField] float alertTextTime = 1;
     [SerializeField] Animator anim;
-    [SerializeField] TextMeshProUGUI textMesh;
+    [SerializeField] TextMeshPro textMesh;
     Color initialColor = Color.white;
 
     bool alertAppended = false;
