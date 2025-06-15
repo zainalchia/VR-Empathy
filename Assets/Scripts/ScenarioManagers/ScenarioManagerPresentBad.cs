@@ -417,7 +417,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject SecondPillBottleHighlight;
     [SerializeField] GameObject photoFrame;
     [SerializeField] GameObject NewPhotoFrame;
-    [SerializeField] GameObject TransformPlace;
+    //[SerializeField] GameObject TransformPlace;
     [SerializeField] GameObject oldMode;
     [SerializeField] GameObject newMode;
     [SerializeField] GameObject photoFrameOutline;
@@ -484,7 +484,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
         yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1f);
-Destroy(photoFrame);
+        Destroy(photoFrame);
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
         //Turn back to normal here
@@ -496,7 +496,7 @@ Destroy(photoFrame);
         sideTable.SetActive(true);
         //SetGOTransform(NewPhotoFrame.transform,photoFrameOriginalPosition);
         NewPhotoFrame.SetActive(true);
-        NewPhotoFrame.transform.position = TransformPlace.transform.position;
+        //NewPhotoFrame.transform.position = TransformPlace.transform.position;
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
@@ -568,12 +568,23 @@ Destroy(photoFrame);
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookAtObjective = true;
         //photoFrame.GetComponent<Grabbable>().enabled = true;
-        
 
-        photoFrameOutline.SetActive(true);
+        photoFrameOutline.GetComponent<Outline>().enabled = true; 
         NewPhotoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
-        NewPhotoFrame.GetComponent<ForceStayGrabbed>().active = true;
-        NewPhotoFrame.transform.GetComponentInChildren<LookAtObjective>().enabled = true;
+
+        var fsg = NewPhotoFrame.GetComponent<ForceStayGrabbed>();
+        //fsg.enabled = true
+        fsg.active = true;
+        var gi = NewPhotoFrame.GetComponent<GrabInteractable>();
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(gi);
+
+        NewPhotoFrame.GetComponent<LookAtObjective>().enabled = true;
+
+        if (NewPhotoFrame.GetComponent<ForceStayGrabbed>().active == true)
+        {
+            Debug.Log("SUCK MY BIG FAT DIIIIICKKKKKKKKKKKK");
+            NewPhotoFrame.GetComponent<ForceStayGrabbed>().forceStay = true;
+        }
 
         // add new dialogue here
         yield return null;
@@ -612,8 +623,8 @@ Destroy(photoFrame);
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
             SetupNarrationBedroom();
-            //PlaySegment2Part1();
-            StartCoroutine(Segment2Part2_1());
+            PlaySegment2Part1();
+            //StartCoroutine(Segment2Part2_1());
         }
     }
 
