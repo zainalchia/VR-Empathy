@@ -431,19 +431,17 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Buffer time for them to put dentures in cup
         yield return new WaitForSeconds(3f);
 
-        SaveGOTransform(photoFrame.transform,photoFrameOriginalPosition);
-
         // start furniture moving here
         sideTable.GetComponent<Animator>().SetTrigger("move");
         hallucinationParticleFX.SetActive(true);
         yield return new WaitForSeconds(5f); // side table move to center of room first to direct player attention to center of room
         GameManager.instance.toStartSpasming = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
 
         // wait a while to let players look around
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(8f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
@@ -490,7 +488,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
         sideTable.SetActive(true);
-        SetGOTransform(photoFrame.transform,photoFrameOriginalPosition);
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
@@ -564,24 +561,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         photoFrameOutline.SetActive(true);
         photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
 
-        photoFrame.GetComponent<ForceStayGrabbed>().enabled = true;
-        photoFrame.GetComponent<ForceStayGrabbed>().active = true;
-        photoFrame.GetComponent<ForceStayGrabbed>().forceStay = true;
-
-        int hand = ControllerInteractionsManager.instance.ObjInWhichHand(photoFrame);
-        GrabInteractable grabComponent = photoFrame.GetComponent<GrabInteractable>();
-
-        if (hand == 0)
-        {
-            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(grabComponent);
-        }
-        else if (hand == 1)
-        {
-            ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabComponent);
-        }
-
-        // add new dialogue here
-        yield return null;
+        photoFrame.GetComponent<ForceStayGrabbed>().SetActive(true);
     }
 
     public void StaredAtPhoto()

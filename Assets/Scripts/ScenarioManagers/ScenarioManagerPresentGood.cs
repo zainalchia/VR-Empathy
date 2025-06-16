@@ -891,6 +891,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         {
             SetupNarrationVoiddeck();
             PlaySegment2Part1();
+
+            // uncomment these 2 lines below and comment out the line above to test out the karaoke part
             //PlayKaraokeCornerTransition();
             //PlayMicOnFace();
         }
@@ -963,7 +965,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 }
             }
 
-            if (TVScreen.GetComponent<VideoPlayer>().time >= 16.5f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+            if (TVScreen.GetComponent<VideoPlayer>().time >= 16f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
                 TVScreen.GetComponent<VideoPlayer>().Play();
