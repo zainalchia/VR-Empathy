@@ -49,11 +49,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] Outline caneOutline;
     [SerializeField] GameObject firstTeleportHotspot;
 
-    [Header("Scenraio Prompters")]
-    [SerializeField] ScenarioPromptManager promptManager;
-    [SerializeField] ScenarioID scenarioID = ScenarioID.PresentBad;
-    [SerializeField] SceneID sceneID = SceneID.Bathroom;
-
     Coroutine lastRoutine = null;
 
     void SetupNarrationGeneral()
@@ -91,10 +86,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[15] = "HELLO, SON IS THAT YOU? HOW ARE YOU? WHEN YOU WANT COME";
 
         // Text prompts
-        //narration_1[16] = "Take your cane and place your hand on the door to open it.";
-        //narration_1[17] = "Aim the tip of the cane on the floor and press the 'Trigger' button";
-        //narration_1[18] = "Someone is calling, pick up the phone.";
-        //narration_1[19] = "Use your other hand to put on your glasses.";
+        narration_1[16] = "Take your cane and place your hand on the door to open it.";
+        narration_1[17] = "Aim the tip of the cane on the floor and press the 'Trigger' button";
+        narration_1[18] = "Someone is calling, pick up the phone.";
+        narration_1[19] = "Use your other hand to put on your glasses.";
 
         if (MainMenuManager.isGenderMale)
         {
@@ -138,7 +133,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 30f;
-    [SerializeField] GameObject frame;
 
     public void PlaySegment1Part1()
     {
@@ -150,7 +144,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
         cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
-        frame.GetComponent<ForceStayGrabbed>().active = true;
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
@@ -197,7 +190,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
-        promptManager.ShowPrompt(sceneID, 0);
+        GameManager.instance.ShowAlert(narration_1[16]);
     }
     
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
@@ -209,11 +202,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         knob.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        //GameManager.instance.ShowAlert(narration_1[17]);
-        promptManager.ShowPrompt(sceneID, 1);
+        GameManager.instance.ShowAlert(narration_1[17]);
         toGoLivingRoom = true;
         lastRoutine = null;
-        sceneID = SceneID.LivingRoom;
     }
 
     #endregion
@@ -272,8 +263,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // play phone calling
         mobilePhone.SetPhoneCalling();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
-        //GameManager.instance.ShowAlert(narration_1[18]);
-        promptManager.ShowPrompt(sceneID, 0);
+        GameManager.instance.ShowAlert(narration_1[18]);
+
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
         yield return new WaitForSeconds(2.5f + 1.1f);
 
@@ -292,8 +283,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_2()
     {
-        //GameManager.instance.ShowAlert(narration_1[19]);
-        promptManager.ShowPrompt(sceneID, 1);
+        GameManager.instance.ShowAlert(narration_1[19]);
 
         glassesOutline.enabled = true;
 
@@ -378,7 +368,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     public void PlaySegment2Part1()
     {
         lastRoutine = StartCoroutine(Segment2Part1_1());
-        sceneID = SceneID.Bedroom;
     }
     IEnumerator Segment2Part1_1()
     {
@@ -392,8 +381,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(narrationAudioClips_2[0].length);
 
-        //GameManager.instance.ShowAlert(narration_2[3]);
-        promptManager.ShowPrompt(sceneID, 0);
+        GameManager.instance.ShowAlert(narration_2[3]);
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
@@ -426,8 +414,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject PillBottleHighlight;
     [SerializeField] GameObject SecondPillBottleHighlight;
     [SerializeField] GameObject photoFrame;
-    [SerializeField] GameObject NewPhotoFrame;
-    //[SerializeField] GameObject TransformPlace;
     [SerializeField] GameObject oldMode;
     [SerializeField] GameObject newMode;
     [SerializeField] GameObject photoFrameOutline;
@@ -445,19 +431,17 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Buffer time for them to put dentures in cup
         yield return new WaitForSeconds(3f);
 
-        //SaveGOTransform(photoFrame.transform,photoFrameOriginalPosition);
-
         // start furniture moving here
         sideTable.GetComponent<Animator>().SetTrigger("move");
         hallucinationParticleFX.SetActive(true);
         yield return new WaitForSeconds(5f); // side table move to center of room first to direct player attention to center of room
         GameManager.instance.toStartSpasming = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
 
         // wait a while to let players look around
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(8f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
@@ -494,7 +478,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
         yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1f);
-        Destroy(photoFrame);
+
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
         //Turn back to normal here
@@ -504,9 +488,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
         sideTable.SetActive(true);
-        //SetGOTransform(NewPhotoFrame.transform,photoFrameOriginalPosition);
-        NewPhotoFrame.SetActive(true);
-        //NewPhotoFrame.transform.position = TransformPlace.transform.position;
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
@@ -516,8 +497,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // play this voiceover while the screen is black
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
         yield return new WaitForSeconds(narrationAudioClips_2[5].length + 1f);
-        
-        
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
@@ -577,21 +556,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookAtObjective = true;
-        //photoFrame.GetComponent<Grabbable>().enabled = true;
+        photoFrame.GetComponent<Grabbable>().enabled = true;
 
-        photoFrameOutline.GetComponent<Outline>().enabled = true; 
-        NewPhotoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
+        photoFrameOutline.SetActive(true);
+        photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
 
-        var fsg = NewPhotoFrame.GetComponent<ForceStayGrabbed>();
-        //fsg.enabled = true
-        fsg.active = true;
-        var gi = NewPhotoFrame.GetComponent<GrabInteractable>();
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(gi);
-
-        NewPhotoFrame.GetComponent<LookAtObjective>().enabled = true;
-
-        // add new dialogue here
-        yield return null;
+        photoFrame.GetComponent<ForceStayGrabbed>().SetActive(true);
     }
 
     public void StaredAtPhoto()
@@ -628,7 +598,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         {
             SetupNarrationBedroom();
             PlaySegment2Part1();
-            //StartCoroutine(Segment2Part2_1());
         }
     }
 
