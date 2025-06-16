@@ -133,7 +133,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 30f;
-    [SerializeField] GameObject frame;
 
     public void PlaySegment1Part1()
     {
@@ -145,7 +144,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
         cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
-        frame.GetComponent<ForceStayGrabbed>().active = true;
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
@@ -416,8 +414,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject PillBottleHighlight;
     [SerializeField] GameObject SecondPillBottleHighlight;
     [SerializeField] GameObject photoFrame;
-    [SerializeField] GameObject NewPhotoFrame;
-    [SerializeField] GameObject TransformPlace;
     [SerializeField] GameObject oldMode;
     [SerializeField] GameObject newMode;
     [SerializeField] GameObject photoFrameOutline;
@@ -435,7 +431,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Buffer time for them to put dentures in cup
         yield return new WaitForSeconds(3f);
 
-        //SaveGOTransform(photoFrame.transform,photoFrameOriginalPosition);
+        SaveGOTransform(photoFrame.transform,photoFrameOriginalPosition);
 
         // start furniture moving here
         sideTable.GetComponent<Animator>().SetTrigger("move");
@@ -484,7 +480,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
         yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1f);
-Destroy(photoFrame);
+
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
         //Turn back to normal here
@@ -494,9 +490,7 @@ Destroy(photoFrame);
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
         sideTable.SetActive(true);
-        //SetGOTransform(NewPhotoFrame.transform,photoFrameOriginalPosition);
-        NewPhotoFrame.SetActive(true);
-        NewPhotoFrame.transform.position = TransformPlace.transform.position;
+        SetGOTransform(photoFrame.transform,photoFrameOriginalPosition);
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
@@ -506,8 +500,6 @@ Destroy(photoFrame);
         // play this voiceover while the screen is black
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
         yield return new WaitForSeconds(narrationAudioClips_2[5].length + 1f);
-        
-        
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
@@ -567,13 +559,26 @@ Destroy(photoFrame);
     {
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookAtObjective = true;
-        //photoFrame.GetComponent<Grabbable>().enabled = true;
-        
+        photoFrame.GetComponent<Grabbable>().enabled = true;
 
         photoFrameOutline.SetActive(true);
-        NewPhotoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
-        NewPhotoFrame.GetComponent<ForceStayGrabbed>().active = true;
-        NewPhotoFrame.transform.GetComponentInChildren<LookAtObjective>().enabled = true;
+        photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
+
+        photoFrame.GetComponent<ForceStayGrabbed>().enabled = true;
+        photoFrame.GetComponent<ForceStayGrabbed>().active = true;
+        photoFrame.GetComponent<ForceStayGrabbed>().forceStay = true;
+
+        int hand = ControllerInteractionsManager.instance.ObjInWhichHand(photoFrame);
+        GrabInteractable grabComponent = photoFrame.GetComponent<GrabInteractable>();
+
+        if (hand == 0)
+        {
+            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(grabComponent);
+        }
+        else if (hand == 1)
+        {
+            ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabComponent);
+        }
 
         // add new dialogue here
         yield return null;
@@ -612,8 +617,7 @@ Destroy(photoFrame);
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
             SetupNarrationBedroom();
-            //PlaySegment2Part1();
-            StartCoroutine(Segment2Part2_1());
+            PlaySegment2Part1();
         }
     }
 
