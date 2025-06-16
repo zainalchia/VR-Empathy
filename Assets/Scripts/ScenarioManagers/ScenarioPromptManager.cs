@@ -6,8 +6,8 @@ public enum ScenarioID
 {
     PastNegative,
     PastPositive,
-    PresentNegative,
-    PresentPositive
+    PresentBad,
+    PresentGood
 }
 
 public enum SceneID
@@ -31,7 +31,9 @@ public class ScenarioPromptManager : MonoBehaviour
     }
 
     public ScenarioID activeScenario;
-    [SerializeField] public TextAsset csvFile; 
+    [SerializeField] public TextAsset csvFile;
+    [SerializeField] private AlertTextController alertTextController;
+
     private Dictionary<string, List<PromptEntry>> promptMap = new();
 
     private void Awake()
@@ -96,7 +98,20 @@ public class ScenarioPromptManager : MonoBehaviour
             return;
         }
 
-        AlertTextController.instance.ShowAlert(list[index].PromptText);
+        if (AlertTextController.instance == null && alertTextController != null)
+        {
+            alertTextController.gameObject.SetActive(true); // Activate manually
+            AlertTextController.instance = alertTextController;
+        }
+
+        if (AlertTextController.instance != null)
+        {
+            AlertTextController.instance.ShowAlert(list[index].PromptText);
+        }
+        else
+        {
+            Debug.LogError("AlertTextController.instance is null! Make sure it's assigned in the inspector.");
+        }
     }
 
     public void ShowPrompt(SceneID scene, int index = 0)

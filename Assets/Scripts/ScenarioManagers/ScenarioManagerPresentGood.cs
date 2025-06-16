@@ -30,6 +30,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Player Movement")]
     [SerializeField] PlayerTeleport playerTeleport;
 
+    [Header("Scenraio Prompters")]
+    [SerializeField] ScenarioPromptManager promptManager;
+    [SerializeField] ScenarioID scenarioID = ScenarioID.PresentGood;
+    [SerializeField] SceneID sceneID = SceneID.Bathroom;
+
     bool alertAtLastTeleport = false;
 
     bool canSeeWindow = false; // if can see window then can say weather looks good
@@ -40,23 +45,23 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     private float AlertHideTimer = 0;
 
-    void SetupNarrationBathroomLivingRoom()
-    {
-        narration_1[0] = "Open the door and head to the sofa";
-        narration_1[1] = "Press TRIGGER button to move to highlighted circle";
-        narration_1[2] = "Someone is calling,pick up the call";
-        narration_1[3] = "Open gate and leave to void deck by interacting with gate knob";
-    }
+    //void SetupNarrationBathroomLivingRoom()
+    //{
+    //    narration_1[0] = "Open the door and head to the sofa";
+    //    narration_1[1] = "Press TRIGGER button to move to highlighted circle";
+    //    narration_1[2] = "Someone is calling,pick up the call";
+    //    narration_1[3] = "Open gate and leave to void deck by interacting with gate knob";
+    //}
 
-    void SetupNarrationVoiddeck()
-    {
-        narration_2[0] = "[Look at highlighted othello NPC to start othello minigame]";
-        narration_2[1] = "[Pick up highlighted checkers piece and place it on highlighted spot]";
-        narration_2[2] = "[Press TRIGGER button to move to highlighted circle]";
-        narration_2[3] = "[Pick up highlighted mic]";
-        narration_2[4] = "[Follow taichi instructor's movements]"; // this narration appears at the start but the number is 4 cus i got lazy to change everything by 1 if i put this as narration_2[0]
-        narration_2[5] = "[Put mic to face]";
-    }
+    //void SetupNarrationVoiddeck()
+    //{
+    //    narration_2[0] = "[Look at highlighted othello NPC to start othello minigame]";
+    //    narration_2[1] = "[Pick up highlighted checkers piece and place it on highlighted spot]";
+    //    narration_2[2] = "[Press TRIGGER button to move to highlighted circle]";
+    //    narration_2[3] = "[Pick up highlighted mic]";
+    //    narration_2[4] = "[Follow taichi instructor's movements]"; // this narration appears at the start but the number is 4 cus i got lazy to change everything by 1 if i put this as narration_2[0]
+    //    narration_2[5] = "[Put mic to face]";
+    //}
 
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
@@ -112,7 +117,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         knob.GetComponent<Outline>().enabled = true;
 
-        GameManager.instance.ShowAlert(narration_1[0]);
+        //GameManager.instance.ShowAlert(narration_1[0]);
+        promptManager.ShowPrompt(sceneID, 0);
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
@@ -126,7 +132,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         AlertHideTimer = MaxAlertHideTimer;
 
-        GameManager.instance.ShowAlert(narration_1[1]); 
+        //GameManager.instance.ShowAlert(narration_1[1]);
+        promptManager.ShowPrompt(sceneID, 1);
 
         knob.GetComponent<Outline>().enabled = false;
 
@@ -319,7 +326,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         RingingSoundSource.Play(); // need ring sfx
 
-        GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
+        //GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
+        promptManager.ShowPrompt(sceneID, 1);
 
         playerTeleport.MovingToMainDoor = true;
 
@@ -339,6 +347,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlaySegment1Part5()
     {
+        sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part5());
     }
 
@@ -368,7 +377,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        GameManager.instance.ShowAlert(narration_1[3]);
+        //GameManager.instance.ShowAlert(narration_1[3]);
+        promptManager.ShowPrompt(sceneID, 0);
 
         MainGateOutline.enabled = true;
 
@@ -409,6 +419,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     void PlaySegment2Part1()
     {
+        sceneID = SceneID.VoidDeck;
         PostProcessingController.instance.UsingGlasses(true); // no blur effect
         StartCoroutine(playTaichi());
     }
@@ -449,7 +460,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         taiChiManager.startSegment1();
 
-        GameManager.instance.ShowAlert(narration_2[4]);
+        //GameManager.instance.ShowAlert(narration_2[4]);
+        promptManager.ShowPrompt(sceneID, 0);
     }
 
     IEnumerator SetKaraokeNPCs()
@@ -514,7 +526,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return StartCoroutine(SetNPCToPlayPos(checkersNPC,90,2));
 
-        GameManager.instance.ShowAlert(narration_2[0]);
+        //GameManager.instance.ShowAlert(narration_2[0]);
+        promptManager.ShowPrompt(sceneID, 1);
+
 
         checkersNPC.GetComponent<Outline>().enabled = true;
 
@@ -529,7 +543,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         lookDetection.enabled = false;
         firstCheckersHotspot.SetActive(true);
         playerTeleport.MovingToCheckersChair = true;
-        GameManager.instance.ShowAlert(narration_2[2]);
+        //GameManager.instance.ShowAlert(narration_2[2]);
+        promptManager.ShowPrompt(sceneID, 2);
         checkersNPC.GetComponent<Animator>().ResetTrigger("IdleSeat");
         checkersNPC.GetComponent<Animator>().ResetTrigger("TalkBegin");
         checkersNPC.GetComponent<Animator>().ResetTrigger("Talking");
@@ -558,7 +573,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         taichiNPC.SetActive(false);
         checkersNPC.GetComponent<Animator>().SetTrigger("move");
         yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceFirstDestination,0));
-        GameManager.instance.ShowAlert(narration_2[1]);
+        //GameManager.instance.ShowAlert(narration_2[1]);
+        promptManager.ShowPrompt(sceneID, 4);
         PlayerPiece.GetComponent<Grabbable>().enabled = true;
         PlayerPieceOutline.SetActive(true);
         PlayerPieceFirstDestination.SetActive(true);
@@ -574,7 +590,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
         PlayerPieceOutline.SetActive(false);
         yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceSecondDestination)); // moves enemy piece to symbolise it being captured
-        GameManager.instance.ShowAlert(narration_2[1]);
+        //GameManager.instance.ShowAlert(narration_2[1]);
+        promptManager.ShowPrompt(sceneID, 4);
         PlayerPiece.GetComponent<Grabbable>().enabled = true;
         PlayerPieceOutline.SetActive(true);
         PlayerPieceSecondDestination.SetActive(true);
@@ -702,7 +719,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         firstToKaraokeCornerHotspot.SetActive(true);
 
-        GameManager.instance.ShowAlert(narration_2[2]);
+        //GameManager.instance.ShowAlert(narration_2[2]);
+        promptManager.ShowPrompt(sceneID, 2);
     }
 
     public void PlayKaraokeCornerTransition()
@@ -743,7 +761,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator KaraokeCornerTransition()
     {
-        GameManager.instance.ShowAlert(narration_2[3]);
+        //GameManager.instance.ShowAlert(narration_2[3]);
+        promptManager.ShowPrompt(sceneID, 5);
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
 
@@ -791,7 +810,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             narrationPlaybackPosition = narrationAudioSource.time;
             narrationAudioSource.volume = 0;
         }
-        GameManager.instance.ShowAlert(narration_2[5]);
+        //GameManager.instance.ShowAlert(narration_2[5]);
+        promptManager.ShowPrompt(sceneID, 6);
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", false);
         KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", false);
         KaraokeCornerNPCs[2].GetComponent<Animator>().SetBool("isClapping", false);
@@ -881,15 +901,20 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
-            SetupNarrationBathroomLivingRoom();
+            //SetupNarrationBathroomLivingRoom();
+            promptManager.activeScenario = scenarioID;
+            sceneID = SceneID.Bathroom;
             PlaySegment1Part1();
             secondPhone.GetComponent<MeshRenderer>().enabled = false;
             secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
             //StartCoroutine(Segment1Part3_3());
+            
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
-            SetupNarrationVoiddeck();
+            //SetupNarrationVoiddeck();
+            promptManager.activeScenario = scenarioID;
+            sceneID = SceneID.VoidDeck;
             PlaySegment2Part1();
             //PlayKaraokeCornerTransition();
             //PlayMicOnFace();

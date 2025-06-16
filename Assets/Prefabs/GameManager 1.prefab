@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7277603912207185784}
   - component: {fileID: 3407524192125189410}
   - component: {fileID: 8518638762025746586}
+  - component: {fileID: 3196500072296591045}
+  - component: {fileID: 7139200262989164425}
   m_Layer: 0
   m_Name: GameManager 1
   m_TagString: Untagged
@@ -47,9 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugText: {fileID: 0}
+  consoleText: {fileID: 0}
   ovrCamRig: {fileID: 0}
-  middleEyeAnchor: {fileID: 0}
+  centerEyeAnchor: {fileID: 0}
   grabInteractors:
   - {fileID: 0}
   - {fileID: 0}
@@ -147,14 +149,18 @@ MonoBehaviour:
   normalSkybox: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   sceneToPlay: 0
   narrationAudioSource: {fileID: 8518638762025746586}
+  narrationAudioClips_General_Male:
+  - {fileID: 8300000, guid: 648dec5db489aa543a1898135f79af2b, type: 3}
+  - {fileID: 8300000, guid: 24506c6590bbd4d49838f5ea759d4396, type: 3}
+  narrationAudioClips_General_Female: []
   narrationAudioClips_Bathroom_Male:
-  - {fileID: 8300000, guid: 3e43158c4efdff746a7f5ebc16ce4329, type: 3}
-  - {fileID: 8300000, guid: d38fde46d16b2344088ebf549a775f72, type: 3}
-  - {fileID: 8300000, guid: 6093b3dfd20fe414a8157e4e76243eab, type: 3}
-  - {fileID: 8300000, guid: 408a38b84385e18458a6478b6b775cc2, type: 3}
-  - {fileID: 8300000, guid: 1edc609c813842a4893db2b35c8b3485, type: 3}
-  - {fileID: 8300000, guid: 6fcb0f460aab2fc44af0ff3291966ad3, type: 3}
-  - {fileID: 8300000, guid: 8b6396bea13b1634e8bec45a90ede8c7, type: 3}
+  - {fileID: 8300000, guid: 0f27cfb8d425c3b4fb352beb6b10aeee, type: 3}
+  - {fileID: 8300000, guid: d49412ca290b9334b92bffe93df630f9, type: 3}
+  - {fileID: 8300000, guid: 85a5c937f67ebcc4ebc7e50196b2bfaa, type: 3}
+  - {fileID: 8300000, guid: 23b1483b697da7e49bdf00aa13beeae4, type: 3}
+  - {fileID: 8300000, guid: 4c8afc6bf62358f459e25b6b119c3d36, type: 3}
+  - {fileID: 8300000, guid: 9a3557342d7c9524d9bc415635cb6e0e, type: 3}
+  - {fileID: 8300000, guid: 0aa1d4c3f0e564048892a494c1d141c9, type: 3}
   narrationAudioClips_Bathroom_Female:
   - {fileID: 8300000, guid: 8f8109deb5acf4d4693b58c2f2a4dca3, type: 3}
   - {fileID: 8300000, guid: d78b7bfbbe8abb3459ec1796d1845bfa, type: 3}
@@ -176,7 +182,11 @@ MonoBehaviour:
   cane: {fileID: 0}
   caneOutline: {fileID: 0}
   firstTeleportHotspot: {fileID: 0}
+  promptManager: {fileID: 7139200262989164425}
+  scenarioID: 2
+  sceneID: 0
   timeForWashingUp: 42
+  frame: {fileID: 0}
   bathroomDoor: {fileID: 0}
   knob: {fileID: 0}
   questControllerImage: {fileID: 0}
@@ -184,7 +194,6 @@ MonoBehaviour:
   mobilePhone: {fileID: 0}
   glasses: {fileID: 0}
   glassesDrop: {fileID: 8300000, guid: fc43ccc5b25f2c7478d1a69422adc001, type: 3}
-  phoneOutline: {fileID: 0}
   glassesOutline: {fileID: 0}
   tvAudio: {fileID: 0}
   Glass: {fileID: 0}
@@ -193,15 +202,23 @@ MonoBehaviour:
   mother: {fileID: 0}
   father: {fileID: 0}
   tableWithMedicine: {fileID: 0}
+  sideTable: {fileID: 0}
+  hallucinationParticleFX: {fileID: 0}
   chair: {fileID: 0}
   cabinet: {fileID: 0}
   originallyHeldMedicine: {fileID: 0}
   animatedMedicine: {fileID: 0}
+  SecondOriginallyHeldMedicine: {fileID: 0}
+  SecondAnimatedMedicine: {fileID: 0}
   PillBottleHighlight: {fileID: 0}
+  SecondPillBottleHighlight: {fileID: 0}
   photoFrame: {fileID: 0}
+  NewPhotoFrame: {fileID: 0}
   oldMode: {fileID: 0}
   newMode: {fileID: 0}
   photoFrameOutline: {fileID: 0}
+  HandsUp: {fileID: 0}
+  HandsDown: {fileID: 0}
 --- !u!82 &8518638762025746586
 AudioSource:
   m_ObjectHideFlags: 0
@@ -298,3 +315,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3196500072296591045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947871553479497366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 714dc6bd0c216344bb200669afb51c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  debugText: {fileID: 0}
+  maxLines: 50
+--- !u!114 &7139200262989164425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947871553479497366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeScenario: 2
+  csvFile: {fileID: 4900000, guid: c4353c813aa755a4c80572690880645b, type: 3}
