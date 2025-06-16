@@ -49,6 +49,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] Outline caneOutline;
     [SerializeField] GameObject firstTeleportHotspot;
 
+    [Header("Scenraio Prompters")]
+    [SerializeField] ScenarioPromptManager promptManager;
+    [SerializeField] ScenarioID scenarioID = ScenarioID.PresentBad;
+    [SerializeField] SceneID sceneID = SceneID.Bathroom;
+
     Coroutine lastRoutine = null;
 
     void SetupNarrationGeneral()
@@ -86,10 +91,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[15] = "HELLO, SON IS THAT YOU? HOW ARE YOU? WHEN YOU WANT COME";
 
         // Text prompts
-        narration_1[16] = "Take your cane and place your hand on the door to open it.";
-        narration_1[17] = "Aim the tip of the cane on the floor and press the 'Trigger' button";
-        narration_1[18] = "Someone is calling, pick up the phone.";
-        narration_1[19] = "Use your other hand to put on your glasses.";
+        //narration_1[16] = "Take your cane and place your hand on the door to open it.";
+        //narration_1[17] = "Aim the tip of the cane on the floor and press the 'Trigger' button";
+        //narration_1[18] = "Someone is calling, pick up the phone.";
+        //narration_1[19] = "Use your other hand to put on your glasses.";
 
         if (MainMenuManager.isGenderMale)
         {
@@ -106,7 +111,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_2[0] = "Another day over";
         narration_2[1] = "Hmm useless son when is he going to visit me?";
         narration_2[2] = "Im tired";
-        narration_2[3] = "I have to take off my dentures and place in the cup. [Grab your face area]"; // stay on screen until placed in cup
+        //narration_2[3] = "I have to take off my dentures and place in the cup. [Grab your face area]"; // stay on screen until placed in cup
         narration_2[4] = "Now my glasses. [Grab your face area]"; // stay on screen until take off
         narration_2[5] = "Hmm what is this? Am I mad?";
         narration_2[6] = "Ah yes, my medication. I need my medication. Forgot, I must have forgot.";
@@ -190,7 +195,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
-        GameManager.instance.ShowAlert(narration_1[16]);
+        //GameManager.instance.ShowAlert(narration_1[16]);
+        promptManager.ShowPrompt(sceneID, 0);
     }
     
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
@@ -202,7 +208,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         knob.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        GameManager.instance.ShowAlert(narration_1[17]);
+        //GameManager.instance.ShowAlert(narration_1[17]);
+        promptManager.ShowPrompt(sceneID, 1);
         toGoLivingRoom = true;
         lastRoutine = null;
     }
@@ -248,6 +255,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PlaySegment1Part3_1()
     {
+        sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part3_1());
     }
 
@@ -263,7 +271,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // play phone calling
         mobilePhone.SetPhoneCalling();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
-        GameManager.instance.ShowAlert(narration_1[18]);
+        //GameManager.instance.ShowAlert(narration_1[18]);
+        promptManager.ShowPrompt(sceneID, 2);
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
         yield return new WaitForSeconds(2.5f + 1.1f);
@@ -283,7 +292,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_2()
     {
-        GameManager.instance.ShowAlert(narration_1[19]);
+        //GameManager.instance.ShowAlert(narration_1[19]);
+        promptManager.ShowPrompt(sceneID, 3);
 
         glassesOutline.enabled = true;
 
@@ -381,7 +391,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(narrationAudioClips_2[0].length);
 
-        GameManager.instance.ShowAlert(narration_2[3]);
+        //GameManager.instance.ShowAlert(narration_2[3]);
+        promptManager.ShowPrompt(sceneID, 0);
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
@@ -590,12 +601,14 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         SetupNarrationGeneral();
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
+            sceneID = SceneID.Bathroom;
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
             RenderSettings.skybox = normalSkybox;
         }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
+            sceneID = SceneID.Bedroom;
             SetupNarrationBedroom();
             PlaySegment2Part1();
         }
