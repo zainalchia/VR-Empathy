@@ -17,11 +17,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] AudioSource narrationAudioSource;
 
     // for bathroom and living room scene
-    [SerializeField] AudioClip[] narrationAudioClips_1;
+    AudioClip[] narrationAudioClips_1;
+    [SerializeField] AudioClip[] narrationAudioClips_1_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_1_Female;
     string[] narration_1 = new string[30];
 
     // for voiddeck scene
-    [SerializeField] AudioClip[] narrationAudioClips_2;
+    AudioClip[] narrationAudioClips_2;
+    [SerializeField] AudioClip[] narrationAudioClips_2_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_2_Female;
     string[] narration_2 = new string[30];
 
     [Header("Multi-Scene Objects")]
@@ -62,6 +66,22 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     //    narration_2[4] = "[Follow taichi instructor's movements]"; // this narration appears at the start but the number is 4 cus i got lazy to change everything by 1 if i put this as narration_2[0]
     //    narration_2[5] = "[Put mic to face]";
     //}
+
+    void SetupNarrationBathroomLivingRoom()
+    {
+        if (MainMenuManager.isGenderMale)        
+            narrationAudioClips_1 = narrationAudioClips_1_Male;        
+        else        
+            narrationAudioClips_1 = narrationAudioClips_1_Female;        
+    }
+
+    void SetupNarrationVoiddeck()
+    {
+        if (MainMenuManager.isGenderMale)        
+            narrationAudioClips_2 = narrationAudioClips_2_Male;        
+        else        
+            narrationAudioClips_2 = narrationAudioClips_2_Female;        
+    }
 
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
@@ -901,7 +921,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
-            //SetupNarrationBathroomLivingRoom();
+            SetupNarrationBathroomLivingRoom();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bathroom;
             PlaySegment1Part1();
@@ -912,7 +932,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
-            //SetupNarrationVoiddeck();
+            SetupNarrationVoiddeck();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.VoidDeck;
             PlaySegment2Part1();
