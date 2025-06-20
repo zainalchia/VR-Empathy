@@ -924,13 +924,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bathroom;
-            //PlaySegment1Part1();
-            //secondPhone.GetComponent<MeshRenderer>().enabled = false;
-            //secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            PlaySegment1Part1();
+            secondPhone.GetComponent<MeshRenderer>().enabled = false;
+            secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
 
             //StartCoroutine(Segment1Part3_3());
 
-            PlaySegment1Part4();
+            //PlaySegment1Part4();
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
