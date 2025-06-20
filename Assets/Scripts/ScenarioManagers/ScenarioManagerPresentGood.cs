@@ -379,23 +379,23 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         friends[1].GetComponent<Animator>().SetTrigger("Wave");
 
-        yield return new WaitForSeconds(3.2f); // make sure waving animation is done first
+        //yield return new WaitForSeconds(3.2f); // make sure waving animation is done first
 
-        friends[0].GetComponent<Animator>().SetTrigger("TalkBegin");
+        //friends[0].GetComponent<Animator>().SetTrigger("TalkBegin");
 
-        yield return new WaitForSeconds(1.2f);
+        //yield return new WaitForSeconds(1.2f);
 
         friends[0].GetComponent<AudioSource>().clip = narrationAudioClips_1[4];
 
         friends[0].GetComponent<AudioSource>().Play();
 
-        friends[0].GetComponent<Animator>().SetTrigger("Talking");
+        //friends[0].GetComponent<Animator>().SetTrigger("Talking");
 
         yield return new WaitForSeconds(narrationAudioClips_1[4].length);
 
-        friends[0].GetComponent<Animator>().SetTrigger("TalkEnd");
+        //friends[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
 
         //GameManager.instance.ShowAlert(narration_1[3]);
         promptManager.ShowPrompt(sceneID, 0);
@@ -924,11 +924,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bathroom;
-            PlaySegment1Part1();
-            secondPhone.GetComponent<MeshRenderer>().enabled = false;
-            secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            //PlaySegment1Part1();
+            //secondPhone.GetComponent<MeshRenderer>().enabled = false;
+            //secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+
             //StartCoroutine(Segment1Part3_3());
-            
+
+            PlaySegment1Part4();
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
