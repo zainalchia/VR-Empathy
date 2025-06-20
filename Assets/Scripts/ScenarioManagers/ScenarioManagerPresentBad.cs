@@ -452,7 +452,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
 
         // wait a while to let players look around
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(7f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
@@ -469,15 +469,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
         yield return new WaitForSeconds(narrationAudioClips_2[2].length + 1f);
 
-        if (MainMenuManager.isGenderMale)
-        {
-            animator = father.GetComponent<Animator>();
-        }
-        else
-        {
-            animator = mother.GetComponent<Animator>();
-        }
-
+        animator = father.GetComponent<Animator>();
         animator.SetTrigger("TalkBegin");
         yield return new WaitForSeconds(HandsUp.length); // wait for hands up animation to finish before start talking
         animator.SetTrigger("Talking");
