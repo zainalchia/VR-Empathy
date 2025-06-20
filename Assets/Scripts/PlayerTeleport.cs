@@ -15,19 +15,19 @@ public class PlayerTeleport : MonoBehaviour
     [SerializeField] GameObject[] MoveToKaraokeCornerHotspots;
     #endregion
 
-    #region Past Negative Hotspots
-    [Header("Present Positive Hotspots")]
-    public GameObject[] MoveToToiletDoorHotspots;
-    [SerializeField] GameObject[] MoveToHawkerStallHotspots;
-    [SerializeField] GameObject[] MoveToJobPositionHotspots;
-    #endregion
+    //#region Past Negative Hotspots
+    //[Header("Past Negative Hotspots")]
+    //public GameObject[] MoveToToiletDoorHotspots;
+    //[SerializeField] GameObject[] MoveToHawkerStallHotspots;
+    //[SerializeField] GameObject[] MoveToJobPositionHotspots;
+    //#endregion
 
-    #region Past Positive Hotspots
-    [Header("Present Positive Hotspots")]
-    //IDK how you wna name it and what to name them
-    //public GameObject[] MoveToLivingRoomHotspots;
-    //[SerializeField] GameObject[] MoveToMainDoorHotspots;
-    #endregion
+    //#region Past Positive Hotspots
+    //[Header("Past Positive Hotspots")]
+    ////IDK how you wna name it and what to name them
+    ////public GameObject[] MoveToLivingRoomHotspots;
+    ////[SerializeField] GameObject[] MoveToMainDoorHotspots;
+    //#endregion
 
     [Header("Teleporting Settings")]
     [SerializeField] float defaultTimeBeforeNextMove = 2;
@@ -35,8 +35,8 @@ public class PlayerTeleport : MonoBehaviour
     public UnityEvent OnLastTeleport; // for checkers transition and main door opening (both different scenes so can use same unity event)
     public UnityEvent OnLastTeleport2;// for reading corner (othello and reading corner same scene so need 2 unity events)
 
-    public UnityEvent OnReachingStall;//Past negative after the player reaches the stall to chop up the chicken
-    public UnityEvent OnHelpingCustomer;//Past negative after the player reaches the stall and has to interact with the customer
+    //public UnityEvent OnReachingStall;//Past negative after the player reaches the stall to chop up the chicken
+    //public UnityEvent OnHelpingCustomer;//Past negative after the player reaches the stall and has to interact with the customer
 
     int currentHotspotIndex = -1;
     float timer = 0;
@@ -49,9 +49,9 @@ public class PlayerTeleport : MonoBehaviour
     public bool MovingToKaraokeCorner = false;
 
     //past negative
-    public bool MoveToToiletDoor = false;
-    public bool MoveToHawkerStall = false;
-    public bool MoveToSection = false;
+    //public bool MoveToToiletDoor = false;
+    //public bool MoveToHawkerStall = false;
+    //public bool MoveToSection = false;
 
     //Past positive==============================================================================================================
     //public bool MovingToLivingRoom = false;
@@ -65,7 +65,7 @@ public class PlayerTeleport : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (currentScene == ScenarioID.PresentGood) {
+        //if (currentScene == ScenarioID.PresentGood) {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
                 buttonPressed = true;
@@ -116,48 +116,48 @@ public class PlayerTeleport : MonoBehaviour
                 buttonPressed = false;
             }
             // move input to a manager script if possible
-        }
-        else if(currentScene == ScenarioID.PastNegative)
-        {
-            if (MoveToToiletDoor && currentHotspotIndex != MoveToLivingRoomHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
-            {
-                timer = 0;
+        //}
+        //else if(currentScene == ScenarioID.PastNegative)
+        //{
+        //    if (MoveToToiletDoor && currentHotspotIndex != MoveToLivingRoomHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+        //    {
+        //        timer = 0;
 
-                defaultTimeBeforeNextMove = 1.5f; // in general
+        //        defaultTimeBeforeNextMove = 1.5f; // in general
 
-                currentHotspotIndex += 1;
+        //        currentHotspotIndex += 1;
 
-                MoveToLocation(MoveToToiletDoorHotspots[currentHotspotIndex], MoveToToiletDoorHotspots);
-            }
-            else if (MoveToHawkerStall && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
-            {
-                timer = 0;
+        //        MoveToLocation(MoveToToiletDoorHotspots[currentHotspotIndex], MoveToToiletDoorHotspots);
+        //    }
+        //    else if (MoveToHawkerStall && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+        //    {
+        //        timer = 0;
 
-                defaultTimeBeforeNextMove = 1.5f; // in general
+        //        defaultTimeBeforeNextMove = 1.5f; // in general
 
-                currentHotspotIndex += 1;
+        //        currentHotspotIndex += 1;
 
-                MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
-            }
-            else if (MoveToSection && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
-            {
-                timer = 0;
+        //        MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
+        //    }
+        //    else if (MoveToSection && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+        //    {
+        //        timer = 0;
 
-                defaultTimeBeforeNextMove = 1.5f; // in general
+        //        defaultTimeBeforeNextMove = 1.5f; // in general
 
-                currentHotspotIndex += 1;
+        //        currentHotspotIndex += 1;
 
-                MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
-            }
-            else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
-            {
-                buttonPressed = false;
-            }
-        }
-        else if(currentScene == ScenarioID.PastPositive) 
-        { 
+        //        MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+        //    }
+        //    else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
+        //    {
+        //        buttonPressed = false;
+        //    }
+        //}
+        //else if(currentScene == ScenarioID.PastPositive) 
+        //{ 
         
-        }
+        //}
     }
 
     public void MoveToLocation(GameObject hotspot, GameObject[] hotspotArray)
@@ -172,8 +172,8 @@ public class PlayerTeleport : MonoBehaviour
        
        StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
         
-        if (currentScene == ScenarioID.PresentGood)
-        {
+        //if (currentScene == ScenarioID.PresentGood)
+        //{
             if (currentHotspotIndex == hotspotArray.Length - 1)
             {
                 if (hotspotArray == MoveToLivingRoomHotspots)
@@ -196,31 +196,31 @@ public class PlayerTeleport : MonoBehaviour
                     MovingToKaraokeCorner = false;
                 }
             }
-        }
-        else if (currentScene == ScenarioID.PastNegative)
-        {
-            if (currentHotspotIndex == hotspotArray.Length - 1)
-            {
-                if (hotspotArray == MoveToToiletDoorHotspots)
-                {
-                    MoveToToiletDoor = false;
-                }
-                else if (hotspotArray == MoveToHawkerStallHotspots)
-                {
-                    OnReachingStall.Invoke();
-                    MoveToHawkerStall = false;
-                }
-                else if (hotspotArray == MoveToJobPositionHotspots)
-                {
-                    OnHelpingCustomer.Invoke();
-                    MoveToSection = false;
-                }
-            }
-        }
-        else if (currentScene == ScenarioID.PastPositive)
-        {
+        //}
+        //else if (currentScene == ScenarioID.PastNegative)
+        //{
+        //    if (currentHotspotIndex == hotspotArray.Length - 1)
+        //    {
+        //        if (hotspotArray == MoveToToiletDoorHotspots)
+        //        {
+        //            MoveToToiletDoor = false;
+        //        }
+        //        else if (hotspotArray == MoveToHawkerStallHotspots)
+        //        {
+        //            OnReachingStall.Invoke();
+        //            MoveToHawkerStall = false;
+        //        }
+        //        else if (hotspotArray == MoveToJobPositionHotspots)
+        //        {
+        //            OnHelpingCustomer.Invoke();
+        //            MoveToSection = false;
+        //        }
+        //    }
+        //}
+        //else if (currentScene == ScenarioID.PastPositive)
+        //{
 
-        }
+        //}
     }
 
     IEnumerator ShowingNextHotspot(float delay, GameObject[] hotspotArray)
