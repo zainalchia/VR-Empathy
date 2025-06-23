@@ -172,8 +172,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         playerTeleport.MovingToLivingRoom = true;
 
         toGoLivingRoom = true;
-
-        sceneID = SceneID.LivingRoom;
     }
 
     #endregion
@@ -201,6 +199,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part3_1()
     {
+        sceneID = SceneID.LivingRoom;
         // play phone calling
         mobilePhone.SetPhoneCalling();
         promptManager.ShowPrompt(sceneID, 0);
@@ -928,7 +927,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bathroom;
-            PlaySegment1Part1();
+            //PlaySegment1Part1();
+            StartCoroutine(Segment1Part3_1());
             //secondPhone.GetComponent<MeshRenderer>().enabled = false;
             //secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
 
