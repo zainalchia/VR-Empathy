@@ -726,7 +726,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
-        yield return new WaitForSeconds(3); // placeholder until ah guan voiceline comes in
+        // nancy
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[8]);
+        yield return new WaitForSeconds(narrationAudioClips_2[8].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
@@ -873,12 +875,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
-        yield return new WaitForSeconds(2f); // placeholder length for length of clip of ah guan voiceline
+        // nancy
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[9]);
+        yield return new WaitForSeconds(narrationAudioClips_2[9].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
-
         yield return new WaitForSeconds(narrationAudioClips_2[6].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkBegin");
@@ -893,7 +896,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
-        yield return new WaitForSeconds(2f); // placeholder length for length of clip of ah guan voiceline
+        // nancy
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[10]);
+        yield return new WaitForSeconds(narrationAudioClips_2[10].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
