@@ -27,8 +27,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] AudioSource narrationAudioSource;
 
     // for general audio clips used in both scenes
-    [SerializeField] AudioClip[] narrationAudioClips_General_Male;
-    [SerializeField] AudioClip[] narrationAudioClips_General_Female;
+    public AudioClip[] narrationAudioClips_General_Male;
+    public AudioClip[] narrationAudioClips_General_Female;
     AudioClip[] narrationAudioClips_General;
 
     // for bathroom and living room scene
