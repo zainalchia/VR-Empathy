@@ -349,7 +349,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         RingingSoundSource.Play(); // need ring sfx
 
         //GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
-        promptManager.ShowPrompt(sceneID, 1);
 
         playerTeleport.MovingToMainDoor = true;
 
@@ -369,7 +368,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlaySegment1Part5()
     {
-        sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part5());
     }
 
@@ -927,8 +925,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bathroom;
-            //PlaySegment1Part1();
-            StartCoroutine(Segment1Part3_1());
+            PlaySegment1Part1();
+            //StartCoroutine(Segment1Part3_1());
             //secondPhone.GetComponent<MeshRenderer>().enabled = false;
             //secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
 
