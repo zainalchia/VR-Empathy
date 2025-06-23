@@ -808,7 +808,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             }
 
             TVScreen.SetActive(true);
-            TVScreen2.SetActive(true);            
+            TVScreen2.SetActive(true);
+
+            if (MainMenuManager.isGenderMale == false)
+                TVScreen.GetComponent<AudioSource>().volume = 0.3f;
         }
         GameManager.instance.HideAlert();
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", true);
@@ -1016,7 +1019,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 }
             }
 
-            if (TVScreen.GetComponent<VideoPlayer>().time >= 16f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+            if (((MainMenuManager.isGenderMale && TVScreen.GetComponent<VideoPlayer>().time >= 16f) ||
+                (MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f))
+                && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
                 TVScreen.GetComponent<VideoPlayer>().Play();
