@@ -595,7 +595,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         checkersNPC.GetComponent<Animator>().SetTrigger("move");
         yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceFirstDestination,0));
         //GameManager.instance.ShowAlert(narration_2[1]);
-        promptManager.ShowPrompt(sceneID, 4);
+        promptManager.ShowPrompt(sceneID, 3);
         PlayerPiece.GetComponent<Grabbable>().enabled = true;
         PlayerPieceOutline.SetActive(true);
         PlayerPieceFirstDestination.SetActive(true);
@@ -612,7 +612,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         PlayerPieceOutline.SetActive(false);
         yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceSecondDestination)); // moves enemy piece to symbolise it being captured
         //GameManager.instance.ShowAlert(narration_2[1]);
-        promptManager.ShowPrompt(sceneID, 4);
+        promptManager.ShowPrompt(sceneID, 3);
         PlayerPiece.GetComponent<Grabbable>().enabled = true;
         PlayerPieceOutline.SetActive(true);
         PlayerPieceSecondDestination.SetActive(true);
@@ -726,7 +726,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
-        yield return new WaitForSeconds(3); // placeholder until ah guan voiceline comes in
+        // nancy
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[8]);
+        yield return new WaitForSeconds(narrationAudioClips_2[8].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
@@ -783,7 +785,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator KaraokeCornerTransition()
     {
         //GameManager.instance.ShowAlert(narration_2[3]);
-        promptManager.ShowPrompt(sceneID, 5);
+        promptManager.ShowPrompt(sceneID, 4);
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
 
@@ -808,7 +810,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             }
 
             TVScreen.SetActive(true);
-            TVScreen2.SetActive(true);            
+            TVScreen2.SetActive(true);
+
+            if (MainMenuManager.isGenderMale == false)
+                TVScreen.GetComponent<AudioSource>().volume = 0.3f;
         }
         GameManager.instance.HideAlert();
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", true);
@@ -832,7 +837,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             narrationAudioSource.volume = 0;
         }
         //GameManager.instance.ShowAlert(narration_2[5]);
-        promptManager.ShowPrompt(sceneID, 6);
+        promptManager.ShowPrompt(sceneID, 5);
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", false);
         KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", false);
         KaraokeCornerNPCs[2].GetComponent<Animator>().SetBool("isClapping", false);
@@ -870,12 +875,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
-        yield return new WaitForSeconds(2f); // placeholder length for length of clip of ah guan voiceline
+        // nancy
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[9]);
+        yield return new WaitForSeconds(narrationAudioClips_2[9].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
-
         yield return new WaitForSeconds(narrationAudioClips_2[6].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkBegin");
@@ -890,7 +896,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
-        yield return new WaitForSeconds(2f); // placeholder length for length of clip of ah guan voiceline
+        // nancy
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[10]);
+        yield return new WaitForSeconds(narrationAudioClips_2[10].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
@@ -1018,7 +1026,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 }
             }
 
-            if (TVScreen.GetComponent<VideoPlayer>().time >= 16f && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+            if (((MainMenuManager.isGenderMale && TVScreen.GetComponent<VideoPlayer>().time >= 16f) ||
+                (MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f))
+                && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
                 TVScreen.GetComponent<VideoPlayer>().Play();

@@ -21,9 +21,7 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] float defaultTimeBeforeNextMove = 2; // adds a delay in between teleports, set to 0 for no delay
     [SerializeField] GameObject[] teleportHotspots;
     [SerializeField] AudioSource playerAudio;
-    [SerializeField] AudioClip maleGrunt;
-    [SerializeField] AudioClip maleGrunt2;
-    [SerializeField] AudioClip femaleGrunt;
+    [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
     [SerializeField] AudioClip maleDialogue;
     [SerializeField] AudioClip femaleDialogue;
     public UnityEvent OnLastTeleport;
@@ -101,16 +99,23 @@ public class CaneTeleport : MonoBehaviour
 
     private void PlaySighSound()
     {
-        if (MainMenuManager.isGenderMale)
+        playerAudio.volume = 0.8f;
+        if (currentHotspotIndex == 2)
         {
-            playerAudio.volume = 0.8f;
-            if (currentHotspotIndex == 2) playerAudio.PlayOneShot(maleGrunt);
-            else if (currentHotspotIndex == 7) playerAudio.PlayOneShot(maleGrunt2);
+            if (MainMenuManager.isGenderMale)
+                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[0]);
+            else
+                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[0]);
         }
-        else
+        else if (currentHotspotIndex == 7)
         {
-            playerAudio.PlayOneShot(femaleGrunt, 1);
+            if (MainMenuManager.isGenderMale)
+                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[1]);
+            else
+                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[1]);
         }
+
+        
     }
 
     private void PlayDialogue()
