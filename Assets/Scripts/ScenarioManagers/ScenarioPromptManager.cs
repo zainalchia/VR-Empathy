@@ -116,6 +116,7 @@ public class ScenarioPromptManager : MonoBehaviour
 
     public void ShowPrompt(SceneID scene, int index = 0)
     {
+        Debug.Log(activeScenario.ToString() + scene.ToString() + index.ToString());
         ShowPrompt(activeScenario, scene, index);
     }
 

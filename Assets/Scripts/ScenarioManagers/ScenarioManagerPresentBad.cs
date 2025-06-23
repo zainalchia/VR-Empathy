@@ -196,6 +196,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
         //GameManager.instance.ShowAlert(narration_1[16]);
+        Debug.Log(sceneID);
         promptManager.ShowPrompt(sceneID, 0);
     }
     
