@@ -57,15 +57,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     //    narration_1[3] = "Open gate and leave to void deck by interacting with gate knob";
     //}
 
-    //void SetupNarrationVoiddeck()
-    //{
-    //    narration_2[0] = "[Look at highlighted othello NPC to start othello minigame]";
-    //    narration_2[1] = "[Pick up highlighted checkers piece and place it on highlighted spot]";
-    //    narration_2[2] = "[Press TRIGGER button to move to highlighted circle]";
-    //    narration_2[3] = "[Pick up highlighted mic]";
-    //    narration_2[4] = "[Follow taichi instructor's movements]"; // this narration appears at the start but the number is 4 cus i got lazy to change everything by 1 if i put this as narration_2[0]
-    //    narration_2[5] = "[Put mic to face]";
-    //}
+    void SetupNarrationVoiddeck()
+    {
+        narration_2[0] = "[Look at highlighted othello NPC to start othello minigame]";
+        //narration_2[1] = "[Pick up highlighted checkers piece and place it on highlighted spot]";
+        //narration_2[2] = "[Press TRIGGER button to move to highlighted circle]";
+        //narration_2[3] = "[Pick up highlighted mic]";
+        //narration_2[4] = "[Follow taichi instructor's movements]"; // this narration appears at the start but the number is 4 cus i got lazy to change everything by 1 if i put this as narration_2[0]
+        //narration_2[5] = "[Put mic to face]";
+    }
 
     void SetupNarrationBathroomLivingRoom()
     {
@@ -75,7 +75,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             narrationAudioClips_1 = narrationAudioClips_1_Female;        
     }
 
-    void SetupNarrationVoiddeck()
+    void SetupNarrationVoiddeck2()
     {
         if (MainMenuManager.isGenderMale)        
             narrationAudioClips_2 = narrationAudioClips_2_Male;        
@@ -199,8 +199,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part3_1()
     {
+        sceneID = SceneID.LivingRoom;
         // play phone calling
         mobilePhone.SetPhoneCalling();
+        promptManager.ShowPrompt(sceneID, 0);
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
 
         yield return new WaitForSeconds(2.5f + 1.1f);
@@ -347,7 +349,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         RingingSoundSource.Play(); // need ring sfx
 
         //GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
-        promptManager.ShowPrompt(sceneID, 1);
 
         playerTeleport.MovingToMainDoor = true;
 
@@ -367,7 +368,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlaySegment1Part5()
     {
-        sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part5());
     }
 
@@ -398,7 +398,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //yield return new WaitForSeconds(2f);
 
         //GameManager.instance.ShowAlert(narration_1[3]);
-        promptManager.ShowPrompt(sceneID, 0);
+        promptManager.ShowPrompt(sceneID, 1);
 
         MainGateOutline.enabled = true;
 
@@ -547,14 +547,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return StartCoroutine(SetNPCToPlayPos(checkersNPC,90,2));
 
         //GameManager.instance.ShowAlert(narration_2[0]);
-        promptManager.ShowPrompt(sceneID, 1);
+        //promptManager.ShowPrompt(sceneID, 1);
 
+        //checkersNPC.GetComponent<Outline>().enabled = true;
 
-        checkersNPC.GetComponent<Outline>().enabled = true;
+        //yield return new WaitForSeconds(1f);
 
-        yield return new WaitForSeconds(1f);
+        //lookDetection.enabled = true;
 
-        lookDetection.enabled = true;
+        StartWalkingToCheckers();
     }
 
     public void StartWalkingToCheckers()
@@ -925,8 +926,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bathroom;
             PlaySegment1Part1();
-            secondPhone.GetComponent<MeshRenderer>().enabled = false;
-            secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
+            //StartCoroutine(Segment1Part3_1());
+            //secondPhone.GetComponent<MeshRenderer>().enabled = false;
+            //secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
 
             //StartCoroutine(Segment1Part3_3());
 
@@ -935,8 +937,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
+            SetupNarrationVoiddeck2();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.VoidDeck;
+            //StartCoroutine(MovingFromTaichiToCheckers());
             PlaySegment2Part1();
 
             // uncomment these 2 lines below and comment out the line above to test out the karaoke part
