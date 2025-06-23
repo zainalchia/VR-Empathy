@@ -920,6 +920,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerTeleport.currentScene = ScenarioID.PresentGood;
+
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             SetupNarrationBathroomLivingRoom();
