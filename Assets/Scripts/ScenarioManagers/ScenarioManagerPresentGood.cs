@@ -595,7 +595,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         checkersNPC.GetComponent<Animator>().SetTrigger("move");
         yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceFirstDestination,0));
         //GameManager.instance.ShowAlert(narration_2[1]);
-        promptManager.ShowPrompt(sceneID, 4);
+        promptManager.ShowPrompt(sceneID, 3);
         PlayerPiece.GetComponent<Grabbable>().enabled = true;
         PlayerPieceOutline.SetActive(true);
         PlayerPieceFirstDestination.SetActive(true);
@@ -612,7 +612,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         PlayerPieceOutline.SetActive(false);
         yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceSecondDestination)); // moves enemy piece to symbolise it being captured
         //GameManager.instance.ShowAlert(narration_2[1]);
-        promptManager.ShowPrompt(sceneID, 4);
+        promptManager.ShowPrompt(sceneID, 3);
         PlayerPiece.GetComponent<Grabbable>().enabled = true;
         PlayerPieceOutline.SetActive(true);
         PlayerPieceSecondDestination.SetActive(true);
@@ -785,7 +785,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator KaraokeCornerTransition()
     {
         //GameManager.instance.ShowAlert(narration_2[3]);
-        promptManager.ShowPrompt(sceneID, 5);
+        promptManager.ShowPrompt(sceneID, 4);
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
 
@@ -837,7 +837,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             narrationAudioSource.volume = 0;
         }
         //GameManager.instance.ShowAlert(narration_2[5]);
-        promptManager.ShowPrompt(sceneID, 6);
+        promptManager.ShowPrompt(sceneID, 5);
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", false);
         KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", false);
         KaraokeCornerNPCs[2].GetComponent<Animator>().SetBool("isClapping", false);
