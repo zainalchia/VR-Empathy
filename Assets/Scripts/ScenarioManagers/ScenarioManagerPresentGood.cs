@@ -663,6 +663,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     }
 
     [Header("Voiddeck - Transition Chess to Karaoke Corner")]
+    [SerializeField] GameObject radio;
     [SerializeField] GameObject firstToKaraokeCornerHotspot;
     [SerializeField] GameObject KaraokeMic;
     [SerializeField] GameObject TVScreen;
@@ -702,6 +703,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
+        radio.SetActive(false);
+
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
 
         yield return new WaitForSeconds(narrationAudioClips_2[4].length);
@@ -727,7 +730,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[8]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[8], 0.4f);
         yield return new WaitForSeconds(narrationAudioClips_2[8].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
@@ -876,7 +879,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[9]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[9], 0.4f);
         yield return new WaitForSeconds(narrationAudioClips_2[9].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
@@ -897,7 +900,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[10]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[10], 0.4f);
         yield return new WaitForSeconds(narrationAudioClips_2[10].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
@@ -951,7 +954,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.VoidDeck;
             //StartCoroutine(MovingFromTaichiToCheckers());
+            
             PlaySegment2Part1();
+
+            //StartCoroutine(MovingFromChessToKaraokeCorner());
 
             // uncomment these 2 lines below and comment out the line above to test out the karaoke part
             //PlayKaraokeCornerTransition();
