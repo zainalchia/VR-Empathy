@@ -2741,6 +2741,9 @@ MonoBehaviour:
   - {fileID: 1941465660}
   MoveToCheckersChairHotspots: []
   MoveToKaraokeCornerHotspots: []
+  MoveToToiletDoorHotspots: []
+  MoveToHawkerStallHotspots: []
+  MoveToJobPositionHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -2760,10 +2763,20 @@ MonoBehaviour:
   OnLastTeleport2:
     m_PersistentCalls:
       m_Calls: []
+  OnReachingStall:
+    m_PersistentCalls:
+      m_Calls: []
+  OnHelpingCustomer:
+    m_PersistentCalls:
+      m_Calls: []
   MovingToLivingRoom: 0
   MovingToMainDoor: 0
   MovingToCheckersChair: 0
   MovingToKaraokeCorner: 0
+  MoveToToiletDoor: 0
+  MoveToHawkerStall: 0
+  MoveToSection: 0
+  currentScene: 3
 --- !u!1 &478722975
 GameObject:
   m_ObjectHideFlags: 0
