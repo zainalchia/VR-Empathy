@@ -22,8 +22,6 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] GameObject[] teleportHotspots;
     [SerializeField] AudioSource playerAudio;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
-    [SerializeField] AudioClip maleDialogue;
-    [SerializeField] AudioClip femaleDialogue;
     public UnityEvent OnLastTeleport;
 
     bool buttonPressed = false;
@@ -85,7 +83,7 @@ public class CaneTeleport : MonoBehaviour
             }
             else if (currentHotspotIndex == 5)
             {
-                defaultTimeBeforeNextMove = 22; // delay showing of next hotspot for blurring of eyes and voicelines
+                defaultTimeBeforeNextMove = 21; // delay showing of next hotspot for blurring of eyes and voicelines
             }
 
             teleportHotspots[currentHotspotIndex].gameObject.SetActive(false); // hide current hotspot instantly
@@ -113,24 +111,7 @@ public class CaneTeleport : MonoBehaviour
                 playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[1]);
             else
                 playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[1]);
-        }
-
-        
-    }
-
-    private void PlayDialogue()
-    {
-        PostProcessingController.instance.UsingGlasses(false); // start blur effect
-
-        if (MainMenuManager.isGenderMale)
-        {
-            playerAudio.volume = 0.8f;
-            playerAudio.PlayOneShot(maleDialogue);
-        }
-        else
-        {
-            playerAudio.PlayOneShot(femaleDialogue, 1);
-        }
+        }        
     }
 
     void ShowNextHotspot()
