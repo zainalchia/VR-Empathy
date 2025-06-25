@@ -11,7 +11,7 @@ public class ForceStayGrabbed : MonoBehaviour
     private bool leftHandGrabbing = false;
     private bool rightHandGrabbing = false;
 
-    public void SetActive(bool trueOrFalse)
+    public void SetForceGrabActive(bool trueOrFalse)
     {
         active = trueOrFalse;
 

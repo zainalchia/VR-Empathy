@@ -191,7 +191,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                 GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
                 // positions dentures to hand that force selected                
                 GameManager.instance.dentures.SetActive(true);
-                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetActive(true); // force dentures to be on hand of player (basically cant drop)
+                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true); // force dentures to be on hand of player (basically cant drop)
                 GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
                 GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
@@ -212,7 +212,7 @@ public class ControllerInteractionsManager : MonoBehaviour
 
                 // positions dentures to hand that force selected
                 GameManager.instance.dentures.SetActive(true);
-                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetActive(true);
+                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
                 GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
                 GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
                 GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
@@ -295,7 +295,10 @@ public class ControllerInteractionsManager : MonoBehaviour
 
             OnGlassesDrop.Invoke();
             dropGlassesCount -= 1;
-            dropGlassesTimer = dropGlassesInterval;
+            if (dropGlassesCount >= 1)
+                dropGlassesTimer = dropGlassesInterval;
+            else
+                dropGlassesTimer = dropGlassesInterval / 2.0f;
         }
         #endregion
 

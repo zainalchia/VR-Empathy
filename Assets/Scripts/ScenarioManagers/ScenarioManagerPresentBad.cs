@@ -248,7 +248,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject phone;
     [SerializeField] MobilePhone mobilePhone;
     [SerializeField] GameObject glasses;
-    [SerializeField] AudioClip glassesDrop;
     [SerializeField] Outline glassesOutline;
     [SerializeField] GameObject tvAudio;
 
@@ -280,7 +279,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         GameManager.instance.toPickUpPhone = true;
 
-        phone.GetComponent<ForceStayGrabbed>().SetActive(true);
+        phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
@@ -316,18 +315,16 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         dropGlassesCount++;
 
-        narrationAudioSource.PlayOneShot(glassesDrop);
+        glasses.GetComponent<AudioSource>().Play();
 
         // Narration when player drops glasses, can play audio here each time player drops glasses
         if (dropGlassesCount == 1)
         {
-            //PlayAudioAndNarration(narrationAudioClips_1[3], narration_1[9], 9f);
             narrationAudioSource.Stop();
-            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);
+            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);            
         }
-
-        //else if (dropGlassesCount == 2)
-            //GameManager.instance.ShowAlert(narration_1[10], 3f);
+        else if (dropGlassesCount == 2)
+            glasses.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -565,7 +562,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         photoFrameOutline.SetActive(true);
         photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
 
-        photoFrame.GetComponent<ForceStayGrabbed>().SetActive(true);
+        photoFrame.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
 
     public void StaredAtPhoto()

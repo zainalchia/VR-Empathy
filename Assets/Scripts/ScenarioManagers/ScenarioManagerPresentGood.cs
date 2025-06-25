@@ -214,7 +214,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StopPrevDialogue();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
-        phone.GetComponent<ForceStayGrabbed>().SetActive(true);
+        phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         GlassesPutOn();
     }
 
@@ -259,7 +259,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-        phone.GetComponent<ForceStayGrabbed>().SetActive(false); // drops phone
+        phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false); // drops phone
         phone.GetComponent<Grabbable>().enabled = false; // ensures that phone cannot be grabbed again
         phone.SetActive(false);
         secondPhone.SetActive(true);
@@ -1047,7 +1047,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             {
                 hasFinishedSinging = true;
                 KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
-                KaraokeMic.GetComponent<ForceStayGrabbed>().SetActive(false);
+                KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
                 PlayAfterSingingTransition();
             }
         }
