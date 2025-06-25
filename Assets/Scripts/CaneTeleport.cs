@@ -83,7 +83,7 @@ public class CaneTeleport : MonoBehaviour
             }
             else if (currentHotspotIndex == 5)
             {
-                defaultTimeBeforeNextMove = 21; // delay showing of next hotspot for blurring of eyes and voicelines
+                defaultTimeBeforeNextMove = 20; // delay showing of next hotspot for blurring of eyes and voicelines
             }
 
             teleportHotspots[currentHotspotIndex].gameObject.SetActive(false); // hide current hotspot instantly

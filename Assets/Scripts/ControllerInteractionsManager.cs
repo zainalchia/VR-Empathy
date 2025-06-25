@@ -295,7 +295,10 @@ public class ControllerInteractionsManager : MonoBehaviour
 
             OnGlassesDrop.Invoke();
             dropGlassesCount -= 1;
-            dropGlassesTimer = dropGlassesInterval;
+            if (dropGlassesCount >= 1)
+                dropGlassesTimer = dropGlassesInterval;
+            else
+                dropGlassesTimer = dropGlassesInterval / 2.0f;
         }
         #endregion
 
