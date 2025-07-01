@@ -43,6 +43,10 @@ public class ScenarioTesterEditor : Editor
         }
 
         serializedObject.ApplyModifiedProperties();
+
+        Debug.Log($"Scene options: {string.Join(", ", sceneOptions)}");
+        Debug.Log($"Attempting to parse: {sceneOptions[selectedIndex]}");
+
     }
 
     private string[] GetFilteredSceneOptions(ScenarioID scenario)
@@ -53,8 +57,8 @@ public class ScenarioTesterEditor : Editor
             case ScenarioID.PastPositive:
                 return new[] { "Bathroom", "Stall", "FamilyDinner" };
 
-            case ScenarioID.PresentNegative:
-            case ScenarioID.PresentPositive:
+            case ScenarioID.PresentBad:
+            case ScenarioID.PresentGood:
                 return new[] { "Bathroom", "LivingRoom", "VoidDeck" };
 
             default:

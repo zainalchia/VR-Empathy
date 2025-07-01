@@ -26,7 +26,7 @@ public class MicController : MonoBehaviour
                 GetComponent<Outline>().enabled = false;
                 SetMicDetectionActive(true);
                 toBeginKaraokeMinigame = false;
-                GetComponent<ForceStayGrabbed>().SetActive(true);
+                GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
                 OnMicPickUp.Invoke();
             }
         }

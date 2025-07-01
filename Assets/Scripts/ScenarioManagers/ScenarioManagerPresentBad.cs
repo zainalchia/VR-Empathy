@@ -27,8 +27,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] AudioSource narrationAudioSource;
 
     // for general audio clips used in both scenes
-    [SerializeField] AudioClip[] narrationAudioClips_General_Male;
-    [SerializeField] AudioClip[] narrationAudioClips_General_Female;
+    public AudioClip[] narrationAudioClips_General_Male;
+    public AudioClip[] narrationAudioClips_General_Female;
     AudioClip[] narrationAudioClips_General;
 
     // for bathroom and living room scene
@@ -48,6 +48,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject cane;
     [SerializeField] Outline caneOutline;
     [SerializeField] GameObject firstTeleportHotspot;
+
+    [Header("Scenraio Prompters")]
+    [SerializeField] ScenarioPromptManager promptManager;
+    [SerializeField] ScenarioID scenarioID = ScenarioID.PresentBad;
+    [SerializeField] SceneID sceneID = SceneID.Bathroom;
 
     Coroutine lastRoutine = null;
 
@@ -86,10 +91,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_1[15] = "HELLO, SON IS THAT YOU? HOW ARE YOU? WHEN YOU WANT COME";
 
         // Text prompts
-        narration_1[16] = "Take your cane and place your hand on the door to open it.";
-        narration_1[17] = "Aim the tip of the cane on the floor and press the 'Trigger' button";
-        narration_1[18] = "Someone is calling, pick up the phone.";
-        narration_1[19] = "Use your other hand to put on your glasses.";
+        //narration_1[16] = "Take your cane and place your hand on the door to open it.";
+        //narration_1[17] = "Aim the tip of the cane on the floor and press the 'Trigger' button";
+        //narration_1[18] = "Someone is calling, pick up the phone.";
+        //narration_1[19] = "Use your other hand to put on your glasses.";
 
         if (MainMenuManager.isGenderMale)
         {
@@ -106,7 +111,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narration_2[0] = "Another day over";
         narration_2[1] = "Hmm useless son when is he going to visit me?";
         narration_2[2] = "Im tired";
-        narration_2[3] = "I have to take off my dentures and place in the cup. [Grab your face area]"; // stay on screen until placed in cup
+        //narration_2[3] = "I have to take off my dentures and place in the cup. [Grab your face area]"; // stay on screen until placed in cup
         narration_2[4] = "Now my glasses. [Grab your face area]"; // stay on screen until take off
         narration_2[5] = "Hmm what is this? Am I mad?";
         narration_2[6] = "Ah yes, my medication. I need my medication. Forgot, I must have forgot.";
@@ -190,7 +195,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // can open bathroom door from here
         bathroomDoor.AllowDoorOpen();
-        GameManager.instance.ShowAlert(narration_1[16]);
+        //GameManager.instance.ShowAlert(narration_1[16]);
+        Debug.Log(sceneID);
+        promptManager.ShowPrompt(sceneID, 0);
     }
     
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
@@ -202,7 +209,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         knob.GetComponent<Outline>().enabled = false;
 
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        GameManager.instance.ShowAlert(narration_1[17]);
+        //GameManager.instance.ShowAlert(narration_1[17]);
+        promptManager.ShowPrompt(sceneID, 1);
         toGoLivingRoom = true;
         lastRoutine = null;
     }
@@ -240,7 +248,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject phone;
     [SerializeField] MobilePhone mobilePhone;
     [SerializeField] GameObject glasses;
-    [SerializeField] AudioClip glassesDrop;
     [SerializeField] Outline glassesOutline;
     [SerializeField] GameObject tvAudio;
 
@@ -248,6 +255,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PlaySegment1Part3_1()
     {
+        sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part3_1());
     }
 
@@ -263,14 +271,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // play phone calling
         mobilePhone.SetPhoneCalling();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
-        GameManager.instance.ShowAlert(narration_1[18]);
+        //GameManager.instance.ShowAlert(narration_1[18]);
+        promptManager.ShowPrompt(sceneID, 2);
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
         yield return new WaitForSeconds(2.5f + 1.1f);
 
         GameManager.instance.toPickUpPhone = true;
 
-        phone.GetComponent<ForceStayGrabbed>().SetActive(true);
+        phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
@@ -283,7 +292,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     IEnumerator Segment1Part3_2()
     {
-        GameManager.instance.ShowAlert(narration_1[19]);
+        //GameManager.instance.ShowAlert(narration_1[19]);
+        promptManager.ShowPrompt(sceneID, 3);
 
         glassesOutline.enabled = true;
 
@@ -305,18 +315,16 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         dropGlassesCount++;
 
-        narrationAudioSource.PlayOneShot(glassesDrop);
+        glasses.GetComponent<AudioSource>().Play();
 
         // Narration when player drops glasses, can play audio here each time player drops glasses
         if (dropGlassesCount == 1)
         {
-            //PlayAudioAndNarration(narrationAudioClips_1[3], narration_1[9], 9f);
             narrationAudioSource.Stop();
-            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);
+            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);            
         }
-
-        //else if (dropGlassesCount == 2)
-            //GameManager.instance.ShowAlert(narration_1[10], 3f);
+        else if (dropGlassesCount == 2)
+            glasses.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -381,7 +389,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(narrationAudioClips_2[0].length);
 
-        GameManager.instance.ShowAlert(narration_2[3]);
+        //GameManager.instance.ShowAlert(narration_2[3]);
+        promptManager.ShowPrompt(sceneID, 0);
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
@@ -431,19 +440,17 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Buffer time for them to put dentures in cup
         yield return new WaitForSeconds(3f);
 
-        SaveGOTransform(photoFrame.transform,photoFrameOriginalPosition);
-
         // start furniture moving here
         sideTable.GetComponent<Animator>().SetTrigger("move");
         hallucinationParticleFX.SetActive(true);
         yield return new WaitForSeconds(5f); // side table move to center of room first to direct player attention to center of room
         GameManager.instance.toStartSpasming = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(3f);
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[1]);
 
         // wait a while to let players look around
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(7f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
@@ -460,15 +467,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
         yield return new WaitForSeconds(narrationAudioClips_2[2].length + 1f);
 
-        if (MainMenuManager.isGenderMale)
-        {
-            animator = father.GetComponent<Animator>();
-        }
-        else
-        {
-            animator = mother.GetComponent<Animator>();
-        }
-
+        animator = father.GetComponent<Animator>();
         animator.SetTrigger("TalkBegin");
         yield return new WaitForSeconds(HandsUp.length); // wait for hands up animation to finish before start talking
         animator.SetTrigger("Talking");
@@ -490,7 +489,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
         sideTable.SetActive(true);
-        SetGOTransform(photoFrame.transform,photoFrameOriginalPosition);
         tableWithMedicine.SetActive(true);
         cabinet.SetActive(true);
         chair.SetActive(true);
@@ -564,24 +562,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         photoFrameOutline.SetActive(true);
         photoFrame.GetComponent<TurnOffOutlineWhenGrabbed>().enabled = true;
 
-        photoFrame.GetComponent<ForceStayGrabbed>().enabled = true;
-        photoFrame.GetComponent<ForceStayGrabbed>().active = true;
-        photoFrame.GetComponent<ForceStayGrabbed>().forceStay = true;
-
-        int hand = ControllerInteractionsManager.instance.ObjInWhichHand(photoFrame);
-        GrabInteractable grabComponent = photoFrame.GetComponent<GrabInteractable>();
-
-        if (hand == 0)
-        {
-            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(grabComponent);
-        }
-        else if (hand == 1)
-        {
-            ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabComponent);
-        }
-
-        // add new dialogue here
-        yield return null;
+        photoFrame.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
 
     public void StaredAtPhoto()
@@ -610,12 +591,14 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         SetupNarrationGeneral();
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
+            sceneID = SceneID.Bathroom;
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
             RenderSettings.skybox = normalSkybox;
         }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
+            sceneID = SceneID.Bedroom;
             SetupNarrationBedroom();
             PlaySegment2Part1();
         }

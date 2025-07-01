@@ -10,7 +10,8 @@ public class WaypointManager : MonoBehaviour
     public List<Transform> wayPoints = new List<Transform>();
     [SerializeField] int wayPointIndex;
     [SerializeField] float moveSpeed, rotSpeed;
-    bool isMoving;
+    [SerializeField] bool isMoving;
+    [SerializeField] int HowManyLoops;
     bool isLoop = true;
     int loopRound = 0;
 
@@ -42,7 +43,7 @@ public class WaypointManager : MonoBehaviour
                     {
                         wayPointIndex = 0;
                         loopRound++;
-                        if(loopRound >= 2)
+                        if(loopRound >= HowManyLoops)
                         { 
                             Destroy(gameObject); 
                         }

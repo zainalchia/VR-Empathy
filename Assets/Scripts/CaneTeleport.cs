@@ -21,11 +21,7 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] float defaultTimeBeforeNextMove = 2; // adds a delay in between teleports, set to 0 for no delay
     [SerializeField] GameObject[] teleportHotspots;
     [SerializeField] AudioSource playerAudio;
-    [SerializeField] AudioClip maleGrunt;
-    [SerializeField] AudioClip maleGrunt2;
-    [SerializeField] AudioClip femaleGrunt;
-    [SerializeField] AudioClip maleDialogue;
-    [SerializeField] AudioClip femaleDialogue;
+    [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
     public UnityEvent OnLastTeleport;
 
     bool buttonPressed = false;
@@ -87,7 +83,7 @@ public class CaneTeleport : MonoBehaviour
             }
             else if (currentHotspotIndex == 5)
             {
-                defaultTimeBeforeNextMove = 22; // delay showing of next hotspot for blurring of eyes and voicelines
+                defaultTimeBeforeNextMove = 20; // delay showing of next hotspot for blurring of eyes and voicelines
             }
 
             teleportHotspots[currentHotspotIndex].gameObject.SetActive(false); // hide current hotspot instantly
@@ -101,31 +97,21 @@ public class CaneTeleport : MonoBehaviour
 
     private void PlaySighSound()
     {
-        if (MainMenuManager.isGenderMale)
+        playerAudio.volume = 0.8f;
+        if (currentHotspotIndex == 2)
         {
-            playerAudio.volume = 0.8f;
-            if (currentHotspotIndex == 2) playerAudio.PlayOneShot(maleGrunt);
-            else if (currentHotspotIndex == 7) playerAudio.PlayOneShot(maleGrunt2);
+            if (MainMenuManager.isGenderMale)
+                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[0]);
+            else
+                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[0]);
         }
-        else
+        else if (currentHotspotIndex == 7)
         {
-            playerAudio.PlayOneShot(femaleGrunt, 1);
-        }
-    }
-
-    private void PlayDialogue()
-    {
-        PostProcessingController.instance.UsingGlasses(false); // start blur effect
-
-        if (MainMenuManager.isGenderMale)
-        {
-            playerAudio.volume = 0.8f;
-            playerAudio.PlayOneShot(maleDialogue);
-        }
-        else
-        {
-            playerAudio.PlayOneShot(femaleDialogue, 1);
-        }
+            if (MainMenuManager.isGenderMale)
+                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[1]);
+            else
+                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[1]);
+        }        
     }
 
     void ShowNextHotspot()
