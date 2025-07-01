@@ -12,6 +12,9 @@ public class ScenarioManagerPastNegative : MonoBehaviour
     [Header("Player Movement")]
     [SerializeField] PlayerTeleport playerTeleport;
 
+    [Header("Debuggers")]
+    [SerializeField] GameObject testitem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,8 +23,11 @@ public class ScenarioManagerPastNegative : MonoBehaviour
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true; 
-    }
 
+
+        //testitem.GetComponent<SmoothPivotRotator>().StartDefaultRotation();
+        //testitem.GetComponent<SmoothPivotRotator>().isRotating = true;  
+    }
 
 
     // Update is called once per frame
