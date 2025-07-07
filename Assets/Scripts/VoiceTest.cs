@@ -6,6 +6,7 @@ using Oculus.Voice;
 public class VoiceScript : MonoBehaviour
 {
     public AppVoiceExperience voiceExperience;
+    private bool listening = false;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,7 @@ public class VoiceScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.GetUp(OVRInput.Button.One))
+        if (OVRInput.GetDown(OVRInput.Button.One))
         {
             voiceExperience.Activate();
         }
