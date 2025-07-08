@@ -1,8 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using EzySlice;
-using UnityEngine.InputSystem;
 
 public class SlicedObject : MonoBehaviour
 {
@@ -14,46 +11,52 @@ public class SlicedObject : MonoBehaviour
     public Material crossSectionMaterial;
     public float cutForce = 2000f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Tooltip("How many slices a brand-new object may take before it becomes un­sliceable.")]
+    public int maxCuts = 8;
 
     void FixedUpdate()
     {
-        bool hasHit = Physics.Linecast(StartSlicePoint.position, endSlicePoint.position, out RaycastHit hit, sliceableLayer);
-        if (hasHit)
+        if (Physics.Linecast(StartSlicePoint.position, endSlicePoint.position, out RaycastHit hit, sliceableLayer))
         {
-            GameObject target = hit.transform.gameObject;
-            Slice(target);
+            var go = hit.transform.gameObject;
+
+            var limit = go.GetComponent<SliceLimit>();
+            int cutsLeft = (limit != null) ? limit.remainingCuts : maxCuts;
+
+            if (cutsLeft > 0)
+                Slice(go, cutsLeft - 1);
         }
     }
 
     public void Slice(GameObject target)
     {
-        Vector3 velocity = velocityEstimator.GetVelocityEstimate();
-        Vector3 PlaneNormal = Vector3.Cross(endSlicePoint.position - StartSlicePoint.position, velocity);
-        PlaneNormal.Normalize();
-
-        SlicedHull hull = target.Slice(endSlicePoint.position, PlaneNormal);
-
-        if (hull != null) {
-            GameObject upperHull = hull.CreateUpperHull(target, crossSectionMaterial);
-            SetUpSlicedComponent(upperHull);
-
-            GameObject lowerHull = hull.CreateLowerHull(target, crossSectionMaterial);
-            SetUpSlicedComponent(lowerHull);
-
-            Destroy(target);
-        }
+        Slice(target, maxCuts - 1);
     }
 
-    public void SetUpSlicedComponent(GameObject sliceObject)
+    public void Slice(GameObject target, int remainingCuts)
     {
-        Rigidbody rb = sliceObject.AddComponent<Rigidbody>();
-        MeshCollider collider = sliceObject.AddComponent<MeshCollider>();
-        collider.convex = true;
-        rb.AddExplosionForce(cutForce, sliceObject.transform.position, 1); 
+        var velocity = velocityEstimator.GetVelocityEstimate();
+        var planeNormal = Vector3.Cross(endSlicePoint.position - StartSlicePoint.position, velocity).normalized;
+
+        var hull = target.Slice(endSlicePoint.position, planeNormal);
+        if (hull == null) return;
+
+        ConfigureSliceable(hull.CreateUpperHull(target, crossSectionMaterial), target.layer, remainingCuts);
+        ConfigureSliceable(hull.CreateLowerHull(target, crossSectionMaterial), target.layer, remainingCuts);
+
+        Destroy(target);
+    }
+
+    private void ConfigureSliceable(GameObject piece, int layer, int remainingCuts)
+    {
+        piece.layer = layer;
+
+        var rb = piece.AddComponent<Rigidbody>();
+        var mc = piece.AddComponent<MeshCollider>();
+        mc.convex = true;
+        rb.AddExplosionForce(cutForce, piece.transform.position, 1);
+
+        var limit = piece.AddComponent<SliceLimit>();
+        limit.remainingCuts = remainingCuts;
     }
 }

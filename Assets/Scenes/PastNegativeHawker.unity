@@ -4694,6 +4694,7 @@ MonoBehaviour:
   crossSectionMaterial: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d,
     type: 2}
   cutForce: 10
+  maxCuts: 8
 --- !u!136 &677844210
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -6448,7 +6449,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!23 &894610804
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6852,6 +6853,7 @@ GameObject:
   - component: {fileID: 956870175}
   - component: {fileID: 956870174}
   - component: {fileID: 956870178}
+  - component: {fileID: 956870179}
   m_Layer: 13
   m_Name: Chicken
   m_TagString: Untagged
@@ -6972,6 +6974,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &956870179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956870173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f230a709368dd4e438c83bbbddfc9f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  remainingCuts: 2
 --- !u!1 &986162330
 GameObject:
   m_ObjectHideFlags: 0
@@ -11081,6 +11096,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4207753694588978431, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 13847
+      objectReference: {fileID: 0}
     - target: {fileID: 4207753694598570727, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: _enableDynamicResolution
@@ -11110,6 +11130,16 @@ PrefabInstance:
         type: 3}
       propertyPath: requestScenePermissionOnStartup
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207753694598570727, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: expandMixedRealityCapturePropertySheet
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4207753694598570727, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: requestBodyTrackingPermissionOnStartup
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8531340850437012666, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
