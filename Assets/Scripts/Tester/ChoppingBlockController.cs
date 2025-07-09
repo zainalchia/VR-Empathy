@@ -1,52 +1,592 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 using Oculus.Interaction;
 using Oculus.Interaction.Input; // Crucial for IHand and Handedness
+using UnityEngine.Events;
+using System.Linq;
 
-public class ChoppingBlockController : MonoBehaviour
+public class ControllerInteractionsManager : MonoBehaviour
 {
-    // Assign the food item GameObject that is already on the chopping board in the Inspector.
-    public GameObject foodItemOnBoard;
-
-    // Assign an empty GameObject (Transform) here.
-    // This GameObject should be a child of your chopping board,
-    // positioned and rotated exactly where you want the player's left virtual hand to snap to.
-    public Transform leftHandSnapPoint;
-
-    private void OnTriggerEnter(Collider other)
+    #region Singleton Stuff
+    public static ControllerInteractionsManager instance = null;
+    private void Awake()
     {
-        // Get the GrabInteractor from the colliding object, if any.
-        GrabInteractor enteringInteractor = other.GetComponent<GrabInteractor>();
+        if (instance == null)
+            instance = this;
+        else if (instance != null)
+            Destroy(gameObject);
+    }
+    #endregion
 
-        // Check if the colliding object has a GrabInteractor
-        if (enteringInteractor != null)
+    #region Grabbing Items
+    private List<GrabInteractor> grabInteractorsWithinRange = new List<GrabInteractor>();
+    public GrabInteractor leftGrabInteractor;
+    public GrabInteractor rightGrabInteractor;
+    bool canTakeOffGlasses = false;
+    bool canTakeOffDentures = false;
+    bool toReleaseLeftHand = false;
+    bool toReleaseRightHand = false;
+
+    // dropping glasses as glasses collider may be to small for force select to work properly
+    bool leftHandForceSelected;
+    bool rightHandForceSelected;
+    GameObject lastHeldObjLeftHand;
+    GameObject lastHeldObjRightHand;
+
+    // ADDED: Variables for Left Hand Interactor Lock (and Snap)
+    private bool isLeftHandLocked = false;
+    private GameObject lockedItemLeftHand = null;
+    // Reference to the component that controls the left hand's real-world tracking
+    // This is typically OVRControllerHelper for controllers, or OVRHand for hand tracking.
+    // Assign this in the Inspector!
+    public Behaviour leftHandTrackingComponent; // Should be your OVR Hand (Script) from LeftOVRHand
+    private bool wasLeftHandTrackingComponentEnabled = false; // To store its original state
+
+    // time taken to close/open fist
+    [SerializeField] float timeToOpenCloseFist = 0.2f;
+    float speedToOpenCloseFist = 5.0f;
+    bool leftFistClosed = false;
+    bool rightFistClosed = false;
+    float timerToOpenCloseFistLeft = 0.0f;
+    float timerToOpenCloseFistRight = 0.0f;
+
+    public List<GameObject> GetItemsGrabbedInHand()
+    {
+        List<GameObject> items = new List<GameObject>();
+
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+        {
+            if (grabInteractor.HasSelectedInteractable)
+            {
+                if (!items.Contains(grabInteractor.SelectedInteractable.gameObject))
+                    items.Add(grabInteractor.SelectedInteractable.gameObject);
+            }
+        }
+        return items;
+    }
+
+    // 0 = left hand, 1 = right hand, 2 = not holding
+    public int ObjInWhichHand(GameObject obj)
+    {
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+        {
+            if (grabInteractor.HasSelectedInteractable && grabInteractor.SelectedInteractable.gameObject == obj)
+            {
+                // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
+                IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
+                if (hand != null)
+                {
+                    return (hand.Handedness == Handedness.Left) ? 0 : 1;
+                }
+            }
+        }
+        return 2; // Not holding
+    }
+
+    public void ForceSelectedObjectFollow(GrabInteractor grabInteractor)
+    {
+        if (grabInteractor.HasSelectedInteractable)
+        {
+            grabInteractor.SelectedInteractable.transform.position = grabInteractor.gameObject.transform.position;
+        }
+        else
         {
             // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = enteringInteractor.gameObject.GetComponentInParent<IHand>();
-
+            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
             if (hand != null)
             {
-                // Check if it's specifically the left hand interactor
                 if (hand.Handedness == Handedness.Left)
                 {
-                    if (foodItemOnBoard != null && leftHandSnapPoint != null)
+                    leftHandForceSelected = false;
+                    if (lastHeldObjLeftHand != null)
+                        lastHeldObjLeftHand.GetComponent<Rigidbody>().isKinematic = false;
+                }
+                else if (hand.Handedness == Handedness.Right)
+                {
+                    rightHandForceSelected = false;
+                    if (lastHeldObjRightHand != null)
+                        lastHeldObjRightHand.GetComponent<Rigidbody>().isKinematic = false;
+                }
+            }
+        }
+    }
+
+    #region Glasses
+    public void CanTakeOffGlasses(GrabInteractor addGrabInteractor)
+    {
+        if (!grabInteractorsWithinRange.Contains(addGrabInteractor))
+        {
+            grabInteractorsWithinRange.Add(addGrabInteractor);
+            canTakeOffGlasses = true;
+        }
+    }
+    public void CannotTakeOffGlasses(GrabInteractor removeGrabInteractor)
+    {
+        if (grabInteractorsWithinRange.Contains(removeGrabInteractor))
+            grabInteractorsWithinRange.Remove(removeGrabInteractor);
+
+        if (grabInteractorsWithinRange.Count == 0)
+            canTakeOffGlasses = false;
+    }
+    void RemoveGlasses(OVRInput.Controller controllerSide)
+    {
+        foreach (GrabInteractor grabInteractorWithinRange in grabInteractorsWithinRange)
+        {
+            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
+            IHand hand = grabInteractorWithinRange.gameObject.GetComponentInParent<IHand>();
+            if (hand != null)
+            {
+                if (controllerSide == OVRInput.Controller.LTouch && hand.Handedness == Handedness.Left)
+                {
+                    canTakeOffGlasses = false;
+                    grabInteractorsWithinRange.Clear();
+
+                    leftHandForceSelected = true;
+                    lastHeldObjLeftHand = GameManager.instance.glasses;
+                    GameManager.instance.glasses.GetComponent<Rigidbody>().isKinematic = true;
+
+                    GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                    GameManager.instance.glasses.SetActive(true);
+                    grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
+
+                    GameManager.instance.OnGlassesTakeOff.Invoke();
+                    toReleaseLeftHand = true;
+                    GameManager.instance.toTakeGlassesOff = false;
+                }
+                else if (controllerSide == OVRInput.Controller.RTouch && hand.Handedness == Handedness.Right)
+                {
+                    canTakeOffGlasses = false;
+                    grabInteractorsWithinRange.Clear();
+
+                    rightHandForceSelected = true;
+                    lastHeldObjRightHand = GameManager.instance.glasses;
+                    GameManager.instance.glasses.GetComponent<Rigidbody>().isKinematic = true;
+
+                    GameManager.instance.glasses.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                    GameManager.instance.glasses.SetActive(true);
+                    grabInteractorWithinRange.ForceSelect(GameManager.instance.glasses.GetComponent<GrabInteractable>());
+
+                    GameManager.instance.OnGlassesTakeOff.Invoke();
+                    toReleaseRightHand = true;
+                    GameManager.instance.toTakeGlassesOff = false;
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region Dentures
+    public void CanTakeOffDentures(GrabInteractor addGrabInteractor)
+    {
+        if (!grabInteractorsWithinRange.Contains(addGrabInteractor))
+        {
+            grabInteractorsWithinRange.Add(addGrabInteractor);
+            canTakeOffDentures = true;
+        }
+    }
+    public void CannotTakeOffDentures(GrabInteractor removeGrabInteractor)
+    {
+        if (grabInteractorsWithinRange.Contains(removeGrabInteractor))
+            grabInteractorsWithinRange.Remove(removeGrabInteractor);
+
+        if (grabInteractorsWithinRange.Count == 0)
+            canTakeOffDentures = false;
+    }
+    void RemoveDentures(OVRInput.Controller controllerSide)
+    {
+        foreach (GrabInteractor grabInteractorWithinRange in grabInteractorsWithinRange)
+        {
+            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
+            IHand hand = grabInteractorWithinRange.gameObject.GetComponentInParent<IHand>();
+            if (hand != null)
+            {
+                if (controllerSide == OVRInput.Controller.LTouch && hand.Handedness == Handedness.Left)
+                {
+                    canTakeOffDentures = false;
+                    grabInteractorsWithinRange.Clear();
+
+                    leftHandForceSelected = true;
+                    lastHeldObjLeftHand = GameManager.instance.dentures;
+                    GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
+
+                    GameManager.instance.dentures.SetActive(true);
+                    GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+                    GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                    GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
+                    GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
+                    grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
+
+                    GameManager.instance.toTakeDenturesOff = false;
+                }
+                else if (controllerSide == OVRInput.Controller.RTouch && hand.Handedness == Handedness.Right)
+                {
+                    canTakeOffDentures = false;
+                    grabInteractorsWithinRange.Clear();
+
+                    rightHandForceSelected = true;
+                    lastHeldObjRightHand = GameManager.instance.dentures;
+                    GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
+
+                    GameManager.instance.dentures.SetActive(true);
+                    GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+                    GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                    GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
+                    GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
+                    grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
+
+                    GameManager.instance.toTakeDenturesOff = false;
+                }
+            }
+        }
+    }
+    #endregion
+
+    public void LockLeftHandToItem(GameObject itemToLock, Transform targetHandPose)
+    {
+        // Ensure leftHandAnchor is assigned in the Inspector for this to work
+        if (leftGrabInteractor != null && itemToLock != null && targetHandPose != null && leftHandAnchor != null)
+        {
+            // Reposition the LeftHandAnchor, which should be the parent of LeftOVRHand and its GrabInteractor
+            leftHandAnchor.transform.position = targetHandPose.position;
+            leftHandAnchor.transform.rotation = targetHandPose.rotation;
+
+            if (leftHandTrackingComponent != null)
+            {
+                wasLeftHandTrackingComponentEnabled = leftHandTrackingComponent.enabled;
+                leftHandTrackingComponent.enabled = false;
+            }
+
+            // --- Rigidbody check and addition on LeftHandAnchor ---
+            Rigidbody handRb = leftHandAnchor.gameObject.GetComponent<Rigidbody>();
+            if (handRb == null)
+            {
+                handRb = leftHandAnchor.gameObject.AddComponent<Rigidbody>();
+                Debug.Log("Added Rigidbody to Left Hand Anchor GameObject for locking.");
+            }
+            // --- END NEW ---
+
+            if (handRb != null)
+            {
+                handRb.isKinematic = true;
+            }
+
+            leftGrabInteractor.ForceSelect(itemToLock.GetComponent<GrabInteractable>());
+            lockedItemLeftHand = itemToLock;
+            isLeftHandLocked = true;
+
+            if (itemToLock.GetComponent<Rigidbody>() != null)
+            {
+                itemToLock.GetComponent<Rigidbody>().isKinematic = true;
+            }
+
+            Debug.Log($"Left hand (via LeftHandAnchor) snapped to {targetHandPose.name} and locked onto: {itemToLock.name}");
+        }
+        else
+        {
+            Debug.LogWarning("LockLeftHandToItem called with null references (interactor, item, target pose, or LeftHandAnchor).");
+        }
+    }
+
+    public void UnlockLeftHand()
+    {
+        if (isLeftHandLocked && leftGrabInteractor != null && leftHandAnchor != null)
+        {
+            leftGrabInteractor.ForceRelease();
+
+            if (lockedItemLeftHand != null && lockedItemLeftHand.GetComponent<Rigidbody>() != null)
+            {
+                lockedItemLeftHand.GetComponent<Rigidbody>().isKinematic = false;
+            }
+
+            if (leftHandTrackingComponent != null)
+            {
+                leftHandTrackingComponent.enabled = wasLeftHandTrackingComponentEnabled;
+            }
+            Rigidbody handRb = leftHandAnchor.gameObject.GetComponent<Rigidbody>(); // Check on LeftHandAnchor
+            if (handRb != null)
+            {
+                // handRb.isKinematic = false; // You might want to set this back to false or allow physics after unlock
+            }
+
+            isLeftHandLocked = false;
+            lockedItemLeftHand = null;
+            Debug.Log("Left hand unlocked.");
+        }
+    }
+
+    #endregion
+
+    #region Dropping Items
+    [Header("Drop Items Variables")]
+    public bool autoDropItems = true;
+    [SerializeField] private float dropGlassesInterval = 1;
+    [SerializeField] private int dropGlassesCount = 2;
+
+    [SerializeField] private AudioSource audioSource_player;
+    [SerializeField] private AudioClip audioClip_sighAfterDrop;
+
+    [SerializeField] private GameObject dropItemFX;
+    public GameObject leftHandAnchor; // Already public, but good to ensure it's assigned
+    [SerializeField] private GameObject rightHandAnchor;
+
+    public UnityEvent OnGlassesDrop;
+
+    private float dropGlassesTimer = 1;
+
+    private Handedness lastHandToHold;
+
+    void EnableDropTimer()
+    {
+        bool glassesTimerOn = false;
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+        {
+            if (grabInteractor.HasSelectedInteractable)
+            {
+                if (GameManager.instance.toPutGlassesOn)
+                {
+                    if (GameManager.instance.glasses != null)
                     {
-                        // Check if the ControllerInteractionsManager instance is available
-                        if (ControllerInteractionsManager.instance != null)
+                        if (grabInteractor.SelectedInteractable.gameObject == GameManager.instance.glasses && dropGlassesCount > 0)
                         {
-                            ControllerInteractionsManager.instance.LockLeftHandToItem(foodItemOnBoard, leftHandSnapPoint);
-                            Debug.Log($"Left hand triggered chopping block. Snapped to {leftHandSnapPoint.name} and locked onto {foodItemOnBoard.name}");
+                            glassesTimerOn = true;
+                            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
+                            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
+                            if (hand != null)
+                            {
+                                lastHandToHold = hand.Handedness;
+                            }
                         }
-                        else
-                        {
-                            Debug.LogWarning("ControllerInteractionsManager.instance is null. Make sure it's in the scene.");
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning("ChoppingBlockController: 'Food Item On Board' or 'Left Hand Snap Point' is not assigned in the Inspector!");
                     }
                 }
             }
         }
+
+        #region Glasses scripted dropping
+        if (glassesTimerOn)
+            dropGlassesTimer -= Time.deltaTime;
+
+        if (dropGlassesTimer <= 0)
+        {
+            if (lastHandToHold == Handedness.Left)
+            {
+                ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
+
+                Instantiate(dropItemFX, leftHandAnchor.transform);
+            }
+            else if (lastHandToHold == Handedness.Right)
+            {
+                ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
+
+                Instantiate(dropItemFX, rightHandAnchor.transform);
+            }
+
+            OnGlassesDrop.Invoke();
+            dropGlassesCount -= 1;
+            if (dropGlassesCount >= 1)
+                dropGlassesTimer = dropGlassesInterval;
+            else
+                dropGlassesTimer = dropGlassesInterval / 2.0f;
+        }
+        #endregion
+
+
+    }
+
+    public void ActivateItemDrop()
+    {
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+        {
+            grabInteractor.ForceRelease();
+        }
+    }
+
+    private void ForceDropItemSpecificHand(OVRInput.Controller controllerSide)
+    {
+        if (controllerSide == OVRInput.Controller.LTouch && isLeftHandLocked)
+        {
+            return;
+        }
+
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+        {
+            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
+            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
+            if (hand != null)
+            {
+                if (controllerSide == OVRInput.Controller.LTouch && hand.Handedness == Handedness.Left)
+                {
+                    toReleaseLeftHand = false;
+                    grabInteractor.ForceRelease();
+                }
+                else if (controllerSide == OVRInput.Controller.RTouch && hand.Handedness == Handedness.Right)
+                {
+                    toReleaseRightHand = false;
+                    grabInteractor.ForceRelease();
+                }
+            }
+        }
+    }
+    #endregion
+
+    #region Vibrating Controllers
+    [Header("Vibrating Controllers Variables")]
+    public bool allowControllerVibration = true;
+    [SerializeField] int vibrationStrength = 255;
+    [SerializeField] int vibrationFrequency = 2;
+
+    public void TriggerVibration(int iteration, int frequency, int strength, OVRInput.Controller controllerSide)
+    {
+        OVRHapticsClip clip = new OVRHapticsClip();
+
+        for (int i = 0; i < iteration; i++)
+        {
+            clip.WriteSample(i % frequency == 0 ? (byte)strength : (byte)0);
+        }
+
+        if (controllerSide == OVRInput.Controller.LTouch)
+        {
+            OVRHaptics.LeftChannel.Preempt(clip);
+        }
+        else if (controllerSide == OVRInput.Controller.RTouch)
+        {
+            OVRHaptics.RightChannel.Preempt(clip);
+        }
+    }
+
+    void CheckIfHolding()
+    {
+        foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
+        {
+            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
+            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
+            if (grabInteractor.HasSelectedInteractable && hand != null && hand.Handedness == Handedness.Left && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration") && !isLeftHandLocked)
+                TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.LTouch);
+            else if (grabInteractor.HasSelectedInteractable && hand != null && hand.Handedness == Handedness.Right && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
+                TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.RTouch);
+        }
+    }
+    #endregion
+
+    void Start()
+    {
+        dropGlassesTimer = dropGlassesInterval;
+        speedToOpenCloseFist = 1 / timeToOpenCloseFist;
+    }
+
+    void Update()
+    {
+        #region Hand Animations
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", true);
+            leftFistClosed = true;
+        }
+        else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+        {
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", false);
+            leftFistClosed = false;
+        }
+
+        if (leftFistClosed)
+        {
+            if (timerToOpenCloseFistLeft < 1.0f)
+                timerToOpenCloseFistLeft += Time.deltaTime * speedToOpenCloseFist;
+        }
+        else
+        {
+            if (timerToOpenCloseFistLeft > 0.0f)
+                timerToOpenCloseFistLeft -= Time.deltaTime * speedToOpenCloseFist;
+        }
+        GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistLeft);
+
+        if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", true);
+            rightFistClosed = true;
+        }
+        else if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", false);
+            rightFistClosed = false;
+        }
+
+        if (rightFistClosed)
+        {
+            if (timerToOpenCloseFistRight < 1.0f)
+                timerToOpenCloseFistRight += Time.deltaTime * speedToOpenCloseFist;
+        }
+        else
+        {
+            if (timerToOpenCloseFistRight > 0.0f)
+                timerToOpenCloseFistRight -= Time.deltaTime * speedToOpenCloseFist;
+        }
+        GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistRight);
+        #endregion
+
+        #region Grabbing Items
+        if (canTakeOffGlasses && !isLeftHandLocked)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+            {
+                RemoveGlasses(OVRInput.Controller.LTouch);
+            }
+
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                RemoveGlasses(OVRInput.Controller.RTouch);
+            }
+        }
+
+        if (canTakeOffDentures && !isLeftHandLocked)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
+            {
+                RemoveDentures(OVRInput.Controller.LTouch);
+            }
+
+            if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                RemoveDentures(OVRInput.Controller.RTouch);
+            }
+        }
+
+        if (toReleaseLeftHand && !isLeftHandLocked)
+        {
+            if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+            {
+                ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
+            }
+        }
+        if (toReleaseRightHand)
+        {
+            if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
+            }
+        }
+
+        if (leftHandForceSelected && !isLeftHandLocked)
+        {
+            ForceSelectedObjectFollow(GameManager.instance.grabInteractors[0]);
+        }
+
+        if (rightHandForceSelected)
+        {
+            ForceSelectedObjectFollow(GameManager.instance.grabInteractors[1]);
+        }
+        #endregion
+
+        #region Dropping Items
+        if (autoDropItems)
+            EnableDropTimer();
+        #endregion
+
+        #region Vibrating Controllers
+        if (allowControllerVibration)
+            CheckIfHolding();
+        #endregion
+
     }
 }
