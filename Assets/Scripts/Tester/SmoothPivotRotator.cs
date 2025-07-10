@@ -12,7 +12,7 @@ public class SmoothPivotRotator : MonoBehaviour
 
     private Quaternion initialRotation;
     private Quaternion targetRotation;
-    private bool isRotating = false;
+    public bool isRotating = false;
     private bool returning = false;
 
     void Start()

@@ -268,6 +268,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Target Framerate set at 72");
+        Application.targetFrameRate = 72;
         if (consoleText != null && GameManager.instance != null)
         {
             GameManager.instance.DebugLog("[Startup] " + consoleText.text);
