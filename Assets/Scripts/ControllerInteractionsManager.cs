@@ -22,7 +22,7 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     #region Grabbing Items
     private List<GrabInteractor> grabInteractorsWithinRange = new List<GrabInteractor>();
-    public GrabInteractor leftGrabInteractor;
+    public GrabInteractor leftGrabInteractor; // Still needed for ForceSelect
     public GrabInteractor rightGrabInteractor;
     bool canTakeOffGlasses = false;
     bool canTakeOffDentures = false;
@@ -43,6 +43,10 @@ public class ControllerInteractionsManager : MonoBehaviour
     // Assign this in the Inspector!
     public Behaviour leftHandTrackingComponent; // Should be your OVR Hand (Script) from LeftOVRHand
     private bool wasLeftHandTrackingComponentEnabled = false; // To store its original state
+
+    // Reference to the GameObject that represents the root of the left hand (LeftHandAnchor)
+    // This is the GameObject that will be repositioned and receive the Rigidbody
+    public GameObject leftHandAnchor; // Make sure this is assigned in the Inspector!
 
     // time taken to close/open fist
     [SerializeField] float timeToOpenCloseFist = 0.2f;
@@ -245,60 +249,79 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     public void LockLeftHandToItem(GameObject itemToLock, Transform targetHandPose)
     {
-        if (leftGrabInteractor != null && itemToLock != null && targetHandPose != null)
+        // Ensure leftHandAnchor and leftGrabInteractor are assigned in the Inspector for this to work
+        if (leftGrabInteractor != null && itemToLock != null && targetHandPose != null && leftHandAnchor != null)
         {
-            leftGrabInteractor.gameObject.transform.position = targetHandPose.position;
-            leftGrabInteractor.gameObject.transform.rotation = targetHandPose.rotation;
+            // Reposition the LeftHandAnchor, which should be the parent of LeftOVRHand and its GrabInteractor
+            leftHandAnchor.transform.position = targetHandPose.position;
+            leftHandAnchor.transform.rotation = targetHandPose.rotation;
 
+            // If the hand tracking component (e.g., OVRHand script) is on LeftOVRHand,
+            // which is a child of LeftHandAnchor, then disabling it here will correctly
+            // stop the hand from being tracked while locked.
             if (leftHandTrackingComponent != null)
             {
                 wasLeftHandTrackingComponentEnabled = leftHandTrackingComponent.enabled;
                 leftHandTrackingComponent.enabled = false;
             }
 
-            Rigidbody handRb = leftGrabInteractor.gameObject.GetComponent<Rigidbody>();
+            // --- Rigidbody check and addition on LeftHandAnchor ---
+            Rigidbody handRb = leftHandAnchor.gameObject.GetComponent<Rigidbody>();
+            if (handRb == null)
+            {
+                handRb = leftHandAnchor.gameObject.AddComponent<Rigidbody>();
+                Debug.Log("Added Rigidbody to Left Hand Anchor GameObject for locking.");
+            }
+            // --- END NEW ---
+
             if (handRb != null)
             {
-                handRb.isKinematic = true;
+                handRb.isKinematic = true; // Make it kinematic so it doesn't get affected by physics
             }
 
+            // ForceSelect the item to attach it to the LeftGrabInteractor (which should be a child of the hand anchor).
+            // This makes the item move with the hand and be formally "grabbed" by the Oculus Interaction system.
             leftGrabInteractor.ForceSelect(itemToLock.GetComponent<GrabInteractable>());
             lockedItemLeftHand = itemToLock;
             isLeftHandLocked = true;
 
+            // Make the grabbed item kinematic as well so it stays with the hand.
             if (itemToLock.GetComponent<Rigidbody>() != null)
             {
                 itemToLock.GetComponent<Rigidbody>().isKinematic = true;
             }
 
-            Debug.Log($"Left hand snapped to {targetHandPose.name} and locked onto: {itemToLock.name}");
+            Debug.Log($"Left hand (via LeftHandAnchor) snapped to {targetHandPose.name} and locked onto: {itemToLock.name}");
         }
         else
         {
-            Debug.LogWarning("LockLeftHandToItem called with null references (interactor, item, or target pose).");
+            Debug.LogWarning("LockLeftHandToItem called with null references (interactor, item, target pose, or LeftHandAnchor). Make sure all public fields are assigned in the Inspector.");
         }
     }
 
     public void UnlockLeftHand()
     {
-        if (isLeftHandLocked && leftGrabInteractor != null)
+        if (isLeftHandLocked && leftGrabInteractor != null && leftHandAnchor != null)
         {
             leftGrabInteractor.ForceRelease();
 
             if (lockedItemLeftHand != null && lockedItemLeftHand.GetComponent<Rigidbody>() != null)
             {
-                lockedItemLeftHand.GetComponent<Rigidbody>().isKinematic = false;
+                lockedItemLeftHand.GetComponent<Rigidbody>().isKinematic = false; // Allow item to be affected by physics again
             }
 
+            // Re-enable hand tracking
             if (leftHandTrackingComponent != null)
             {
                 leftHandTrackingComponent.enabled = wasLeftHandTrackingComponentEnabled;
             }
-            Rigidbody handRb = leftGrabInteractor.gameObject.GetComponent<Rigidbody>();
-            if (handRb != null)
-            {
-                // handRb.isKinematic = false; 
-            }
+
+            // Optionally, set the LeftHandAnchor's Rigidbody back to non-kinematic if you want it to resume physics interactions
+            // Rigidbody handRb = leftHandAnchor.gameObject.GetComponent<Rigidbody>();
+            // if (handRb != null)
+            // {
+            //     handRb.isKinematic = false; 
+            // }
 
             isLeftHandLocked = false;
             lockedItemLeftHand = null;
@@ -318,7 +341,7 @@ public class ControllerInteractionsManager : MonoBehaviour
     [SerializeField] private AudioClip audioClip_sighAfterDrop;
 
     [SerializeField] private GameObject dropItemFX;
-    [SerializeField] private GameObject leftHandAnchor;
+    // public GameObject leftHandAnchor; // Already declared above
     [SerializeField] private GameObject rightHandAnchor;
 
     public UnityEvent OnGlassesDrop;
