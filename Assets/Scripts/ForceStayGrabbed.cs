@@ -60,7 +60,7 @@ public class ForceStayGrabbed : MonoBehaviour
                 if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
                 {
                     // force select left hand
-                    ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
+                    GameManager.instance.grabInteractors[0].ForceSelect(gameObject.GetComponent<GrabInteractable>());
                 }
             }
 
@@ -69,7 +69,7 @@ public class ForceStayGrabbed : MonoBehaviour
                 if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
                 {
                     // force select right hand
-                    ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
+                    GameManager.instance.grabInteractors[1].ForceSelect(gameObject.GetComponent<GrabInteractable>());
                 }
             }
         }

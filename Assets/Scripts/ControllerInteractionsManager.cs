@@ -21,8 +21,6 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     #region Grabbing Items
     private List<GrabInteractor> grabInteractorsWithinRange = new List<GrabInteractor>();
-    public GrabInteractor leftGrabInteractor;
-    public GrabInteractor rightGrabInteractor;
     bool canTakeOffGlasses = false;
     bool canTakeOffDentures = false;
     bool toReleaseLeftHand = false;
