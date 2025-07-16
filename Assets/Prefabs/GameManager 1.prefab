@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3407524192125189410}
   - component: {fileID: 8518638762025746586}
   - component: {fileID: 3196500072296591045}
+  - component: {fileID: 7139200262989164425}
   m_Layer: 0
   m_Name: GameManager 1
   m_TagString: Untagged
@@ -152,9 +153,7 @@ MonoBehaviour:
   narrationAudioClips_General_Male:
   - {fileID: 8300000, guid: 648dec5db489aa543a1898135f79af2b, type: 3}
   - {fileID: 8300000, guid: 24506c6590bbd4d49838f5ea759d4396, type: 3}
-  narrationAudioClips_General_Female:
-  - {fileID: 8300000, guid: 84806e8ac71514aa393b54651cd77b57, type: 3}
-  - {fileID: 8300000, guid: 589bcae0dccb64ff686a381e7c69aefc, type: 3}
+  narrationAudioClips_General_Female: []
   narrationAudioClips_Bathroom_Male:
   - {fileID: 8300000, guid: 0f27cfb8d425c3b4fb352beb6b10aeee, type: 3}
   - {fileID: 8300000, guid: d49412ca290b9334b92bffe93df630f9, type: 3}
@@ -164,13 +163,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9a3557342d7c9524d9bc415635cb6e0e, type: 3}
   - {fileID: 8300000, guid: 0aa1d4c3f0e564048892a494c1d141c9, type: 3}
   narrationAudioClips_Bathroom_Female:
-  - {fileID: 8300000, guid: 765b77930b5d149438791771e6ea5755, type: 3}
-  - {fileID: 8300000, guid: ee7eeb490503c48ff8dc69cc8372c299, type: 3}
-  - {fileID: 8300000, guid: 9e97b4a71fa07434dae97ac80d15d851, type: 3}
-  - {fileID: 8300000, guid: d597e4da3bdd04704856f230b38e870d, type: 3}
-  - {fileID: 8300000, guid: 32d26129d29a54ab287a97a1a1f5dbd5, type: 3}
-  - {fileID: 8300000, guid: c92100edbee354d61baef17fd4325bc4, type: 3}
-  - {fileID: 8300000, guid: e6505c59ae68f45ac9673204297de625, type: 3}
+  - {fileID: 8300000, guid: 8f8109deb5acf4d4693b58c2f2a4dca3, type: 3}
+  - {fileID: 8300000, guid: d78b7bfbbe8abb3459ec1796d1845bfa, type: 3}
+  - {fileID: 8300000, guid: ae75ef53aaf3cc04fabce200831daa06, type: 3}
+  - {fileID: 8300000, guid: e5ede90301738dd4bb94c92908fe8ec3, type: 3}
+  - {fileID: 8300000, guid: 473a5a3927602dc4d9aac42f34097c3f, type: 3}
+  - {fileID: 8300000, guid: e248eb87e2c3d07438e02c0649e0d046, type: 3}
   narrationAudioClips_Bedroom_Male:
   - {fileID: 8300000, guid: e1fd277fef2d7cf44b5bfd2c2b7b6e2d, type: 3}
   - {fileID: 8300000, guid: 273373b574637aa418c94e694fb8bace, type: 3}
@@ -195,6 +193,7 @@ MonoBehaviour:
   phone: {fileID: 0}
   mobilePhone: {fileID: 0}
   glasses: {fileID: 0}
+  glassesDrop: {fileID: 8300000, guid: fc43ccc5b25f2c7478d1a69422adc001, type: 3}
   glassesOutline: {fileID: 0}
   tvAudio: {fileID: 0}
   Glass: {fileID: 0}
@@ -329,6 +328,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugText: {fileID: 0}
   maxLines: 50
+--- !u!114 &7139200262989164425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4947871553479497366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeScenario: 2
+  csvFile: {fileID: 4900000, guid: c4353c813aa755a4c80572690880645b, type: 3}
+  alertTextController: {fileID: 0}
 --- !u!1001 &8601224248097671147
 PrefabInstance:
   m_ObjectHideFlags: 0
