@@ -79,7 +79,7 @@ PlayerSettings:
   androidAutoRotationBehavior: 1
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
-  runInBackground: 1
+  runInBackground: 0
   captureSingleScreen: 0
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
@@ -142,6 +142,8 @@ PlayerSettings:
   bundleVersion: 0.1.0
   preloadedAssets:
   - {fileID: 11400000, guid: e3fb3562c16d02b41a8ed1a7c692955e, type: 2}
+  - {fileID: 3152396439970982431, guid: 4466edaa19ee7924db93cb19b94ea4ea, type: 2}
+  - {fileID: 11400000, guid: 031400c2bc9286c4abf1c0dfa91e3c4c, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -172,14 +174,14 @@ PlayerSettings:
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 32
-  AndroidTargetSdkVersion: 32
+  AndroidMinSdkVersion: 29
+  AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
   aotOptions: 
   stripEngineCode: 1
   iPhoneStrippingLevel: 0
   iPhoneScriptCallOptimization: 0
-  ForceInternetPermission: 1
+  ForceInternetPermission: 0
   ForceSDCardPermission: 0
   CreateWallpaper: 0
   APKExpansionFiles: 0
@@ -811,10 +813,7 @@ PlayerSettings:
   webGLMemoryGeometricGrowthStep: 0.2
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
-  scriptingDefineSymbols:
-    Android: ISDK_OPENXR_HAND;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
-    Standalone: ISDK_OPENXR_HAND;USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
-    Windows Store Apps: USE_INPUT_SYSTEM_POSE_CONTROL;USE_STICK_CONTROL_THUMBSTICKS
+  scriptingDefineSymbols: {}
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
@@ -922,7 +921,7 @@ PlayerSettings:
   hmiLogStartupTiming: 0
   hmiCpuConfiguration: 
   apiCompatibilityLevel: 6
-  activeInputHandler: 1
+  activeInputHandler: 0
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0

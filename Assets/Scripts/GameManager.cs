@@ -80,9 +80,7 @@ public class GameManager : MonoBehaviour
             DebugTextTest.Instance.AddToConsole("[GM] " + text);
         else
             Debug.LogWarning("DebugTextTest not found. Falling back to Debug.Log.");
-
     }
-
 
     #region Alert Text Functions
     public void ShowAlert(string textToShow)
@@ -139,7 +137,7 @@ public class GameManager : MonoBehaviour
 
     #region Othello Stuff
 
-     private Vector3[] directions = new Vector3[] // directions to raycast from for each piece
+    private Vector3[] directions = new Vector3[] // directions to raycast from for each piece
     {
          Vector3.forward,              // North
          new Vector3(1, 0, 1),         // Northeast

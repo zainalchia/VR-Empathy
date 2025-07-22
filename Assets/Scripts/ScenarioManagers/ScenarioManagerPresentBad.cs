@@ -13,9 +13,6 @@ public class  Trans2
 
 public class ScenarioManagerPresentBad : MonoBehaviour
 {
-    [SerializeField]
-    Material normalSkybox;
-
     [SerializeField] SceneToPlay sceneToPlay = SceneToPlay.Bathroom;
     enum SceneToPlay
     {
@@ -211,6 +208,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
         //GameManager.instance.ShowAlert(narration_1[17]);
         promptManager.ShowPrompt(sceneID, 1);
+        questControllerImage.SetActive(true);
         toGoLivingRoom = true;
         lastRoutine = null;
     }
@@ -594,7 +592,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             sceneID = SceneID.Bathroom;
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
-            RenderSettings.skybox = normalSkybox;
         }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
