@@ -80,9 +80,7 @@ public class GameManager : MonoBehaviour
             DebugTextTest.Instance.AddToConsole("[GM] " + text);
         else
             Debug.LogWarning("DebugTextTest not found. Falling back to Debug.Log.");
-
     }
-
 
     #region Alert Text Functions
     public void ShowAlert(string textToShow)
@@ -139,7 +137,7 @@ public class GameManager : MonoBehaviour
 
     #region Othello Stuff
 
-     private Vector3[] directions = new Vector3[] // directions to raycast from for each piece
+    private Vector3[] directions = new Vector3[] // directions to raycast from for each piece
     {
          Vector3.forward,              // North
          new Vector3(1, 0, 1),         // Northeast
@@ -268,8 +266,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Target Framerate set at 72");
-        Application.targetFrameRate = 72;
         if (consoleText != null && GameManager.instance != null)
         {
             GameManager.instance.DebugLog("[Startup] " + consoleText.text);

@@ -11,6 +11,7 @@ public class WaypointManager : MonoBehaviour
     [SerializeField] int wayPointIndex;
     [SerializeField] float moveSpeed, rotSpeed;
     [SerializeField] bool isMoving;
+    [Tooltip("put 0 to make it infinite")]
     [SerializeField] int HowManyLoops;
     bool isLoop = true;
     int loopRound = 0;
@@ -43,7 +44,7 @@ public class WaypointManager : MonoBehaviour
                     {
                         wayPointIndex = 0;
                         loopRound++;
-                        if(loopRound >= HowManyLoops)
+                        if(loopRound >= HowManyLoops && HowManyLoops != 0)
                         { 
                             Destroy(gameObject); 
                         }
