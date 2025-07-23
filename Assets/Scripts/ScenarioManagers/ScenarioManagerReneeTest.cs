@@ -6,10 +6,22 @@ using static MainMenuManager;
 
 public class ScenarioManagerReneeTest : MonoBehaviour
 {
+    [SerializeField] SceneToPlay sceneToPlay = SceneToPlay.Bathroom;
+    enum SceneToPlay
+    {
+        Bathroom,
+        Stall
+    }
+
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject firstTeleportToiletHotspot;
     [SerializeField] GameObject secondTeleportToiletHotspot;
     [SerializeField] GameObject thirdTeleportToiletHotspot;
+
+    [Header("Scenario Prompts")]
+    [SerializeField] ScenarioPromptManager promptManager;
+    [SerializeField] ScenarioID scenarioID = ScenarioID.PresentBad;
+    [SerializeField] SceneID sceneID = SceneID.Bathroom;
 
     [Header("Player Movement")]
     [SerializeField] PlayerTeleport playerTeleport;
@@ -17,14 +29,37 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("Debuggers")]
     [SerializeField] GameObject testitem;
 
+    [Header("Narration Variables")]
+    [SerializeField] AudioSource narrationAudioSource;
+
+    // for general audio clips used in both scenes
+    public AudioClip[] narrationAudioClips_General_Male;
+    public AudioClip[] narrationAudioClips_General_Female;
+    AudioClip[] narrationAudioClips_General;
+
+    Coroutine lastRoutine = null;
+
+    void SetupNarrationGeneral()
+    {
+        if (MainMenuManager.isGenderMale)
+        {
+            narrationAudioClips_General = narrationAudioClips_General_Male;
+        }
+        else
+        {
+            narrationAudioClips_General = narrationAudioClips_General_Female;
+        }
+    }
+
     #region Hawker Bathroom
 
     [Header("In the bathroom")]
-    [SerializeField] float timeForWashingUp = 30f;
+    [SerializeField] float timeForWashingUp = 5f;
+    bool moveToToiletDoor =  false;
 
     public void HawkerPartOne()
     {
-        StartCoroutine(HawkerPart1());
+        lastRoutine = StartCoroutine(HawkerPart1());
     }
 
     IEnumerator HawkerPart1()
@@ -34,8 +69,19 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
+        narrationAudioSource.volume = 1;
+        narrationAudioSource.Stop();
+
+        promptManager.ShowPrompt(sceneID, 0);
+
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
+
+        playerTeleport.currentScene = ScenarioID.PastNegative;
+
+        playerTeleport.SetCurrentHotspotIndex(-1);
+        firstTeleportToiletHotspot.SetActive(true);
+        moveToToiletDoor = true;
     }
 
     #endregion 
@@ -43,19 +89,19 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //playerTeleport.currentScene = ScenarioID.PastNegative;
-
-        //playerTeleport.SetCurrentHotspotIndex(-1);
-        //firstTeleportToiletHotspot.SetActive(true);
-        //playerTeleport.MoveToToiletDoor = true; 
-
-
-        //testitem.GetComponent<SmoothPivotRotator>().StartDefaultRotation();
-        //testitem.GetComponent<SmoothPivotRotator>().isRotating = true;  
-
-        HawkerPartOne();
-
-        Debug.Log("first part is done");
+        SetupNarrationGeneral();
+        if (sceneToPlay == SceneToPlay.Bathroom)
+        {
+            sceneID = SceneID.Bathroom;
+            //SetupNarrationBathroomLivingRoom();
+            HawkerPartOne();
+        }
+        else if (sceneToPlay == SceneToPlay.Stall)
+        {
+            //sceneID = SceneID.Stall;
+            //SetupNarrationBedroom();
+            //PlaySegment2Part1();
+        }
     }
 
 
@@ -63,5 +109,17 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void StopPrevDialogue()
+    {
+        // to stop prev dialogue if it was still going on
+        if (lastRoutine != null)
+            StopCoroutine(lastRoutine);
+        if (AlertTextController.instance)
+        {
+            if (AlertTextController.instance.gameObject.activeInHierarchy)
+                AlertTextController.instance.SetInactive();
+        }
     }
 }
