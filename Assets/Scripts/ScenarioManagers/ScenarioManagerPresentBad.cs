@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using static MainMenuManager;
+using System.IO;
 
 public class  Trans2
 {
@@ -17,7 +18,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     enum SceneToPlay
     {
         Bathroom,
-        Bedroom
+        Bedroom,
+        Hallway
     }
 
     [Header("Narration Variables")]
@@ -169,7 +171,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
     [SerializeField] GameObject questControllerImage;
+    [SerializeField] GameObject newCane;
     bool toGoLivingRoom = false;
+    bool bathroomSceneTransition = false;
     bool alertRemovedAfterFirstTP = false;
 
     public void PlaySegment1Part2()
@@ -195,6 +199,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //GameManager.instance.ShowAlert(narration_1[16]);
         Debug.Log(sceneID);
         promptManager.ShowPrompt(sceneID, 0);
+
     }
     
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
@@ -204,11 +209,27 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after picking up cane
         caneOutline.enabled = false;
         knob.GetComponent<Outline>().enabled = false;
+        bathroomSceneTransition = true;
+        lastRoutine = StartCoroutine(ExitBathroom());
+    }
+    IEnumerator ExitBathroom()
+    {
+        // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(1f);
 
+        // load next scene here
+        SceneManager.LoadScene("PresentBadLivingRoom", LoadSceneMode.Single);
+    }
+
+    public void SetupSegment1Part2_1()
+    {
+        cane = newCane;
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(cane.GetComponent<GrabInteractable>());
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        //GameManager.instance.ShowAlert(narration_1[17]);
         promptManager.ShowPrompt(sceneID, 1);
         questControllerImage.SetActive(true);
+        bathroomSceneTransition = false;
         toGoLivingRoom = true;
         lastRoutine = null;
     }
@@ -593,6 +614,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
         }
+        else if (sceneToPlay == SceneToPlay.Hallway) 
+        {
+            sceneID = SceneID.Bathroom;
+            SetupNarrationBathroomLivingRoom();
+            SetupSegment1Part2_1();
+        }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
             sceneID = SceneID.Bedroom;
@@ -604,7 +631,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (sceneToPlay == SceneToPlay.Bathroom)
+        if (sceneToPlay == SceneToPlay.Hallway)
         {
             #region Going to living room
             // remove alert after first teleport
@@ -621,11 +648,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             // check here when player reaches sofa, start segment1Part3
             if (toGoLivingRoom)
             {
-                if(cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 5 && lastRoutine == null)
+                if (cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 4 && lastRoutine == null)
                 {
                     PlaySegment1Part2Half();
                 }
-                
+
                 if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
                 {
                     toGoLivingRoom = false;

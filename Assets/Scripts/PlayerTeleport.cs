@@ -22,6 +22,12 @@ public class PlayerTeleport : MonoBehaviour
     [SerializeField] GameObject[] MoveToJobPositionHotspots;
     #endregion
 
+    #region Past Positive Hotspots
+    [Header("Past Positive Hotspots")]
+    [SerializeField] GameObject[] MoveToHouseHotspots;
+    [SerializeField] GameObject[] MoveToDiningTableHotspots;
+    #endregion
+
     //#region Past Positive Hotspots
     //[Header("Past Positive Hotspots")]
     ////IDK how you wna name it and what to name them
