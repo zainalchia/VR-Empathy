@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using static MainMenuManager;
 using System.IO;
+using UnityEngine.UI;
 
 public class  Trans2
 {
@@ -192,14 +193,16 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         cane.GetComponent<ForceStayGrabbed>().active = true;
         caneOutline.enabled = true;
-        knob.GetComponent<Outline>().enabled = true;
+        promptManager.ShowPrompt(sceneID, 0);
+    }
 
+    // called in scene on CaneTeleport in event OnFirstGrab
+    public void AllowDoorOpen()
+    {
         // can open bathroom door from here
+        knob.GetComponent<Outline>().enabled = true;
         bathroomDoor.AllowDoorOpen();
         //GameManager.instance.ShowAlert(narration_1[16]);
-        Debug.Log(sceneID);
-        promptManager.ShowPrompt(sceneID, 0);
-
     }
     
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
@@ -215,6 +218,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator ExitBathroom()
     {
         // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4;
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(1f);
 
@@ -224,6 +228,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void SetupSegment1Part2_1()
     {
+        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+
+        // to make a fade in
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4;
+
         cane = newCane;
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(cane.GetComponent<GrabInteractable>());
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
