@@ -145,8 +145,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     }
 
     IEnumerator Segment1Part1()
-    {
-        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+    {        
         ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
         cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
@@ -218,7 +217,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     IEnumerator ExitBathroom()
     {
         // fade screen here
-        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4;
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(1f);
 
@@ -231,7 +230,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
 
         // to make a fade in
-        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4;
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
 
         cane = newCane;
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(cane.GetComponent<GrabInteractable>());
