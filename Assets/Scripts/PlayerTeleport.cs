@@ -13,6 +13,11 @@ public class PlayerTeleport : MonoBehaviour
     [SerializeField] GameObject[] MoveToMainDoorHotspots;
     [SerializeField] GameObject[] MoveToCheckersChairHotspots;
     [SerializeField] GameObject[] MoveToKaraokeCornerHotspots;
+
+    public GameObject[] GetMoveToLivingRoomHotspots() => MoveToLivingRoomHotspots;
+    public GameObject[] GetMoveToMainDoorHotspots() => MoveToMainDoorHotspots;
+    public GameObject[] GetMoveToCheckersChairHotspots() => MoveToCheckersChairHotspots;
+    public GameObject[] GetMoveToKaraokeCornerHotspots() => MoveToKaraokeCornerHotspots;
     #endregion
 
     #region Past Negative Hotspots
@@ -20,6 +25,11 @@ public class PlayerTeleport : MonoBehaviour
     public GameObject[] MoveToToiletDoorHotspots;
     [SerializeField] GameObject[] MoveToHawkerStallHotspots;
     [SerializeField] GameObject[] MoveToJobPositionHotspots;
+
+    public GameObject[] GetMoveToToiletDoorHotspots() => MoveToToiletDoorHotspots;
+    public GameObject[] GetMoveToHawkerStallHotspots() => MoveToHawkerStallHotspots;
+    public GameObject[] GetMoveToJobPositionHotspots() => MoveToJobPositionHotspots;
+
     #endregion
 
     //#region Past Positive Hotspots

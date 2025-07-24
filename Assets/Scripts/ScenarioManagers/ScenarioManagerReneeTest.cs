@@ -30,32 +30,32 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject testitem;
 
     [Header("Narration Variables")]
-    [SerializeField] AudioSource narrationAudioSource;
+    //[SerializeField] AudioSource narrationAudioSource;
 
     // for general audio clips used in both scenes
-    public AudioClip[] narrationAudioClips_General_Male;
-    public AudioClip[] narrationAudioClips_General_Female;
-    AudioClip[] narrationAudioClips_General;
+    //public AudioClip[] narrationAudioClips_General_Male;
+    //public AudioClip[] narrationAudioClips_General_Female;
+    //AudioClip[] narrationAudioClips_General;
 
     Coroutine lastRoutine = null;
 
     void SetupNarrationGeneral()
     {
-        if (MainMenuManager.isGenderMale)
-        {
-            narrationAudioClips_General = narrationAudioClips_General_Male;
-        }
-        else
-        {
-            narrationAudioClips_General = narrationAudioClips_General_Female;
-        }
+        //if (MainMenuManager.isGenderMale)
+        //{
+        //    narrationAudioClips_General = narrationAudioClips_General_Male;
+        //}
+        //else
+        //{
+        //    narrationAudioClips_General = narrationAudioClips_General_Female;
+        //}
     }
 
     #region Hawker Bathroom
 
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 5f;
-    bool moveToToiletDoor =  false;
+    bool MoveToToiletDoor =  false;
 
     public void HawkerPartOne()
     {
@@ -64,15 +64,39 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator HawkerPart1()
     {
-        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
-        ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
+        //PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+        //ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
-        narrationAudioSource.volume = 1;
-        narrationAudioSource.Stop();
+        //narrationAudioSource.volume = 1;
+        //narrationAudioSource.Stop();
 
-        promptManager.ShowPrompt(sceneID, 0);
+        promptManager.ShowPrompt(sceneID, 0, false, 5f);
+
+        // Give time for player to wash up
+        yield return new WaitForSeconds(timeForWashingUp);
+
+        //boss should call the player over to get out quickly here and then player starts moving
+        promptManager.ShowPrompt(sceneID, 1, false, 5f);
+        //============================================================
+
+        yield return new WaitForSeconds(3f);
+
+        playerTeleport.currentScene = ScenarioID.PastNegative;
+
+        playerTeleport.SetCurrentHotspotIndex(-1);
+        firstTeleportToiletHotspot.SetActive(true);
+        MoveToToiletDoor = true;
+
+        promptManager.ShowPrompt(sceneID, 2, false, 10f);
+    }
+
+    IEnumerator HawkerPart2()
+    {
+        //boss is outside the toilet door and heads into the hawker stall
+
+        promptManager.ShowPrompt(sceneID, 0, false, 5f);
 
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
@@ -81,8 +105,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
-        moveToToiletDoor = true;
+        playerTeleport.MoveToToiletDoor = true;
+
+        if (playerTeleport.MoveToToiletDoor == true)
+            Debug.Log("oioioi");
     }
+
 
     #endregion 
 

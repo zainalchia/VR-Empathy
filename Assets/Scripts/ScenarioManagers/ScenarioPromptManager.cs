@@ -82,7 +82,7 @@ public class ScenarioPromptManager : MonoBehaviour
         return $"{scenario}_{scene}";
     }
 
-    public void ShowPrompt(ScenarioID scenario, SceneID scene, int index = 0)
+    public void ShowPrompt(ScenarioID scenario, SceneID scene, int index = 0, bool stayOnScreen = true, float duration = 2f)
     {
         string key = GetKey(scenario, scene);
         if (!promptMap.ContainsKey(key))
@@ -106,7 +106,11 @@ public class ScenarioPromptManager : MonoBehaviour
 
         if (AlertTextController.instance != null)
         {
-            AlertTextController.instance.ShowAlert(list[index].PromptText);
+            string text = list[index].PromptText;
+            if (stayOnScreen)
+                AlertTextController.instance.ShowAlert(text);
+            else
+                AlertTextController.instance.ShowAlert(text, duration);
         }
         else
         {
@@ -114,10 +118,9 @@ public class ScenarioPromptManager : MonoBehaviour
         }
     }
 
-    public void ShowPrompt(SceneID scene, int index = 0)
+    public void ShowPrompt(SceneID scene, int index = 0, bool stayOnScreen = true, float duration = 2f)
     {
-        Debug.Log(activeScenario.ToString() + scene.ToString() + index.ToString());
-        ShowPrompt(activeScenario, scene, index);
+        ShowPrompt(activeScenario, scene, index, stayOnScreen, duration);
     }
 
 
