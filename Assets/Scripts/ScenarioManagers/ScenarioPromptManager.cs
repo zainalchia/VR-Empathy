@@ -17,7 +17,8 @@ public enum SceneID
     Family,
     LivingRoom,
     VoidDeck,
-    Bedroom
+    Bedroom,
+    Hallway
 }
 
 public class ScenarioPromptManager : MonoBehaviour

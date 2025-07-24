@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using static MainMenuManager;
+using System.IO;
+using UnityEngine.UI;
 
 public class  Trans2
 {
@@ -17,7 +19,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     enum SceneToPlay
     {
         Bathroom,
-        Bedroom
+        Bedroom,
+        Hallway
     }
 
     [Header("Narration Variables")]
@@ -142,8 +145,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     }
 
     IEnumerator Segment1Part1()
-    {
-        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+    {        
         ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
         cane.GetComponent<Grabbable>().enabled = false; // disable cane grabbable first
 
@@ -169,7 +171,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
     [SerializeField] GameObject questControllerImage;
+    [SerializeField] GameObject newCane;
     bool toGoLivingRoom = false;
+    bool bathroomSceneTransition = false;
     bool alertRemovedAfterFirstTP = false;
 
     public void PlaySegment1Part2()
@@ -188,13 +192,16 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         cane.GetComponent<ForceStayGrabbed>().active = true;
         caneOutline.enabled = true;
-        knob.GetComponent<Outline>().enabled = true;
+        promptManager.ShowPrompt(sceneID, 0);
+    }
 
+    // called in scene on CaneTeleport in event OnFirstGrab
+    public void AllowDoorOpen()
+    {
         // can open bathroom door from here
+        knob.GetComponent<Outline>().enabled = true;
         bathroomDoor.AllowDoorOpen();
         //GameManager.instance.ShowAlert(narration_1[16]);
-        Debug.Log(sceneID);
-        promptManager.ShowPrompt(sceneID, 0);
     }
     
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
@@ -204,11 +211,33 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after picking up cane
         caneOutline.enabled = false;
         knob.GetComponent<Outline>().enabled = false;
+        bathroomSceneTransition = true;
+        lastRoutine = StartCoroutine(ExitBathroom());
+    }
+    IEnumerator ExitBathroom()
+    {
+        // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(1f);
 
+        // load next scene here
+        SceneManager.LoadScene("PresentBadLivingRoom", LoadSceneMode.Single);
+    }
+
+    public void SetupSegment1Part2_1()
+    {
+        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+
+        // to make a fade in
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
+
+        cane = newCane;
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(cane.GetComponent<GrabInteractable>());
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        //GameManager.instance.ShowAlert(narration_1[17]);
         promptManager.ShowPrompt(sceneID, 1);
         questControllerImage.SetActive(true);
+        bathroomSceneTransition = false;
         toGoLivingRoom = true;
         lastRoutine = null;
     }
@@ -593,6 +622,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
         }
+        else if (sceneToPlay == SceneToPlay.Hallway) 
+        {
+            sceneID = SceneID.Bathroom;
+            SetupNarrationBathroomLivingRoom();
+            SetupSegment1Part2_1();
+        }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
             sceneID = SceneID.Bedroom;
@@ -604,7 +639,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (sceneToPlay == SceneToPlay.Bathroom)
+        if (sceneToPlay == SceneToPlay.Hallway)
         {
             #region Going to living room
             // remove alert after first teleport
@@ -621,11 +656,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
             // check here when player reaches sofa, start segment1Part3
             if (toGoLivingRoom)
             {
-                if(cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 5 && lastRoutine == null)
+                if (cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 4 && lastRoutine == null)
                 {
                     PlaySegment1Part2Half();
                 }
-                
+
                 if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
                 {
                     toGoLivingRoom = false;

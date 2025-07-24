@@ -7,6 +7,8 @@ using Oculus.Interaction;
 using UnityEngine.Events;
 using TMPro;
 using System.Diagnostics;
+using Oculus.Interaction.HandGrab;
+using Unity.VisualScripting;
 
 public class CaneTeleport : MonoBehaviour
 {
@@ -36,6 +38,8 @@ public class CaneTeleport : MonoBehaviour
     int currentHotspotIndex = -1;
 
     private bool moved = false;
+    private bool grabbedFirstTime = false;
+    public UnityEvent OnFirstGrab;
 
     void CheckIfCanMove()
     {
@@ -77,11 +81,11 @@ public class CaneTeleport : MonoBehaviour
 
             currentHotspotIndex += 1;
 
-            if (currentHotspotIndex == 2 || currentHotspotIndex == 7)
+            if (currentHotspotIndex == 1 || currentHotspotIndex == 6)
             {
                 PlaySighSound();
             }
-            else if (currentHotspotIndex == 5)
+            else if (currentHotspotIndex == 4)
             {
                 defaultTimeBeforeNextMove = 20; // delay showing of next hotspot for blurring of eyes and voicelines
             }
@@ -156,6 +160,13 @@ public class CaneTeleport : MonoBehaviour
             {
                 if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable) // only runs when player is holding cane
                 {
+                    // check if this is first time grabbing the cane
+                    if (grabbedFirstTime == false)
+                    {
+                        OnFirstGrab.Invoke();
+                        grabbedFirstTime = true;
+                    }
+
                     CheckIfCanMove();
 
                     // move input to a manager script if possible
