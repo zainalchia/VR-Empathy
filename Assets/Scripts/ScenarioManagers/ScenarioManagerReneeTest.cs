@@ -15,8 +15,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject firstTeleportToiletHotspot;
-    [SerializeField] GameObject secondTeleportToiletHotspot;
-    [SerializeField] GameObject thirdTeleportToiletHotspot;
+    [SerializeField] GameObject secondTeleportHawkerHotspot;
+    [SerializeField] GameObject FinalHotspot;
 
     [Header("Scenario Prompts")]
     [SerializeField] ScenarioPromptManager promptManager;
@@ -55,7 +55,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("In the bathroom")]
     [SerializeField] float timeForWashingUp = 5f;
-    bool MoveToToiletDoor =  false;
 
     public void HawkerPartOne()
     {
@@ -87,9 +86,17 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
-        MoveToToiletDoor = true;
+        playerTeleport.MoveToToiletDoor = true;
 
         promptManager.ShowPrompt(sceneID, 2, false, 10f);
+
+        HawkerPartTwo();
+    }
+
+    public void HawkerPartTwo()
+    {
+        sceneID = SceneID.Stall;
+        lastRoutine = StartCoroutine(HawkerPart2());
     }
 
     IEnumerator HawkerPart2()
@@ -98,17 +105,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         promptManager.ShowPrompt(sceneID, 0, false, 5f);
 
-        // Give time for player to wash up
-        yield return new WaitForSeconds(timeForWashingUp);
+        //wait for boss to walk away
+        yield return new WaitForSeconds(5f);
+        //playerTeleport.MoveToToiletDoor = false;
 
-        playerTeleport.currentScene = ScenarioID.PastNegative;
 
-        playerTeleport.SetCurrentHotspotIndex(-1);
-        firstTeleportToiletHotspot.SetActive(true);
-        playerTeleport.MoveToToiletDoor = true;
-
-        if (playerTeleport.MoveToToiletDoor == true)
-            Debug.Log("oioioi");
+        secondTeleportHawkerHotspot.SetActive(true);
+        playerTeleport.MoveToHawkerStall = true;
     }
 
 
@@ -118,6 +121,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     void Start()
     {
         SetupNarrationGeneral();
+        playerTeleport.currentScene = ScenarioID.PastNegative;
+
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             sceneID = SceneID.Bathroom;
