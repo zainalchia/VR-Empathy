@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     public TMP_Text consoleText;
+    public GameObject postProcessing;
 
     // OVR PLAYER
     [Header("OVR PLAYER")]

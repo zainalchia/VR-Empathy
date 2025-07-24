@@ -227,8 +227,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void SetupSegment1Part2_1()
     {
-        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
-
         // to make a fade in
         GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
 
@@ -257,6 +255,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(6); // food cold voiceline plus a bit of delay
 
+        GameManager.instance.postProcessing.SetActive(true);
         PostProcessingController.instance.UsingGlasses(false);
 
         yield return new WaitForSeconds(1);
