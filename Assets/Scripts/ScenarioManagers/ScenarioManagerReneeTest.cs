@@ -59,6 +59,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     public void HawkerPartOne()
     {
         lastRoutine = StartCoroutine(HawkerPart1());
+        HawkerPartTwo();
     }
 
     IEnumerator HawkerPart1()
@@ -71,13 +72,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //narrationAudioSource.volume = 1;
         //narrationAudioSource.Stop();
 
-        promptManager.ShowPrompt(sceneID, 0, false, 5f);
+        promptManager.ShowPrompt(sceneID, 0, false, 2f);
 
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
 
         //boss should call the player over to get out quickly here and then player starts moving
-        promptManager.ShowPrompt(sceneID, 1, false, 5f);
+        promptManager.ShowPrompt(sceneID, 1, false, 2f);
         //============================================================
 
         yield return new WaitForSeconds(3f);
@@ -88,35 +89,38 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true;
 
-        promptManager.ShowPrompt(sceneID, 2, false, 10f);
+        promptManager.ShowPrompt(sceneID, 2, false, 5f);
 
-        HawkerPartTwo();
+        yield return null;
     }
 
     public void HawkerPartTwo()
     {
-        if (sceneID != SceneID.Stall)
-        {
-            Debug.Log("Hey!");
-            lastRoutine = StartCoroutine(HawkerPart2());
-        }
+        sceneID = SceneID.Stall;
+        lastRoutine = StartCoroutine(HawkerPart2());
     }
 
     IEnumerator HawkerPart2()
     {
         //boss is outside the toilet door and heads into the hawker stall
 
-        promptManager.ShowPrompt(sceneID, 0, false, 5f);
+        //promptManager.ShowPrompt(sceneID, 0, false, 5f);
 
         //wait for boss to walk away
-        yield return new WaitForSeconds(5f);
-        //playerTeleport.MoveToToiletDoor = false;
 
-        secondTeleportHawkerHotspot.SetActive(true);
-        playerTeleport.MoveToHawkerStall = true;
+        if (playerTeleport.MoveToToiletDoor == false)
+        {
+            Debug.Log("oioioi bakaaaa");
+            playerTeleport.MoveToHawkerStall = true;
+            secondTeleportHawkerHotspot.SetActive(true);
+        }
+        else if(playerTeleport.MoveToToiletDoor != false)
+        {
+            Debug.Log("HMMMMM");
+        }
+
+        yield return null;
     }
-
-
     #endregion 
 
     // Start is called before the first frame update

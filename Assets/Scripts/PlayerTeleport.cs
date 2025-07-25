@@ -222,13 +222,12 @@ public class PlayerTeleport : MonoBehaviour
     }
         else if (currentScene == ScenarioID.PastNegative)
         {
-            if (currentHotspotIndex + 1 == hotspotArray.Length - 1)
+            if (currentHotspotIndex == hotspotArray.Length - 1)
             {
                 if (hotspotArray == MoveToToiletDoorHotspots)
                 {                    
                     OnLastTeleport.Invoke();
                     MoveToToiletDoor = false;
-                    sceneToPlay.ChangeScene(SceneID.Stall);
                 }                
                 else if (hotspotArray == MoveToHawkerStallHotspots)
                 {
