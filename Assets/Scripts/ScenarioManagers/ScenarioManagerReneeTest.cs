@@ -7,7 +7,7 @@ using static MainMenuManager;
 public class ScenarioManagerReneeTest : MonoBehaviour
 {
     [SerializeField] SceneToPlay sceneToPlay = SceneToPlay.Bathroom;
-    enum SceneToPlay
+    public enum SceneToPlay
     {
         Bathroom,
         Stall
@@ -20,7 +20,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("Scenario Prompts")]
     [SerializeField] ScenarioPromptManager promptManager;
-    [SerializeField] ScenarioID scenarioID = ScenarioID.PresentBad;
+    [SerializeField] ScenarioID scenarioID = ScenarioID.PastNegative;
     [SerializeField] SceneID sceneID = SceneID.Bathroom;
 
     [Header("Player Movement")]
@@ -95,8 +95,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void HawkerPartTwo()
     {
-        sceneID = SceneID.Stall;
-        lastRoutine = StartCoroutine(HawkerPart2());
+        if (sceneID != SceneID.Stall)
+        {
+            Debug.Log("Hey!");
+            lastRoutine = StartCoroutine(HawkerPart2());
+        }
     }
 
     IEnumerator HawkerPart2()
@@ -108,7 +111,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //wait for boss to walk away
         yield return new WaitForSeconds(5f);
         //playerTeleport.MoveToToiletDoor = false;
-
 
         secondTeleportHawkerHotspot.SetActive(true);
         playerTeleport.MoveToHawkerStall = true;

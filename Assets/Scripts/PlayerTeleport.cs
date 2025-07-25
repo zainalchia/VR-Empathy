@@ -22,6 +22,7 @@ public class PlayerTeleport : MonoBehaviour
 
     #region Past Negative Hotspots
     [Header("Past Negative Hotspots")]
+    [SerializeField] private ScenarioPromptManager sceneToPlay;
     public GameObject[] MoveToToiletDoorHotspots;
     [SerializeField] GameObject[] MoveToHawkerStallHotspots;
     [SerializeField] GameObject[] MoveToJobPositionHotspots;
@@ -29,13 +30,12 @@ public class PlayerTeleport : MonoBehaviour
     public GameObject[] GetMoveToToiletDoorHotspots() => MoveToToiletDoorHotspots;
     public GameObject[] GetMoveToHawkerStallHotspots() => MoveToHawkerStallHotspots;
     public GameObject[] GetMoveToJobPositionHotspots() => MoveToJobPositionHotspots;
-
     #endregion
 
     #region Past Positive Hotspots
-    [Header("Past Positive Hotspots")]
-    [SerializeField] GameObject[] MoveToHouseHotspots;
-    [SerializeField] GameObject[] MoveToDiningTableHotspots;
+    //[Header("Past Positive Hotspots")]
+    //[SerializeField] GameObject[] MoveToHouseHotspots;
+    //[SerializeField] GameObject[] MoveToDiningTableHotspots;
     #endregion
 
     //#region Past Positive Hotspots
@@ -191,7 +191,7 @@ public class PlayerTeleport : MonoBehaviour
        //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX,hotspot.transform.position.y,hotspot.transform.position.z - offsetZ);
        GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
 
-        hotspot.SetActive(false);
+       hotspot.SetActive(false);
        
        StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
@@ -222,13 +222,13 @@ public class PlayerTeleport : MonoBehaviour
     }
         else if (currentScene == ScenarioID.PastNegative)
         {
-            if (currentHotspotIndex == hotspotArray.Length - 1)
+            if (currentHotspotIndex + 1 == hotspotArray.Length - 1)
             {
                 if (hotspotArray == MoveToToiletDoorHotspots)
                 {                    
                     OnLastTeleport.Invoke();
                     MoveToToiletDoor = false;
-
+                    sceneToPlay.ChangeScene(SceneID.Stall);
                 }                
                 else if (hotspotArray == MoveToHawkerStallHotspots)
                 {
