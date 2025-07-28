@@ -476,17 +476,20 @@ public class ControllerInteractionsManager : MonoBehaviour
             leftFistClosed = false;
         }
 
-        if (leftFistClosed)
+        if (GameManager.instance.leftHand != null)
         {
-            if (timerToOpenCloseFistLeft < 1.0f)
-                timerToOpenCloseFistLeft += Time.deltaTime * speedToOpenCloseFist;
+            if (leftFistClosed)
+            {
+                if (timerToOpenCloseFistLeft < 1.0f)
+                    timerToOpenCloseFistLeft += Time.deltaTime * speedToOpenCloseFist;
+            }
+            else
+            {
+                if (timerToOpenCloseFistLeft > 0.0f)
+                    timerToOpenCloseFistLeft -= Time.deltaTime * speedToOpenCloseFist;
+            }
+            GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistLeft);
         }
-        else
-        {
-            if (timerToOpenCloseFistLeft > 0.0f)
-                timerToOpenCloseFistLeft -= Time.deltaTime * speedToOpenCloseFist;
-        }
-        GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistLeft);
 
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
@@ -499,17 +502,20 @@ public class ControllerInteractionsManager : MonoBehaviour
             rightFistClosed = false;
         }
 
-        if (rightFistClosed)
+        if (GameManager.instance.rightHand != null)
         {
-            if (timerToOpenCloseFistRight < 1.0f)
-                timerToOpenCloseFistRight += Time.deltaTime * speedToOpenCloseFist;
+            if (rightFistClosed)
+            {
+                if (timerToOpenCloseFistRight < 1.0f)
+                    timerToOpenCloseFistRight += Time.deltaTime * speedToOpenCloseFist;
+            }
+            else
+            {
+                if (timerToOpenCloseFistRight > 0.0f)
+                    timerToOpenCloseFistRight -= Time.deltaTime * speedToOpenCloseFist;
+            }
+            GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistRight);
         }
-        else
-        {
-            if (timerToOpenCloseFistRight > 0.0f)
-                timerToOpenCloseFistRight -= Time.deltaTime * speedToOpenCloseFist;
-        }
-        GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistRight);
         #endregion
 
         #region Grabbing Items
