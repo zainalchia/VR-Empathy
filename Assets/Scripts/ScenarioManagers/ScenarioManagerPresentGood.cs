@@ -10,7 +10,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     enum SceneToPlay
     {
         Bathroom,
-        Voiddeck
+        Voiddeck,
+        Hallway
     }
 
     [Header("Narration Variables")]
@@ -167,11 +168,37 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         comb.GetComponent<Outline>().enabled = false;
 
-        firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
+        /*firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
 
         playerTeleport.MovingToLivingRoom = true;
 
+        toGoLivingRoom = true;*/
+
+        lastRoutine = StartCoroutine(ExitBathroom());
+    }
+    IEnumerator ExitBathroom()
+    {
+        // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(3f);
+
+        // load next scene here
+        SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
+    }
+
+    public void SetupSegment1Part2_1()
+    {
+        // to make a fade in
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
+
+
+        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+        firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
+        promptManager.ShowPrompt(sceneID, 1);
+        playerTeleport.MovingToLivingRoom = true;
         toGoLivingRoom = true;
+        lastRoutine = null;
     }
 
     #endregion
@@ -946,6 +973,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             //StartCoroutine(Segment1Part3_3());
 
             //PlaySegment1Part4();
+        }
+        else if (sceneToPlay == SceneToPlay.Hallway)
+        {
+            SetupNarrationBathroomLivingRoom();
+            sceneID = SceneID.Bathroom;
+            promptManager.activeScenario = scenarioID;
+            SetupSegment1Part2_1();
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {

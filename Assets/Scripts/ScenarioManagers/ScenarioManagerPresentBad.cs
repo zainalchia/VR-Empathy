@@ -173,7 +173,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject questControllerImage;
     [SerializeField] GameObject newCane;
     bool toGoLivingRoom = false;
-    bool bathroomSceneTransition = false;
     bool alertRemovedAfterFirstTP = false;
 
     public void PlaySegment1Part2()
@@ -211,7 +210,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after picking up cane
         caneOutline.enabled = false;
         knob.GetComponent<Outline>().enabled = false;
-        bathroomSceneTransition = true;
         lastRoutine = StartCoroutine(ExitBathroom());
     }
     IEnumerator ExitBathroom()
@@ -219,7 +217,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // fade screen here
         GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         // load next scene here
         SceneManager.LoadScene("PresentBadLivingRoom", LoadSceneMode.Single);
@@ -235,7 +233,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
         promptManager.ShowPrompt(sceneID, 1);
         questControllerImage.SetActive(true);
-        bathroomSceneTransition = false;
         toGoLivingRoom = true;
         lastRoutine = null;
     }
