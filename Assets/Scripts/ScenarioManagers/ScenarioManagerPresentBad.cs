@@ -475,6 +475,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // wait a while to let players look around
         yield return new WaitForSeconds(7f);
 
+        GameManager.instance.fadePanel.GetComponent<Image>().color = Color.white; // fade to white since it's a hallucination/flashback
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
 
@@ -483,6 +484,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         parents.SetActive(true);
 
         // Turn to old room
+        GameManager.instance.fadePanel.GetComponent<Image>().color = Color.white;
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
 
@@ -503,6 +505,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
         yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1f);
 
+        GameManager.instance.fadePanel.GetComponent<Image>().color = Color.white;
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
         //Turn back to normal here
@@ -518,10 +521,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         parents.SetActive(false);
         hallucinationParticleFX.SetActive(false);
 
-        // play this voiceover while the screen is black
+        // play this voiceover while the screen is white
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
         yield return new WaitForSeconds(narrationAudioClips_2[5].length + 1f);
 
+        GameManager.instance.fadePanel.GetComponent<Image>().color = Color.white;
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
 
@@ -600,6 +604,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         photoFrameOutline.SetActive(false);
         // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Image>().color = Color.black; // back to black
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
         MainMenuManager.videoOrMenu = true;
