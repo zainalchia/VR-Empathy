@@ -10,6 +10,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     enum SceneToPlay
     {
         Bathroom,
+        Bedroom,
         Voiddeck,
         Hallway
     }
@@ -27,7 +28,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     AudioClip[] narrationAudioClips_2;
     [SerializeField] AudioClip[] narrationAudioClips_2_Male;
     [SerializeField] AudioClip[] narrationAudioClips_2_Female;
-    string[] narration_2 = new string[30];
+    string[] narration_2 = new string[30];    
+    
+    // for bedroom scene
+    AudioClip[] narrationAudioClips_3;
+    [SerializeField] AudioClip[] narrationAudioClips_3_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_3_Female;
+    string[] narration_3 = new string[30];
 
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject firstTeleportHotspot;
@@ -66,6 +73,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //narration_2[3] = "[Pick up highlighted mic]";
         //narration_2[4] = "[Follow taichi instructor's movements]"; // this narration appears at the start but the number is 4 cus i got lazy to change everything by 1 if i put this as narration_2[0]
         //narration_2[5] = "[Put mic to face]";
+    }    
+    
+    void SetupNarrationBedroom()
+    {
+        if (MainMenuManager.isGenderMale)
+            narrationAudioClips_3 = narrationAudioClips_3_Male;        
+        else
+            narrationAudioClips_3 = narrationAudioClips_3_Female;        
     }
 
     void SetupNarrationBathroomLivingRoom()
@@ -82,7 +97,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             narrationAudioClips_2 = narrationAudioClips_2_Male;        
         else        
             narrationAudioClips_2 = narrationAudioClips_2_Female;        
-    }
+    }    
 
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
@@ -277,7 +292,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        StartCoroutine(MoveFriendsWithDelay(1));
+        //StartCoroutine(MoveFriendsWithDelay(1));
 
         yield return new WaitForSeconds(narrationAudioClips_1[3].length - 2f);
 
@@ -302,13 +317,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         PlaySegment1Part4();
     }
 
-    IEnumerator MoveFriendsWithDelay(float delayBetweenFriends)
-    {
-        StartCoroutine(MoveFriendPosition(friends[0],0.5f,OutsideHouse.position,180));
-        yield return new WaitForSeconds(delayBetweenFriends);
-        StartCoroutine(MoveFriendPosition(friends[1],1f,OutsideHouse.position,180));
-    }
-
+    //IEnumerator MoveFriendsWithDelay(float delayBetweenFriends)
+    //{
+    //    StartCoroutine(MoveFriendPosition(friends[0],0.5f,OutsideHouse.position,180));
+    //    yield return new WaitForSeconds(delayBetweenFriends);
+    //    StartCoroutine(MoveFriendPosition(friends[1],1f,OutsideHouse.position,180));
+    //}
     IEnumerator MoveFriendPosition(GameObject friend, float stopDistance, Vector3 targetDestination, float targetYRotation)
     {
         var directionVector = (targetDestination - friend.transform.position).normalized;
@@ -356,6 +370,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #endregion
 
+    #region stuff to clear, the interaction with friends outside
+
     #region Segment 1 Part 4(From living room to main door)
 
     [Header("Living room to main door")]
@@ -366,28 +382,36 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PlaySegment1Part4()
     {
-        lastRoutine = StartCoroutine(Segment1Part4());
+        lastRoutine = StartCoroutine(ToBedroom());
     }
 
-    IEnumerator Segment1Part4()
+    IEnumerator ToBedroom()
     {
-        yield return new WaitForSeconds(2f); // delay between phone hang up and door ring
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
 
-        RingingSoundSource.Play(); // need ring sfx
-
-        //GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
-
-        playerTeleport.MovingToMainDoor = true;
-
-        firstToDoorHotspot.SetActive(true);
+        SceneManager.LoadScene("PresentGoodBedrooom", LoadSceneMode.Single);
     }
 
-    // used as unity event in player teleport
-    public void OpenDoorPrompt()
-    {
-        StopPrevDialogue();
-        StartCoroutine(Segment1Part5());
-    }
+    //IEnumerator Segment1Part4()
+    //{
+    //    yield return new WaitForSeconds(2f); // delay between phone hang up and door ring
+
+    //    RingingSoundSource.Play(); // need ring sfx
+
+    //    //GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
+
+    //    playerTeleport.MovingToMainDoor = true;
+
+    //    firstToDoorHotspot.SetActive(true);
+    //}
+
+    //// used as unity event in player teleport
+    //public void OpenDoorPrompt()
+    //{
+    //    StopPrevDialogue();
+    //    StartCoroutine(Segment1Part5());
+    //}
 
     #endregion
 
@@ -452,7 +476,49 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #endregion
 
-    #region Segment 2 Part 1 (Voiddeck, Tai chi)
+    #endregion
+
+    #region Segment 2 (In the bedroom)
+    [Header("Bedroom 1st Part")]
+    [SerializeField] GameObject Glass;
+    [SerializeField] Outline CupOutline;
+
+    public void PlaySegment2Part1()
+    {
+        sceneID = SceneID.Bedroom;
+        lastRoutine = StartCoroutine(Segment2Part1_1());
+    }
+
+    IEnumerator Segment2Part1_1()
+    {
+        ControllerInteractionsManager.instance.autoDropItems = false; // no dropping items (can also disable in scene)
+
+        yield return new WaitForSeconds(4f); // screen fade in timing
+
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_3[0]);
+
+        yield return new WaitForSeconds(narrationAudioClips_3[0].length);
+
+        //GameManager.instance.ShowAlert(narration_2[3]);
+        //promptManager.ShowPrompt(sceneID, 0);
+
+        // allow take dentures off from here
+        GameManager.instance.toTakeDenturesOff = true;
+        //GameManager.instance.ShowAlert(narration_2[11]);
+        CupOutline.enabled = true;
+    }
+
+    public void DenturesPlacedInCup() // called in UnityEvent in denture cup
+    {
+        StopPrevDialogue();
+        //lastRoutine = StartCoroutine(Segment2Part2_1());
+
+        //after the dentures should be scene switching over to void deck and before that be prompted to talk about their day add lines to csv.
+    }
+    #endregion
+
+    #region Segment 3 Part 1 (Voiddeck, Tai chi)
 
     [Header("Voiddeck - General")]
     [SerializeField]
@@ -464,7 +530,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject taichiInstructor;
     [SerializeField] Transform taichiTargetDestination;
 
-    void PlaySegment2Part1()
+    void PlaySegment3Part1()
     {
         sceneID = SceneID.VoidDeck;
         PostProcessingController.instance.UsingGlasses(true); // no blur effect
@@ -533,6 +599,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #endregion
 
+    #region Segment 3 Part 2 (Checkers)
+
     [Header("Voiddeck - Transition Taichi to Checkers")]
     [SerializeField] GameObject taichiNPC;
     [SerializeField] GameObject checkersNPC;
@@ -599,7 +667,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         checkersNPC.GetComponent<Animator>().ResetTrigger("TalkEnd");
     }
 
-    [Header("Voiddeck - Chess")]
+    [Header("Voiddeck - Checkers")]
     [SerializeField] GameObject FirstEnemyCheckerPiece;
     [SerializeField] GameObject SecondEnemyCheckerPiece;
     [SerializeField] GameObject EnemyPieceFirstDestination;
@@ -688,6 +756,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // Ensure final position is exactly at destination
         checkerPiece.transform.localPosition = targetPosition;
     }
+
+    #endregion
+
+    #region Segment 3 Part 3 (Karoake)
 
     [Header("Voiddeck - Transition Chess to Karaoke Corner")]
     [SerializeField] GameObject radio;
@@ -941,6 +1013,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         PlayEndOfScenario();
     }
 
+    #endregion
+
     public void PlayEndOfScenario()
     {
         StartCoroutine(EndOfScenario());
@@ -954,6 +1028,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         GameManager.instance.goodbyeText.SetActive(true);
     }
+
+
 
     // Start is called before the first frame update
     void Start()
