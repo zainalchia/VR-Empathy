@@ -34,7 +34,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     // for bathroom and living room scene
     [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Male;
     [SerializeField] AudioClip[] narrationAudioClips_Bathroom_Female;
-    AudioClip[] narrationAudioClips_Bathroom;
+    [HideInInspector] public AudioClip[] narrationAudioClips_Bathroom;
     private bool hasBlurredEyes = false;
     string[] narration_1 = new string[30];
 
@@ -137,7 +137,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 1 (In the Bathroom)
 
     [Header("In the bathroom")]
-    [SerializeField] float timeForWashingUp = 30f;
+    public float timeForWashingUp = 30f;
 
     public void PlaySegment1Part1()
     {
