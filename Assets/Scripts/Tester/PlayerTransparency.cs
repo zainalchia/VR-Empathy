@@ -6,29 +6,24 @@ public class PlayerTransparency : MonoBehaviour
 {
     [SerializeField] private List<GameObject> models;
 
-    private List<Material[]> mats;
 
     // Start is called before the first frame update
     void Start()
     {
-        foreach (var model in models)
-        {
-            mats[models.IndexOf(model)] = model.GetComponent<Renderer>().materials;
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        float cam_angle = Camera.main.transform.eulerAngles.x;
-        Mathf.Clamp(cam_angle, 0, 90);
 
-        foreach (var matset in mats)
+        float cam_angle = Camera.main.transform.eulerAngles.x;
+        Debug.Log("Camera: " + (1 - cam_angle / 90));
+
+        foreach (var model in models)
         {
-            foreach (var mat in matset)
-            {
-                mat.color = new Color(mat.color.r, mat.color.g, mat.color.b, (1 - cam_angle / 90));
-            }
+            var temp = model.GetComponent<SkinnedMeshRenderer>().material;
+            temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 1 - cam_angle / 90);
         }
     }
 }
