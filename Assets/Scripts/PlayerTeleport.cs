@@ -201,11 +201,12 @@ public class PlayerTeleport : MonoBehaviour
             {
                 if (hotspotArray == MoveToLivingRoomHotspots)
                 {
+                    OnLastTeleport.Invoke();
                     MovingToLivingRoom = false;
                 }
                 else if (hotspotArray == MoveToMainDoorHotspots)
                 {
-                    OnLastTeleport.Invoke();
+                    //OnLastTeleport2.Invoke();
                     MovingToMainDoor = false;
                 }
                 else if (hotspotArray == MoveToCheckersChairHotspots)

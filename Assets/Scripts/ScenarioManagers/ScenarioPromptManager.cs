@@ -83,7 +83,7 @@ public class ScenarioPromptManager : MonoBehaviour
         return $"{scenario}_{scene}";
     }
 
-    public void ShowPrompt(ScenarioID scenario, SceneID scene, int index = 0, bool stayOnScreen = true, float duration = 2f)
+    public void ShowPrompt(ScenarioID scenario, SceneID scene, int index = 0, bool stayOnScreen = false, float duration = 2f)
     {
         string key = GetKey(scenario, scene);
         if (!promptMap.ContainsKey(key))

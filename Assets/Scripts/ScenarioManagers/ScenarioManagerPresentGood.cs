@@ -12,7 +12,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         Bathroom,
         Bedroom,
         Voiddeck,
-        Hallway
+        LivingRoom
     }
 
     [Header("Narration Variables")]
@@ -133,84 +133,85 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 1 Part 2 (From bathroom to living room)
     [Header("Moving towards living room")]
-    [SerializeField] DoorKnob bathroomDoor;
-    [SerializeField] GameObject knob;
-    [SerializeField] GameObject mug;
-    [SerializeField] GameObject toothpaste;
-    [SerializeField] GameObject toothbrush;
-    [SerializeField] GameObject soap;
-    [SerializeField] GameObject comb;
+    //[SerializeField] DoorKnob bathroomDoor;
+    //[SerializeField] GameObject knob;
+    //[SerializeField] GameObject mug;
+    //[SerializeField] GameObject toothpaste;
+    //[SerializeField] GameObject toothbrush;
+    //[SerializeField] GameObject soap;
+    //[SerializeField] GameObject comb;
     bool toGoLivingRoom = false;
     bool alertRemovedAfterFirstTP = false;
 
     public void PlaySegment1Part2()
     {
         StopPrevDialogue();
+        sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part2());
     }
 
     IEnumerator Segment1Part2()
     {
-        knob.GetComponent<Outline>().enabled = true;
+        //knob.GetComponent<Outline>().enabled = true;
 
         //GameManager.instance.ShowAlert(narration_1[0]);
-        promptManager.ShowPrompt(sceneID, 0);
+
+        promptManager.ShowPrompt(sceneID, 0, false, 5f);
 
         // can open bathroom door from here
-        bathroomDoor.AllowDoorOpen();
+        //bathroomDoor.AllowDoorOpen();
 
         yield return null;
     }
 
-    public void BathroomDoorOpen() // called in UnityEvent in bathroom door
-    {
-        StopPrevDialogue();
+    //public void BathroomDoorOpen() // called in UnityEvent in bathroom door
+    //{
+    //    StopPrevDialogue();
 
-        AlertHideTimer = MaxAlertHideTimer;
+    //    AlertHideTimer = MaxAlertHideTimer;
 
-        //GameManager.instance.ShowAlert(narration_1[1]);
-        promptManager.ShowPrompt(sceneID, 1);
+    //    //GameManager.instance.ShowAlert(narration_1[1]);
+    //    promptManager.ShowPrompt(sceneID, 1);
 
-        knob.GetComponent<Outline>().enabled = false;
+    //    knob.GetComponent<Outline>().enabled = false;
 
-        mug.GetComponent<Outline>().enabled = false;
+    //    mug.GetComponent<Outline>().enabled = false;
 
-        toothpaste.GetComponent<Outline>().enabled = false;
+    //    toothpaste.GetComponent<Outline>().enabled = false;
 
-        toothbrush.GetComponent<Outline>().enabled = false;
+    //    toothbrush.GetComponent<Outline>().enabled = false;
 
-        soap.GetComponent<Outline>().enabled = false;
+    //    soap.GetComponent<Outline>().enabled = false;
 
-        comb.GetComponent<Outline>().enabled = false;
+    //    comb.GetComponent<Outline>().enabled = false;
 
-        /*firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
+    //    /*firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
 
-        playerTeleport.MovingToLivingRoom = true;
+    //    playerTeleport.MovingToLivingRoom = true;
 
-        toGoLivingRoom = true;*/
+    //    toGoLivingRoom = true;*/
 
-        lastRoutine = StartCoroutine(ExitBathroom());
-    }
-    IEnumerator ExitBathroom()
-    {
-        // fade screen here
-        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(3f);
+    //    lastRoutine = StartCoroutine(ExitBathroom());
+    //}
+    //IEnumerator ExitBathroom()
+    //{
+    //    // fade screen here
+    //    GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
+    //    GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+    //    yield return new WaitForSeconds(3f);
 
-        // load next scene here
-        SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
-    }
+    //    // load next scene here
+    //    SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
+    //}
 
     public void SetupSegment1Part2_1()
     {
         // to make a fade in
         GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
 
-
-        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+        //PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        promptManager.ShowPrompt(sceneID, 1);
+        promptManager.ShowPrompt(sceneID, 0, false, 5f);
         playerTeleport.MovingToLivingRoom = true;
         toGoLivingRoom = true;
         lastRoutine = null;
@@ -223,7 +224,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject phone;
     [SerializeField] GameObject secondPhone;
     [SerializeField] MobilePhone mobilePhone;
-    [SerializeField] Transform OutsideHouse; // just outside house for friends to walk to
+    //[SerializeField] Transform OutsideHouse; // just outside house for friends to walk to
     [SerializeField] private GameObject[] MaleFriends;
     [SerializeField] private GameObject[] FemaleFriends;
     private GameObject[] friends;
@@ -241,10 +242,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part3_1()
     {
-        sceneID = SceneID.LivingRoom;
+        
         // play phone calling
         mobilePhone.SetPhoneCalling();
-        promptManager.ShowPrompt(sceneID, 0);
+        promptManager.ShowPrompt(sceneID, 1, false, 5f);
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
 
         yield return new WaitForSeconds(2.5f + 1.1f);
@@ -257,7 +258,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        GlassesPutOn();
+        //GlassesPutOn();
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -368,18 +369,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         friend.transform.rotation = targetRotation;
     }
 
-    #endregion
-
-    #region stuff to clear, the interaction with friends outside
-
-    #region Segment 1 Part 4(From living room to main door)
-
-    [Header("Living room to main door")]
-    [SerializeField] AudioSource RingingSoundSource;
-    [SerializeField] GameObject firstToDoorHotspot;
-    [SerializeField] private DoorKnob MainGate;
-    [SerializeField] private Outline MainGateOutline;
-
     public void PlaySegment1Part4()
     {
         lastRoutine = StartCoroutine(ToBedroom());
@@ -393,90 +382,104 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         SceneManager.LoadScene("PresentGoodBedrooom", LoadSceneMode.Single);
     }
 
-    //IEnumerator Segment1Part4()
+    #endregion
+
+    //#region stuff to clear, the interaction with friends outside
+
+    //#region Segment 1 Part 4(From living room to main door)
+
+    //[Header("Living room to main door")]
+    //[SerializeField] AudioSource RingingSoundSource;
+    //[SerializeField] GameObject firstToDoorHotspot;
+    //[SerializeField] private DoorKnob MainGate;
+    //[SerializeField] private Outline MainGateOutline;
+
+
+
+    ////IEnumerator Segment1Part4()
+    ////{
+    ////    yield return new WaitForSeconds(2f); // delay between phone hang up and door ring
+
+    ////    RingingSoundSource.Play(); // need ring sfx
+
+    ////    //GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
+
+    ////    playerTeleport.MovingToMainDoor = true;
+
+    ////    firstToDoorHotspot.SetActive(true);
+    ////}
+
+    ////// used as unity event in player teleport
+    ////public void OpenDoorPrompt()
+    ////{
+    ////    StopPrevDialogue();
+    ////    StartCoroutine(Segment1Part5());
+    ////}
+
+    //#endregion
+
+    //#region Segment 1 Part 5 (Interaction with friends outside main door)
+
+    //public void PlaySegment1Part5()
     //{
-    //    yield return new WaitForSeconds(2f); // delay between phone hang up and door ring
-
-    //    RingingSoundSource.Play(); // need ring sfx
-
-    //    //GameManager.instance.ShowAlert(narration_1[1]); // shows prompt to press grip button to move towards gate
-
-    //    playerTeleport.MovingToMainDoor = true;
-
-    //    firstToDoorHotspot.SetActive(true);
+    //    lastRoutine = StartCoroutine(Segment1Part5());
     //}
 
-    //// used as unity event in player teleport
-    //public void OpenDoorPrompt()
+    //IEnumerator Segment1Part5()
     //{
-    //    StopPrevDialogue();
-    //    StartCoroutine(Segment1Part5());
+    //    friends[0].GetComponent<Animator>().SetTrigger("Wave");
+
+    //    yield return new WaitForSeconds(1f);
+
+    //    friends[1].GetComponent<Animator>().SetTrigger("Wave");
+
+    //    //yield return new WaitForSeconds(3.2f); // make sure waving animation is done first
+
+    //    //friends[0].GetComponent<Animator>().SetTrigger("TalkBegin");
+
+    //    //yield return new WaitForSeconds(1.2f);
+
+    //    friends[0].GetComponent<AudioSource>().clip = narrationAudioClips_1[4];
+
+    //    friends[0].GetComponent<AudioSource>().Play();
+
+    //    //friends[0].GetComponent<Animator>().SetTrigger("Talking");
+
+    //    yield return new WaitForSeconds(narrationAudioClips_1[4].length);
+
+    //    //friends[0].GetComponent<Animator>().SetTrigger("TalkEnd");
+
+    //    //yield return new WaitForSeconds(2f);
+
+    //    //GameManager.instance.ShowAlert(narration_1[3]);
+    //    promptManager.ShowPrompt(sceneID, 1);
+
+    //    MainGateOutline.enabled = true;
+
+    //    MainGate.AllowDoorOpen();
     //}
 
-    #endregion
+    //public void OffMainGateOutline()
+    //{
+    //    MainGateOutline.enabled = false;
+    //}
 
-    #region Segment 1 Part 5 (Interaction with friends outside main door)
+    //public void PlayMainGateOpen()
+    //{
+    //    lastRoutine = StartCoroutine(MainGateOpen());
+    //}
 
-    public void PlaySegment1Part5()
-    {
-        lastRoutine = StartCoroutine(Segment1Part5());
-    }
+    //IEnumerator MainGateOpen()
+    //{
+    //    GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+    //    yield return new WaitForSeconds(4f);
 
-    IEnumerator Segment1Part5()
-    {
-        friends[0].GetComponent<Animator>().SetTrigger("Wave");
+    //    SceneManager.LoadScene("PresentGoodVoiddeck", LoadSceneMode.Single); 
+    //}
 
-        yield return new WaitForSeconds(1f);
+    //#endregion
 
-        friends[1].GetComponent<Animator>().SetTrigger("Wave");
-
-        //yield return new WaitForSeconds(3.2f); // make sure waving animation is done first
-
-        //friends[0].GetComponent<Animator>().SetTrigger("TalkBegin");
-
-        //yield return new WaitForSeconds(1.2f);
-
-        friends[0].GetComponent<AudioSource>().clip = narrationAudioClips_1[4];
-
-        friends[0].GetComponent<AudioSource>().Play();
-
-        //friends[0].GetComponent<Animator>().SetTrigger("Talking");
-
-        yield return new WaitForSeconds(narrationAudioClips_1[4].length);
-
-        //friends[0].GetComponent<Animator>().SetTrigger("TalkEnd");
-
-        //yield return new WaitForSeconds(2f);
-
-        //GameManager.instance.ShowAlert(narration_1[3]);
-        promptManager.ShowPrompt(sceneID, 1);
-
-        MainGateOutline.enabled = true;
-
-        MainGate.AllowDoorOpen();
-    }
-
-    public void OffMainGateOutline()
-    {
-        MainGateOutline.enabled = false;
-    }
-
-    public void PlayMainGateOpen()
-    {
-        lastRoutine = StartCoroutine(MainGateOpen());
-    }
-
-    IEnumerator MainGateOpen()
-    {
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(4f);
-
-        SceneManager.LoadScene("PresentGoodVoiddeck", LoadSceneMode.Single); 
-    }
-
-    #endregion
-
-    #endregion
+    //#endregion
 
     #region Segment 2 (In the bedroom)
     [Header("Bedroom 1st Part")]
@@ -1050,10 +1053,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
             //PlaySegment1Part4();
         }
-        else if (sceneToPlay == SceneToPlay.Hallway)
+        else if (sceneToPlay == SceneToPlay.LivingRoom)
         {
             SetupNarrationBathroomLivingRoom();
-            sceneID = SceneID.Bathroom;
+            sceneID = SceneID.LivingRoom;
             promptManager.activeScenario = scenarioID;
             SetupSegment1Part2_1();
         }
