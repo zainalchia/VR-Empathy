@@ -18,12 +18,15 @@ public class PlayerTransparency : MonoBehaviour
     {
 
         float cam_angle = Camera.main.transform.eulerAngles.x;
-        Debug.Log("Camera: " + (1 - cam_angle / 90));
+        Debug.Log("Camangle: " + cam_angle);
 
         foreach (var model in models)
         {
             var temp = model.GetComponent<SkinnedMeshRenderer>().material;
-            temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 1 - cam_angle / 90);
+            if (cam_angle > 0 && cam_angle < 100)
+                temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 1 - cam_angle / 90);
+            else
+                temp.color = new Color(temp.color.r, temp.color.g, temp.color.b, 1);
         }
     }
 }
