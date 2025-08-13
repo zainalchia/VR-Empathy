@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public TMP_Text consoleText;
+    public TextMeshProUGUI testText;
     public GameObject postProcessing;
 
     // OVR PLAYER
@@ -267,15 +267,6 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (consoleText != null && GameManager.instance != null)
-        {
-            GameManager.instance.DebugLog("[Startup] " + consoleText.text);
-        }
-        else
-        {
-            Debug.LogWarning("ConsoleText or GameManager.instance is not assigned yet.");
-        }
-
         if (MaleModel != null && FemaleModel != null)
         {
             if (MainMenuManager.isGenderMale)

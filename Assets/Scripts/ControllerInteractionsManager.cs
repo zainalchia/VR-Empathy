@@ -67,19 +67,19 @@ public class ControllerInteractionsManager : MonoBehaviour
     // 0 = left hand, 1 = right hand, 2 = not holding
     public int ObjInWhichHand(GameObject obj)
     {
+        int i = 0;
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
-            if (grabInteractor.HasSelectedInteractable && grabInteractor.SelectedInteractable.gameObject == obj)
+            if (grabInteractor.HasSelectedInteractable)
             {
-                // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-                IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-                if (hand != null)
+                if (grabInteractor.SelectedInteractable.gameObject == obj)
                 {
-                    return (hand.Handedness == Handedness.Left) ? 0 : 1;
+                    return i;
                 }
             }
+            i++;
         }
-        return 2; // Not holding
+        return i;
     }
 
     public void ForceSelectedObjectFollow(GrabInteractor grabInteractor)
