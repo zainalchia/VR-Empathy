@@ -1834,7 +1834,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 1679835582}
+  m_Camera: {fileID: 2276772900260340224}
   m_PlaneDistance: 0.35
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2852,6 +2852,75 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
+--- !u!1 &890738711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 890738712}
+  - component: {fileID: 890738714}
+  - component: {fileID: 890738713}
+  m_Layer: 0
+  m_Name: Face
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &890738712
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890738711}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2276772900260340218}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &890738713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890738711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce505afda09d45459a7250859f926f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGlassesPutOn:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!135 &890738714
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890738711}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0.04}
 --- !u!1 &926231267 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 64ac900fc2a531f4990222e85563f0df,
@@ -7965,12 +8034,6 @@ MonoBehaviour:
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
     m_MaintainTargetRotationOffset: 0
---- !u!20 &1679835582 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2483171112400622654, guid: f54012181eacade4ea242c65f804720f,
-    type: 3}
-  m_PrefabInstance: {fileID: 350654079}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1679835583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15054,7 +15117,7 @@ PrefabInstance:
     - target: {fileID: 2596148559515123696, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -15184,6 +15247,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 5
       addedObject: {fileID: 350654081}
+    - targetCorrespondingSourceObject: {fileID: 4207753694588521253, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 890738712}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
 --- !u!114 &2276772900260340214 stripped
@@ -15225,6 +15292,12 @@ GameObject:
 --- !u!4 &2276772900260340218 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4207753694588521253, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &2276772900260340224 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 4207753694588978431, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
     type: 3}
   m_PrefabInstance: {fileID: 2276772900260340213}
   m_PrefabAsset: {fileID: 0}
@@ -15725,12 +15798,12 @@ PrefabInstance:
         type: 3}
       propertyPath: grabInteractors.Array.data[0]
       value: 
-      objectReference: {fileID: 106805691}
+      objectReference: {fileID: 2276772900260340215}
     - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
         type: 3}
       propertyPath: grabInteractors.Array.data[1]
       value: 
-      objectReference: {fileID: 640034081}
+      objectReference: {fileID: 2276772900260340214}
     - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
         type: 3}
       propertyPath: OnGlassesTakeOff.m_PersistentCalls.m_Calls.Array.data[0].m_Target
