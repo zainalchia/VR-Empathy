@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class TesterScript : MonoBehaviour
 {
-    public enum Scenario { presentBad, presentGood, pastBad, pastGood };
-    public Scenario scenario;
+    public enum Scene { presentBadBathroom, presentBadLivingRoom, presentGood, pastBad, pastGood };
+    public Scene scenario;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
 
     void StartPresentBadTestPart1()
@@ -40,7 +40,7 @@ public class TesterScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (scenario == Scenario.presentBad)
+        if (scenario == Scene.presentBadBathroom)
         {
             try
             {
@@ -50,6 +50,10 @@ public class TesterScript : MonoBehaviour
             {
                 Debug.Log("Error at bathroom part 1: " + e.Message);
             }
+        }
+        else if (scenario == Scene.presentBadLivingRoom)
+        {
+
         }
     }
 
