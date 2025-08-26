@@ -43,7 +43,6 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     // time taken to close/open fist
     [SerializeField] float timeToOpenCloseFist = 0.2f;
-    float speedToOpenCloseFist = 5.0f;
     bool leftFistClosed = false;
     bool rightFistClosed = false;
     float timerToOpenCloseFistLeft = 0.0f;
@@ -444,7 +443,6 @@ public class ControllerInteractionsManager : MonoBehaviour
     void Start()
     {
         dropGlassesTimer = dropGlassesInterval;
-        speedToOpenCloseFist = 1 / timeToOpenCloseFist;
     }
 
     void Update()
@@ -472,12 +470,12 @@ public class ControllerInteractionsManager : MonoBehaviour
             if (leftFistClosed)
             {
                 if (timerToOpenCloseFistLeft < 1.0f)
-                    timerToOpenCloseFistLeft += Time.deltaTime * speedToOpenCloseFist;
+                    timerToOpenCloseFistLeft += Time.deltaTime / timeToOpenCloseFist;
             }
             else
             {
                 if (timerToOpenCloseFistLeft > 0.0f)
-                    timerToOpenCloseFistLeft -= Time.deltaTime * speedToOpenCloseFist;
+                    timerToOpenCloseFistLeft -= Time.deltaTime / timeToOpenCloseFist;
             }
             GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistLeft);
         }
@@ -502,12 +500,12 @@ public class ControllerInteractionsManager : MonoBehaviour
             if (rightFistClosed)
             {
                 if (timerToOpenCloseFistRight < 1.0f)
-                    timerToOpenCloseFistRight += Time.deltaTime * speedToOpenCloseFist;
+                    timerToOpenCloseFistRight += Time.deltaTime / timeToOpenCloseFist;
             }
             else
             {
                 if (timerToOpenCloseFistRight > 0.0f)
-                    timerToOpenCloseFistRight -= Time.deltaTime * speedToOpenCloseFist;
+                    timerToOpenCloseFistRight -= Time.deltaTime / timeToOpenCloseFist;
             }
             GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistRight);
         }
