@@ -194,46 +194,46 @@ public class ControllerInteractionsManager : MonoBehaviour
     {
         foreach (GrabInteractor grabInteractorWithinRange in grabInteractorsWithinRange)
         {
-            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = grabInteractorWithinRange.gameObject.GetComponentInParent<IHand>();
-            if (hand != null)
+            if ((controllerSide == OVRInput.Controller.LTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left))
             {
-                if (controllerSide == OVRInput.Controller.LTouch && hand.Handedness == Handedness.Left)
-                {
-                    canTakeOffDentures = false;
-                    grabInteractorsWithinRange.Clear();
+                canTakeOffDentures = false;
+                grabInteractorsWithinRange.Clear();
 
-                    leftHandForceSelected = true;
-                    lastHeldObjLeftHand = GameManager.instance.dentures;
-                    GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
+                // for force selected objects
+                leftHandForceSelected = true;
+                lastHeldObjLeftHand = GameManager.instance.dentures;
+                GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
+                // positions dentures to hand that force selected                
+                GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true); // force dentures to be on hand of player (basically cant drop)
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
+                GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
-                    GameManager.instance.dentures.SetActive(true);
-                    GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-                    GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
-                    GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
-                    GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
-                    grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
+                //GameManager.instance.OnDenturesTakeOff.Invoke();
+                GameManager.instance.toTakeDenturesOff = false;
+            }
+            else if (controllerSide == OVRInput.Controller.RTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+            {
+                canTakeOffDentures = false;
+                grabInteractorsWithinRange.Clear();
 
-                    GameManager.instance.toTakeDenturesOff = false;
-                }
-                else if (controllerSide == OVRInput.Controller.RTouch && hand.Handedness == Handedness.Right)
-                {
-                    canTakeOffDentures = false;
-                    grabInteractorsWithinRange.Clear();
+                // for force selected objects
+                rightHandForceSelected = true;
+                lastHeldObjRightHand = GameManager.instance.dentures;
+                GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
 
-                    rightHandForceSelected = true;
-                    lastHeldObjRightHand = GameManager.instance.dentures;
-                    GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
+                // positions dentures to hand that force selected
+                GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
+                GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
-                    GameManager.instance.dentures.SetActive(true);
-                    GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-                    GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
-                    GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
-                    GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
-                    grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
-
-                    GameManager.instance.toTakeDenturesOff = false;
-                }
+                //GameManager.instance.OnDenturesTakeOff.Invoke();
+                GameManager.instance.toTakeDenturesOff = false;
             }
         }
     }
