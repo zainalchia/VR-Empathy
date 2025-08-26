@@ -338,12 +338,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                         if (grabInteractor.SelectedInteractable.gameObject == GameManager.instance.glasses && dropGlassesCount > 0)
                         {
                             glassesTimerOn = true;
-                            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-                            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-                            if (hand != null)
-                            {
-                                lastHandToHold = hand.Handedness;
-                            }
+                            lastHandToHold = grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness;
                         }
                     }
                 }
@@ -391,27 +386,17 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     private void ForceDropItemSpecificHand(OVRInput.Controller controllerSide)
     {
-        if (controllerSide == OVRInput.Controller.LTouch && isLeftHandLocked)
-        {
-            return;
-        }
-
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
-            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-            if (hand != null)
+            if (controllerSide == OVRInput.Controller.LTouch && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
             {
-                if (controllerSide == OVRInput.Controller.LTouch && hand.Handedness == Handedness.Left)
-                {
-                    toReleaseLeftHand = false;
-                    grabInteractor.ForceRelease();
-                }
-                else if (controllerSide == OVRInput.Controller.RTouch && hand.Handedness == Handedness.Right)
-                {
-                    toReleaseRightHand = false;
-                    grabInteractor.ForceRelease();
-                }
+                toReleaseLeftHand = false;
+                grabInteractor.ForceRelease();
+            }
+            else if (controllerSide == OVRInput.Controller.RTouch && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+            {
+                toReleaseRightHand = false;
+                grabInteractor.ForceRelease();
             }
         }
     }
