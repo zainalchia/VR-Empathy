@@ -402,7 +402,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     }
     IEnumerator Segment2Part1_1()
     {
-        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         ControllerInteractionsManager.instance.autoDropItems = false; // no dropping items (can also disable in scene)
 
         yield return new WaitForSeconds(4f); // screen fade in timing
@@ -464,8 +463,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // start furniture moving here
-        sideTable.GetComponent<Animator>().SetTrigger("move");
-        hallucinationParticleFX.SetActive(true);
+        tableWithMedicine.GetComponent<Animator>().SetTrigger("move");
         yield return new WaitForSeconds(5f); // side table move to center of room first to direct player attention to center of room
         GameManager.instance.toStartSpasming = true;
         yield return new WaitForSeconds(3f);
@@ -482,6 +480,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         oldMode.SetActive(true);
         newMode.SetActive(false);
         parents.SetActive(true);
+        hallucinationParticleFX.SetActive(true);
+        GameManager.instance.postProcessing.SetActive(true);
 
         // Turn to old room
         GameManager.instance.fadePanel.GetComponent<Image>().color = Color.white;
@@ -511,6 +511,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         //Turn back to normal here
         oldMode.SetActive(false);
         newMode.SetActive(true);
+        GameManager.instance.postProcessing.SetActive(false);
 
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
