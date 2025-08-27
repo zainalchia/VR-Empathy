@@ -81,13 +81,11 @@ public class CaneTeleport : MonoBehaviour
 
             currentHotspotIndex += 1;
 
-            if (currentHotspotIndex == 1 || currentHotspotIndex == 6)
+            PlaySighSound();
+            
+            if (currentHotspotIndex == 4)
             {
-                PlaySighSound();
-            }
-            else if (currentHotspotIndex == 4)
-            {
-                defaultTimeBeforeNextMove = 20; // delay showing of next hotspot for blurring of eyes and voicelines
+                defaultTimeBeforeNextMove = 19; // delay showing of next hotspot for blurring of eyes and voicelines
             }
 
             teleportHotspots[currentHotspotIndex].gameObject.SetActive(false); // hide current hotspot instantly
@@ -102,14 +100,14 @@ public class CaneTeleport : MonoBehaviour
     private void PlaySighSound()
     {
         playerAudio.volume = 0.8f;
-        if (currentHotspotIndex == 2)
+        if (currentHotspotIndex == 1)
         {
             if (MainMenuManager.isGenderMale)
                 playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[0]);
             else
                 playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[0]);
         }
-        else if (currentHotspotIndex == 7)
+        else if (currentHotspotIndex == 6)
         {
             if (MainMenuManager.isGenderMale)
                 playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[1]);

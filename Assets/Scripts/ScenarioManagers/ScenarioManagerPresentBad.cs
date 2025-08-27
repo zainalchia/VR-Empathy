@@ -250,9 +250,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
 
+        GameManager.instance.postProcessing.SetActive(true);
+        PostProcessingController.instance.UsingGlasses(true); // to not activate the blur first
+
         yield return new WaitForSeconds(6); // food cold voiceline plus a bit of delay
 
-        GameManager.instance.postProcessing.SetActive(true);
         PostProcessingController.instance.UsingGlasses(false);
 
         yield return new WaitForSeconds(1);
