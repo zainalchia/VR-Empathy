@@ -250,9 +250,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[2]);
 
-        GameManager.instance.postProcessing.SetActive(true);
-        PostProcessingController.instance.UsingGlasses(true); // to not activate the blur first
-
         yield return new WaitForSeconds(6); // food cold voiceline plus a bit of delay
 
         PostProcessingController.instance.UsingGlasses(false);
@@ -629,6 +626,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Hallway) 
         {
             sceneID = SceneID.Bathroom;
+            PostProcessingController.instance.UsingGlasses(true); // to not activate the blur first
             SetupNarrationBathroomLivingRoom();
             SetupSegment1Part2_1();
         }
