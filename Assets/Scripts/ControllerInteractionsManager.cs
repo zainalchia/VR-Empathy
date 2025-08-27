@@ -81,7 +81,7 @@ public class ControllerInteractionsManager : MonoBehaviour
         return i;
     }
 
-    public void ForceSelectedObjectFollow(GrabInteractor grabInteractor)
+    public void ForceSelectedObjectFollow(GrabInteractor grabInteractor) // called when force select is used as object does not follow hand, this function makes it follow the hand until it is let go
     {
         if (grabInteractor.HasSelectedInteractable)
         {
@@ -89,22 +89,15 @@ public class ControllerInteractionsManager : MonoBehaviour
         }
         else
         {
-            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-            if (hand != null)
+            if (grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
             {
-                if (hand.Handedness == Handedness.Left)
-                {
-                    leftHandForceSelected = false;
-                    if (lastHeldObjLeftHand != null)
-                        lastHeldObjLeftHand.GetComponent<Rigidbody>().isKinematic = false;
-                }
-                else if (hand.Handedness == Handedness.Right)
-                {
-                    rightHandForceSelected = false;
-                    if (lastHeldObjRightHand != null)
-                        lastHeldObjRightHand.GetComponent<Rigidbody>().isKinematic = false;
-                }
+                leftHandForceSelected = false;
+                lastHeldObjLeftHand.GetComponent<Rigidbody>().isKinematic = false;
+            }
+            else if (grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+            {
+                rightHandForceSelected = false;
+                lastHeldObjRightHand.GetComponent<Rigidbody>().isKinematic = false;
             }
         }
     }
@@ -430,11 +423,9 @@ public class ControllerInteractionsManager : MonoBehaviour
     {
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
-            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-            if (grabInteractor.HasSelectedInteractable && hand != null && hand.Handedness == Handedness.Left && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration") && !isLeftHandLocked)
+            if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
                 TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.LTouch);
-            else if (grabInteractor.HasSelectedInteractable && hand != null && hand.Handedness == Handedness.Right && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
+            else if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
                 TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.RTouch);
         }
     }

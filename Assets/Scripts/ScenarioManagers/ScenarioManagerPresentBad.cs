@@ -252,7 +252,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(6); // food cold voiceline plus a bit of delay
 
-        GameManager.instance.postProcessing.SetActive(true);
         PostProcessingController.instance.UsingGlasses(false);
 
         yield return new WaitForSeconds(1);
@@ -627,6 +626,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Hallway) 
         {
             sceneID = SceneID.Bathroom;
+            PostProcessingController.instance.UsingGlasses(true); // to not activate the blur first
             SetupNarrationBathroomLivingRoom();
             SetupSegment1Part2_1();
         }
