@@ -604,12 +604,30 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         photoFrameOutline.SetActive(false);
         // fade screen here
+        PlayEndOfScenario();
+
+        /* // old implementation
         GameManager.instance.fadePanel.GetComponent<Image>().color = Color.black; // back to black
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
         MainMenuManager.videoOrMenu = true;
         MainMenuManager.video = VideoToPlay.AfterPresentBad;
-        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single); */
+    }
+
+    public void PlayEndOfScenario()
+    {
+        StartCoroutine(EndOfScenario());
+    }
+
+    IEnumerator EndOfScenario()
+    {
+        // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Image>().color = Color.black;
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+
+        GameManager.instance.goodbyeText.SetActive(true);
     }
     #endregion
 
