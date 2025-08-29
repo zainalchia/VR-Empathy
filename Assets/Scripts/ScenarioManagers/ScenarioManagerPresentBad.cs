@@ -492,14 +492,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_2[2].length + 1f);
 
         animator = father.GetComponent<Animator>();
-        animator.SetTrigger("TalkBegin");
-        yield return new WaitForSeconds(HandsUp.length); // wait for hands up animation to finish before start talking
-        animator.SetTrigger("Talking");
-
+        animator.SetBool("Talking", true);
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
         yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1f);
-
-        animator.SetTrigger("TalkEnd");
+        animator.SetBool("Talking", false);
 
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
         yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1f);
