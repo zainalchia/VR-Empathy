@@ -2756,11 +2756,10 @@ MonoBehaviour:
   - {fileID: 1941465660}
   MoveToCheckersChairHotspots: []
   MoveToKaraokeCornerHotspots: []
+  sceneToPlay: {fileID: 0}
   MoveToToiletDoorHotspots: []
   MoveToHawkerStallHotspots: []
   MoveToJobPositionHotspots: []
-  MoveToHouseHotspots: []
-  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -27007,7 +27006,7 @@ MonoBehaviour:
   leftGrabInteractor: {fileID: 308433641}
   rightGrabInteractor: {fileID: 308433640}
   leftHandTrackingComponent: {fileID: 0}
-  timeToOpenCloseFist: 1
+  timeToOpenCloseFist: 0.2
   autoDropItems: 1
   dropGlassesInterval: 0.5
   dropGlassesCount: 2
@@ -27062,7 +27061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consoleText: {fileID: 452412692}
+  testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 308433642}
   centerEyeAnchor: {fileID: 308433646}
@@ -27134,6 +27133,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: be6cad0dec255df4fa808b0b05f18950, type: 3}
   narrationAudioClips_2_Male: []
   narrationAudioClips_2_Female: []
+  narrationAudioClips_3_Male: []
+  narrationAudioClips_3_Female: []
   firstTeleportHotspot: {fileID: 494444110}
   playerTeleport: {fileID: 472293865}
   promptManager: {fileID: 59890577}
@@ -27143,15 +27144,9 @@ MonoBehaviour:
   timeForWashingUp: 20
   bathroomDoor: {fileID: 982161141}
   knob: {fileID: 1957188677}
-  mug: {fileID: 4961946615217511000}
-  toothpaste: {fileID: 1936565560}
-  toothbrush: {fileID: 6066117601475022383}
-  soap: {fileID: 4140864653740968207}
-  comb: {fileID: 5345032221292428155}
   phone: {fileID: 1039994823576403878}
   secondPhone: {fileID: 733020312}
   mobilePhone: {fileID: 3527830699462025940}
-  OutsideHouse: {fileID: 1956728451}
   MaleFriends:
   - {fileID: 585011144}
   - {fileID: 2466824}
@@ -27159,10 +27154,8 @@ MonoBehaviour:
   - {fileID: 585011144}
   - {fileID: 2466824}
   moveSpeed: 0.75
-  RingingSoundSource: {fileID: 358392536}
-  firstToDoorHotspot: {fileID: 105550481}
-  MainGate: {fileID: 7937684469574571141}
-  MainGateOutline: {fileID: 1662802640}
+  Glass: {fileID: 0}
+  CupOutline: {fileID: 0}
   KaraokeCornerNPCs:
   - {fileID: 0}
   taiChiManager: {fileID: 0}

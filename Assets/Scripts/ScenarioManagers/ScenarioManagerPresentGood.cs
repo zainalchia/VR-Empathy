@@ -133,8 +133,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 1 Part 2 (From bathroom to living room)
     [Header("Moving towards living room")]
-    //[SerializeField] DoorKnob bathroomDoor;
-    //[SerializeField] GameObject knob;
+    [SerializeField] DoorKnob bathroomDoor;
+    [SerializeField] GameObject knob;
     //[SerializeField] GameObject mug;
     //[SerializeField] GameObject toothpaste;
     //[SerializeField] GameObject toothbrush;
@@ -152,57 +152,49 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part2()
     {
-        //knob.GetComponent<Outline>().enabled = true;
-
         //GameManager.instance.ShowAlert(narration_1[0]);
 
         promptManager.ShowPrompt(sceneID, 0, false, 5f);
 
         // can open bathroom door from here
-        //bathroomDoor.AllowDoorOpen();
+        knob.GetComponent<Outline>().enabled = true;
+        bathroomDoor.AllowDoorOpen();
 
         yield return null;
     }
 
-    //public void BathroomDoorOpen() // called in UnityEvent in bathroom door
-    //{
-    //    StopPrevDialogue();
+    public void BathroomDoorOpen() // called in UnityEvent in bathroom door
+    {
+        StopPrevDialogue();
 
-    //    AlertHideTimer = MaxAlertHideTimer;
+        AlertHideTimer = MaxAlertHideTimer;
 
-    //    //GameManager.instance.ShowAlert(narration_1[1]);
-    //    promptManager.ShowPrompt(sceneID, 1);
+        //GameManager.instance.ShowAlert(narration_1[1]);
+        /*promptManager.ShowPrompt(sceneID, 1);
+        knob.GetComponent<Outline>().enabled = false;
+        mug.GetComponent<Outline>().enabled = false;
+        toothpaste.GetComponent<Outline>().enabled = false;
+        toothbrush.GetComponent<Outline>().enabled = false;
+        soap.GetComponent<Outline>().enabled = false;
+        comb.GetComponent<Outline>().enabled = false;
 
-    //    knob.GetComponent<Outline>().enabled = false;
+        firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
+        playerTeleport.MovingToLivingRoom = true;
 
-    //    mug.GetComponent<Outline>().enabled = false;
+        toGoLivingRoom = true;*/
 
-    //    toothpaste.GetComponent<Outline>().enabled = false;
+        lastRoutine = StartCoroutine(ExitBathroom());
+    }
+    IEnumerator ExitBathroom()
+    {
+        // fade screen here
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(3f);
 
-    //    toothbrush.GetComponent<Outline>().enabled = false;
-
-    //    soap.GetComponent<Outline>().enabled = false;
-
-    //    comb.GetComponent<Outline>().enabled = false;
-
-    //    /*firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-
-    //    playerTeleport.MovingToLivingRoom = true;
-
-    //    toGoLivingRoom = true;*/
-
-    //    lastRoutine = StartCoroutine(ExitBathroom());
-    //}
-    //IEnumerator ExitBathroom()
-    //{
-    //    // fade screen here
-    //    GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
-    //    GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
-    //    yield return new WaitForSeconds(3f);
-
-    //    // load next scene here
-    //    SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
-    //}
+        // load next scene here
+        SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
+    }
 
     public void SetupSegment1Part2_1()
     {
@@ -1056,8 +1048,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.LivingRoom)
         {
             SetupNarrationBathroomLivingRoom();
-            sceneID = SceneID.LivingRoom;
             promptManager.activeScenario = scenarioID;
+            sceneID = SceneID.LivingRoom;
             SetupSegment1Part2_1();
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
