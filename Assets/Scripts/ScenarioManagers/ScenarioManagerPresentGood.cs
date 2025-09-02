@@ -42,7 +42,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Player Movement")]
     [SerializeField] PlayerTeleport playerTeleport;
 
-    [Header("Scenraio Prompters")]
+    [Header("Scenario Prompters")]
     [SerializeField] ScenarioPromptManager promptManager;
     [SerializeField] ScenarioID scenarioID = ScenarioID.PresentGood;
     [SerializeField] SceneID sceneID = SceneID.Bathroom;
