@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class TesterScript : MonoBehaviour
 {
-    public enum Scene { presentBadBathroom, presentBadLivingRoom, presentGood, pastBad, pastGood };
+    public enum Scene { presentBadBathroom, presentBadLivingRoom, presentBadBedroom, presentGood, pastBad, pastGood };
     public Scene scenario;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
 
+    #region Present Bad Bathroom
     void StartPresentBadTestPart1()
     {
         StartCoroutine(StartPresentBadTestPart1_Coroutine());
@@ -36,24 +37,57 @@ public class TesterScript : MonoBehaviour
             Debug.Log("Testing over");
         }
     }
+    #endregion
+
+    void StartPresentBadBedroomTestPart1()
+    {
+        StartCoroutine(StartPresentBadBedroomTestPart1_Coroutine());
+    }
+
+    IEnumerator StartPresentBadBedroomTestPart1_Coroutine()
+    {
+        yield return new WaitForSeconds(4f); // screen fade in timing
+        yield return new WaitForSeconds(scenarioManagerPresentBad.narrationAudioClips_2[0].length);
+        yield return new WaitForSeconds(2f); // buffer time
+        scenarioManagerPresentBad.DenturesPlacedInCup();
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if (scenario == Scene.presentBadBathroom)
+        switch (scenario)
         {
-            try
-            {
-                StartPresentBadTestPart1();
-            }
-            catch (Exception e)
-            {
-                Debug.Log("Error at bathroom part 1: " + e.Message);
-            }
-        }
-        else if (scenario == Scene.presentBadLivingRoom)
-        {
+            case Scene.presentBadBathroom:
 
+                try
+                {
+                    StartPresentBadTestPart1();
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("Error at bathroom part 1: " + e.Message);
+                }
+
+                break;
+
+
+            case Scene.presentBadLivingRoom:
+
+                break;
+
+            case Scene.presentBadBedroom:
+
+                try
+                {
+                    StartPresentBadBedroomTestPart1();
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("Error at bedroom part 1: " + e.Message);
+                }
+
+                break;
         }
     }
 

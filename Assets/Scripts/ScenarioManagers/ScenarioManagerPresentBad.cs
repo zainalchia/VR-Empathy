@@ -41,7 +41,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     // for bedroom scene
     [SerializeField] AudioClip[] narrationAudioClips_Bedroom_Male;
     [SerializeField] AudioClip[] narrationAudioClips_Bedroom_Female;
-    AudioClip[] narrationAudioClips_2;
+    [HideInInspector] public AudioClip[] narrationAudioClips_2;
     string[] narration_2 = new string[30];
 
     [Header("Multi-Scene Objects")]
