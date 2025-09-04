@@ -37,6 +37,7 @@ public class MobilePhone : MonoBehaviour
         GetComponent<AudioSource>().Play(); // will play ringing sound until phone is answered
     }
 
+    // Called in ScenarioManagerPresentGood.cs, GlassesPutOn() function
     public void UnblurPhone()
     {
         videoPlayer.clip = phoneCalling;
