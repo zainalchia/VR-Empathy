@@ -227,14 +227,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         lastRoutine = StartCoroutine(Segment1Part3_1());
 
         // clip to play is the lighthearted music clip
-
+        
         //narrationAudioSource.Stop();
         //narrationAudioSource.PlayOneShot(clipToPlay);
     }
 
     IEnumerator Segment1Part3_1()
     {
-        
+
         // play phone calling
         mobilePhone.SetPhoneCalling();
         promptManager.ShowPrompt(sceneID, 1, false, 5f);
@@ -243,6 +243,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(2.5f + 1.1f);
 
         GameManager.instance.toPickUpPhone = true;
+
     }
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
@@ -250,15 +251,22 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        PostProcessingController.instance.UsingGlasses(false);
+        GameManager.instance.toPutGlassesOn = true;
+        GameManager.instance.glasses.GetComponent<Outline>().enabled = true;
+
         //GlassesPutOn();
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
     {
         StopPrevDialogue();
+        GameManager.instance.glasses.GetComponent<Outline>().enabled = false;
         GameManager.instance.canAnswerPhone = true;
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
-        //GameManager.instance.ShowAlert(narration_1[12]);
+                                                                      //GameManager.instance.ShowAlert(narration_1[12]);
+        PostProcessingController.instance.UsingGlasses(true);
+
     }
 
     public void PhoneAnswered() // called in UnityEvent in MobilePhone
@@ -371,7 +379,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
 
-        SceneManager.LoadScene("PresentGoodBedrooom", LoadSceneMode.Single);
+        SceneManager.LoadScene("PresentGoodBedroom", LoadSceneMode.Single);
     }
 
     #endregion
@@ -1051,6 +1059,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.LivingRoom;
             SetupSegment1Part2_1();
+            PostProcessingController.instance.UsingGlasses(true);
+
         }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {

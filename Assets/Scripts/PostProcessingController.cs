@@ -51,7 +51,7 @@ public class PostProcessingController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().name == "PresentBadLivingRoom") // for blurry effect
+        if (SceneManager.GetActiveScene().name.Contains("LivingRoom"))
         {
             GetComponent<Volume>().profile.TryGet(out DepthOfField);
             DepthOfField.aperture.value = 32;
@@ -61,7 +61,7 @@ public class PostProcessingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "PresentBadLivingRoom") // for blurry effect
+        if (SceneManager.GetActiveScene().name.Contains("LivingRoom"))
         {
             if (!isUsingGlasses)
             {
