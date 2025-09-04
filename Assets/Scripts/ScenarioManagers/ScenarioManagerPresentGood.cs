@@ -501,7 +501,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_3[0].length);
 
         //GameManager.instance.ShowAlert(narration_2[3]);
-        //promptManager.ShowPrompt(sceneID, 0);
+        promptManager.ShowPrompt(sceneID, 0);
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true; 
