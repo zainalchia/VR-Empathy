@@ -110,7 +110,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part1()
     {
-        PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
+        //PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
 
         yield return new WaitForSeconds(4f); // screen fade in timing
@@ -216,7 +216,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject phone;
     [SerializeField] GameObject secondPhone;
     [SerializeField] MobilePhone mobilePhone;
-    [SerializeField] Outline glassesOutline;
     //[SerializeField] Transform OutsideHouse; // just outside house for friends to walk to
     [SerializeField] private GameObject[] MaleFriends;
     [SerializeField] private GameObject[] FemaleFriends;
@@ -251,9 +250,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        PostProcessingController.instance.UsingGlasses(false);
         GameManager.instance.toPutGlassesOn = true;
-        glassesOutline.enabled = true;
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -261,9 +258,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
         GameManager.instance.canAnswerPhone = true;
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
-        PostProcessingController.instance.UsingGlasses(true);
-
-        glassesOutline.enabled = false;
+        mobilePhone.UnblurPhone();
 
         //GameManager.instance.ShowAlert(narration_1[12]);
     }

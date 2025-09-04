@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class MobilePhone : MonoBehaviour
@@ -10,6 +11,7 @@ public class MobilePhone : MonoBehaviour
     [Header("Video Player Variables")]
     [SerializeField] VideoPlayer videoPlayer;
     [SerializeField] VideoClip phoneCalling;
+    [SerializeField] VideoClip phoneCallingBlurred;
     [SerializeField] VideoClip phoneAnswered;
     [SerializeField] VideoClip phoneHangUp;
 
@@ -27,9 +29,18 @@ public class MobilePhone : MonoBehaviour
     public void SetPhoneCalling()
     {
         GetComponent<Renderer>().SetMaterials(materials); // to switch to the video material
-        videoPlayer.clip = phoneCalling;
+        if (SceneManager.GetActiveScene().name == "PresentGoodLivingRoom") 
+            videoPlayer.clip = phoneCallingBlurred;
+        else 
+            videoPlayer.clip = phoneCalling;
         videoPlayer.Play();
         GetComponent<AudioSource>().Play(); // will play ringing sound until phone is answered
+    }
+
+    public void UnblurPhone()
+    {
+        videoPlayer.clip = phoneCalling;
+        videoPlayer.Play();
     }
 
     public void SetPhoneAnswered()

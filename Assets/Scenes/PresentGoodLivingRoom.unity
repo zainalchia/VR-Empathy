@@ -14715,73 +14715,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1382929688}
   m_CullTransparentMesh: 1
---- !u!1 &1386773612
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1386773615}
-  - component: {fileID: 1386773614}
-  - component: {fileID: 1386773613}
-  m_Layer: 0
-  m_Name: Post Processing
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1386773613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386773612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5552a41dcc3516a4f8524dea92c4224b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interval: 5
-  targetWeight: 1
-  initalWeight: 32
-  isUsingGlasses: 0
-  initialBlurDone: 0
---- !u!114 &1386773614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386773612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IsGlobal: 1
-  priority: 0
-  blendDistance: 0
-  weight: 1
-  sharedProfile: {fileID: 11400000, guid: b45daf46dca54974d982db0ab470b8fe, type: 2}
---- !u!4 &1386773615
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1386773612}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1399322205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6498954664497559598, guid: f91f595805e900b4cb6b9c1b4574d834,
@@ -29697,7 +29630,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1386773612}
+      objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -30324,7 +30257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testText: {fileID: 0}
-  postProcessing: {fileID: 1386773612}
+  postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 308433642}
   centerEyeAnchor: {fileID: 308433646}
   grabInteractors:
@@ -30409,7 +30342,6 @@ MonoBehaviour:
   phone: {fileID: 1039994823576403878}
   secondPhone: {fileID: 733020312}
   mobilePhone: {fileID: 3527830699462025940}
-  glassesOutline: {fileID: 1331159761}
   MaleFriends: []
   FemaleFriends: []
   moveSpeed: 0.75
@@ -30490,9 +30422,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 4828587205768699879}
   phoneCalling: {fileID: 32900000, guid: 73ffd79ba9f328e4fb7a8f79f08f9f31, type: 3}
+  phoneCallingBlurred: {fileID: 32900000, guid: 0bef25c61f8000740a98f0b2a79c5760,
+    type: 3}
   phoneAnswered: {fileID: 32900000, guid: 1ed231e645375234c9903f78fb2e7548, type: 3}
   phoneHangUp: {fileID: 32900000, guid: ddd8b0fe0a5b2aa4dbef277502fbea44, type: 3}
-  homeScreenMat: {fileID: 2100000, guid: 5aeb18f0af1635c4db6990362b441cf7, type: 2}
+  homeScreenMat: {fileID: 2100000, guid: 45078fc8f7cbf6e45a9dfe75a2a19d01, type: 2}
   videoScreenMat: {fileID: 2100000, guid: 8ef33f06becde9140ae598e750d536e7, type: 2}
   phoneMat: {fileID: -7498848774435975009, guid: ebd248194eb214d4c86f7687749b81fc,
     type: 3}
@@ -30618,7 +30552,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5aeb18f0af1635c4db6990362b441cf7, type: 2}
+  - {fileID: 2100000, guid: 45078fc8f7cbf6e45a9dfe75a2a19d01, type: 2}
   - {fileID: -7498848774435975009, guid: ebd248194eb214d4c86f7687749b81fc, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -31492,7 +31426,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1155942851945915638}
-  - {fileID: 1386773615}
   - {fileID: 1467056112}
   - {fileID: 2276772900260340213}
   - {fileID: 286767187}
