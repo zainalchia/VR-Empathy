@@ -4911,10 +4911,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consoleText: {fileID: 0}
-  postProcessing: {fileID: 0}
+  testText: {fileID: 0}
+  postProcessing: {fileID: 421615959}
   ovrCamRig: {fileID: 308433642}
-  centerEyeAnchor: {fileID: 0}
+  centerEyeAnchor: {fileID: 308433646}
   grabInteractors:
   - {fileID: 308433641}
   - {fileID: 308433640}
@@ -4945,7 +4945,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   dentures: {fileID: 1539590057}
-  toTakeDenturesOff: 0
+  toTakeDenturesOff: 1
+  toPutDenturesOn: 0
   OnDenturesTakeOff:
     m_PersistentCalls:
       m_Calls: []
@@ -4969,8 +4970,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGrabInteractor: {fileID: 308433641}
   rightGrabInteractor: {fileID: 308433640}
-  leftHandTrackingComponent: {fileID: 0}
-  timeToOpenCloseFist: 1
+  leftHandTrackingComponent: {fileID: 2081080085}
+  timeToOpenCloseFist: 0.2
   autoDropItems: 0
   dropGlassesInterval: 0
   dropGlassesCount: 0
@@ -5095,7 +5096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToPlay: 1
-  narrationAudioSource: {fileID: 0}
+  narrationAudioSource: {fileID: 1115407454}
   narrationAudioClips_1_Male: []
   narrationAudioClips_1_Female: []
   narrationAudioClips_2_Male: []
@@ -5104,29 +5105,19 @@ MonoBehaviour:
   narrationAudioClips_3_Female: []
   firstTeleportHotspot: {fileID: 0}
   playerTeleport: {fileID: 0}
-  promptManager: {fileID: 0}
+  promptManager: {fileID: 1719580650}
   scenarioID: 3
   sceneID: 5
   MaxAlertHideTimer: 3
   timeForWashingUp: 30
   bathroomDoor: {fileID: 0}
   knob: {fileID: 0}
-  mug: {fileID: 0}
-  toothpaste: {fileID: 0}
-  toothbrush: {fileID: 0}
-  soap: {fileID: 0}
-  comb: {fileID: 0}
   phone: {fileID: 0}
   secondPhone: {fileID: 0}
   mobilePhone: {fileID: 0}
-  OutsideHouse: {fileID: 0}
   MaleFriends: []
   FemaleFriends: []
   moveSpeed: 0
-  RingingSoundSource: {fileID: 0}
-  firstToDoorHotspot: {fileID: 0}
-  MainGate: {fileID: 0}
-  MainGateOutline: {fileID: 0}
   Glass: {fileID: 6738866492078758474}
   CupOutline: {fileID: 6738866492078758477}
   KaraokeCornerNPCs: []
@@ -9408,6 +9399,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2aa261b86273e41ae7b98704280be7, type: 3}
+--- !u!114 &1719580650 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1719580649}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1719580651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3133565269879424242, guid: de2aa261b86273e41ae7b98704280be7,
@@ -11448,6 +11451,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058901648}
   m_Mesh: {fileID: -5623197077056949267, guid: b523c845761398843b854474ac36c619, type: 3}
+--- !u!114 &2081080085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8948792251133195167, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb7623a8f0b49cf4dbaa40aea4d4be64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2097823836 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2587c3c93ddc6854a852ff477bc39d83,
@@ -12455,6 +12470,101 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.026383571
       objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1115407455}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DenturesPlacedInCup
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ScenarioManagerPresentGood, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7950288885086120722, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -13103,8 +13213,8 @@ MonoBehaviour:
   OnDenturePlaced:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
+      - m_Target: {fileID: 1115407455}
+        m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
         m_MethodName: DenturesPlacedInCup
         m_Mode: 1
         m_Arguments:

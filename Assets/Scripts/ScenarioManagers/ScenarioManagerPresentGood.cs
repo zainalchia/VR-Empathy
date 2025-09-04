@@ -507,7 +507,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //promptManager.ShowPrompt(sceneID, 0);
 
         // allow take dentures off from here
-        GameManager.instance.toTakeDenturesOff = true;
+        GameManager.instance.toTakeDenturesOff = true; 
+
         //GameManager.instance.ShowAlert(narration_2[11]);
         CupOutline.enabled = true;
     }
@@ -515,10 +516,26 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     public void DenturesPlacedInCup() // called in UnityEvent in denture cup
     {
         StopPrevDialogue();
-        //lastRoutine = StartCoroutine(Segment2Part2_1());
-
-        //after the dentures should be scene switching over to void deck and before that be prompted to talk about their day add lines to csv.
+        lastRoutine = StartCoroutine(AfterDenturesPlaced());
     }
+
+    private IEnumerator AfterDenturesPlaced()
+    {
+        // Skip narration since clips aren't set up
+        // narrationAudioSource.Stop();
+        // narrationAudioSource.PlayOneShot(narrationAudioClips_3[1]);
+
+        // Small delay so player can register dentures were placed
+        yield return new WaitForSeconds(1f);
+
+        // Fade out
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+
+        // Switch to Voiddeck
+        SceneManager.LoadScene("PresentGoodVoiddeck", LoadSceneMode.Single);
+    }
+
     #endregion
 
     #region Segment 3 Part 1 (Voiddeck, Tai chi)
@@ -1062,6 +1079,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             PostProcessingController.instance.UsingGlasses(true);
 
         }
+        else if (sceneToPlay == SceneToPlay.Bedroom)
+        {
+            SetupNarrationBedroom();
+            promptManager.activeScenario = scenarioID;
+            sceneID = SceneID.Bedroom;
+
+            PlaySegment2Part1(); 
+        }
+
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
@@ -1069,8 +1095,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.VoidDeck;
             //StartCoroutine(MovingFromTaichiToCheckers());
-            
-            PlaySegment2Part1();
+
+            PlaySegment3Part1();
 
             //StartCoroutine(MovingFromChessToKaraokeCorner());
 
