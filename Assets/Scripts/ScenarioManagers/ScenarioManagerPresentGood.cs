@@ -216,6 +216,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject phone;
     [SerializeField] GameObject secondPhone;
     [SerializeField] MobilePhone mobilePhone;
+    [SerializeField] Outline glassesOutline;
     //[SerializeField] Transform OutsideHouse; // just outside house for friends to walk to
     [SerializeField] private GameObject[] MaleFriends;
     [SerializeField] private GameObject[] FemaleFriends;
@@ -252,11 +253,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         PostProcessingController.instance.UsingGlasses(false);
         GameManager.instance.toPutGlassesOn = true;
-
-
-        //GlassesPutOn();
+        glassesOutline.enabled = true;
     }
-
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
     {
@@ -264,6 +262,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         GameManager.instance.canAnswerPhone = true;
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
         PostProcessingController.instance.UsingGlasses(true);
+
+        glassesOutline.enabled = false;
 
         //GameManager.instance.ShowAlert(narration_1[12]);
     }
@@ -378,7 +378,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
 
-        SceneManager.LoadScene("PresentGoodBedrooom", LoadSceneMode.Single);
+        SceneManager.LoadScene("PresentGoodBedroom", LoadSceneMode.Single);
     }
 
     #endregion
