@@ -250,27 +250,21 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        lastRoutine = StartCoroutine(Segment1Part3_2());
+        PostProcessingController.instance.UsingGlasses(false);
+        GameManager.instance.toPutGlassesOn = true;
+
+
         //GlassesPutOn();
     }
 
-    IEnumerator Segment1Part3_2()
-    {
-        GameManager.instance.toPutGlassesOn = true;
-        PostProcessingController.instance.UsingGlasses(false);
-
-        yield return new WaitForSeconds(1.0f);
-
-        PostProcessingController.instance.initialBlurDone = true;
-
-        yield return new WaitForSeconds(1f);
-    }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
     {
         StopPrevDialogue();
         GameManager.instance.canAnswerPhone = true;
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
+        PostProcessingController.instance.UsingGlasses(true);
+
         //GameManager.instance.ShowAlert(narration_1[12]);
     }
 
