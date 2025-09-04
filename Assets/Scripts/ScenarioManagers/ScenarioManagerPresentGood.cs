@@ -216,6 +216,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject phone;
     [SerializeField] GameObject secondPhone;
     [SerializeField] MobilePhone mobilePhone;
+    [SerializeField] Outline glassesOutline;
     //[SerializeField] Transform OutsideHouse; // just outside house for friends to walk to
     [SerializeField] private GameObject[] MaleFriends;
     [SerializeField] private GameObject[] FemaleFriends;
@@ -251,6 +252,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         GameManager.instance.toPutGlassesOn = true;
+        glassesOutline.enabled = true;
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -258,6 +260,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StopPrevDialogue();
         GameManager.instance.canAnswerPhone = true;
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
+        glassesOutline.enabled = false;
         mobilePhone.UnblurPhone();
 
         //GameManager.instance.ShowAlert(narration_1[12]);
