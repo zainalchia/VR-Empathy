@@ -503,7 +503,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_3[0].length);
 
         //GameManager.instance.ShowAlert(narration_2[3]);
-        //promptManager.ShowPrompt(sceneID, 0);
+        promptManager.ShowPrompt(sceneID, 0);
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
@@ -1059,6 +1059,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             sceneID = SceneID.LivingRoom;
             SetupSegment1Part2_1();
         }
+        else if (sceneToPlay == SceneToPlay.Bedroom)
+        {
+            SetupNarrationBedroom();
+            promptManager.activeScenario = scenarioID;
+            sceneID = SceneID.Bedroom;
+            PlaySegment2Part1();
+        }
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
@@ -1066,7 +1073,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.VoidDeck;
             //StartCoroutine(MovingFromTaichiToCheckers());
-            
+
             PlaySegment2Part1();
 
             //StartCoroutine(MovingFromChessToKaraokeCorner());
