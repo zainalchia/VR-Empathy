@@ -2916,11 +2916,10 @@ MonoBehaviour:
   MoveToKaraokeCornerHotspots:
   - {fileID: 1270818820}
   - {fileID: 1253801748}
+  sceneToPlay: {fileID: 0}
   MoveToToiletDoorHotspots: []
   MoveToHawkerStallHotspots: []
   MoveToJobPositionHotspots: []
-  MoveToHouseHotspots: []
-  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -19004,7 +19003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consoleText: {fileID: 452412692}
+  testText: {fileID: 0}
+  postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 308433642}
   centerEyeAnchor: {fileID: 308433646}
   grabInteractors:
@@ -19026,6 +19026,7 @@ MonoBehaviour:
       m_Calls: []
   dentures: {fileID: 0}
   toTakeDenturesOff: 0
+  toPutDenturesOn: 0
   OnDenturesTakeOff:
     m_PersistentCalls:
       m_Calls: []
@@ -19052,6 +19053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGrabInteractor: {fileID: 308433641}
   rightGrabInteractor: {fileID: 308433640}
+  leftHandTrackingComponent: {fileID: 0}
   timeToOpenCloseFist: 0.2
   autoDropItems: 1
   dropGlassesInterval: 0.5
@@ -19176,7 +19178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16d80075f9e5dc14d8be0047a9ff6ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToPlay: 1
+  sceneToPlay: 2
   narrationAudioSource: {fileID: 1115407454}
   narrationAudioClips_1_Male: []
   narrationAudioClips_1_Female: []
@@ -19204,6 +19206,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9367b9cd3e58246708ccdbc81a6036d8, type: 3}
   - {fileID: 8300000, guid: a381ddd489f794a0b87cdd94c1010407, type: 3}
   - {fileID: 8300000, guid: e7a506998c6c54e3c91e244acd77d6cc, type: 3}
+  narrationAudioClips_3_Male: []
+  narrationAudioClips_3_Female: []
   firstTeleportHotspot: {fileID: 0}
   playerTeleport: {fileID: 164654413}
   promptManager: {fileID: 980054490}
@@ -19213,22 +19217,14 @@ MonoBehaviour:
   timeForWashingUp: 20
   bathroomDoor: {fileID: 0}
   knob: {fileID: 0}
-  mug: {fileID: 0}
-  toothpaste: {fileID: 0}
-  toothbrush: {fileID: 0}
-  soap: {fileID: 0}
-  comb: {fileID: 0}
   phone: {fileID: 0}
   secondPhone: {fileID: 0}
   mobilePhone: {fileID: 0}
-  OutsideHouse: {fileID: 0}
   MaleFriends: []
   FemaleFriends: []
   moveSpeed: 0
-  RingingSoundSource: {fileID: 0}
-  firstToDoorHotspot: {fileID: 0}
-  MainGate: {fileID: 0}
-  MainGateOutline: {fileID: 0}
+  Glass: {fileID: 0}
+  CupOutline: {fileID: 0}
   KaraokeCornerNPCs:
   - {fileID: 1497998230}
   - {fileID: 242053553}
