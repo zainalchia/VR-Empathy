@@ -9666,6 +9666,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1201703111}
+        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
+        m_MethodName: HawkerPartTwo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnLastTeleport2:
     m_PersistentCalls:
       m_Calls: []
@@ -9677,6 +9689,7 @@ MonoBehaviour:
   MoveToHawkerStall: 0
   MoveToSection: 0
   currentScene: 0
+  testPressTrigger: 0
 --- !u!1 &1168026814 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
@@ -9905,6 +9918,7 @@ GameObject:
   - component: {fileID: 1201703107}
   - component: {fileID: 1201703110}
   - component: {fileID: 1201703111}
+  - component: {fileID: 1201703112}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -9924,7 +9938,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consoleText: {fileID: 355501368}
+  testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 1576574053}
   centerEyeAnchor: {fileID: 1576574052}
@@ -10025,7 +10039,22 @@ MonoBehaviour:
   sceneID: 0
   playerTeleport: {fileID: 1157555228}
   testitem: {fileID: 0}
-  timeForWashingUp: 1
+  timeForWashingUp: 20
+--- !u!114 &1201703112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201703106}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scenario: 4
+  scenarioManagerPresentBad: {fileID: 0}
+  scenarioManagerReneeTest: {fileID: 1201703111}
 --- !u!1 &1210993396
 GameObject:
   m_ObjectHideFlags: 0
@@ -12589,7 +12618,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4207753694587177223, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

@@ -8,6 +8,7 @@ public class TesterScript : MonoBehaviour
     public enum Scene { presentBadBathroom, presentBadLivingRoom, presentBadBedroom, presentGood, pastBad, pastGood };
     public Scene scenario;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
+    [SerializeField] ScenarioManagerReneeTest scenarioManagerReneeTest;
 
     #region Present Bad Bathroom
     void StartPresentBadTestPart1()
@@ -39,6 +40,7 @@ public class TesterScript : MonoBehaviour
     }
     #endregion
 
+    #region Present Bad Bedroom
     void StartPresentBadBedroomTestPart1()
     {
         StartCoroutine(StartPresentBadBedroomTestPart1_Coroutine());
@@ -51,7 +53,38 @@ public class TesterScript : MonoBehaviour
         yield return new WaitForSeconds(2f); // buffer time
         scenarioManagerPresentBad.DenturesPlacedInCup();
     }
+    #endregion
 
+    #region Past Bad
+    void StartPastBadTestPart1()
+    {
+        try
+        {
+            StartCoroutine(StartPastBadTestPart1_Coroutine());
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Error at bathroom part 1: " + e.Message);
+        }
+        finally
+        {
+            Debug.Log("finish testing");
+        }
+    }
+
+    IEnumerator StartPastBadTestPart1_Coroutine()
+    {
+        // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(4f); // screen fade in timing
+        yield return new WaitForSeconds(scenarioManagerReneeTest.timeForWashingUp);
+        yield return new WaitForSeconds(3f);
+
+        yield return new WaitForSeconds(1f); // buffer time to let the teleport point appear
+        scenarioManagerReneeTest.playerTeleport.testPressTrigger = true;
+        yield return new WaitForSeconds(1f);
+        scenarioManagerReneeTest.playerTeleport.testPressTrigger = true;
+    }
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +104,6 @@ public class TesterScript : MonoBehaviour
 
                 break;
 
-
             case Scene.presentBadLivingRoom:
 
                 break;
@@ -85,6 +117,19 @@ public class TesterScript : MonoBehaviour
                 catch (Exception e)
                 {
                     Debug.Log("Error at bedroom part 1: " + e.Message);
+                }
+
+                break;
+
+            case Scene.pastBad:
+
+                try
+                {
+                    StartPastBadTestPart1();
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("Error at scene start: " + e.Message);
                 }
 
                 break;

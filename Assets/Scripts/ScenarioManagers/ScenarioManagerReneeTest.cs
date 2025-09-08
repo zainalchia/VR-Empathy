@@ -24,7 +24,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] SceneID sceneID = SceneID.Bathroom;
 
     [Header("Player Movement")]
-    [SerializeField] PlayerTeleport playerTeleport;
+    public PlayerTeleport playerTeleport;
 
     [Header("Debuggers")]
     [SerializeField] GameObject testitem;
@@ -54,12 +54,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     #region Hawker Bathroom
 
     [Header("In the bathroom")]
-    [SerializeField] float timeForWashingUp = 5f;
+    public float timeForWashingUp = 5f;
 
     public void HawkerPartOne()
     {
         lastRoutine = StartCoroutine(HawkerPart1());
-        HawkerPartTwo();
     }
 
     IEnumerator HawkerPart1()
@@ -90,8 +89,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         playerTeleport.MoveToToiletDoor = true;
 
         promptManager.ShowPrompt(sceneID, 2, false, 5f);
-
-        yield return null;
     }
 
     public void HawkerPartTwo()
@@ -111,12 +108,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         if (playerTeleport.MoveToToiletDoor == false)
         {
             Debug.Log("oioioi bakaaaa");
-            playerTeleport.MoveToHawkerStall = true;
-            secondTeleportHawkerHotspot.SetActive(true);
         }
         else if(playerTeleport.MoveToToiletDoor != false)
         {
             Debug.Log("HMMMMM");
+            playerTeleport.MoveToHawkerStall = true;
+            secondTeleportHawkerHotspot.SetActive(true);
         }
 
         yield return null;

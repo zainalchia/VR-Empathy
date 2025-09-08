@@ -73,6 +73,7 @@ public class PlayerTeleport : MonoBehaviour
     //public bool MovingToKaraokeCorner = false;
 
     public ScenarioID currentScene;
+    public bool testPressTrigger = false; // used for TesterScript to simulate trigger button press in editor.
 
     void Update()
     {
@@ -132,7 +133,7 @@ public class PlayerTeleport : MonoBehaviour
         }
         else if(currentScene == ScenarioID.PastNegative)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || testPressTrigger && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
                 if (MoveToToiletDoor && currentHotspotIndex != MoveToToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -164,6 +165,7 @@ public class PlayerTeleport : MonoBehaviour
 
                     MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
                 }
+                testPressTrigger = false;
             }
             else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
             {
