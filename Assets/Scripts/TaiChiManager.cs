@@ -41,7 +41,8 @@ public class TaiChiManager : MonoBehaviour
     private float spawnSmallBallsInterval = 0.5f;
     private List<GameObject> smallBalls = new List<GameObject>();
 
-    private float timer = 0;
+    //private float timer = 0;
+    //private bool doTaiChi = true;
 
     private void Start()
     {
@@ -86,98 +87,98 @@ public class TaiChiManager : MonoBehaviour
         }
     }
 
-    public void spawnNext()
-    {        
-        segmentResetter = false;
-        if (firstHitbox) 
-        {
-            firstHitbox = false;
-        }
-        else
-        {
-            current++;
-        }
+    //public void spawnNext()
+    //{        
+    //    segmentResetter = false;
+    //    if (firstHitbox) 
+    //    {
+    //        firstHitbox = false;
+    //    }
+    //    else
+    //    {
+    //        current++;
+    //    }
 
-        // automate hitboxes position according to where taichi npc hands(aka their middle fingers center of their hands) are at
-        // the player one is mirror image of the instructor one
-        //leftTaichiHitboxes[current].transform.position = new Vector3(taichiNPCRightMiddleFinger.transform.position.x + (2.3f - 2 * (taichiNPCRightMiddleFinger.transform.position.x - taichiNPCHip.transform.position.x)), taichiNPCRightMiddleFinger.transform.position.y, taichiNPCRightMiddleFinger.transform.position.z);
-        //leftTaichiHitboxes[current].transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-        //
-        //rightTaichiHitboxes[current].transform.position = new Vector3(taichiNPCLeftMiddleFinger.transform.position.x + (2.3f - 2 * (taichiNPCLeftMiddleFinger.transform.position.x - taichiNPCHip.transform.position.x)), taichiNPCLeftMiddleFinger.transform.position.y, taichiNPCLeftMiddleFinger.transform.position.z);
-        //rightTaichiHitboxes[current].transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
-        //
-        //leftTaichiHitboxes[current].SetActive(true);
-        //rightTaichiHitboxes[current].SetActive(true);
-        //
-        //taichiNPCLeftBall.SetActive(true);
-        //taichiNPCRightBall.SetActive(true);
-        //
-        //taichiNPCLeftBall.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-        //taichiNPCRightBall.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-        //taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
-        //taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
+    //    // automate hitboxes position according to where taichi npc hands(aka their middle fingers center of their hands) are at
+    //    // the player one is mirror image of the instructor one
+    //    //leftTaichiHitboxes[current].transform.position = new Vector3(taichiNPCRightMiddleFinger.transform.position.x + (2.3f - 2 * (taichiNPCRightMiddleFinger.transform.position.x - taichiNPCHip.transform.position.x)), taichiNPCRightMiddleFinger.transform.position.y, taichiNPCRightMiddleFinger.transform.position.z);
+    //    //leftTaichiHitboxes[current].transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+    //    //
+    //    //rightTaichiHitboxes[current].transform.position = new Vector3(taichiNPCLeftMiddleFinger.transform.position.x + (2.3f - 2 * (taichiNPCLeftMiddleFinger.transform.position.x - taichiNPCHip.transform.position.x)), taichiNPCLeftMiddleFinger.transform.position.y, taichiNPCLeftMiddleFinger.transform.position.z);
+    //    //rightTaichiHitboxes[current].transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+    //    //
+    //    //leftTaichiHitboxes[current].SetActive(true);
+    //    //rightTaichiHitboxes[current].SetActive(true);
+    //    //
+    //    //taichiNPCLeftBall.SetActive(true);
+    //    //taichiNPCRightBall.SetActive(true);
+    //    //
+    //    //taichiNPCLeftBall.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+    //    //taichiNPCRightBall.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+    //    //taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
+    //    //taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
 
-        switch (segment)
-        {
-            case 1:
-                if (current == 3)
-                {
-                    lastHitbox = true;
-                }
-                break;
-            case 2:
-                if (current == 6)
-                {
-                    lastHitbox = true;
-                }
-                break;
-            case 3:
-                if (current == 11)
-                {
-                    lastHitbox = true;
-                }
-                break;
-        }
+    //    switch (segment)
+    //    {
+    //        case 1:
+    //            if (current == 3)
+    //            {
+    //                lastHitbox = true;
+    //            }
+    //            break;
+    //        case 2:
+    //            if (current == 6)
+    //            {
+    //                lastHitbox = true;
+    //            }
+    //            break;
+    //        case 3:
+    //            if (current == 11)
+    //            {
+    //                lastHitbox = true;
+    //            }
+    //            break;
+    //    }
 
-        toSpawnSmallBalls = false;
-    }
+    //    toSpawnSmallBalls = false;
+    //}
 
     public void startSegment1()
     {
 
     }
 
-    public void startSegment2()
-    {
-        lastHitbox = false;
-    }
-    public void startSegment3()
-    {
-        lastHitbox = false;
-    }
+    //public void startSegment2()
+    //{
+    //    lastHitbox = false;
+    //}
+    //public void startSegment3()
+    //{
+    //    lastHitbox = false;
+    //}
 
-    public void nextTaichiPose()
-    {
-        switch (segment)
-        {
-            case 1:
-                if (!segmentResetter)
-                {
-                    segment = 2;
-                    startSegment2();
-                    segmentResetter = true;
-                }
-                break;
-            case 2:
-                if (!segmentResetter)
-                {
-                    segment = 3;
-                    startSegment3();
-                    segmentResetter = true;
-                }
-                break;
-        }        
-    }
+    //public void nextTaichiPose()
+    //{
+    //    switch (segment)
+    //    {
+    //        case 1:
+    //            if (!segmentResetter)
+    //            {
+    //                segment = 2;
+    //                startSegment2();
+    //                segmentResetter = true;
+    //            }
+    //            break;
+    //        case 2:
+    //            if (!segmentResetter)
+    //            {
+    //                segment = 3;
+    //                startSegment3();
+    //                segmentResetter = true;
+    //            }
+    //            break;
+    //    }
+    //}
     private void FixedUpdate()
     {
         //if(leftTaichiHitboxes[current].GetComponent<TaichiHitbox>().isHit && rightTaichiHitboxes[current].GetComponent<TaichiHitbox>().isHit)
@@ -187,15 +188,23 @@ public class TaiChiManager : MonoBehaviour
         //}
     }
 
+    //public void FinishDoTaiChi()
+    //{
+    //    doTaiChi = false;
+    //}
+
     private void Update()
     {
+        //if (doTaiChi)
+        //{
+        //    timer += 1 * Time.deltaTime;
+        //    if (timer > 1)
+        //    {
+        //        timer = 0;
+        //        resumeTaichi.Invoke();
+        //    }
+        //}
 
-        timer += 1 * Time.deltaTime;
-        if (timer > 3)
-        {
-            timer = 0;
-            resumeTaichi.Invoke();
-        }
         //if (toSpawnSmallBalls)
         //{
         //    if (spawnSmallBallsTimer > spawnSmallBallsInterval)

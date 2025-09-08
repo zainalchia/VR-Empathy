@@ -578,17 +578,19 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         taichiInstructor.GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4.5f);
 
-        taichiInstructor.GetComponent<TaiChiInstructor>().NextPose();
+        taichiInstructor.GetComponent<TaiChiInstructor>().StartAnimation();
 
-        yield return new WaitForSeconds(2.8f);
+        //taichiInstructor.GetComponent<TaiChiInstructor>().NextPose();
 
-        GameManager.instance.taiChiAnimations[1].NextPose();
+        //yield return new WaitForSeconds(2.8f);
 
-        GameManager.instance.taiChiAnimations[2].NextPose();
+        //GameManager.instance.taiChiAnimations[1].NextPose();
 
-        taiChiManager.startSegment1();
+        //GameManager.instance.taiChiAnimations[2].NextPose();
+
+        //taiChiManager.startSegment1();
 
         //GameManager.instance.ShowAlert(narration_2[4]);
         promptManager.ShowPrompt(sceneID, 0);
@@ -604,14 +606,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }    
     }
 
-    public void playnextTaichiPose() // called on taichi instructor in scene, OnNextPost event
-    {
-        taiChiManager.nextTaichiPose();
-    }
+    //public void playnextTaichiPose() // called on taichi instructor in scene, OnNextPost event
+    //{
+    //    taiChiManager.nextTaichiPose();
+    //}
 
     public void TaichiFinished() // Event called in Taichi instructor
     {
         StartCoroutine(MovingFromTaichiToCheckers());
+        //taiChiManager.FinishDoTaiChi();
     }
 
     #endregion
@@ -707,10 +710,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         checkersNPC.GetComponent<Animator>().SetTrigger("move");
         yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceFirstDestination,0));
         //GameManager.instance.ShowAlert(narration_2[1]);
-        promptManager.ShowPrompt(sceneID, 3);
-        PlayerPiece.GetComponent<Grabbable>().enabled = true;
-        PlayerPieceOutline.SetActive(true);
+        //promptManager.ShowPrompt(sceneID, 3);
+        //PlayerPiece.GetComponent<Grabbable>().enabled = true;
+        //PlayerPieceOutline.SetActive(true);
         PlayerPieceFirstDestination.SetActive(true);
+        StartCoroutine(MovePiece(PlayerPiece, PlayerPieceFirstDestination));
+
     }
 
     public void PlayFirstPieceCaptured()
@@ -724,12 +729,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         PlayerPieceOutline.SetActive(false);
         yield return StartCoroutine(MovePiece(FirstEnemyCheckerPiece,EnemyPieceSecondDestination)); // moves enemy piece to symbolise it being captured
         //GameManager.instance.ShowAlert(narration_2[1]);
-        promptManager.ShowPrompt(sceneID, 3);
-        PlayerPiece.GetComponent<Grabbable>().enabled = true;
-        PlayerPieceOutline.SetActive(true);
-        PlayerPieceSecondDestination.SetActive(true);
+        //promptManager.ShowPrompt(sceneID, 3);
+        //PlayerPiece.GetComponent<Grabbable>().enabled = true;
+        //PlayerPieceOutline.SetActive(true);
+        //PlayerPieceSecondDestination.SetActive(true);
+
+        StartCoroutine(MovePiece(PlayerPiece, PlayerPieceSecondDestination));
+
     }
-    
+
     public void PlaySecondPieceCaptured()
     {
         StartCoroutine(SecondPieceCaptured());
