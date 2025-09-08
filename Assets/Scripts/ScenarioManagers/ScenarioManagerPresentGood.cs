@@ -732,7 +732,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //promptManager.ShowPrompt(sceneID, 3);
         //PlayerPiece.GetComponent<Grabbable>().enabled = true;
         //PlayerPieceOutline.SetActive(true);
-        //PlayerPieceSecondDestination.SetActive(true);
+        PlayerPieceSecondDestination.SetActive(true);
 
         StartCoroutine(MovePiece(PlayerPiece, PlayerPieceSecondDestination));
 
