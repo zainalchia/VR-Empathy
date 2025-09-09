@@ -11,60 +11,67 @@ public class TaiChiInstructor : MonoBehaviour
     public UnityEvent OnNextPose;
     public UnityEvent OnPosesFinish;
     public UnityEvent spawnNextHitboxes;
+    [SerializeField] Animator taiChiAnimator;
+    [SerializeField] Animator taiChiInstructorAnimator; // set for npc
     float timerToGoNext = 0f;
     bool timerstart = false;
     int currentPose = 0;
+    public bool checkStartAnim; // enable for npc
 
-    public void ReadyForNextPose() // called in animation event 1 frame before the last frame
-    {
-        timerToGoNext = timeDelayBeforeNextPose;
-        timerstart = true;
-    }
+    //public void ReadyForNextPose() // called in animation event 1 frame before the last frame
+    //{
+    //    timerToGoNext = timeDelayBeforeNextPose;
+    //    timerstart = true;
+    //}
 
-    public void NextPose() // call to start taichi in scenario manager, will invoke UnityEvent once all taichi animations have been played
-    {
-        if (GameManager.instance.toDoTaiChi)
-        {
-            timerstart = false;
-            if (currentPose < numOfPoses)
-            {
-                currentPose += 1;
-                GetComponent<Animator>().SetInteger("Pose", currentPose);
-                Debug.Log("Current pose:" + currentPose);
-                if (currentPose > 1)
-                {
-                    OnNextPose.Invoke();
-                }
-            }
-            else
-            {
-                GameManager.instance.toDoTaiChi = false;
-                OnPosesFinish.Invoke();
-            }
-        }
-    }
+    //public void NextPose() // call to start taichi in scenario manager, will invoke UnityEvent once all taichi animations have been played
+    //{
+    //    if (GameManager.instance.toDoTaiChi)
+    //    {
+    //        timerstart = false;
+    //        if (currentPose < numOfPoses)
+    //        {
+    //            currentPose += 1;
+    //            GetComponent<Animator>().SetInteger("Pose", currentPose);
+    //            Debug.Log("Current pose:" + currentPose);
+    //            if (currentPose > 1)
+    //            {
+    //                OnNextPose.Invoke();
+    //            }
+    //        }
+    //        else
+    //        {
+    //            GameManager.instance.toDoTaiChi = false;
+    //            OnPosesFinish.Invoke();
+    //        }
+    //    }
+    //}
 
-    public void PausePose()
-    {
-        gameObject.GetComponent<Animator>().speed = 0f;        
+    //public void PausePose()
+    //{
+    //    gameObject.GetComponent<Animator>().speed = 0f;        
 
-        if (triggerHitbox)
-        {
-            spawnNextHitboxes.Invoke();
-        }
-    }
+    //    if (triggerHitbox)
+    //    {
+    //        spawnNextHitboxes.Invoke();
+    //    }
+    //}
 
-    public void UnpausePose()
-    {
-        foreach (var anim in GameManager.instance.taiChiAnimations)
-        {
-            anim.GetComponent<Animator>().speed = 1f;
-        }
-    }
+    //public void UnpausePose()
+    //{
+    //    foreach (var anim in GameManager.instance.taiChiAnimations)
+    //    {
+    //        anim.GetComponent<Animator>().speed = 1f;
+    //    }
+    //}
 
     public void HideAlert()
     {
         GameManager.instance.HideAlert();
+    }
+    public void StartAnimation()
+    {
+        GetComponent<Animator>().SetBool("StartAnimation", true);
     }
 
     // Start is called before the first frame update
@@ -76,14 +83,34 @@ public class TaiChiInstructor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timerstart)
-        {
-            timerToGoNext -= Time.deltaTime;
-            if (timerToGoNext <= 0)
+        //    if (timerstart)
+        //    {
+        //        timerToGoNext -= Time.deltaTime;
+        //        if (timerToGoNext <= 0)
+        //        {
+        //            NextPose();
+        //        }
+        //    }
+
+        if (checkStartAnim) // npc checks if taichi instructor started animation
+            if (taiChiInstructorAnimator.GetBool("StartAnimation"))
             {
-                NextPose();
+                StartAnimation();
+                checkStartAnim = false;
+            }
+
+        AnimatorStateInfo StateInfo = taiChiAnimator.GetCurrentAnimatorStateInfo(0);
+        
+        if (StateInfo.IsTag("FinalTaiChi")) // StateInfo.normalizedTIme 0 -> Start of animation, 1 -> End of animation
+        {
+            GetComponent<Animator>().SetBool("StartAnimation", false);
+            if (StateInfo.normalizedTime >= 0.95f)
+            {
+                OnPosesFinish.Invoke();
             }
         }
+
+
     }
 
     
