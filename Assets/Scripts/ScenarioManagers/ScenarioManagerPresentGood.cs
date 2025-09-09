@@ -540,6 +540,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Voiddeck - General")]
     [SerializeField]
     GameObject[] KaraokeCornerNPCs;
+    [SerializeField] WhiteFade WhiteFadeEffect;
 
     [Header("Voiddeck - Taichi")]
     [SerializeField]
@@ -671,10 +672,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //lookDetection.enabled = true;
 
         // Fadde screen
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        WhiteFadeEffect.FadeOut();
+        Debug.Log("FadeOut");
         yield return new WaitForSeconds(4f);
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
-        yield return new WaitForSeconds(2f);
+        //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        WhiteFadeEffect.FadeIn();
+        Debug.Log("FadeIn");
+        yield return new WaitForSeconds(3f);
 
         StartWalkingToCheckers();
     }
