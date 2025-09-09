@@ -7,6 +7,7 @@ public class TesterScript : MonoBehaviour
 {
     public enum Scene { presentBadBathroom, presentBadLivingRoom, presentBadBedroom, presentGood, pastBad, pastGood };
     public Scene scenario;
+    [Tooltip("Press this to begin test")][SerializeField] bool startTest = false;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
     [SerializeField] ScenarioManagerReneeTest scenarioManagerReneeTest;
 
@@ -66,10 +67,6 @@ public class TesterScript : MonoBehaviour
         {
             Debug.Log("Error at bathroom part 1: " + e.Message);
         }
-        finally
-        {
-            Debug.Log("finish testing");
-        }
     }
 
     IEnumerator StartPastBadTestPart1_Coroutine()
@@ -83,12 +80,15 @@ public class TesterScript : MonoBehaviour
         scenarioManagerReneeTest.playerTeleport.testPressTrigger = true;
         yield return new WaitForSeconds(1f);
         scenarioManagerReneeTest.playerTeleport.testPressTrigger = true;
+
+        Debug.Log("finish testing");
     }
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
+    void StartTest()
     {
+        Debug.Log("Test started");
+
         switch (scenario)
         {
             case Scene.presentBadBathroom:
@@ -139,6 +139,10 @@ public class TesterScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (startTest)
+        {
+            StartTest();
+            startTest = false;
+        }
     }
 }
