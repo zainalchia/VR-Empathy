@@ -670,14 +670,20 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         //lookDetection.enabled = true;
 
+        // Fadde screen
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(4f);
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(2f);
+
         StartWalkingToCheckers();
     }
 
     public void StartWalkingToCheckers()
     {
         StopPrevDialogue(); // hide alert text
-        lookDetection.enabled = false;
-        firstCheckersHotspot.SetActive(true);
+        //lookDetection.enabled = false;
+        //firstCheckersHotspot.SetActive(true);
         playerTeleport.MovingToCheckersChair = true;
         //GameManager.instance.ShowAlert(narration_2[2]);
         promptManager.ShowPrompt(sceneID, 2);
