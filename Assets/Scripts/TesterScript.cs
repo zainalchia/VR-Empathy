@@ -6,8 +6,8 @@ using UnityEngine;
 public class TesterScript : MonoBehaviour
 {
     public enum Scene { presentBadBathroom, presentBadLivingRoom, presentBadBedroom, presentGood, pastBad, pastGood };
+    [Tooltip("Press this to begin test")] [SerializeField] bool startTest = false;
     public Scene scenario;
-    [Tooltip("Press this to begin test")][SerializeField] bool startTest = false;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
     [SerializeField] ScenarioManagerReneeTest scenarioManagerReneeTest;
 
