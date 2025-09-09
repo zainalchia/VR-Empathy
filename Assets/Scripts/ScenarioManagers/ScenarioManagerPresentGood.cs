@@ -1068,32 +1068,49 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // Show medicine prompt
         promptManager.ShowPrompt(sceneID, 1);
         MedicineOutline.enabled = true;
-        yield return null;
+
+        // Allow player to consume medicine
+        GameManager.instance.toConsumeMedicine = true;
+        GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+
     }
 
-    public void MedicineTaken() 
+    public void MedicineTaken()
     {
         StopPrevDialogue();
         MedicineOutline.enabled = false;
+
+        // Reset flag
+        GameManager.instance.toConsumeMedicine = false;
+        GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
+        //next step
         StartCoroutine(AfterMedicineTaken());
     }
 
+
     IEnumerator AfterMedicineTaken()
     {
+        yield return new WaitForSeconds(2f);
         // Show photo frame prompt
         promptManager.ShowPrompt(sceneID, 2); 
         PhotoFrameOutline.enabled = true;
-        yield return null;
+
+        GameManager.instance.photoFrame.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
 
     public void PhotoFrameViewed() 
     {
         StopPrevDialogue();
         PhotoFrameOutline.enabled = false;
+        GameManager.instance.photoFrame.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
 
+        StartCoroutine(PhotoFrameSequence());
+    }
+    IEnumerator PhotoFrameSequence()
+    {
+        yield return new WaitForSeconds(8f); 
         PlayEndOfScenario();
     }
-
     #endregion
 
     public void PlayEndOfScenario()
