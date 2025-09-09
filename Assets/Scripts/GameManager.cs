@@ -60,6 +60,16 @@ public class GameManager : MonoBehaviour
     public bool toTakeDenturesOff = false;
     public UnityEvent OnDenturesTakeOff;
 
+    [Header("MEDICINE")]
+    public GameObject medicine;
+    public bool toConsumeMedicine = false;
+    public UnityEvent OnMedicineConsumed;
+
+    [Header("PHOTO FRAME")]
+    public GameObject photoFrame;
+    public bool toViewPhotoFrame = false;
+    public UnityEvent OnPhotoFrameViewed;
+
     [Header("Any Look at Objectives")]
     public bool toLookAtObjective = false;
 
