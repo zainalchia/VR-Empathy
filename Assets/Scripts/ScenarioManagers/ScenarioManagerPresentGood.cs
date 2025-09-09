@@ -11,6 +11,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         Bathroom,
         Bedroom,
+        BedroomPart2,
         Voiddeck,
         LivingRoom
     }
@@ -487,21 +488,24 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         sceneID = SceneID.Bedroom;
         lastRoutine = StartCoroutine(Segment2Part1_1());
+
     }
 
     IEnumerator Segment2Part1_1()
     {
+
         ControllerInteractionsManager.instance.autoDropItems = false; // no dropping items (can also disable in scene)
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_3[0]);
+        //narrationAudioSource.Stop();
+        //narrationAudioSource.PlayOneShot(narrationAudioClips_3[0]);
 
-        yield return new WaitForSeconds(narrationAudioClips_3[0].length);
+        //yield return new WaitForSeconds(narrationAudioClips_3[0].length);
 
         //GameManager.instance.ShowAlert(narration_2[3]);
         promptManager.ShowPrompt(sceneID, 0);
+        AlertTextController.instance.gameObject.SetActive(true); 
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true; 
@@ -1025,7 +1029,67 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(narrationAudioClips_2[7].length);
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(8f);
+
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(3f);
+
+        SceneManager.LoadScene("PresentGoodBedroomPart2", LoadSceneMode.Single);
+
+
+    }
+
+    #endregion
+
+    #region Segment 4 (Bedroom Part 2)
+    [Header("Bedroom Part 2")]
+    [SerializeField] GameObject MedicineBottle;
+    [SerializeField] Outline MedicineOutline;
+    [SerializeField] GameObject PhotoFrame;
+    [SerializeField] Outline PhotoFrameOutline;
+
+    public void PlaySegment4Part1()
+    {
+        lastRoutine = StartCoroutine(Segment4Part1());
+    }
+
+    IEnumerator Segment4Part1()
+    {
+        // Fade back into Bedroom
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(4f);
+
+
+        // Wait a frame for scene load
+        yield return null;
+
+        sceneID = SceneID.Bedroom;
+
+        // Show medicine prompt
+        promptManager.ShowPrompt(sceneID, 1);
+        MedicineOutline.enabled = true;
+        yield return null;
+    }
+
+    public void MedicineTaken() 
+    {
+        StopPrevDialogue();
+        MedicineOutline.enabled = false;
+        StartCoroutine(AfterMedicineTaken());
+    }
+
+    IEnumerator AfterMedicineTaken()
+    {
+        // Show photo frame prompt
+        promptManager.ShowPrompt(sceneID, 2); 
+        PhotoFrameOutline.enabled = true;
+        yield return null;
+    }
+
+    public void PhotoFrameViewed() 
+    {
+        StopPrevDialogue();
+        PhotoFrameOutline.enabled = false;
 
         PlayEndOfScenario();
     }
@@ -1079,9 +1143,18 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             SetupNarrationBedroom();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bedroom;
-
-            PlaySegment2Part1(); 
+            PlaySegment2Part1();
         }
+        else if (sceneToPlay == SceneToPlay.BedroomPart2)
+        {
+            SetupNarrationBedroom();
+            promptManager.activeScenario = scenarioID;
+            sceneID = SceneID.Bedroom;
+            PlaySegment4Part1();
+        }
+
+
+
 
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
