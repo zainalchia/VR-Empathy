@@ -6,6 +6,7 @@ using Oculus.Interaction;
 using Oculus.Interaction.Input; // Crucial for IHand and Handedness
 using UnityEngine.Events;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ControllerInteractionsManager : MonoBehaviour
 {
@@ -338,34 +339,35 @@ public class ControllerInteractionsManager : MonoBehaviour
         }
 
         #region Glasses scripted dropping
-        if (glassesTimerOn)
-            dropGlassesTimer -= Time.deltaTime;
-
-        if (dropGlassesTimer <= 0)
+        if (SceneManager.GetActiveScene().name == "PresentBadLivingRoom")
         {
-            if (lastHandToHold == Handedness.Left)
+            if (glassesTimerOn)
+                dropGlassesTimer -= Time.deltaTime;
+
+            if (dropGlassesTimer <= 0)
             {
-                ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
+                if (lastHandToHold == Handedness.Left)
+                {
+                    ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
 
-                Instantiate(dropItemFX, leftHandAnchor.transform);
+                    Instantiate(dropItemFX, leftHandAnchor.transform);
+                }
+                else if (lastHandToHold == Handedness.Right)
+                {
+                    ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
+
+                    Instantiate(dropItemFX, rightHandAnchor.transform);
+                }
+
+                OnGlassesDrop.Invoke();
+                dropGlassesCount -= 1;
+                if (dropGlassesCount >= 1)
+                    dropGlassesTimer = dropGlassesInterval;
+                else
+                    dropGlassesTimer = dropGlassesInterval / 2.0f;
             }
-            else if (lastHandToHold == Handedness.Right)
-            {
-                ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
-
-                Instantiate(dropItemFX, rightHandAnchor.transform);
-            }
-
-            OnGlassesDrop.Invoke();
-            dropGlassesCount -= 1;
-            if (dropGlassesCount >= 1)
-                dropGlassesTimer = dropGlassesInterval;
-            else
-                dropGlassesTimer = dropGlassesInterval / 2.0f;
         }
         #endregion
-
-
     }
 
     public void ActivateItemDrop()

@@ -73,6 +73,7 @@ public class PlayerTeleport : MonoBehaviour
     //public bool MovingToKaraokeCorner = false;
 
     public ScenarioID currentScene;
+    public bool testPressTrigger = false; // used for TesterScript to simulate trigger button press in editor.
 
     void Update()
     {
@@ -103,16 +104,18 @@ public class PlayerTeleport : MonoBehaviour
 
                     MoveToLocation(MoveToMainDoorHotspots[currentHotspotIndex], MoveToMainDoorHotspots);
                 }
-                else if (MovingToCheckersChair && currentHotspotIndex != MoveToCheckersChairHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
-                {
-                    timer = 0;
+                //else if (MovingToCheckersChair /*&& currentHotspotIndex != MoveToCheckersChairHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove*/)
+                //{
 
-                    defaultTimeBeforeNextMove = 1.5f; // in general
+                //    Debug.Log(currentHotspotIndex);
+                //    timer = 0;
 
-                    currentHotspotIndex += 1;
+                //    defaultTimeBeforeNextMove = 1.5f; // in general
 
-                    MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
-                }
+                //    currentHotspotIndex += 1;
+
+                //    MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
+                //}
                 else if (MovingToKaraokeCorner && currentHotspotIndex != MoveToKaraokeCornerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
                     timer = 0;
@@ -128,11 +131,18 @@ public class PlayerTeleport : MonoBehaviour
             {
                 buttonPressed = false;
             }
-        // move input to a manager script if possible
+
+            if (MovingToCheckersChair) // Teleport to checkers seat wihtout trigger press
+            {
+                currentHotspotIndex += 1;
+                MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
+            }
+
+            // move input to a manager script if possible
         }
         else if(currentScene == ScenarioID.PastNegative)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || testPressTrigger && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
                 if (MoveToToiletDoor && currentHotspotIndex != MoveToToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -164,6 +174,7 @@ public class PlayerTeleport : MonoBehaviour
 
                     MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
                 }
+                testPressTrigger = false;
             }
             else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
             {

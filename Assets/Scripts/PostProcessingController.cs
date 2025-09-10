@@ -30,6 +30,7 @@ public class PostProcessingController : MonoBehaviour
     private Coroutine currentCoroutine = null;
     public bool initialBlurDone = false;
 
+
     private IEnumerator VisionBlurEffect()
     {
         while (BlurTime < interval)
@@ -61,6 +62,7 @@ public class PostProcessingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (SceneManager.GetActiveScene().name == "PresentBadLivingRoom") // for blurry effect
         {
             if (!isUsingGlasses)
