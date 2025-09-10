@@ -598,7 +598,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //taiChiManager.startSegment1();
 
         //GameManager.instance.ShowAlert(narration_2[4]);
-        promptManager.ShowPrompt(sceneID, 0);
+        //promptManager.ShowPrompt(sceneID, 0);
     }
 
     IEnumerator SetKaraokeNPCs()
@@ -695,7 +695,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //firstCheckersHotspot.SetActive(true);
         playerTeleport.MovingToCheckersChair = true;
         //GameManager.instance.ShowAlert(narration_2[2]);
-        promptManager.ShowPrompt(sceneID, 2);
+        //promptManager.ShowPrompt(sceneID, 2);
         checkersNPC.GetComponent<Animator>().ResetTrigger("IdleSeat");
         checkersNPC.GetComponent<Animator>().ResetTrigger("TalkBegin");
         checkersNPC.GetComponent<Animator>().ResetTrigger("Talking");
@@ -885,7 +885,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         firstToKaraokeCornerHotspot.SetActive(true);
 
         //GameManager.instance.ShowAlert(narration_2[2]);
-        promptManager.ShowPrompt(sceneID, 2);
+        //promptManager.ShowPrompt(sceneID, 2);
     }
 
     public void PlayKaraokeCornerTransition()
