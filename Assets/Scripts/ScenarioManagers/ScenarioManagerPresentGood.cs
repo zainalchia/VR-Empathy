@@ -878,6 +878,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         lastRoutine = null;
 
+        // Fade screen
+        WhiteFadeEffect.FadeOut();
+        yield return new WaitForSeconds(4f);
+        WhiteFadeEffect.FadeIn();
+
         playerTeleport.SetCurrentHotspotIndex(-1); // reset hotspot index
 
         playerTeleport.MovingToKaraokeCorner = true;
