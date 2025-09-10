@@ -140,7 +140,7 @@ public class PlayerTeleport : MonoBehaviour
 
             if (MovingToKaraokeCorner)
             {
-                currentHotspotIndex += 1;
+                //currentHotspotIndex += 1;
                 MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
             }
 

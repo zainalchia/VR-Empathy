@@ -31,7 +31,6 @@ public class WhiteFade : MonoBehaviour
             if (TempFadeColor.a <= 0)
                 DoFadeIn = false;
         }
-            Debug.Log(TempFadeColor.a);
             this.GetComponent<Image>().color = TempFadeColor;
     }
     public void FadeOut()

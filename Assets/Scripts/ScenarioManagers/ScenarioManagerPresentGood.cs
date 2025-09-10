@@ -678,11 +678,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // Fadde screen
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         WhiteFadeEffect.FadeOut();
-        Debug.Log("FadeOut");
         yield return new WaitForSeconds(4f);
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         WhiteFadeEffect.FadeIn();
-        Debug.Log("FadeIn");
         //yield return new WaitForSeconds(1f);
 
         StartWalkingToCheckers();
