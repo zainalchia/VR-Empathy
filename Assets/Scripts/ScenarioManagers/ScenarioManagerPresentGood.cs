@@ -937,14 +937,17 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator KaraokeCornerTransition()
     {
         //GameManager.instance.ShowAlert(narration_2[3]);
-          promptManager.ShowPrompt(sceneID, 4);
+          //promptManager.ShowPrompt(sceneID, 4);
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
 
         KaraokeMic.GetComponent<Grabbable>().enabled = true;
         KaraokeMic.GetComponent<Outline>().enabled = true;
         KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
-        GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        KaraokeMic.GetComponent<MicController>().active = true;
+        KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
+
 
         narrationAudioSource.clip = narrationAudioClips_2[5];
 
