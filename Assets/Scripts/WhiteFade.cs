@@ -12,7 +12,7 @@ public class WhiteFade : MonoBehaviour
     void Start()
     {
         TempFadeColor = Color.white;
-        TempFadeColor.a = 0;
+        TempFadeColor.a = 1;
         DoFadeIn = DoFadeOut = false;
     }
 

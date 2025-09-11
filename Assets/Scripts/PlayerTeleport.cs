@@ -136,11 +136,12 @@ public class PlayerTeleport : MonoBehaviour
             {
                 currentHotspotIndex += 1;
                 MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
+                MoveToCheckersChairHotspots = null;
             }
 
             if (MovingToKaraokeCorner)
             {
-                //currentHotspotIndex += 1;
+                currentHotspotIndex += 1;
                 MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
             }
 

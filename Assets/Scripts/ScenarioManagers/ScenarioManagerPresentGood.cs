@@ -562,8 +562,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator playTaichi()
     {
         StartCoroutine(SetKaraokeNPCs());
+        WhiteFadeEffect.FadeIn();
 
-        yield return new WaitForSeconds(4f); // screen fade in timing
+        yield return new WaitForSeconds(2f); // screen fade in timing
 
         yield return StartCoroutine(MoveFriendPosition(taichiInstructor, 0.25f, taichiTargetDestination.position, 90));
 
@@ -710,6 +711,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject PlayerPieceSecondDestination;
     [SerializeField] GameObject PlayerPiece;
     [SerializeField] GameObject PlayerPieceOutline;
+    [SerializeField] GameObject CheckerPieces;
 
     public void PlayCheckersTransition()
     {
@@ -763,6 +765,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return StartCoroutine(MovePiece(SecondEnemyCheckerPiece, EnemyPieceThirdDestination));
         yield return new WaitForSeconds(1);
         StartCoroutine(MovingFromChessToKaraokeCorner());
+        Debug.Log("Checkers win");
     }
 
     IEnumerator MovePiece(GameObject checkerPiece,GameObject Destination,float heightMultiplier = 0.25f)
@@ -883,7 +886,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset hotspot index
 
+        checkersNPC.SetActive(false);
+        CheckerPieces.SetActive(false);
+        
+        firstCheckersHotspot.SetActive(false);
         playerTeleport.MovingToKaraokeCorner = true;
+        playerTeleport.MovingToCheckersChair = false;
 
         firstToKaraokeCornerHotspot.SetActive(true);
 
@@ -926,17 +934,18 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             NPCToRotate.transform.localRotation.eulerAngles.z
         );
     }
-
     IEnumerator KaraokeCornerTransition()
     {
         //GameManager.instance.ShowAlert(narration_2[3]);
-        promptManager.ShowPrompt(sceneID, 4);
+          promptManager.ShowPrompt(sceneID, 4);
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
 
         KaraokeMic.GetComponent<Grabbable>().enabled = true;
         KaraokeMic.GetComponent<Outline>().enabled = true;
         KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
+        GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+
         narrationAudioSource.clip = narrationAudioClips_2[5];
 
         lastRoutine = null;
