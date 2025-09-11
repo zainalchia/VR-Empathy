@@ -902,12 +902,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 433582225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000021855682, y: 3.2926906e-10, z: -3.2927255e-10, w: 1}
-  m_LocalPosition: {x: -0, y: 0.0049, z: -0}
-  m_LocalScale: {x: 0.02744921, y: 0.024795, z: 0.025731916}
+  m_LocalRotation: {x: -0.00000009284035, y: -0.00000005960463, z: 0.0000000023676734,
+    w: 1}
+  m_LocalPosition: {x: 0, y: -0.016456138, z: 0}
+  m_LocalScale: {x: 0.02604349, y: 0.023525208, z: 0.024414144}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1484599793}
+  m_Father: {fileID: 1275949277}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &433582227
 MonoBehaviour:
@@ -3491,6 +3492,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 625520231}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &625699241
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 625699242}
+  m_Layer: 0
+  m_Name: PillSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &625699242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 625699241}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.17704634, y: -0.59214264, z: -0.7312546, w: 0.28859755}
+  m_LocalPosition: {x: 0.00234, y: -0.00201, z: -0.00307}
+  m_LocalScale: {x: 0.82388496, y: 0.92086756, z: 0.9164829}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1484599793}
+  m_LocalEulerAnglesHint: {x: -75.513, y: 115.64, z: -121.89}
 --- !u!1 &632780878
 GameObject:
   m_ObjectHideFlags: 0
@@ -4828,89 +4860,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 957486591}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1020018379
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1020018380}
-  - component: {fileID: 1020018382}
-  - component: {fileID: 1020018381}
-  m_Layer: 0
-  m_Name: Pill_001
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1020018380
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020018379}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.17704634, y: -0.59214264, z: -0.7312546, w: 0.28859755}
-  m_LocalPosition: {x: 0.00234, y: -0.00201, z: -0.00307}
-  m_LocalScale: {x: 0.82388496, y: 0.92086756, z: 0.9164829}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1484599793}
-  m_LocalEulerAnglesHint: {x: -75.513, y: 115.64, z: -121.89}
---- !u!23 &1020018381
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020018379}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 4813927427248490260, guid: d17c83d952ea2d9489dabe8b603de5fb, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &1020018382
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020018379}
-  m_Mesh: {fileID: 7309036186508171317, guid: 5324faf2a94031f4981c88028a121462, type: 3}
 --- !u!1 &1100359524
 GameObject:
   m_ObjectHideFlags: 0
@@ -5031,6 +4980,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   medicine: {fileID: 1484599792}
+  pill: {fileID: 7353184804070589308, guid: f2396e8344f64e1419f889a81e9cb00c, type: 3}
   toConsumeMedicine: 1
   OnMedicineConsumed:
     m_PersistentCalls:
@@ -5253,6 +5203,11 @@ MonoBehaviour:
   MedicineOutline: {fileID: 1484599804}
   PhotoFrame: {fileID: 1518123002}
   PhotoFrameOutline: {fileID: 1518123025}
+  capAnimator: {fileID: 1275949280}
+  capPopTrigger: PopOff
+  pillPrefab: {fileID: 7353184804070589308, guid: f2396e8344f64e1419f889a81e9cb00c,
+    type: 3}
+  pillSpawnPoint: {fileID: 625699242}
 --- !u!1001 &1159907794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5801,6 +5756,7 @@ GameObject:
   - component: {fileID: 1275949277}
   - component: {fileID: 1275949279}
   - component: {fileID: 1275949278}
+  - component: {fileID: 1275949280}
   m_Layer: 0
   m_Name: Pill_Cap
   m_TagString: Untagged
@@ -5820,7 +5776,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.022244576, z: 0}
   m_LocalScale: {x: 1.0539758, y: 1.0539758, z: 1.0539758}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 433582226}
   m_Father: {fileID: 1484599793}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1275949278
@@ -5873,6 +5830,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1275949276}
   m_Mesh: {fileID: 467233234329567883, guid: d17c83d952ea2d9489dabe8b603de5fb, type: 3}
+--- !u!95 &1275949280
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275949276}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0b5d3a5740a0bd748b66ab95be237891, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1278154430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7886,10 +7864,10 @@ GameObject:
   - component: {fileID: 1484599797}
   - component: {fileID: 1484599796}
   - component: {fileID: 1484599795}
-  - component: {fileID: 1484599801}
   - component: {fileID: 1484599803}
   - component: {fileID: 1484599802}
   - component: {fileID: 1484599804}
+  - component: {fileID: 1484599805}
   m_Layer: 0
   m_Name: Pill_Bottle Correct
   m_TagString: Untagged
@@ -7912,8 +7890,7 @@ Transform:
   m_Children:
   - {fileID: 226627335}
   - {fileID: 1275949277}
-  - {fileID: 1020018380}
-  - {fileID: 433582226}
+  - {fileID: 625699242}
   m_Father: {fileID: 1621671052}
   m_LocalEulerAnglesHint: {x: 0, y: 44.981, z: 0}
 --- !u!114 &1484599795
@@ -8000,7 +7977,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8056,33 +8033,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484599792}
   m_Mesh: {fileID: 8932374045686819397, guid: d17c83d952ea2d9489dabe8b603de5fb, type: 3}
---- !u!114 &1484599801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1484599792}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f6a913aacc9fa4888e17890156c448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnDroppedMedication:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: SecondMedicationDropped
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1484599802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8588,6 +8538,33 @@ MonoBehaviour:
     - {x: 0.36083865, y: -0.69222957, z: -0.6249909}
     - {x: 0.72167736, y: -0.69222957, z: 0}
     - {x: 0.6249909, y: -0.69222957, z: -0.36083865}
+--- !u!114 &1484599805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484599792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40b4fcebb14840a49a87360733c5189f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnBottleGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1115407455}
+        m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
+        m_MethodName: OnMedicineBottleGrabbed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1498610870
 GameObject:
   m_ObjectHideFlags: 0

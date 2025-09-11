@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     [Header("MEDICINE")]
     public GameObject medicine;
+    public GameObject pill;
     public bool toConsumeMedicine = false;
     public UnityEvent OnMedicineConsumed;
 

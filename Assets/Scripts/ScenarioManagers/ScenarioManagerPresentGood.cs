@@ -1079,6 +1079,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject PhotoFrame;
     [SerializeField] Outline PhotoFrameOutline;
 
+    [SerializeField] private Animator capAnimator;          // Animator on the cap
+    [SerializeField] private string capPopTrigger = "PopOff";
+    [SerializeField] private GameObject pillPrefab;         // Pill prefab
+    [SerializeField] private Transform pillSpawnPoint;      // Where pill spawns
+
     public void PlaySegment4Part1()
     {
         lastRoutine = StartCoroutine(Segment4Part1());
@@ -1090,9 +1095,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
 
-        // Wait a frame for scene load
-        yield return null;
-
+        yield return null; // Wait a frame for scene load
         sceneID = SceneID.Bedroom;
 
         // Show medicine prompt
@@ -1101,8 +1104,32 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         // Allow player to consume medicine
         GameManager.instance.toConsumeMedicine = true;
+
+        // Enable grabbing the bottle
         GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
 
+      
+    }
+
+    // Called when the player first grabs the bottle
+    public void OnMedicineBottleGrabbed()
+    {
+        if (capAnimator != null)
+            capAnimator.SetTrigger(capPopTrigger);
+    }
+
+    // Called by Animation Event in the cap’s animation
+    public void SpawnPill()
+    {
+        GameObject pill = Instantiate(pillPrefab, pillSpawnPoint.position, pillSpawnPoint.rotation);
+
+        // Register pill in GameManager
+        GameManager.instance.pill = pill;
+
+        // Force pill to stay in hand
+        var forceGrab = pill.GetComponent<ForceStayGrabbed>();
+        if (forceGrab != null)
+            forceGrab.SetForceGrabActive(true);
     }
 
     public void MedicineTaken()
@@ -1113,10 +1140,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // Reset flag
         GameManager.instance.toConsumeMedicine = false;
         GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
-        //next step
+
+        // Next step
         StartCoroutine(AfterMedicineTaken());
     }
-
 
     IEnumerator AfterMedicineTaken()
     {
@@ -1130,30 +1157,29 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         grab.SetForceGrabActive(true);
 
         // Enable LookAtObjective system
-        GameManager.instance.toLookAtObjective = true; 
+        GameManager.instance.toLookAtObjective = true;
     }
 
-
-
-    public void PhotoFrameViewed() 
+    public void PhotoFrameViewed()
     {
         StopPrevDialogue();
         PhotoFrameOutline.enabled = false;
 
         StartCoroutine(PhotoFrameSequence());
     }
+
     IEnumerator PhotoFrameSequence()
     {
         yield return new WaitForSeconds(2f);
         PlayEndOfScenario();
     }
-
     #endregion
 
     public void PlayEndOfScenario()
     {
         StartCoroutine(EndOfScenario());
     }
+
 
     IEnumerator EndOfScenario()
     {
