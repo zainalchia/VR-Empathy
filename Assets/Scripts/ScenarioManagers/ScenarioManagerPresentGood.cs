@@ -1090,7 +1090,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(4f);
 
-
         // Wait a frame for scene load
         yield return null;
 
@@ -1122,26 +1121,33 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator AfterMedicineTaken()
     {
         yield return new WaitForSeconds(2f);
+
         // Show photo frame prompt
-        promptManager.ShowPrompt(sceneID, 2); 
+        promptManager.ShowPrompt(sceneID, 2);
         PhotoFrameOutline.enabled = true;
 
-        GameManager.instance.photoFrame.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        var grab = GameManager.instance.photoFrame.GetComponent<ForceStayGrabbed>();
+        grab.SetForceGrabActive(true);
+
+        // Enable LookAtObjective system
+        GameManager.instance.toLookAtObjective = true; 
     }
+
+
 
     public void PhotoFrameViewed() 
     {
         StopPrevDialogue();
         PhotoFrameOutline.enabled = false;
-        GameManager.instance.photoFrame.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
 
         StartCoroutine(PhotoFrameSequence());
     }
     IEnumerator PhotoFrameSequence()
     {
-        yield return new WaitForSeconds(8f); 
+        yield return new WaitForSeconds(2f);
         PlayEndOfScenario();
     }
+
     #endregion
 
     public void PlayEndOfScenario()
@@ -1151,14 +1157,23 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator EndOfScenario()
     {
-        // fade screen here
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(4f);
+        //reference to anim and image componenet
+        var anim = GameManager.instance.fadePanel.GetComponent<Animator>();
+        var img = GameManager.instance.fadePanel.GetComponent<UnityEngine.UI.Image>();
+
+        anim.SetTrigger("FadeOut");
+
+        //match fade out
+        yield return new WaitForSeconds(0.5f);
+
+        // stop animator and make it black
+        anim.enabled = false;
+        img.color = Color.black;
+
+        yield return new WaitForSeconds(2f);
 
         GameManager.instance.goodbyeText.SetActive(true);
     }
-
-
 
     // Start is called before the first frame update
     void Start()
