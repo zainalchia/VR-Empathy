@@ -45,6 +45,7 @@ public class CheckersHighlightChecker : MonoBehaviour
                     PlayerCheckerPiece.transform.localRotation = Quaternion.identity;
                     piece.GetComponent<Grabbable>().enabled = false;
                     transform.gameObject.SetActive(false);
+                    this.gameObject.SetActive(false);
                 break;
             }
         }

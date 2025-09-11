@@ -116,16 +116,16 @@ public class PlayerTeleport : MonoBehaviour
 
                 //    MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
                 //}
-                else if (MovingToKaraokeCorner && currentHotspotIndex != MoveToKaraokeCornerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
-                {
-                    timer = 0;
+                //else if (MovingToKaraokeCorner && currentHotspotIndex != MoveToKaraokeCornerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                //{
+                //    timer = 0;
 
-                    defaultTimeBeforeNextMove = 1.5f; // in general
+                //    defaultTimeBeforeNextMove = 1.5f; // in general
 
-                    currentHotspotIndex += 1;
+                //    currentHotspotIndex += 1;
 
-                    MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
-                }
+                //    MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
+                //}
             }
             else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
             {
@@ -136,7 +136,15 @@ public class PlayerTeleport : MonoBehaviour
             {
                 currentHotspotIndex += 1;
                 MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
+                MoveToCheckersChairHotspots = null;
             }
+
+            if (MovingToKaraokeCorner)
+            {
+                currentHotspotIndex += 1;
+                MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
+            }
+
 
             // move input to a manager script if possible
         }

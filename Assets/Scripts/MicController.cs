@@ -12,7 +12,7 @@ public class MicController : MonoBehaviour
 
     public UnityEvent OnMicPickUp;
     public UnityEvent OnMicOnFace;
-    public UnityEvent OnMicNotOnFace;
+    //public UnityEvent OnMicNotOnFace;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +22,7 @@ public class MicController : MonoBehaviour
             if (other.gameObject.GetComponentInParent<GrabInteractor>() != null)
             {
                 GameManager.instance.HideAlert(); // hides narration text
-                GameManager.instance.ShowAlert("[Put mic to face]");
+                //GameManager.instance.ShowAlert("[Put mic to face]");
                 GetComponent<Outline>().enabled = false;
                 SetMicDetectionActive(true);
                 toBeginKaraokeMinigame = false;
@@ -33,25 +33,25 @@ public class MicController : MonoBehaviour
 
         if (active)
         {
-            if (other.gameObject.name == "CenterEyeAnchor")
-            {
+            //if (other.gameObject.name == "CenterEyeAnchor")
+            //{
                 micOnFace = true;
                 OnMicOnFace.Invoke();
-            }
+            //}
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (active)
-        {
-            if (other.gameObject.name == "CenterEyeAnchor")
-            {
-                micOnFace = false;
-                OnMicNotOnFace.Invoke();
-            }
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (active)
+    //    {
+    //        if (other.gameObject.name == "CenterEyeAnchor")
+    //        {
+    //            micOnFace = false;
+    //            OnMicNotOnFace.Invoke();
+    //        }
+    //    }
+    //}
 
     public void SetMicDetectionActive(bool trueOrFalse)
     {

@@ -82,6 +82,6 @@ public class ForceStayGrabbed : MonoBehaviour
             debug += go.name;
         }
         GameManager.instance.DebugLog(active.ToString() + ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(gameObject).ToString() + forceStay.ToString() + ControllerInteractionsManager.instance.ObjInWhichHand(gameObject) +  leftHandGrabbing.ToString() + rightHandGrabbing.ToString() + debug);
-        */        
+        */
     }
 }

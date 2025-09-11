@@ -12,7 +12,7 @@ public class WhiteFade : MonoBehaviour
     void Start()
     {
         TempFadeColor = Color.white;
-        TempFadeColor.a = 0;
+        TempFadeColor.a = 1;
         DoFadeIn = DoFadeOut = false;
     }
 
@@ -31,7 +31,6 @@ public class WhiteFade : MonoBehaviour
             if (TempFadeColor.a <= 0)
                 DoFadeIn = false;
         }
-            Debug.Log(TempFadeColor.a);
             this.GetComponent<Image>().color = TempFadeColor;
     }
     public void FadeOut()
