@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     // UI FADE IN-OUT
     [Header("FADE IN-OUT PANEL")]
     public GameObject fadePanel;
+    public GameObject whiteFadePanel;
 
     [Header("Goodbye Text Panel")]
     public GameObject goodbyeText;

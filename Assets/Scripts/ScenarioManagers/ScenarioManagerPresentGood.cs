@@ -522,18 +522,18 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     private IEnumerator AfterDenturesPlaced()
     {
-        // Skip narration since clips aren't set up
-        // narrationAudioSource.Stop();
-        // narrationAudioSource.PlayOneShot(narrationAudioClips_3[1]);
+        // Skip narration since clips aren't set up 
+        // narrationAudioSource.Stop(); 
+        // narrationAudioSource.PlayOneShot(narrationAudioClips_3[1]); 
 
-        // Small delay so player can register dentures were placed
+        // Small delay so player can register dentures were placed 
         yield return new WaitForSeconds(1f);
 
-        // Fade out
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        //play fade out white 
+        GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
 
-        // Switch to Voiddeck
+        // Switch to Voiddeck 
         SceneManager.LoadScene("PresentGoodVoiddeck", LoadSceneMode.Single);
     }
 
@@ -1062,7 +1062,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(8f);
 
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(3f);
 
         SceneManager.LoadScene("PresentGoodBedroomPart2", LoadSceneMode.Single);
@@ -1092,8 +1092,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator Segment4Part1()
     {
         // Fade back into Bedroom
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
-        yield return new WaitForSeconds(4f);
+        GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(3f);
 
         yield return null; // Wait a frame for scene load
         sceneID = SceneID.Bedroom;
@@ -1241,10 +1241,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             sceneID = SceneID.Bedroom;
             PlaySegment4Part1();
         }
-
-
-
-
         else if (sceneToPlay == SceneToPlay.Voiddeck)
         {
             SetupNarrationVoiddeck();
