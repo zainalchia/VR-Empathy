@@ -4786,6 +4786,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnMedicineGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
   photoFrame: {fileID: 1518123002}
   toViewPhotoFrame: 0
   OnPhotoFrameViewed:
@@ -5547,6 +5550,7 @@ GameObject:
   - component: {fileID: 1275949279}
   - component: {fileID: 1275949278}
   - component: {fileID: 1275949280}
+  - component: {fileID: 1275949281}
   m_Layer: 0
   m_Name: Pill_Cap
   m_TagString: Untagged
@@ -5641,6 +5645,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1275949281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275949276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d915396eb8149b044a1499613b726029, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1278154430
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8355,6 +8371,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  capObject: {fileID: 1275949276}
 --- !u!1 &1498610870
 GameObject:
   m_ObjectHideFlags: 0

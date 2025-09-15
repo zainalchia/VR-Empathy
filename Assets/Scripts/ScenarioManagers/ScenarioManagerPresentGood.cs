@@ -1079,10 +1079,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] GameObject PhotoFrame;
     [SerializeField] Outline PhotoFrameOutline;
 
-    [SerializeField] private Animator capAnimator;          // Animator on the cap
+    [SerializeField] private Animator capAnimator;          
     [SerializeField] private string capPopTrigger = "PopOff";
-    [SerializeField] private GameObject pillPrefab;         // Pill prefab
-    [SerializeField] private Transform pillSpawnPoint;      // Where pill spawns
+    [SerializeField] private GameObject pillPrefab;         
+    [SerializeField] private Transform pillSpawnPoint;     
 
     public void PlaySegment4Part1()
     {
@@ -1111,9 +1111,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
       
     }
 
-    // Called when the player first grabs the bottle
     public void OnMedicineBottleGrabbed()
     {
+
+        // Play cap animation
         if (capAnimator != null)
             capAnimator.SetTrigger(capPopTrigger);
     }
@@ -1123,7 +1124,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         GameObject pill = Instantiate(pillPrefab, pillSpawnPoint.position, pillSpawnPoint.rotation);
 
-        // Register pill in GameManager
+      
         GameManager.instance.pill = pill;
 
         // Force pill to stay in hand
@@ -1156,7 +1157,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         var grab = GameManager.instance.photoFrame.GetComponent<ForceStayGrabbed>();
         grab.SetForceGrabActive(true);
 
-        // Enable LookAtObjective system
+  
         GameManager.instance.toLookAtObjective = true;
     }
 

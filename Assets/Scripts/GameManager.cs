@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     public GameObject pill;
     public bool toConsumeMedicine = false;
     public UnityEvent OnMedicineConsumed;
+    public UnityEvent OnMedicineGrabbed;
 
     [Header("PHOTO FRAME")]
     public GameObject photoFrame;
