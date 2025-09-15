@@ -199,16 +199,17 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         // can open bathroom door from here
         knob.GetComponent<Outline>().enabled = true;
+        caneOutline.enabled = false;
         bathroomDoor.AllowDoorOpen();
         //GameManager.instance.ShowAlert(narration_1[16]);
+        promptManager.ShowPrompt(sceneID, 1);
     }
-    
+
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
     {
         StopPrevDialogue();
 
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after picking up cane
-        caneOutline.enabled = false;
         knob.GetComponent<Outline>().enabled = false;
         lastRoutine = StartCoroutine(ExitBathroom());
     }
@@ -231,7 +232,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane = newCane;
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(cane.GetComponent<GrabInteractable>());
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        promptManager.ShowPrompt(sceneID, 1);
+        promptManager.ShowPrompt(sceneID, 2);
         questControllerImage.SetActive(true);
         toGoLivingRoom = true;
         lastRoutine = null;
