@@ -59,6 +59,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     private float AlertHideTimer = 0;
 
+    [SerializeField] GameObject BathroomItems;
+    private bool StartGame = false;
+    private bool PlayStart = true;
+
     //void SetupNarrationBathroomLivingRoom()
     //{
     //    narration_1[0] = "Open the door and head to the sofa";
@@ -1203,7 +1207,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bathroom;
-            PlaySegment1Part1();
+
+            foreach (Transform Items in BathroomItems.transform)
+            {
+                if (Items.GetComponent<Grabbable>() != null) Items.GetComponent<Grabbable>().enabled = false;
+                if (Items.GetComponent<PhysicsGrabbable>() != null) Items.GetComponent<PhysicsGrabbable>().enabled = false;
+                if (Items.GetComponent<GrabInteractable>() != null) Items.GetComponent<GrabInteractable>().enabled = false;
+            }
+            //PlaySegment1Part1();
             //StartCoroutine(Segment1Part3_1());
             //secondPhone.GetComponent<MeshRenderer>().enabled = false;
             //secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
@@ -1264,6 +1275,20 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             {
                 AlertHideTimer -= Time.deltaTime;
             }
+
+            if (StartGame && PlayStart)
+            {
+                PlaySegment1Part1();
+                PlayStart = false;
+                foreach (Transform Items in BathroomItems.transform)
+                {
+                    if (Items.GetComponent<Grabbable>() != null) Items.GetComponent<Grabbable>().enabled = true;
+                    if (Items.GetComponent<PhysicsGrabbable>() != null) Items.GetComponent<PhysicsGrabbable>().enabled = true;
+                    if (Items.GetComponent<GrabInteractable>() != null) Items.GetComponent<GrabInteractable>().enabled = true;
+                }
+
+            }
+
 
             #region Going to living room
             // remove alert after first teleport
@@ -1381,5 +1406,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(clipToPlay);
         GameManager.instance.ShowAlert(narrationText, clipLength, textColor);
+    }
+
+    public void TriggerStartGame()
+    {
+        StartGame = true;
     }
 }
