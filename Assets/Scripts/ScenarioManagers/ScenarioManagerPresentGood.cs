@@ -894,10 +894,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         lastRoutine = null;
 
-        // Fade screen
-        WhiteFadeEffect.FadeOut();
         playerAudioSource.PlayOneShot(narrationAudioClips_2[7]);
         yield return new WaitForSeconds(narrationAudioClips_2[7].length);
+
+
+        // Fade screen
+        WhiteFadeEffect.FadeOut();
+        playerAudioSource.PlayOneShot(narrationAudioClips_2[8]);
+        yield return new WaitForSeconds(narrationAudioClips_2[8].length);
         WhiteFadeEffect.FadeIn();
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset hotspot index
@@ -957,12 +961,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
 
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
         KaraokeMic.GetComponent<Grabbable>().enabled = true;
         KaraokeMic.GetComponent<Outline>().enabled = true;
         KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
         KaraokeMic.GetComponent<MicController>().active = true;
         KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
 
 
         narrationAudioSource.clip = narrationAudioClips_2[9];
@@ -1049,15 +1053,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[9], 0.4f);
-        yield return new WaitForSeconds(narrationAudioClips_2[9].length);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[10], 0.4f);
+        yield return new WaitForSeconds(narrationAudioClips_2[10].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[10]);
-        yield return new WaitForSeconds(narrationAudioClips_2[10].length);
-
-        playerAudioSource.PlayOneShot(narrationAudioClips_2[11]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[11]);
         yield return new WaitForSeconds(narrationAudioClips_2[11].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkBegin");
