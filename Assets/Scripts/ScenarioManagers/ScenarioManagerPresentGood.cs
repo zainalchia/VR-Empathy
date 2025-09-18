@@ -960,38 +960,34 @@ public class ScenarioManagerPresentGood : MonoBehaviour
           //promptManager.ShowPrompt(sceneID, 4);
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
-
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
-        KaraokeMic.GetComponent<Grabbable>().enabled = true;
-        KaraokeMic.GetComponent<Outline>().enabled = true;
-        KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
-        KaraokeMic.GetComponent<MicController>().active = true;
+                
+        //KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
+        //KaraokeMic.GetComponent<MicController>().active = true;
         KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
 
         narrationAudioSource.clip = narrationAudioClips_2[9];
-
+        PlayKaraoke();
         lastRoutine = null;
 
         yield return null;
     }
 
-    public void PlayMicOnFace()
+    //
+    public void PlayKaraoke()
     {
-        if (!TVScreen.activeInHierarchy)
+        for(int i = 1; i < 4; i++)
         {
-            for(int i = 1; i < 4; i++)
-            {
-                KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkEnd");
-                StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[i],0,1));
-            }
-
-            TVScreen.SetActive(true);
-            TVScreen2.SetActive(true);
-
-            if (MainMenuManager.isGenderMale == false)
-                TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+            KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkEnd");
+            StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[i],0,1));
         }
+
+        TVScreen.SetActive(true);
+        TVScreen2.SetActive(true);
+
+        if (MainMenuManager.isGenderMale == false)
+            TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+        
         GameManager.instance.HideAlert();
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", true);
         KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", true);
@@ -1362,7 +1358,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
              narrationAudioSource.time >= narrationAudioSource.clip.length - 1f && !firstTimeSing && !hasFinishedSinging)
             {
                 hasFinishedSinging = true;
-                KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
+                //KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
                 KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
                 PlayAfterSingingTransition();
             }
