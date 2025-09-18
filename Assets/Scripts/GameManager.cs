@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     // UI FADE IN-OUT
     [Header("FADE IN-OUT PANEL")]
     public GameObject fadePanel;
+    public GameObject whiteFadePanel;
 
     [Header("Goodbye Text Panel")]
     public GameObject goodbyeText;
@@ -62,8 +63,14 @@ public class GameManager : MonoBehaviour
 
     [Header("MEDICINE")]
     public GameObject medicine;
+    public GameObject pill;
     public bool toConsumeMedicine = false;
     public UnityEvent OnMedicineConsumed;
+    public UnityEvent OnMedicineGrabbed;
+
+    [Header("Hand Targets for Pill")]
+    public Transform leftPalm;
+    public Transform rightPalm;
 
     [Header("PHOTO FRAME")]
     public GameObject photoFrame;

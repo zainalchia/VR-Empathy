@@ -74,6 +74,7 @@ public class PlayerTeleport : MonoBehaviour
 
     public ScenarioID currentScene;
     public bool testPressTrigger = false; // used for TesterScript to simulate trigger button press in editor.
+    [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
 
     void Update()
     {
@@ -211,8 +212,28 @@ public class PlayerTeleport : MonoBehaviour
        GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
 
        hotspot.SetActive(false);
-       
-       StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
+
+        if (currentScene == ScenarioID.PresentGood)
+        {
+            // weather
+            if (currentHotspotIndex == 6)
+            {
+                scenarioManagerPresentGood.narrationAudioSource.Stop();
+                scenarioManagerPresentGood.narrationAudioSource.PlayOneShot(
+                    scenarioManagerPresentGood.narrationAudioClips_1[2]
+                );
+            }
+
+            //lunch
+            if (currentHotspotIndex == 4)
+            {
+                scenarioManagerPresentGood.narrationAudioSource.Stop();
+                scenarioManagerPresentGood.narrationAudioSource.PlayOneShot(
+                    scenarioManagerPresentGood.narrationAudioClips_1[3]
+                );
+            }
+        }
+        StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
         if (currentScene == ScenarioID.PresentGood)
         {
