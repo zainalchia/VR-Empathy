@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using UnityEngine.Video;
+using Meta.WitAi;
 
 public class ScenarioManagerPresentGood : MonoBehaviour
 {
@@ -556,6 +557,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     TaiChiManager taiChiManager;
     [SerializeField] GameObject taichiInstructor;
     [SerializeField] Transform taichiTargetDestination;
+    [SerializeField] AudioSource taichiAudioSource;
     [SerializeField] AudioClip taiChiBGM;
     void PlaySegment3Part1()
     {
@@ -569,9 +571,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StartCoroutine(SetKaraokeNPCs());
         WhiteFadeEffect.FadeIn();
         // Start taichi bgm
-        playerAudioSource.GetComponent<AudioSource>().clip = taiChiBGM;
-        playerAudioSource.GetComponent <AudioSource>().loop = true;
-        playerAudioSource.GetComponent<AudioSource>().Play();
+        taichiAudioSource.GetComponent<AudioSource>().clip = taiChiBGM;
+        taichiAudioSource.GetComponent <AudioSource>().loop = true;
+        taichiAudioSource.GetComponent<AudioSource>().Play();
 
         // nancy bought me to taichi
         playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[0]);
@@ -896,8 +898,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         playerAudioSource.PlayOneShot(narrationAudioClips_2[7]);
         yield return new WaitForSeconds(narrationAudioClips_2[7].length);
 
-        playerAudioSource.GetComponent<AudioSource>().Stop();
-        playerAudioSource.GetComponent<AudioSource>().loop = false;
+        taichiAudioSource.GetComponent<AudioSource>().Stop();
+        taichiAudioSource.GetComponent<AudioSource>().loop = false;
 
         // Fade screen
         WhiteFadeEffect.FadeOut();
