@@ -3482,6 +3482,7 @@ MonoBehaviour:
   MoveToSection: 0
   currentScene: 3
   testPressTrigger: 0
+  scenarioManagerPresentGood: {fileID: 3357422135080932660}
 --- !u!1 &478722975
 GameObject:
   m_ObjectHideFlags: 0
@@ -29845,6 +29846,7 @@ MonoBehaviour:
   characterModel: {fileID: 0}
   alertText: {fileID: 1615119055}
   fadePanel: {fileID: 1178772239}
+  whiteFadePanel: {fileID: 0}
   goodbyeText: {fileID: 0}
   glasses: {fileID: 1331159757}
   toPutGlassesOn: 0
@@ -29870,10 +29872,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   medicine: {fileID: 0}
+  pill: {fileID: 0}
   toConsumeMedicine: 0
   OnMedicineConsumed:
     m_PersistentCalls:
       m_Calls: []
+  OnMedicineGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  leftPalm: {fileID: 0}
+  rightPalm: {fileID: 0}
   photoFrame: {fileID: 0}
   toViewPhotoFrame: 0
   OnPhotoFrameViewed:
@@ -29899,6 +29907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToPlay: 4
   narrationAudioSource: {fileID: 2345401382498451322}
+  narrationAudioClips_1: []
   narrationAudioClips_1_Male:
   - {fileID: 8300000, guid: 356e2b02b92cbcd4d8ada06a049a3880, type: 3}
   - {fileID: 8300000, guid: f2260e776f1a06f40afe86503f4246a0, type: 3}
@@ -29908,9 +29917,41 @@ MonoBehaviour:
   narrationAudioClips_1_Female:
   - {fileID: 8300000, guid: a1bf18ea7c5c04246a887c8ff22d6379, type: 3}
   - {fileID: 8300000, guid: 49823e7946a8c46019338184987d9b69, type: 3}
-  - {fileID: 8300000, guid: 69bee5e1440bb4add85cbab568fe703e, type: 3}
-  - {fileID: 8300000, guid: 9c07f26e4782643f1b85b2071e5e4ac7, type: 3}
-  - {fileID: 8300000, guid: be6cad0dec255df4fa808b0b05f18950, type: 3}
+  - {fileID: 8300000, guid: 0b671c1c156add44796946cab051ac56, type: 3}
+  - {fileID: 8300000, guid: 2256d924eddcc344e90863782da70444, type: 3}
+  - {fileID: 8300000, guid: 7c6a32f573d014242a108c52053a9e65, type: 3}
+  - {fileID: 8300000, guid: 676ee645415866443bf9ad4f1a0f666c, type: 3}
+  narration_1:
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   narrationAudioClips_2_Male: []
   narrationAudioClips_2_Female: []
   narrationAudioClips_3_Male: []
@@ -29955,6 +29996,7 @@ MonoBehaviour:
   PlayerPieceSecondDestination: {fileID: 0}
   PlayerPiece: {fileID: 0}
   PlayerPieceOutline: {fileID: 0}
+  CheckerPieces: {fileID: 0}
   radio: {fileID: 0}
   firstToKaraokeCornerHotspot: {fileID: 0}
   KaraokeMic: {fileID: 0}
@@ -29964,6 +30006,11 @@ MonoBehaviour:
   MedicineOutline: {fileID: 0}
   PhotoFrame: {fileID: 0}
   PhotoFrameOutline: {fileID: 0}
+  capAnimator: {fileID: 0}
+  capPopTrigger: PopOff
+  pillPrefab: {fileID: 0}
+  pillSpawnPoint: {fileID: 0}
+  capMover: {fileID: 0}
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0

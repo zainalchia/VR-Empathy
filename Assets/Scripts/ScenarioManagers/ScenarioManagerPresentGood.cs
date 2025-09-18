@@ -17,13 +17,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     }
 
     [Header("Narration Variables")]
-    [SerializeField] AudioSource narrationAudioSource;
+    [SerializeField] public AudioSource narrationAudioSource;
 
     // for bathroom and living room scene
-    AudioClip[] narrationAudioClips_1;
-    [SerializeField] AudioClip[] narrationAudioClips_1_Male;
-    [SerializeField] AudioClip[] narrationAudioClips_1_Female;
-    string[] narration_1 = new string[30];
+    public AudioClip[] narrationAudioClips_1;
+    [SerializeField] public AudioClip[] narrationAudioClips_1_Male;
+    [SerializeField] public AudioClip[] narrationAudioClips_1_Female;
+    public string[] narration_1 = new string[30];
 
     // for voiddeck scene
     AudioClip[] narrationAudioClips_2;
@@ -208,6 +208,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         playerTeleport.MovingToLivingRoom = true;
         toGoLivingRoom = true;
         lastRoutine = null;
+
     }
 
     #endregion
@@ -236,7 +237,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment1Part3_1()
     {
-        
+
         // play phone calling
         mobilePhone.SetPhoneCalling();
         promptManager.ShowPrompt(sceneID, 1, false, 5f);
@@ -249,6 +250,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void PhonePickedUp() // called in UnityEvent in MobilePhone
     {
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
         StopPrevDialogue();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
@@ -287,13 +290,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(3f); // the call takes a few second to be answered so wait a few seconds first
 
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
 
         yield return new WaitForSeconds(2f);
 
         //StartCoroutine(MoveFriendsWithDelay(1));
 
-        yield return new WaitForSeconds(narrationAudioClips_1[3].length - 2f);
+        yield return new WaitForSeconds(narrationAudioClips_1[5].length - 2f);
 
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
@@ -1384,7 +1387,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
             if (!canSeeWindow)
             {
-                if (playerTeleport.GetCurrentHotspotIndex() == 6)
+               if (playerTeleport.GetCurrentHotspotIndex() == 5)
                 {
                     StopPrevDialogue();
                     narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
@@ -1397,7 +1400,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             {
                 if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
                 {
-                    toGoLivingRoom = false;  
+                    toGoLivingRoom = false;
+                    narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
                     PlaySegment1Part3_1();
                 }
             }
