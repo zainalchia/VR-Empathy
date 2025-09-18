@@ -556,7 +556,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     TaiChiManager taiChiManager;
     [SerializeField] GameObject taichiInstructor;
     [SerializeField] Transform taichiTargetDestination;
-
+    [SerializeField] AudioClip taiChiBGM;
     void PlaySegment3Part1()
     {
         sceneID = SceneID.VoidDeck;
@@ -568,10 +568,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StartCoroutine(SetKaraokeNPCs());
         WhiteFadeEffect.FadeIn();
-
-        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[0];
-
+        // Start taichi bgm
+        playerAudioSource.GetComponent<AudioSource>().clip = taiChiBGM;
+        playerAudioSource.GetComponent <AudioSource>().loop = true;
         playerAudioSource.GetComponent<AudioSource>().Play();
+
+        // nancy bought me to taichi
+        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[0]);
 
         yield return new WaitForSeconds(narrationAudioClips_2[0].length); // screen fade in timing
 
@@ -689,9 +692,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         WhiteFadeEffect.FadeOut();
 
-        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[3];
-
-        playerAudioSource.GetComponent<AudioSource>().Play();
+        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[3]);
 
         yield return new WaitForSeconds(narrationAudioClips_2[3].length);
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
@@ -844,9 +845,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
-        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
-
-        playerAudioSource.GetComponent<AudioSource>().Play();
+        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[4]);
         
         yield return new WaitForSeconds(narrationAudioClips_2[4].length);
 
@@ -897,6 +896,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         playerAudioSource.PlayOneShot(narrationAudioClips_2[7]);
         yield return new WaitForSeconds(narrationAudioClips_2[7].length);
 
+        playerAudioSource.GetComponent<AudioSource>().Stop();
+        playerAudioSource.GetComponent<AudioSource>().loop = false;
 
         // Fade screen
         WhiteFadeEffect.FadeOut();
