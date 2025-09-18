@@ -18,11 +18,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     }
 
     [Header("Narration Variables")]
-    [SerializeField] AudioSource narrationAudioSource;
+    public AudioSource narrationAudioSource;
     [SerializeField] AudioSource playerAudioSource;
 
     // for bathroom and living room scene
-    AudioClip[] narrationAudioClips_1;
+    [HideInInspector] public AudioClip[] narrationAudioClips_1;
     [SerializeField] AudioClip[] narrationAudioClips_1_Male;
     [SerializeField] AudioClip[] narrationAudioClips_1_Female;
     string[] narration_1 = new string[30];

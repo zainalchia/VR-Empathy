@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.1836713, g: 0.22913265, b: 0.30506667, a: 1}
+  m_IndirectSpecularColor: {r: 0.18365513, g: 0.22912003, b: 0.30506986, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4555,6 +4555,7 @@ MonoBehaviour:
   MoveToSection: 0
   currentScene: 3
   testPressTrigger: 0
+  scenarioManagerPresentGood: {fileID: 0}
 --- !u!1 &478722975
 GameObject:
   m_ObjectHideFlags: 0
@@ -30503,6 +30504,7 @@ MonoBehaviour:
   characterModel: {fileID: 0}
   alertText: {fileID: 1615119055}
   fadePanel: {fileID: 1178772239}
+  whiteFadePanel: {fileID: 0}
   goodbyeText: {fileID: 0}
   glasses: {fileID: 0}
   toPutGlassesOn: 0
@@ -30528,10 +30530,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   medicine: {fileID: 0}
+  pill: {fileID: 0}
   toConsumeMedicine: 0
   OnMedicineConsumed:
     m_PersistentCalls:
       m_Calls: []
+  OnMedicineGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  leftPalm: {fileID: 0}
+  rightPalm: {fileID: 0}
   photoFrame: {fileID: 0}
   toViewPhotoFrame: 0
   OnPhotoFrameViewed:
@@ -30557,7 +30565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToPlay: 0
   narrationAudioSource: {fileID: 2345401382498451322}
-  playerAudioSource: {fileID: 0}
+  playerAudioSource: {fileID: 1726075247}
+  narrationAudioClips_1: []
   narrationAudioClips_1_Male:
   - {fileID: 8300000, guid: 356e2b02b92cbcd4d8ada06a049a3880, type: 3}
   - {fileID: 8300000, guid: f2260e776f1a06f40afe86503f4246a0, type: 3}
@@ -30603,6 +30612,8 @@ MonoBehaviour:
   taiChiManager: {fileID: 0}
   taichiInstructor: {fileID: 0}
   taichiTargetDestination: {fileID: 0}
+  taichiAudioSource: {fileID: 0}
+  taiChiBGM: {fileID: 0}
   taichiNPC: {fileID: 0}
   checkersNPC: {fileID: 0}
   teleportPoint: {fileID: 0}
