@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Oculus.Interaction;
 using UnityEngine.Video;
+using Meta.WitAi;
 
 public class ScenarioManagerPresentGood : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     [Header("Narration Variables")]
     [SerializeField] AudioSource narrationAudioSource;
+    [SerializeField] AudioSource playerAudioSource;
 
     // for bathroom and living room scene
     AudioClip[] narrationAudioClips_1;
@@ -57,6 +59,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [SerializeField] private float MaxAlertHideTimer = 3;
 
     private float AlertHideTimer = 0;
+
+    [SerializeField] GameObject BathroomItems;
+    private bool StartGame = false;
+    private bool PlayStart = true;
 
     //void SetupNarrationBathroomLivingRoom()
     //{
@@ -551,7 +557,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     TaiChiManager taiChiManager;
     [SerializeField] GameObject taichiInstructor;
     [SerializeField] Transform taichiTargetDestination;
-
+    [SerializeField] AudioSource taichiAudioSource;
+    [SerializeField] AudioClip taiChiBGM;
     void PlaySegment3Part1()
     {
         sceneID = SceneID.VoidDeck;
@@ -563,8 +570,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StartCoroutine(SetKaraokeNPCs());
         WhiteFadeEffect.FadeIn();
+        // Start taichi bgm
+        taichiAudioSource.GetComponent<AudioSource>().clip = taiChiBGM;
+        taichiAudioSource.GetComponent <AudioSource>().loop = true;
+        taichiAudioSource.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(2f); // screen fade in timing
+        // nancy bought me to taichi
+        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[0]);
+
+        yield return new WaitForSeconds(narrationAudioClips_2[0].length); // screen fade in timing
 
         yield return StartCoroutine(MoveFriendPosition(taichiInstructor, 0.25f, taichiTargetDestination.position, 90));
 
@@ -576,11 +590,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         taichiInstructor.GetComponent<Animator>().SetTrigger("Talking");
 
-        taichiInstructor.GetComponent<AudioSource>().clip = narrationAudioClips_2[0];
+        taichiInstructor.GetComponent<AudioSource>().clip = narrationAudioClips_2[1];
 
         taichiInstructor.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(narrationAudioClips_2[0].length);
+        yield return new WaitForSeconds(narrationAudioClips_2[1].length);
 
         taichiInstructor.GetComponent<Animator>().SetTrigger("TalkEnd");
 
@@ -653,11 +667,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
-        checkersNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[1];
+        checkersNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[2];
 
         checkersNPC.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(narrationAudioClips_2[1].length);
+        yield return new WaitForSeconds(narrationAudioClips_2[2].length);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
 
@@ -679,7 +693,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // Fadde screen
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         WhiteFadeEffect.FadeOut();
-        yield return new WaitForSeconds(4f);
+
+        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[3]);
+
+        yield return new WaitForSeconds(narrationAudioClips_2[3].length);
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         WhiteFadeEffect.FadeIn();
         //yield return new WaitForSeconds(1f);
@@ -765,7 +782,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return StartCoroutine(MovePiece(SecondEnemyCheckerPiece, EnemyPieceThirdDestination));
         yield return new WaitForSeconds(1);
         StartCoroutine(MovingFromChessToKaraokeCorner());
-        Debug.Log("Checkers win");
     }
 
     IEnumerator MovePiece(GameObject checkerPiece,GameObject Destination,float heightMultiplier = 0.25f)
@@ -816,8 +832,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator MovingFromChessToKaraokeCorner()
     {
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[2]);
-
         // NPC lose animation
         checkersNPC.GetComponent<Animator>().SetTrigger("lose");
 
@@ -833,11 +847,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
-        checkersNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[3];
-
-        checkersNPC.GetComponent<AudioSource>().Play();
+        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[4]);
         
-        yield return new WaitForSeconds(narrationAudioClips_2[3].length);
+        yield return new WaitForSeconds(narrationAudioClips_2[4].length);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
 
@@ -845,9 +857,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         radio.SetActive(false);
 
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[4]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
 
-        yield return new WaitForSeconds(narrationAudioClips_2[4].length);
+        yield return new WaitForSeconds(narrationAudioClips_2[5].length);
+
+        playerAudioSource.PlayOneShot(narrationAudioClips_2[6]);
+
+        yield return new WaitForSeconds(narrationAudioClips_2[6].length);
 
         checkersNPC.GetComponent<Animator>().ResetTrigger("BackToIdle");
 
@@ -867,21 +883,28 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(1.2f);
 
-        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
+        //KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[8], 0.4f);
-        yield return new WaitForSeconds(narrationAudioClips_2[8].length);
+        //narrationAudioSource.PlayOneShot(narrationAudioClips_2[8], 0.4f);
+        //yield return new WaitForSeconds(narrationAudioClips_2[8].length);
 
-        KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
+        //KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
 
         lastRoutine = null;
 
+        playerAudioSource.PlayOneShot(narrationAudioClips_2[7]);
+        yield return new WaitForSeconds(narrationAudioClips_2[7].length);
+
+        taichiAudioSource.GetComponent<AudioSource>().Stop();
+        taichiAudioSource.GetComponent<AudioSource>().loop = false;
+
         // Fade screen
         WhiteFadeEffect.FadeOut();
-        yield return new WaitForSeconds(4f);
+        playerAudioSource.PlayOneShot(narrationAudioClips_2[8]);
+        yield return new WaitForSeconds(narrationAudioClips_2[8].length);
         WhiteFadeEffect.FadeIn();
 
         playerTeleport.SetCurrentHotspotIndex(-1); // reset hotspot index
@@ -940,38 +963,34 @@ public class ScenarioManagerPresentGood : MonoBehaviour
           //promptManager.ShowPrompt(sceneID, 4);
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
-
-        KaraokeMic.GetComponent<Grabbable>().enabled = true;
-        KaraokeMic.GetComponent<Outline>().enabled = true;
-        KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
-        KaraokeMic.GetComponent<MicController>().active = true;
+                
+        //KaraokeMic.GetComponent<MicController>().toBeginKaraokeMinigame = true;
+        //KaraokeMic.GetComponent<MicController>().active = true;
         KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
 
-
-        narrationAudioSource.clip = narrationAudioClips_2[5];
-
+        narrationAudioSource.clip = narrationAudioClips_2[9];
+        PlayKaraoke();
         lastRoutine = null;
 
         yield return null;
     }
 
-    public void PlayMicOnFace()
+    //
+    public void PlayKaraoke()
     {
-        if (!TVScreen.activeInHierarchy)
+        for(int i = 1; i < 4; i++)
         {
-            for(int i = 1; i < 4; i++)
-            {
-                KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkEnd");
-                StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[i],0,1));
-            }
-
-            TVScreen.SetActive(true);
-            TVScreen2.SetActive(true);
-
-            if (MainMenuManager.isGenderMale == false)
-                TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+            KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkEnd");
+            StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[i],0,1));
         }
+
+        TVScreen.SetActive(true);
+        TVScreen2.SetActive(true);
+
+        if (MainMenuManager.isGenderMale == false)
+            TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+        
         GameManager.instance.HideAlert();
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", true);
         KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", true);
@@ -1033,13 +1052,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[9], 0.4f);
-        yield return new WaitForSeconds(narrationAudioClips_2[9].length);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[10], 0.4f);
+        yield return new WaitForSeconds(narrationAudioClips_2[10].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
-        yield return new WaitForSeconds(narrationAudioClips_2[6].length);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[11]);
+        yield return new WaitForSeconds(narrationAudioClips_2[11].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkBegin");
         KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("Talking");
@@ -1054,16 +1073,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[10], 0.4f);
-        yield return new WaitForSeconds(narrationAudioClips_2[10].length);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[12], 0.4f);
+        yield return new WaitForSeconds(narrationAudioClips_2[12].length);
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[7]);
+        //narrationAudioSource.PlayOneShot(narrationAudioClips_2[7]);
 
-        yield return new WaitForSeconds(narrationAudioClips_2[7].length);
+        //yield return new WaitForSeconds(narrationAudioClips_2[7].length);
 
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(2f);
 
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(3f);
@@ -1188,7 +1207,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             SetupNarrationBathroomLivingRoom();
             promptManager.activeScenario = scenarioID;
             sceneID = SceneID.Bathroom;
-            PlaySegment1Part1();
+
+            foreach (Transform Items in BathroomItems.transform)
+            {
+                if (Items.GetComponent<Grabbable>() != null) Items.GetComponent<Grabbable>().enabled = false;
+                if (Items.GetComponent<PhysicsGrabbable>() != null) Items.GetComponent<PhysicsGrabbable>().enabled = false;
+                if (Items.GetComponent<GrabInteractable>() != null) Items.GetComponent<GrabInteractable>().enabled = false;
+            }
+            //PlaySegment1Part1();
             //StartCoroutine(Segment1Part3_1());
             //secondPhone.GetComponent<MeshRenderer>().enabled = false;
             //secondPhone.transform.GetChild(0).GetComponent<MeshRenderer>().enabled = false;
@@ -1249,6 +1275,20 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             {
                 AlertHideTimer -= Time.deltaTime;
             }
+
+            if (StartGame && PlayStart)
+            {
+                PlaySegment1Part1();
+                PlayStart = false;
+                foreach (Transform Items in BathroomItems.transform)
+                {
+                    if (Items.GetComponent<Grabbable>() != null) Items.GetComponent<Grabbable>().enabled = true;
+                    if (Items.GetComponent<PhysicsGrabbable>() != null) Items.GetComponent<PhysicsGrabbable>().enabled = true;
+                    if (Items.GetComponent<GrabInteractable>() != null) Items.GetComponent<GrabInteractable>().enabled = true;
+                }
+
+            }
+
 
             #region Going to living room
             // remove alert after first teleport
@@ -1321,7 +1361,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
              narrationAudioSource.time >= narrationAudioSource.clip.length - 1f && !firstTimeSing && !hasFinishedSinging)
             {
                 hasFinishedSinging = true;
-                KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
+                //KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
                 KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
                 PlayAfterSingingTransition();
             }
@@ -1366,5 +1406,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(clipToPlay);
         GameManager.instance.ShowAlert(narrationText, clipLength, textColor);
+    }
+
+    public void TriggerStartGame()
+    {
+        StartGame = true;
     }
 }
