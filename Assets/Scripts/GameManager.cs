@@ -68,6 +68,10 @@ public class GameManager : MonoBehaviour
     public UnityEvent OnMedicineConsumed;
     public UnityEvent OnMedicineGrabbed;
 
+    [Header("Hand Targets for Pill")]
+    public Transform leftPalm;
+    public Transform rightPalm;
+
     [Header("PHOTO FRAME")]
     public GameObject photoFrame;
     public bool toViewPhotoFrame = false;

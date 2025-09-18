@@ -78,47 +78,6 @@ public class PlayerFace : MonoBehaviour
         }
         #endregion
 
-        //#region Medicine
-        //if (GameManager.instance.toConsumeMedicine &&
-        //    ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(other.gameObject)) //to consume and object is in hand
-        //{
-        //    if (other.gameObject == GameManager.instance.medicine)
-        //    {
-        //        GameManager.instance.medicine.GetComponent<Rigidbody>().useGravity = false;
-        //        GameManager.instance.medicine.SetActive(false);
-
-        //        //cant consume medicine anymore
-        //        GameManager.instance.toConsumeMedicine = false;
-
-        //        //next event (photo)
-        //        GameManager.instance.OnMedicineConsumed.Invoke();
-        //    }
-        //}
-        //#endregion
-
-        #region Medicine
-        if (GameManager.instance.toConsumeMedicine &&
-            ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(other.gameObject))
-        {
-            // If the player grabbed the medicine bottle
-            if (other.gameObject == GameManager.instance.medicine)
-            {
-                // Tell the scenario manager the bottle was grabbed
-                FindObjectOfType<ScenarioManagerPresentGood>().OnMedicineBottleGrabbed();
-            }
-
-            // If the player grabbed the pill
-            if (other.gameObject == GameManager.instance.pill)
-            {
-                Destroy(other.gameObject);
-                GameManager.instance.toConsumeMedicine = false;
-                GameManager.instance.OnMedicineConsumed.Invoke();
-            }
-        }
-        #endregion
-
-
-
         if (other.gameObject.GetComponent<IObjectInteractable>() != null) // mug, toothbrush etc.
         {
             if (other.gameObject.GetComponent<IObjectInteractable>().ShouldInteractWithFace())

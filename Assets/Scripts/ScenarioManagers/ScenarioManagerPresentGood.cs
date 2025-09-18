@@ -1081,9 +1081,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     [SerializeField] private Animator capAnimator;          
     [SerializeField] private string capPopTrigger = "PopOff";
-    [SerializeField] private GameObject pillPrefab;         
-    [SerializeField] private Transform pillSpawnPoint;     
-
+    [SerializeField] private GameObject pillPrefab;             
+    [SerializeField] private Transform pillSpawnPoint;
+    [SerializeField] private CapMover capMover;
     public void PlaySegment4Part1()
     {
         lastRoutine = StartCoroutine(Segment4Part1());
@@ -1091,11 +1091,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     IEnumerator Segment4Part1()
     {
-        // Fade back into Bedroom
+       
         GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(3f);
 
-        yield return null; // Wait a frame for scene load
+        yield return null; 
         sceneID = SceneID.Bedroom;
 
         // Show medicine prompt
@@ -1110,27 +1110,122 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
       
     }
-
     public void OnMedicineBottleGrabbed()
     {
-
-        // Play cap animation
         if (capAnimator != null)
             capAnimator.SetTrigger(capPopTrigger);
+
+        // slight delay on the cap
+        StartCoroutine(MoveCapAfterDelay(0.5f));
     }
 
-    // Called by Animation Event in the cap’s animation
+    private IEnumerator MoveCapAfterDelay(float delay)
+    {
+        // wait for anim
+        yield return new WaitForSeconds(delay);
+
+        // Stop animator 
+        if (capAnimator != null)
+            capAnimator.enabled = false;
+
+        // Move the cap to the table
+        var capMover = GameManager.instance.medicine.GetComponentInChildren<CapMover>();
+        if (capMover != null)
+
+        {
+            capMover.MoveToTable();
+            capMover.transform.SetParent(null); //detach
+        }
+        yield return new WaitForSeconds(2f);
+    
+        SpawnPill();
+    }
+
     public void SpawnPill()
     {
+        // Pill inside the bottle
         GameObject pill = Instantiate(pillPrefab, pillSpawnPoint.position, pillSpawnPoint.rotation);
-
-      
         GameManager.instance.pill = pill;
 
-        // Force pill to stay in hand
+        // Detect which hands hod the bottle
+        int handIndex = ControllerInteractionsManager.instance.ObjInWhichHand(GameManager.instance.medicine);
+
+        // choose where pill suppose to go
+        Transform targetPalm = (handIndex == 0) ? GameManager.instance.rightPalm   // bottle in left hand, pill to right palm
+        : GameManager.instance.leftPalm;   
+
+        // Move the pill into the palm
+        StartCoroutine(MovePillToHand(pill, targetPalm, handIndex));
+    }
+    private IEnumerator CheckPillDistance()
+    {
+        // Loop continue as the pill exists and the player still needs to eat it
+        while (GameManager.instance.pill != null && GameManager.instance.toConsumeMedicine)
+        {
+            //distance between the pill and face
+            float dist = Vector3.Distance(
+                GameManager.instance.pill.transform.position,
+                GameManager.instance.centerEyeAnchor.transform.position);
+
+            if (dist < 0.15f) 
+            {
+                ConsumePill();
+                yield break;  //stop 
+            }
+            yield return null; 
+        }
+    }
+
+    private void ConsumePill()
+    {
+        Destroy(GameManager.instance.pill);
+        GameManager.instance.pill = null;
+
+        GameManager.instance.toConsumeMedicine = false;
+
+        MedicineTaken(); 
+        GameManager.instance.OnMedicineConsumed.Invoke();
+    }
+    private IEnumerator MovePillToHand(GameObject pill, Transform targetPalm, int handIndex, float height = 0.2f, float duration = 1f)
+    {
+        // take start and target positions
+        Vector3 start = pill.transform.position;
+        Vector3 target = targetPalm.position;
+        float elapsed = 0f;
+
+       
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration; 
+
+            // move pill
+            Vector3 current = Vector3.Lerp(start, target, t);
+
+            // arc like checkers
+            current.y += Mathf.Sin(t * Mathf.PI) * height; 
+
+            // position
+            pill.transform.position = current;
+            yield return null;
+        }
+
+        // pill to hand
+        pill.transform.position = target;
+
+        // auto grab
+        var grabInteractable = pill.GetComponent<GrabInteractable>();
+        if (handIndex == 0) // bottle lfet hand so pill on the right vice versa
+            ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
+        else
+            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(grabInteractable);
+
         var forceGrab = pill.GetComponent<ForceStayGrabbed>();
         if (forceGrab != null)
             forceGrab.SetForceGrabActive(true);
+
+        StartCoroutine(CheckPillDistance());
+
     }
 
     public void MedicineTaken()
@@ -1141,6 +1236,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // Reset flag
         GameManager.instance.toConsumeMedicine = false;
         GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
+
+        Destroy(GameManager.instance.medicine);
+        GameManager.instance.medicine = null;
 
         // Next step
         StartCoroutine(AfterMedicineTaken());
