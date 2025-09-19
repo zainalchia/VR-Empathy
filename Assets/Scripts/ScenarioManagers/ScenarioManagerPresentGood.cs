@@ -61,7 +61,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     private float AlertHideTimer = 0;
 
     [SerializeField] GameObject BathroomItems;
-    private bool StartGame = false;
+    private bool StartGame = true;
     private bool PlayStart = true;
 
     //void SetupNarrationBathroomLivingRoom()
