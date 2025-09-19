@@ -580,7 +580,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         taichiAudioSource.GetComponent<AudioSource>().Play();
 
         // nancy bought me to taichi
-        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[0]);
+        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[0];
+        playerAudioSource.GetComponent<AudioSource>().Play();
+
+        //playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[0]);
 
         yield return new WaitForSeconds(narrationAudioClips_2[0].length); // screen fade in timing
 
@@ -698,7 +701,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         WhiteFadeEffect.FadeOut();
 
-        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[3]);
+        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[3];
+        playerAudioSource.GetComponent<AudioSource>().Play();
+
+        //playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[3]);
 
         yield return new WaitForSeconds(narrationAudioClips_2[3].length);
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
@@ -851,8 +857,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
-        playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[4]);
-        
+        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
+        playerAudioSource.GetComponent<AudioSource>().Play();
+
+        //playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[4]);
+
         yield return new WaitForSeconds(narrationAudioClips_2[4].length);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
