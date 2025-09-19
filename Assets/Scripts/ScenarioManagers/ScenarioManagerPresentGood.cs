@@ -260,6 +260,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         GameManager.instance.toPutGlassesOn = true;
         glassesOutline.enabled = true;
+
+        // my phone is ringing, let me get my glasses
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
     }
 
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
@@ -293,13 +297,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(3f); // the call takes a few second to be answered so wait a few seconds first
 
         narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
 
         yield return new WaitForSeconds(2f);
 
         //StartCoroutine(MoveFriendsWithDelay(1));
 
-        yield return new WaitForSeconds(narrationAudioClips_1[3].length - 2f);
+        yield return new WaitForSeconds(narrationAudioClips_1[5].length - 2f);
 
         // play phone hang up here
         mobilePhone.SetPhoneHangUp();
