@@ -1001,8 +1001,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         TVScreen.SetActive(true);
         TVScreen2.SetActive(true);
 
-        if (MainMenuManager.isGenderMale == false)
-            TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+        //if (MainMenuManager.isGenderMale == false)
+        //    TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+
+        TVScreen.GetComponent<AudioSource>().volume = Mathf.Lerp(0, 0.3f, 1);
         
         GameManager.instance.HideAlert();
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", true);
