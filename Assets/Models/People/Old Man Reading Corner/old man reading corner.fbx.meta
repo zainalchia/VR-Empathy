@@ -203,8 +203,8 @@ ModelImporter:
     importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
@@ -235,648 +235,442 @@ ModelImporter:
     tangentImportMode: 3
     normalCalculationMode: 4
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
-    blendShapeNormalImportMode: 1
+    blendShapeNormalImportMode: 2
     normalSmoothingSource: 0
   referencedClips: []
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
+    human:
+    - boneName: Root_M
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hip_L
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Hip_R
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Knee_L
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Knee_R
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ankle_L
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Ankle_R
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Spine1_M
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Spine2_M
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Neck_M
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Head_M
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Scapula_L
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Scapula_R
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Elbow_L
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Elbow_R
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Wrist_L
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Wrist_R
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Toes_L
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Toes_R
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Eye_L
+      humanName: LeftEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Eye_R
+      humanName: RightEye
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Jaw_M
+      humanName: Jaw
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger1_L
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger2_L
+      humanName: Left Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger3_L
+      humanName: Left Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger1_L
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger2_L
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger3_L
+      humanName: Left Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger1_L
+      humanName: Left Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger2_L
+      humanName: Left Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger3_L
+      humanName: Left Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger1_L
+      humanName: Left Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger2_L
+      humanName: Left Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger3_L
+      humanName: Left Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger1_L
+      humanName: Left Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger2_L
+      humanName: Left Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger3_L
+      humanName: Left Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger1_R
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger2_R
+      humanName: Right Thumb Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: ThumbFinger3_R
+      humanName: Right Thumb Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger1_R
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger2_R
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: IndexFinger3_R
+      humanName: Right Index Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger1_R
+      humanName: Right Middle Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger2_R
+      humanName: Right Middle Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: MiddleFinger3_R
+      humanName: Right Middle Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger1_R
+      humanName: Right Ring Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger2_R
+      humanName: Right Ring Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: RingFinger3_R
+      humanName: Right Ring Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger1_R
+      humanName: Right Little Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger2_R
+      humanName: Right Little Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: PinkyFinger3_R
+      humanName: Right Little Distal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Chest_M
+      humanName: UpperChest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
     skeleton:
     - name: old man reading corner(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: browInnerUp
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: browOuterUpLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: browOuterUpRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: cheekSquintLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: cheekSquintRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeBlinkLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeBlinkRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookDownLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookDownRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookInLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookInRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookOutLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookOutRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookUpLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookUpRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeSquintLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeSquintRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeWideLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeWideRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthDimpleLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthDimpleRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthSmileLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthSmileRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: noseSneerLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: noseSneerRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: CH
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: DD
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: E
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: FF
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: PP
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RR
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: SS
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: TH
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: aa
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: ih
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: kk
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: nn
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: oh
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: ou
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: browDownLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: browDownRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: browInnerUp1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: browOuterUpLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: browOuterUpRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: cheekPuff
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: cheekSquintLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: cheekSquintRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeBlinkLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeBlinkRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookDownLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookDownRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookInLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookInRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookOutLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookOutRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookUpLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeLookUpRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeSquintLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeSquintRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeWideLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: eyeWideRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: jawForward
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: jawLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: jawOpen
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: jawRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthClose
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthDimpleLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthDimpleRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthFrownLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthFrownRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthFunnel
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthLowerDownLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthLowerDownRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthPressLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthPressRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthPucker
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthRollLower
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthRollUpper
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthShrugLower
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthShrugUpper
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthSmileLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthSmileRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthStretchLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthStretchRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthUpperUpLeft
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: mouthUpperUpRight
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: noseSneerLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: noseSneerRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: CH1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: DD1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: E1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: FF1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: PP1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RR1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: SS1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: TH1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: aa1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: ih1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: kk1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: nn1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: oh1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: ou1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sil
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: jawForward1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: jawLeft1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: jawOpen1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: jawRight1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: CH2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: DD2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: E2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: FF2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: PP2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RR2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: SS2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: TH2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: aa2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: ih2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: kk2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: nn2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: oh2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: ou2
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: sil1
-      parentName: old man reading corner(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: OBJ
       parentName: old man reading corner(Clone)
@@ -890,7 +684,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: AvatarHead2
       parentName: OBJ
-      position: {x: -0, y: 0, z: 0}
+      position: {x: 0.0000028326322, y: 0.00012868071, z: 0.0000072702805}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: AvatarEyelashes2
@@ -1041,7 +835,7 @@ ModelImporter:
     - name: Spine2
       parentName: Spine1
       position: {x: -0.14634395, y: 4.352074e-16, z: -5.396949e-18}
-      rotation: {x: 0, y: 0, z: -0.022234382, w: 0.9997528}
+      rotation: {x: 0, y: -0, z: -0.022234382, w: 0.9997528}
       scale: {x: 1, y: 1, z: 1}
     - name: Chest
       parentName: Spine2
@@ -1051,7 +845,7 @@ ModelImporter:
     - name: Neck
       parentName: Chest
       position: {x: -0.21190922, y: -1.5987211e-16, z: 4.5297506e-16}
-      rotation: {x: 0, y: 0, z: -0.103563815, w: 0.9946228}
+      rotation: {x: 0, y: -0, z: -0.103563815, w: 0.9946228}
       scale: {x: 1, y: 1, z: 1}
     - name: Head
       parentName: Neck
@@ -1096,7 +890,7 @@ ModelImporter:
     - name: Elbow
       parentName: Shoulder
       position: {x: -0.21374424, y: 2.842171e-16, z: -8.5265126e-16}
-      rotation: {x: 0, y: 0, z: -0.06227188, w: 0.9980593}
+      rotation: {x: 0, y: -0, z: -0.06227188, w: 0.9980593}
       scale: {x: 1, y: 1, z: 1}
     - name: Wrist
       parentName: Elbow
@@ -1261,7 +1055,7 @@ ModelImporter:
     - name: FKOffsetNeck_M
       parentName: FKParentConstraintToChest_M
       position: {x: -0.21190922, y: -1.4210854e-16, z: 4.6809153e-16}
-      rotation: {x: 0, y: 0, z: -0.103563815, w: 0.9946228}
+      rotation: {x: 0, y: -0, z: -0.103563815, w: 0.9946228}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraNeck_M
       parentName: FKOffsetNeck_M
@@ -1310,8 +1104,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FKAimEye_R
       parentName: FKOffsetEye_R
-      position: {x: 1.7763568e-17, y: 2.842171e-16, z: -4.440892e-18}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      position: {x: 3.5527136e-17, y: 2.842171e-16, z: -4.440892e-18}
+      rotation: {x: 0, y: -0, z: -0.0080380095, w: 0.9999677}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraEye_R
       parentName: FKAimEye_R
@@ -1356,7 +1150,7 @@ ModelImporter:
     - name: FKAimEye_L
       parentName: FKOffsetEye_L
       position: {x: -0, y: 0, z: -4.440892e-18}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
+      rotation: {x: 0, y: -0, z: -0.0080380095, w: 0.9999677}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraEye_L
       parentName: FKAimEye_L
@@ -1405,7 +1199,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FKOffsetShoulder_R
       parentName: FKXScapula_R
-      position: {x: -0.11483687, y: -1.3145041e-15, z: 1.9895197e-15}
+      position: {x: -0.11483687, y: -1.3145041e-15, z: 1.7053025e-15}
       rotation: {x: -0.13154274, y: 0.175633, z: -0.21629539, w: 0.9513495}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraShoulder_R
@@ -1431,7 +1225,7 @@ ModelImporter:
     - name: FKOffsetElbow_R
       parentName: FKXShoulder_R
       position: {x: -0.21374424, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: -0.062271886, w: 0.9980593}
+      rotation: {x: 0, y: -0, z: -0.062271886, w: 0.9980593}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraElbow_R
       parentName: FKOffsetElbow_R
@@ -1450,7 +1244,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FKOffsetWrist_R
       parentName: FKXElbow_R
-      position: {x: -0.37945884, y: -4.2632563e-16, z: 0}
+      position: {x: -0.37945884, y: -4.2632563e-16, z: -5.684342e-16}
       rotation: {x: 0.16018468, y: -0.011176578, z: 0.03173992, w: 0.9865133}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraWrist_R
@@ -1491,7 +1285,7 @@ ModelImporter:
     - name: FKPS2Elbow_R
       parentName: FKPS1Elbow_R
       position: {x: -0.21374424, y: 0, z: -5.684342e-16}
-      rotation: {x: 0, y: 0, z: -0.062271886, w: 0.9980593}
+      rotation: {x: 0, y: -0, z: -0.062271886, w: 0.9980593}
       scale: {x: 1, y: 1, z: 1}
     - name: FKPS1Shoulder_R
       parentName: FKXScapula_R
@@ -1525,7 +1319,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FKOffsetShoulder_L
       parentName: FKXScapula_L
-      position: {x: 0.11483687, y: 1.4566126e-15, z: -1.7053025e-15}
+      position: {x: 0.11483687, y: 1.4921397e-15, z: -1.4210854e-15}
       rotation: {x: -0.13154274, y: 0.175633, z: -0.21629539, w: 0.9513495}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraShoulder_L
@@ -1550,8 +1344,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FKOffsetElbow_L
       parentName: FKXShoulder_L
-      position: {x: 0.21374424, y: -1.4210854e-16, z: 2.842171e-16}
-      rotation: {x: 0, y: 0, z: -0.062271886, w: 0.9980593}
+      position: {x: 0.21374424, y: -4.2632563e-16, z: 8.5265126e-16}
+      rotation: {x: 0, y: -0, z: -0.062271886, w: 0.9980593}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraElbow_L
       parentName: FKOffsetElbow_L
@@ -1611,7 +1405,7 @@ ModelImporter:
     - name: FKPS2Elbow_L
       parentName: FKPS1Elbow_L
       position: {x: 0.21374424, y: -2.842171e-16, z: -5.684342e-16}
-      rotation: {x: 0, y: 0, z: -0.062271886, w: 0.9980593}
+      rotation: {x: 0, y: -0, z: -0.062271886, w: 0.9980593}
       scale: {x: 1, y: 1, z: 1}
     - name: FKPS1Shoulder_L
       parentName: FKXScapula_L
@@ -2070,7 +1864,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: FKOffsetKnee_L
       parentName: FKXHip_L
-      position: {x: 0.30478686, y: 1.0658141e-16, z: 7.105427e-17}
+      position: {x: 0.30478686, y: 7.105427e-17, z: 7.105427e-17}
       rotation: {x: 0, y: 0, z: 0.13996573, w: 0.99015635}
       scale: {x: 1, y: 1, z: 1}
     - name: FKExtraKnee_L
@@ -2611,7 +2405,7 @@ ModelImporter:
     - name: IKXElbow_R
       parentName: IKXShoulder_R
       position: {x: -0.21374424, y: -7.105427e-16, z: 1.4210854e-15}
-      rotation: {x: 2.0874235e-29, y: 3.8692787e-28, z: -0.062271886, w: 0.9980593}
+      rotation: {x: 6.574556e-29, y: 1.1106917e-27, z: -0.062271886, w: 0.9980593}
       scale: {x: 1, y: 1, z: 1}
     - name: IKX2Elbow_R
       parentName: IKXElbow_R
@@ -2736,7 +2530,7 @@ ModelImporter:
     - name: IKXSpine2_M
       parentName: IKXSpine1_M
       position: {x: -0.14634395, y: 4.440892e-16, z: -2.0285602e-17}
-      rotation: {x: 0, y: 0, z: -0.022234382, w: 0.9997528}
+      rotation: {x: 0, y: -0, z: -0.022234382, w: 0.9997528}
       scale: {x: 1, y: 1, z: 1}
     - name: IKX2Spine2_M
       parentName: IKXSpine2_M
@@ -2801,7 +2595,7 @@ ModelImporter:
     - name: IKXElbow_L
       parentName: IKXShoulder_L
       position: {x: 0.21374424, y: -5.684342e-16, z: 8.5265126e-16}
-      rotation: {x: 0, y: 0, z: -0.062271886, w: 0.9980593}
+      rotation: {x: 0, y: -0, z: -0.062271886, w: 0.9980593}
       scale: {x: 1, y: 1, z: 1}
     - name: IKX2Elbow_L
       parentName: IKXElbow_L
@@ -3240,7 +3034,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: AimEye_M
       parentName: AimFollowEye
-      position: {x: -0, y: 0, z: 0}
+      position: {x: -0, y: -0.004373196, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: AimOffsetEye_R
@@ -3341,7 +3135,7 @@ ModelImporter:
     - name: Spine2_M
       parentName: Spine1_M
       position: {x: -0.14634395, y: 4.0856205e-16, z: -4.0397545e-18}
-      rotation: {x: 0, y: 0, z: -0.022234382, w: 0.9997528}
+      rotation: {x: 0, y: -0, z: -0.022234382, w: 0.9997528}
       scale: {x: 1, y: 1, z: 1}
     - name: Chest_M
       parentName: Spine2_M
@@ -3360,22 +3154,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Wrist_L
       parentName: Elbow_L
-      position: {x: 0.37945884, y: 2.842171e-16, z: 0}
+      position: {x: 0.37945884, y: 5.684342e-16, z: -5.684342e-16}
       rotation: {x: 0.16018468, y: -0.011176578, z: 0.03173992, w: 0.9865133}
       scale: {x: 1, y: 1, z: 1}
     - name: MiddleFinger1_L
       parentName: Wrist_L
-      position: {x: 0.14285554, y: -6.3948843e-16, z: 1.1368684e-15}
+      position: {x: 0.14285554, y: -5.684342e-16, z: 8.5265126e-16}
       rotation: {x: 0.0026971316, y: -0.02622007, z: 0.0018851128, w: 0.9996508}
       scale: {x: 1, y: 1, z: 1}
     - name: MiddleFinger2_L
       parentName: MiddleFinger1_L
-      position: {x: 0.031064095, y: -1.0658141e-16, z: 9.148948e-13}
+      position: {x: 0.031064095, y: -1.0658141e-16, z: 9.154632e-13}
       rotation: {x: 0.000319513, y: 0.021989372, z: 0.000015414114, w: 0.9997582}
       scale: {x: 1, y: 1, z: 1}
     - name: MiddleFinger3_L
       parentName: MiddleFinger2_L
-      position: {x: 0.017127015, y: 1.7763567e-16, z: 5.6843415e-15}
+      position: {x: 0.017127015, y: 1.0658141e-16, z: 5.4001247e-15}
       rotation: {x: 0.00046585005, y: 0.0320326, z: -0.000002713143, w: 0.99948674}
       scale: {x: 1, y: 1, z: 1}
     - name: MiddleFinger4_L
@@ -3390,12 +3184,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: ThumbFinger2_L
       parentName: ThumbFinger1_L
-      position: {x: 0.03508825, y: 8.5265126e-16, z: -7.81597e-16}
+      position: {x: 0.03508825, y: 5.684342e-16, z: -7.105427e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ThumbFinger3_L
       parentName: ThumbFinger2_L
-      position: {x: 0.01686859, y: 2.2737367e-15, z: -2.8421708e-15}
+      position: {x: 0.01686859, y: 1.9895197e-15, z: -2.7711166e-15}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ThumbFinger4_L
@@ -3410,12 +3204,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: IndexFinger2_L
       parentName: IndexFinger1_L
-      position: {x: 0.02638583, y: -1.4210854e-16, z: -1.0186056e-11}
+      position: {x: 0.02638583, y: -2.1316282e-16, z: -1.0185772e-11}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: IndexFinger3_L
       parentName: IndexFinger2_L
-      position: {x: 0.017551942, y: 4.6185276e-16, z: 6.536993e-15}
+      position: {x: 0.017551942, y: 5.32907e-16, z: 6.252776e-15}
       rotation: {x: -0.014286065, y: 0.04111566, z: 0.00011630349, w: 0.9990523}
       scale: {x: 1, y: 1, z: 1}
     - name: IndexFinger4_L
@@ -3430,12 +3224,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: RingFinger2_L
       parentName: RingFinger1_L
-      position: {x: 0.028952412, y: -1.5099033e-16, z: -8.5265126e-16}
+      position: {x: 0.028952412, y: -1.7763567e-16, z: -8.5265126e-16}
       rotation: {x: -0.002471485, y: -0.018848252, z: -0.000084889194, w: 0.99981934}
       scale: {x: 1, y: 1, z: 1}
     - name: RingFinger3_L
       parentName: RingFinger2_L
-      position: {x: 0.017506028, y: 4.352074e-16, z: -1.3073986e-14}
+      position: {x: 0.017506028, y: 3.9968028e-16, z: -1.2789769e-14}
       rotation: {x: 0.0049418127, y: 0.037690107, z: 0.00007652508, w: 0.99927723}
       scale: {x: 1, y: 1, z: 1}
     - name: RingFinger4_L
@@ -3450,12 +3244,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: PinkyFinger2_L
       parentName: PinkyFinger1_L
-      position: {x: 0.023273224, y: 8.9372954e-17, z: 8.526512e-15}
+      position: {x: 0.023273224, y: 9.7699626e-17, z: 8.526512e-15}
       rotation: {x: 0.0023266044, y: 0.0062766355, z: 0.00028591757, w: 0.9999776}
       scale: {x: 1, y: 1, z: 1}
     - name: PinkyFinger3_L
       parentName: PinkyFinger2_L
-      position: {x: 0.014230168, y: 7.3718807e-16, z: 3.694822e-15}
+      position: {x: 0.014230168, y: 6.4726e-16, z: 2.8421708e-15}
       rotation: {x: 0.01871335, y: 0.04109202, z: 0.0010058207, w: 0.9989796}
       scale: {x: 1, y: 1, z: 1}
     - name: PinkyFinger4_L
@@ -3466,7 +3260,7 @@ ModelImporter:
     - name: Neck_M
       parentName: Chest_M
       position: {x: -0.21190922, y: -1.5987211e-16, z: 4.6053335e-16}
-      rotation: {x: 0, y: 0, z: -0.103563815, w: 0.9946228}
+      rotation: {x: 0, y: -0, z: -0.103563815, w: 0.9946228}
       scale: {x: 1, y: 1, z: 1}
     - name: Head_M
       parentName: Neck_M
@@ -3491,7 +3285,7 @@ ModelImporter:
     - name: Eye_R
       parentName: Head_M
       position: {x: -0.0591633, y: 0.09763198, z: -0.03423012}
-      rotation: {x: -1.5832956e-16, y: -1.873044e-18, z: -0.7074332, w: 0.70678025}
+      rotation: {x: -1.5830937e-16, y: -3.1456378e-18, z: -0.71309143, w: 0.701071}
       scale: {x: 1, y: 1, z: 1}
     - name: EyeEnd_R
       parentName: Eye_R
@@ -3501,7 +3295,7 @@ ModelImporter:
     - name: Eye_L
       parentName: Head_M
       position: {x: -0.0591633, y: 0.09763198, z: 0.03423012}
-      rotation: {x: 0, y: 0, z: -0.7074332, w: 0.7067802}
+      rotation: {x: 0, y: 0, z: -0.71309143, w: 0.701071}
       scale: {x: 1, y: 1, z: 1}
     - name: EyeEnd_L
       parentName: Eye_L
@@ -3520,22 +3314,22 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Wrist_R
       parentName: Elbow_R
-      position: {x: -0.37945884, y: -5.684342e-16, z: 2.842171e-16}
+      position: {x: -0.37945884, y: 0, z: -1.1368684e-15}
       rotation: {x: 0.16018468, y: -0.011176578, z: 0.03173992, w: 0.9865133}
       scale: {x: 1, y: 1, z: 1}
     - name: MiddleFinger1_R
       parentName: Wrist_R
-      position: {x: -0.14285554, y: 5.684342e-16, z: 5.684342e-16}
+      position: {x: -0.14285554, y: 5.32907e-16, z: 5.684342e-16}
       rotation: {x: 0.0026971316, y: -0.02622007, z: 0.0018851128, w: 0.9996508}
       scale: {x: 1, y: 1, z: 1}
     - name: MiddleFinger2_R
       parentName: MiddleFinger1_R
-      position: {x: -0.031064095, y: -7.105427e-17, z: -9.148948e-13}
+      position: {x: -0.031064095, y: -3.5527136e-17, z: -9.151791e-13}
       rotation: {x: 0.000319513, y: 0.021989372, z: 0.000015414114, w: 0.9997582}
       scale: {x: 1, y: 1, z: 1}
     - name: MiddleFinger3_R
       parentName: MiddleFinger2_R
-      position: {x: -0.017127015, y: -1.4210854e-16, z: -7.1054274e-15}
+      position: {x: -0.017127015, y: -1.0658141e-16, z: -6.536993e-15}
       rotation: {x: 0.00046585005, y: 0.0320326, z: -0.000002713143, w: 0.99948674}
       scale: {x: 1, y: 1, z: 1}
     - name: MiddleFinger4_R
@@ -3550,12 +3344,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: ThumbFinger2_R
       parentName: ThumbFinger1_R
-      position: {x: -0.03508825, y: 0, z: 3.5527135e-16}
+      position: {x: -0.03508825, y: -5.684342e-16, z: 5.684342e-16}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ThumbFinger3_R
       parentName: ThumbFinger2_R
-      position: {x: -0.01686859, y: -1.7053025e-15, z: 2.7000624e-15}
+      position: {x: -0.01686859, y: -1.1368684e-15, z: 2.7711166e-15}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: ThumbFinger4_R
@@ -3570,12 +3364,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: IndexFinger2_R
       parentName: IndexFinger1_R
-      position: {x: -0.02638583, y: 1.0658141e-16, z: 1.018492e-11}
+      position: {x: -0.02638583, y: 1.4210854e-16, z: 1.0185203e-11}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: IndexFinger3_R
       parentName: IndexFinger2_R
-      position: {x: -0.017551942, y: -6.0396133e-16, z: -5.968559e-15}
+      position: {x: -0.017551942, y: -6.3948843e-16, z: -5.6843415e-15}
       rotation: {x: -0.014286099, y: 0.04110546, z: 0.0001161354, w: 0.99905264}
       scale: {x: 1, y: 1, z: 1}
     - name: IndexFinger4_R
@@ -3590,12 +3384,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: RingFinger2_R
       parentName: RingFinger1_R
-      position: {x: -0.028952412, y: 1.0658141e-16, z: 2.842171e-16}
+      position: {x: -0.028952412, y: 7.105427e-17, z: 0}
       rotation: {x: -0.002471485, y: -0.018848252, z: -0.000084889194, w: 0.99981934}
       scale: {x: 1, y: 1, z: 1}
     - name: RingFinger3_R
       parentName: RingFinger2_R
-      position: {x: -0.017506028, y: -4.52971e-16, z: 1.2505552e-14}
+      position: {x: -0.017506028, y: -4.352074e-16, z: 1.2789769e-14}
       rotation: {x: 0.0049418127, y: 0.037690107, z: 0.00007652508, w: 0.99927723}
       scale: {x: 1, y: 1, z: 1}
     - name: RingFinger4_R
@@ -3610,12 +3404,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: PinkyFinger2_R
       parentName: PinkyFinger1_R
-      position: {x: -0.023273224, y: 1.8873792e-17, z: -9.379164e-15}
+      position: {x: -0.023273224, y: 8.2711616e-17, z: -9.094947e-15}
       rotation: {x: 0.0023266044, y: 0.0062766355, z: 0.00028591757, w: 0.9999776}
       scale: {x: 1, y: 1, z: 1}
     - name: PinkyFinger3_R
       parentName: PinkyFinger2_R
-      position: {x: -0.014230168, y: -6.9277914e-16, z: -3.9790393e-15}
+      position: {x: -0.014230168, y: -6.283862e-16, z: -3.694822e-15}
       rotation: {x: 0.0187134, y: 0.041095417, z: 0.0010060742, w: 0.9989795}
       scale: {x: 1, y: 1, z: 1}
     - name: PinkyFinger4_R
@@ -3660,12 +3454,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Knee_L
       parentName: Hip_L
-      position: {x: 0.30478686, y: -1.0658141e-16, z: 1.0658141e-16}
+      position: {x: 0.30478686, y: -1.4210854e-16, z: 7.105427e-17}
       rotation: {x: 2.4280183e-19, y: -1.7176475e-18, z: 0.13996573, w: 0.99015635}
       scale: {x: 1, y: 1, z: 1}
     - name: Ankle_L
       parentName: Knee_L
-      position: {x: 0.6336138, y: 2.9309886e-16, z: 1.7763567e-16}
+      position: {x: 0.6336138, y: 2.797762e-16, z: 2.4868996e-16}
       rotation: {x: 0.096548304, y: -0.009751131, z: -0.061939076, w: 0.99335134}
       scale: {x: 1, y: 1, z: 1}
     - name: Heel_L
@@ -3675,7 +3469,7 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: Toes_L
       parentName: Ankle_L
-      position: {x: 0.07357102, y: -0.16834813, z: -3.5527136e-17}
+      position: {x: 0.07357102, y: -0.16834813, z: -7.105427e-17}
       rotation: {x: 0.025283234, y: -0.0074827946, z: -0.6458283, w: 0.7630273}
       scale: {x: 1, y: 1, z: 1}
     - name: ToesEnd_L
