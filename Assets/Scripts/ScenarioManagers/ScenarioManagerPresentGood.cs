@@ -912,7 +912,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_2[7].length);
 
         taichiAudioSource.GetComponent<AudioSource>().Stop();
-        taichiAudioSource.GetComponent<AudioSource>().loop = false;
 
         // Fade screen
         WhiteFadeEffect.FadeOut();
@@ -1001,8 +1000,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         TVScreen.SetActive(true);
         TVScreen2.SetActive(true);
 
-        if (MainMenuManager.isGenderMale == false)
-            TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+        //if (MainMenuManager.isGenderMale == false)
+        //    TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+
+        TVScreen.GetComponent<AudioSource>().volume = Mathf.Lerp(0, 0.3f, 1);
         
         GameManager.instance.HideAlert();
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", true);
@@ -1484,7 +1485,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             }
 
             if (((MainMenuManager.isGenderMale && TVScreen.GetComponent<VideoPlayer>().time >= 16f) ||
-                (MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f))
+                !MainMenuManager.isGenderMale
+                /*(MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f)*/)
                 && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();

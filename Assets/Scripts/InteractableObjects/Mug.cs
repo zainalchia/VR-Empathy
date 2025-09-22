@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,8 @@ public class Mug : MonoBehaviour, IObjectInteractable
     bool canInteract = false;
     public UnityEvent OnInteractEvent;
     [SerializeField] GameObject waterInMug;
+    [SerializeField] TMP_Text testingText;
+    [SerializeField] GameObject grabPoint;
 
     public void OnInteract()
     {
@@ -40,6 +43,7 @@ public class Mug : MonoBehaviour, IObjectInteractable
     private void OnTriggerEnter(Collider collision)
     {
         Debug.Log(collision.gameObject.name);
+        testingText.text = collision.gameObject.tag;
 
         if (!hadWater)
         {
@@ -51,5 +55,11 @@ public class Mug : MonoBehaviour, IObjectInteractable
                 canInteract = true;
             }
         }
+
+        if (collision.gameObject.tag == "LeftHand")
+            grabPoint.transform.localEulerAngles= new Vector3(0, 0, 45);
+        else if (collision.gameObject.tag == "RightHand")
+            grabPoint.transform.localEulerAngles= new Vector3(0, 0, 45);
+
     }
 }
