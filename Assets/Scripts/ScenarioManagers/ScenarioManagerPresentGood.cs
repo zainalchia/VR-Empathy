@@ -1332,6 +1332,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         GameManager.instance.goodbyeText.SetActive(true);
+        GameManager.instance.SetCanRestart();
+
+        yield return new WaitForSeconds(10f);
+
+        GameManager.instance.goodbyeText2.SetActive(true); // "press trigger button to restart game"
     }
 
     // Start is called before the first frame update

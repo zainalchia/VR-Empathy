@@ -567,5 +567,12 @@ public class ControllerInteractionsManager : MonoBehaviour
             CheckIfHolding();
         #endregion
 
+        #region Restart Game (at end game)
+        if (GameManager.instance.CheckIfCanRestart())
+        {
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))            
+                GameManager.instance.RestartGame();            
+        }
+        #endregion
     }
 }
