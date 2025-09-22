@@ -5281,6 +5281,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 134c067e8bab53948a987d666e558805,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7643
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 134c067e8bab53948a987d666e558805,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7643
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 134c067e8bab53948a987d666e558805,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.7643
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 134c067e8bab53948a987d666e558805,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.298
       objectReference: {fileID: 0}
@@ -7104,6 +7119,7 @@ MonoBehaviour:
   characterModel: {fileID: 0}
   alertText: {fileID: 1615119055}
   fadePanel: {fileID: 1178772239}
+  whiteFadePanel: {fileID: 0}
   goodbyeText: {fileID: 1628411038}
   glasses: {fileID: 1301409468}
   toPutGlassesOn: 0
@@ -7129,10 +7145,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   medicine: {fileID: 0}
+  pill: {fileID: 0}
   toConsumeMedicine: 0
   OnMedicineConsumed:
     m_PersistentCalls:
       m_Calls: []
+  OnMedicineGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  leftPalm: {fileID: 0}
+  rightPalm: {fileID: 0}
   photoFrame: {fileID: 0}
   toViewPhotoFrame: 0
   OnPhotoFrameViewed:
@@ -10327,7 +10349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1498610871
 Transform:
   m_ObjectHideFlags: 0
@@ -13812,7 +13834,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1827313234
 Transform:
   m_ObjectHideFlags: 0
