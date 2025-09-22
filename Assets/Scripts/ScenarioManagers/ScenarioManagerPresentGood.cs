@@ -912,7 +912,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_2[7].length);
 
         taichiAudioSource.GetComponent<AudioSource>().Stop();
-        taichiAudioSource.GetComponent<AudioSource>().loop = false;
 
         // Fade screen
         WhiteFadeEffect.FadeOut();
@@ -1486,7 +1485,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             }
 
             if (((MainMenuManager.isGenderMale && TVScreen.GetComponent<VideoPlayer>().time >= 16f) ||
-                (MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f))
+                !MainMenuManager.isGenderMale
+                /*(MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f)*/)
                 && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
