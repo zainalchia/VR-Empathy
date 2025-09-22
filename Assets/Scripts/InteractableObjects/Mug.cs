@@ -54,10 +54,6 @@ public class Mug : MonoBehaviour, IObjectInteractable
             }
         }
 
-        //if (collision.gameObject.tag == "LeftHand")
-        //    grabPoint.transform.localEulerAngles= new Vector3(-60, 90, 90);
-        //else if (collision.gameObject.tag == "RightHand")
-        //    grabPoint.transform.localEulerAngles= new Vector3(60, 90, 90);
         if (collision.gameObject.tag.Contains("Hand")) grabPoint.transform.localEulerAngles = new Vector3(90, 90, 90);
 
     }
