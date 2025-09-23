@@ -141,7 +141,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 1 Part 2 (From bathroom to living room)
     [Header("Moving towards living room")]
-    [SerializeField] DoorKnob bathroomDoor;
+    public DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
     //[SerializeField] GameObject mug;
     //[SerializeField] GameObject toothpaste;
@@ -189,6 +189,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         playerTeleport.MovingToLivingRoom = true;
 
         toGoLivingRoom = true;*/
+
+        knob.GetComponent<Outline>().enabled = false;
 
         lastRoutine = StartCoroutine(ExitBathroom());
     }

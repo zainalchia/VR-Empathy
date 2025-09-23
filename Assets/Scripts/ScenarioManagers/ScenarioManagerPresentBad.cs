@@ -168,7 +168,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 2 (From bathroom to living room)
 
     [Header("Moving towards living room")]
-    [SerializeField] DoorKnob bathroomDoor;
+    public DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
     [SerializeField] GameObject questControllerImage;
     [SerializeField] GameObject newCane;

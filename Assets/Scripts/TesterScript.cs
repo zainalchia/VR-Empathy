@@ -28,17 +28,25 @@ public class TesterScript : MonoBehaviour
     {
         try
         {
-            scenarioManagerPresentBad.AllowDoorOpen();
-            scenarioManagerPresentBad.BathroomDoorOpen();
+            StartCoroutine(StartPresentBadTestPart2_Coroutine());
         }
         catch (Exception e)
         {
             Debug.Log("Error at bathroom part 2 (door opening part): " + e.Message);
         }
-        finally
-        {
-            Debug.Log("Testing over");
-        }
+    }
+
+    IEnumerator StartPresentBadTestPart2_Coroutine()
+    {
+        // grab cane
+        scenarioManagerPresentBad.AllowDoorOpen();
+
+        yield return new WaitForSeconds(1);
+
+        // open door
+        scenarioManagerPresentBad.bathroomDoor.OnDoorOpen.Invoke();
+
+        Debug.Log("Testing over");    
     }
     #endregion
 
@@ -73,7 +81,7 @@ public class TesterScript : MonoBehaviour
     {
         try
         {
-            scenarioManagerPresentGood.BathroomDoorOpen();
+            scenarioManagerPresentGood.bathroomDoor.OnDoorOpen.Invoke();
         }
         catch (Exception e)
         {
