@@ -789,7 +789,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator SecondPieceCaptured()
     {
         StopPrevDialogue();
-        PlayerPieceOutline.SetActive(false);
+        //PlayerPieceOutline.SetActive(false);
         yield return StartCoroutine(MovePiece(SecondEnemyCheckerPiece, EnemyPieceThirdDestination));
         yield return new WaitForSeconds(1);
         StartCoroutine(MovingFromChessToKaraokeCorner());
@@ -846,20 +846,21 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // NPC lose animation
         checkersNPC.GetComponent<Animator>().SetTrigger("lose");
 
+        // "Haha. Yes I win this time"
+        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
+        playerAudioSource.GetComponent<AudioSource>().Play();
+
         yield return new WaitForSeconds(5f); // lose animation is around 5 secs
 
         checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
 
         yield return new WaitForSeconds(0.7f);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
-
-        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
-        playerAudioSource.GetComponent<AudioSource>().Play();
 
         //playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[4]);
 
