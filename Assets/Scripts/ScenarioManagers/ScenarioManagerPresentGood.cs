@@ -1111,6 +1111,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 4 (Bedroom Part 2)
         [Header("Bedroom Part 2")]
+        [SerializeField] private AudioSource bedroomAudioSource;
+        [SerializeField] private AudioClip bedroomBGM;
         [SerializeField] GameObject MedicineBottle;
         [SerializeField] Outline MedicineOutline;
         [SerializeField] GameObject PhotoFrame;
@@ -1130,9 +1132,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         {
             GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
             yield return new WaitForSeconds(3f);
+            bedroomAudioSource.GetComponent<AudioSource>().clip = bedroomBGM;
+            bedroomAudioSource.GetComponent<AudioSource>().loop = true;
+            bedroomAudioSource.GetComponent<AudioSource>().Play();
 
-
-            yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);
             narrationAudioSource.Stop();
             narrationAudioSource.PlayOneShot(narrationAudioClips_3[2]); // VO20
             yield return new WaitForSeconds(narrationAudioClips_3[2].length);
