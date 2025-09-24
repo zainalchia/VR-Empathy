@@ -11905,18 +11905,6 @@ MonoBehaviour:
   OnDoorOpen:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8778168820609154311}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Open
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 982161144}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -29113,6 +29101,7 @@ GameObject:
   - component: {fileID: 3205872392655426376}
   - component: {fileID: 3357422135080932660}
   - component: {fileID: 2345401382498451322}
+  - component: {fileID: 3357422135080932661}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -30526,6 +30515,7 @@ MonoBehaviour:
   fadePanel: {fileID: 1178772239}
   whiteFadePanel: {fileID: 0}
   goodbyeText: {fileID: 0}
+  goodbyeText2: {fileID: 0}
   glasses: {fileID: 0}
   toPutGlassesOn: 0
   toTakeGlassesOff: 0
@@ -30665,6 +30655,23 @@ MonoBehaviour:
   pillPrefab: {fileID: 0}
   pillSpawnPoint: {fileID: 0}
   capMover: {fileID: 0}
+--- !u!114 &3357422135080932661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750601898310710368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTest: 0
+  scenario: 3
+  scenarioManagerPresentBad: {fileID: 0}
+  scenarioManagerPresentGood: {fileID: 3357422135080932660}
+  scenarioManagerReneeTest: {fileID: 0}
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0

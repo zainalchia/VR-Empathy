@@ -109,7 +109,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
-    [SerializeField] float timeForWashingUp = 30f;
+    public float timeForWashingUp = 30f;
 
     public void PlaySegment1Part1()
     {
@@ -141,7 +141,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 1 Part 2 (From bathroom to living room)
     [Header("Moving towards living room")]
-    [SerializeField] DoorKnob bathroomDoor;
+    public DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
     //[SerializeField] GameObject mug;
     //[SerializeField] GameObject toothpaste;
@@ -154,7 +154,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     public void PlaySegment1Part2()
     {
         StopPrevDialogue();
-        sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part2());
     }
 
@@ -191,6 +190,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         toGoLivingRoom = true;*/
 
+        knob.GetComponent<Outline>().enabled = false;
+
         lastRoutine = StartCoroutine(ExitBathroom());
     }
     IEnumerator ExitBathroom()
@@ -211,6 +212,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         //PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
+        sceneID = SceneID.LivingRoom;
         promptManager.ShowPrompt(sceneID, 0, false, 5f);
         playerTeleport.MovingToLivingRoom = true;
         toGoLivingRoom = true;
