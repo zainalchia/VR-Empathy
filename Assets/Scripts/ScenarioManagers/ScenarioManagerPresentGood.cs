@@ -535,7 +535,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     private IEnumerator AfterDenturesPlaced()
     {
         // Small delay so player can register dentures were placed
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_3[1]); // VO8

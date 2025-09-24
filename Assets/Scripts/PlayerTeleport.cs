@@ -50,6 +50,7 @@ public class PlayerTeleport : MonoBehaviour
     bool buttonPressed = false;
     public UnityEvent OnLastTeleport; // for checkers transition and main door opening (both different scenes so can use same unity event)
     public UnityEvent OnLastTeleport2;// for reading corner (othello and reading corner same scene so need 2 unity events)
+    private bool isNarrating = false; // flag to block TP while VO
 
     int currentHotspotIndex = -1;
     float timer = 0;
@@ -79,7 +80,7 @@ public class PlayerTeleport : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-
+        if (isNarrating) return; // if VO happening, skip update
         if (currentScene == ScenarioID.PresentGood) {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
@@ -215,22 +216,14 @@ public class PlayerTeleport : MonoBehaviour
 
         if (currentScene == ScenarioID.PresentGood)
         {
-            // weather
-            if (currentHotspotIndex == 6)
+            if (currentHotspotIndex == 4) // Weather + Lunch VO 
             {
-                scenarioManagerPresentGood.narrationAudioSource.Stop();
-                scenarioManagerPresentGood.narrationAudioSource.PlayOneShot(
-                    scenarioManagerPresentGood.narrationAudioClips_1[2]
-                );
-            }
-
-            //lunch
-            if (currentHotspotIndex == 4)
-            {
-                scenarioManagerPresentGood.narrationAudioSource.Stop();
-                scenarioManagerPresentGood.narrationAudioSource.PlayOneShot(
-                    scenarioManagerPresentGood.narrationAudioClips_1[3]
-                );
+                StartCoroutine(PlayTwoNarrationsInSequence(
+                    scenarioManagerPresentGood.narrationAudioClips_1[2],  // Weather
+                    scenarioManagerPresentGood.narrationAudioClips_1[3],  // Lunch
+                    hotspotArray
+                ));
+                return; 
             }
         }
         StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
@@ -292,9 +285,27 @@ public class PlayerTeleport : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        ShowNextHotspot(hotspotArray);
+        ShowNextHotspot(hotspotArray); 
+        yield return new WaitForSeconds(0.2f); //small delay to avoid instant tp
     }
+    IEnumerator PlayTwoNarrationsInSequence(AudioClip firstClip, AudioClip secondClip, GameObject[] hotspotArray)
+    {
+        isNarrating = true; //block tp when VO
+        scenarioManagerPresentGood.narrationAudioSource.Stop();
 
+        // Play first line
+        scenarioManagerPresentGood.narrationAudioSource.PlayOneShot(firstClip);
+        yield return new WaitForSeconds(firstClip.length + 0.5f); // add 0.5s gap after VO play
+
+        // Play second line
+        scenarioManagerPresentGood.narrationAudioSource.PlayOneShot(secondClip);
+        yield return new WaitForSeconds(secondClip.length); //wait until done 
+
+        // After both finish, show the hotspot
+        yield return StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f, hotspotArray));
+
+        isNarrating = false;
+    }
     void ShowNextHotspot(GameObject[] hotspotArray)
     {
         if(currentHotspotIndex != hotspotArray.Length - 1)
