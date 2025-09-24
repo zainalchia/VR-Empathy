@@ -104,11 +104,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             narrationAudioClips_2 = narrationAudioClips_2_Male;        
         else        
             narrationAudioClips_2 = narrationAudioClips_2_Female;        
-    }    
+    }
+
 
     #region Segment 1 Part 1 (In the Bathroom)
     [Header("In the bathroom")]
-    [SerializeField] float timeForWashingUp = 30f;
+    public float timeForWashingUp = 30f;
 
     public void PlaySegment1Part1()
     {
@@ -140,7 +141,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 1 Part 2 (From bathroom to living room)
     [Header("Moving towards living room")]
-    [SerializeField] DoorKnob bathroomDoor;
+    public DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
     //[SerializeField] GameObject mug;
     //[SerializeField] GameObject toothpaste;
@@ -153,7 +154,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     public void PlaySegment1Part2()
     {
         StopPrevDialogue();
-        sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part2());
     }
 
@@ -190,6 +190,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         toGoLivingRoom = true;*/
 
+        knob.GetComponent<Outline>().enabled = false;
+
         lastRoutine = StartCoroutine(ExitBathroom());
     }
     IEnumerator ExitBathroom()
@@ -210,6 +212,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         //PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
+        sceneID = SceneID.LivingRoom;
         promptManager.ShowPrompt(sceneID, 0, false, 5f);
         playerTeleport.MovingToLivingRoom = true;
         toGoLivingRoom = true;
@@ -508,10 +511,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
-        //narrationAudioSource.Stop();
-        //narrationAudioSource.PlayOneShot(narrationAudioClips_3[0]);
-
-        //yield return new WaitForSeconds(narrationAudioClips_3[0].length);
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_3[0]); // V07
+        yield return new WaitForSeconds(narrationAudioClips_3[0].length);
 
         //GameManager.instance.ShowAlert(narration_2[3]);
         promptManager.ShowPrompt(sceneID, 0);
@@ -532,15 +534,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     private IEnumerator AfterDenturesPlaced()
     {
-        // Skip narration since clips aren't set up
-        // narrationAudioSource.Stop();
-        // narrationAudioSource.PlayOneShot(narrationAudioClips_3[1]);
-
         // Small delay so player can register dentures were placed
         yield return new WaitForSeconds(1f);
 
+        narrationAudioSource.Stop();
+        narrationAudioSource.PlayOneShot(narrationAudioClips_3[1]); // VO8
+        yield return new WaitForSeconds(narrationAudioClips_3[1].length);
+
+        yield return new WaitForSeconds(1.5f); //delay before fade
         // Fade out
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
 
         // Switch to Voiddeck
@@ -912,7 +915,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_2[7].length);
 
         taichiAudioSource.GetComponent<AudioSource>().Stop();
-        taichiAudioSource.GetComponent<AudioSource>().loop = false;
 
         // Fade screen
         WhiteFadeEffect.FadeOut();
@@ -1001,8 +1003,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         TVScreen.SetActive(true);
         TVScreen2.SetActive(true);
 
-        if (MainMenuManager.isGenderMale == false)
-            TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+        //if (MainMenuManager.isGenderMale == false)
+        //    TVScreen.GetComponent<AudioSource>().volume = 0.3f;
+
+        TVScreen.GetComponent<AudioSource>().volume = Mathf.Lerp(0, 0.3f, 1);
         
         GameManager.instance.HideAlert();
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetBool("isArmsUpCheering", true);
@@ -1097,7 +1101,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(2f);
 
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(3f);
 
         SceneManager.LoadScene("PresentGoodBedroomPart2", LoadSceneMode.Single);
@@ -1108,204 +1112,227 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     #endregion
 
     #region Segment 4 (Bedroom Part 2)
-    [Header("Bedroom Part 2")]
-    [SerializeField] GameObject MedicineBottle;
-    [SerializeField] Outline MedicineOutline;
-    [SerializeField] GameObject PhotoFrame;
-    [SerializeField] Outline PhotoFrameOutline;
+        [Header("Bedroom Part 2")]
+        [SerializeField] GameObject MedicineBottle;
+        [SerializeField] Outline MedicineOutline;
+        [SerializeField] GameObject PhotoFrame;
+        [SerializeField] Outline PhotoFrameOutline;
 
-    [SerializeField] private Animator capAnimator;
-    [SerializeField] private string capPopTrigger = "PopOff";
-    [SerializeField] private GameObject pillPrefab;
-    [SerializeField] private Transform pillSpawnPoint;
-    [SerializeField] private CapMover capMover;
-    public void PlaySegment4Part1()
-    {
-        lastRoutine = StartCoroutine(Segment4Part1());
-    }
-
-    IEnumerator Segment4Part1()
-    {
-        GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
-        yield return new WaitForSeconds(3f);
-
-        yield return null;
-        sceneID = SceneID.Bedroom;
-
-        // Show medicine prompt
-        promptManager.ShowPrompt(sceneID, 1);
-        MedicineOutline.enabled = true;
-
-        // Allow player to consume medicine
-        GameManager.instance.toConsumeMedicine = true;
-
-        // Enable grabbing the bottle
-        GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-    }
-
-    public void OnMedicineBottleGrabbed()
-    {
-        if (capAnimator != null)
-            capAnimator.SetTrigger(capPopTrigger);
-
-        // slight delay on the cap
-        StartCoroutine(MoveCapAfterDelay(0.5f));
-    }
-
-    private IEnumerator MoveCapAfterDelay(float delay)
-    {
-        // wait for anim
-        yield return new WaitForSeconds(delay);
-
-        // Stop animator 
-        if (capAnimator != null)
-            capAnimator.enabled = false;
-
-        // Move the cap to the table
-        var capMover = GameManager.instance.medicine.GetComponentInChildren<CapMover>();
-        if (capMover != null)
-
+        [SerializeField] private Animator capAnimator;
+        [SerializeField] private string capPopTrigger = "PopOff";
+        [SerializeField] private GameObject pillPrefab;
+        [SerializeField] private Transform pillSpawnPoint;
+        [SerializeField] private CapMover capMover;
+        public void PlaySegment4Part1()
         {
-            capMover.MoveToTable();
-            capMover.transform.SetParent(null); //detach
+            lastRoutine = StartCoroutine(Segment4Part1());
         }
-        yield return new WaitForSeconds(1f);
 
-        SpawnPill();
-    }
-
-    public void SpawnPill()
-    {
-        // Pill inside the bottle
-        GameObject pill = Instantiate(pillPrefab, pillSpawnPoint.position, pillSpawnPoint.rotation);
-        GameManager.instance.pill = pill;
-
-        // Detect which hands hod the bottle
-        int handIndex = ControllerInteractionsManager.instance.ObjInWhichHand(GameManager.instance.medicine);
-
-        // choose where pill suppose to go
-        Transform targetPalm = (handIndex == 0) ? GameManager.instance.rightPalm   // bottle in left hand, pill to right palm
-        : GameManager.instance.leftPalm;
-
-        // Move the pill into the palm
-        StartCoroutine(MovePillToHand(pill, targetPalm, handIndex));
-    }
-    private IEnumerator CheckPillDistance()
-    {
-        // Loop continue as the pill exists and the player still needs to eat it
-        while (GameManager.instance.pill != null && GameManager.instance.toConsumeMedicine)
+        IEnumerator Segment4Part1()
         {
-            //distance between the pill and face
-            float dist = Vector3.Distance(
-                GameManager.instance.pill.transform.position,
-                GameManager.instance.centerEyeAnchor.transform.position);
+            GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+            yield return new WaitForSeconds(3f);
 
-            if (dist < 0.15f)
+
+            yield return new WaitForSeconds(1f);
+            narrationAudioSource.Stop();
+            narrationAudioSource.PlayOneShot(narrationAudioClips_3[2]); // VO20
+            yield return new WaitForSeconds(narrationAudioClips_3[2].length);
+
+            MedicineBottle.GetComponent<Grabbable>().enabled = true;
+            MedicineBottle.GetComponent<GrabInteractable>().enabled = true;
+            MedicineBottle.GetComponent<PhysicsGrabbable>().enabled = true;
+            MedicineBottle.GetComponent<ForceStayGrabbed>().enabled = true;
+            MedicineBottle.GetComponent<MedicineBottle>().enabled = true;
+
+            yield return null;
+            sceneID = SceneID.Bedroom;
+
+            // Show medicine prompt
+            MedicineOutline.enabled = true;
+
+            // Allow player to consume medicine
+            GameManager.instance.toConsumeMedicine = true;
+
+            // Enable grabbing the bottle
+            GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        }
+
+        public void OnMedicineBottleGrabbed()
+        {
+            if (capAnimator != null)
+                capAnimator.SetTrigger(capPopTrigger);
+
+            // slight delay on the cap
+            StartCoroutine(MoveCapAfterDelay(0.5f));
+        }
+
+        private IEnumerator MoveCapAfterDelay(float delay)
+        {
+            // wait for anim
+            yield return new WaitForSeconds(delay);
+
+            // Stop animator 
+            if (capAnimator != null)
+                capAnimator.enabled = false;
+
+            // Move the cap to the table
+            var capMover = GameManager.instance.medicine.GetComponentInChildren<CapMover>();
+            if (capMover != null)
+
             {
-                ConsumePill();
-                yield break;  //stop 
+                capMover.MoveToTable();
+                capMover.transform.SetParent(null); //detach
             }
-            yield return null;
+        yield return new WaitForSeconds(1f);
+        
+        SpawnPill();
         }
-    }
 
-    private void ConsumePill()
-    {
-        Destroy(GameManager.instance.pill);
-        GameManager.instance.pill = null;
-
-        GameManager.instance.toConsumeMedicine = false;
-
-        MedicineTaken();
-        GameManager.instance.OnMedicineConsumed.Invoke();
-    }
-    private IEnumerator MovePillToHand(GameObject pill, Transform targetPalm, int handIndex, float height = 0.2f, float duration = 1f)
-    {
-        // take start and target positions
-        Vector3 start = pill.transform.position;
-        Vector3 target = targetPalm.position;
-        float elapsed = 0f;
-
-
-        while (elapsed < duration)
+        public void SpawnPill()
         {
-            elapsed += Time.deltaTime;
-            float t = elapsed / duration;
+            // Pill inside the bottle
+            GameObject pill = Instantiate(pillPrefab, pillSpawnPoint.position, pillSpawnPoint.rotation);
+            GameManager.instance.pill = pill;
 
-            // move pill
-            Vector3 current = Vector3.Lerp(start, target, t);
+            // Detect which hands hod the bottle
+            int handIndex = ControllerInteractionsManager.instance.ObjInWhichHand(GameManager.instance.medicine);
 
-            // arc like checkers
-            current.y += Mathf.Sin(t * Mathf.PI) * height;
+            // choose where pill suppose to go
+            Transform targetPalm = (handIndex == 0) ? GameManager.instance.rightPalm   // bottle in left hand, pill to right palm
+            : GameManager.instance.leftPalm;
 
-            // position
-            pill.transform.position = current;
-            yield return null;
+            // Move the pill into the palm
+            StartCoroutine(MovePillToHand(pill, targetPalm, handIndex));
         }
+        private IEnumerator CheckPillDistance()
+        {
+            // Loop continue as the pill exists and the player still needs to eat it
+            while (GameManager.instance.pill != null && GameManager.instance.toConsumeMedicine)
+            {
+                //distance between the pill and face
+                float dist = Vector3.Distance(
+                    GameManager.instance.pill.transform.position,
+                    GameManager.instance.centerEyeAnchor.transform.position);
+
+                if (dist < 0.15f)
+                {
+                    ConsumePill();
+                    yield break;  //stop 
+                }
+                yield return null;
+            }
+        }
+
+        private void ConsumePill()
+        {
+            Destroy(GameManager.instance.pill);
+            GameManager.instance.pill = null;
+
+            GameManager.instance.toConsumeMedicine = false;
+
+            MedicineTaken();
+            GameManager.instance.OnMedicineConsumed.Invoke();
+        }
+        private IEnumerator MovePillToHand(GameObject pill, Transform targetPalm, int handIndex, float height = 0.2f, float duration = 1f)
+        {
+            // take start and target positions
+            Vector3 start = pill.transform.position;
+            Vector3 target = targetPalm.position;
+            float elapsed = 0f;
+
+
+            while (elapsed < duration)
+            {
+                elapsed += Time.deltaTime;
+                float t = elapsed / duration;
+
+                // move pill
+                Vector3 current = Vector3.Lerp(start, target, t);
+
+                // arc like checkers
+                current.y += Mathf.Sin(t * Mathf.PI) * height;
+
+                // position
+                pill.transform.position = current;
+                yield return null;
+            }
 
         // pill to hand
-        pill.transform.position = target;
+        pill.transform.position = targetPalm.position + targetPalm.up * 0.02f;
+        pill.transform.rotation = targetPalm.rotation; // optional alignment
+        pill.transform.SetParent(targetPalm); // stays consistent
 
         // auto grab
         var grabInteractable = pill.GetComponent<GrabInteractable>();
-        if (handIndex == 0) // bottle lfet hand so pill on the right vice versa
-            ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
-        else
-            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(grabInteractable);
+            if (handIndex == 0) // bottle lfet hand so pill on the right vice versa
+                ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
+            else
+                ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(grabInteractable);
 
-        var forceGrab = pill.GetComponent<ForceStayGrabbed>();
-        if (forceGrab != null)
-            forceGrab.SetForceGrabActive(true);
+            var forceGrab = pill.GetComponent<ForceStayGrabbed>();
+            if (forceGrab != null)
+                forceGrab.SetForceGrabActive(true);
 
-        StartCoroutine(CheckPillDistance());
+            StartCoroutine(CheckPillDistance());
 
-    }
+        }
 
-    public void MedicineTaken()
-    {
-        StopPrevDialogue();
-        MedicineOutline.enabled = false;
+        public void MedicineTaken()
+        {
+            StopPrevDialogue();
+            MedicineOutline.enabled = false;
 
-        // Reset flag
-        GameManager.instance.toConsumeMedicine = false;
-        GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
+            // Reset flag
+            GameManager.instance.toConsumeMedicine = false;
+            GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
 
-        Destroy(GameManager.instance.medicine);
-        GameManager.instance.medicine = null;
+            Destroy(GameManager.instance.medicine);
+            GameManager.instance.medicine = null;
 
-        // Next step
-        StartCoroutine(AfterMedicineTaken());
-    }
+            // Next step
+            StartCoroutine(AfterMedicineTaken());
+        }
 
-    IEnumerator AfterMedicineTaken()
-    {
-        yield return new WaitForSeconds(2f);
+        IEnumerator AfterMedicineTaken()
+        {
+            yield return new WaitForSeconds(3f);
 
-        // Show photo frame prompt
-        promptManager.ShowPrompt(sceneID, 2);
-        PhotoFrameOutline.enabled = true;
+            PhotoFrameOutline.enabled = true;
+
+        var photoFrame = GameManager.instance.photoFrame;
+        photoFrame.GetComponent<Grabbable>().enabled = true;
+        photoFrame.GetComponent<GrabInteractable>().enabled = true;
+        photoFrame.GetComponent<PhysicsGrabbable>().enabled = true;
+        photoFrame.GetComponent<ForceStayGrabbed>().enabled = true;
+
 
         var grab = GameManager.instance.photoFrame.GetComponent<ForceStayGrabbed>();
-        grab.SetForceGrabActive(true);
+            grab.SetForceGrabActive(true);
 
 
-        GameManager.instance.toLookAtObjective = true;
-    }
+            GameManager.instance.toLookAtObjective = true;
+        }
 
-    public void PhotoFrameViewed()
-    {
-        StopPrevDialogue();
-        PhotoFrameOutline.enabled = false;
+        public void PhotoFrameViewed()
+        {
+            StopPrevDialogue();
+            PhotoFrameOutline.enabled = false;
 
-        StartCoroutine(PhotoFrameSequence());
-    }
+            StartCoroutine(PhotoFrameSequence());
+        }
 
-    IEnumerator PhotoFrameSequence()
-    {
-        yield return new WaitForSeconds(2f);
-        PlayEndOfScenario();
-    }
-    #endregion
+        IEnumerator PhotoFrameSequence()
+        {
+            narrationAudioSource.Stop();
+            narrationAudioSource.PlayOneShot(narrationAudioClips_3[3]); // VO21
+            yield return new WaitForSeconds(narrationAudioClips_3[3].length);
+
+
+            yield return new WaitForSeconds(1.5f);
+            PlayEndOfScenario();
+        }
+        #endregion
 
     public void PlayEndOfScenario()
     {
@@ -1322,7 +1349,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         anim.SetTrigger("FadeOut");
 
         //match fade out
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(4f);
 
         // stop animator and make it black
         anim.enabled = false;
@@ -1331,6 +1358,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         GameManager.instance.goodbyeText.SetActive(true);
+        GameManager.instance.SetCanRestart();
+
+        yield return new WaitForSeconds(10f);
+
+        GameManager.instance.goodbyeText2.SetActive(true); // "press trigger button to restart game"
     }
 
     // Start is called before the first frame update
@@ -1362,9 +1394,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.LivingRoom)
         {
             SetupNarrationBathroomLivingRoom();
-            promptManager.activeScenario = scenarioID;
+            promptManager.activeScenario = scenarioID;  
             sceneID = SceneID.LivingRoom;
-            SetupSegment1Part2_1();
+            SetupSegment1Part2_1(); 
         }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
@@ -1484,7 +1516,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             }
 
             if (((MainMenuManager.isGenderMale && TVScreen.GetComponent<VideoPlayer>().time >= 16f) ||
-                (MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f))
+                !MainMenuManager.isGenderMale
+                /*(MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f)*/)
                 && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();

@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class TesterScript : MonoBehaviour
 {
-    public enum Scene { presentBadBathroom, presentBadLivingRoom, presentBadBedroom, presentGood, pastBad, pastGood };
+    public enum Scene { presentBadBathroom, presentBadLivingRoom, presentBadBedroom, presentGoodBathroom, pastBad };
     [Tooltip("Press this to begin test")] [SerializeField] bool startTest = false;
     public Scene scenario;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
+    [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
     [SerializeField] ScenarioManagerReneeTest scenarioManagerReneeTest;
 
     #region Present Bad Bathroom
@@ -27,17 +28,25 @@ public class TesterScript : MonoBehaviour
     {
         try
         {
-            scenarioManagerPresentBad.AllowDoorOpen();
-            scenarioManagerPresentBad.BathroomDoorOpen();
+            StartCoroutine(StartPresentBadTestPart2_Coroutine());
         }
         catch (Exception e)
         {
             Debug.Log("Error at bathroom part 2 (door opening part): " + e.Message);
         }
-        finally
-        {
-            Debug.Log("Testing over");
-        }
+    }
+
+    IEnumerator StartPresentBadTestPart2_Coroutine()
+    {
+        // grab cane
+        scenarioManagerPresentBad.AllowDoorOpen();
+
+        yield return new WaitForSeconds(1);
+
+        // open door
+        scenarioManagerPresentBad.bathroomDoor.OnDoorOpen.Invoke();
+
+        Debug.Log("Testing over");    
     }
     #endregion
 
@@ -53,6 +62,35 @@ public class TesterScript : MonoBehaviour
         yield return new WaitForSeconds(scenarioManagerPresentBad.narrationAudioClips_2[0].length);
         yield return new WaitForSeconds(2f); // buffer time
         scenarioManagerPresentBad.DenturesPlacedInCup();
+    }
+    #endregion
+
+    #region Present Good Bathroom
+    void StartPresentGoodBathroomTestPart1()
+    {
+        StartCoroutine(StartPresentGoodBathroomTestPart1_Coroutine());
+    }
+
+    IEnumerator StartPresentGoodBathroomTestPart1_Coroutine()
+    {
+        yield return new WaitForSeconds(5 + scenarioManagerPresentGood.timeForWashingUp + scenarioManagerPresentGood.narrationAudioClips_1[0].length + scenarioManagerPresentGood.narrationAudioClips_1[1].length);
+        StartPresentGoodBathroomTestPart2();
+    }
+
+    void StartPresentGoodBathroomTestPart2()
+    {
+        try
+        {
+            scenarioManagerPresentGood.bathroomDoor.OnDoorOpen.Invoke();
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Error at bathroom part 2 (door opening part): " + e.Message);
+        }
+        finally
+        {
+            Debug.Log("Testing over");
+        }
     }
     #endregion
 
@@ -117,6 +155,19 @@ public class TesterScript : MonoBehaviour
                 catch (Exception e)
                 {
                     Debug.Log("Error at bedroom part 1: " + e.Message);
+                }
+
+                break;
+
+            case Scene.presentGoodBathroom:
+
+                try
+                {
+                    StartPresentGoodBathroomTestPart1();
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("Error at bathroom part 1: " + e.Message);
                 }
 
                 break;

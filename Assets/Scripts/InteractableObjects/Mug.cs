@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,7 @@ public class Mug : MonoBehaviour, IObjectInteractable
     bool canInteract = false;
     public UnityEvent OnInteractEvent;
     [SerializeField] GameObject waterInMug;
+    [SerializeField] GameObject grabPoint;
 
     public void OnInteract()
     {
@@ -51,5 +53,8 @@ public class Mug : MonoBehaviour, IObjectInteractable
                 canInteract = true;
             }
         }
+
+        if (collision.gameObject.tag.Contains("Hand")) grabPoint.transform.localEulerAngles = new Vector3(90, 90, 90);
+
     }
 }

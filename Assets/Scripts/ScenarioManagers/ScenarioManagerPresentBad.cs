@@ -168,7 +168,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     #region Segment 1 Part 2 (From bathroom to living room)
 
     [Header("Moving towards living room")]
-    [SerializeField] DoorKnob bathroomDoor;
+    public DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
     [SerializeField] GameObject questControllerImage;
     [SerializeField] GameObject newCane;
@@ -625,7 +625,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(4f);
 
         GameManager.instance.goodbyeText.SetActive(true);
-    }
+        GameManager.instance.SetCanRestart();
+
+        yield return new WaitForSeconds(10f);
+
+        GameManager.instance.goodbyeText2.SetActive(true); // "press trigger button to restart game"
+    }    
     #endregion
 
     // Start is called before the first frame update

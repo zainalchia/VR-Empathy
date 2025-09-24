@@ -2847,7 +2847,7 @@ Transform:
   m_GameObject: {fileID: 189618163}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.36903465, y: 0.973, z: 0.802}
+  m_LocalPosition: {x: 0.169, y: 0.968, z: 0.8105}
   m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -11905,18 +11905,6 @@ MonoBehaviour:
   OnDoorOpen:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8778168820609154311}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Open
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 982161144}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -20647,14 +20635,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936565560}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5018, y: 0.977, z: 0.7624}
+  m_LocalRotation: {x: -0, y: -0.23066713, z: -0, w: 0.9730328}
+  m_LocalPosition: {x: 0.37114668, y: 0.968, z: 0.8020832}
   m_LocalScale: {x: 0.07, y: 0.07, z: 0.07}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2104814565}
   m_Father: {fileID: 554351171}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -26.673, z: 0}
 --- !u!114 &1936565564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22197,7 +22185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1976928775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28528,7 +28516,7 @@ Transform:
   m_GameObject: {fileID: 2142638908}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0.0131, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -29113,6 +29101,7 @@ GameObject:
   - component: {fileID: 3205872392655426376}
   - component: {fileID: 3357422135080932660}
   - component: {fileID: 2345401382498451322}
+  - component: {fileID: 3357422135080932661}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -29260,6 +29249,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4183508794335548626, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: LeftHand
       objectReference: {fileID: 0}
     - target: {fileID: 4207753694598570727, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -29855,6 +29849,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0.026383571
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351899744781231937, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: RightHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587107056749831078, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: LeftHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587107057139345923, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: RightHand
       objectReference: {fileID: 0}
     - target: {fileID: 7950288885086120722, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -30506,6 +30515,7 @@ MonoBehaviour:
   fadePanel: {fileID: 1178772239}
   whiteFadePanel: {fileID: 0}
   goodbyeText: {fileID: 0}
+  goodbyeText2: {fileID: 0}
   glasses: {fileID: 0}
   toPutGlassesOn: 0
   toTakeGlassesOff: 0
@@ -30640,6 +30650,28 @@ MonoBehaviour:
   MedicineOutline: {fileID: 0}
   PhotoFrame: {fileID: 0}
   PhotoFrameOutline: {fileID: 0}
+  capAnimator: {fileID: 0}
+  capPopTrigger: PopOff
+  pillPrefab: {fileID: 0}
+  pillSpawnPoint: {fileID: 0}
+  capMover: {fileID: 0}
+--- !u!114 &3357422135080932661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750601898310710368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startTest: 0
+  scenario: 3
+  scenarioManagerPresentBad: {fileID: 0}
+  scenarioManagerPresentGood: {fileID: 3357422135080932660}
+  scenarioManagerReneeTest: {fileID: 0}
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0
@@ -33188,15 +33220,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4961946615217511000}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
-  m_LocalPosition: {x: 0.169, y: 1.004, z: 0.8105}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.47991478, y: 0.996, z: 0.77255696}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 107894797}
   - {fileID: 2142638909}
   m_Father: {fileID: 554351171}
-  m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &8032421237078485435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33356,6 +33388,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waterInMug: {fileID: 107894796}
+  grabPoint: {fileID: 2142638908}
 --- !u!82 &8032421237078485441
 AudioSource:
   m_ObjectHideFlags: 0
