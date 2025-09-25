@@ -1016,7 +1016,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[3].GetComponent<Animator>().SetBool("isDancing", true);
         if (narrationAudioSource.isPlaying && !firstTimeSing)
         {
-            narrationAudioSource.volume = 1.0f;
+            narrationAudioSource.volume = 0.5f;
         }
     }
     
@@ -1516,10 +1516,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 }
             }
 
-            if (((MainMenuManager.isGenderMale && TVScreen.GetComponent<VideoPlayer>().time >= 16f) ||
-                !MainMenuManager.isGenderMale
-                /*(MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f)*/)
-                && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+            //if (((MainMenuManager.isGenderMale /*&& TVScreen.GetComponent<VideoPlayer>().time >= 16f*/) ||
+            //    !MainMenuManager.isGenderMale
+            //    /*(MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f)*/)
+            //    && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+
+            if (firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
                 TVScreen.GetComponent<VideoPlayer>().Play();
