@@ -10,7 +10,7 @@ using UnityEngine.Video;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public static bool isGenderMale = false; //true = male, false = female
+    public static bool isGenderMale = true; //true = male, false = female
     public static bool videoOrMenu = false; // false = menu, true = video
     public static VideoToPlay video = VideoToPlay.BeforePresentBad;
     [SerializeField]
