@@ -1300,7 +1300,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         IEnumerator AfterMedicineTaken()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
 
             PhotoFrameOutline.enabled = true;
 
