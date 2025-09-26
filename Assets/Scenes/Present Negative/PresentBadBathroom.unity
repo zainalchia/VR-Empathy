@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.28589094, g: 0.45810828, b: 0.5919031, a: 1}
+  m_IndirectSpecularColor: {r: 0.28540036, g: 0.45722115, b: 0.5927939, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3523,7 +3523,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5000
+  m_ColorTemperature: 8399
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -18142,13 +18142,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817889223404952108}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startTest: 0
   scenario: 0
   scenarioManagerPresentBad: {fileID: 7330522279698956916}
+  scenarioManagerPresentGood: {fileID: 0}
+  scenarioManagerReneeTest: {fileID: 0}
 --- !u!4 &7420753592346597749
 Transform:
   m_ObjectHideFlags: 0
@@ -18361,6 +18364,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waterInMug: {fileID: 107894796}
+  grabPoint: {fileID: 0}
 --- !u!82 &8032421237078485441
 AudioSource:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using Oculus.Interaction;
 using UnityEngine.Events;
 using TMPro;
 using System.Runtime.CompilerServices;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Goodbye Text Panel")]
     public GameObject goodbyeText;
+    public GameObject goodbyeText2;
+    private bool canRestartGame = false;
 
     // PUTTING ON & TAKING OFF GLASSES
     [Header("GLASSES")]
@@ -279,6 +282,22 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
     }
 
+    #endregion
+
+    #region Restart Game stuff (at end game)
+    public void SetCanRestart()
+    {
+        canRestartGame = true;
+    }
+    public bool CheckIfCanRestart()
+    {
+        return canRestartGame;
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        canRestartGame = false;
+    }
     #endregion
 
     // Start is called before the first frame update
