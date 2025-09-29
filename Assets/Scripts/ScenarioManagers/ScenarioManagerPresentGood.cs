@@ -852,7 +852,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
         playerAudioSource.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(5f); // lose animation is around 5 secs
+        yield return new WaitForSeconds(narrationAudioClips_2[4].length); // lose animation is around 5 secs
 
         checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
@@ -986,6 +986,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
 
         narrationAudioSource.clip = narrationAudioClips_2[9];
+        narrationAudioSource.volume = 0.25f;
+        // Volume is still at 1 after this part
         PlayKaraoke();
         lastRoutine = null;
 
@@ -1014,10 +1016,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[1].GetComponent<Animator>().SetBool("isCheering", true);
         KaraokeCornerNPCs[2].GetComponent<Animator>().SetBool("isClapping", true);
         KaraokeCornerNPCs[3].GetComponent<Animator>().SetBool("isDancing", true);
-        if (narrationAudioSource.isPlaying && !firstTimeSing)
-        {
-            narrationAudioSource.volume = 0.5f;
-        }
+        //if (narrationAudioSource.isPlaying && !firstTimeSing)
+        //{
+        //}
     }
     
     public void PlayMicOffFace()
@@ -1070,6 +1071,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
+        narrationAudioSource.volume = 1;
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[10], 0.4f);
         yield return new WaitForSeconds(narrationAudioClips_2[10].length);
 
@@ -1534,7 +1536,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             {
                 hasFinishedSinging = true;
                 //KaraokeMic.GetComponent<MicController>().SetMicDetectionActive(false);
-                KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
+                //KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
                 PlayAfterSingingTransition();
             }
         }
