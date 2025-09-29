@@ -848,7 +848,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // NPC lose animation
         checkersNPC.GetComponent<Animator>().SetTrigger("lose");
 
-        // "Haha. Yes I win this time"
+        // "Yes! I win this time"
         playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
         playerAudioSource.GetComponent<AudioSource>().Play();
 
@@ -856,11 +856,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.1f);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
 
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.1f);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
