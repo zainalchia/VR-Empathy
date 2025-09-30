@@ -535,7 +535,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     private IEnumerator AfterDenturesPlaced()
     {
         // Small delay so player can register dentures were placed
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         narrationAudioSource.Stop();
         narrationAudioSource.PlayOneShot(narrationAudioClips_3[1]); // VO8
@@ -791,7 +791,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     IEnumerator SecondPieceCaptured()
     {
         StopPrevDialogue();
-        PlayerPieceOutline.SetActive(false);
+        //PlayerPieceOutline.SetActive(false);
         yield return StartCoroutine(MovePiece(SecondEnemyCheckerPiece, EnemyPieceThirdDestination));
         yield return new WaitForSeconds(1);
         StartCoroutine(MovingFromChessToKaraokeCorner());
@@ -848,20 +848,21 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // NPC lose animation
         checkersNPC.GetComponent<Animator>().SetTrigger("lose");
 
+        // "Haha. Yes I win this time"
+        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
+        playerAudioSource.GetComponent<AudioSource>().Play();
+
         yield return new WaitForSeconds(5f); // lose animation is around 5 secs
 
         checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
 
         yield return new WaitForSeconds(0.7f);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
-
-        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
-        playerAudioSource.GetComponent<AudioSource>().Play();
 
         //playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[4]);
 
@@ -1015,7 +1016,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[3].GetComponent<Animator>().SetBool("isDancing", true);
         if (narrationAudioSource.isPlaying && !firstTimeSing)
         {
-            narrationAudioSource.volume = 1.0f;
+            narrationAudioSource.volume = 0.5f;
         }
     }
     
@@ -1113,6 +1114,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     #region Segment 4 (Bedroom Part 2)
         [Header("Bedroom Part 2")]
+        [SerializeField] private AudioSource bedroomAudioSource;
+        [SerializeField] private AudioClip bedroomBGM;
         [SerializeField] GameObject MedicineBottle;
         [SerializeField] Outline MedicineOutline;
         [SerializeField] GameObject PhotoFrame;
@@ -1132,9 +1135,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         {
             GameManager.instance.whiteFadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
             yield return new WaitForSeconds(3f);
+            bedroomAudioSource.GetComponent<AudioSource>().clip = bedroomBGM;
+            bedroomAudioSource.GetComponent<AudioSource>().loop = true;
+            bedroomAudioSource.GetComponent<AudioSource>().Play();
 
-
-            yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);
             narrationAudioSource.Stop();
             narrationAudioSource.PlayOneShot(narrationAudioClips_3[2]); // VO20
             yield return new WaitForSeconds(narrationAudioClips_3[2].length);
@@ -1296,7 +1301,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         IEnumerator AfterMedicineTaken()
         {
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
 
             PhotoFrameOutline.enabled = true;
 
@@ -1515,10 +1520,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
                 }
             }
 
-            if (((MainMenuManager.isGenderMale && TVScreen.GetComponent<VideoPlayer>().time >= 16f) ||
-                !MainMenuManager.isGenderMale
-                /*(MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f)*/)
-                && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+            //if (((MainMenuManager.isGenderMale /*&& TVScreen.GetComponent<VideoPlayer>().time >= 16f*/) ||
+            //    !MainMenuManager.isGenderMale
+            //    /*(MainMenuManager.isGenderMale == false && TVScreen.GetComponent<VideoPlayer>().time >= 17f)*/)
+            //    && firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
+
+            if (firstTimeSing && TVScreen.GetComponent<VideoPlayer>().isPlaying)
             {
                 narrationAudioSource.Play();
                 TVScreen.GetComponent<VideoPlayer>().Play();
