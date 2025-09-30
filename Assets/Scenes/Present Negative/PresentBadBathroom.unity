@@ -823,6 +823,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2036480231}
+    - targetCorrespondingSourceObject: {fileID: -8513424388201257645, guid: be9ff42758ced7d44a25f8e89405a845,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2036480232}
   m_SourcePrefab: {fileID: 100100000, guid: be9ff42758ced7d44a25f8e89405a845, type: 3}
 --- !u!4 &281866961 stripped
 Transform:
@@ -3083,6 +3087,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2458895423916540947, guid: f54012181eacade4ea242c65f804720f,
+        type: 3}
+      propertyPath: m_TagString
+      value: LeftHand
+      objectReference: {fileID: 0}
     - target: {fileID: 2483171111061463970, guid: f54012181eacade4ea242c65f804720f,
         type: 3}
       propertyPath: m_IsActive
@@ -3228,6 +3237,11 @@ PrefabInstance:
       propertyPath: _interactors.Array.data[3]
       value: 
       objectReference: {fileID: 721992650}
+    - target: {fileID: 4627295112507078528, guid: f54012181eacade4ea242c65f804720f,
+        type: 3}
+      propertyPath: m_TagString
+      value: RightHand
+      objectReference: {fileID: 0}
     - target: {fileID: 5923997274985596922, guid: f54012181eacade4ea242c65f804720f,
         type: 3}
       propertyPath: m_IsActive
@@ -11358,6 +11372,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 354212914}
+--- !u!114 &2036480232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 281866962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c75ccec3f108a64292107ff0d7b931e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 127249082}
 --- !u!1 &2047745246
 GameObject:
   m_ObjectHideFlags: 0
@@ -16817,7 +16844,7 @@ Transform:
   m_GameObject: {fileID: 5345032221292428155}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.065, y: 0.935, z: 0.783}
+  m_LocalPosition: {x: 1.065, y: 0.8437, z: 0.783}
   m_LocalScale: {x: 1.626075, y: 1.08405, z: 0.2710125}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -17078,6 +17105,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4183508794335548626, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: LeftHand
+      objectReference: {fileID: 0}
     - target: {fileID: 4207753694588978431, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: far clip plane
@@ -17102,6 +17134,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351899744781231937, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: RightHand
       objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -17523,6 +17560,7 @@ GameObject:
   - component: {fileID: 6432067307027011965}
   - component: {fileID: 6432067307027011964}
   - component: {fileID: 6432067307027011963}
+  - component: {fileID: 6432067307027011969}
   m_Layer: 0
   m_Name: Comb
   m_TagString: BathroomProp
@@ -18130,6 +18168,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.096904896, y: 0.016613781, z: 0.019999998}
   m_Center: {x: 0.036396652, y: 0.000010222197, z: 0}
+--- !u!114 &6432067307027011969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5345032221292428155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e52c0b34dce71449b004d4ae79ed1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 1448318120}
 --- !u!1 &6607918827977963086
 GameObject:
   m_ObjectHideFlags: 0
@@ -18409,7 +18460,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   waterInMug: {fileID: 107894796}
-  grabPoint: {fileID: 0}
+  grabPoint: {fileID: 2142638908}
 --- !u!82 &8032421237078485441
 AudioSource:
   m_ObjectHideFlags: 0

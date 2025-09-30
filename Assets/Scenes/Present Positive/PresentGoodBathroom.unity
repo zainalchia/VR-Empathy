@@ -10671,6 +10671,7 @@ GameObject:
   - component: {fileID: 907918707}
   - component: {fileID: 907918706}
   - component: {fileID: 907918705}
+  - component: {fileID: 907918715}
   m_Layer: 0
   m_Name: pCube1
   m_TagString: BathroomProp
@@ -11001,6 +11002,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 907918703}
   m_Mesh: {fileID: 4068373912626513877, guid: be9ff42758ced7d44a25f8e89405a845, type: 3}
+--- !u!114 &907918715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907918703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c75ccec3f108a64292107ff0d7b931e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 1164070669}
 --- !u!1001 &909805620
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28815,14 +28829,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5345032221292428155}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.065, y: 0.798, z: 0.783}
+  m_LocalRotation: {x: -0.7233248, y: -0, z: -0, w: 0.690508}
+  m_LocalPosition: {x: 1.065, y: 0.79910827, z: 0.8148685}
   m_LocalScale: {x: 1.626075, y: 1.08405, z: 0.2710125}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1448318121}
   m_Father: {fileID: 554351171}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -92.659, y: 0, z: 0}
 --- !u!33 &863758411466861434
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -31317,6 +31331,7 @@ GameObject:
   - component: {fileID: 6432067307027011963}
   - component: {fileID: 6432067307027011969}
   - component: {fileID: 6432067307027011970}
+  - component: {fileID: 6432067307027011971}
   m_Layer: 0
   m_Name: Comb
   m_TagString: BathroomProp
@@ -32313,6 +32328,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 6432067307027011969}
+--- !u!114 &6432067307027011971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5345032221292428155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e52c0b34dce71449b004d4ae79ed1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 1448318120}
 --- !u!1 &6498954665070034725
 GameObject:
   m_ObjectHideFlags: 0
