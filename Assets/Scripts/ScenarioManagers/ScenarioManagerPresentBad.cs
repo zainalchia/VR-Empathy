@@ -188,6 +188,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(narrationAudioClips_Bathroom[1].length);
 
+        cane.GetComponent<Rigidbody>().isKinematic = false;
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         cane.GetComponent<ForceStayGrabbed>().active = true;
         caneOutline.enabled = true;
