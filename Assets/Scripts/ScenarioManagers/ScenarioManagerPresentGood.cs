@@ -1216,6 +1216,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         private IEnumerator CheckPillDistance()
         {
+            promptManager.ShowPrompt(sceneID, 2); // I need to take my vitamins. [Put the vitamin to your face area]
+
             // Loop continue as the pill exists and the player still needs to eat it
             while (GameManager.instance.pill != null && GameManager.instance.toConsumeMedicine)
             {
