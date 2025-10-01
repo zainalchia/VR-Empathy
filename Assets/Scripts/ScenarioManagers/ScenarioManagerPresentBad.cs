@@ -465,6 +465,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject photoFrameOutline;
     [SerializeField] AnimationClip HandsUp;
     [SerializeField] AnimationClip HandsDown;
+    [SerializeField] private AudioSource bedroomNegativeAudioSource;
+    [SerializeField] private AudioClip bedroomNegativeBGM;
+
     Trans2 photoFrameOriginalPosition = new();
     Animator animator;
     static public bool canMedicineSpill;
@@ -523,6 +526,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         oldMode.SetActive(false);
         newMode.SetActive(true);
         GameManager.instance.postProcessing.SetActive(false);
+
+        // piano bgm after hallucination
+        bedroomNegativeAudioSource.clip = bedroomNegativeBGM;
+        bedroomNegativeAudioSource.loop = true;
+        bedroomNegativeAudioSource.Play();
 
         //Re enable the furniture
         GameManager.instance.toStartSpasming = false;
