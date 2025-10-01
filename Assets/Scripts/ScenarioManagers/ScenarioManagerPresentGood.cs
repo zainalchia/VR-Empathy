@@ -1433,11 +1433,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             sceneID = SceneID.VoidDeck;
             //StartCoroutine(MovingFromTaichiToCheckers());
 
-            // to uncomment this
-            // PlaySegment3Part1();
-
-            // to remove this
-            PlaySecondPieceCaptured();
+            PlaySegment3Part1();
         }
     }
 
