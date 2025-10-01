@@ -986,7 +986,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
 
         narrationAudioSource.clip = narrationAudioClips_2[9];
-        narrationAudioSource.volume = 0.25f;
+
+        if (MainMenuManager.isGenderMale)
+            narrationAudioSource.volume = 0.25f;
         // Volume is still at 1 after this part
         PlayKaraoke();
         lastRoutine = null;
@@ -1431,13 +1433,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             sceneID = SceneID.VoidDeck;
             //StartCoroutine(MovingFromTaichiToCheckers());
 
-            PlaySegment3Part1();
+            // to uncomment this
+            // PlaySegment3Part1();
 
-            //StartCoroutine(MovingFromChessToKaraokeCorner());
-
-            // uncomment these 2 lines below and comment out the line above to test out the karaoke part
-            //PlayKaraokeCornerTransition();
-            //PlayMicOnFace();
+            // to remove this
+            PlaySecondPieceCaptured();
         }
     }
 
