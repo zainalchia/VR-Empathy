@@ -275,6 +275,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject tvAudio;
 
     int dropGlassesCount = 0;
+    private bool waitingForWeakHandsVO = false; //tracks if V05 is playing
 
     public void PlaySegment1Part3_1()
     {
@@ -299,7 +300,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
         yield return new WaitForSeconds(2.5f + 1.1f);
-
+  
         GameManager.instance.toPickUpPhone = true;
 
         phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
@@ -312,25 +313,28 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         StopPrevDialogue();
         lastRoutine = StartCoroutine(Segment1Part3_2());
     }
+        IEnumerator Segment1Part3_2()
+        {
+            //GameManager.instance.ShowAlert(narration_1[19]);
+            promptManager.ShowPrompt(sceneID, 3);
 
-    IEnumerator Segment1Part3_2()
-    {
-        //GameManager.instance.ShowAlert(narration_1[19]);
-        promptManager.ShowPrompt(sceneID, 3);
+            ControllerInteractionsManager.instance.autoDropItems = true; // will drop items from here
+            GameManager.instance.toPutGlassesOn = true;
 
-        glassesOutline.enabled = true;
-
-        ControllerInteractionsManager.instance.autoDropItems = true; // will drop items from here
-        GameManager.instance.toPutGlassesOn = true;
-
-        // Trying to pick up glasses 1st time
-        //PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
-        narrationAudioSource.Stop();
-        narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[4]);
-        yield return new WaitForSeconds(1f);
-
-        yield return new WaitForSeconds(3f + 1.1f);
-    }
+            // Trying to pick up glasses 1st time
+            //PlayAudioAndNarration(narrationAudioClips_1[2], narration_1[8], narrationAudioClips_1[2].length);
+            narrationAudioSource.Stop();
+            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[4]);
+            yield return new WaitForSeconds(narrationAudioClips_Bathroom[4].length);
+            
+            // Outline/indicator after voice over 
+            glassesOutline.enabled = true;
+            glasses.GetComponent<Grabbable>().enabled = true;
+            glasses.GetComponent<GrabInteractable>().enabled = true;
+            glasses.GetComponent<PhysicsGrabbable>().enabled = true;
+            glasses.GetComponent<ForceStayGrabbed>().enabled = true;
+            yield return new WaitForSeconds(3f + 1.1f);
+        }
 
     public void DropGlassesReaction() // called in UnityEvent in ControllerInteractionsManager
     {
@@ -344,19 +348,29 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         if (dropGlassesCount == 1)
         {
             narrationAudioSource.Stop();
-            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);            
+            narrationAudioSource.PlayOneShot(narrationAudioClips_Bathroom[5]);
+            narrationAudioSource.Play();
+            waitingForWeakHandsVO = true; // waiting for voice over to finish
+            GameManager.instance.canAnswerPhone = false; // disable answering phone until VO ends
+
+            // after VO finishes, let the player answer the phone again
+            Invoke(nameof(EnablePhoneAfterWeakHandsVO), narrationAudioClips_Bathroom[5].length);
         }
         else if (dropGlassesCount == 2)
             glasses.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
-
+    private void EnablePhoneAfterWeakHandsVO() //able answer the phone after VO5 finishes
+    {
+        waitingForWeakHandsVO = false;
+        GameManager.instance.canAnswerPhone = true; // now answering is allowed
+    }
     public void GlassesPutOn() // called in UnityEvent in PlayerFace
     {
         StopPrevDialogue();
         glassesOutline.enabled = false;
         ControllerInteractionsManager.instance.autoDropItems = false; // no more dropping after glasses put on
         //GameManager.instance.ShowAlert(narration_1[12]);
-        GameManager.instance.canAnswerPhone = true;
+       
     }
 
     public void PhoneAnswered() // called in UnityEvent in MobilePhone
