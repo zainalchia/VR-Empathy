@@ -291,8 +291,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // Can drop cane
         //ControllerInteractionsManager.instance.allowDropItems = true; // old implementation, not working
 
-        yield return new WaitForSeconds(2); // delay for sighing voiceline
-
         // play phone calling
         mobilePhone.SetPhoneCalling();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
@@ -707,10 +705,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
                     PlaySegment1Part2Half();
                 }
 
-                if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
+                if (cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 8)
                 {
-                    toGoLivingRoom = false;
                     PlaySegment1Part3_1();
+                    toGoLivingRoom = false;
                 }
             }
 
