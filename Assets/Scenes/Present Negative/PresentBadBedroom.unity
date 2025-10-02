@@ -472,6 +472,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1307731020}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &153453777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 153453778}
+  m_Layer: 0
+  m_Name: L_Grabpoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &153453778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153453777}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.09, y: -0, z: -0.065}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1518123003}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &226627334
 GameObject:
   m_ObjectHideFlags: 0
@@ -10483,6 +10514,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1936154215}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c1cab01d99fcd344ae26feac73a7e3b,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 153453778}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c1cab01d99fcd344ae26feac73a7e3b,
         type: 3}
@@ -10593,8 +10628,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 1518123005}
   _rigidbody: {fileID: 1518123004}
-  _grabSource: {fileID: 1936154215}
-  _useClosestPointAsGrabSource: 0
+  _grabSource: {fileID: 1518123003}
+  _useClosestPointAsGrabSource: 1
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 1518123015}
@@ -15794,7 +15829,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936154215}
   m_Layer: 0
-  m_Name: GrabPoint
+  m_Name: R_Grabpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
