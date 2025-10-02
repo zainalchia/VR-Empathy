@@ -1130,7 +1130,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         [SerializeField] private GameObject pillPrefab;
         [SerializeField] private Transform pillSpawnPoint;
         [SerializeField] private CapMover capMover;
-        public void PlaySegment4Part1()
+        [SerializeField] private AudioClip capOpenSFX;
+        [SerializeField] private AudioClip gulpSFX;
+    public void PlaySegment4Part1()
         {
             lastRoutine = StartCoroutine(Segment4Part1());
         }
@@ -1185,7 +1187,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             if (capAnimator != null)
                 capAnimator.enabled = false;
 
-            // Move the cap to the table
+            //cap sound
+            if (capOpenSFX != null)
+                bedroomAudioSource.PlayOneShot(capOpenSFX);
+
+        // Move the cap to the table
             var capMover = GameManager.instance.medicine.GetComponentInChildren<CapMover>();
             if (capMover != null)
 
@@ -1241,6 +1247,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             GameManager.instance.pill = null;
 
             GameManager.instance.toConsumeMedicine = false;
+            
+            //swallow medicine sound
+            if (gulpSFX != null)
+                bedroomAudioSource.PlayOneShot(gulpSFX);
 
             MedicineTaken();
             GameManager.instance.OnMedicineConsumed.Invoke();
