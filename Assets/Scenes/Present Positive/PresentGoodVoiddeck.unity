@@ -21493,6 +21493,8 @@ MonoBehaviour:
   pillPrefab: {fileID: 0}
   pillSpawnPoint: {fileID: 0}
   capMover: {fileID: 0}
+  capOpenSFX: {fileID: 0}
+  gulpSFX: {fileID: 0}
 --- !u!1001 &1126204119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24953,6 +24955,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1484044712}
   - component: {fileID: 1484044711}
+  - component: {fileID: 1484044713}
   m_Layer: 0
   m_Name: Post processing
   m_TagString: Untagged
@@ -24992,6 +24995,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1484044713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484044710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5552a41dcc3516a4f8524dea92c4224b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interval: 5
+  targetWeight: 1
+  initalWeight: 32
+  isUsingGlasses: 0
+  initialBlurDone: 0
 --- !u!1 &1497998230 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d14eb4f18a73a44d38182e21f2dab39e,
