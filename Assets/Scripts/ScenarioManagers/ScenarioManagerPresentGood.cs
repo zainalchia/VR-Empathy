@@ -986,7 +986,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
 
         narrationAudioSource.clip = narrationAudioClips_2[9];
-        narrationAudioSource.volume = 0.25f;
+
+        if (MainMenuManager.isGenderMale)
+            narrationAudioSource.volume = 0.25f;
         // Volume is still at 1 after this part
         PlayKaraoke();
         lastRoutine = null;
@@ -1128,7 +1130,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         [SerializeField] private GameObject pillPrefab;
         [SerializeField] private Transform pillSpawnPoint;
         [SerializeField] private CapMover capMover;
-        public void PlaySegment4Part1()
+        [SerializeField] private AudioClip capOpenSFX;
+        [SerializeField] private AudioClip gulpSFX;
+    public void PlaySegment4Part1()
         {
             lastRoutine = StartCoroutine(Segment4Part1());
         }
@@ -1183,7 +1187,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             if (capAnimator != null)
                 capAnimator.enabled = false;
 
-            // Move the cap to the table
+            //cap sound
+            if (capOpenSFX != null)
+                bedroomAudioSource.PlayOneShot(capOpenSFX);
+
+        // Move the cap to the table
             var capMover = GameManager.instance.medicine.GetComponentInChildren<CapMover>();
             if (capMover != null)
 
@@ -1214,6 +1222,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         }
         private IEnumerator CheckPillDistance()
         {
+            promptManager.ShowPrompt(sceneID, 2); // I need to take my vitamins. [Put the vitamin to your face area]
+
             // Loop continue as the pill exists and the player still needs to eat it
             while (GameManager.instance.pill != null && GameManager.instance.toConsumeMedicine)
             {
@@ -1237,6 +1247,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             GameManager.instance.pill = null;
 
             GameManager.instance.toConsumeMedicine = false;
+            
+            //swallow medicine sound
+            if (gulpSFX != null)
+                bedroomAudioSource.PlayOneShot(gulpSFX);
 
             MedicineTaken();
             GameManager.instance.OnMedicineConsumed.Invoke();
@@ -1432,12 +1446,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             //StartCoroutine(MovingFromTaichiToCheckers());
 
             PlaySegment3Part1();
-
-            //StartCoroutine(MovingFromChessToKaraokeCorner());
-
-            // uncomment these 2 lines below and comment out the line above to test out the karaoke part
-            //PlayKaraokeCornerTransition();
-            //PlayMicOnFace();
         }
     }
 

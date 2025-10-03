@@ -188,6 +188,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         yield return new WaitForSeconds(narrationAudioClips_Bathroom[1].length);
 
+        cane.GetComponent<Rigidbody>().isKinematic = false;
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         cane.GetComponent<ForceStayGrabbed>().active = true;
         caneOutline.enabled = true;
@@ -289,8 +290,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         // Can drop cane
         //ControllerInteractionsManager.instance.allowDropItems = true; // old implementation, not working
-
-        yield return new WaitForSeconds(2); // delay for sighing voiceline
 
         // play phone calling
         mobilePhone.SetPhoneCalling();
@@ -464,6 +463,9 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject photoFrameOutline;
     [SerializeField] AnimationClip HandsUp;
     [SerializeField] AnimationClip HandsDown;
+    [SerializeField] private AudioSource bedroomNegativeAudioSource;
+    [SerializeField] private AudioClip bedroomNegativeBGM;
+
     Trans2 photoFrameOriginalPosition = new();
     Animator animator;
     static public bool canMedicineSpill;
@@ -519,6 +521,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Image>().color = Color.white;
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
+
         //Turn back to normal here
         oldMode.SetActive(false);
         newMode.SetActive(true);
@@ -539,10 +542,15 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         GameManager.instance.fadePanel.GetComponent<Image>().color = Color.white;
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(3f);
 
         //GameManager.instance.ShowAlert(narration_2[6], 12f);
-        yield return new WaitForSeconds(2f);
+        //yield return new WaitForSeconds(2f);
+
+        // piano bgm after hallucination
+        bedroomNegativeAudioSource.clip = bedroomNegativeBGM;
+        bedroomNegativeAudioSource.loop = true;
+        bedroomNegativeAudioSource.Play();
 
         //PlayAudioAndNarration(narrationAudioClips_2[3], narration_2[8], narrationAudioClips_2[3].length);
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[6]);
@@ -698,10 +706,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
                     PlaySegment1Part2Half();
                 }
 
-                if (GameManager.instance.IsPlayerWithinPosition(-6f, -3.7f, -4f, -1.7f))
+                if (cane.GetComponent<CaneTeleport>().GetCurrentHotspotIndex() == 8)
                 {
-                    toGoLivingRoom = false;
                     PlaySegment1Part3_1();
+                    toGoLivingRoom = false;
                 }
             }
 
