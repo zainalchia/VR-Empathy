@@ -192,7 +192,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         cane.GetComponent<ForceStayGrabbed>().active = true;
         caneOutline.enabled = true;
-        phone.GetComponent<Rigidbody>().isKinematic = false;
         promptManager.ShowPrompt(sceneID, 0);
     }
 
@@ -295,7 +294,8 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         // play phone calling
         mobilePhone.SetPhoneCalling();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
-        phone.GetComponent<Rigidbody>().isKinematic = true;
+        phone.GetComponent<Rigidbody>().isKinematic = false;
+        phone.GetComponent<Grabbable>().enabled = true;
         //GameManager.instance.ShowAlert(narration_1[18]);
         promptManager.ShowPrompt(sceneID, 2);
 
@@ -606,6 +606,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     {
         yield return new WaitForSeconds(10f); // buffer time
         GameManager.instance.toLookAtObjective = true;
+        photoFrame.GetComponent<Rigidbody>().isKinematic = false;
         photoFrame.GetComponent<Grabbable>().enabled = true;
 
         photoFrameOutline.SetActive(true);
