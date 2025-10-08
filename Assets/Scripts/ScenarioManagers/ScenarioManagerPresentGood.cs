@@ -600,7 +600,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         taichiInstructor.GetComponent<Animator>().SetTrigger("Talking");
 
-        taichiInstructor.GetComponent<AudioSource>().clip = narrationAudioClips_2[1];
+        taichiInstructor.GetComponent<AudioSource>().clip = narrationAudioClips_2[1]; // let us begin, repeat after my movement
 
         taichiInstructor.GetComponent<AudioSource>().Play();
 
@@ -669,19 +669,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
-        yield return new WaitForSeconds(0.5f);
+        checkersNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[2]; // wah great workout robert/ling
+        checkersNPC.GetComponent<AudioSource>().Play();
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkBegin");
 
-        yield return new WaitForSeconds(0.7f);
+        yield return new WaitForSeconds(0.8f);
 
-        checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
+        checkersNPC.GetComponent<Animator>().SetTrigger("Talking");        
 
-        checkersNPC.GetComponent<AudioSource>().clip = narrationAudioClips_2[2];
-
-        checkersNPC.GetComponent<AudioSource>().Play();
-
-        yield return new WaitForSeconds(narrationAudioClips_2[2].length);
+        yield return new WaitForSeconds(0.1f);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
 
@@ -704,7 +701,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
         WhiteFadeEffect.FadeOut();
 
-        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[3];
+        playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[3]; // next im playing checkers with ah guan
         playerAudioSource.GetComponent<AudioSource>().Play();
 
         //playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[3]);
@@ -852,7 +849,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         playerAudioSource.GetComponent<AudioSource>().clip = narrationAudioClips_2[4];
         playerAudioSource.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(narrationAudioClips_2[4].length); // lose animation is around 5 secs
+        yield return new WaitForSeconds(narrationAudioClips_2[4].length + 1); // lose animation is around 5 secs
 
         checkersNPC.GetComponent<Animator>().SetTrigger("IdleSeat");
 
@@ -864,19 +861,15 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("Talking");
 
-        //playerAudioSource.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_2[4]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]); // wah robert/ling you're getting better at checkers eh
 
-        yield return new WaitForSeconds(narrationAudioClips_2[4].length);
+        yield return new WaitForSeconds(narrationAudioClips_2[5].length);
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
 
         yield return new WaitForSeconds(2f);
 
         radio.SetActive(false);
-
-        narrationAudioSource.PlayOneShot(narrationAudioClips_2[5]);
-
-        yield return new WaitForSeconds(narrationAudioClips_2[5].length);
 
         playerAudioSource.PlayOneShot(narrationAudioClips_2[6]);
 
@@ -898,8 +891,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkBegin");
 
-        yield return new WaitForSeconds(1.2f);
-
         //KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("Talking");
 
         // nancy
@@ -912,7 +903,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         lastRoutine = null;
 
-        playerAudioSource.PlayOneShot(narrationAudioClips_2[7]);
+        playerAudioSource.PlayOneShot(narrationAudioClips_2[7]); // come join us robert/ling
         yield return new WaitForSeconds(narrationAudioClips_2[7].length);
 
         taichiAudioSource.GetComponent<AudioSource>().Stop();
