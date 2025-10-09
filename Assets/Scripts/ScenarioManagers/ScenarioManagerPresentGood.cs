@@ -1054,9 +1054,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("Talking");
         }
 
+        StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[1], 90, 1));
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[2], 270, 1));
 
-        StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[3], 90, 1));
 
         KaraokeCornerNPCs[0].GetComponent<Animator>().ResetTrigger("TalkEnd");
         KaraokeCornerNPCs[0].GetComponent<Animator>().SetTrigger("TalkBegin");
