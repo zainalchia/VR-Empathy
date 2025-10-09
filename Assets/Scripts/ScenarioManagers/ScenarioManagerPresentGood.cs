@@ -1045,14 +1045,14 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         KaraokeCornerNPCs[2].GetComponent<Animator>().SetBool("isClapping", false);
         KaraokeCornerNPCs[3].GetComponent<Animator>().SetBool("isDancing", false);
 
-        for (int i = 1; i < 4; i++)
-        {
-            KaraokeCornerNPCs[i].GetComponent<Animator>().ResetTrigger("TalkBegin");
-            KaraokeCornerNPCs[i].GetComponent<Animator>().ResetTrigger("Talking");
-            KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkBegin");
-            yield return new WaitForSeconds(0.7f);
-            KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("Talking");
-        }
+        //for (int i = 1; i < 4; i++)
+        //{
+        //    KaraokeCornerNPCs[i].GetComponent<Animator>().ResetTrigger("TalkBegin");
+        //    KaraokeCornerNPCs[i].GetComponent<Animator>().ResetTrigger("Talking");
+        //    KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("TalkBegin");
+        //    yield return new WaitForSeconds(0.7f);
+        //    KaraokeCornerNPCs[i].GetComponent<Animator>().SetTrigger("Talking");
+        //}
 
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[1], 90, 1));
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[2], 270, 1));
