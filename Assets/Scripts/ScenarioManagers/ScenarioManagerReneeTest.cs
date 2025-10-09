@@ -93,6 +93,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void HawkerPartTwo()
     {
+
         sceneID = SceneID.Stall;
         lastRoutine = StartCoroutine(HawkerPart2());
     }
@@ -116,8 +117,29 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             secondTeleportHawkerHotspot.SetActive(true);
         }
 
-        yield return null;
+        yield return new WaitForSeconds(2f);
+
     }
+
+    public void OnCashPlaced()
+    {
+        // player has put cash into register
+        playerTeleport.hasPlacedCash = true;
+        // TP to the next hotspot
+        playerTeleport.MoveToSection = true;
+        //reset hotspot
+        playerTeleport.SetCurrentHotspotIndex(0);
+
+        promptManager.ShowPrompt(SceneID.Stall, 2);
+
+        //enables the next hotspot (chopping)
+        var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots();
+        if (jobHotspots.Length > 1)
+        {
+            jobHotspots[1].SetActive(true);
+        }
+    }
+
     #endregion 
 
     // Start is called before the first frame update

@@ -9,7 +9,7 @@ public class SlicedObject : MonoBehaviour
     public LayerMask sliceableLayer;
 
     public Material crossSectionMaterial;
-    public float cutForce = 2000f;
+    public float cutForce = 35f;
 
     [Tooltip("How many slices a brand-new object may take before it becomes un­sliceable.")]
     public int maxCuts = 8;

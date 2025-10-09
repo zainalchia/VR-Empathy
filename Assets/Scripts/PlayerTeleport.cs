@@ -66,7 +66,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool MoveToToiletDoor = false;
     public bool MoveToHawkerStall = false;
     public bool MoveToSection = false;
-
+    public bool hasPlacedCash = false; 
     //Past positive==============================================================================================================
     //public bool MovingToLivingRoom = false;
     //public bool MovingToMainDoor = false;
@@ -174,7 +174,7 @@ public class PlayerTeleport : MonoBehaviour
 
                     MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
                 }
-                else if (MoveToSection && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                else if (MoveToSection && (currentHotspotIndex <= 0 || hasPlacedCash) && currentHotspotIndex != MoveToJobPositionHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
                     timer = 0;
 
@@ -253,28 +253,61 @@ public class PlayerTeleport : MonoBehaviour
                     MovingToKaraokeCorner = false;
                 }
             }
-    }
+        }
+
         else if (currentScene == ScenarioID.PastNegative)
         {
             if (currentHotspotIndex == hotspotArray.Length - 1)
             {
                 if (hotspotArray == MoveToToiletDoorHotspots)
-                {                    
+                {
                     OnLastTeleport.Invoke();
                     MoveToToiletDoor = false;
-                }                
+                }
                 else if (hotspotArray == MoveToHawkerStallHotspots)
                 {
-                    OnLastTeleport2.Invoke();
+                    // finish hawker stall entry
                     MoveToHawkerStall = false;
-                    
+
+                    //after last hotspot from toilet, shows cashier hotspot
+                    if (currentHotspotIndex == hotspotArray.Length - 1)
+                    {
+                        MoveToSection = true;
+                        SetCurrentHotspotIndex(-1);
+                        GetMoveToJobPositionHotspots()[0].SetActive(true);
+                    }
+
+                    //continue story from hawker (this is hawker part 2)
+                    ScenarioManagerReneeTest scenarioManager = FindObjectOfType<ScenarioManagerReneeTest>();
+                    if (scenarioManager != null)
+                    {
+                        scenarioManager.HawkerPartTwo();
+                    }
                 }
-                else if (hotspotArray == MoveToJobPositionHotspots)
+            }
+            else if (hotspotArray == MoveToJobPositionHotspots)
+            {
+                //unable to move (Do actions first)
+                MoveToSection = false;
+
+                //prompts
+                var promptManager = FindObjectOfType<ScenarioPromptManager>();
+                if (promptManager != null)
                 {
-                    MoveToSection = false;
+                    if (currentHotspotIndex == 0)
+                    {
+                        // Arrived at cashier
+                        promptManager.ShowPrompt(SceneID.Stall, 1);
+                    }
+                    else if (currentHotspotIndex == 1)
+                    {
+                        // Arrived at chopping board
+                        promptManager.ShowPrompt(SceneID.Stall, 2);
+                    }
                 }
             }
         }
+
         else if (currentScene == ScenarioID.PastPositive)
         {
 
