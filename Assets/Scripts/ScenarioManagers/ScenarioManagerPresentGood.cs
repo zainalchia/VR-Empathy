@@ -604,11 +604,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         taichiInstructor.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(narrationAudioClips_2[1].length);
+        yield return new WaitForSeconds(narrationAudioClips_2[1].length); // to shorten the wait time
 
-        taichiInstructor.GetComponent<Animator>().SetTrigger("TalkEnd");
+        taichiInstructor.GetComponent<Animator>().SetTrigger("TalkEnd"); // this anim is 4.5s long but imma cut it halfway cause dont want player wait too long
 
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(1.0f);
 
         taichiInstructor.GetComponent<TaiChiInstructor>().StartAnimation();
 
@@ -867,11 +867,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         radio.SetActive(false);
 
-        playerAudioSource.PlayOneShot(narrationAudioClips_2[6]);
+        playerAudioSource.PlayOneShot(narrationAudioClips_2[6]); // good game ah guan
 
         yield return new WaitForSeconds(narrationAudioClips_2[6].length);
 
