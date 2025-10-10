@@ -244,11 +244,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     }
 
     IEnumerator Segment1Part3_1()
-    {
-        
+    {        
         // play phone calling
         mobilePhone.SetPhoneCalling();
         promptManager.ShowPrompt(sceneID, 1, false, 5f);
+        phone.GetComponent<Rigidbody>().isKinematic = false;
+        phone.GetComponent<Grabbable>().enabled = true;
+        phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
 
         yield return new WaitForSeconds(2.5f + 1.1f);
@@ -260,7 +262,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StopPrevDialogue();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
-        phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         GameManager.instance.toPutGlassesOn = true;
         glassesOutline.enabled = true;
 
@@ -604,11 +605,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         taichiInstructor.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(narrationAudioClips_2[1].length);
+        yield return new WaitForSeconds(narrationAudioClips_2[1].length); // to shorten the wait time
 
-        taichiInstructor.GetComponent<Animator>().SetTrigger("TalkEnd");
+        taichiInstructor.GetComponent<Animator>().SetTrigger("TalkEnd"); // this anim is 4.5s long but imma cut it halfway cause dont want player wait too long
 
-        yield return new WaitForSeconds(4.5f);
+        yield return new WaitForSeconds(1.0f);
 
         taichiInstructor.GetComponent<TaiChiInstructor>().StartAnimation();
 
@@ -867,11 +868,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("TalkEnd");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         radio.SetActive(false);
 
-        playerAudioSource.PlayOneShot(narrationAudioClips_2[6]);
+        playerAudioSource.PlayOneShot(narrationAudioClips_2[6]); // good game ah guan
 
         yield return new WaitForSeconds(narrationAudioClips_2[6].length);
 
