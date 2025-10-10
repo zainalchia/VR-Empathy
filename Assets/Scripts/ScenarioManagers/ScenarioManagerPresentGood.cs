@@ -244,11 +244,13 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     }
 
     IEnumerator Segment1Part3_1()
-    {
-        
+    {        
         // play phone calling
         mobilePhone.SetPhoneCalling();
         promptManager.ShowPrompt(sceneID, 1, false, 5f);
+        phone.GetComponent<Rigidbody>().isKinematic = false;
+        phone.GetComponent<Grabbable>().enabled = true;
+        phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = true;
 
         yield return new WaitForSeconds(2.5f + 1.1f);
@@ -260,7 +262,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StopPrevDialogue();
         phone.transform.GetChild(0).GetComponent<Outline>().enabled = false;
-        phone.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         GameManager.instance.toPutGlassesOn = true;
         glassesOutline.enabled = true;
 
