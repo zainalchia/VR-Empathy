@@ -1124,7 +1124,8 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         [SerializeField] private CapMover capMover;
         [SerializeField] private AudioClip capOpenSFX;
         [SerializeField] private AudioClip gulpSFX;
-    public void PlaySegment4Part1()
+        private int lastGrabHandIndex = -1;
+        public void PlaySegment4Part1()
         {
             lastRoutine = StartCoroutine(Segment4Part1());
         }
@@ -1137,7 +1138,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             bedroomAudioSource.GetComponent<AudioSource>().loop = true;
             bedroomAudioSource.GetComponent<AudioSource>().Play();
 
-        yield return new WaitForSeconds(1f);
+             yield return new WaitForSeconds(1f);
             narrationAudioSource.Stop();
             narrationAudioSource.PlayOneShot(narrationAudioClips_3[2]); // VO20
             yield return new WaitForSeconds(narrationAudioClips_3[2].length);
@@ -1145,7 +1146,6 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             MedicineBottle.GetComponent<Grabbable>().enabled = true;
             MedicineBottle.GetComponent<GrabInteractable>().enabled = true;
             MedicineBottle.GetComponent<PhysicsGrabbable>().enabled = true;
-            MedicineBottle.GetComponent<ForceStayGrabbed>().enabled = true;
             MedicineBottle.GetComponent<MedicineBottle>().enabled = true;
 
             yield return null;
@@ -1157,12 +1157,22 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             // Allow player to consume medicine
             GameManager.instance.toConsumeMedicine = true;
 
-            // Enable grabbing the bottle
-            GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         }
 
         public void OnMedicineBottleGrabbed()
         {
+            //record which hand press trigger
+            lastGrabHandIndex = ControllerInteractionsManager.instance.ObjInWhichHand(MedicineBottle);
+
+            // Disable grabbing interaction so player can’t pull it
+            var grabInteractable = MedicineBottle.GetComponent<GrabInteractable>();
+            if (grabInteractable != null)
+                grabInteractable.enabled = false;
+
+            var grabbable = MedicineBottle.GetComponent<Grabbable>();
+            if (grabbable != null)
+            grabbable.enabled = false;
+
             if (capAnimator != null)
                 capAnimator.SetTrigger(capPopTrigger);
 
@@ -1183,7 +1193,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             if (capOpenSFX != null)
                 bedroomAudioSource.PlayOneShot(capOpenSFX);
 
-        // Move the cap to the table
+            // Move the cap to the table
             var capMover = GameManager.instance.medicine.GetComponentInChildren<CapMover>();
             if (capMover != null)
 
@@ -1202,22 +1212,24 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             GameObject pill = Instantiate(pillPrefab, pillSpawnPoint.position, pillSpawnPoint.rotation);
             GameManager.instance.pill = pill;
 
-            // Detect which hands hod the bottle
-            int handIndex = ControllerInteractionsManager.instance.ObjInWhichHand(GameManager.instance.medicine);
+        // Detect which hands hod the bottle
+        int handIndex = lastGrabHandIndex;
+        // pill same hand that grab the bottle
+        Transform targetPalm = (handIndex == 0)
+            ? GameManager.instance.leftPalm   // left hand
+            : GameManager.instance.rightPalm; // right hand
 
-            // choose where pill suppose to go
-            Transform targetPalm = (handIndex == 0) ? GameManager.instance.rightPalm   // bottle in left hand, pill to right palm
-            : GameManager.instance.leftPalm;
-
-            // Move the pill into the palm
-            StartCoroutine(MovePillToHand(pill, targetPalm, handIndex));
+        // Move the pill into the palm
+        StartCoroutine(MovePillToHand(pill, targetPalm, handIndex));
         }
         private IEnumerator CheckPillDistance()
         {
             promptManager.ShowPrompt(sceneID, 2); // I need to take my vitamins. [Put the vitamin to your face area]
 
-            // Loop continue as the pill exists and the player still needs to eat it
-            while (GameManager.instance.pill != null && GameManager.instance.toConsumeMedicine)
+        yield return new WaitForSeconds(1.0f); //small delay so dont instant eat
+
+        // Loop continue as the pill exists and the player still needs to eat it
+        while (GameManager.instance.pill != null && GameManager.instance.toConsumeMedicine)
             {
                 //distance between the pill and face
                 float dist = Vector3.Distance(
@@ -1274,14 +1286,16 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // pill to hand
         pill.transform.position = targetPalm.position + targetPalm.up * 0.02f;
         pill.transform.rotation = targetPalm.rotation; // optional alignment
-        pill.transform.SetParent(targetPalm); // stays consistent
+
+        yield return null;
+        pill.transform.SetParent(targetPalm,true); // stays consistent
 
         // auto grab
         var grabInteractable = pill.GetComponent<GrabInteractable>();
-            if (handIndex == 0) // bottle lfet hand so pill on the right vice versa
-                ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
-            else
+            if (handIndex == 0) // same hand now
                 ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(grabInteractable);
+            else
+                ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
 
             var forceGrab = pill.GetComponent<ForceStayGrabbed>();
             if (forceGrab != null)
@@ -1298,10 +1312,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
             // Reset flag
             GameManager.instance.toConsumeMedicine = false;
-            GameManager.instance.medicine.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
 
-            Destroy(GameManager.instance.medicine);
-            GameManager.instance.medicine = null;
+            //Destroy(GameManager.instance.medicine);
+            //GameManager.instance.medicine = null;
 
             // Next step
             StartCoroutine(AfterMedicineTaken());
