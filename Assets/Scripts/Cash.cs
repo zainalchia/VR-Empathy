@@ -10,8 +10,9 @@ public class Cash : MonoBehaviour
 
     [Header("Other")]
     [SerializeField] private Collider registerSlotCollider; //collider to the place the cash
+    [SerializeField] private Outline registerOutline;
     private bool hasBeenPlaced = false; //cash into slot
-
+    private bool hasBeenGrabbed = false;
     private void OnTriggerEnter(Collider other)
     {
         //when cash collides the register slot
@@ -20,9 +21,24 @@ public class Cash : MonoBehaviour
             PlaceCash();
         }
     }
+    public void OnGrabbed()
+    {
+        if (!hasBeenGrabbed)
+        {
+            hasBeenGrabbed = true;
+
+            // turn ON register outline when player picks up cash
+            if (registerOutline != null)
+                registerOutline.enabled = true;
+        }
+    }
     private void PlaceCash()
     {
         hasBeenPlaced = true;
+
+        //turn off outline
+        if (registerOutline != null)
+            registerOutline.enabled = false;
 
         //confirm cash have been placed, tells manager
         FindObjectOfType<ScenarioManagerReneeTest>().OnCashPlaced();

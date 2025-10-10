@@ -55,7 +55,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("In the bathroom")]
     public float timeForWashingUp = 5f;
-
+    [SerializeField] private GameObject cashObject;
+    [SerializeField] private Outline cashOutline;
+    [SerializeField] public Outline knifeOutline;
     public void HawkerPartOne()
     {
         lastRoutine = StartCoroutine(HawkerPart1());
@@ -118,7 +120,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
-
+        if (cashOutline != null)
+            cashOutline.enabled = true;
     }
 
     public void OnCashPlaced()

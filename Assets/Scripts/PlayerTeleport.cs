@@ -303,6 +303,13 @@ public class PlayerTeleport : MonoBehaviour
                     {
                         // Arrived at chopping board
                         promptManager.ShowPrompt(SceneID.Stall, 2);
+
+                        //knife outline 
+                        var manager = FindObjectOfType<ScenarioManagerReneeTest>();
+                        if (manager != null && manager.knifeOutline != null)
+                        {
+                            manager.knifeOutline.enabled = true;
+                        }
                     }
                 }
             }
