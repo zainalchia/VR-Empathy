@@ -9,6 +9,21 @@ public class PhotoFrame : MonoBehaviour
 
     private Grabbable grabbable;
 
+    [SerializeField] GameObject grabPoint;
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "LeftHand")
+        {
+            grabPoint.transform.localPosition = new Vector3(0.1133f, -0.127f, -0.0045f);
+        }
+        else if (collision.gameObject.tag == "RightHand")
+        {
+            grabPoint.transform.localPosition = new Vector3(-0.1122f, -0.127f, -0.0045f);
+
+
+        }
+    }
+
     private void Awake()
     {
         grabbable = GetComponent<Grabbable>();
