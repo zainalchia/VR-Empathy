@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     public static PlayerCamera instance = null;
+
+    #region Singleton
     private void Awake()
     {
         if (instance == null)
@@ -12,6 +14,7 @@ public class PlayerCamera : MonoBehaviour
         else if (instance != null)
             Destroy(gameObject);
     }
+    #endregion
 
     public void RecenterPlayer()
     {
