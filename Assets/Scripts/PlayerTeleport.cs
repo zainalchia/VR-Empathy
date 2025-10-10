@@ -95,6 +95,7 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToLivingRoomHotspots[currentHotspotIndex], MoveToLivingRoomHotspots);
+                    PlayerCamera.instance.RecenterPlayer();
                 }
                 else if (MovingToMainDoor && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -105,6 +106,8 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToMainDoorHotspots[currentHotspotIndex], MoveToMainDoorHotspots);
+                    PlayerCamera.instance.RecenterPlayer();
+
                 }
                 //else if (MovingToCheckersChair /*&& currentHotspotIndex != MoveToCheckersChairHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove*/)
                 //{
@@ -138,6 +141,7 @@ public class PlayerTeleport : MonoBehaviour
             {
                 currentHotspotIndex += 1;
                 MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
+                PlayerCamera.instance.RecenterPlayer();
                 MoveToCheckersChairHotspots = null;
             }
 
@@ -145,6 +149,7 @@ public class PlayerTeleport : MonoBehaviour
             {
                 currentHotspotIndex += 1;
                 MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
+                PlayerCamera.instance.RecenterPlayer();
             }
 
 
@@ -163,6 +168,8 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToToiletDoorHotspots[currentHotspotIndex], MoveToToiletDoorHotspots);
+                    PlayerCamera.instance.RecenterPlayer();
+
                 }
                 else if (MoveToHawkerStall && currentHotspotIndex != MoveToHawkerStallHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -173,6 +180,8 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
+                    PlayerCamera.instance.RecenterPlayer();
+
                 }
                 else if (MoveToSection && (currentHotspotIndex <= 0 || hasPlacedCash) && currentHotspotIndex != MoveToJobPositionHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -183,6 +192,8 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+                    PlayerCamera.instance.RecenterPlayer();
+
                 }
                 testPressTrigger = false;
             }
