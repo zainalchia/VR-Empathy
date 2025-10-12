@@ -646,6 +646,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     {
         StartCoroutine(MovingFromTaichiToCheckers());
         //taiChiManager.FinishDoTaiChi();
+        Debug.Log("wat wat");
     }
 
     #endregion
@@ -717,6 +718,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
     public void StartWalkingToCheckers()
     {
+        Debug.Log("wat");
         StopPrevDialogue(); // hide alert text
         //lookDetection.enabled = false;
         //firstCheckersHotspot.SetActive(true);
@@ -1166,7 +1168,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             //record which hand press trigger
             lastGrabHandIndex = ControllerInteractionsManager.instance.ObjInWhichHand(MedicineBottle);
 
-            // Disable grabbing interaction so player can’t pull it
+            // Disable grabbing interaction so player can?t pull it
             var grabInteractable = MedicineBottle.GetComponent<GrabInteractable>();
             if (grabInteractable != null)
                 grabInteractable.enabled = false;

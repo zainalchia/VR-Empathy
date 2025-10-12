@@ -95,7 +95,6 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToLivingRoomHotspots[currentHotspotIndex], MoveToLivingRoomHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
                 }
                 else if (MovingToMainDoor && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -106,8 +105,6 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToMainDoorHotspots[currentHotspotIndex], MoveToMainDoorHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
-
                 }
                 //else if (MovingToCheckersChair /*&& currentHotspotIndex != MoveToCheckersChairHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove*/)
                 //{
@@ -140,16 +137,14 @@ public class PlayerTeleport : MonoBehaviour
             if (MovingToCheckersChair) // Teleport to checkers seat wihtout trigger press
             {
                 currentHotspotIndex += 1;
+                Debug.Log(MovingToCheckersChair + " " + currentHotspotIndex);
                 MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
-                PlayerCamera.instance.RecenterPlayer();
-                MoveToCheckersChairHotspots = null;
             }
 
             if (MovingToKaraokeCorner)
             {
                 currentHotspotIndex += 1;
                 MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
-                PlayerCamera.instance.RecenterPlayer();
             }
 
 
@@ -168,8 +163,6 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToToiletDoorHotspots[currentHotspotIndex], MoveToToiletDoorHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
-
                 }
                 else if (MoveToHawkerStall && currentHotspotIndex != MoveToHawkerStallHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -180,8 +173,6 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
-
                 }
                 else if (MoveToSection && (currentHotspotIndex <= 0 || hasPlacedCash) && currentHotspotIndex != MoveToJobPositionHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -192,8 +183,6 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
-
                 }
                 testPressTrigger = false;
             }
@@ -220,8 +209,10 @@ public class PlayerTeleport : MonoBehaviour
        // Move OVRCameraRig gameobject with offset
        float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
        float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
-       //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX,hotspot.transform.position.y,hotspot.transform.position.z - offsetZ);
-       GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
+       GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX,hotspot.transform.position.y,hotspot.transform.position.z - offsetZ);
+       //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
+
+       Debug.Log(offsetX + " " + offsetZ);
 
        hotspot.SetActive(false);
 
@@ -234,7 +225,7 @@ public class PlayerTeleport : MonoBehaviour
                     scenarioManagerPresentGood.narrationAudioClips_1[3],  // Lunch
                     hotspotArray
                 ));
-                return; 
+                return;
             }
         }
         StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
@@ -257,6 +248,7 @@ public class PlayerTeleport : MonoBehaviour
                 {
                     OnLastTeleport.Invoke();
                     MovingToCheckersChair = false;
+                    Debug.Log("bodoh");
                 }
                 else if (hotspotArray == MoveToKaraokeCornerHotspots)
                 {
