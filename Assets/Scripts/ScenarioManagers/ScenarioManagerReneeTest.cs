@@ -84,7 +84,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        playerTeleport.currentScene = ScenarioID.PastNegative;
+        GameManager.instance.scenarioID = ScenarioID.PastNegative;
 
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
@@ -149,7 +149,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     void Start()
     {
         SetupNarrationGeneral();
-        playerTeleport.currentScene = ScenarioID.PastNegative;
+        GameManager.instance.scenarioID = ScenarioID.PastNegative;
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {

@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    public ScenarioID scenarioID = ScenarioID.PresentGood;
+    public SceneID sceneID = SceneID.Bathroom;
+
     public TextMeshProUGUI testText;
     public GameObject postProcessing;
 

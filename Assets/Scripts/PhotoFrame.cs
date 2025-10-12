@@ -9,6 +9,7 @@ public class PhotoFrame : MonoBehaviour
 
     private Grabbable grabbable;
 
+    /*
     [SerializeField] GameObject grabPoint;
     private void OnTriggerEnter(Collider collision)
     {
@@ -22,7 +23,7 @@ public class PhotoFrame : MonoBehaviour
 
 
         }
-    }
+    }*/
 
     private void Awake()
     {

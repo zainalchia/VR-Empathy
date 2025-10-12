@@ -18,7 +18,7 @@ public class ScenarioManagerPastNegative : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerTeleport.currentScene = ScenarioID.PastNegative;
+        GameManager.instance.scenarioID = ScenarioID.PastNegative;
 
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);

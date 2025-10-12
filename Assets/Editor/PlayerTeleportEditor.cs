@@ -23,7 +23,7 @@ public class PlayerTeleportEditor : Editor
     {
         int currentIndex = teleport.GetCurrentHotspotIndex();
 
-        if (teleport.currentScene == ScenarioID.PresentGood)
+        if (GameManager.instance.scenarioID == ScenarioID.PresentGood)
         {
             if (teleport.MovingToLivingRoom)
             {
@@ -66,7 +66,7 @@ public class PlayerTeleportEditor : Editor
                 }
             }
         }
-        else if (teleport.currentScene == ScenarioID.PastNegative)
+        else if (GameManager.instance.scenarioID == ScenarioID.PastNegative)
         {
             if (teleport.MoveToToiletDoor)
             {

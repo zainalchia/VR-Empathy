@@ -73,7 +73,6 @@ public class PlayerTeleport : MonoBehaviour
     //public bool MovingToCheckersChair = false;
     //public bool MovingToKaraokeCorner = false;
 
-    public ScenarioID currentScene;
     public bool testPressTrigger = false; // used for TesterScript to simulate trigger button press in editor.
     [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
 
@@ -81,7 +80,7 @@ public class PlayerTeleport : MonoBehaviour
     {
         timer += Time.deltaTime;
         if (isNarrating) return; // if VO happening, skip update
-        if (currentScene == ScenarioID.PresentGood) {
+        if (GameManager.instance.scenarioID == ScenarioID.PresentGood) {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
                 buttonPressed = true;
@@ -150,7 +149,7 @@ public class PlayerTeleport : MonoBehaviour
 
             // move input to a manager script if possible
         }
-        else if(currentScene == ScenarioID.PastNegative)
+        else if(GameManager.instance.scenarioID == ScenarioID.PastNegative)
         {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || testPressTrigger && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
@@ -191,7 +190,7 @@ public class PlayerTeleport : MonoBehaviour
                 buttonPressed = false;
             }
         }
-        else if (currentScene == ScenarioID.PastPositive)
+        else if (GameManager.instance.scenarioID == ScenarioID.PastPositive)
         {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
@@ -209,14 +208,18 @@ public class PlayerTeleport : MonoBehaviour
        // Move OVRCameraRig gameobject with offset
        float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
        float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
-       GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX,hotspot.transform.position.y,hotspot.transform.position.z - offsetZ);
-       //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
 
-       Debug.Log(offsetX + " " + offsetZ);
+        if (GameManager.instance.sceneID == SceneID.VoidDeck)
+            GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x + offsetZ, hotspot.transform.position.y, hotspot.transform.position.z - offsetX);
+        else
+            GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX, hotspot.transform.position.y, hotspot.transform.position.z - offsetZ);
+        //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
+
+        Debug.Log(offsetX + " " + offsetZ);
 
        hotspot.SetActive(false);
 
-        if (currentScene == ScenarioID.PresentGood)
+        if (GameManager.instance.scenarioID == ScenarioID.PresentGood)
         {
             if (currentHotspotIndex == 4) // Weather + Lunch VO 
             {
@@ -230,7 +233,7 @@ public class PlayerTeleport : MonoBehaviour
         }
         StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
-        if (currentScene == ScenarioID.PresentGood)
+        if (GameManager.instance.scenarioID == ScenarioID.PresentGood)
         {
             if (currentHotspotIndex == hotspotArray.Length - 1)
             {
@@ -248,7 +251,6 @@ public class PlayerTeleport : MonoBehaviour
                 {
                     OnLastTeleport.Invoke();
                     MovingToCheckersChair = false;
-                    Debug.Log("bodoh");
                 }
                 else if (hotspotArray == MoveToKaraokeCornerHotspots)
                 {
@@ -258,7 +260,7 @@ public class PlayerTeleport : MonoBehaviour
             }
         }
 
-        else if (currentScene == ScenarioID.PastNegative)
+        else if (GameManager.instance.scenarioID == ScenarioID.PastNegative)
         {
             if (currentHotspotIndex == hotspotArray.Length - 1)
             {
@@ -318,7 +320,7 @@ public class PlayerTeleport : MonoBehaviour
             }
         }
 
-        else if (currentScene == ScenarioID.PastPositive)
+        else if (GameManager.instance.scenarioID == ScenarioID.PastPositive)
         {
 
         }
