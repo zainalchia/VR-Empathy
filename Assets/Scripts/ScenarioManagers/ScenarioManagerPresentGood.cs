@@ -591,7 +591,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         yield return new WaitForSeconds(narrationAudioClips_2[0].length); // screen fade in timing
 
-        yield return StartCoroutine(MoveFriendPosition(taichiInstructor, 0.25f, taichiTargetDestination.position, 90));
+        yield return StartCoroutine(MoveFriendPosition(taichiInstructor, 0.25f, taichiTargetDestination.position, 180));
 
         yield return new WaitForSeconds(1); // additional delay to ensure that taichi instructor is back to idle animation before going to talk animations
 
@@ -687,7 +687,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
 
         checkersNPC.GetComponent<Animator>().SetTrigger("BackToIdle");
 
-        yield return StartCoroutine(SetNPCToPlayPos(checkersNPC,90,2));
+        yield return StartCoroutine(SetNPCToPlayPos(checkersNPC,180,2));
 
         //GameManager.instance.ShowAlert(narration_2[0]);
         //promptManager.ShowPrompt(sceneID, 1);
