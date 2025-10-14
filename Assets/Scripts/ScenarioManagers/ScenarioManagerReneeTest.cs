@@ -56,6 +56,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In the bathroom")]
     public float timeForWashingUp = 5f;
 
+
     public void HawkerPartOne()
     {
         lastRoutine = StartCoroutine(HawkerPart1());
@@ -118,7 +119,21 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         yield return null;
     }
-    #endregion 
+    #endregion
+
+
+    [SerializeField] GameObject TrayOfFood;
+    [SerializeField] GameObject DroppedFOod;
+
+    #region Hawker
+
+    IEnumerator DropFood()
+    {
+        
+        yield return null;
+    }
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
