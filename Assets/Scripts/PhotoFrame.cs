@@ -1,15 +1,13 @@
 using Oculus.Interaction;
 using UnityEngine;
 using UnityEngine.Events;
-
+using TMPro;
 public class PhotoFrame : MonoBehaviour
 {
     public UnityEvent OnFrameGrabbed;
     private bool hasGrabbed = false;
 
     private Grabbable grabbable;
-
-    /*
     [SerializeField] GameObject grabPoint;
     private void OnTriggerEnter(Collider collision)
     {
@@ -23,8 +21,7 @@ public class PhotoFrame : MonoBehaviour
 
 
         }
-    }*/
-
+    }
     private void Awake()
     {
         grabbable = GetComponent<Grabbable>();
