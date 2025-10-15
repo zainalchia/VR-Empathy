@@ -510,7 +510,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         animator = father.GetComponent<Animator>();
         animator.SetBool("Talking", true);
-        animator.SetBool("IsMale", MainMenuManager.isGenderMale);
+        animator.SetBool("IsMale", true);
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
         yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1f);
         animator.SetBool("Talking", false);
