@@ -123,13 +123,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
 
     [SerializeField] GameObject TrayOfFood;
-    [SerializeField] GameObject DroppedFOod;
+    [SerializeField] GameObject DroppedFood;
 
     #region Hawker
 
     IEnumerator DropFood()
     {
-        
+        playFoodDrop = true;
         yield return null;
     }
 
@@ -156,10 +156,21 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
 
 
+    private bool playFoodDrop = false;
     // Update is called once per frame
     void Update()
     {
-        
+        if (playFoodDrop)
+        {
+            TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
+            if (TrayOfFood.transform.position.y <= 0)
+            {
+                playFoodDrop = false;
+                TrayOfFood.gameObject.SetActive(false);
+                DroppedFood.gameObject.SetActive(true);
+            }
+            //TrayOfFood.transform.localPosition = new Vector3()
+        }
     }
 
     void StopPrevDialogue()
