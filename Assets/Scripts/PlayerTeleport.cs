@@ -26,10 +26,12 @@ public class PlayerTeleport : MonoBehaviour
     public GameObject[] MoveToToiletDoorHotspots;
     [SerializeField] GameObject[] MoveToHawkerStallHotspots;
     [SerializeField] GameObject[] MoveToJobPositionHotspots;
+    [SerializeField] GameObject[] MoveToTableHotspots;
 
     public GameObject[] GetMoveToToiletDoorHotspots() => MoveToToiletDoorHotspots;
     public GameObject[] GetMoveToHawkerStallHotspots() => MoveToHawkerStallHotspots;
     public GameObject[] GetMoveToJobPositionHotspots() => MoveToJobPositionHotspots;
+    public GameObject[] GetMoveToTableHotspots() => MoveToJobPositionHotspots;
     #endregion
 
     #region Past Positive Hotspots
@@ -65,6 +67,7 @@ public class PlayerTeleport : MonoBehaviour
     //past negative
     public bool MoveToToiletDoor = false;
     public bool MoveToHawkerStall = false;
+    public bool MoveToTable = false;
     public bool MoveToSection = false;
 
     //Past positive==============================================================================================================
@@ -180,6 +183,18 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
+                    PlayerCamera.instance.RecenterPlayer();
+
+                }
+                else if (MoveToTable && currentHotspotIndex != MoveToTableHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                {
+                    timer = 0;
+
+                    defaultTimeBeforeNextMove = 1.5f; // in general
+
+                    currentHotspotIndex += 1;
+
+                    MoveToLocation(MoveToTableHotspots[currentHotspotIndex], MoveToTableHotspots);
                     PlayerCamera.instance.RecenterPlayer();
 
                 }

@@ -59,7 +59,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void HawkerPartOne()
     {
-        lastRoutine = StartCoroutine(HawkerPart1());
+        //lastRoutine = StartCoroutine(HawkerPart1());
+        // Testing purposes
+        lastRoutine = StartCoroutine(HawkerTraySegment());
     }
 
     IEnumerator HawkerPart1()
@@ -126,10 +128,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject DroppedFood;
 
     #region Hawker
-
-    IEnumerator DropFood()
+    
+    IEnumerator HawkerTraySegment()
     {
-        playFoodDrop = true;
+
+        TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(TrayOfFood.GetComponent<GrabInteractable>());
+        playerTeleport.MoveToTable = true;
         yield return null;
     }
 
@@ -160,16 +165,30 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (playerTeleport.MoveToTable)
+        {
+            if (GameManager.instance.IsPlayerWithinPosition(-25, 30, -20, 33))
+            {
+                playerTeleport.MoveToTable = false;
+                playFoodDrop = true;
+            }
+        }
+
         if (playFoodDrop)
         {
             TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
+            TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
+            TrayOfFood.GetComponent<Grabbable>().enabled = false;
+            ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+
             if (TrayOfFood.transform.position.y <= 0)
             {
                 playFoodDrop = false;
                 TrayOfFood.gameObject.SetActive(false);
+                DroppedFood.transform.position = TrayOfFood.transform.position;
                 DroppedFood.gameObject.SetActive(true);
             }
-            //TrayOfFood.transform.localPosition = new Vector3()
         }
     }
 
@@ -183,5 +202,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             if (AlertTextController.instance.gameObject.activeInHierarchy)
                 AlertTextController.instance.SetInactive();
         }
+    }
+
+    private void DropFood()
+    {
+        playFoodDrop = true;
     }
 }

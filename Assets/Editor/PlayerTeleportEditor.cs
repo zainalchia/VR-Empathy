@@ -88,6 +88,16 @@ public class PlayerTeleportEditor : Editor
                     teleport.MoveToLocation(hotspots[currentIndex], hotspots);
                 }
             }
+            else if (teleport.MoveToTable)
+            {
+                var hotspots = teleport.GetMoveToTableHotspots();
+                if (currentIndex < hotspots.Length - 1)
+                {
+                    currentIndex += 1;
+                    teleport.SetCurrentHotspotIndex(currentIndex);
+                    teleport.MoveToLocation(hotspots[currentIndex], hotspots);
+                }
+            }
             else if (teleport.MoveToSection)
             {
                 var hotspots = teleport.GetMoveToJobPositionHotspots();
