@@ -126,15 +126,25 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [SerializeField] GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;
+    [SerializeField] GameObject PlayerCloth;
+    private bool playFoodDrop = false;
+
 
     #region Hawker
-    
+
     IEnumerator HawkerTraySegment()
     {
 
         TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(TrayOfFood.GetComponent<GrabInteractable>());
         playerTeleport.MoveToTable = true;
+        yield return null;
+    }
+    IEnumerator CleanDroppedFood()
+    {
+        yield return new WaitForSeconds(2);
+        PlayerCloth.SetActive(true);
+        PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         yield return null;
     }
 
@@ -161,14 +171,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
 
 
-    private bool playFoodDrop = false;
     // Update is called once per frame
     void Update()
     {
 
         if (playerTeleport.MoveToTable)
         {
-            if (GameManager.instance.IsPlayerWithinPosition(-25, 30, -20, 33))
+            if (GameManager.instance.IsPlayerWithinPosition(-12, 18, -15, 20))
             {
                 playerTeleport.MoveToTable = false;
                 playFoodDrop = true;
@@ -182,12 +191,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             TrayOfFood.GetComponent<Grabbable>().enabled = false;
             ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
 
-            if (TrayOfFood.transform.position.y <= 0)
+            if (TrayOfFood.transform.position.y <= 1)
             {
                 playFoodDrop = false;
                 TrayOfFood.gameObject.SetActive(false);
-                DroppedFood.transform.position = TrayOfFood.transform.position;
+                DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x,0.6f,TrayOfFood.transform.position.z);
                 DroppedFood.gameObject.SetActive(true);
+                lastRoutine = StartCoroutine(CleanDroppedFood());
+
             }
         }
     }
