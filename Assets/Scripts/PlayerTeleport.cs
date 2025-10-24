@@ -58,6 +58,9 @@ public class PlayerTeleport : MonoBehaviour
     float timer = 0;
 
     [Header("Scene Manager")]
+
+    // Testing
+    private bool AbleToTeleport;
     //present positive
     public bool MovingToLivingRoom = false;
     public bool MovingToMainDoor = false;
@@ -84,7 +87,8 @@ public class PlayerTeleport : MonoBehaviour
     {
         timer += Time.deltaTime;
         if (isNarrating) return; // if VO happening, skip update
-        if (currentScene == ScenarioID.PresentGood) {
+        if (currentScene == ScenarioID.PresentGood)
+        {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
                 buttonPressed = true;
@@ -158,70 +162,73 @@ public class PlayerTeleport : MonoBehaviour
 
             // move input to a manager script if possible
         }
-        else if(currentScene == ScenarioID.PastNegative)
+        else if (currentScene == ScenarioID.PastNegative)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || testPressTrigger && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+            if (AbleToTeleport)
             {
-                if (MoveToToiletDoor && currentHotspotIndex != MoveToToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || testPressTrigger && !buttonPressed && timer >= defaultTimeBeforeNextMove)
                 {
-                    timer = 0;
+                    if (MoveToToiletDoor && currentHotspotIndex != MoveToToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
 
-                    defaultTimeBeforeNextMove = 1.5f; // in general
+                        defaultTimeBeforeNextMove = 1.5f; // in general
 
-                    currentHotspotIndex += 1;
+                        currentHotspotIndex += 1;
 
-                    MoveToLocation(MoveToToiletDoorHotspots[currentHotspotIndex], MoveToToiletDoorHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
+                        MoveToLocation(MoveToToiletDoorHotspots[currentHotspotIndex], MoveToToiletDoorHotspots);
+                        PlayerCamera.instance.RecenterPlayer();
 
+                    }
+                    else if (MoveToHawkerStall && currentHotspotIndex != MoveToHawkerStallHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+
+                        MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
+                        PlayerCamera.instance.RecenterPlayer();
+
+                    }
+                    else if (MoveToTable && currentHotspotIndex != MoveToTableHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+
+                        MoveToLocation(MoveToTableHotspots[currentHotspotIndex], MoveToTableHotspots);
+                        PlayerCamera.instance.RecenterPlayer();
+
+                    }
+                    else if (MoveToSection && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+
+                        MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+                        PlayerCamera.instance.RecenterPlayer();
+
+                    }
+                    testPressTrigger = false;
                 }
-                else if (MoveToHawkerStall && currentHotspotIndex != MoveToHawkerStallHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
                 {
-                    timer = 0;
-
-                    defaultTimeBeforeNextMove = 1.5f; // in general
-
-                    currentHotspotIndex += 1;
-
-                    MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
-
+                    buttonPressed = false;
                 }
-                else if (MoveToTable && currentHotspotIndex != MoveToTableHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
-                {
-                    timer = 0;
-
-                    defaultTimeBeforeNextMove = 1.5f; // in general
-
-                    currentHotspotIndex += 1;
-
-                    MoveToLocation(MoveToTableHotspots[currentHotspotIndex], MoveToTableHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
-
-                }
-                else if (MoveToSection && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
-                {
-                    timer = 0;
-
-                    defaultTimeBeforeNextMove = 1.5f; // in general
-
-                    currentHotspotIndex += 1;
-
-                    MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
-
-                }
-                testPressTrigger = false;
-            }
-            else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
-            {
-                buttonPressed = false;
             }
         }
         else if (currentScene == ScenarioID.PastPositive)
         {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
-                
+
             }
             else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
             {
@@ -353,6 +360,11 @@ public class PlayerTeleport : MonoBehaviour
     public int GetCurrentHotspotIndex()
     {
         return currentHotspotIndex;
+    }
+
+    public void CheckTeleport(bool CanTeleport)
+    {
+        AbleToTeleport = CanTeleport;
     }
 
 }
