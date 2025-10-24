@@ -17,6 +17,7 @@ public class TaiChiInstructor : MonoBehaviour
     bool timerstart = false;
     int currentPose = 0;
     public bool checkStartAnim; // enable for npc
+    bool finished = false;
 
     //public void ReadyForNextPose() // called in animation event 1 frame before the last frame
     //{
@@ -101,12 +102,13 @@ public class TaiChiInstructor : MonoBehaviour
 
         AnimatorStateInfo StateInfo = taiChiAnimator.GetCurrentAnimatorStateInfo(0);
         
-        if (StateInfo.IsTag("FinalTaiChi")) // StateInfo.normalizedTIme 0 -> Start of animation, 1 -> End of animation
+        if (StateInfo.IsTag("FinalTaiChi") && finished == false) // StateInfo.normalizedTIme 0 -> Start of animation, 1 -> End of animation
         {
             GetComponent<Animator>().SetBool("StartAnimation", false);
             if (StateInfo.normalizedTime >= 0.95f)
             {
                 OnPosesFinish.Invoke();
+                finished = true;
             }
         }
 

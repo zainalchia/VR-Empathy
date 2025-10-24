@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class SliceLimit : MonoBehaviour
 {
-    public int remainingCuts = 3;
+    public int remainingCuts = 6;
 }

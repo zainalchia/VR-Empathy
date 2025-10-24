@@ -51,8 +51,6 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     [Header("Scenraio Prompters")]
     [SerializeField] ScenarioPromptManager promptManager;
-    [SerializeField] ScenarioID scenarioID = ScenarioID.PresentBad;
-    [SerializeField] SceneID sceneID = SceneID.Bathroom;
 
     Coroutine lastRoutine = null;
 
@@ -192,7 +190,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane.GetComponent<Grabbable>().enabled = true; // can be grabbed from here
         cane.GetComponent<ForceStayGrabbed>().active = true;
         caneOutline.enabled = true;
-        promptManager.ShowPrompt(sceneID, 0);
+        promptManager.ShowPrompt(GameManager.instance.sceneID, 0);
     }
 
     // called in scene on CaneTeleport in event OnFirstGrab
@@ -203,7 +201,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         caneOutline.enabled = false;
         bathroomDoor.AllowDoorOpen();
         //GameManager.instance.ShowAlert(narration_1[16]);
-        promptManager.ShowPrompt(sceneID, 1);
+        promptManager.ShowPrompt(GameManager.instance.sceneID, 1);
     }
 
     public void BathroomDoorOpen() // called in UnityEvent in bathroom door
@@ -233,7 +231,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         cane = newCane;
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(cane.GetComponent<GrabInteractable>());
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
-        promptManager.ShowPrompt(sceneID, 2);
+        promptManager.ShowPrompt(GameManager.instance.sceneID, 2);
         questControllerImage.SetActive(true);
         toGoLivingRoom = true;
         lastRoutine = null;
@@ -280,7 +278,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
     public void PlaySegment1Part3_1()
     {
-        sceneID = SceneID.LivingRoom;
+        GameManager.instance.sceneID = SceneID.LivingRoom;
         lastRoutine = StartCoroutine(Segment1Part3_1());
     }
 
@@ -297,7 +295,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         phone.GetComponent<Rigidbody>().isKinematic = false;
         phone.GetComponent<Grabbable>().enabled = true;
         //GameManager.instance.ShowAlert(narration_1[18]);
-        promptManager.ShowPrompt(sceneID, 2);
+        promptManager.ShowPrompt(GameManager.instance.sceneID, 2);
 
         //GameManager.instance.ShowAlert(narration_1[7], 2.5f);
         yield return new WaitForSeconds(2.5f + 1.1f);
@@ -317,7 +315,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         IEnumerator Segment1Part3_2()
         {
             //GameManager.instance.ShowAlert(narration_1[19]);
-            promptManager.ShowPrompt(sceneID, 3);
+            promptManager.ShowPrompt(GameManager.instance.sceneID, 3);
 
             ControllerInteractionsManager.instance.autoDropItems = true; // will drop items from here
             GameManager.instance.toPutGlassesOn = true;
@@ -427,7 +425,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_2[0].length);
 
         //GameManager.instance.ShowAlert(narration_2[3]);
-        promptManager.ShowPrompt(sceneID, 0);
+        promptManager.ShowPrompt(GameManager.instance.sceneID, 0);
 
         // allow take dentures off from here
         GameManager.instance.toTakeDenturesOff = true;
@@ -512,7 +510,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
 
         animator = father.GetComponent<Animator>();
         animator.SetBool("Talking", true);
-        animator.SetBool("IsMale", MainMenuManager.isGenderMale);
+        animator.SetBool("IsMale", true);
         narrationAudioSource.PlayOneShot(narrationAudioClips_2[3]);
         yield return new WaitForSeconds(narrationAudioClips_2[3].length + 1f);
         animator.SetBool("Talking", false);
@@ -665,20 +663,20 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         SetupNarrationGeneral();
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
-            sceneID = SceneID.Bathroom;
+            GameManager.instance.sceneID = SceneID.Bathroom;
             SetupNarrationBathroomLivingRoom();
             PlaySegment1Part1();
         }
         else if (sceneToPlay == SceneToPlay.Hallway) 
         {
-            sceneID = SceneID.Bathroom;
+            GameManager.instance.sceneID = SceneID.Bathroom;
             PostProcessingController.instance.UsingGlasses(true); // to not activate the blur first
             SetupNarrationBathroomLivingRoom();
             SetupSegment1Part2_1();
         }
         else if (sceneToPlay == SceneToPlay.Bedroom)
         {
-            sceneID = SceneID.Bedroom;
+            GameManager.instance.sceneID = SceneID.Bedroom;
             SetupNarrationBedroom();
             PlaySegment2Part1();
         }

@@ -33,7 +33,7 @@ public class CapMover : MonoBehaviour
         transform.position = target;
 
         yield return new WaitForSeconds(0.8f); 
-        gameObject.SetActive(false);
+        //gameObject.SetActive(false);
     }
 
 }

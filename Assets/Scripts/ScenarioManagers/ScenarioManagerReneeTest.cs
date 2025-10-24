@@ -55,7 +55,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("In the bathroom")]
     public float timeForWashingUp = 5f;
-
+    [SerializeField] private GameObject cashObject;
+    [SerializeField] private Outline cashOutline;
+    [SerializeField] public Outline knifeOutline;
     public void HawkerPartOne()
     {
         lastRoutine = StartCoroutine(HawkerPart1());
@@ -82,7 +84,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        playerTeleport.currentScene = ScenarioID.PastNegative;
+        GameManager.instance.scenarioID = ScenarioID.PastNegative;
 
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
@@ -93,6 +95,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void HawkerPartTwo()
     {
+
         sceneID = SceneID.Stall;
         lastRoutine = StartCoroutine(HawkerPart2());
     }
@@ -116,15 +119,37 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             secondTeleportHawkerHotspot.SetActive(true);
         }
 
-        yield return null;
+        yield return new WaitForSeconds(2f);
+        if (cashOutline != null)
+            cashOutline.enabled = true;
     }
+
+    public void OnCashPlaced()
+    {
+        // player has put cash into register
+        playerTeleport.hasPlacedCash = true;
+        // TP to the next hotspot
+        playerTeleport.MoveToSection = true;
+        //reset hotspot
+        playerTeleport.SetCurrentHotspotIndex(0);
+
+        promptManager.ShowPrompt(SceneID.Stall, 2);
+
+        //enables the next hotspot (chopping)
+        var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots();
+        if (jobHotspots.Length > 1)
+        {
+            jobHotspots[1].SetActive(true);
+        }
+    }
+
     #endregion 
 
     // Start is called before the first frame update
     void Start()
     {
         SetupNarrationGeneral();
-        playerTeleport.currentScene = ScenarioID.PastNegative;
+        GameManager.instance.scenarioID = ScenarioID.PastNegative;
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {

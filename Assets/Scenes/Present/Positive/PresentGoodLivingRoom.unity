@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 2
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
@@ -2257,7 +2257,7 @@ MonoBehaviour:
   MoveToToiletDoor: 0
   MoveToHawkerStall: 0
   MoveToSection: 0
-  currentScene: 3
+  hasPlacedCash: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 3357422135080932660}
 --- !u!1 &478722975
@@ -21135,6 +21135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenarioID: 3
+  sceneID: 3
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 308433642}
@@ -21234,8 +21236,6 @@ MonoBehaviour:
   firstTeleportHotspot: {fileID: 1092479195}
   playerTeleport: {fileID: 472293865}
   promptManager: {fileID: 59890577}
-  scenarioID: 3
-  sceneID: 3
   MaxAlertHideTimer: 5
   BathroomItems: {fileID: 0}
   timeForWashingUp: 20

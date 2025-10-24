@@ -125,12 +125,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &4314320 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8531340850437012666, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 2276772900260340213}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4314321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -2981,7 +2975,7 @@ MonoBehaviour:
   MoveToToiletDoor: 0
   MoveToHawkerStall: 0
   MoveToSection: 0
-  currentScene: 0
+  hasPlacedCash: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
 --- !u!1001 &169200027
@@ -7061,7 +7055,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d14eb4f18a73a44d38182e21f2dab39e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1497998234}
   m_SourcePrefab: {fileID: 100100000, guid: d14eb4f18a73a44d38182e21f2dab39e, type: 3}
 --- !u!1 &277287913 stripped
 GameObject:
@@ -7318,6 +7316,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5086278459429048668, guid: 0ae294de3bea44c42a541f8d317b0b27,
     type: 3}
   m_PrefabInstance: {fileID: 342185699}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &348860725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8531340850437012666, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &371817719 stripped
 GameObject:
@@ -21084,9 +21088,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenarioID: 3
+  sceneID: 4
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
-  ovrCamRig: {fileID: 308433642}
+  ovrCamRig: {fileID: 348860725}
   centerEyeAnchor: {fileID: 308433646}
   grabInteractors:
   - {fileID: 308433641}
@@ -21315,8 +21321,6 @@ MonoBehaviour:
   firstTeleportHotspot: {fileID: 0}
   playerTeleport: {fileID: 164654413}
   promptManager: {fileID: 980054490}
-  scenarioID: 3
-  sceneID: 4
   MaxAlertHideTimer: 3
   BathroomItems: {fileID: 0}
   timeForWashingUp: 20
@@ -21345,7 +21349,7 @@ MonoBehaviour:
   taichiNPC: {fileID: 2137654383}
   checkersNPC: {fileID: 1543560790}
   teleportPoint: {fileID: 1901481972}
-  player: {fileID: 4314320}
+  player: {fileID: 308433642}
   lookDetection: {fileID: 1393291064}
   checkersNPCRotationTime: 2
   firstCheckersHotspot: {fileID: 1567339333}
@@ -24906,6 +24910,20 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 271585604}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1497998234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497998230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7833acbfa3cd414987ab9b80536ac85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 308433646}
+  FacePlayer: 1
 --- !u!1001 &1513481790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32726,13 +32744,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901481972}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.309, y: 1.987824, z: -1.86156}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 511553954}
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &1916963207
 PrefabInstance:
   m_ObjectHideFlags: 0
