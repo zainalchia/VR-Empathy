@@ -55,12 +55,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("In the bathroom")]
     public float timeForWashingUp = 5f;
-    [SerializeField] private GameObject cashObject;
-    [SerializeField] private Outline cashOutline;
-    [SerializeField] public Outline knifeOutline;
+
+
     public void HawkerPartOne()
     {
-        lastRoutine = StartCoroutine(HawkerPart1());
+        //lastRoutine = StartCoroutine(HawkerPart1());
+        // Testing purposes
+        lastRoutine = StartCoroutine(HawkerTraySegment());
     }
 
     IEnumerator HawkerPart1()
@@ -84,7 +85,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        GameManager.instance.scenarioID = ScenarioID.PastNegative;
+        playerTeleport.currentScene = ScenarioID.PastNegative;
 
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
@@ -95,7 +96,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void HawkerPartTwo()
     {
-
         sceneID = SceneID.Stall;
         lastRoutine = StartCoroutine(HawkerPart2());
     }
@@ -119,37 +119,42 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             secondTeleportHawkerHotspot.SetActive(true);
         }
 
-        yield return new WaitForSeconds(2f);
-        if (cashOutline != null)
-            cashOutline.enabled = true;
+        yield return null;
     }
+    #endregion
 
-    public void OnCashPlaced()
+
+    [SerializeField] GameObject TrayOfFood;
+    [SerializeField] GameObject DroppedFood;
+    [SerializeField] GameObject PlayerCloth;
+    private bool playFoodDrop = false;
+
+
+    #region Hawker
+
+    IEnumerator HawkerTraySegment()
     {
-        // player has put cash into register
-        playerTeleport.hasPlacedCash = true;
-        // TP to the next hotspot
-        playerTeleport.MoveToSection = true;
-        //reset hotspot
-        playerTeleport.SetCurrentHotspotIndex(0);
 
-        promptManager.ShowPrompt(SceneID.Stall, 2);
-
-        //enables the next hotspot (chopping)
-        var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots();
-        if (jobHotspots.Length > 1)
-        {
-            jobHotspots[1].SetActive(true);
-        }
+        TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(TrayOfFood.GetComponent<GrabInteractable>());
+        playerTeleport.MoveToTable = true;
+        yield return null;
+    }
+    IEnumerator CleanDroppedFood()
+    {
+        yield return new WaitForSeconds(2);
+        PlayerCloth.SetActive(true);
+        PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        yield return null;
     }
 
-    #endregion 
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         SetupNarrationGeneral();
-        GameManager.instance.scenarioID = ScenarioID.PastNegative;
+        playerTeleport.currentScene = ScenarioID.PastNegative;
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
@@ -169,7 +174,33 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (playerTeleport.MoveToTable)
+        {
+            if (GameManager.instance.IsPlayerWithinPosition(-12, 18, -15, 20))
+            {
+                playerTeleport.MoveToTable = false;
+                playFoodDrop = true;
+            }
+        }
+
+        if (playFoodDrop)
+        {
+            TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
+            TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
+            TrayOfFood.GetComponent<Grabbable>().enabled = false;
+            ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+
+            if (TrayOfFood.transform.position.y <= 1)
+            {
+                playFoodDrop = false;
+                TrayOfFood.gameObject.SetActive(false);
+                DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x,0.6f,TrayOfFood.transform.position.z);
+                DroppedFood.gameObject.SetActive(true);
+                lastRoutine = StartCoroutine(CleanDroppedFood());
+
+            }
+        }
     }
 
     void StopPrevDialogue()
@@ -182,5 +213,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             if (AlertTextController.instance.gameObject.activeInHierarchy)
                 AlertTextController.instance.SetInactive();
         }
+    }
+
+    private void DropFood()
+    {
+        playFoodDrop = true;
     }
 }

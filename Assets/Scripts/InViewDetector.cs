@@ -5,6 +5,7 @@ using UnityEngine;
 public class InViewDetector : MonoBehaviour
 {
     List<GameObject> objsInView = new List<GameObject>();
+    [SerializeField] PlayerTeleport _playerTeleport;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +16,7 @@ public class InViewDetector : MonoBehaviour
 
         ObjectiveCheck(other.gameObject,true);
         FurnitureMoveCheck(other.gameObject, true);
+        LookAtTeleport(other.gameObject,true);
 
     }
 
@@ -25,6 +27,7 @@ public class InViewDetector : MonoBehaviour
 
         FurnitureMoveCheck(other.gameObject, false);
         ObjectiveCheck(other.gameObject, false);
+        LookAtTeleport(other.gameObject, false);
 
     }
 
@@ -41,6 +44,15 @@ public class InViewDetector : MonoBehaviour
         if (obj.CompareTag("LookAtInteract"))
         {
             obj.GetComponent<LookAtObjective>().beingLookedAtTrigger(lookingAt);
+        }
+    }
+
+    public void LookAtTeleport(GameObject obj,bool lookingAt)
+    {
+        if (obj.CompareTag("TeleportHotspot"))
+        {
+            _playerTeleport.CheckTeleport(lookingAt);
+            obj.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", lookingAt);
         }
     }
 
