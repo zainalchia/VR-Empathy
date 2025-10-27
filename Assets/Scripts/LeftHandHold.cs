@@ -31,20 +31,35 @@ public class LeftHandHold : MonoBehaviour
     void Update()
     {
         // check if left controller trigger is pressed
-        bool triggerPressed = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) > 0.5f;
+        bool triggerPressed = OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > 0.2f;
 
         // if touching chicken + holding trigger, start holding
-        if (inContact && triggerPressed && !isHolding)
+        if (inContact && triggerPressed)
         {
-            isHolding = true;
-            chopManager.ChickenHold(true);
+            if (!isHolding)
+            {
+                isHolding = true;
+                chopManager.ChickenHold(true);
+
+                // Show the first cut line
+                if (chopManager != null && chopManager.cutLines.Count > 0)
+                {
+                    chopManager.cutLines[0].SetActive(true);
+                }
+            }
         }
 
         // if trigger released or hand moved, stop holding
-        else if ((!inContact || !triggerPressed) && isHolding)
+        else if ((!inContact || !triggerPressed))
         {
-            isHolding = false;
-            chopManager.ChickenHold(false);
+            if (isHolding)
+            {
+                isHolding = false;
+                chopManager.ChickenHold(false);
+
+                foreach (var line in chopManager.cutLines)
+                    line.SetActive(false);
+            }
         }
     }
 }

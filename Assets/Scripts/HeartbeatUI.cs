@@ -5,12 +5,8 @@ using UnityEngine.UI;
 
 public class HeartbeatUI : MonoBehaviour
 {
-    public Image redOverlay;           
+    public Animator redAnimator;
     public AudioSource heartbeat;   
-
-    // how fast red and heartbeat change
-    [SerializeField] private float fadeSpeed = 1.5f;
-    private float targetAlpha = 0f; 
 
     void Start()
     {
@@ -22,34 +18,45 @@ public class HeartbeatUI : MonoBehaviour
             heartbeat.Play(); 
         }
     }
-
-    void Update()
+    public void StartSoftRed()
     {
-        // Smoothly fade the red overlay
-        if (redOverlay != null)
+        if (redAnimator != null)
         {
-            Color color = redOverlay.color;
-            color.a = Mathf.Lerp(color.a, targetAlpha, Time.deltaTime * fadeSpeed); // slowly chyange fade transparent (basically fade)
-            color.a += Mathf.Sin(Time.time * 4f) * 0.02f * targetAlpha; // soft pulse effect
-            redOverlay.color = color;
+            redAnimator.ResetTrigger("StopRed");
+            redAnimator.SetTrigger("SoftRed");
         }
 
-        // Smoothly adjust heartbeat volume and pitch
         if (heartbeat != null)
         {
-            heartbeat.volume = Mathf.Lerp(heartbeat.volume, targetAlpha, Time.deltaTime * fadeSpeed); // volume fade
-            heartbeat.pitch = Mathf.Lerp(heartbeat.pitch, 1f + targetAlpha * 0.3f, Time.deltaTime * fadeSpeed); // speed up slightly
+            heartbeat.volume = 0.4f;
+            heartbeat.pitch = 1.0f;
+        }
+    }
+    public void StartRed()
+    {
+        if (redAnimator != null)
+        {
+            redAnimator.ResetTrigger("StopRed");
+            redAnimator.SetTrigger("HardRed");
+        }
+            
+        if (heartbeat != null)
+        {
+            heartbeat.volume = 1f;
+            heartbeat.pitch = 1.3f;
         }
     }
 
-    // change red/heartbeat strength
-    public void SetWarningLevel(float intensity)
+    // Stop red flash + heartbeat
+    public void StopRed()
     {
-        targetAlpha = Mathf.Clamp01(intensity);
-    }
-    // reset the screen and becomes normal
-    public void ResetWarning()
-    {
-        targetAlpha = 0f;
+        if (redAnimator != null)
+            redAnimator.SetTrigger("StopRed");
+
+        if (heartbeat != null)
+        {
+            heartbeat.volume = 0f;
+            heartbeat.pitch = 1f;
+        }
     }
 }

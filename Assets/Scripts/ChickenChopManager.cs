@@ -53,30 +53,35 @@ public class ChickenChopManager : MonoBehaviour
         if (currentPiece + 1 < cutLines.Count)
             cutLines[currentPiece + 1].SetActive(true);
 
-        // control heartbeat + red flash
         if (uiManager != null)
         {
-            float progress = (float)currentPiece / pieces.Count; // how many pieces cut
 
-            if (progress > 0.6f && progress < 1f) // 4-5th cut should happen
+            if (currentPiece == 3)
             {
-                float intensity = Mathf.Lerp(0.2f, 0.8f, progress); // slowly smooth build effect 
-                uiManager.SetWarningLevel(intensity);
+                uiManager.StartSoftRed();
+                cutCooldown = 0.5f;
             }
-            else if (progress >= 1f) //all cut return to normal
+            else if (currentPiece == 4) 
             {
-                uiManager.ResetWarning(); // fade out when finished
+                uiManager.StartRed();
+                cutCooldown = 0.8f;
             }
         }
 
         //move next piece
         currentPiece++;
 
+        if (currentPiece >= pieces.Count)
+        {
+            uiManager.StopRed();
+            cutCooldown = 0.3f; 
+        }
+
         // Start cooldown so only one cut per swing
         canCut = false;
         Invoke(nameof(ResetCut), cutCooldown);
     }
-    public void ChickenHold(bool holding)
+    public void ChickenHold(bool holding) // tracks
     {
         isHolding = holding;
     }
