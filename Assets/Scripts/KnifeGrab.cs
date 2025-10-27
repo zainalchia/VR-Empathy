@@ -22,11 +22,6 @@ public class KnifeGrab : MonoBehaviour
         {
             hasGrabbed = true;
 
-            // Show the first cut line
-            if (chopManager != null && chopManager.cutLines.Count > 0)
-            {
-                chopManager.cutLines[0].SetActive(true);
-            }
         }
     }
 }
