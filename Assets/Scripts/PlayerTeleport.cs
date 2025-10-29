@@ -72,6 +72,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool MoveToHawkerStall = false;
     public bool MoveToTable = false;
     public bool MoveToSection = false;
+    public bool hasPlacedCash = false;
 
     //Past positive==============================================================================================================
     //public bool MovingToLivingRoom = false;
@@ -173,6 +174,10 @@ public class PlayerTeleport : MonoBehaviour
                         currentHotspotIndex += 1;
 
                         MoveToLocation(MoveToToiletDoorHotspots[currentHotspotIndex], MoveToToiletDoorHotspots);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                     }
                     else if (MoveToHawkerStall && currentHotspotIndex != MoveToHawkerStallHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                     {
@@ -183,6 +188,10 @@ public class PlayerTeleport : MonoBehaviour
                         currentHotspotIndex += 1;
 
                         MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                     }
                     else if (MoveToTable && currentHotspotIndex != MoveToTableHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                     {
@@ -193,6 +202,10 @@ public class PlayerTeleport : MonoBehaviour
                         currentHotspotIndex += 1;
 
                         MoveToLocation(MoveToTableHotspots[currentHotspotIndex], MoveToTableHotspots);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                     }
                     else if (MoveToSection && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                     {
@@ -203,6 +216,10 @@ public class PlayerTeleport : MonoBehaviour
                         currentHotspotIndex += 1;
 
                         MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
                     }
                     testPressTrigger = false;
                 }
