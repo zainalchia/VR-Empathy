@@ -73,6 +73,8 @@ public class PlayerTeleport : MonoBehaviour
     public bool MoveToTable = false;
     public bool MoveToSection = false;
 
+    public bool hasPlacedCash = false;
+
     //Past positive==============================================================================================================
     //public bool MovingToLivingRoom = false;
     //public bool MovingToMainDoor = false;

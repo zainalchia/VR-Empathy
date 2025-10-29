@@ -39,6 +39,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     Coroutine lastRoutine = null;
 
+    [SerializeField] private GameObject cashObject;
+    [SerializeField] private Outline cashOutline;
+    [SerializeField] public Outline knifeOutline;
+
     void SetupNarrationGeneral()
     {
         //if (MainMenuManager.isGenderMale)
@@ -118,8 +122,30 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             playerTeleport.MoveToHawkerStall = true;
             secondTeleportHawkerHotspot.SetActive(true);
         }
-
+        yield return new WaitForSeconds(2f);
+        if (cashOutline != null)
+        cashOutline.enabled = true;
         yield return null;
+
+    }
+
+    public void OnCashPlaced()
+    {
+        // player has put cash into register
+        playerTeleport.hasPlacedCash = true;
+        // TP to the next hotspot
+        playerTeleport.MoveToSection = true;
+        //reset hotspot
+        playerTeleport.SetCurrentHotspotIndex(0);
+
+        promptManager.ShowPrompt(SceneID.Stall, 2);
+
+        //enables the next hotspot (chopping)
+        var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots();
+        if (jobHotspots.Length > 1)
+        {
+            jobHotspots[1].SetActive(true);
+        }
     }
     #endregion
 
