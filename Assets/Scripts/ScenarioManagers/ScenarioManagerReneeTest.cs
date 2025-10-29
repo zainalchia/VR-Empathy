@@ -2,6 +2,7 @@ using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static MainMenuManager;
 
 public class ScenarioManagerReneeTest : MonoBehaviour
@@ -38,6 +39,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     //AudioClip[] narrationAudioClips_General;
 
     Coroutine lastRoutine = null;
+    [SerializeField] DoorKnob DoorHandle;
+
 
     [SerializeField] private GameObject cashObject;
     [SerializeField] private Outline cashOutline;
@@ -67,7 +70,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Testing purposes
         //lastRoutine = StartCoroutine(HawkerTraySegment());
     }
-
     IEnumerator HawkerPart1()
     {
         //PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
@@ -91,12 +93,52 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         playerTeleport.currentScene = ScenarioID.PastNegative;
 
+        // Teleport from sink to toilet door
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true;
 
         promptManager.ShowPrompt(sceneID, 2, false, 5f);
+        PlayAllowOpenDoor();
     }
+
+    public void BathroomDoorOpen() // called in UnityEvent in bathroom Handle
+    {
+        StopPrevDialogue();
+        lastRoutine = StartCoroutine(ExitBathroom());
+    }
+
+    IEnumerator ExitBathroom()
+    {
+        // fade screen 
+        GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4;
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+        yield return new WaitForSeconds(3f);
+
+        // load next scene 
+        SceneManager.LoadScene("PastNegativeHawker", LoadSceneMode.Single);
+    }
+
+    public void PlayAllowOpenDoor()
+    {
+        StopPrevDialogue();
+        lastRoutine = StartCoroutine(AllowOpenDoor());
+    }
+
+
+    IEnumerator AllowOpenDoor()
+    {
+        //GameManager.instance.ShowAlert(narration_1[0]);
+
+        promptManager.ShowPrompt(sceneID, 0, false, 5f);
+
+        // can open bathroom door from here
+        DoorHandle.AllowDoorOpen();
+
+        yield return null;
+    }
+
+
 
     public void HawkerPartTwo()
     {
