@@ -64,13 +64,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     public float timeForWashingUp = 5f;
 
 
-    public void HawkerPartOne()
+    public void PlayBathroom()
     {
-        lastRoutine = StartCoroutine(HawkerPart1());
+        lastRoutine = StartCoroutine(StartBathroom());
         // Testing purposes
         //lastRoutine = StartCoroutine(HawkerTraySegment());
     }
-    IEnumerator HawkerPart1()
+    IEnumerator StartBathroom()
     {
         //PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         //ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
@@ -128,17 +128,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator AllowOpenDoor()
     {
-        //GameManager.instance.ShowAlert(narration_1[0]);
-
-        promptManager.ShowPrompt(sceneID, 0, false, 5f);
-
         // can open bathroom door from here
         DoorHandle.AllowDoorOpen();
 
         yield return null;
     }
-
-
 
     public void HawkerPartTwo()
     {
@@ -228,12 +222,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         {
             sceneID = SceneID.Bathroom;
             //SetupNarrationBathroomLivingRoom();
-            HawkerPartOne();
+            PlayBathroom();
         }
         else if (sceneToPlay == SceneToPlay.Stall)
         {
-            //sceneID = SceneID.Stall;
-            //SetupNarrationBedroom();
+            sceneID = SceneID.Stall;
             //PlaySegment2Part1();
         }
     }
