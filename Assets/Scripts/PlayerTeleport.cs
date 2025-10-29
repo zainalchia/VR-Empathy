@@ -102,7 +102,6 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToLivingRoomHotspots[currentHotspotIndex], MoveToLivingRoomHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
                 }
                 else if (MovingToMainDoor && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                 {
@@ -113,7 +112,6 @@ public class PlayerTeleport : MonoBehaviour
                     currentHotspotIndex += 1;
 
                     MoveToLocation(MoveToMainDoorHotspots[currentHotspotIndex], MoveToMainDoorHotspots);
-                    PlayerCamera.instance.RecenterPlayer();
 
                 }
                 //else if (MovingToCheckersChair /*&& currentHotspotIndex != MoveToCheckersChairHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove*/)
@@ -148,7 +146,6 @@ public class PlayerTeleport : MonoBehaviour
             {
                 currentHotspotIndex += 1;
                 MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
-                PlayerCamera.instance.RecenterPlayer();
                 MoveToCheckersChairHotspots = null;
             }
 
@@ -156,7 +153,6 @@ public class PlayerTeleport : MonoBehaviour
             {
                 currentHotspotIndex += 1;
                 MoveToLocation(MoveToKaraokeCornerHotspots[currentHotspotIndex], MoveToKaraokeCornerHotspots);
-                PlayerCamera.instance.RecenterPlayer();
             }
 
 
@@ -177,8 +173,6 @@ public class PlayerTeleport : MonoBehaviour
                         currentHotspotIndex += 1;
 
                         MoveToLocation(MoveToToiletDoorHotspots[currentHotspotIndex], MoveToToiletDoorHotspots);
-                        PlayerCamera.instance.RecenterPlayer();
-
                     }
                     else if (MoveToHawkerStall && currentHotspotIndex != MoveToHawkerStallHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                     {
@@ -189,8 +183,6 @@ public class PlayerTeleport : MonoBehaviour
                         currentHotspotIndex += 1;
 
                         MoveToLocation(MoveToHawkerStallHotspots[currentHotspotIndex], MoveToHawkerStallHotspots);
-                        PlayerCamera.instance.RecenterPlayer();
-
                     }
                     else if (MoveToTable && currentHotspotIndex != MoveToTableHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                     {
@@ -201,8 +193,6 @@ public class PlayerTeleport : MonoBehaviour
                         currentHotspotIndex += 1;
 
                         MoveToLocation(MoveToTableHotspots[currentHotspotIndex], MoveToTableHotspots);
-                        PlayerCamera.instance.RecenterPlayer();
-
                     }
                     else if (MoveToSection && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                     {
@@ -213,8 +203,6 @@ public class PlayerTeleport : MonoBehaviour
                         currentHotspotIndex += 1;
 
                         MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
-                        PlayerCamera.instance.RecenterPlayer();
-
                     }
                     testPressTrigger = false;
                 }
@@ -242,10 +230,16 @@ public class PlayerTeleport : MonoBehaviour
        // Move OVRCameraRig gameobject with offset
        float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
        float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
-       //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX,hotspot.transform.position.y,hotspot.transform.position.z - offsetZ);
-       GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
+       //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
 
-       hotspot.SetActive(false);
+        //if (GameManager.instance.sceneID == SceneID.VoidDeck) // for void deck scene, x and z is flipped cause the player's starting rotation is -90
+        //    GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x + offsetZ, hotspot.transform.position.y, hotspot.transform.position.z - offsetX);
+        //else
+        GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x - offsetX, hotspot.transform.position.y, hotspot.transform.position.z - offsetZ);
+
+        //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
+
+        hotspot.SetActive(false);
 
         if (currentScene == ScenarioID.PresentGood)
         {
