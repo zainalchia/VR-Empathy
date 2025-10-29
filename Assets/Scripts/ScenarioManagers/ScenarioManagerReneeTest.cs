@@ -59,9 +59,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void HawkerPartOne()
     {
-        //lastRoutine = StartCoroutine(HawkerPart1());
+        lastRoutine = StartCoroutine(HawkerPart1());
         // Testing purposes
-        lastRoutine = StartCoroutine(HawkerTraySegment());
+        //lastRoutine = StartCoroutine(HawkerTraySegment());
     }
 
     IEnumerator HawkerPart1()
