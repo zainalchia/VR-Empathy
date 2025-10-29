@@ -72,6 +72,8 @@ public class PlayerTeleport : MonoBehaviour
     public bool MoveToHawkerStall = false;
     public bool MoveToTable = false;
     public bool MoveToSection = false;
+    public bool hasPlacedCash = false;
+    public bool teleportLocked = false;
 
     //Past positive==============================================================================================================
     //public bool MovingToLivingRoom = false;
@@ -82,7 +84,9 @@ public class PlayerTeleport : MonoBehaviour
     public ScenarioID currentScene;
     public bool testPressTrigger = false; // used for TesterScript to simulate trigger button press in editor.
     [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
+    [SerializeField] private ScenarioManagerReneeTest scenarioManager;
 
+    
     void Update()
     {
         timer += Time.deltaTime;
@@ -162,6 +166,8 @@ public class PlayerTeleport : MonoBehaviour
         {
             if (AbleToTeleport)
             {
+                if (teleportLocked) return;
+
                 if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || testPressTrigger && !buttonPressed && timer >= defaultTimeBeforeNextMove)
                 {
                     if (MoveToToiletDoor && currentHotspotIndex != MoveToToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
@@ -194,17 +200,29 @@ public class PlayerTeleport : MonoBehaviour
 
                         MoveToLocation(MoveToTableHotspots[currentHotspotIndex], MoveToTableHotspots);
                     }
-                    else if (MoveToSection && currentHotspotIndex != MoveToMainDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    else if (MoveToSection &&
+                                currentHotspotIndex != MoveToJobPositionHotspots.Length - 1 &&
+                                timer >= defaultTimeBeforeNextMove)
                     {
-                        timer = 0;
-
-                        defaultTimeBeforeNextMove = 1.5f; // in general
-
-                        currentHotspotIndex += 1;
-
-                        MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+                        // teleport INTO cashier
+                        if (currentHotspotIndex < 0)
+                        {
+                            timer = 0;
+                            defaultTimeBeforeNextMove = 1.5f;
+                            currentHotspotIndex += 1;
+                            MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+                        }
+                        // only teleport to chopping board AFTER placing cash
+                        else if (hasPlacedCash)
+                        {
+                            timer = 0;
+                            defaultTimeBeforeNextMove = 1.5f;
+                            currentHotspotIndex += 1;
+                            MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+                            hasPlacedCash = false; 
+                        }
                     }
-                    testPressTrigger = false;
+                        testPressTrigger = false;
                 }
                 else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
                 {
@@ -227,10 +245,10 @@ public class PlayerTeleport : MonoBehaviour
 
     public void MoveToLocation(GameObject hotspot, GameObject[] hotspotArray)
     {
-       // Move OVRCameraRig gameobject with offset
-       float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
-       float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
-       //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
+        // Move OVRCameraRig gameobject with offset
+        float offsetX = GameManager.instance.centerEyeAnchor.transform.localPosition.x;
+        float offsetZ = GameManager.instance.centerEyeAnchor.transform.localPosition.z;
+        //GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x, hotspot.transform.position.y, hotspot.transform.position.z);
 
         //if (GameManager.instance.sceneID == SceneID.VoidDeck) // for void deck scene, x and z is flipped cause the player's starting rotation is -90
         //    GameManager.instance.ovrCamRig.transform.position = new Vector3(hotspot.transform.position.x + offsetZ, hotspot.transform.position.y, hotspot.transform.position.z - offsetX);
@@ -250,10 +268,10 @@ public class PlayerTeleport : MonoBehaviour
                     scenarioManagerPresentGood.narrationAudioClips_1[3],  // Lunch
                     hotspotArray
                 ));
-                return; 
+                return;
             }
         }
-        StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f,hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
+        StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f, hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
         if (currentScene == ScenarioID.PresentGood)
         {
@@ -280,28 +298,58 @@ public class PlayerTeleport : MonoBehaviour
                     MovingToKaraokeCorner = false;
                 }
             }
-    }
+        }
         else if (currentScene == ScenarioID.PastNegative)
         {
-            if (currentHotspotIndex == hotspotArray.Length - 1)
+            if (hotspotArray == MoveToToiletDoorHotspots)
             {
-                if (hotspotArray == MoveToToiletDoorHotspots)
-                {                    
+                if (currentHotspotIndex == hotspotArray.Length - 1)
+                {
                     OnLastTeleport.Invoke();
                     MoveToToiletDoor = false;
-                }                
-                else if (hotspotArray == MoveToHawkerStallHotspots)
-                {
-                    OnLastTeleport2.Invoke();
-                    MoveToHawkerStall = false;
-                    
                 }
-                else if (hotspotArray == MoveToJobPositionHotspots)
+            }
+
+            else if (hotspotArray == MoveToHawkerStallHotspots)
+            {
+                if (currentHotspotIndex == hotspotArray.Length - 1)
                 {
-                    MoveToSection = false;
+                    MoveToHawkerStall = false;
+                    MoveToSection = true;
+                    SetCurrentHotspotIndex(-1);
+                    GetMoveToJobPositionHotspots()[0].SetActive(true);
+                }
+
+                // continue story from hawker (this is hawker part 2)
+                ScenarioManagerReneeTest scenarioManager = FindObjectOfType<ScenarioManagerReneeTest>();
+                if (scenarioManager != null)
+                {
+                    scenarioManager.HawkerPartTwo();
+                }
+            }
+
+            else if (hotspotArray == MoveToJobPositionHotspots)
+            {
+                MoveToSection = false;
+
+                var promptManager = FindObjectOfType<ScenarioPromptManager>();
+                if (promptManager != null)
+                {
+                    if (currentHotspotIndex == 0)
+                    {
+                        // Arrived at cashier
+                        promptManager.ShowPrompt(SceneID.Stall, 1);
+                    }
+                    else if (currentHotspotIndex == 1)
+                    {
+                        // Arrived at chopping board
+                        promptManager.ShowPrompt(SceneID.Stall, 2);
+                    }
                 }
             }
         }
+    
+    
         else if (currentScene == ScenarioID.PastPositive)
         {
 
@@ -335,7 +383,9 @@ public class PlayerTeleport : MonoBehaviour
     }
     void ShowNextHotspot(GameObject[] hotspotArray)
     {
-        if(currentHotspotIndex != hotspotArray.Length - 1)
+        if (hotspotArray == MoveToJobPositionHotspots && !hasPlacedCash)
+            return;
+        if (currentHotspotIndex != hotspotArray.Length - 1)
         {
             hotspotArray[currentHotspotIndex + 1].gameObject.SetActive(true);
             hotspotArray[currentHotspotIndex + 1].gameObject.transform.GetChild(0).gameObject.SetActive(true);
