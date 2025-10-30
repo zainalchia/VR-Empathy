@@ -81,6 +81,12 @@ public class ChickenChopManager : MonoBehaviour
         canCut = false;
         Invoke(nameof(ResetCut), cutCooldown);
     }
+
+    public int GetCurrentPieceIndex() //get cut progress number
+    {
+        return currentPiece;
+    }
+
     public void ChickenHold(bool holding) // tracks
     {
         isHolding = holding;

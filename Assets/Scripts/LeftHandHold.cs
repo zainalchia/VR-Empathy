@@ -19,12 +19,19 @@ public class LeftHandHold : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        // left hand moved away
+        // left hand moved away from chicken
         if (other.CompareTag("LeftHand"))
         {
             inContact = false;
             isHolding = false;
             chopManager.ChickenHold(false); //tell chicken is not held
+
+            //hide all cut lines 
+            if (chopManager != null)
+            {
+                foreach (var line in chopManager.cutLines)
+                    line.SetActive(false);
+            }
         }
     }
 
@@ -41,24 +48,34 @@ public class LeftHandHold : MonoBehaviour
                 isHolding = true;
                 chopManager.ChickenHold(true);
 
-                // Show the first cut line
-                if (chopManager != null && chopManager.cutLines.Count > 0)
+                // show the correct current guideline based on progress
+                if (chopManager != null)
                 {
-                    chopManager.cutLines[0].SetActive(true);
+                    int current = chopManager.GetCurrentPieceIndex();
+                    for (int i = 0; i < chopManager.cutLines.Count; i++)
+                    {
+                        // show the current one, hide others
+                        chopManager.cutLines[i].SetActive(i == current);
+                    }
                 }
+
             }
         }
 
         // if trigger released or hand moved, stop holding
-        else if ((!inContact || !triggerPressed))
+        else 
         {
-            if (isHolding)
+            if (isHolding || !inContact)
             {
                 isHolding = false;
                 chopManager.ChickenHold(false);
 
-                foreach (var line in chopManager.cutLines)
-                    line.SetActive(false);
+                // hide all guide lines
+                if (chopManager != null)
+                {
+                    foreach (var line in chopManager.cutLines)
+                        line.SetActive(false);
+                }
             }
         }
     }

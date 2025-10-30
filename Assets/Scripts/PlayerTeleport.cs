@@ -75,8 +75,6 @@ public class PlayerTeleport : MonoBehaviour
     public bool hasPlacedCash = false;
     public bool teleportLocked = false;
 
-    public bool hasPlacedCash = false;
-
     //Past positive==============================================================================================================
     //public bool MovingToLivingRoom = false;
     //public bool MovingToMainDoor = false;
