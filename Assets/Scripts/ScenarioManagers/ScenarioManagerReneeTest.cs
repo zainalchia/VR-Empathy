@@ -33,39 +33,15 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("Narration Variables")]
     [SerializeField] AudioSource narrationAudioSource;
 
-    // for general audio clips used in both scenes
-    //public AudioClip[] narrationAudioClips_General_Male;
-    //public AudioClip[] narrationAudioClips_General_Female;
-    //AudioClip[] narrationAudioClips_General;
-
-    // for bathroom
+    // For voices
     [HideInInspector] public AudioClip[] narrationAudioClips_1;
     [SerializeField] AudioClip[] narrationAudioClips_1_Male;
     [SerializeField] AudioClip[] narrationAudioClips_1_Female;
-    string[] narration_1 = new string[30];
 
 
-    Coroutine lastRoutine = null;
-    [SerializeField] DoorKnob DoorHandle;
 
 
-    [SerializeField] private GameObject cashObject;
-    [SerializeField] private Outline cashOutline;
-    [SerializeField] public Outline knifeOutline;
-
-    void SetupNarrationGeneral()
-    {
-        //if (MainMenuManager.isGenderMale)
-        //{
-        //    narrationAudioClips_General = narrationAudioClips_General_Male;
-        //}
-        //else
-        //{
-        //    narrationAudioClips_General = narrationAudioClips_General_Female;
-        //}
-    }
-
-    void SetupNarrationBathroom()
+    void SetupNarration()
     {
         if (MainMenuManager.isGenderMale)
             narrationAudioClips_1 = narrationAudioClips_1_Male;
@@ -77,9 +53,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
 
 
-    #region Hawker Bathroom
+    #region Bathroom
 
     [Header("In the bathroom")]
+    Coroutine lastRoutine = null;
+    [SerializeField] DoorKnob DoorHandle;
+
     public float timeForWashingUp = 5f;
     public void PlayBathroom()
     {
@@ -156,12 +135,43 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return null;
     }
 
-    public void HawkerPartTwo()
+
+    #endregion
+
+    #region Hawker
+    [Header("In Hawker stall")]
+    [SerializeField] private GameObject cashObject;
+    [SerializeField] private Outline cashOutline;
+    [SerializeField] public Outline knifeOutline;
+    [SerializeField] GameObject CashEndPoint;
+
+    public void PlayHawkerStart()
     {
-        sceneID = SceneID.Stall;
-        lastRoutine = StartCoroutine(HawkerPart2());
+        lastRoutine = StartCoroutine(HawkerStart());
     }
 
+    IEnumerator HawkerStart()
+    {
+        // Finally. Faster la serve customer!
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
+        yield return new WaitForSeconds(narrationAudioClips_1[0].length);
+
+        // How long you want to make me wait? I wait here very long already.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        yield return new WaitForSeconds(narrationAudioClips_1[1].length);
+
+        // Sorry about that can I take your order
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        yield return new WaitForSeconds(narrationAudioClips_1[2].length);
+
+        // Give me 2 chicken rice
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        // Hand over cash
+        cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
+        
+    }
     IEnumerator HawkerPart2()
     {
         //boss is outside the toilet door and heads into the hawker stall
@@ -203,16 +213,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                 jobHotspots[1].transform.GetChild(0).gameObject.SetActive(true);
         }
     }
-    #endregion
 
 
     [SerializeField] GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;
     [SerializeField] GameObject PlayerCloth;
     private bool playFoodDrop = false;
-
-
-    #region Hawker
 
     IEnumerator HawkerTraySegment()
     {
@@ -235,19 +241,18 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetupNarrationGeneral();
+        SetupNarration();
         playerTeleport.currentScene = ScenarioID.PastNegative;
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             sceneID = SceneID.Bathroom;
-            SetupNarrationBathroom();
             PlayBathroom();
         }
         else if (sceneToPlay == SceneToPlay.Stall)
         {
             sceneID = SceneID.Stall;
-            //PlaySegment2Part1();
+            PlayHawkerStart();
         }
     }
 

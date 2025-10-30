@@ -325,7 +325,7 @@ public class PlayerTeleport : MonoBehaviour
                 ScenarioManagerReneeTest scenarioManager = FindObjectOfType<ScenarioManagerReneeTest>();
                 if (scenarioManager != null)
                 {
-                    scenarioManager.HawkerPartTwo();
+                    scenarioManager.PlayHawkerStart();
                 }
             }
 
