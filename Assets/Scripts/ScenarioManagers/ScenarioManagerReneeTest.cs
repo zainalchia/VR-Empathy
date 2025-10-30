@@ -31,12 +31,19 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject testitem;
 
     [Header("Narration Variables")]
-    //[SerializeField] AudioSource narrationAudioSource;
+    [SerializeField] AudioSource narrationAudioSource;
 
     // for general audio clips used in both scenes
     //public AudioClip[] narrationAudioClips_General_Male;
     //public AudioClip[] narrationAudioClips_General_Female;
     //AudioClip[] narrationAudioClips_General;
+
+    // for bathroom
+    [HideInInspector] public AudioClip[] narrationAudioClips_1;
+    [SerializeField] AudioClip[] narrationAudioClips_1_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_1_Female;
+    string[] narration_1 = new string[30];
+
 
     Coroutine lastRoutine = null;
     [SerializeField] DoorKnob DoorHandle;
@@ -58,6 +65,18 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //}
     }
 
+    void SetupNarrationBathroom()
+    {
+        if (MainMenuManager.isGenderMale)
+            narrationAudioClips_1 = narrationAudioClips_1_Male;
+        else
+            narrationAudioClips_1 = narrationAudioClips_1_Female;
+
+        narrationAudioSource.volume = 1;
+
+    }
+
+
     #region Hawker Bathroom
 
     [Header("In the bathroom")]
@@ -75,8 +94,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
-        //narrationAudioSource.volume = 1;
-        //narrationAudioSource.Stop();
+        // Another horrible day at work. Been working here at the hawker center for so long, still the same.
+        // Sigh. Okay just have to wash my face and freshen up and get back to work
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
+        yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
         promptManager.ShowPrompt(sceneID, 0, false, 2f);
 
@@ -86,10 +107,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //boss should call the player over to get out quickly here and then player starts moving
         promptManager.ShowPrompt(sceneID, 1, false, 2f);
         //============================================================
+        // Oi Robert / Ling! How long you want to use the toilet?! Faster come back work!
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
-        yield return new WaitForSeconds(3f);
+        // sigh. Okay, coming boss.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        yield return new WaitForSeconds(narrationAudioClips_1[2].length);
 
-        playerTeleport.currentScene = ScenarioID.PastNegative;
 
         // Teleport from sink to toilet door
         playerTeleport.SetCurrentHotspotIndex(-1);
@@ -216,7 +241,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             sceneID = SceneID.Bathroom;
-            //SetupNarrationBathroomLivingRoom();
+            SetupNarrationBathroom();
             PlayBathroom();
         }
         else if (sceneToPlay == SceneToPlay.Stall)

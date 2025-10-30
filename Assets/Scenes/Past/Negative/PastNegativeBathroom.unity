@@ -5298,6 +5298,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e813899785b7ef408ef735a8ff6c585, type: 3}
+--- !u!82 &755939308 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160836518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &778769270
 GameObject:
   m_ObjectHideFlags: 0
@@ -7613,9 +7619,11 @@ MonoBehaviour:
   MoveToTable: 0
   MoveToSection: 0
   hasPlacedCash: 0
+  teleportLocked: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
+  scenarioManager: {fileID: 0}
 --- !u!1001 &1160836518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8347,6 +8355,13 @@ MonoBehaviour:
   sceneID: 0
   playerTeleport: {fileID: 1157555228}
   testitem: {fileID: 0}
+  narrationAudioSource: {fileID: 755939308}
+  narrationAudioClips_1: []
+  narrationAudioClips_1_Male:
+  - {fileID: 8300000, guid: 0ae2abde54bbff74ca06047785f56a47, type: 3}
+  - {fileID: 8300000, guid: 879db57f7c0140b41b5b7a79f8fa2082, type: 3}
+  - {fileID: 8300000, guid: ce50e423e005b2f4bb26fff36a59ae7b, type: 3}
+  narrationAudioClips_1_Female: []
   DoorHandle: {fileID: 0}
   cashObject: {fileID: 0}
   cashOutline: {fileID: 0}
