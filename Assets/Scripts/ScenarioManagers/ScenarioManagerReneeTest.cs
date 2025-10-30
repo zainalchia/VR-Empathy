@@ -56,6 +56,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In the bathroom")]
     public float timeForWashingUp = 5f;
     public GameObject cashObject;
+    public GameObject knifeObject;
     public Outline cashOutline;
     public Outline knifeOutline;
 
@@ -121,6 +122,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         }
 
         yield return new WaitForSeconds(2f);
+        cashObject.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+
     }
 
     public void OnCashPlaced()
@@ -141,6 +144,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             if (jobHotspots[1].transform.childCount > 0)
                 jobHotspots[1].transform.GetChild(0).gameObject.SetActive(true);
         }
+        knifeObject.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
     #endregion
 
