@@ -20,7 +20,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject FinalHotspot;
 
     [Header("Scenario Prompts")]
-    [SerializeField] ScenarioPromptManager promptManager;
+    public ScenarioPromptManager promptManager;
     [SerializeField] ScenarioID scenarioID = ScenarioID.PastNegative;
     [SerializeField] SceneID sceneID = SceneID.Bathroom;
 
@@ -62,8 +62,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("In the bathroom")]
     public float timeForWashingUp = 5f;
-
-
     public void PlayBathroom()
     {
         lastRoutine = StartCoroutine(StartBathroom());
@@ -97,7 +95,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true;
-
         promptManager.ShowPrompt(sceneID, 2, false, 5f);
         PlayAllowOpenDoor();
     }
@@ -152,17 +149,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         {
             Debug.Log("oioioi bakaaaa");
         }
-        else if(playerTeleport.MoveToToiletDoor != false)
+        else if (playerTeleport.MoveToToiletDoor != false)
         {
             Debug.Log("HMMMMM");
             playerTeleport.MoveToHawkerStall = true;
             secondTeleportHawkerHotspot.SetActive(true);
         }
-        yield return new WaitForSeconds(2f);
-        if (cashOutline != null)
-        cashOutline.enabled = true;
-        yield return null;
 
+        yield return new WaitForSeconds(2f);
     }
 
     public void OnCashPlaced()
@@ -174,13 +168,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //reset hotspot
         playerTeleport.SetCurrentHotspotIndex(0);
 
-        promptManager.ShowPrompt(SceneID.Stall, 2);
-
         //enables the next hotspot (chopping)
         var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots();
         if (jobHotspots.Length > 1)
         {
+            // Show chopping board hotspot
             jobHotspots[1].SetActive(true);
+            if (jobHotspots[1].transform.childCount > 0)
+                jobHotspots[1].transform.GetChild(0).gameObject.SetActive(true);
         }
     }
     #endregion
