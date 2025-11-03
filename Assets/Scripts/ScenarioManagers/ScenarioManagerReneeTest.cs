@@ -162,8 +162,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Give me 2 chicken rice
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+        promptManager.ShowPrompt(SceneID.Stall, 1);
         // Hand over cash
         cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
+        //promptManager.ShowPrompt(SceneID.Stall, 1);
+
     }
     public void OnCashPlaced()
     {

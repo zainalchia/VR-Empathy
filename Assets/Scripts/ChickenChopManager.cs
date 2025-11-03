@@ -14,7 +14,7 @@ public class ChickenChopManager : MonoBehaviour
 
     // prevents multiple cuts per swing
     private bool canCut = true;
-    [SerializeField] private float cutCooldown = 0.3f; 
+    [SerializeField] private float cutCooldown = 0.3f;
 
     private void Start()
     {
@@ -55,25 +55,38 @@ public class ChickenChopManager : MonoBehaviour
 
         if (uiManager != null)
         {
-
-            if (currentPiece == 3)
+            if (currentPiece == 2)
             {
+                // slight pulse first tension
                 uiManager.StartSoftRed();
-                cutCooldown = 0.5f;
-            }
-            else if (currentPiece == 4) 
-            {
-                uiManager.StartRed();
                 cutCooldown = 0.8f;
             }
+            else if (currentPiece == 3)
+            {
+                // stronger
+                uiManager.StartRed();
+                cutCooldown = 1.0f;
+            }
+            else if (currentPiece == 4)
+            {
+                // strongest
+                uiManager.StartDeepRed();
+                cutCooldown = 1.2f;
+            }
+            else if (currentPiece == 5)
+            {
+                // knife accident
+                uiManager.KnifeAccidentFlash();
+                cutCooldown = 1.7f;
+            }
         }
+        
 
         //move next piece
         currentPiece++;
 
         if (currentPiece >= pieces.Count)
         {
-            uiManager.StopRed();
             cutCooldown = 0.3f;
 
             // release knife after cut
@@ -108,4 +121,3 @@ public class ChickenChopManager : MonoBehaviour
         canCut = true;
     }
 }
-
