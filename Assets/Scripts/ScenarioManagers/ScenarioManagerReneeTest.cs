@@ -1,6 +1,7 @@
-using Oculus.Interaction;
+﻿using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static MainMenuManager;
@@ -16,8 +17,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject firstTeleportToiletHotspot;
-    [SerializeField] GameObject secondTeleportHawkerHotspot;
-    [SerializeField] GameObject FinalHotspot;
+    [SerializeField] GameObject TrayTeleportHotspot;
 
     [Header("Scenario Prompts")]
     public ScenarioPromptManager promptManager;
@@ -31,15 +31,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject testitem;
 
     [Header("Narration Variables")]
-    //[SerializeField] AudioSource narrationAudioSource;
+    [SerializeField] AudioSource narrationAudioSource;
 
-    // for general audio clips used in both scenes
-    //public AudioClip[] narrationAudioClips_General_Male;
-    //public AudioClip[] narrationAudioClips_General_Female;
-    //AudioClip[] narrationAudioClips_General;
+    // For voices
+    [HideInInspector] public AudioClip[] narrationAudioClips_1;
+    [SerializeField] AudioClip[] narrationAudioClips_1_Male;
+    [SerializeField] AudioClip[] narrationAudioClips_1_Female;
 
-    Coroutine lastRoutine = null;
-    [SerializeField] DoorKnob DoorHandle;
 
 
     [SerializeField] private GameObject cashObject;
@@ -47,21 +45,22 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] public Outline knifeOutline;
     public GameObject knifeObject;
 
-    void SetupNarrationGeneral()
+    void SetupNarration()
     {
-        //if (MainMenuManager.isGenderMale)
-        //{
-        //    narrationAudioClips_General = narrationAudioClips_General_Male;
-        //}
-        //else
-        //{
-        //    narrationAudioClips_General = narrationAudioClips_General_Female;
-        //}
+        if (MainMenuManager.isGenderMale)
+            narrationAudioClips_1 = narrationAudioClips_1_Male;
+        else
+            narrationAudioClips_1 = narrationAudioClips_1_Female;
+
+        narrationAudioSource.volume = 1;
     }
 
-    #region Hawker Bathroom
+    #region Bathroom
 
     [Header("In the bathroom")]
+    Coroutine lastRoutine = null;
+    [SerializeField] DoorKnob DoorHandle;
+
     public float timeForWashingUp = 5f;
 
     public void PlayBathroom()
@@ -77,9 +76,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
-        //narrationAudioSource.volume = 1;
-        //narrationAudioSource.Stop();
-
+        // Another horrible day at work. Been working here at the hawker center for so long, still the same.
+        // Sigh. Okay just have to wash my face and freshen up and get back to work
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
+        yield return new WaitForSeconds(narrationAudioClips_1[0].length);
         promptManager.ShowPrompt(sceneID, 0, false, 2f);
 
         // Give time for player to wash up
@@ -89,9 +89,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         promptManager.ShowPrompt(sceneID, 1, false, 2f);
         //============================================================
 
-        yield return new WaitForSeconds(3f);
+        // Oi Robert / Ling! How long you want to use the toilet?! Faster come back work!
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
-        playerTeleport.currentScene = ScenarioID.PastNegative;
+        // sigh. Okay, coming boss.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        yield return new WaitForSeconds(narrationAudioClips_1[2].length);
 
         // Teleport from sink to toilet door
         playerTeleport.SetCurrentHotspotIndex(-1);
@@ -133,36 +137,34 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return null;
     }
 
-    public void HawkerPartTwo()
+    #endregion
+
+    #region Hawker
+    [Header("In Hawker stall")]
+    [SerializeField] GameObject CashEndPoint;
+    [SerializeField] GameObject Boss;
+
+    public void PlayHawkerStart()
     {
-        sceneID = SceneID.Stall;
-        lastRoutine = StartCoroutine(HawkerPart2());
+        lastRoutine = StartCoroutine(HawkerStart());
     }
-
-    IEnumerator HawkerPart2()
+    IEnumerator HawkerStart()
     {
-        //boss is outside the toilet door and heads into the hawker stall
-
-        //promptManager.ShowPrompt(sceneID, 0, false, 5f);
-
-        //wait for boss to walk away
-
-        if (playerTeleport.MoveToToiletDoor == false)
-        {
-            Debug.Log("oioioi bakaaaa");
-        }
-        else if (playerTeleport.MoveToToiletDoor != false)
-        {
-            Debug.Log("HMMMMM");
-            playerTeleport.MoveToHawkerStall = true;
-            secondTeleportHawkerHotspot.SetActive(true);
-        }
-
-        yield return new WaitForSeconds(2f);
-        cashObject.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-
+        // Finally. Faster la serve customer!
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
+        yield return new WaitForSeconds(narrationAudioClips_1[0].length);
+        // How long you want to make me wait? I wait here very long already.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        yield return new WaitForSeconds(narrationAudioClips_1[1].length);
+        // Sorry about that can I take your order
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        yield return new WaitForSeconds(narrationAudioClips_1[2].length);
+        // Give me 2 chicken rice
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+        // Hand over cash
+        cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
     }
-
     public void OnCashPlaced()
     {
         // player has put cash into register
@@ -183,24 +185,64 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         }
         knifeObject.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
-    #endregion
+    public void PlayChoppedHand()
+    {
+        StopPrevDialogue();
+        lastRoutine = StartCoroutine(ChoppedHand());
+    }
+
+    IEnumerator ChoppedHand()
+    {
+        // Aiya this simple thing also you cannot do. I pay you for what?! Useless!
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
+        // Boss moves to cut chicken
+        Boss.gameObject.SetActive(true);
+        yield return new WaitForSeconds(narrationAudioClips_1[6].length);
+
+        // Set boss animation to chopping 
+
+        // Chop for around 2 seconds?
+        yield return new WaitForSeconds(2);
+
+        // I do your job for you already. Go give this to the customer! I don�t want to see your face here.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
+        yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+
+        TrayOfFood.SetActive(true);
+    }
 
 
     [SerializeField] GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;
     [SerializeField] GameObject PlayerCloth;
-    private bool playFoodDrop = false;
 
-
-    #region Hawker
-
+    public void PlayTraySegment()
+    {
+        lastRoutine = StartCoroutine(HawkerTraySegment());
+    }
     IEnumerator HawkerTraySegment()
     {
-
-        TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(TrayOfFood.GetComponent<GrabInteractable>());
+        TrayTeleportHotspot.gameObject.SetActive(true);
         playerTeleport.MoveToTable = true;
         yield return null;
+    }
+
+    public void PlayFoodDrop()
+    {
+        TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
+        TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
+        TrayOfFood.GetComponent<Grabbable>().enabled = false;
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+        ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
+
+        if (TrayOfFood.transform.position.y <= 1)
+        {
+            TrayOfFood.gameObject.SetActive(false);
+            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.6f, TrayOfFood.transform.position.z);
+            DroppedFood.gameObject.SetActive(true);
+            lastRoutine = StartCoroutine(CleanDroppedFood());
+
+        }
     }
     IEnumerator CleanDroppedFood()
     {
@@ -215,19 +257,18 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SetupNarrationGeneral();
+        SetupNarration();
         playerTeleport.currentScene = ScenarioID.PastNegative;
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             sceneID = SceneID.Bathroom;
-            //SetupNarrationBathroomLivingRoom();
             PlayBathroom();
         }
         else if (sceneToPlay == SceneToPlay.Stall)
         {
             sceneID = SceneID.Stall;
-            //PlaySegment2Part1();
+            PlayHawkerStart();
         }
     }
 
@@ -236,32 +277,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     void Update()
     {
 
-        if (playerTeleport.MoveToTable)
-        {
-            if (GameManager.instance.IsPlayerWithinPosition(-12, 18, -15, 20))
-            {
-                playerTeleport.MoveToTable = false;
-                playFoodDrop = true;
-            }
-        }
-
-        if (playFoodDrop)
-        {
-            TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
-            TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
-            TrayOfFood.GetComponent<Grabbable>().enabled = false;
-            ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
-
-            if (TrayOfFood.transform.position.y <= 1)
-            {
-                playFoodDrop = false;
-                TrayOfFood.gameObject.SetActive(false);
-                DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x,0.6f,TrayOfFood.transform.position.z);
-                DroppedFood.gameObject.SetActive(true);
-                lastRoutine = StartCoroutine(CleanDroppedFood());
-
-            }
-        }
     }
 
     void StopPrevDialogue()
@@ -274,10 +289,5 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             if (AlertTextController.instance.gameObject.activeInHierarchy)
                 AlertTextController.instance.SetInactive();
         }
-    }
-
-    private void DropFood()
-    {
-        playFoodDrop = true;
     }
 }
