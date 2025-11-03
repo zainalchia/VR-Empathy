@@ -36,8 +36,8 @@ public class HeartbeatUI : MonoBehaviour
     {
         if (lockedRed) return; // ignore if locked red
 
-        StopAllCoroutines(); 
-        vignetteRoutine = StartCoroutine(VignettePulse(0.65f, 0.9f, new Color(0.25f, 0, 0))); //light pulse
+        StopAllCoroutines();
+        vignetteRoutine = StartCoroutine(VignettePulse(0.55f, 0.9f, Color.black)); //soft pulse
         if (heartbeat != null)
         {
             heartbeat.volume = 0.4f; // volume
@@ -49,7 +49,7 @@ public class HeartbeatUI : MonoBehaviour
         if (lockedRed) return;
 
         StopAllCoroutines();
-        vignetteRoutine = StartCoroutine(VignettePulse(0.8f, 1.3f, new Color(0.45f, 0.05f, 0.05f))); //medium pulse
+        vignetteRoutine = StartCoroutine(VignettePulse(0.95f, 1.6f, new Color(0.1f, 0.05f, 0.05f))); //mid pulse
         if (heartbeat != null)
         {
             heartbeat.volume = 0.7f;
@@ -83,7 +83,7 @@ public class HeartbeatUI : MonoBehaviour
     private IEnumerator KnifeAccidentSequence() //flash and hold red when knife accident happen
     {
         // Flash white-red for shock
-        vignette.color.value = new Color(0.9f, 0.05f, 0.05f);
+        vignette.color.value = new Color(0.9f, 0.1f, 0.1f);
         vignette.intensity.value = 1.0f;
         yield return new WaitForSeconds(0.2f);
 
