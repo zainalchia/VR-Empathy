@@ -74,6 +74,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool MoveToSection = false;
     public bool hasPlacedCash = false;
     public bool teleportLocked = false;
+    public bool DropFood = false;
 
 
     //Past positive==============================================================================================================
@@ -348,9 +349,26 @@ public class PlayerTeleport : MonoBehaviour
                     }
                 }
             }
+
+            else if (hotspotArray == MoveToTableHotspots)
+            {
+                if (currentHotspotIndex == hotspotArray.Length - 1)
+                {
+                    MoveToTable = false;
+                    SetCurrentHotspotIndex(-1);
+                }
+
+                // continue story from hawker (Drop Tray)
+                ScenarioManagerReneeTest scenarioManager = FindObjectOfType<ScenarioManagerReneeTest>();
+                if (scenarioManager != null)
+                {
+                    scenarioManager.PlayFoodDrop();
+                }
+            }
+
         }
-    
-    
+
+
         else if (currentScene == ScenarioID.PastPositive)
         {
 

@@ -16,8 +16,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject firstTeleportToiletHotspot;
-    [SerializeField] GameObject secondTeleportHawkerHotspot;
-    [SerializeField] GameObject FinalHotspot;
+    [SerializeField] GameObject TrayTeleportHotspot;
 
     [Header("Scenario Prompts")]
     public ScenarioPromptManager promptManager;
@@ -144,6 +143,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private Outline cashOutline;
     [SerializeField] public Outline knifeOutline;
     [SerializeField] GameObject CashEndPoint;
+    [SerializeField] GameObject Boss;
 
     public void PlayHawkerStart()
     {
@@ -172,27 +172,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
         
     }
-    IEnumerator HawkerPart2()
-    {
-        //boss is outside the toilet door and heads into the hawker stall
-
-        //promptManager.ShowPrompt(sceneID, 0, false, 5f);
-
-        //wait for boss to walk away
-
-        if (playerTeleport.MoveToToiletDoor == false)
-        {
-            Debug.Log("oioioi bakaaaa");
-        }
-        else if (playerTeleport.MoveToToiletDoor != false)
-        {
-            Debug.Log("HMMMMM");
-            playerTeleport.MoveToHawkerStall = true;
-            secondTeleportHawkerHotspot.SetActive(true);
-        }
-
-        yield return new WaitForSeconds(2f);
-    }
 
     public void OnCashPlaced()
     {
@@ -214,20 +193,67 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         }
     }
 
+    public void PlayChoppedHand()
+    {
+        StopPrevDialogue();
+        lastRoutine = StartCoroutine(ChoppedHand());
+    }
+
+    IEnumerator ChoppedHand()
+    {
+        // Aiya this simple thing also you cannot do. I pay you for what?! Useless!
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
+        // Boss moves to cut chicken
+        Boss.gameObject.SetActive(true);
+        yield return new WaitForSeconds(narrationAudioClips_1[6].length);
+
+        // Set boss animation to chopping 
+
+        // Chop for around 2 seconds?
+        yield return new WaitForSeconds(2);
+
+        // I do your job for you already. Go give this to the customer! I don’t want to see your face here.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
+        yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+
+        TrayOfFood.SetActive(true);
+    }
+
 
     [SerializeField] GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;
     [SerializeField] GameObject PlayerCloth;
-    private bool playFoodDrop = false;
 
+
+    public void PlayTraySegment()
+    {
+        lastRoutine = StartCoroutine(HawkerTraySegment());
+    }
     IEnumerator HawkerTraySegment()
     {
-
-        TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(TrayOfFood.GetComponent<GrabInteractable>());
+        TrayTeleportHotspot.gameObject.SetActive(true);
         playerTeleport.MoveToTable = true;
         yield return null;
     }
+
+    public void PlayFoodDrop()
+    {
+            TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
+            TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
+    TrayOfFood.GetComponent<Grabbable>().enabled = false;
+            ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+            ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
+
+            if (TrayOfFood.transform.position.y <= 1)
+            {
+                TrayOfFood.gameObject.SetActive(false);
+                DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x,0.6f, TrayOfFood.transform.position.z);
+    DroppedFood.gameObject.SetActive(true);
+                lastRoutine = StartCoroutine(CleanDroppedFood());
+
+}
+        }
+
     IEnumerator CleanDroppedFood()
     {
         yield return new WaitForSeconds(2);
@@ -252,7 +278,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Stall)
         {
             sceneID = SceneID.Stall;
-            PlayHawkerStart();
+            //PlayHawkerStart();
+            PlayChoppedHand();
         }
     }
 
@@ -261,32 +288,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     void Update()
     {
 
-        if (playerTeleport.MoveToTable)
-        {
-            if (GameManager.instance.IsPlayerWithinPosition(-12, 18, -15, 20))
-            {
-                playerTeleport.MoveToTable = false;
-                playFoodDrop = true;
-            }
-        }
 
-        if (playFoodDrop)
-        {
-            TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
-            TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
-            TrayOfFood.GetComponent<Grabbable>().enabled = false;
-            ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
-
-            if (TrayOfFood.transform.position.y <= 1)
-            {
-                playFoodDrop = false;
-                TrayOfFood.gameObject.SetActive(false);
-                DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x,0.6f,TrayOfFood.transform.position.z);
-                DroppedFood.gameObject.SetActive(true);
-                lastRoutine = StartCoroutine(CleanDroppedFood());
-
-            }
-        }
     }
 
     void StopPrevDialogue()
@@ -299,10 +301,5 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             if (AlertTextController.instance.gameObject.activeInHierarchy)
                 AlertTextController.instance.SetInactive();
         }
-    }
-
-    private void DropFood()
-    {
-        playFoodDrop = true;
     }
 }
