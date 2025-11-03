@@ -74,13 +74,31 @@ public class ChickenChopManager : MonoBehaviour
         if (currentPiece >= pieces.Count)
         {
             uiManager.StopRed();
-            cutCooldown = 0.3f; 
+            cutCooldown = 0.3f;
+
+            // release knife after cut
+            GameObject knife = GameObject.FindWithTag("Knife");
+            if (knife != null)
+            {
+                var forceGrab = knife.GetComponent<ForceStayGrabbed>();
+                if (forceGrab != null)
+                    forceGrab.SetForceGrabActive(false);
+
+                ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+                knife.GetComponent<Grabbable>().enabled = false;
+            }
         }
 
         // Start cooldown so only one cut per swing
         canCut = false;
         Invoke(nameof(ResetCut), cutCooldown);
     }
+
+    public int GetCurrentPieceIndex() //get cut progress number
+    {
+        return currentPiece;
+    }
+
     public void ChickenHold(bool holding) // tracks
     {
         isHolding = holding;
