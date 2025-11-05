@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static MainMenuManager;
+using static UnityEngine.Rendering.DebugUI;
 
 public class ScenarioManagerReneeTest : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("Multi-Scene Objects")]
     [SerializeField] GameObject firstTeleportToiletHotspot;
-    [SerializeField] GameObject TrayTeleportHotspot;
+    //[SerializeField] GameObject TrayTeleportHotspot;
 
     [Header("Scenario Prompts")]
     public ScenarioPromptManager promptManager;
@@ -225,23 +226,28 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
     IEnumerator HawkerTraySegment()
     {
-        TrayTeleportHotspot.gameObject.SetActive(true);
-        playerTeleport.MoveToTable = true;
-        yield return null;
+        //TrayTeleportHotspot.gameObject.SetActive(true);
+        //playerTeleport.MoveToTable = true;
+        yield return new WaitForSeconds(2);
+        PlayFoodDrop();
     }
 
     public void PlayFoodDrop()
     {
+        // Allow drop
+        TrayOfFood.transform.SetParent(null);
+        TrayOfFood.GetComponent<FoodTray>().AbleToGrab = false;
+        TrayOfFood.GetComponent<Rigidbody>().isKinematic = false;
         TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
         TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
         TrayOfFood.GetComponent<Grabbable>().enabled = false;
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
         ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
 
-        if (TrayOfFood.transform.position.y <= 1)
+        if (TrayOfFood.transform.position.y <= 0.2f)
         {
             TrayOfFood.gameObject.SetActive(false);
-            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.6f, TrayOfFood.transform.position.z);
+            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.2f, TrayOfFood.transform.position.z);
             DroppedFood.gameObject.SetActive(true);
             lastRoutine = StartCoroutine(CleanDroppedFood());
 
@@ -271,7 +277,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Stall)
         {
             sceneID = SceneID.Stall;
-            PlayHawkerStart();
+            //PlayHawkerStart();
+            PlayChoppedHand();
         }
     }
 
@@ -293,4 +300,5 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                 AlertTextController.instance.SetInactive();
         }
     }
+
 }

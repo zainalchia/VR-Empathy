@@ -1,18 +1,23 @@
+using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cloth : MonoBehaviour
 {
-
     [SerializeField] GameObject DroppedFood;
+    [SerializeField] LayerMask player;
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject.name);
-        Debug.Log(collision.gameObject.tag.ToString());
         if (collision.gameObject.tag == "ToClean")
         {
             Destroy(collision.gameObject);
         }
+
+        if (collision.gameObject.tag == "LeftHand")
+            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
+        if (collision.gameObject.tag == "RightHand")
+            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
     }
 }
