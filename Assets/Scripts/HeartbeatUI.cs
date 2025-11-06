@@ -11,7 +11,7 @@ public class HeartbeatUI : MonoBehaviour
     public Volume globalVolume;
     private Vignette vignette; //vignette effect
     private Coroutine vignetteRoutine;
-    [SerializeField] private float pulseSpeedMultiplier = 1.5f;
+    [SerializeField] private float pulseSpeedMultiplier = 1.35f;
 
     private bool lockedRed = false; //ensure red entire time
     void Start()
@@ -37,7 +37,7 @@ public class HeartbeatUI : MonoBehaviour
         if (lockedRed) return; // ignore if locked red
 
         StopAllCoroutines();
-        vignetteRoutine = StartCoroutine(VignettePulse(0.55f, 0.9f, Color.black)); //soft pulse
+        vignetteRoutine = StartCoroutine(VignettePulse(0.45f, 0.9f, Color.black)); //soft pulse
         if (heartbeat != null)
         {
             heartbeat.volume = 0.4f; // volume
@@ -49,7 +49,7 @@ public class HeartbeatUI : MonoBehaviour
         if (lockedRed) return;
 
         StopAllCoroutines();
-        vignetteRoutine = StartCoroutine(VignettePulse(0.95f, 1.6f, new Color(0.1f, 0.05f, 0.05f))); //mid pulse
+        vignetteRoutine = StartCoroutine(VignettePulse(0.75f, 1.3f, Color.black)); //mid pulse
         if (heartbeat != null)
         {
             heartbeat.volume = 0.7f;
@@ -61,7 +61,7 @@ public class HeartbeatUI : MonoBehaviour
         if (lockedRed) return;
 
         StopAllCoroutines();
-        vignetteRoutine = StartCoroutine(VignettePulse(1.0f, 1.6f, new Color(0.35f, 0.05f, 0.05f))); //strong pulse
+        vignetteRoutine = StartCoroutine(VignettePulse(0.9f, 1.5f, Color.black)); //strong pulse
         if (heartbeat != null)
         {
             heartbeat.volume = 0.9f;
@@ -89,7 +89,16 @@ public class HeartbeatUI : MonoBehaviour
 
         // Stay heavy dark red
         vignette.color.value = new Color(0.4f, 0, 0);
-        vignette.intensity.value = 1.05f; 
+        vignette.intensity.value = 1.05f;
+
+        // wait to fade back
+        yield return new WaitForSeconds(7f);
+
+        // Fade back to normal screen
+        StartCoroutine(FadeVignette(0f, Color.black, 1.2f));
+        StartCoroutine(FadeHeartbeat());
+
+        lockedRed = false;
 
     }
 

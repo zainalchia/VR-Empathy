@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Oculus.Interaction;
+using System.Collections;
 
 public class ChickenChopManager : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class ChickenChopManager : MonoBehaviour
     private bool canCut = true;
     [SerializeField] private float cutCooldown = 0.3f;
 
+    [SerializeField] private Renderer handRenderer;
+    [SerializeField] private Material normalHandMaterial;
+    [SerializeField] private Material bleedingHandMaterial;
+    [SerializeField] private GameObject bloodEffect;
     private void Start()
     {
         chickenPiecesGroup.SetActive(true);
@@ -77,7 +82,12 @@ public class ChickenChopManager : MonoBehaviour
             {
                 // knife accident
                 uiManager.KnifeAccidentFlash();
+
+                if (bloodEffect != null)
+                    StartCoroutine(ActivateBloodEffect(bloodEffect)); //blood particles
+
                 cutCooldown = 1.7f;
+                StartCoroutine(BleedingHand()); //changes the normal hand to bleeding hand
             }
         }
         
@@ -105,6 +115,26 @@ public class ChickenChopManager : MonoBehaviour
         // Start cooldown so only one cut per swing
         canCut = false;
         Invoke(nameof(ResetCut), cutCooldown);
+    }
+    private IEnumerator BleedingHand()
+    {
+        if (handRenderer == null || bleedingHandMaterial == null)
+            yield break;
+
+        yield return new WaitForSeconds(0.3f);
+
+        // change the original hand mat to bleeding mat
+        handRenderer.material = bleedingHandMaterial;
+    }
+    private IEnumerator ActivateBloodEffect(GameObject effect)
+    {
+        effect.SetActive(true);
+        yield return new WaitForEndOfFrame(); 
+        var particle = effect.GetComponent<ParticleSystem>();
+        if (particle != null)
+        {
+            particle.Play();
+        }
     }
 
     public int GetCurrentPieceIndex() //get cut progress number
