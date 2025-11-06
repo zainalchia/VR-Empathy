@@ -13,7 +13,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     public enum SceneToPlay
     {
         Bathroom,
-        Stall
+        Stall,
+        Home
     }
 
     [Header("Multi-Scene Objects")]
@@ -301,6 +302,108 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
     #endregion
 
+    #region Family
+    [Header("In Home")]
+    [SerializeField] GameObject Ladle;
+    [SerializeField] GameObject Sean;
+    [SerializeField] AudioSource SeanAudioSource;
+    public void PlayFamilyStart()
+    {
+        lastRoutine = StartCoroutine(FamilyStart());
+    }
+
+    IEnumerator FamilyStart()
+    {
+
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        yield return new WaitForSeconds(2);
+
+        // I’m home
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
+        yield return new WaitForSeconds(narrationAudioClips_1[0].length);
+
+        // Finally, why come back so late?? Food cold already.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        yield return new WaitForSeconds(narrationAudioClips_1[1].length);
+
+        // Sorry dear. I had to clean up a mess at work.
+        // I had the most horrible day at work. I just had my pay cut-
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
+        yield return new WaitForSeconds(narrationAudioClips_1[2].length);
+
+        // what??! pay cut?? And how are we going to pay for food?
+        // Our fridge already running low on groceries also!!
+        // Ah boy, you better enjoy your meal. From tomorrow onwards cannot eat like this already.
+        // Can only eat rice with vegetables. All thanks to your good for nothing father / mother!
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        // Pour food segment
+        Ladle.GetComponent<Grabbable>().enabled = true;
+        Ladle.GetComponent<ForceStayGrabbed>().enabled = true;
+        Ladle.GetComponent<PhysicsGrabbable>().enabled = true;
+        Ladle.GetComponent<GrabInteractable>().enabled = true;
+        Ladle.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+    }
+    public void PlayLightOFf()
+    {
+        lastRoutine = StartCoroutine(LightOff());
+    }
+    IEnumerator LightOff()
+    {
+        // I’m sorry, son.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
+        yield return new WaitForSeconds(narrationAudioClips_1[4].length);
+
+        // Our water and electricity bills how long haven’t pay already...
+        // Somemore every month our parents make us give them so much money…
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
+        yield return new WaitForSeconds(narrationAudioClips_1[5].length);
+
+        // Turn off lights and dim environment and sean's hand is messy and full of food
+
+        // Daddy / Mummy what happened??? I cannot see!! [pause] Daddy / Mummy I’m scared
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
+        yield return new WaitForSeconds(narrationAudioClips_1[6].length);
+
+        // It's ok son, it's ok.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
+        yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+
+        // Carry sean segment
+        Sean.GetComponent<Grabbable>().enabled = true;
+        Sean.GetComponent<ForceStayGrabbed>().enabled = true;
+        Sean.GetComponent<PhysicsGrabbable>().enabled = true;
+        Sean.GetComponent<GrabInteractable>().enabled = true;
+        Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+    }
+    public void PlayFinalHome()
+    {
+        lastRoutine = StartCoroutine(FinalHome());
+    }
+
+    IEnumerator FinalHome()
+    {
+        // Daddy / Mummy why no light??
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
+        yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+
+        // fade out
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+
+        // Sean crying volume gets lower
+        SeanAudioSource.Play();
+        LowerVolume(SeanAudioSource, 30);
+        //I work so hard for my family.
+        //I get bullied, scolded, even beaten at work, and nobody can help me do anything about it.
+        //My wife / husband still not happy, I still can’t provide for my family. Sigh.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
+        yield return new WaitForSeconds(narrationAudioClips_1[8].length);
+
+    }
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
@@ -317,6 +420,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             sceneID = SceneID.Stall;
             //PlayHawkerStart();
             PlayChoppedHand();
+        }
+        else if (sceneToPlay == SceneToPlay.Home)
+        {
+            sceneID = SceneID.Family;
+            PlayFamilyStart();
         }
     }
 
@@ -337,6 +445,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             if (AlertTextController.instance.gameObject.activeInHierarchy)
                 AlertTextController.instance.SetInactive();
         }
+    }
+
+    void LowerVolume(AudioSource source, float TargetVolume)
+    {
+        source.volume = Mathf.Lerp(source.volume,TargetVolume, Time.deltaTime);
     }
 
 }
