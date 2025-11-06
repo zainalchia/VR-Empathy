@@ -31,7 +31,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject testitem;
 
     [Header("Narration Variables")]
-    [SerializeField] AudioSource narrationAudioSource;
+    [SerializeField] public AudioSource narrationAudioSource;
 
     // For voices
     [HideInInspector] public AudioClip[] narrationAudioClips_1;
@@ -143,6 +143,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In Hawker stall")]
     [SerializeField] GameObject CashEndPoint;
     [SerializeField] GameObject Boss;
+    [SerializeField] private HeartbeatUI heartbeatUI;
 
     public void PlayHawkerStart()
     {
@@ -150,6 +151,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
     IEnumerator HawkerStart()
     {
+        yield return new WaitForSeconds(1.5f);
+
         // Finally. Faster la serve customer!
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
@@ -162,6 +165,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Give me 2 chicken rice
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
         promptManager.ShowPrompt(SceneID.Stall, 1);
         // Hand over cash
         cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
@@ -196,18 +200,22 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator ChoppedHand()
     {
-        // Aiya this simple thing also you cannot do. I pay you for what?! Useless!
+        
+        heartbeatUI.KnifeAccidentFlash();
+
+        // ow
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
+        yield return new WaitForSeconds(narrationAudioClips_1[5].length);
+
+        // Boss scolds player
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
-        // Boss moves to cut chicken
         Boss.gameObject.SetActive(true);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
-        // Set boss animation to chopping 
+       
+        yield return new WaitForSeconds(2f);
 
-        // Chop for around 2 seconds?
-        yield return new WaitForSeconds(2);
-
-        // I do your job for you already. Go give this to the customer! I don�t want to see your face here.
+        // boss confront
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 

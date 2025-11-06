@@ -21,8 +21,12 @@ public class ChickenChopManager : MonoBehaviour
     [SerializeField] private Material normalHandMaterial;
     [SerializeField] private Material bleedingHandMaterial;
     [SerializeField] private GameObject bloodEffect;
+
+    private bool customerVO = false; 
+    private ScenarioManagerReneeTest sceneManager; 
     private void Start()
     {
+        sceneManager = FindObjectOfType<ScenarioManagerReneeTest>();
         chickenPiecesGroup.SetActive(true);
         //hide red lines at the start
         foreach (var line in cutLines)
@@ -34,6 +38,12 @@ public class ChickenChopManager : MonoBehaviour
 
         if (!isHolding)
             return;
+
+        if (!customerVO && sceneManager != null)
+{
+            sceneManager.narrationAudioSource.PlayOneShot(sceneManager.narrationAudioClips_1[4]);
+            customerVO = true;
+        }
 
         //stop if all pieces already cut
         if (!canCut || currentPiece >= pieces.Count)
@@ -88,6 +98,7 @@ public class ChickenChopManager : MonoBehaviour
 
                 cutCooldown = 1.7f;
                 StartCoroutine(BleedingHand()); //changes the normal hand to bleeding hand
+                sceneManager.PlayChoppedHand();
             }
         }
         

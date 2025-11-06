@@ -92,7 +92,7 @@ public class HeartbeatUI : MonoBehaviour
         vignette.intensity.value = 1.05f;
 
         // wait to fade back
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(8f);
 
         // Fade back to normal screen
         StartCoroutine(FadeVignette(0f, Color.black, 1.2f));
