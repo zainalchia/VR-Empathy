@@ -314,7 +314,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator FamilyStart()
     {
-
+        Debug.Log("Played");
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         yield return new WaitForSeconds(2);
 
