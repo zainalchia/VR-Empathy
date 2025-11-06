@@ -350,11 +350,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
         // Pour food segment
+        Debug.Log("Called start");
         Ladle.GetComponent<Grabbable>().enabled = true;
         Ladle.GetComponent<ForceStayGrabbed>().enabled = true;
         Ladle.GetComponent<PhysicsGrabbable>().enabled = true;
         Ladle.GetComponent<GrabInteractable>().enabled = true;
         Ladle.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        Debug.Log("Called end");
+
     }
     public void PlayLightOFf()
     {

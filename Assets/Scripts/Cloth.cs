@@ -18,13 +18,13 @@ public class Cloth : MonoBehaviour
     private float timer = 0;
     private bool CustomerDialogue = true;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "ToClean")
+        if (other.gameObject.tag == "ToClean")
         {
             if (AbleToClean)
             {
-                Destroy(collision.gameObject);
+                Destroy(other.gameObject);
                 AbleToClean = false;
                 startTimer = true;
                 if (CustomerDialogue)
@@ -35,11 +35,11 @@ public class Cloth : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.tag == "LeftHand")
+        if (other.gameObject.tag == "LeftHand")
         {
             ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
         }
-        if (collision.gameObject.tag == "RightHand")
+        if (other.gameObject.tag == "RightHand")
         {
             ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
         }
