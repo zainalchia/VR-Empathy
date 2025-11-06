@@ -1777,7 +1777,7 @@ Transform:
   m_GameObject: {fileID: 265671856}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000011284132, y: -0.7027071, z: -0.00000077467365, w: 0.71147925}
-  m_LocalPosition: {x: 10.973603, y: 0.024383813, z: 5.8728275}
+  m_LocalPosition: {x: 10.973603, y: 0, z: 5.8728275}
   m_LocalScale: {x: 19.11059, y: 0.072463244, z: 24.153734}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5796,6 +5796,11 @@ PrefabInstance:
       propertyPath: FinishCleaning.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1201703111}
+    - target: {fileID: 1927514033727987306, guid: 42acec9af6eed9a4a885a252fda7b611,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4101950071885769868, guid: 42acec9af6eed9a4a885a252fda7b611,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5886,25 +5891,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Food Dropping
       objectReference: {fileID: 0}
+    - target: {fileID: 2152871228169830367, guid: c28691789b147e944a884d3043a8a831,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2955717351797534056, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4107170823872789006, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4560384577390361702, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8442271668433199819, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8519012554227522082, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
@@ -5914,7 +5924,7 @@ PrefabInstance:
     - target: {fileID: 8519012554227522082, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 8519012554227522082, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
@@ -5959,7 +5969,7 @@ PrefabInstance:
     - target: {fileID: 8805473481363058705, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_IsTrigger
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7557,7 +7567,7 @@ Transform:
   m_GameObject: {fileID: 1116760610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.532, y: 0.7, z: -2.605}
+  m_LocalPosition: {x: -0.532, y: 0.818, z: -2.605}
   m_LocalScale: {x: 0.6, y: 0.8, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9282,6 +9292,37 @@ MonoBehaviour:
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
   scenarioManager: {fileID: 1201703111}
+--- !u!1 &1170830364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1170830365}
+  m_Layer: 0
+  m_Name: Player Destination
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1170830365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170830364}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.579, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1173790058
 GameObject:
   m_ObjectHideFlags: 0
@@ -9674,6 +9715,8 @@ MonoBehaviour:
   Ladle: {fileID: 0}
   Sean: {fileID: 0}
   SeanAudioSource: {fileID: 0}
+  PlayerDestination: {fileID: 1170830364}
+  Player: {fileID: 1576574053}
 --- !u!114 &1201703112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17687,7 +17730,7 @@ Transform:
   m_GameObject: {fileID: 1934815143}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.88, y: 13.684948, z: 11.7}
+  m_LocalPosition: {x: -12.88, y: 13.905, z: 11.7}
   m_LocalScale: {x: 0.35477, y: 0.35477, z: 0.35477}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -19508,3 +19551,4 @@ SceneRoots:
   - {fileID: 513830424}
   - {fileID: 1926863589}
   - {fileID: 757077369}
+  - {fileID: 1170830365}

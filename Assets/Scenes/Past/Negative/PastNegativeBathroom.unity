@@ -2304,6 +2304,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
     - target: {fileID: 3353817918328592355, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_Camera
@@ -7620,6 +7625,7 @@ MonoBehaviour:
   MoveToSection: 0
   hasPlacedCash: 0
   teleportLocked: 0
+  DropFood: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
@@ -8348,8 +8354,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToPlay: 0
   firstTeleportToiletHotspot: {fileID: 1168026814}
-  secondTeleportHawkerHotspot: {fileID: 0}
-  FinalHotspot: {fileID: 0}
   promptManager: {fileID: 1874118775}
   scenarioID: 0
   sceneID: 0
@@ -8362,15 +8366,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 879db57f7c0140b41b5b7a79f8fa2082, type: 3}
   - {fileID: 8300000, guid: ce50e423e005b2f4bb26fff36a59ae7b, type: 3}
   narrationAudioClips_1_Female: []
-  DoorHandle: {fileID: 0}
-  timeForWashingUp: 20
   cashObject: {fileID: 0}
   cashOutline: {fileID: 0}
   knifeOutline: {fileID: 0}
+  knifeObject: {fileID: 0}
+  DoorHandle: {fileID: 0}
+  timeForWashingUp: 20
   CashEndPoint: {fileID: 0}
+  Boss: {fileID: 0}
+  heartbeatUI: {fileID: 0}
   TrayOfFood: {fileID: 0}
   DroppedFood: {fileID: 0}
   PlayerCloth: {fileID: 0}
+  Ladle: {fileID: 0}
+  Sean: {fileID: 0}
+  SeanAudioSource: {fileID: 0}
+  PlayerDestination: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!114 &1201703112
 MonoBehaviour:
   m_ObjectHideFlags: 0

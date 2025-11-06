@@ -203,25 +203,19 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator ChoppedHand()
     {
-
-        //ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(PlayerCloth.GetComponent<GrabInteractable>());
-
-        // Aiya this simple thing also you cannot do. I pay you for what?! Useless!
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
-        yield return new WaitForSeconds(narrationAudioClips_1[4].length);
-
         heartbeatUI.KnifeAccidentFlash();
 
         // ow
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
         yield return new WaitForSeconds(narrationAudioClips_1[5].length);
 
+        MovePLayer();
+
         // Boss scolds player
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
         Boss.gameObject.SetActive(true);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
-       
         yield return new WaitForSeconds(2f);
 
         // boss confront
@@ -263,7 +257,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         if (TrayOfFood.transform.position.y <= 0.2f)
         {
             TrayOfFood.gameObject.SetActive(false);
-            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.0f, TrayOfFood.transform.position.z);
+            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.05f, TrayOfFood.transform.position.z);
             DroppedFood.gameObject.SetActive(true);
             if (playOnce)
             {
@@ -325,9 +319,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator FamilyStart()
     {
-        Debug.Log("Played");
-        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
-        yield return new WaitForSeconds(2);
+        //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
+        //yield return new WaitForSeconds(2);
+        //GameManager.instance.fadePanel.GetComponent<Animator>().ResetTrigger("FadeIn");
 
         // I’m home
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
@@ -365,6 +359,20 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
     IEnumerator LightOff()
     {
+        // Drop ladle
+        Ladle.GetComponent<Grabbable>().enabled = false;
+        Ladle.GetComponent<ForceStayGrabbed>().enabled = false;
+        Ladle.GetComponent<PhysicsGrabbable>().enabled = false;
+        Ladle.GetComponent<GrabInteractable>().enabled = false;
+        Ladle.GetComponent<Rigidbody>().isKinematic = false;
+        Ladle.GetComponent<Rigidbody>().useGravity = true;
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+        ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
+
+        // Disable Ladle
+        //Ladle.gameObject.SetActive(false);
+
+
         // I’m sorry, son.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
         yield return new WaitForSeconds(narrationAudioClips_1[4].length);
@@ -390,6 +398,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         Sean.GetComponent<PhysicsGrabbable>().enabled = true;
         Sean.GetComponent<GrabInteractable>().enabled = true;
         Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        Sean.GetComponent<Sean>().StartSegment = true;
     }
     public void PlayFinalHome()
     {
@@ -399,20 +408,21 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     IEnumerator FinalHome()
     {
         // Daddy / Mummy why no light??
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
-        yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
+        yield return new WaitForSeconds(narrationAudioClips_1[8].length);
 
         // fade out
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
 
         // Sean crying volume gets lower
         SeanAudioSource.Play();
-        LowerVolume(SeanAudioSource, 30);
+        LowerVolume(SeanAudioSource, 0.1f);
+
         //I work so hard for my family.
         //I get bullied, scolded, even beaten at work, and nobody can help me do anything about it.
         //My wife / husband still not happy, I still can’t provide for my family. Sigh.
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
-        yield return new WaitForSeconds(narrationAudioClips_1[8].length);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
+        yield return new WaitForSeconds(narrationAudioClips_1[9].length);
 
     }
 
@@ -432,8 +442,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Stall)
         {
             sceneID = SceneID.Stall;
-            //PlayHawkerStart();
-            PlayChoppedHand();
+            PlayHawkerStart();
+            //PlayChoppedHand();
         }
         else if (sceneToPlay == SceneToPlay.Home)
         {
@@ -464,6 +474,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     void LowerVolume(AudioSource source, float TargetVolume)
     {
         source.volume = Mathf.Lerp(source.volume,TargetVolume, Time.deltaTime);
+    }
+    [SerializeField] GameObject PlayerDestination;
+    [SerializeField] GameObject Player;
+    void MovePLayer()
+    {
+        //Player.transform.position = Vector3.MoveTowards(Player.transform.position,PlayerDestination.transform.position,1* Time.deltaTime);
+        Player.transform.position = PlayerDestination.transform.position;
     }
 
 }

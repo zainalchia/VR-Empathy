@@ -35,14 +35,14 @@ public class Cloth : MonoBehaviour
             }
         }
 
-        if (other.gameObject.tag == "LeftHand")
-        {
-            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
-        }
-        if (other.gameObject.tag == "RightHand")
-        {
-            ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
-        }
+        //if (other.gameObject.tag == "LeftHand")
+        //{
+        //    ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
+        //}
+        //if (other.gameObject.tag == "RightHand")
+        //{
+        //    ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
+        //}
     }
 
     private void Update()
