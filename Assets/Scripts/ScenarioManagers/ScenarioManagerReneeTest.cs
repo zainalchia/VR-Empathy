@@ -144,6 +144,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In Hawker stall")]
     [SerializeField] GameObject CashEndPoint;
     [SerializeField] GameObject Boss;
+    private bool playOnce = true;
 
     public void PlayHawkerStart()
     {
@@ -197,6 +198,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator ChoppedHand()
     {
+
+        //ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(PlayerCloth.GetComponent<GrabInteractable>());
+
         // Aiya this simple thing also you cannot do. I pay you for what?! Useless!
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
         // Boss moves to cut chicken
@@ -247,20 +251,54 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         if (TrayOfFood.transform.position.y <= 0.2f)
         {
             TrayOfFood.gameObject.SetActive(false);
-            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.2f, TrayOfFood.transform.position.z);
+            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.0f, TrayOfFood.transform.position.z);
             DroppedFood.gameObject.SetActive(true);
-            lastRoutine = StartCoroutine(CleanDroppedFood());
-
+            if (playOnce)
+            {
+                lastRoutine = StartCoroutine(CleanDroppedFood());
+                playOnce = false;
+            }
         }
     }
     IEnumerator CleanDroppedFood()
     {
-        yield return new WaitForSeconds(2);
+        // Set boss animation to smacking you
+
+        // Wah why you so stupid ah?!! I really cannot with you already! I’m going to cut your pay!
+        //narrationAudioSource.clip = narrationAudioClips_1[8];
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
+        yield return new WaitForSeconds(narrationAudioClips_1[8].length);
+
+        // Nah clean this mess up! Stupid!
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
+        yield return new WaitForSeconds(narrationAudioClips_1[9].length);
+
         PlayerCloth.SetActive(true);
         PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         yield return null;
     }
 
+    public void PlayCustomerDialogue() // called in Cloth
+    {
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[10]);
+    }
+    public void PlayFinishedCleaning() // called in Cloth 
+    {
+        lastRoutine = StartCoroutine(FinishCleaningFoodDroppings());
+    }
+
+    IEnumerator FinishCleaningFoodDroppings()
+    {
+        PlayerCloth.gameObject.SetActive(false);
+        // fade out
+        GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
+
+        //What a horrible day. I really wish I can quit this job.
+        //But I need to feed my family, and times are tough, it’s so hard to find work nowadays.
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[11]);
+        yield return new WaitForSeconds(narrationAudioClips_1[11].length);
+        SceneManager.LoadScene("PastNegativeHome", LoadSceneMode.Single);
+    }
     #endregion
 
     // Start is called before the first frame update

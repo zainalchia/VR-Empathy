@@ -9,7 +9,7 @@ using UnityEngine.Events;
 public class FoodTray : MonoBehaviour
 {
     public UnityEvent OnGrab;
-    public TMP_Text DebugText;
+    //public TMP_Text DebugText;
     public bool AbleToGrab = true;
 
     private void OnTriggerStay(Collider other)
