@@ -75,7 +75,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool hasPlacedCash = false;
     public bool teleportLocked = false;
     public bool DropFood = false;
-
+    public bool GoToFirstAid = false;
 
     //Past positive==============================================================================================================
     //public bool MovingToLivingRoom = false;
@@ -224,7 +224,16 @@ public class PlayerTeleport : MonoBehaviour
                             hasPlacedCash = false; 
                         }
                     }
-                        testPressTrigger = false;
+                    // allow teleport into first aid hotspot (diff sequence)
+                    else if (GoToFirstAid && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+                        defaultTimeBeforeNextMove = 1.5f;
+                        currentHotspotIndex = 2; 
+                        MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+                        GoToFirstAid = false;
+                    }
+                    testPressTrigger = false;
                 }
                 else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
                 {
@@ -402,8 +411,12 @@ public class PlayerTeleport : MonoBehaviour
     }
     void ShowNextHotspot(GameObject[] hotspotArray)
     {
-        if (hotspotArray == MoveToJobPositionHotspots && !hasPlacedCash)
-            return;
+        //if (hotspotArray == MoveToJobPositionHotspots && !hasPlacedCash && !GoToFirstAid)
+        //{
+        //    if (currentHotspotIndex != 2)
+        //    return;
+        //}   
+
         if (currentHotspotIndex != hotspotArray.Length - 1)
         {
             hotspotArray[currentHotspotIndex + 1].gameObject.SetActive(true);

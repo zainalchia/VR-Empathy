@@ -205,15 +205,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
 
         //ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(PlayerCloth.GetComponent<GrabInteractable>());
-
-        // Aiya this simple thing also you cannot do. I pay you for what?! Useless!
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[4]);
-        yield return new WaitForSeconds(narrationAudioClips_1[4].length);
-
-        heartbeatUI.KnifeAccidentFlash();
-
         // ow
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[5]);
+        heartbeatUI.KnifeAccidentFlash();
         yield return new WaitForSeconds(narrationAudioClips_1[5].length);
 
         // Boss scolds player
@@ -221,8 +215,22 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         Boss.gameObject.SetActive(true);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
-       
-        yield return new WaitForSeconds(2f);
+        if (playerTeleport != null)
+        {
+            playerTeleport.GoToFirstAid = true; //enables to tp
+
+            var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots(); //get all hotspots
+            if (jobHotspots.Length > 2) //index 2
+            {
+                jobHotspots[2].SetActive(true); //show hotspot
+                if (jobHotspots[2].transform.childCount > 0) //visuals
+                    jobHotspots[2].transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
+        promptManager.ShowPrompt(SceneID.Stall, 3); //grab the plaster
+
+        // Wait for player to finish plastering
+        yield return new WaitForSeconds(5f);
 
         // boss confront
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
@@ -429,8 +437,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         else if (sceneToPlay == SceneToPlay.Stall)
         {
             sceneID = SceneID.Stall;
-            //PlayHawkerStart();
-            PlayChoppedHand();
+            PlayHawkerStart();
+            //PlayChoppedHand();
         }
         else if (sceneToPlay == SceneToPlay.Home)
         {
