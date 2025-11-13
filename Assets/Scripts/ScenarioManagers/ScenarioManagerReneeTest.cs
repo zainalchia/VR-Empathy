@@ -148,6 +148,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     private bool playOnce = true;
     [SerializeField] private HeartbeatUI heartbeatUI;
 
+    [Header("Plaster")]
+    [SerializeField] private GameObject bandaidContainer;
+    [SerializeField] private Animator lidAnimator;
+    [SerializeField] private string lidPopTrigger = "PopOff";
+    [SerializeField] private LidMover lidMover;
+    [SerializeField] private GameObject plasterPrefab;
+    [SerializeField] private Transform plasterSpawnPoint;
+
     public void PlayHawkerStart()
     {
         lastRoutine = StartCoroutine(HawkerStart());
@@ -215,6 +223,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         Boss.gameObject.SetActive(true);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
+        yield return new WaitForSeconds(1f);
+
+        promptManager.ShowPrompt(SceneID.Stall, 3); //grab the plaster
+
         if (playerTeleport != null)
         {
             playerTeleport.GoToFirstAid = true; //enables to tp
@@ -227,9 +239,15 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                     jobHotspots[2].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
-        promptManager.ShowPrompt(SceneID.Stall, 3); //grab the plaster
 
-        // Wait for player to finish plastering
+        // Enable bandaid interaction
+        GameManager.instance.toUsePlaster = true;
+        bandaidContainer.GetComponent<Grabbable>().enabled = true;
+        bandaidContainer.GetComponent<GrabInteractable>().enabled = true;
+        bandaidContainer.GetComponent<PhysicsGrabbable>().enabled = true;
+        bandaidContainer.GetComponent<PlasterContainer>().enabled = true;
+
+        // Wait for player to finish plastering (placeholder)
         yield return new WaitForSeconds(5f);
 
         // boss confront
@@ -239,6 +257,79 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         TrayOfFood.SetActive(true);
     }
 
+    public void OnPlasterContainerGrabbed()
+    {
+        if (lidAnimator != null)
+            lidAnimator.SetTrigger(lidPopTrigger);
+
+        // slight delay on the lid
+        StartCoroutine(MoveLidAfterDelay(0.5f));
+    }
+
+    private IEnumerator MoveLidAfterDelay(float delay)
+    {
+        // wait for anim
+        yield return new WaitForSeconds(delay);
+
+        // Stop animator 
+        if (lidAnimator != null)
+            lidAnimator.enabled = false;
+
+
+        // Move the lid to the table
+        var mover = bandaidContainer.GetComponentInChildren<LidMover>();
+        if (mover != null)
+        {
+            mover.MoveToTable();
+            mover.transform.SetParent(null); //detach from parent
+        }
+
+        yield return new WaitForSeconds(1f);
+        SpawnPlaster();
+    }
+
+    public void SpawnPlaster()
+    {
+        // plaster inside the bottle
+        GameObject plaster = Instantiate(plasterPrefab, plasterSpawnPoint.position, plasterSpawnPoint.rotation);
+        GameManager.instance.plaster = plaster;
+
+        // Always send plaster to the right hand
+        Transform targetPalm = GameManager.instance.rightPalm;
+
+        // Move the pill into the palm
+        StartCoroutine(MovePlasterToHand(plaster, targetPalm));
+    }
+
+    private IEnumerator MovePlasterToHand(GameObject plaster, Transform targetPalm, float height = 0.2f, float duration = 1f)
+    {
+        // take start and target positions
+        Vector3 start = plaster.transform.position;
+        Vector3 target = targetPalm.position;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            // move plaster
+            Vector3 current = Vector3.Lerp(start, target, t);
+            // arc like checkers
+            current.y += Mathf.Sin(t * Mathf.PI) * height;
+            // position
+            plaster.transform.position = current;
+            yield return null;
+        }
+
+        // snap plaster into right palm
+        plaster.transform.position = targetPalm.position + targetPalm.up * 0.02f;
+        plaster.transform.rotation = targetPalm.rotation;
+        plaster.transform.SetParent(targetPalm);
+
+        // Force grab with right hand only
+        var grabInteractable = plaster.GetComponent<GrabInteractable>();
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
+    }
 
     [SerializeField] GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;

@@ -416,13 +416,16 @@ public class PlayerTeleport : MonoBehaviour
         //    if (currentHotspotIndex != 2)
         //    return;
         //}   
+        if (hotspotArray == MoveToJobPositionHotspots && currentHotspotIndex + 1 == 2) //block auto activation of first aid
+            return;
 
         if (currentHotspotIndex != hotspotArray.Length - 1)
         {
             hotspotArray[currentHotspotIndex + 1].gameObject.SetActive(true);
-            hotspotArray[currentHotspotIndex + 1].gameObject.transform.GetChild(0).gameObject.SetActive(true);
+            if (hotspotArray[currentHotspotIndex + 1].transform.childCount > 0)
+                hotspotArray[currentHotspotIndex + 1].transform.GetChild(0).gameObject.SetActive(true);
         }
-        else // when last teleport hotspot, no need to enable next one
+        else
         {
             hotspotArray[currentHotspotIndex].gameObject.SetActive(false);
         }
