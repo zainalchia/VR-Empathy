@@ -27,11 +27,23 @@ public class Cash : MonoBehaviour
         {
             hasBeenGrabbed = true;
 
-            // turn ON register outline when player picks up cash
+            var teleport = FindObjectOfType<PlayerTeleport>();
+            teleport.teleportLocked = true; // prevent teleport while grabbing
+
             if (registerOutline != null)
                 registerOutline.enabled = true;
+
+            // small cooldown (so grab doesn’t trigger teleport)
+            teleport.StartCoroutine(UnlockTeleport(teleport, 1f));
         }
     }
+
+    private IEnumerator UnlockTeleport(PlayerTeleport tp, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        tp.teleportLocked = false;
+    }
+
     private void PlaceCash()
     {
         hasBeenPlaced = true;
@@ -42,6 +54,10 @@ public class Cash : MonoBehaviour
 
         //confirm cash have been placed, tells manager
         FindObjectOfType<ScenarioManagerReneeTest>().OnCashPlaced();
+
+        //hide alert
+        if (AlertTextController.instance != null)
+            AlertTextController.instance.SetInactive();
 
         //hide cash
         StartCoroutine(DisappearAfterDelay(0.2f));

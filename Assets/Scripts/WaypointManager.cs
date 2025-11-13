@@ -13,7 +13,7 @@ public class WaypointManager : MonoBehaviour
     [SerializeField] bool isMoving;
     [Tooltip("put 0 to make it infinite")]
     [SerializeField] int HowManyLoops;
-    bool isLoop = true;
+    bool isLoop = false;
     int loopRound = 0;
 
     // Start is called before the first frame update
@@ -46,7 +46,7 @@ public class WaypointManager : MonoBehaviour
                         loopRound++;
                         if(loopRound >= HowManyLoops && HowManyLoops != 0)
                         { 
-                            Destroy(gameObject); 
+                            //Destroy(gameObject); 
                         }
                     }
                 }
