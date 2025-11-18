@@ -405,8 +405,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.79873383, z: 0.318017}
-  m_Center: {x: 0, y: -0.19729263, z: -0.03648901}
+  m_Size: {x: 0.40292835, y: 0.79873383, z: 0.318017}
+  m_Center: {x: -0.11734438, y: -0.19729263, z: -0.03648901}
 --- !u!54 &156639210
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -600,6 +600,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587107056749831078, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: LeftHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 6587107057139345923, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_TagString
+      value: RightHand
       objectReference: {fileID: 0}
     - target: {fileID: 8531340850437012666, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -1221,6 +1231,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
     - target: {fileID: 3353817918328592355, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_Camera
@@ -1838,12 +1853,15 @@ MonoBehaviour:
   timeForWashingUp: 5
   CashEndPoint: {fileID: 0}
   Boss: {fileID: 0}
+  heartbeatUI: {fileID: 0}
   TrayOfFood: {fileID: 0}
   DroppedFood: {fileID: 0}
   PlayerCloth: {fileID: 0}
-  Ladle: {fileID: 0}
-  Sean: {fileID: 0}
-  SeanAudioSource: {fileID: 0}
+  Ladle: {fileID: 156639207}
+  Sean: {fileID: 1653998895}
+  SeanAudioSource: {fileID: 1653998906}
+  PlayerDestination: {fileID: 0}
+  Player: {fileID: 0}
 --- !u!1 &1160399997
 GameObject:
   m_ObjectHideFlags: 0
@@ -2674,6 +2692,7 @@ GameObject:
   - component: {fileID: 1653998902}
   - component: {fileID: 1653998901}
   - component: {fileID: 1653998906}
+  - component: {fileID: 1653998907}
   m_Layer: 0
   m_Name: Sean Placeholder
   m_TagString: Untagged
@@ -2863,8 +2882,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2880,7 +2899,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: dd5902f5796774d42bbed62949f92c64, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2964,6 +2983,34 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1653998907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653998895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 129c5907e678e21418088f4dfa333358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1156376158}
+        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
+        m_MethodName: PlayFinalHome
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  StartSegment: 0
 --- !u!1 &1763006366
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,6 +3328,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1856784651}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a88eb176bb3aa794fb18bce322269dd1,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1856784652}
   m_SourcePrefab: {fileID: 100100000, guid: a88eb176bb3aa794fb18bce322269dd1, type: 3}
 --- !u!4 &1856784649 stripped
 Transform:
@@ -3309,12 +3360,39 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.2985592, y: 0.14026284, z: 0.3011713}
   m_Center: {x: -0.3507204, y: 0.047720194, z: 0.31488657}
+--- !u!54 &1856784652
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856784650}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &2078662126
 PrefabInstance:
   m_ObjectHideFlags: 0
