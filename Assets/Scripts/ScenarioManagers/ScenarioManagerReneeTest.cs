@@ -312,6 +312,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject Ladle;
     [SerializeField] GameObject Sean;
     [SerializeField] AudioSource SeanAudioSource;
+    [SerializeField] Light HomeLight;
     public void PlayFamilyStart()
     {
         lastRoutine = StartCoroutine(FamilyStart());
@@ -383,6 +384,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[5].length);
 
         // Turn off lights and dim environment and sean's hand is messy and full of food
+        HomeLight.color = Color.black;
 
         // Daddy / Mummy what happened??? I cannot see!! [pause] Daddy / Mummy I’m scared
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
@@ -394,11 +396,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         // Carry sean segment
         Sean.GetComponent<Grabbable>().enabled = true;
-        Sean.GetComponent<ForceStayGrabbed>().enabled = true;
+        //Sean.GetComponent<ForceStayGrabbed>().enabled = true;
         Sean.GetComponent<PhysicsGrabbable>().enabled = true;
         Sean.GetComponent<GrabInteractable>().enabled = true;
-        Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        Sean.GetComponent<Sean>().StartSegment = true;
+        //Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
     public void PlayFinalHome()
     {
@@ -449,6 +450,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         {
             sceneID = SceneID.Family;
             PlayFamilyStart();
+            //PlayLightOFf();
         }
     }
 
@@ -473,7 +475,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     void LowerVolume(AudioSource source, float TargetVolume)
     {
-        source.volume = Mathf.Lerp(source.volume,TargetVolume, Time.deltaTime);
+        source.volume = Mathf.Lerp(source.volume, TargetVolume, Time.deltaTime);
     }
     [SerializeField] GameObject PlayerDestination;
     [SerializeField] GameObject Player;
