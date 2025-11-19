@@ -98,6 +98,16 @@ public class GameManager : MonoBehaviour
     [Header("FURNITURE SPASMING")]
     public bool toStartSpasming = false;
 
+    // Plaster container
+    [Header("Plaster")]
+    public bool toUsePlaster = false;
+    public GameObject plasterContainer;
+    public GameObject plaster;
+
+    [Header("Hand")]
+    public Renderer leftHandRenderer;       
+    public ParticleSystem bloodEffect;        
+    public Material plasteredHandMaterial;
     public void DebugLog(string text)
     {
         if (DebugTextTest.Instance != null)
