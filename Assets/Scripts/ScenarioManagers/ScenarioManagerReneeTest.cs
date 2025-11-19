@@ -399,6 +399,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //Sean.GetComponent<ForceStayGrabbed>().enabled = true;
         Sean.GetComponent<PhysicsGrabbable>().enabled = true;
         Sean.GetComponent<GrabInteractable>().enabled = true;
+        Sean.GetComponent<Sean>().enabled = true;
         //Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
     public void PlayFinalHome()
