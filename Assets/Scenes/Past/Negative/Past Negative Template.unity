@@ -3479,7 +3479,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 437023863}
+      objectReference: {fileID: 0}
     - target: {fileID: 3354651424086631995, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3590,18 +3590,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5446b5edb5620e4ebda8642f07f0a96, type: 3}
---- !u!114 &355501368 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7339869770074795435, guid: c5446b5edb5620e4ebda8642f07f0a96,
-    type: 3}
-  m_PrefabInstance: {fileID: 355501367}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &355501369 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5733402971437742045, guid: c5446b5edb5620e4ebda8642f07f0a96,
@@ -4014,12 +4002,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5061566330739669423, guid: 31b969db545c47e4f9a50e77f022f43c, type: 3}
---- !u!20 &437023863 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2045798063959952117, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 1576574047}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &438540174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5823,9 +5805,6 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
-  _rigidbody: {fileID: 0}
-  _kinematicWhileSelected: 1
-  _throwWhenUnselected: 1
 --- !u!1 &678268757
 GameObject:
   m_ObjectHideFlags: 0
@@ -7553,9 +7532,6 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
-  _rigidbody: {fileID: 0}
-  _kinematicWhileSelected: 1
-  _throwWhenUnselected: 1
 --- !u!23 &902460266
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8219,9 +8195,6 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
-  _rigidbody: {fileID: 0}
-  _kinematicWhileSelected: 1
-  _throwWhenUnselected: 1
 --- !u!23 &1010366161
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9770,6 +9743,7 @@ MonoBehaviour:
   MoveToMainDoorHotspots: []
   MoveToCheckersChairHotspots: []
   MoveToKaraokeCornerHotspots: []
+  sceneToPlay: {fileID: 0}
   MoveToToiletDoorHotspots:
   - {fileID: 0}
   - {fileID: 0}
@@ -9809,6 +9783,8 @@ MonoBehaviour:
   MoveToHawkerStall: 0
   MoveToSection: 0
   currentScene: 0
+  testPressTrigger: 0
+  scenarioManagerPresentGood: {fileID: 0}
 --- !u!1 &1166312048
 GameObject:
   m_ObjectHideFlags: 0
@@ -10274,7 +10250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  consoleText: {fileID: 355501368}
+  testText: {fileID: 0}
+  postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 1576574053}
   centerEyeAnchor: {fileID: 1576574052}
   grabInteractors:
@@ -10287,7 +10264,9 @@ MonoBehaviour:
   characterModel: {fileID: 0}
   alertText: {fileID: 355501370}
   fadePanel: {fileID: 355501369}
+  whiteFadePanel: {fileID: 0}
   goodbyeText: {fileID: 0}
+  goodbyeText2: {fileID: 0}
   glasses: {fileID: 0}
   toPutGlassesOn: 0
   toTakeGlassesOff: 0
@@ -10297,6 +10276,22 @@ MonoBehaviour:
   dentures: {fileID: 0}
   toTakeDenturesOff: 0
   OnDenturesTakeOff:
+    m_PersistentCalls:
+      m_Calls: []
+  medicine: {fileID: 0}
+  pill: {fileID: 0}
+  toConsumeMedicine: 0
+  OnMedicineConsumed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMedicineGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  leftPalm: {fileID: 0}
+  rightPalm: {fileID: 0}
+  photoFrame: {fileID: 0}
+  toViewPhotoFrame: 0
+  OnPhotoFrameViewed:
     m_PersistentCalls:
       m_Calls: []
   toLookAtObjective: 0
@@ -10353,6 +10348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftGrabInteractor: {fileID: 1576574049}
   rightGrabInteractor: {fileID: 1576574048}
+  leftHandTrackingComponent: {fileID: 0}
   timeToOpenCloseFist: 1
   autoDropItems: 1
   dropGlassesInterval: 1
@@ -26410,9 +26406,6 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
-  _rigidbody: {fileID: 0}
-  _kinematicWhileSelected: 1
-  _throwWhenUnselected: 1
 --- !u!1001 &2079236239
 PrefabInstance:
   m_ObjectHideFlags: 0

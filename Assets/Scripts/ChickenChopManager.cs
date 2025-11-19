@@ -21,6 +21,7 @@ public class ChickenChopManager : MonoBehaviour
     [SerializeField] private Material normalHandMaterial;
     [SerializeField] private Material bleedingHandMaterial;
     [SerializeField] private GameObject bloodEffect;
+    [SerializeField] private PlayerTeleport playerTeleport;
 
     private bool customerVO = false; 
     private ScenarioManagerReneeTest sceneManager; 
