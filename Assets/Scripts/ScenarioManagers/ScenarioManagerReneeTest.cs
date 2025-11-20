@@ -167,6 +167,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Finally. Faster la serve customer!
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
+
         // How long you want to make me wait? I wait here very long already.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
@@ -177,7 +178,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
-        promptManager.ShowPrompt(SceneID.Stall, 1);
+        promptManager.ShowPrompt(SceneID.Stall, 0, false, 6f);
         // Hand over cash
         cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
         //promptManager.ShowPrompt(SceneID.Stall, 1);
@@ -187,6 +188,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         // player has put cash into register
         playerTeleport.hasPlacedCash = true;
+
         // TP to the next hotspot
         playerTeleport.MoveToSection = true;
         //reset hotspot
@@ -216,14 +218,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         heartbeatUI.KnifeAccidentFlash();
         yield return new WaitForSeconds(narrationAudioClips_1[5].length);
 
-        MovePLayer();
 
         // Boss scolds player
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
-        Boss.gameObject.SetActive(true);
+        //Boss.gameObject.SetActive(true);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
-        promptManager.ShowPrompt(SceneID.Stall, 3); //grab the plaster
+        promptManager.ShowPrompt(SceneID.Stall, 3, false, 6f); //grab the plaster
 
         if (playerTeleport != null)
         {
@@ -245,14 +246,16 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         bandaidContainer.GetComponent<PhysicsGrabbable>().enabled = true;
         bandaidContainer.GetComponent<PlasterContainer>().enabled = true;
 
-        // Wait for player to finish plastering (placeholder)
-        yield return new WaitForSeconds(5f);
-
+        yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
+        //MovePLayer();
+        Boss.gameObject.SetActive(true);
         // boss confront
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
         TrayOfFood.SetActive(true);
+        promptManager.ShowPrompt(SceneID.Stall, 4, false, 6f);
+
     }
 
     public void OnPlasterContainerGrabbed()
@@ -384,6 +387,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         PlayerCloth.SetActive(true);
         PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        promptManager.ShowPrompt(SceneID.Stall, 5, false, 6f);
+
         yield return null;
     }
 
@@ -406,6 +411,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //But I need to feed my family, and times are tough, it’s so hard to find work nowadays.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[11]);
         yield return new WaitForSeconds(narrationAudioClips_1[11].length);
+
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene("PastNegativeHome", LoadSceneMode.Single);
     }
     #endregion
@@ -415,6 +422,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject Ladle;
     [SerializeField] GameObject Sean;
     [SerializeField] AudioSource SeanAudioSource;
+    [SerializeField] Light HomeLight;
     public void PlayFamilyStart()
     {
         lastRoutine = StartCoroutine(FamilyStart());
@@ -445,6 +453,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Can only eat rice with vegetables. All thanks to your good for nothing father / mother!
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        promptManager.ShowPrompt(sceneID, 0, false, 2f);
 
         // Pour food segment
         Debug.Log("Called start");
@@ -486,6 +496,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[5].length);
 
         // Turn off lights and dim environment and sean's hand is messy and full of food
+        HomeLight.color = Color.black;
 
         // Daddy / Mummy what happened??? I cannot see!! [pause] Daddy / Mummy I’m scared
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
@@ -495,13 +506,16 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
+
+        promptManager.ShowPrompt(sceneID, 1, false, 2f);
+
         // Carry sean segment
         Sean.GetComponent<Grabbable>().enabled = true;
-        Sean.GetComponent<ForceStayGrabbed>().enabled = true;
+        //Sean.GetComponent<ForceStayGrabbed>().enabled = true;
         Sean.GetComponent<PhysicsGrabbable>().enabled = true;
         Sean.GetComponent<GrabInteractable>().enabled = true;
-        Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        Sean.GetComponent<Sean>().StartSegment = true;
+        Sean.GetComponent<Sean>().enabled = true;
+        //Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
     public void PlayFinalHome()
     {
@@ -552,6 +566,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         {
             sceneID = SceneID.Family;
             PlayFamilyStart();
+            //PlayLightOFf();
         }
     }
 
@@ -576,7 +591,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     void LowerVolume(AudioSource source, float TargetVolume)
     {
-        source.volume = Mathf.Lerp(source.volume,TargetVolume, Time.deltaTime);
+        source.volume = Mathf.Lerp(source.volume, TargetVolume, Time.deltaTime);
     }
     [SerializeField] GameObject PlayerDestination;
     [SerializeField] GameObject Player;
