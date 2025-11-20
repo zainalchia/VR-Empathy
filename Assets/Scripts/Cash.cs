@@ -71,6 +71,6 @@ public class Cash : MonoBehaviour
         gameObject.SetActive(false);
 
         // Trigger the next prompt
-        //promptManager.ShowPrompt(SceneID.Stall, 2, false, 2f);
+        promptManager.ShowPrompt(SceneID.Stall, 1, false, 6f);
     }
 }

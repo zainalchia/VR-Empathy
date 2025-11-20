@@ -168,8 +168,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
-        promptManager.ShowPrompt(SceneID.Stall, 0, false, 5f);
-
         // How long you want to make me wait? I wait here very long already.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
@@ -180,7 +178,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
-        promptManager.ShowPrompt(SceneID.Stall, 1);
+        promptManager.ShowPrompt(SceneID.Stall, 0, false, 6f);
         // Hand over cash
         cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
         //promptManager.ShowPrompt(SceneID.Stall, 1);
@@ -190,6 +188,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         // player has put cash into register
         playerTeleport.hasPlacedCash = true;
+
         // TP to the next hotspot
         playerTeleport.MoveToSection = true;
         //reset hotspot
@@ -222,7 +221,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         // Boss scolds player
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
-        Boss.gameObject.SetActive(true);
+        //Boss.gameObject.SetActive(true);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
         promptManager.ShowPrompt(SceneID.Stall, 3, false, 6f); //grab the plaster
@@ -247,9 +246,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         bandaidContainer.GetComponent<PhysicsGrabbable>().enabled = true;
         bandaidContainer.GetComponent<PlasterContainer>().enabled = true;
 
-        yield return new WaitUntil(() => GameManager.instance.handHealed); //after bandaid
+        yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
         //MovePLayer();
-
+        Boss.gameObject.SetActive(true);
         // boss confront
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
@@ -413,7 +412,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[11]);
         yield return new WaitForSeconds(narrationAudioClips_1[11].length);
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene("PastNegativeHome", LoadSceneMode.Single);
     }
     #endregion
