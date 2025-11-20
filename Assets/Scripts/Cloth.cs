@@ -12,7 +12,7 @@ public class Cloth : MonoBehaviour
     public UnityEvent FinishCleaning;
     public UnityEvent WhileCleaning;
 
-    private float cleanInterval = 2;
+    private float cleanInterval = 1;
     private bool AbleToClean = true;
     private bool startTimer = false;
     private float timer = 0;
@@ -29,20 +29,12 @@ public class Cloth : MonoBehaviour
                 startTimer = true;
                 if (CustomerDialogue)
                 {
+                    //play customer dialogue
                     WhileCleaning.Invoke();
                     CustomerDialogue = false;
                 }
             }
         }
-
-        //if (other.gameObject.tag == "LeftHand")
-        //{
-        //    ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
-        //}
-        //if (other.gameObject.tag == "RightHand")
-        //{
-        //    ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
-        //}
     }
 
     private void Update()
@@ -61,7 +53,7 @@ public class Cloth : MonoBehaviour
 
         if (DroppedFood.transform.childCount == 0) 
         {
-            FinishCleaning.Invoke(); 
+            FinishCleaning.Invoke();
         }
     }
 }

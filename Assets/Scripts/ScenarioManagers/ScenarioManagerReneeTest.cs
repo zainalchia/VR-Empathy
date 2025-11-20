@@ -457,16 +457,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         promptManager.ShowPrompt(sceneID, 0, false, 2f);
 
         // Pour food segment
-        Debug.Log("Called start");
         Ladle.GetComponent<Grabbable>().enabled = true;
         Ladle.GetComponent<ForceStayGrabbed>().enabled = true;
         Ladle.GetComponent<PhysicsGrabbable>().enabled = true;
         Ladle.GetComponent<GrabInteractable>().enabled = true;
         Ladle.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        Debug.Log("Called end");
-
     }
-    public void PlayLightOFf()
+    public void PlayLightOFf() // Called in Ladle.cs
     {
         lastRoutine = StartCoroutine(LightOff());
     }
@@ -517,7 +514,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         Sean.GetComponent<Sean>().enabled = true;
         //Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
-    public void PlayFinalHome()
+    public void PlayFinalHome() // Called in Sean.cs
     {
         lastRoutine = StartCoroutine(FinalHome());
     }
