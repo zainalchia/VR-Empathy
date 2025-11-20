@@ -412,7 +412,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[11]);
         yield return new WaitForSeconds(narrationAudioClips_1[11].length);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         SceneManager.LoadScene("PastNegativeHome", LoadSceneMode.Single);
     }
     #endregion
