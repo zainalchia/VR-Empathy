@@ -226,3 +226,16 @@ CheckersHighlightChecker.cs - Used to invoke unity events for opponent pieces to
 (each higlight has this script attached to it)
 
 MicController.cs - Used to detect if mic has been picked up and if mic is on player's face
+
+
+----20/11/2025----
+
+InViewDetector.cs ->  LookAtTeleport checks if your're looking at teleport hotspot and play active animation
+
+FoodTray.cs -> Upon grabbing it invokes the next part of dropping the tray
+
+Cloth.cs -> Destroys gameobejcts with "ToClean" tag upon collision and if the gameobject which contains the spilled food has 0 children it invokes the next part
+
+Ladle.cs -> Invokes next part upon collision with gameobject with tag "FoodBowl"
+
+Sean.cs -> Checks if both hands are touching and if both trigger is pressed to force scelet the gameobject into the player's hand else it will be dropped and ungrabble
