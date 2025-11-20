@@ -239,3 +239,29 @@ Cloth.cs -> Destroys gameobejcts with "ToClean" tag upon collision and if the ga
 Ladle.cs -> Invokes next part upon collision with gameobject with tag "FoodBowl"
 
 Sean.cs -> Checks if both hands are touching and if both trigger is pressed to force scelet the gameobject into the player's hand else it will be dropped and ungrabble
+
+Mouthwash.cs + comb.cs -> changes grabpoint depending on which hand is grabbing the gameobject
+
+----21 /11/2025---- (Past negative scripts)
+
+Cash.cs - Picking up the cash and detecting when it's placed into the register.
+-> Locks teleport + shows outline when cash is grabbed.
+-> Detects cash in register, hides the cash, and triggers the next prompt.
+
+ChickenChopManager.cs - Chicken-chopping minigame, including cut progression, feedback, and the accident event
+-> Shows/hides cut guide lines and updates which piece is being chopped
+-> Detects knife hits, the chop sequence, and triggers bleeding + voice-over
+
+LeftHandHold.cs – Detects when the player holds the chicken with their left hand and updates the chopping system
+-> Checks left-hand contact + trigger press to confirm the chicken is being held
+-> Shows the correct cutting guide line when holding, and hides lines when hand released
+
+KnifeChopDetector.cs – Knife collides with the chicken and triggers the next chop action.
+-> Calls OnKnifeHit() when the knife touches a meat piece
+
+KnifeGrab.cs
+–> Detects when the knife is first grabbed so the game can track that the chopping interaction has begun.
+
+HeartbeatUI.cs – Controls the heartbeat sound + vignette screen effect during moments.
+-> Adjusts pulsing vignette intensity and heartbeat speed based on stress level.
+-> Knife-accident feedback, constant red state, and fades everything back to normal after healing.
