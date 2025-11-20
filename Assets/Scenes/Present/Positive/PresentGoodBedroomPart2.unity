@@ -2509,6 +2509,13 @@ MonoBehaviour:
   taiChiAnimations: []
   toDoTaiChi: 0
   toStartSpasming: 0
+  toUsePlaster: 0
+  plasterContainer: {fileID: 0}
+  plaster: {fileID: 0}
+  leftHandRenderer: {fileID: 0}
+  bloodEffect: {fileID: 0}
+  plasteredHandMaterial: {fileID: 0}
+  handHealed: 0
 --- !u!114 &1115407452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2669,6 +2676,8 @@ MonoBehaviour:
   firstTeleportHotspot: {fileID: 0}
   playerTeleport: {fileID: 1368707508}
   promptManager: {fileID: 1719580650}
+  scenarioID: 3
+  sceneID: 0
   MaxAlertHideTimer: 5
   BathroomItems: {fileID: 0}
   timeForWashingUp: 30
@@ -4352,6 +4361,7 @@ MonoBehaviour:
   MoveToToiletDoorHotspots: []
   MoveToHawkerStallHotspots: []
   MoveToJobPositionHotspots: []
+  MoveToTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -4377,10 +4387,16 @@ MonoBehaviour:
   MovingToKaraokeCorner: 0
   MoveToToiletDoor: 0
   MoveToHawkerStall: 0
+  MoveToTable: 0
   MoveToSection: 0
   hasPlacedCash: 0
+  teleportLocked: 0
+  DropFood: 0
+  GoToFirstAid: 0
+  currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
+  scenarioManager: {fileID: 0}
 --- !u!4 &1368707509
 Transform:
   m_ObjectHideFlags: 0
@@ -5247,6 +5263,7 @@ GameObject:
   - component: {fileID: 1484599804}
   - component: {fileID: 1484599805}
   - component: {fileID: 1484599806}
+  - component: {fileID: 1484599807}
   m_Layer: 0
   m_Name: Pill_Bottle Correct
   m_TagString: Untagged
@@ -5944,6 +5961,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1484599804}
+--- !u!114 &1484599807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484599792}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef49f28b4d7f247458490d76d6c25c59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 0
+  forceStay: 0
 --- !u!1 &1498610870
 GameObject:
   m_ObjectHideFlags: 0
