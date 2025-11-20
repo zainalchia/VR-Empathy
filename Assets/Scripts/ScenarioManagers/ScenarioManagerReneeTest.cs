@@ -447,6 +447,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
+        promptManager.ShowPrompt(sceneID, 0, false, 2f);
+
         // Pour food segment
         Debug.Log("Called start");
         Ladle.GetComponent<Grabbable>().enabled = true;
@@ -496,6 +498,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // It's ok son, it's ok.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+
+
+        promptManager.ShowPrompt(sceneID, 1, false, 2f);
 
         // Carry sean segment
         Sean.GetComponent<Grabbable>().enabled = true;

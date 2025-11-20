@@ -780,6 +780,7 @@ MonoBehaviour:
   hasPlacedCash: 0
   teleportLocked: 0
   DropFood: 0
+  GoToFirstAid: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
@@ -1796,6 +1797,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: textMesh
+      value: 
+      objectReference: {fileID: 1365671159}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1807,6 +1813,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1012412482}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1012412484 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012412482}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012412485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8f1c478037cd9428aa5e4c63ee2ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1012412485 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4848855392656614273, guid: c5446b5edb5620e4ebda8642f07f0a96,
@@ -2245,6 +2263,12 @@ MonoBehaviour:
   taiChiAnimations: []
   toDoTaiChi: 0
   toStartSpasming: 0
+  toUsePlaster: 0
+  plasterContainer: {fileID: 0}
+  plaster: {fileID: 0}
+  leftHandRenderer: {fileID: 0}
+  bloodEffect: {fileID: 0}
+  plasteredHandMaterial: {fileID: 0}
 --- !u!4 &1156376157
 Transform:
   m_ObjectHideFlags: 0
@@ -2304,6 +2328,12 @@ MonoBehaviour:
   CashEndPoint: {fileID: 0}
   Boss: {fileID: 0}
   heartbeatUI: {fileID: 0}
+  bandaidContainer: {fileID: 0}
+  lidAnimator: {fileID: 0}
+  lidPopTrigger: PopOff
+  lidMover: {fileID: 0}
+  plasterPrefab: {fileID: 0}
+  plasterSpawnPoint: {fileID: 0}
   TrayOfFood: {fileID: 0}
   DroppedFood: {fileID: 0}
   PlayerCloth: {fileID: 0}
@@ -2634,6 +2664,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1281970455}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1365671159 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7339869770074795435, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012412482}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1377951794
 GameObject:
   m_ObjectHideFlags: 0
@@ -3415,6 +3457,11 @@ PrefabInstance:
       propertyPath: activeScenario
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
+        type: 3}
+      propertyPath: alertTextController
+      value: 
+      objectReference: {fileID: 1012412484}
     - target: {fileID: 2001248829966643381, guid: de2aa261b86273e41ae7b98704280be7,
         type: 3}
       propertyPath: m_Name
