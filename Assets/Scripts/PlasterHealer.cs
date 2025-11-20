@@ -31,6 +31,7 @@ public class PlasterHealer : MonoBehaviour
             if (leftHandRenderer != null && plasteredHandMaterial != null)
             {
                 leftHandRenderer.material = plasteredHandMaterial;
+                GameManager.instance.handHealed = true;
             }
 
             // remove plaster 

@@ -108,6 +108,8 @@ public class GameManager : MonoBehaviour
     public Renderer leftHandRenderer;       
     public ParticleSystem bloodEffect;        
     public Material plasteredHandMaterial;
+    public bool handHealed = false;
+
     public void DebugLog(string text)
     {
         if (DebugTextTest.Instance != null)
