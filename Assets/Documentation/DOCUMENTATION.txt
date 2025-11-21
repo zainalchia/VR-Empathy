@@ -242,7 +242,7 @@ Sean.cs -> Checks if both hands are touching and if both trigger is pressed to f
 
 Mouthwash.cs + comb.cs -> changes grabpoint depending on which hand is grabbing the gameobject
 
-----21 /11/2025---- (Past negative scripts)
+----21/11/2025---- (Past negative scripts)
 
 Cash.cs - Picking up the cash and detecting when it's placed into the register.
 -> Locks teleport + shows outline when cash is grabbed.
@@ -265,3 +265,20 @@ KnifeGrab.cs
 HeartbeatUI.cs – Controls the heartbeat sound + vignette screen effect during moments.
 -> Adjusts pulsing vignette intensity and heartbeat speed based on stress level.
 -> Knife-accident feedback, constant red state, and fades everything back to normal after healing.
+
+(Plaster object and medicine bottle object in present positive is similar, managed in scenemanager)
+PlasterContainer.cs – detects when the plaster container is grabbed and triggers the lid-opening sequence.
+-> Uses GrabInteractable to detect the first grab.
+
+LidMover.cs – Moves the plaster container lid in a smooth "jump" arc from its original position to a target spot (table).
+-> Animates the lid, just by increase y axis (like opening).
+-> Called after the lid pops, detaching it and landing it on the table.
+
+PlasterHealer.cs – Plaster touches the player’s left hand and triggers the healing effect.
+-> Stops the bleeding particles and swaps the hand material to the plastered-hand material.
+-> Deletes the plaster object and sets handHealed = true so the story can continue.
+
+----Others----
+PhotoFrame.cs – Handles grabbing the photo frame (and detecting which hand is used.)
+-> Adjusts grab point position based on left/right hand and triggers the “look at photo” event when the player successfully grabs it.
+-> this script is similar to others when trying to fix the grab point, so this always will be on the specific grab point we want based on rotations.
