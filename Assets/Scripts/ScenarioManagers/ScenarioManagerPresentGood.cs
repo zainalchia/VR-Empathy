@@ -926,12 +926,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
             MedicineBottle.GetComponent<ForceStayGrabbed>().enabled = true;
             MedicineBottle.GetComponent<MedicineBottle>().enabled = true;
 
-            yield return null;
-            sceneID = SceneID.Bedroom;
-
+        //yield return null;
+        //sceneID = SceneID.Bedroom;
+        Debug.Log("Beofore call");
             // Show medicine prompt
             MedicineOutline.enabled = true;
-
+        Debug.Log("Called");
             // Allow player to consume medicine
             GameManager.instance.toConsumeMedicine = true;
 

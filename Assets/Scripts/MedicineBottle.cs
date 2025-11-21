@@ -6,7 +6,6 @@ public class MedicineBottle : MonoBehaviour
 {
     public UnityEvent OnBottleGrabbed;
     private bool hasGrabbed = false;
-    private GrabInteractable grabInteractable;
 
     private Grabbable grabbable;
     [SerializeField] private GameObject capObject; 
