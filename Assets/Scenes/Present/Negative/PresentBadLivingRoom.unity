@@ -2368,6 +2368,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef49f28b4d7f247458490d76d6c25c59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &412595817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3543667628877398903, guid: 6872d198dca952c40aefc0a497e8a0f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2586940751914089130}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412595808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &413869197
 GameObject:
   m_ObjectHideFlags: 0
@@ -2441,7 +2453,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421615959}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -13077,6 +13089,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2048965410463509368, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3543667628877398903, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
       propertyPath: m_Enabled
@@ -14414,7 +14431,64 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   events:
-  - type: 0
+  - rid: 8550330735663775745
+  - rid: 8550330734430650414
+  - rid: 8550330734430650408
+  - rid: 8550330734430650416
+  - rid: 8550330734430650412
+  - rid: 8550330734430650393
+  - rid: 8550330735663775747
+  references:
+    version: 2
+    RefIds:
+    - rid: 8550330734430650393
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        type: 1
+        text: Good job. That is all of the text.
+        duration: 0
+    - rid: 8550330734430650408
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        type: 3
+        grabbable: {fileID: 412595817}
+    - rid: 8550330734430650412
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        type: 2
+        waitTime: 3
+    - rid: 8550330734430650414
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        type: 1
+        text: Pick up the cane.
+        duration: 0
+    - rid: 8550330734430650416
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        type: 1
+        text: Good job. Wait 3 seconds.
+        duration: 0
+    - rid: 8550330735663775745
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        type: 5
+        audioSource: {fileID: 7330522279698956924}
+        audioClip: {fileID: 8300000, guid: ee7eeb490503c48ff8dc69cc8372c299, type: 3}
+        waitForEnd: 1
+    - rid: 8550330735663775747
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        type: 5
+        audioSource: {fileID: 7330522279698956924}
+        audioClip: {fileID: 8300000, guid: 765b77930b5d149438791771e6ea5755, type: 3}
+        waitForEnd: 1
+--- !u!82 &7330522279698956924 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8518638762025746586, guid: 762801de029432c44a40e4065bb93349,
+    type: 3}
+  m_PrefabInstance: {fileID: 5817889223404952107}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7420753592346597749
 Transform:
   m_ObjectHideFlags: 0

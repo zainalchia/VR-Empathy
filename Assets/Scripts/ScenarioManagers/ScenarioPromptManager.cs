@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -37,9 +38,12 @@ public class ScenarioPromptManager : MonoBehaviour
 
     private Dictionary<string, List<PromptEntry>> promptMap = new();
 
+    public static ScenarioPromptManager instance { get; private set; }
+
     private void Awake()
     {
         LoadPrompts();
+        instance = this;
     }
 
     private void LoadPrompts()
@@ -122,6 +126,23 @@ public class ScenarioPromptManager : MonoBehaviour
     public void ShowPrompt(SceneID scene, int index = 0, bool stayOnScreen = true, float duration = 2f)
     {
         ShowPrompt(activeScenario, scene, index, stayOnScreen, duration);
+    }
+
+    public void ShowPrompt(string text, float duration)
+    {
+        if (AlertTextController.instance == null && alertTextController != null)
+        {
+            alertTextController.gameObject.SetActive(true); // Activate manually
+            AlertTextController.instance = alertTextController;
+        }
+
+        if (AlertTextController.instance != null)
+        {
+            if (duration <= 0.0f)
+                AlertTextController.instance.ShowAlert(text);
+            else
+                AlertTextController.instance.ShowAlert(text, duration);
+        }
     }
 
 
