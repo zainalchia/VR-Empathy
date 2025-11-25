@@ -4,6 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.Rendering;
 
 enum Hand
 {
@@ -23,17 +25,20 @@ public class SequenceManager : MonoBehaviour
 #if UNITY_EDITOR // this is an editor utility ONLY, for swapping between sequence event types
 		public enum SequenceEventEnum
 		{
-			[InspectorName("None")						] SET_None					,
-			[InspectorName("Show Prompt")				] SET_Text					,
-			[InspectorName("Wait")						] SET_WaitSeconds			,
-			[InspectorName("Wait for item pickup")		] SET_WaitForItemPickup		,
-			[InspectorName("Wait for item drop")		] SET_WaitForItemDrop		,
-			[InspectorName("Play audio")				] SET_PlayAudioClip			,
-			[InspectorName("Set GameObject active")		] SET_SetGameObjectActive	,
-			[InspectorName("Wait for GameObject active")] SET_WaitGameObjectActive	,
-			[InspectorName("Force user to hold item")	] SET_ForceGrab				,
-			[InspectorName("Force user to drop item")	] SET_ForceDrop				,
-			[InspectorName("")							] SET_COUNT // NOT an actual type! here for easy counting!!!
+			[InspectorName("None")								] SET_None					,
+			[InspectorName("Show Prompt")						] SET_Text					,
+			[InspectorName("Wait")								] SET_WaitSeconds			,
+			[InspectorName("Wait for item pickup")				] SET_WaitForItemPickup		,
+			[InspectorName("Wait for item drop")				] SET_WaitForItemDrop		,
+			[InspectorName("Play audio")						] SET_PlayAudioClip			,
+			[InspectorName("Set GameObject active")				] SET_SetGameObjectActive	,
+			[InspectorName("Wait for GameObject active")		] SET_WaitGameObjectActive	,
+			[InspectorName("Force user to hold item")			] SET_ForceGrab				,
+			[InspectorName("Force user to drop item")			] SET_ForceDrop				,
+			[InspectorName("Set post-processing weight")		] SET_SetPostProcessWeight	,
+			[InspectorName("Wait for distance between objects")	] SET_WaitDistance			,
+			[InspectorName("Trigger Unity Event")				] SET_UnityEvent			,
+			[InspectorName("")									] SET_COUNT // NOT an actual type! here for easy counting!!!
 		}
 
 		public static readonly System.Type[] SequenceEventTypes = new System.Type[(int)SequenceEventEnum.SET_COUNT]
@@ -48,6 +53,9 @@ public class SequenceManager : MonoBehaviour
 			typeof(SEvent_WaitForGameObjectActive	),
 			typeof(SEvent_ForceGrab					),
 			typeof(SEvent_ForceDrop					),
+			typeof(SEvent_LerpPostProcessingWeight	),
+			typeof(SEvent_WaitForDistance			),
+			typeof(SEvent_TriggerUnityEvent			),
 		};
 
 		public SequenceEventEnum type;
@@ -116,6 +124,7 @@ public class SequenceManager : MonoBehaviour
 		[SerializeField] GrabInteractable interactable;
 		[SerializeField] bool outlineItem;
 		[SerializeField] bool itemStaysGrabbed;
+		[SerializeField] bool forceEnableGrabbable;
 
 		public override void OnEnter()
 		{
@@ -128,11 +137,23 @@ public class SequenceManager : MonoBehaviour
 				return;
 			}
 
+			// force enable pickup components.
+			if (forceEnableGrabbable)
+			{
+				interactable.enabled = true;
+				Grabbable grabbable = interactable.GetComponent<Grabbable>();
+				if (grabbable != null) grabbable.enabled = true;
+				PhysicsGrabbable physicsGrabbable = interactable.GetComponent<PhysicsGrabbable>();
+				if(physicsGrabbable != null) physicsGrabbable.enabled = true;
+			}
+
 			// outline item, if applicable
-			if (!outlineItem) return;
-			Outline outline = interactable.gameObject.GetComponent<Outline>();
-			if (outline == null) return;
-			outline.enabled = true;
+			if (outlineItem)
+			{
+				Outline outline = interactable.gameObject.GetComponent<Outline>();
+				if (outline == null) return;
+				outline.enabled = true;
+			}
 
 		}
 
@@ -149,19 +170,19 @@ public class SequenceManager : MonoBehaviour
 
 			if (itemStaysGrabbed)
 			{
-                if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
-                    ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
-                if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
-                    ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
-            }
+				if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
+					ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
+				if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
+					ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+			}
 
 			// un-outline item, if applicable
 			if (outlineItem)
 			{
-                Outline outline = interactable.gameObject.GetComponent<Outline>();
-                if (outline == null) return;
-                outline.enabled = false;
-            }
+				Outline outline = interactable.gameObject.GetComponent<Outline>();
+				if (outline == null) return;
+				outline.enabled = false;
+			}
 		}
 	}
 
@@ -181,15 +202,26 @@ public class SequenceManager : MonoBehaviour
 	{
 		[SerializeField] AudioSource audioSource;
 		[SerializeField] AudioClip audioClip;
+		[SerializeField] AudioClip audioClipAlt;
 		[SerializeField] bool waitForEnd = true;
+		[SerializeField] bool loop = false;
 
 		public override void OnEnter()
 		{
 			base.OnEnter();
 			audioSource.loop = false;
 			audioSource.Stop();
-			audioSource.clip = audioClip;
+
+			// play alternate voiceline, if applicable
+			if(MainMenuManager.isGenderMale && (audioClipAlt != null)) 
+				audioSource.clip = audioClipAlt;
+
+			// play default voiceline
+			else
+				audioSource.clip = audioClip;
+
 			audioSource.Play();
+			audioSource.loop = loop;
 		}
 
 		public override void Update()
@@ -257,28 +289,128 @@ public class SequenceManager : MonoBehaviour
 
 				case Hand.Current:
 					if(ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
-                        ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
-                    if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
-                        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+						ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
+					if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
+						ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
 					break;
-            }
+			}
 			Exit();
 		}
 	}
 
 	public class SEvent_ForceDrop : SequenceEvent
 	{
-		[SerializeField] Hand hand;
+		//[SerializeField] Hand hand;
+		[SerializeField] GrabInteractable interactable;
 
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			if (hand == Hand.Left)
+			if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
 				ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
-			else
+			if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
 				ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
 			Exit();
 		}
+	}
+
+	public class SEvent_LerpPostProcessingWeight : SequenceEvent
+	{
+		[SerializeField] Volume postProcessingVolume;
+		[SerializeField] float targetWeight;
+		[SerializeField] float time;
+		float timer;
+		float startingWeight;
+
+		public override void OnReset()
+		{
+			base.OnReset();
+			timer = 0;
+		}
+
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			startingWeight = postProcessingVolume.weight;
+		}
+
+		public override void Update()
+		{
+			base.Update();
+			if ((timer += Time.deltaTime) < time)
+				postProcessingVolume.weight = Mathf.Lerp(startingWeight, targetWeight, timer / time);
+			else
+				Exit();
+
+		}
+
+        public override void OnExit()
+        {
+            base.OnExit();
+			postProcessingVolume.weight = targetWeight;
+        }
+	}
+
+	public class SEvent_WaitForDistance : SequenceEvent
+	{
+		public enum DistanceCondition
+		{
+			LessThan,
+			MoreThan
+		}
+
+		[SerializeField] GameObject gameObject1;
+		[SerializeField] GameObject gameObject2;
+		[SerializeField] DistanceCondition condition;
+		[SerializeField] float distance;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+			if((gameObject1 == null) || (gameObject2 == null))
+			{
+				Exit();
+				return;
+			}
+        }
+
+		public override void Update()
+		{
+			base.Update();
+			switch (condition)
+			{
+				case DistanceCondition.LessThan:
+				{
+					if (
+						(gameObject1.transform.position - gameObject2.transform.position).sqrMagnitude <
+						(distance * distance)
+					) { Exit(); return; }
+					break;
+				}
+
+				case DistanceCondition.MoreThan:
+				{
+					if (
+						(gameObject1.transform.position - gameObject2.transform.position).sqrMagnitude >
+						(distance * distance)
+					) { Exit(); return; }
+					break;
+				}
+			}
+
+		}
+	}
+
+	public class SEvent_TriggerUnityEvent : SequenceEvent
+	{
+		[SerializeField] UnityEvent unityEvent;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+			unityEvent.Invoke();
+			Exit();
+        }
 	}
 
 
@@ -322,13 +454,15 @@ public class SequenceManager : MonoBehaviour
 
 			// event type DOESN'T match!! replace!!
 			//delete events[eventIndex]; // i forgot c# doesn't let you deallocate memory directy... lame...
-			events[eventIndex] = (SequenceEvent)Activator.CreateInstance(desiredType);
+			string oldName = events[eventIndex].name;
+            events[eventIndex] = (SequenceEvent)Activator.CreateInstance(desiredType);
 			events[eventIndex].type = sequenceEventEnum;
+			events[eventIndex].name = oldName;
 
-			// debug
-			//Debug.Log("Replacing sequence event at index " + eventIndex.ToString() + " with a sequence event of type " + SequenceEvent.SequenceEventTypes[(int)events[eventIndex].type].ToString());
+            // debug
+            //Debug.Log("Replacing sequence event at index " + eventIndex.ToString() + " with a sequence event of type " + SequenceEvent.SequenceEventTypes[(int)events[eventIndex].type].ToString());
 
-		}
+        }
 		
 	}
 #endif

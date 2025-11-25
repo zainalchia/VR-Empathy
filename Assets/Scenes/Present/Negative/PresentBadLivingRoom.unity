@@ -220,6 +220,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 602461834}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &34000067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 434537179278466822, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &36163680
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +756,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aac0cf42448b3ed4f8c66ba66fbdb2ea,
     type: 3}
   m_PrefabInstance: {fileID: 331235975}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &168214529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4207753694588884743, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &173498326
 PrefabInstance:
@@ -1996,7 +2008,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &367298011
 Transform:
@@ -2011,6 +2023,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 407622561}
   - {fileID: 797358639}
   - {fileID: 324473985564501052}
   m_Father: {fileID: 514068214}
@@ -2127,6 +2140,37 @@ Transform:
   m_Children:
   - {fileID: 743066657}
   m_Father: {fileID: 1358817242}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &407622560
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 407622561}
+  m_Layer: 0
+  m_Name: Glasses Original Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &407622561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 407622560}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.08165028, y: 0.3275856, z: 0.019741269, w: 0.94107985}
+  m_LocalPosition: {x: -5.763522, y: 0.69316137, z: -2.968}
+  m_LocalScale: {x: 60, y: 60, z: 60}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 367298011}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &409088132
 PrefabInstance:
@@ -2453,7 +2497,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 421615959}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
   m_Name: 
@@ -2461,7 +2505,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 1
+  weight: 0
   sharedProfile: {fileID: 11400000, guid: b45daf46dca54974d982db0ab470b8fe, type: 2}
 --- !u!4 &421615962
 Transform:
@@ -6723,7 +6767,7 @@ PrefabInstance:
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7307,6 +7351,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1301409479}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 48ad882e6dc9d4d49b82c7fb29a0899c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1301409482}
   m_SourcePrefab: {fileID: 100100000, guid: 48ad882e6dc9d4d49b82c7fb29a0899c, type: 3}
 --- !u!1 &1301409468 stripped
 GameObject:
@@ -8895,6 +8943,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9cd7cae551a6a0439eb81add43a083b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1301409482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1301409468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a055c5b18f76329469bb7bee267fd88b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  distanceBeforeDrop: 0.3
 --- !u!1001 &1352166672
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10450,6 +10511,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1615119055}
   m_CullTransparentMesh: 1
+--- !u!1 &1657800783 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7174210402274206933, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1709069241
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12590,6 +12657,114 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2980255246112352149}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1039994823576403881 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8117996710337199305, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 2980255246112352149}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039994823576403878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1039994823576403887
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039994823576403878}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 1
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!33 &1057995494856060701
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13488,7 +13663,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6105081470000227039, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1039994823576403887}
   m_SourcePrefab: {fileID: 100100000, guid: b12f7b93802b3c446a9d0b88b024c9e3, type: 3}
 --- !u!4 &3359836494176904190
 Transform:
@@ -14437,82 +14616,320 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshEditor: 0
   events:
-  - rid: 8550330751981715458
-  - rid: 8550330735663775745
-  - rid: 8550330751981715460
-  - rid: 8550330734430650414
-  - rid: 8550330734430650408
-  - rid: 8550330734430650416
-  - rid: 8550330734430650412
-  - rid: 8550330734430650393
-  - rid: 8550330735663775747
+  - rid: 8550330751981715468
+  - rid: 8550330751981715470
+  - rid: 8550330751981715472
+  - rid: 8550330751981715475
+  - rid: 8550330751981715490
+  - rid: 8550330751981715477
+  - rid: 8550330751981715479
+  - rid: 8550330751981715481
+  - rid: 8550330751981715484
+  - rid: 8550330751981715486
+  - rid: 8550330751981715492
+  - rid: 8550330751981715504
+  - rid: 8550330751981715528
+  - rid: 8550330751981715506
+  - rid: 8550330751981715494
+  - rid: 8550330751981715534
+  - rid: 8550330751981715537
+  - rid: 8550330751981715501
+  - rid: 8550330751981715514
+  - rid: 8550330751981715535
+  - rid: 8550330751981715539
+  - rid: 8550330751981715520
+  - rid: 8550330751981715522
+  - rid: 8550330751981715526
+  - rid: 8550330751981715525
+  - rid: 8550330751981715530
+  - rid: 8550330751981715532
+  - rid: 8550330755812163585
+  - rid: 8550330755812163590
+  - rid: 8550330755812163588
   references:
     version: 2
     RefIds:
-    - rid: 8550330734430650393
-      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 1
-        text: Good job. That is all of the text.
-        duration: 0
-    - rid: 8550330734430650408
-      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for user to pick up cane
-        type: 3
-        interactable: {fileID: 412595823}
-        outlineItem: 1
-        itemStaysGrabbed: 1
-    - rid: 8550330734430650412
-      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 2
-        waitTime: 3
-    - rid: 8550330734430650414
-      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
-      data:
-        name: Prompt pick up cane
-        type: 1
-        text: Pick up the cane.
-        duration: 0
-    - rid: 8550330734430650416
-      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 1
-        text: Good job. Wait 3 seconds.
-        duration: 0
-    - rid: 8550330735663775745
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: Play grab cane audio
-        type: 5
-        audioSource: {fileID: 7330522279698956924}
-        audioClip: {fileID: 8300000, guid: ee7eeb490503c48ff8dc69cc8372c299, type: 3}
-        waitForEnd: 1
-    - rid: 8550330735663775747
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 5
-        audioSource: {fileID: 7330522279698956924}
-        audioClip: {fileID: 8300000, guid: 765b77930b5d149438791771e6ea5755, type: 3}
-        waitForEnd: 1
-    - rid: 8550330751981715458
+    - rid: 8550330751981715468
       type: {class: SequenceManager/SEvent_ForceGrab, ns: , asm: Assembly-CSharp}
       data:
-        name: Force grab cane
+        name: Force hold walking stick
         type: 8
         hand: 1
         interactable: {fileID: 412595823}
-    - rid: 8550330751981715460
+    - rid: 8550330751981715470
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable first teleport
+        type: 6
+        gameObject: {fileID: 1092479195}
+        active: 1
+    - rid: 8550330751981715472
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Prompt walking
+        type: 1
+        text: Point your walking stick at the floor and press [left trigger] to move.
+        duration: 5
+    - rid: 8550330751981715475
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to move to fifth teleport (1)
+        type: 7
+        gameObject: {fileID: 1613801119}
+        active: 0
+    - rid: 8550330751981715477
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Comment on food getting cold.'
+        type: 5
+        audioSource: {fileID: 7330522279698956924}
+        audioClip: {fileID: 8300000, guid: 9e97b4a71fa07434dae97ac80d15d851, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 85a5c937f67ebcc4ebc7e50196b2bfaa, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 8550330751981715479
+      type: {class: SequenceManager/SEvent_LerpPostProcessingWeight, ns: , asm: Assembly-CSharp}
+      data:
+        name: Blur eyesight post-processing.
+        type: 10
+        postProcessingVolume: {fileID: 421615961}
+        targetWeight: 1
+        time: 1
+    - rid: 8550330751981715481
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Complain about eyesight'
+        type: 5
+        audioSource: {fileID: 7330522279698956924}
+        audioClip: {fileID: 8300000, guid: d597e4da3bdd04704856f230b38e870d, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 23b1483b697da7e49bdf00aa13beeae4, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 8550330751981715484
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable teleport to table
+        type: 6
+        gameObject: {fileID: 1716715472}
+        active: 1
+    - rid: 8550330751981715486
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to move to table teleport (1)
+        type: 7
+        gameObject: {fileID: 1231675834}
+        active: 1
+    - rid: 8550330751981715490
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to move to fifth teleport (2)
+        type: 7
+        gameObject: {fileID: 1613801119}
+        active: 1
+    - rid: 8550330751981715492
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to move to table teleport (2)
+        type: 7
+        gameObject: {fileID: 1231675834}
+        active: 0
+    - rid: 8550330751981715494
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to pick up glasses
+        type: 3
+        interactable: {fileID: 1301409470}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 8550330751981715501
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Complain about hand strength'
+        type: 5
+        audioSource: {fileID: 7330522279698956924}
+        audioClip: {fileID: 8300000, guid: c92100edbee354d61baef17fd4325bc4, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 9a3557342d7c9524d9bc415635cb6e0e, type: 3}
+        waitForEnd: 0
+        loop: 0
+    - rid: 8550330751981715504
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Start Phone Buzzing'
+        type: 5
+        audioSource: {fileID: 1039994823576403887}
+        audioClip: {fileID: 8300000, guid: 16e790d80ec94184891b44d87087383f, type: 3}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 0
+        loop: 1
+    - rid: 8550330751981715506
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Talk about phone being hard to see'
+        type: 5
+        audioSource: {fileID: 7330522279698956924}
+        audioClip: {fileID: 8300000, guid: 32d26129d29a54ab287a97a1a1f5dbd5, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 4c8afc6bf62358f459e25b6b119c3d36, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 8550330751981715514
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to pick up glasses again
+        type: 3
+        interactable: {fileID: 1301409470}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 8550330751981715520
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to pick up glasses again again
+        type: 3
+        interactable: {fileID: 1301409470}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 0
+    - rid: 8550330751981715522
+      type: {class: SequenceManager/SEvent_WaitForDistance, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to put glasses on
+        type: 11
+        gameObject1: {fileID: 1301409468}
+        gameObject2: {fileID: 168214529}
+        condition: 0
+        distance: 0.15
+    - rid: 8550330751981715525
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Disable glasses object
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1301409468}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 8550330751981715526
       type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
       data:
-        name: 'Force drop cane '
+        name: Force drop glasses one more time
         type: 9
-        hand: 1
+        interactable: {fileID: 1301409470}
+    - rid: 8550330751981715528
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for user to pick up phone
+        type: 3
+        interactable: {fileID: 1039994823576403881}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 8550330751981715530
+      type: {class: SequenceManager/SEvent_LerpPostProcessingWeight, ns: , asm: Assembly-CSharp}
+      data:
+        name: Remove blur post-process
+        type: 10
+        postProcessingVolume: {fileID: 421615961}
+        targetWeight: 0
+        time: 1
+    - rid: 8550330751981715532
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Prompt user to swipe phone
+        type: 1
+        text: Swipe your phone to pick up.
+        duration: 5
+    - rid: 8550330751981715534
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Drop glasses lol
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1301409482}
+              m_TargetAssemblyTypeName: DropAfterDistance, Assembly-CSharp
+              m_MethodName: Activate
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 8550330751981715535
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Drop glasses AGAIN
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1301409482}
+              m_TargetAssemblyTypeName: DropAfterDistance, Assembly-CSharp
+              m_MethodName: Activate
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 8550330751981715537
+      type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for glasses to be dropped
+        type: 4
+        interactable: {fileID: 1301409470}
+    - rid: 8550330751981715539
+      type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for glasses to be dropped
+        type: 4
+        interactable: {fileID: 1301409470}
+    - rid: 8550330755812163585
+      type: {class: SequenceManager/SEvent_WaitForDistance, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for user to "swipe phone" (check if hands are close together)
+        type: 11
+        gameObject1: {fileID: 34000067}
+        gameObject2: {fileID: 1657800783}
+        condition: 0
+        distance: 0.1
+    - rid: 8550330755812163588
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Play voice of that son that hates you'
+        type: 5
+        audioSource: {fileID: 7330522279698956924}
+        audioClip: {fileID: 8300000, guid: e6505c59ae68f45ac9673204297de625, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 0aa1d4c3f0e564048892a494c1d141c9, type: 3}
+        waitForEnd: 0
+        loop: 0
+    - rid: 8550330755812163590
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Stop Phone Ringing
+        type: 5
+        audioSource: {fileID: 1039994823576403887}
+        audioClip: {fileID: 0}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 0
+        loop: 0
 --- !u!82 &7330522279698956924 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 8518638762025746586, guid: 762801de029432c44a40e4065bb93349,
