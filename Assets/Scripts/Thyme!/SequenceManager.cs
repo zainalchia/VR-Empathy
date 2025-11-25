@@ -5,6 +5,13 @@ using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
+enum Hand
+{
+	Left,
+	Right,
+	Current
+}
+
 public class SequenceManager : MonoBehaviour
 {
 
@@ -12,26 +19,35 @@ public class SequenceManager : MonoBehaviour
 	[Serializable]
 	public class SequenceEvent
 	{
+		public string name;
 #if UNITY_EDITOR // this is an editor utility ONLY, for swapping between sequence event types
 		public enum SequenceEventEnum
 		{
-			[InspectorName("None")					] SET_None				,
-			[InspectorName("Show Prompt")			] SET_Text				,
-			[InspectorName("Wait")					] SET_WaitSeconds		,
-			[InspectorName("Wait for item pickup")	] SET_WaitForItemPickup	,
-			[InspectorName("Wait for item drop")	] SET_WaitForItemDrop	,
-			[InspectorName("Play audio")			] SET_PlayAudioClip		,
-			[InspectorName("")						] SET_COUNT // NOT an actual type! here for easy counting!!!
+			[InspectorName("None")						] SET_None					,
+			[InspectorName("Show Prompt")				] SET_Text					,
+			[InspectorName("Wait")						] SET_WaitSeconds			,
+			[InspectorName("Wait for item pickup")		] SET_WaitForItemPickup		,
+			[InspectorName("Wait for item drop")		] SET_WaitForItemDrop		,
+			[InspectorName("Play audio")				] SET_PlayAudioClip			,
+			[InspectorName("Set GameObject active")		] SET_SetGameObjectActive	,
+			[InspectorName("Wait for GameObject active")] SET_WaitGameObjectActive	,
+			[InspectorName("Force user to hold item")	] SET_ForceGrab				,
+			[InspectorName("Force user to drop item")	] SET_ForceDrop				,
+			[InspectorName("")							] SET_COUNT // NOT an actual type! here for easy counting!!!
 		}
 
 		public static readonly System.Type[] SequenceEventTypes = new System.Type[(int)SequenceEventEnum.SET_COUNT]
 		{
-			typeof(SequenceEvent            ),
-			typeof(SEvent_Text              ),
-			typeof(SEvent_WaitSeconds       ),
-			typeof(SEvent_WaitForItemPickup ),
-			typeof(SEvent_WaitForItemDrop   ),
-			typeof(SEvent_PlayAudio			),
+			typeof(SequenceEvent					),
+			typeof(SEvent_Text						),
+			typeof(SEvent_WaitSeconds				),
+			typeof(SEvent_WaitForItemPickup			),
+			typeof(SEvent_WaitForItemDrop			),
+			typeof(SEvent_PlayAudio					),
+			typeof(SEvent_SetGameObjectActive		),
+			typeof(SEvent_WaitForGameObjectActive	),
+			typeof(SEvent_ForceGrab					),
+			typeof(SEvent_ForceDrop					),
 		};
 
 		public SequenceEventEnum type;
@@ -97,24 +113,66 @@ public class SequenceManager : MonoBehaviour
 	[Serializable]
 	public class SEvent_WaitForItemPickup : SequenceEvent 
 	{
-		[SerializeField] Grabbable grabbable;
+		[SerializeField] GrabInteractable interactable;
+		[SerializeField] bool outlineItem;
+		[SerializeField] bool itemStaysGrabbed;
+
+		public override void OnEnter()
+		{
+			base.OnEnter();
+
+			// check if assigned grabbable exists
+			if(interactable == null)
+			{
+				Exit();
+				return;
+			}
+
+			// outline item, if applicable
+			if (!outlineItem) return;
+			Outline outline = interactable.gameObject.GetComponent<Outline>();
+			if (outline == null) return;
+			outline.enabled = true;
+
+		}
 
 		public override void Update()
 		{
 			base.Update();
-			if (ThymeVRUtility.IsHeld(grabbable))
+			if (ThymeVRUtility.IsHeld(interactable))
 				Exit();
+		}
+
+		public override void OnExit()
+		{
+			base.OnExit();
+
+			if (itemStaysGrabbed)
+			{
+                if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
+                    ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
+                if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
+                    ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+            }
+
+			// un-outline item, if applicable
+			if (outlineItem)
+			{
+                Outline outline = interactable.gameObject.GetComponent<Outline>();
+                if (outline == null) return;
+                outline.enabled = false;
+            }
 		}
 	}
 
 	public class SEvent_WaitForItemDrop : SequenceEvent
 	{
-		[SerializeField] Grabbable grabbable;
+		[SerializeField] GrabInteractable interactable;
 
 		public override void Update()
 		{
 			base.Update();
-			if (!ThymeVRUtility.IsHeld(grabbable))
+			if (!ThymeVRUtility.IsHeld(interactable))
 				Exit();
 		}
 	}
@@ -143,11 +201,97 @@ public class SequenceManager : MonoBehaviour
 
 	}
 
+	public class SEvent_SetGameObjectActive : SequenceEvent
+	{
+		[SerializeField] GameObject gameObject;
+		[SerializeField] bool active = true;
+
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			if (gameObject != null) gameObject.SetActive(active);
+			Exit();
+		}
+	}
+
+	public class SEvent_WaitForGameObjectActive : SequenceEvent
+	{
+		[SerializeField] GameObject gameObject;
+		[SerializeField] bool active = true;
+
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			if(gameObject == null) Exit();
+		}
+
+		public override void Update()
+		{
+			base.Update();
+			if (gameObject.activeInHierarchy != active) return;
+			Exit();
+		}
+	}
+
+	public class SEvent_ForceGrab : SequenceEvent
+	{
+		[SerializeField] Hand hand;
+		[SerializeField] GrabInteractable interactable;
+
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			switch (hand)
+			{
+				case Hand.Left:
+				{
+					ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
+					break;
+				}
+
+				case Hand.Right:
+				{
+					ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+					break;
+				}
+
+				case Hand.Current:
+					if(ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
+                        ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
+                    if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
+                        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+					break;
+            }
+			Exit();
+		}
+	}
+
+	public class SEvent_ForceDrop : SequenceEvent
+	{
+		[SerializeField] Hand hand;
+
+		public override void OnEnter()
+		{
+			base.OnEnter();
+			if (hand == Hand.Left)
+				ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
+			else
+				ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+			Exit();
+		}
+	}
+
 
 
 
 
 	// sequence manager properties
+	public static SequenceManager _instance { get; private set; }
+
+	[Header("Event Settings")]
+#if UNITY_EDITOR
+	[SerializeField] bool refreshEditor;	
+#endif
 	[SerializeReference] private SequenceEvent[] events;
 	UInt32 sequenceEventIndex = 0;
 
@@ -157,6 +301,8 @@ public class SequenceManager : MonoBehaviour
 #if UNITY_EDITOR
 	public void OnValidate()
 	{
+		refreshEditor = false;
+
 		// go through each event and swap to appropriate child type
 		for (int eventIndex = 0; eventIndex < events.Length; eventIndex++) 
 		{
@@ -190,6 +336,7 @@ public class SequenceManager : MonoBehaviour
 	private void Start()
 	{
 		if ((events == null) || (events.Length <= 0)) return; // end here if there are no events to play
+		_instance = this;
 
 		// set up the first event
 		events[sequenceEventIndex].Reset();

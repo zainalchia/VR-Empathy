@@ -7,12 +7,12 @@ using static UnityEditor.Progress;
 
 class ThymeVRUtility
 {
-    public static bool IsHeld(Grabbable grabbable)
+    public static bool IsHeld(GrabInteractable interactable)
     {
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
             if (grabInteractor.SelectedInteractable == null) continue;
-            if (grabInteractor.SelectedInteractable.gameObject == grabbable.gameObject) return true;
+            if (grabInteractor.SelectedInteractable.gameObject == interactable.gameObject) return true;
         }
         return false;
     }
