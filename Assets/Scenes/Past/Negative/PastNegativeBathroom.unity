@@ -7626,6 +7626,7 @@ MonoBehaviour:
   hasPlacedCash: 0
   teleportLocked: 0
   DropFood: 0
+  GoToFirstAid: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
@@ -8292,6 +8293,13 @@ MonoBehaviour:
   taiChiAnimations: []
   toDoTaiChi: 0
   toStartSpasming: 0
+  toUsePlaster: 0
+  plasterContainer: {fileID: 0}
+  plaster: {fileID: 0}
+  leftHandRenderer: {fileID: 0}
+  bloodEffect: {fileID: 0}
+  plasteredHandMaterial: {fileID: 0}
+  handHealed: 0
 --- !u!4 &1201703108
 Transform:
   m_ObjectHideFlags: 0
@@ -8375,12 +8383,19 @@ MonoBehaviour:
   CashEndPoint: {fileID: 0}
   Boss: {fileID: 0}
   heartbeatUI: {fileID: 0}
+  bandaidContainer: {fileID: 0}
+  lidAnimator: {fileID: 0}
+  lidPopTrigger: PopOff
+  lidMover: {fileID: 0}
+  plasterPrefab: {fileID: 0}
+  plasterSpawnPoint: {fileID: 0}
   TrayOfFood: {fileID: 0}
   DroppedFood: {fileID: 0}
   PlayerCloth: {fileID: 0}
   Ladle: {fileID: 0}
   Sean: {fileID: 0}
   SeanAudioSource: {fileID: 0}
+  HomeLight: {fileID: 0}
   PlayerDestination: {fileID: 0}
   Player: {fileID: 0}
 --- !u!114 &1201703112
@@ -8832,7 +8847,7 @@ Camera:
   near clip plane: 0.01
   far clip plane: 4
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 0.48
   m_Depth: 0
   m_CullingMask:
@@ -13409,6 +13424,7 @@ GameObject:
   - component: {fileID: 1982601964}
   - component: {fileID: 1982601963}
   - component: {fileID: 1982601962}
+  - component: {fileID: 1982601965}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -13503,6 +13519,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982601960}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1982601965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982601960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8015968a8467a418c3843068de28f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  reflectionCamera: {fileID: 1267951791}
+  reflectionTexture: {fileID: 8400000, guid: b70020eb69a0fdb4c98817acdd5f0898, type: 2}
 --- !u!1 &2024320678
 GameObject:
   m_ObjectHideFlags: 0
