@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.28589094, g: 0.45810828, b: 0.5919031, a: 1}
+  m_IndirectSpecularColor: {r: 0.28540036, g: 0.45722115, b: 0.5927939, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5445,6 +5445,27 @@ Transform:
   - {fileID: 1358817242}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1122438753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7501658711325309529, guid: 416068c380b68f34a9b21aed02e67532,
+    type: 3}
+  m_PrefabInstance: {fileID: 2129228390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1122438755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122438753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8015968a8467a418c3843068de28f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 0}
+  reflectionCamera: {fileID: 1800299218}
+  reflectionTexture: {fileID: 8600000, guid: 7826ab22ac7ccf546ad0dc7a6cee7634, type: 2}
 --- !u!1 &1178772239
 GameObject:
   m_ObjectHideFlags: 0
@@ -9514,6 +9535,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 93230981}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1800299218 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
+    type: 3}
+  m_PrefabInstance: {fileID: 2129228390}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1864073782 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1631256664276246, guid: 93d6183e10b02e047b91802002e352aa,
@@ -15903,7 +15930,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 50050442875439148a5a56436a3eca26, type: 2}
+      objectReference: {fileID: 2100000, guid: d331c4eca5bc8174589bfc551bdde2c2, type: 2}
     - target: {fileID: 2655014704022758881, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15971,8 +15998,18 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 1b086e5816497554fbd340d1508fee3a, type: 2}
     - target: {fileID: 6173310959169619561, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
+      propertyPath: m_CameraType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173310959169619561, guid: 416068c380b68f34a9b21aed02e67532,
+        type: 3}
       propertyPath: m_RenderShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7468567158280170414, guid: 416068c380b68f34a9b21aed02e67532,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7468567158280170414, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -15997,13 +16034,13 @@ PrefabInstance:
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: orthographic
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8400000, guid: 75fd2f1f0d9104140ae7cd11d9620cc0, type: 2}
+      objectReference: {fileID: 8600000, guid: 7826ab22ac7ccf546ad0dc7a6cee7634, type: 2}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: near clip plane
@@ -16022,7 +16059,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7501658711325309529, guid: 416068c380b68f34a9b21aed02e67532,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1122438755}
   m_SourcePrefab: {fileID: 100100000, guid: 416068c380b68f34a9b21aed02e67532, type: 3}
 --- !u!1 &2131325055
 GameObject:
