@@ -2572,7 +2572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
+  m_ScaleFactor: 0.5
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
@@ -10415,7 +10415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1615119056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14625,6 +14625,7 @@ MonoBehaviour:
   - rid: 8550330751981715479
   - rid: 8550330751981715481
   - rid: 8550330751981715484
+  - rid: 8550330802852855814
   - rid: 8550330751981715486
   - rid: 8550330751981715492
   - rid: 8550330751981715504
@@ -14937,6 +14938,14 @@ MonoBehaviour:
         name: End Scene
         type: 13
         sceneName: PresentBadBedroom
+    - rid: 8550330802852855814
+      type: {class: SequenceManager/SEvent_LerpPostProcessingWeight, ns: , asm: Assembly-CSharp}
+      data:
+        name: Un-blur eyesight a bit
+        type: 10
+        postProcessingVolume: {fileID: 421615961}
+        targetWeight: 0.5
+        time: 1
 --- !u!82 &7330522279698956924 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 8518638762025746586, guid: 762801de029432c44a40e4065bb93349,
