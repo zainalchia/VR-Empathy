@@ -1,34 +1,16 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
 public class Mirror : MonoBehaviour
 {
-    public Camera mainCamera;
-    public Camera reflectionCamera;
-    public RenderTexture reflectionTexture;
+    public Transform PlayerTargert;
+    public Transform mirror;
 
-    private void LateUpdate()
+    private void Update()
     {
-        if (!mainCamera || !reflectionCamera || !reflectionTexture)
-            return;
+        Vector3 localPLayer = mirror.InverseTransformPoint(PlayerTargert.position);
+        transform.position = PlayerTargert.TransformPoint(new Vector3(localPLayer.x, localPLayer.y, -localPLayer.z));
 
-        // Mirror plane
-        Vector3 pos = transform.position;
-        Vector3 normal = transform.up;
-
-        // Reflect camera position
-        Vector3 d = mainCamera.transform.position - pos;
-        Vector3 reflectedPos = mainCamera.transform.position - 2 * Vector3.Dot(d, normal) * normal;
-
-        reflectionCamera.transform.position = reflectedPos;
-
-        // Reflect camera rotation
-        Vector3 forward = Vector3.Reflect(mainCamera.transform.forward, normal);
-        Vector3 up = Vector3.Reflect(mainCamera.transform.up, normal);
-        reflectionCamera.transform.rotation = Quaternion.LookRotation(forward, up);
-
-        // Render into texture
-        reflectionCamera.targetTexture = reflectionTexture;
-        reflectionCamera.Render();
+        Vector3 lookatmirror = mirror.TransformPoint(new Vector3(-localPLayer.x, localPLayer.y, localPLayer.z));
+        transform.LookAt(lookatmirror);
     }
 }
