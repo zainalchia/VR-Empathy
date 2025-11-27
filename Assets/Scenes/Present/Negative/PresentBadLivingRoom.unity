@@ -14646,6 +14646,7 @@ MonoBehaviour:
   - rid: 8550330755812163585
   - rid: 8550330755812163590
   - rid: 8550330755812163588
+  - rid: 8550330755812163617
   references:
     version: 2
     RefIds:
@@ -14918,7 +14919,7 @@ MonoBehaviour:
         audioSource: {fileID: 7330522279698956924}
         audioClip: {fileID: 8300000, guid: e6505c59ae68f45ac9673204297de625, type: 3}
         audioClipAlt: {fileID: 8300000, guid: 0aa1d4c3f0e564048892a494c1d141c9, type: 3}
-        waitForEnd: 0
+        waitForEnd: 1
         loop: 0
     - rid: 8550330755812163590
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
@@ -14930,6 +14931,12 @@ MonoBehaviour:
         audioClipAlt: {fileID: 0}
         waitForEnd: 0
         loop: 0
+    - rid: 8550330755812163617
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: End Scene
+        type: 13
+        sceneName: PresentBadBedroom
 --- !u!82 &7330522279698956924 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 8518638762025746586, guid: 762801de029432c44a40e4065bb93349,

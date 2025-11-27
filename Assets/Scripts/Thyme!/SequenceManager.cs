@@ -1,11 +1,9 @@
 using Oculus.Interaction;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 enum Hand
 {
@@ -38,6 +36,7 @@ public class SequenceManager : MonoBehaviour
 			[InspectorName("Set post-processing weight")		] SET_SetPostProcessWeight	,
 			[InspectorName("Wait for distance between objects")	] SET_WaitDistance			,
 			[InspectorName("Trigger Unity Event")				] SET_UnityEvent			,
+			[InspectorName("Go to scene")						] SET_GoToScene				,
 			[InspectorName("")									] SET_COUNT // NOT an actual type! here for easy counting!!!
 		}
 
@@ -56,6 +55,7 @@ public class SequenceManager : MonoBehaviour
 			typeof(SEvent_LerpPostProcessingWeight	),
 			typeof(SEvent_WaitForDistance			),
 			typeof(SEvent_TriggerUnityEvent			),
+			typeof(SEvent_GoToScene			),
 		};
 
 		public SequenceEventEnum type;
@@ -413,12 +413,24 @@ public class SequenceManager : MonoBehaviour
         }
 	}
 
+    public class SEvent_GoToScene : SequenceEvent
+    {
+		[SerializeField] string sceneName;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            SceneManager.LoadScene(sceneName);
+            Exit();
+        }
+    }
 
 
 
 
-	// sequence manager properties
-	public static SequenceManager _instance { get; private set; }
+
+    // sequence manager properties
+    public static SequenceManager _instance { get; private set; }
 
 	[Header("Event Settings")]
 #if UNITY_EDITOR
