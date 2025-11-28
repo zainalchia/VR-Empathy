@@ -14272,6 +14272,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d331c4eca5bc8174589bfc551bdde2c2, type: 2}
+    - target: {fileID: 2789381100868991240, guid: 416068c380b68f34a9b21aed02e67532,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3812130701070791112, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -14335,7 +14340,12 @@ PrefabInstance:
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: orthographic
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
+        type: 3}
+      propertyPath: field of view
+      value: 27.8
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -14345,7 +14355,7 @@ PrefabInstance:
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: near clip plane
-      value: 0.1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -14372,12 +14382,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2129228390}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &2129228392 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
-    type: 3}
-  m_PrefabInstance: {fileID: 2129228390}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2129228393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14390,9 +14394,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd8015968a8467a418c3843068de28f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  reflectionCamera: {fileID: 2129228392}
-  reflectionTexture: {fileID: 8600000, guid: 7826ab22ac7ccf546ad0dc7a6cee7634, type: 2}
+  playerHead: {fileID: 0}
+  mirrorRoot: {fileID: 0}
+  mirrorCamera: {fileID: 0}
 --- !u!1001 &2138493840
 PrefabInstance:
   m_ObjectHideFlags: 0
