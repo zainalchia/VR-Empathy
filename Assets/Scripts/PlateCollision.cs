@@ -8,6 +8,7 @@ public class PlateCollision : MonoBehaviour
     {
         // Find parent script and notify the impact
         FindObjectOfType<ScenarioManagerReneeTest>().PlateImpact();
+        
     }
 }
 

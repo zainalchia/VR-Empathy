@@ -336,10 +336,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;
     [SerializeField] GameObject PlayerCloth;
-    [SerializeField] GameObject Plate;            // NEW: whole plate object
-    [SerializeField] GameObject PlateShards;       // NEW: shattered fragments
-    [SerializeField] float plateThrowForce = 6f;   // velocity toward player
-    [SerializeField] float throwRightOffset = 0.25f;
+    [SerializeField] GameObject PlateProjectilePrefab;   // plate to spawn & throw
+    [SerializeField] List<GameObject> PlateShardPrefabs = new List<GameObject>();
+    public Transform PlateSpawnPoint;   // where plate appears
+    public Transform PlateTargetPoint;  // where the plate flies toward
+
+    [SerializeField] float plateSpeed = 10f;             // how fast it flies
+
 
     public void PlayTraySegment()
     {
@@ -406,33 +409,49 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // ----------------------------------------------------------------------
     public IEnumerator ThrowPlate()
     {
-        // Ensure shards are disabled until impact
-        PlateShards.SetActive(false);
+        // Spawn the projectile at the spawn point
+        GameObject proj = Instantiate(
+            PlateProjectilePrefab,
+            PlateSpawnPoint.position,
+            PlateSpawnPoint.rotation
+        );
 
-        // Enable the plate and throw it
-        Plate.SetActive(true);
-        Rigidbody plateRb = Plate.GetComponent<Rigidbody>();
+        Rigidbody rb = proj.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
 
-        plateRb.isKinematic = false;
-        Vector3 aimDirection = (Camera.main.transform.right * throwRightOffset).normalized;
+        // Direction toward the target
+        Vector3 target = PlateTargetPoint.position;
+        Vector3 direction = (target - PlateSpawnPoint.position).normalized;
 
-        plateRb.AddForce(aimDirection * plateThrowForce, ForceMode.VelocityChange);
 
-        
+        while (proj != null && !plateHitGround)
+        {
+            rb.velocity = direction * plateSpeed;
+            yield return null;
+        }
 
-        // Wait for plate collision
-        yield return new WaitUntil(() => plateHitGround);
+        // If it still exists, destroy and spawn shards
+        if (proj != null)
+        {
+            Vector3 hitPoint = proj.transform.position;
+            Destroy(proj);
 
-        // Shatter effect
-        Plate.SetActive(false);
-        PlateShards.transform.position = Plate.transform.position;
-        PlateShards.SetActive(true);
+            // Spawn every shard prefab in the list
+            foreach (GameObject shardPrefab in PlateShardPrefabs)
+            {
+                GameObject shards = Instantiate(shardPrefab, hitPoint, Quaternion.identity);
+                shards.SetActive(true);
+            }
+        }
 
-        // Allow the player to clean up
+        // Let player clean up
         PlayerCloth.SetActive(true);
         PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         promptManager.ShowPrompt(SceneID.Stall, 5, false, 6f);
     }
+
+
+
 
     // You need to set this from a collision script on the plate
     private bool plateHitGround = false;
