@@ -156,6 +156,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private GameObject plasterPrefab;
     [SerializeField] private Transform plasterSpawnPoint;
 
+
     public void PlayHawkerStart()
     {
         lastRoutine = StartCoroutine(HawkerStart());
@@ -430,6 +431,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator FamilyStart()
     {
+
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         //yield return new WaitForSeconds(2);
         //GameManager.instance.fadePanel.GetComponent<Animator>().ResetTrigger("FadeIn");
@@ -496,6 +498,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         HomeLight.color = Color.black;
 
         // Daddy / Mummy what happened??? I cannot see!! [pause] Daddy / Mummy I’m scared
+        Sean.GetComponent<Animator>().SetBool("Crying", true);
+        Debug.Log("child starts crying");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
@@ -503,15 +507,18 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
+        Sean.GetComponent<Animator>().SetBool("Crying", false);
+        Debug.Log("child stop crying");
+
 
         promptManager.ShowPrompt(sceneID, 1, false, 2f);
 
-        // Carry sean segment
-        Sean.GetComponent<Grabbable>().enabled = true;
-        //Sean.GetComponent<ForceStayGrabbed>().enabled = true;
-        Sean.GetComponent<PhysicsGrabbable>().enabled = true;
-        Sean.GetComponent<GrabInteractable>().enabled = true;
-        Sean.GetComponent<Sean>().enabled = true;
+        //// Carry sean segment
+        //Sean.GetComponent<Grabbable>().enabled = true;
+        ////Sean.GetComponent<ForceStayGrabbed>().enabled = true;
+        //Sean.GetComponent<PhysicsGrabbable>().enabled = true;
+        //Sean.GetComponent<GrabInteractable>().enabled = true;
+        //Sean.GetComponent<Sean>().enabled = true;
         //Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
     public void PlayFinalHome() // Called in Sean.cs
@@ -522,8 +529,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     IEnumerator FinalHome()
     {
         // Daddy / Mummy why no light??
+        Sean.GetComponent<Animator>().SetBool("Crying", true);
+        Debug.Log("child starts crying");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
+        Sean.GetComponent<Animator>().SetBool("Crying", false);
+        Debug.Log("child stop crying");
 
         // fade out
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
@@ -571,7 +582,15 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PlayLightOFf();
+            Debug.Log("light off have been played");
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            PlayFinalHome();
+        }
     }
 
     void StopPrevDialogue()
