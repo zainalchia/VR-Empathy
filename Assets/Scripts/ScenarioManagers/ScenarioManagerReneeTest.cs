@@ -422,6 +422,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In Home")]
     [SerializeField] GameObject Ladle;
     [SerializeField] GameObject Sean;
+    [SerializeField] GameObject Model;
     [SerializeField] AudioSource SeanAudioSource;
     [SerializeField] Light HomeLight;
     public void PlayFamilyStart()
@@ -441,6 +442,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
         // Finally, why come back so late?? Food cold already.
+        Model.GetComponent<Animator>().SetBool("GetAngry", true);
+        Debug.Log("wife get angry");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
@@ -455,6 +458,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Can only eat rice with vegetables. All thanks to your good for nothing father / mother!
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        Model.GetComponent<Animator>().SetBool("GetAngry", false);
+        Debug.Log("wife get angry");
 
         promptManager.ShowPrompt(sceneID, 0, false, 2f);
 
@@ -513,12 +519,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         promptManager.ShowPrompt(sceneID, 1, false, 2f);
 
-        //// Carry sean segment
-        //Sean.GetComponent<Grabbable>().enabled = true;
-        ////Sean.GetComponent<ForceStayGrabbed>().enabled = true;
-        //Sean.GetComponent<PhysicsGrabbable>().enabled = true;
-        //Sean.GetComponent<GrabInteractable>().enabled = true;
-        //Sean.GetComponent<Sean>().enabled = true;
+        // Carry sean segment
+        Sean.GetComponent<Grabbable>().enabled = true;
+        //Sean.GetComponent<ForceStayGrabbed>().enabled = true;
+        Sean.GetComponent<PhysicsGrabbable>().enabled = true;
+        Sean.GetComponent<GrabInteractable>().enabled = true;
+        Sean.GetComponent<Sean>().enabled = true;
         //Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
     }
     public void PlayFinalHome() // Called in Sean.cs
