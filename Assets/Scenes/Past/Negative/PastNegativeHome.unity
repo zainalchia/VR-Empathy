@@ -2700,9 +2700,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
+    - target: {fileID: 1838441162735669761, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3353817918328592355, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_Camera
@@ -2846,7 +2856,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5733402971437742045, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1012412486}
   m_SourcePrefab: {fileID: 100100000, guid: c5446b5edb5620e4ebda8642f07f0a96, type: 3}
 --- !u!1 &1012412483 stripped
 GameObject:
@@ -2872,6 +2886,33 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1012412482}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1012412486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012412483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48baa1fdb776734e8f4eb969a4d3503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1012412490}
+  time: 1
+  opacity: 1
+--- !u!114 &1012412490 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012412482}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012412483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1052186188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3400,6 +3441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshEditor: 0
   events:
+  - rid: 154194485549989889
   - rid: 154194441199157249
   - rid: 154194441199157251
   - rid: 154194441199157253
@@ -3416,6 +3458,7 @@ MonoBehaviour:
   - rid: 154194441199157276
   - rid: 154194441199157278
   - rid: 154194441199157282
+  - rid: 154194485549989892
   - rid: 154194441199157284
   references:
     version: 2
@@ -3584,6 +3627,46 @@ MonoBehaviour:
         name: Wait for player to drop ladle
         type: 4
         interactable: {fileID: 156639211}
+    - rid: 154194485549989889
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade In
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1012412486}
+              m_TargetAssemblyTypeName: UIImageFader, Assembly-CSharp
+              m_MethodName: Activate
+              m_Mode: 4
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 154194485549989892
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade Out
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1012412486}
+              m_TargetAssemblyTypeName: UIImageFader, Assembly-CSharp
+              m_MethodName: Activate
+              m_Mode: 4
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 1
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
 --- !u!1 &1160399997
 GameObject:
   m_ObjectHideFlags: 0
