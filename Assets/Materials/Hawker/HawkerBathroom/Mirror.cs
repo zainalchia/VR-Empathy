@@ -8,12 +8,15 @@ public class VRMirror : MonoBehaviour
     public Transform mirrorCamera;    // Mirror camera (local X = -1)
 
     [Header("Movement Limits")]
-    public float maxYOffset = 0.5f;   // max local Y movement allowed
-    public float maxZOffset = 0.5f;   // max local Z movement allowed
+    public float maxYOffset = 0.5f;
+    public float maxZOffset = 0.5f;
 
     [Header("Rotation Limits")]
-    public float minXRotation = -20f; // lowest tilt allowed
-    public float maxXRotation = 20f;  // highest tilt allowed
+    public float minXRotation = -20f;
+    public float maxXRotation = 20f;
+
+    public float minYRotation = -30f;     // new
+    public float maxYRotation = 30f;      // new
 
     private float lockedLocalX;
 
@@ -25,7 +28,7 @@ public class VRMirror : MonoBehaviour
         if (mirrorRoot == null && mirrorCamera != null)
             mirrorRoot = mirrorCamera.parent;
 
-        lockedLocalX = mirrorCamera.localPosition.x; // should be -1
+        lockedLocalX = mirrorCamera.localPosition.x;
     }
 
     private void LateUpdate()
@@ -38,20 +41,16 @@ public class VRMirror : MonoBehaviour
         // ---------------------------------------------------------
         Vector3 localHeadPos = mirrorRoot.InverseTransformPoint(playerHead.position);
 
-        // Mirror Z axis
         localHeadPos.z = -localHeadPos.z;
-
-        // Lock X axis
         localHeadPos.x = lockedLocalX;
 
-        // Apply movement limits
         localHeadPos.y = Mathf.Clamp(localHeadPos.y, -maxYOffset, maxYOffset);
         localHeadPos.z = Mathf.Clamp(localHeadPos.z, -maxZOffset, maxZOffset);
 
         mirrorCamera.localPosition = localHeadPos;
 
         // ---------------------------------------------------------
-        // 2. MIRRORED ROTATION + 180 DEGREES
+        // 2. MIRRORED ROTATION + 180
         // ---------------------------------------------------------
         Vector3 localForward = mirrorRoot.InverseTransformDirection(playerHead.forward);
         localForward.z = -localForward.z;
@@ -62,15 +61,19 @@ public class VRMirror : MonoBehaviour
         Quaternion flippedRot = Quaternion.Euler(0f, 180f, 0f) * baseRot;
 
         // ---------------------------------------------------------
-        // 3. CLAMP X ROTATION OF MIRROR CAMERA
+        // 3. CLAMP X + Y ROTATION
         // ---------------------------------------------------------
         Vector3 euler = flippedRot.eulerAngles;
 
-        // Convert wrapping angles to signed (-180 to 180)
+        // unwrap angles
         if (euler.x > 180f) euler.x -= 360f;
+        if (euler.y > 180f) euler.y -= 360f;
 
-        // Clamp X
+        // clamp X tilt
         euler.x = Mathf.Clamp(euler.x, minXRotation, maxXRotation);
+
+        // clamp Y turn
+        euler.y = Mathf.Clamp(euler.y, minYRotation, maxYRotation);
 
         mirrorCamera.rotation = Quaternion.Euler(euler.x, euler.y, euler.z);
     }
