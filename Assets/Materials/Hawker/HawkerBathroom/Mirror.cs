@@ -41,7 +41,7 @@ public class VRMirror : MonoBehaviour
         // ---------------------------------------------------------
         Vector3 localHeadPos = mirrorRoot.InverseTransformPoint(playerHead.position);
 
-        localHeadPos.z = -localHeadPos.z;
+        //localHeadPos.z = -localHeadPos.z;
         localHeadPos.x = lockedLocalX;
 
         localHeadPos.y = Mathf.Clamp(localHeadPos.y, -maxYOffset, maxYOffset);
