@@ -1938,6 +1938,12 @@ RotationConstraint:
   m_Sources:
   - sourceTransform: {fileID: 1156376157}
     weight: 1
+--- !u!95 &795504050 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: f7b32b09de197354fb2cc8a1fabeecad,
+    type: 3}
+  m_PrefabInstance: {fileID: 795504035}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &797031790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3412,18 +3418,22 @@ MonoBehaviour:
   refreshEditor: 0
   events:
   - rid: 154194441199157249
+  - rid: 6500772436670939137
   - rid: 154194441199157251
   - rid: 154194441199157253
   - rid: 154194441199157255
+  - rid: 6500772436670939139
   - rid: 154194441199157257
   - rid: 154194441199157259
   - rid: 154194441199157288
   - rid: 154194441199157263
   - rid: 154194441199157265
   - rid: 154194441199157267
+  - rid: 6500772436670939141
   - rid: 154194441199157270
   - rid: 154194441199157272
   - rid: 154194441199157274
+  - rid: 6500772436670939143
   - rid: 154194441199157276
   - rid: 154194441199157278
   - rid: 154194441199157282
@@ -3595,6 +3605,86 @@ MonoBehaviour:
         name: Wait for player to drop ladle
         type: 4
         interactable: {fileID: 156639211}
+    - rid: 6500772436670939137
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wife Get Angry At You
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 2113391976}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Angry
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 6500772436670939139
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wife Stop getting Angry
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 2113391976}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Idle
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 6500772436670939141
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Son Crying
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 795504050}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Crying
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 6500772436670939143
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Son Stop Crying
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 795504050}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Idle
+                m_BoolArgument: 0
+              m_CallState: 2
 --- !u!1 &1160399997
 GameObject:
   m_ObjectHideFlags: 0
@@ -6245,6 +6335,12 @@ PrefabInstance:
 --- !u!1 &2113391975 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 78f18fbbf83693e4e8e6918ee823653b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2113391974}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2113391976 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 78f18fbbf83693e4e8e6918ee823653b,
     type: 3}
   m_PrefabInstance: {fileID: 2113391974}
   m_PrefabAsset: {fileID: 0}
