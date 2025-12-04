@@ -5047,6 +5047,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 678781753}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &688731102 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4207753694588521253, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1160836518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &704785860
 GameObject:
   m_ObjectHideFlags: 0
@@ -8510,6 +8516,7 @@ MonoBehaviour:
   plateSpeed: 10
   Ladle: {fileID: 0}
   Sean: {fileID: 0}
+  Model: {fileID: 0}
   SeanAudioSource: {fileID: 0}
   HomeLight: {fileID: 0}
   PlayerDestination: {fileID: 0}
@@ -8879,7 +8886,7 @@ Transform:
   m_GameObject: {fileID: 1267951788}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.005, z: 0.005}
+  m_LocalPosition: {x: -1, y: 0.005, z: 0.005}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -8960,10 +8967,10 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
-  far clip plane: 4
-  field of view: 60
-  orthographic: 1
+  near clip plane: 1.01
+  far clip plane: 40
+  field of view: 50
+  orthographic: 0
   orthographic size: 0.48
   m_Depth: 0
   m_CullingMask:
@@ -9490,6 +9497,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1363544193}
+  - component: {fileID: 1363544194}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Untagged
@@ -9514,6 +9522,27 @@ Transform:
   - {fileID: 1267951789}
   m_Father: {fileID: 1654800899}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1363544194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1363544192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd8015968a8467a418c3843068de28f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHead: {fileID: 688731102}
+  mirrorRoot: {fileID: 1363544193}
+  mirrorCamera: {fileID: 1267951789}
+  maxYOffset: 0.2
+  maxZOffset: 0.4
+  minXRotation: 0
+  maxXRotation: 0
+  minYRotation: 180
+  maxYRotation: 180
 --- !u!1001 &1365310981
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1614,6 +1614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sean
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: f7b32b09de197354fb2cc8a1fabeecad,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 46e42c461d45cbd4ab78b1378d225b68, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3380,8 +3385,14 @@ MonoBehaviour:
   TrayOfFood: {fileID: 0}
   DroppedFood: {fileID: 0}
   PlayerCloth: {fileID: 0}
+  PlateProjectilePrefab: {fileID: 0}
+  PlateShardPrefabs: []
+  PlateSpawnPoint: {fileID: 0}
+  PlateTargetPoint: {fileID: 0}
+  plateSpeed: 10
   Ladle: {fileID: 156639207}
   Sean: {fileID: 795504036}
+  Model: {fileID: 2113391975}
   SeanAudioSource: {fileID: 795504042}
   HomeLight: {fileID: 968791123}
   PlayerDestination: {fileID: 0}
@@ -6217,6 +6228,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: model
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 78f18fbbf83693e4e8e6918ee823653b,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e3fb9ba3c14993a429fc69548d2f8f17, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6226,6 +6242,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 879986902}
   m_SourcePrefab: {fileID: 100100000, guid: 78f18fbbf83693e4e8e6918ee823653b, type: 3}
+--- !u!1 &2113391975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 78f18fbbf83693e4e8e6918ee823653b,
+    type: 3}
+  m_PrefabInstance: {fileID: 2113391974}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &261891006547533748
 Transform:
   m_ObjectHideFlags: 0
