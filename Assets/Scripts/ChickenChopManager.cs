@@ -1,117 +1,136 @@
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Oculus.Interaction;
-using System.Collections;
 
 public class ChickenChopManager : MonoBehaviour
 {
-    public GameObject chickenPiecesGroup;
-    public List<Rigidbody> pieces = new List<Rigidbody>();
-    public List<GameObject> cutLines = new List<GameObject>();
+    [Header("Blendshape References")]
+    public SkinnedMeshRenderer chickenMesh;
+    public List<int> blendShapeIndices; 
+    public float blendLerpTime = 0.25f;
 
+    [Header("Cut Line Objects (Pre-Placed)")]
+    public List<GameObject> cutLines;   // <<< ADDED
+
+    [Header("UI / Effects")]
     public HeartbeatUI uiManager;
-    private int currentPiece = 0; //track what piece is being cut
-    private bool isHolding = false;
-
-    // prevents multiple cuts per swing
-    private bool canCut = true;
-    [SerializeField] private float cutCooldown = 0.3f;
-
     [SerializeField] private Renderer handRenderer;
     [SerializeField] private Material normalHandMaterial;
     [SerializeField] private Material bleedingHandMaterial;
     [SerializeField] private GameObject bloodEffect;
-    [SerializeField] private PlayerTeleport playerTeleport;
 
-    private bool customerVO = false; 
-    private ScenarioManagerReneeTest sceneManager; 
+    private bool isHolding = false;
+    private bool canCut = true;
+    private bool customerVO = false;
+
+    [SerializeField] private float cutCooldown = 0.3f;
+
+    private ScenarioManagerReneeTest sceneManager;
+
+    private int currentPiece = 0;
+
     private void Start()
     {
         sceneManager = FindObjectOfType<ScenarioManagerReneeTest>();
-        chickenPiecesGroup.SetActive(true);
-        //hide red lines at the start
+
+        // Reset blendshapes
+        if (chickenMesh != null)
+        {
+            foreach (var idx in blendShapeIndices)
+                chickenMesh.SetBlendShapeWeight(idx, 0f);
+        }
+
+        // Hide all cut lines initially
+        HideAllCutLines();
+    }
+
+    // Called by LeftHandHold when holding stops
+    public void ResetHoldState()
+    {
+        isHolding = false;
+        HideAllCutLines();
+    }
+
+    private void HideAllCutLines()
+    {
+        if (cutLines == null) return;
+
         foreach (var line in cutLines)
-            line.SetActive(false);
+            if (line != null)
+                line.SetActive(false);
+    }
+
+    private void ShowCurrentCutLine()
+    {
+        if (cutLines == null) return;
+
+        for (int i = 0; i < cutLines.Count; i++)
+        {
+            if (cutLines[i] != null)
+                cutLines[i].SetActive(i == currentPiece);
+        }
     }
 
     public void OnKnifeHit()
     {
-
         if (!isHolding)
             return;
 
         if (!customerVO && sceneManager != null)
-{
+        {
             sceneManager.narrationAudioSource.PlayOneShot(sceneManager.narrationAudioClips_1[4]);
             customerVO = true;
         }
 
-        //stop if all pieces already cut
-        if (!canCut || currentPiece >= pieces.Count)
+        if (!canCut || currentPiece >= blendShapeIndices.Count)
             return;
 
-        // Detach current piece
-        Rigidbody piece = pieces[currentPiece];
-        piece.isKinematic = false;
-        piece.useGravity = true;
+        // ===== Blendshape Animation =====
+        int shapeIndex = blendShapeIndices[currentPiece];
+        StartCoroutine(LerpBlendShape(shapeIndex, 0f, 100f, blendLerpTime));
 
-        // Unparent the piece
-        piece.transform.SetParent(null);
-
-        //small upward and backward push, aka just fall naturally
-        piece.AddForce(Vector3.up * 0.35f + Vector3.back * 0.35f, ForceMode.Impulse);
-
-        // Hide the current guide line
-        if (currentPiece < cutLines.Count)
-            cutLines[currentPiece].SetActive(false);
-
-        // Show the next line if it exists
-        if (currentPiece + 1 < cutLines.Count)
-            cutLines[currentPiece + 1].SetActive(true);
-
+        // ===== UI Logic =====
         if (uiManager != null)
         {
             if (currentPiece == 2)
             {
-                // slight pulse first tension
                 uiManager.StartSoftRed();
                 cutCooldown = 0.8f;
             }
             else if (currentPiece == 3)
             {
-                // stronger
                 uiManager.StartRed();
                 cutCooldown = 1.0f;
             }
             else if (currentPiece == 4)
             {
-                // strongest
                 uiManager.StartDeepRed();
                 cutCooldown = 1.2f;
             }
             else if (currentPiece == 5)
             {
-                // knife accident
                 uiManager.KnifeAccidentFlash();
 
                 if (bloodEffect != null)
-                    StartCoroutine(ActivateBloodEffect(bloodEffect)); //blood particles
+                    StartCoroutine(ActivateBloodEffect(bloodEffect));
+
+                StartCoroutine(BleedingHand());
 
                 cutCooldown = 1.7f;
-                StartCoroutine(BleedingHand()); //changes the normal hand to bleeding hand
                 sceneManager.PlayChoppedHand();
             }
         }
-        
 
-        //move next piece
-        currentPiece++;
+        // ===== Move to Next Cut =====
+        currentPiece++;               // increment first
+        ShowCurrentCutLine();         // then show the next line
 
-        if (currentPiece >= pieces.Count)
+        // ===== Final Cut =====
+        if (currentPiece >= blendShapeIndices.Count)
         {
             cutCooldown = 0.3f;
 
-            // release knife after cut
             GameObject knife = GameObject.FindWithTag("Knife");
             if (knife != null)
             {
@@ -124,40 +143,57 @@ public class ChickenChopManager : MonoBehaviour
             }
         }
 
-        // Start cooldown so only one cut per swing
         canCut = false;
         Invoke(nameof(ResetCut), cutCooldown);
     }
+
+
+    private IEnumerator LerpBlendShape(int index, float start, float end, float duration)
+    {
+        float t = 0f;
+        while (t < duration)
+        {
+            float val = Mathf.Lerp(start, end, t / duration);
+            chickenMesh.SetBlendShapeWeight(index, val);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        chickenMesh.SetBlendShapeWeight(index, end);
+    }
+
     private IEnumerator BleedingHand()
     {
         if (handRenderer == null || bleedingHandMaterial == null)
             yield break;
 
         yield return new WaitForSeconds(0.3f);
-
-        // change the original hand mat to bleeding mat
         handRenderer.material = bleedingHandMaterial;
     }
+
     private IEnumerator ActivateBloodEffect(GameObject effect)
     {
         effect.SetActive(true);
-        yield return new WaitForEndOfFrame(); 
+        yield return new WaitForEndOfFrame();
+
         var particle = effect.GetComponent<ParticleSystem>();
         if (particle != null)
-        {
             particle.Play();
-        }
     }
 
-    public int GetCurrentPieceIndex() //get cut progress number
+    public int GetCurrentPieceIndex()
     {
         return currentPiece;
     }
 
-    public void ChickenHold(bool holding) // tracks
+    public void ChickenHold(bool holding)
     {
         isHolding = holding;
+        if (!holding)
+            HideAllCutLines();
+        else
+            ShowCurrentCutLine();
     }
+
     private void ResetCut()
     {
         canCut = true;

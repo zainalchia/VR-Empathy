@@ -163,6 +163,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
     IEnumerator HawkerStart()
     {
+        cashObject.SetActive(false);
         yield return new WaitForSeconds(1.5f);
 
         // Finally. Faster la serve customer!
@@ -181,7 +182,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         promptManager.ShowPrompt(SceneID.Stall, 0, false, 6f);
         // Hand over cash
-        cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
+        cashObject.SetActive(true);
         //promptManager.ShowPrompt(SceneID.Stall, 1);
 
     }
@@ -336,6 +337,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;
     [SerializeField] GameObject PlayerCloth;
+    [SerializeField] GameObject PlateProjectilePrefab;   // plate to spawn & throw
+    [SerializeField] List<GameObject> PlateShardPrefabs = new List<GameObject>();
+    public Transform PlateSpawnPoint;   // where plate appears
+    public Transform PlateTargetPoint;  // where the plate flies toward
+
+    [SerializeField] float plateSpeed = 10f;             // how fast it flies
+
 
     public void PlayTraySegment()
     {
@@ -351,47 +359,110 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void PlayFoodDrop()
     {
-        // Allow drop
+        // Drop the tray
         TrayOfFood.transform.SetParent(null);
         TrayOfFood.GetComponent<FoodTray>().AbleToGrab = false;
-        TrayOfFood.GetComponent<Rigidbody>().isKinematic = false;
-        TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
+        Rigidbody rb = TrayOfFood.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.useGravity = true;
+
         TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
         TrayOfFood.GetComponent<Grabbable>().enabled = false;
+
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
         ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
 
+        // Detect when tray hits floor
         if (TrayOfFood.transform.position.y <= 0.2f)
         {
-            TrayOfFood.gameObject.SetActive(false);
-            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.05f, TrayOfFood.transform.position.z);
-            DroppedFood.gameObject.SetActive(true);
+            TrayOfFood.SetActive(false);
+            DroppedFood.transform.position = new Vector3(
+                TrayOfFood.transform.position.x,
+                0.05f,
+                TrayOfFood.transform.position.z
+            );
+            DroppedFood.SetActive(true);
+
             if (playOnce)
             {
-                lastRoutine = StartCoroutine(CleanDroppedFood());
                 playOnce = false;
+
+                
+                // After scolding, throw plate
+                lastRoutine = StartCoroutine(ThrowPlate());
             }
         }
     }
-    IEnumerator CleanDroppedFood()
-    {
-        // Set boss animation to smacking you
 
-        // Wah why you so stupid ah?!! I really cannot with you already! I’m going to cut your pay!
-        //narrationAudioSource.clip = narrationAudioClips_1[8];
+    IEnumerator BossScoldingDialogue()
+    {
+        // "Wah why you so stupid ah?!! I'm going to cut your pay!"
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
 
-        // Nah clean this mess up! Stupid!
+        // "Nah clean this mess up! Stupid!"
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
         yield return new WaitForSeconds(narrationAudioClips_1[9].length);
+    }
 
+    // ----------------------------------------------------------------------
+    // NEW MAIN EVENT — Boss throws a plate at the player
+    // ----------------------------------------------------------------------
+    public IEnumerator ThrowPlate()
+    {
+        // Spawn the projectile at the spawn point
+        GameObject proj = Instantiate(
+            PlateProjectilePrefab,
+            PlateSpawnPoint.position,
+            PlateSpawnPoint.rotation
+        );
+
+        Rigidbody rb = proj.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+
+        // Direction toward the target
+        Vector3 target = PlateTargetPoint.position;
+        Vector3 direction = (target - PlateSpawnPoint.position).normalized;
+
+
+        while (proj != null && !plateHitGround)
+        {
+            rb.velocity = direction * plateSpeed;
+            yield return null;
+        }
+
+        // If it still exists, destroy and spawn shards
+        if (proj != null)
+        {
+            Vector3 hitPoint = proj.transform.position;
+            Destroy(proj);
+
+            // Spawn every shard prefab in the list
+            foreach (GameObject shardPrefab in PlateShardPrefabs)
+            {
+                GameObject shards = Instantiate(shardPrefab, hitPoint, Quaternion.identity);
+                shards.SetActive(true);
+            }
+        }
+
+        // Let player clean up
         PlayerCloth.SetActive(true);
         PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         promptManager.ShowPrompt(SceneID.Stall, 5, false, 6f);
-
-        yield return null;
     }
+
+
+
+
+    // You need to set this from a collision script on the plate
+    private bool plateHitGround = false;
+
+    public void PlateImpact()
+    {
+        // Call this from OnCollisionEnter on the Plate object
+        plateHitGround = true;
+    }
+
 
     public void PlayCustomerDialogue() // called in Cloth
     {
