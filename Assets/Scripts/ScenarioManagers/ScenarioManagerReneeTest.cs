@@ -147,6 +147,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject Boss;
     private bool playOnce = true;
     [SerializeField] private HeartbeatUI heartbeatUI;
+    [SerializeField] private GameObject Customer;
 
     [Header("Plaster")]
     [SerializeField] private GameObject bandaidContainer;
@@ -170,15 +171,20 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
+        Customer.GetComponent<Animator>().SetBool("SheakHead", true);
+
         // How long you want to make me wait? I wait here very long already.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
+
         // Sorry about that can I take your order
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
         yield return new WaitForSeconds(narrationAudioClips_1[2].length);
         // Give me 2 chicken rice
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        Customer.GetComponent<Animator>().SetBool("Idle", true);
 
         promptManager.ShowPrompt(SceneID.Stall, 0, false, 6f);
         // Hand over cash
