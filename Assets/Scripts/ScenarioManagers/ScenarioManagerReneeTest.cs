@@ -257,6 +257,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
         //MovePLayer();
         Boss.gameObject.SetActive(true);
+        Boss.GetComponent<Animator>().SetBool("IsWalking", true);
+        yield return new WaitForSeconds(3);
+        Boss.GetComponent<Animator>().SetBool("IsWalking", false);
         // boss confront
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
@@ -416,6 +419,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // ----------------------------------------------------------------------
     public IEnumerator ThrowPlate()
     {
+
+        Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
+        yield return new WaitForSeconds(0.5f);
         // Spawn the projectile at the spawn point
         GameObject proj = Instantiate(
             PlateProjectilePrefab,
@@ -667,12 +673,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            PlayLightOFf();
-            Debug.Log("light off have been played");
+            PlayChoppedHand();
         }
         else if (Input.GetKeyDown(KeyCode.S))
         {
-            PlayFinalHome();
+            PlayTraySegment();
         }
     }
 
