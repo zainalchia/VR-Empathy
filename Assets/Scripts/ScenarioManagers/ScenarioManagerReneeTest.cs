@@ -147,6 +147,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject Boss;
     private bool playOnce = true;
     [SerializeField] private HeartbeatUI heartbeatUI;
+    [SerializeField] private GameObject Customer;
 
     [Header("Plaster")]
     [SerializeField] private GameObject bandaidContainer;
@@ -156,21 +157,26 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private GameObject plasterPrefab;
     [SerializeField] private Transform plasterSpawnPoint;
 
+
     public void PlayHawkerStart()
     {
         lastRoutine = StartCoroutine(HawkerStart());
     }
     IEnumerator HawkerStart()
     {
+        cashObject.SetActive(false);
         yield return new WaitForSeconds(1.5f);
 
         // Finally. Faster la serve customer!
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
+        Customer.GetComponent<Animator>().SetBool("SheakHead", true);
+
         // How long you want to make me wait? I wait here very long already.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
+
         // Sorry about that can I take your order
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
         yield return new WaitForSeconds(narrationAudioClips_1[2].length);
@@ -178,9 +184,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
+        Customer.GetComponent<Animator>().SetBool("Idle", true);
+
         promptManager.ShowPrompt(SceneID.Stall, 0, false, 6f);
         // Hand over cash
-        cashObject.transform.position = Vector3.Lerp(cashObject.transform.position, CashEndPoint.transform.position, 3f);
+        cashObject.SetActive(true);
         //promptManager.ShowPrompt(SceneID.Stall, 1);
 
     }
@@ -249,6 +257,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
         //MovePLayer();
         Boss.gameObject.SetActive(true);
+        Boss.GetComponent<Animator>().SetBool("IsWalking", true);
+        yield return new WaitForSeconds(3);
+        Boss.GetComponent<Animator>().SetBool("IsWalking", false);
         // boss confront
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
@@ -335,6 +346,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;
     [SerializeField] GameObject PlayerCloth;
+    [SerializeField] GameObject PlateProjectilePrefab;   // plate to spawn & throw
+    [SerializeField] List<GameObject> PlateShardPrefabs = new List<GameObject>();
+    public Transform PlateSpawnPoint;   // where plate appears
+    public Transform PlateTargetPoint;  // where the plate flies toward
+
+    [SerializeField] float plateSpeed = 10f;             // how fast it flies
+
 
     public void PlayTraySegment()
     {
@@ -350,47 +368,113 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void PlayFoodDrop()
     {
-        // Allow drop
+        // Drop the tray
         TrayOfFood.transform.SetParent(null);
         TrayOfFood.GetComponent<FoodTray>().AbleToGrab = false;
-        TrayOfFood.GetComponent<Rigidbody>().isKinematic = false;
-        TrayOfFood.GetComponent<Rigidbody>().useGravity = true;
+        Rigidbody rb = TrayOfFood.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.useGravity = true;
+
         TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
         TrayOfFood.GetComponent<Grabbable>().enabled = false;
+
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
         ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
 
+        // Detect when tray hits floor
         if (TrayOfFood.transform.position.y <= 0.2f)
         {
-            TrayOfFood.gameObject.SetActive(false);
-            DroppedFood.transform.position = new Vector3(TrayOfFood.transform.position.x, 0.05f, TrayOfFood.transform.position.z);
-            DroppedFood.gameObject.SetActive(true);
+            TrayOfFood.SetActive(false);
+            DroppedFood.transform.position = new Vector3(
+                TrayOfFood.transform.position.x,
+                0.05f,
+                TrayOfFood.transform.position.z
+            );
+            DroppedFood.SetActive(true);
+
             if (playOnce)
             {
-                lastRoutine = StartCoroutine(CleanDroppedFood());
                 playOnce = false;
+
+                
+                // After scolding, throw plate
+                lastRoutine = StartCoroutine(ThrowPlate());
             }
         }
     }
-    IEnumerator CleanDroppedFood()
-    {
-        // Set boss animation to smacking you
 
-        // Wah why you so stupid ah?!! I really cannot with you already! I’m going to cut your pay!
-        //narrationAudioSource.clip = narrationAudioClips_1[8];
+    IEnumerator BossScoldingDialogue()
+    {
+        // "Wah why you so stupid ah?!! I'm going to cut your pay!"
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
 
-        // Nah clean this mess up! Stupid!
+        // "Nah clean this mess up! Stupid!"
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
         yield return new WaitForSeconds(narrationAudioClips_1[9].length);
+    }
 
+    // ----------------------------------------------------------------------
+    // NEW MAIN EVENT — Boss throws a plate at the player
+    // ----------------------------------------------------------------------
+    public IEnumerator ThrowPlate()
+    {
+
+        Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
+        yield return new WaitForSeconds(0.5f);
+        // Spawn the projectile at the spawn point
+        GameObject proj = Instantiate(
+            PlateProjectilePrefab,
+            PlateSpawnPoint.position,
+            PlateSpawnPoint.rotation
+        );
+
+        Rigidbody rb = proj.GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+
+        // Direction toward the target
+        Vector3 target = PlateTargetPoint.position;
+        Vector3 direction = (target - PlateSpawnPoint.position).normalized;
+
+
+        while (proj != null && !plateHitGround)
+        {
+            rb.velocity = direction * plateSpeed;
+            yield return null;
+        }
+
+        // If it still exists, destroy and spawn shards
+        if (proj != null)
+        {
+            Vector3 hitPoint = proj.transform.position;
+            Destroy(proj);
+
+            // Spawn every shard prefab in the list
+            foreach (GameObject shardPrefab in PlateShardPrefabs)
+            {
+                GameObject shards = Instantiate(shardPrefab, hitPoint, Quaternion.identity);
+                shards.SetActive(true);
+            }
+        }
+
+        // Let player clean up
         PlayerCloth.SetActive(true);
         PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         promptManager.ShowPrompt(SceneID.Stall, 5, false, 6f);
-
-        yield return null;
     }
+
+
+
+
+    // You need to set this from a collision script on the plate
+    private bool plateHitGround = false;
+
+    public void PlateImpact()
+    {
+        // Call this from OnCollisionEnter on the Plate object
+        plateHitGround = true;
+    }
+
 
     public void PlayCustomerDialogue() // called in Cloth
     {
@@ -421,6 +505,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In Home")]
     [SerializeField] GameObject Ladle;
     [SerializeField] GameObject Sean;
+    [SerializeField] GameObject Model;
     [SerializeField] AudioSource SeanAudioSource;
     [SerializeField] Light HomeLight;
     public void PlayFamilyStart()
@@ -430,6 +515,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator FamilyStart()
     {
+
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         //yield return new WaitForSeconds(2);
         //GameManager.instance.fadePanel.GetComponent<Animator>().ResetTrigger("FadeIn");
@@ -439,6 +525,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
         // Finally, why come back so late?? Food cold already.
+        Model.GetComponent<Animator>().SetBool("GetAngry", true);
+        Debug.Log("wife get angry");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
@@ -453,6 +541,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Can only eat rice with vegetables. All thanks to your good for nothing father / mother!
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        Model.GetComponent<Animator>().SetBool("GetAngry", false);
+        Debug.Log("wife get angry");
 
         promptManager.ShowPrompt(sceneID, 0, false, 2f);
 
@@ -496,12 +587,17 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         HomeLight.color = Color.black;
 
         // Daddy / Mummy what happened??? I cannot see!! [pause] Daddy / Mummy I’m scared
+        Sean.GetComponent<Animator>().SetBool("Crying", true);
+        Debug.Log("child starts crying");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
         // It's ok son, it's ok.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+
+        Sean.GetComponent<Animator>().SetBool("Crying", false);
+        Debug.Log("child stop crying");
 
 
         promptManager.ShowPrompt(sceneID, 1, false, 2f);
@@ -522,8 +618,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     IEnumerator FinalHome()
     {
         // Daddy / Mummy why no light??
+        Sean.GetComponent<Animator>().SetBool("Crying", true);
+        Debug.Log("child starts crying");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
+        Sean.GetComponent<Animator>().SetBool("Crying", false);
+        Debug.Log("child stop crying");
 
         // fade out
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
@@ -571,7 +671,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PlayChoppedHand();
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            PlayTraySegment();
+        }
     }
 
     void StopPrevDialogue()

@@ -2,7 +2,6 @@ using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -12,24 +11,25 @@ public class Cloth : MonoBehaviour
     public UnityEvent FinishCleaning;
     public UnityEvent WhileCleaning;
 
-    private float cleanInterval = 1;
+    private float cleanInterval = 1f;
     private bool AbleToClean = true;
     private bool startTimer = false;
-    private float timer = 0;
+    private float timer = 0f;
     private bool CustomerDialogue = true;
+    private bool hasFinished = false;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "ToClean")
+        if (other.CompareTag("ToClean"))
         {
             if (AbleToClean)
             {
                 Destroy(other.gameObject);
                 AbleToClean = false;
                 startTimer = true;
+
                 if (CustomerDialogue)
                 {
-                    //play customer dialogue
                     WhileCleaning.Invoke();
                     CustomerDialogue = false;
                 }
@@ -39,21 +39,27 @@ public class Cloth : MonoBehaviour
 
     private void Update()
     {
-
+        // Handle cleaning cooldown
         if (startTimer)
         {
-            timer += 1 * Time.deltaTime;
+            timer += Time.deltaTime;
             if (timer >= cleanInterval)
             {
-                timer = 0;
+                timer = 0f;
                 startTimer = false;
                 AbleToClean = true;
             }
         }
 
-        if (DroppedFood.transform.childCount == 0) 
+        // NEW: Check if all "ToClean" objects are gone
+        if (!hasFinished)
         {
-            FinishCleaning.Invoke();
+            GameObject[] remaining = GameObject.FindGameObjectsWithTag("ToClean");
+            if (remaining.Length == 0)
+            {
+                hasFinished = true;
+                FinishCleaning.Invoke();
+            }
         }
     }
 }
