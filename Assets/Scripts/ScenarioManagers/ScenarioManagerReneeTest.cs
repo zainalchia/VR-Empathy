@@ -255,10 +255,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         bandaidContainer.GetComponent<PlasterContainer>().enabled = true;
 
         yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
-        //MovePLayer();
-        Boss.gameObject.SetActive(true);
+                                                                           //MovePLayer();
+                                                                           // Boss.gameObject.SetActive(true);
+        Boss.GetComponent<WaypointManager>().startwalktrigger();
         Boss.GetComponent<Animator>().SetBool("IsWalking", true);
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(1.5f);
         Boss.GetComponent<Animator>().SetBool("IsWalking", false);
         // boss confront
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);

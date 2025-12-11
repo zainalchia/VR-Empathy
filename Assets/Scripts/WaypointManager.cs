@@ -21,13 +21,23 @@ public class WaypointManager : MonoBehaviour
     bool isLoop = false;
     int loopRound = 0;
 
+    [SerializeField] bool startwalk = true;
+
     void Start()
     {
         BeginMovement();
     }
 
+    public void startwalktrigger()
+    {
+        startwalk = true;
+    }
+
     void Update()
     {
+        if (startwalk == false)
+            return;
+
         if (!isMoving)
             return;
 
