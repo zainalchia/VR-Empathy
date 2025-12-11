@@ -62,6 +62,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In the bathroom")]
     Coroutine lastRoutine = null;
     [SerializeField] DoorKnob DoorHandle;
+    [SerializeField] GameObject door;
 
     public float timeForWashingUp = 5f;
 
@@ -100,6 +101,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[2].length);
 
         // Teleport from sink to toilet door
+        door.GetComponent<Outline>().enabled = true;
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true;
