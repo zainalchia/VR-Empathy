@@ -147,10 +147,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In Hawker stall")]
     [SerializeField] GameObject CashEndPoint;
     [SerializeField] GameObject Boss;
+    [SerializeField] GameObject BossAudio;
     private bool playOnce = true;
     [SerializeField] private HeartbeatUI heartbeatUI;
     [SerializeField] private GameObject Customer;
-
+    [SerializeField] private GameObject ChoppingBlock;
+ 
     [Header("Plaster")]
     [SerializeField] private GameObject bandaidContainer;
     [SerializeField] private Animator lidAnimator;
@@ -259,13 +261,19 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
                                                                            //MovePLayer();
                                                                            // Boss.gameObject.SetActive(true);
-        Boss.GetComponent<WaypointManager>().startwalktrigger();
-        Boss.GetComponent<Animator>().SetBool("IsWalking", true);
-        yield return new WaitForSeconds(1.5f);
-        Boss.GetComponent<Animator>().SetBool("IsWalking", false);
+                                                                           //Boss.GetComponent<WaypointManager>().startwalktrigger();
+                                                                           //Boss.GetComponent<Animator>().SetBool("IsWalking", true);
+                                                                           //yield return new WaitForSeconds(1.5f);
+                                                                           //Boss.GetComponent<Animator>().SetBool("IsWalking", false);
+        BossAudio.GetComponent<WaypointManager>().startwalktrigger();
+        yield return new WaitForSeconds(2F);
         // boss confront
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
+        BossAudio.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_1[7]);
+
+        BossAudio.GetComponent<WaypointManager>().enabled = false;
+        //narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+
 
         TrayOfFood.SetActive(true);
         promptManager.ShowPrompt(SceneID.Stall, 4, false, 6f);
@@ -371,7 +379,21 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void PlayFoodDrop()
     {
+        if (playerTeleport != null)
+        {
+            playerTeleport.GoToFirstAid = true; //enables to tp
+
+            var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots(); //get all hotspots
+            if (jobHotspots.Length > 3)//index 2
+            {
+                jobHotspots[3].SetActive(true); //show hotspot
+                if (jobHotspots[3].transform.childCount > 0) //visuals
+                    jobHotspots[3].transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
+
         // Drop the tray
+        ChoppingBlock.SetActive(false);
         TrayOfFood.transform.SetParent(null);
         TrayOfFood.GetComponent<FoodTray>().AbleToGrab = false;
         Rigidbody rb = TrayOfFood.GetComponent<Rigidbody>();
