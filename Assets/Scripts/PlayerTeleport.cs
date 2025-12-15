@@ -76,6 +76,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool teleportLocked = false;
     public bool DropFood = false;
     public bool GoToFirstAid = false;
+    public bool GoToTray = false;
 
     //Past positive==============================================================================================================
     //public bool MovingToLivingRoom = false;
@@ -233,7 +234,15 @@ public class PlayerTeleport : MonoBehaviour
                         MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
                         GoToFirstAid = false;
                     }
-                    testPressTrigger = false;
+                    else if (GoToTray && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+                        defaultTimeBeforeNextMove = 1.5f;
+                        currentHotspotIndex = 3;
+                        MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
+                        GoToTray = false;
+                    }
+                        testPressTrigger = false;
                 }
                 else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
                 {

@@ -152,6 +152,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private HeartbeatUI heartbeatUI;
     [SerializeField] private GameObject Customer;
     [SerializeField] private GameObject ChoppingBlock;
+    [SerializeField] private GameObject Chicken;
  
     [Header("Plaster")]
     [SerializeField] private GameObject bandaidContainer;
@@ -274,9 +275,23 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
-
+        ChoppingBlock.SetActive(false);
+        Chicken.SetActive(false);
         TrayOfFood.SetActive(true);
         promptManager.ShowPrompt(SceneID.Stall, 4, false, 6f);
+
+        if (playerTeleport != null)
+        {
+            playerTeleport.GoToTray = true; //enables to tp
+
+            var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots(); //get all hotspots
+            if (jobHotspots.Length > 3)//index 2
+            {
+                jobHotspots[3].SetActive(true); //show hotspot
+                if (jobHotspots[3].transform.childCount > 0) //visuals
+                    jobHotspots[3].transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
 
     }
 
@@ -379,21 +394,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void PlayFoodDrop()
     {
-        if (playerTeleport != null)
-        {
-            playerTeleport.GoToFirstAid = true; //enables to tp
-
-            var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots(); //get all hotspots
-            if (jobHotspots.Length > 3)//index 2
-            {
-                jobHotspots[3].SetActive(true); //show hotspot
-                if (jobHotspots[3].transform.childCount > 0) //visuals
-                    jobHotspots[3].transform.GetChild(0).gameObject.SetActive(true);
-            }
-        }
 
         // Drop the tray
-        ChoppingBlock.SetActive(false);
         TrayOfFood.transform.SetParent(null);
         TrayOfFood.GetComponent<FoodTray>().AbleToGrab = false;
         Rigidbody rb = TrayOfFood.GetComponent<Rigidbody>();
@@ -445,6 +447,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     public IEnumerator ThrowPlate()
     {
 
+        Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
         yield return new WaitForSeconds(0.5f);
         // Spawn the projectile at the spawn point
