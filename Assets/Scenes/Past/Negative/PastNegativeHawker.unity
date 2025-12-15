@@ -7028,6 +7028,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 620099837}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d7ef61db094ebb24cab4789711ce13ad,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 620099846}
   m_SourcePrefab: {fileID: 100100000, guid: d7ef61db094ebb24cab4789711ce13ad, type: 3}
 --- !u!1 &464069030
 GameObject:
@@ -7439,11 +7443,11 @@ MonoBehaviour:
   - {fileID: 1654079645}
   uiManager: {fileID: 998075450}
   handRenderer: {fileID: 21536826}
-  normalHandMaterial: {fileID: 2100000, guid: eece8e965ed381d41997e3fcee592b0a, type: 2}
+  normalHandMaterial: {fileID: 2100000, guid: eb634777f62a6fb479836c7bdd39cd42, type: 2}
   bleedingHandMaterial: {fileID: 2100000, guid: 9e7db9bb6e609f448bd850ed8eca81c0,
     type: 2}
   bloodEffect: {fileID: 1333380323}
-  cutCooldown: 0.1
+  cutCooldown: 2
 --- !u!114 &479391324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9246,6 +9250,24 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   AbleToGrab: 1
+--- !u!114 &620099846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620099835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.9490196, g: 1, b: 0, a: 1}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &620550092
 GameObject:
   m_ObjectHideFlags: 0
@@ -14629,7 +14651,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heartbeat: {fileID: 302946748}
   globalVolume: {fileID: 491047298}
-  pulseSpeedMultiplier: 1.5
+  pulseSpeedMultiplier: 0.5
 --- !u!1 &1012335234
 GameObject:
   m_ObjectHideFlags: 0
@@ -18565,7 +18587,7 @@ MonoBehaviour:
   plasterSpawnPoint: {fileID: 933124847}
   TrayOfFood: {fileID: 620099835}
   DroppedFood: {fileID: 757077370}
-  PlayerCloth: {fileID: 751563126}
+  PlayerCloth: {fileID: 18335542}
   PlateProjectilePrefab: {fileID: 9185946030455120500, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
     type: 3}
   PlateShardPrefabs:
@@ -18576,7 +18598,7 @@ MonoBehaviour:
   - {fileID: 7104919237581139565, guid: 41d135270045ecb48b8e6441fc6c809e, type: 3}
   PlateSpawnPoint: {fileID: 1645267160}
   PlateTargetPoint: {fileID: 658150352}
-  plateSpeed: 5
+  plateSpeed: 10
   Ladle: {fileID: 0}
   Sean: {fileID: 0}
   Model: {fileID: 0}
