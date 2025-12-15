@@ -11,7 +11,7 @@ public class SaneTeleporter : MonoBehaviour
 	[SerializeField] Vector3 smallScale;
 	[SerializeField] Vector3 largeScale;
 	[SerializeField] Quaternion raycastDirectionOffset = Quaternion.identity;
-	const float radiusMultiplier = 1.0f;
+	const float radiusMultiplier = 0.5f;
 
 
 	private void Update()
@@ -26,7 +26,7 @@ public class SaneTeleporter : MonoBehaviour
 			CheckSphereIntersect(
 				raycastDirectionOffset.normalized * ControllerInteractionsManager.instance.leftGrabInteractor.transform.forward,
 				transform.position - ControllerInteractionsManager.instance.leftGrabInteractor.transform.position,
-				radiusMultiplier * transform.localScale.magnitude
+				radiusMultiplier * smallScale.magnitude
 				)
 		)
 		{
@@ -44,7 +44,7 @@ public class SaneTeleporter : MonoBehaviour
 			CheckSphereIntersect(
 				raycastDirectionOffset.normalized * ControllerInteractionsManager.instance.rightGrabInteractor.transform.forward,
 				transform.position - ControllerInteractionsManager.instance.rightGrabInteractor.transform.position,
-				radiusMultiplier * transform.localScale.magnitude
+				radiusMultiplier * smallScale.magnitude
 				)
 		)
 		{
