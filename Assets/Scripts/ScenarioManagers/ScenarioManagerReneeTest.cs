@@ -62,6 +62,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In the bathroom")]
     Coroutine lastRoutine = null;
     [SerializeField] DoorKnob DoorHandle;
+    [SerializeField] GameObject door;
 
     public float timeForWashingUp = 5f;
 
@@ -100,6 +101,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[2].length);
 
         // Teleport from sink to toilet door
+        door.GetComponent<Outline>().enabled = true;
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true;
@@ -147,6 +149,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject Boss;
     private bool playOnce = true;
     [SerializeField] private HeartbeatUI heartbeatUI;
+    [SerializeField] private GameObject Customer;
 
     [Header("Plaster")]
     [SerializeField] private GameObject bandaidContainer;
@@ -155,6 +158,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private LidMover lidMover;
     [SerializeField] private GameObject plasterPrefab;
     [SerializeField] private Transform plasterSpawnPoint;
+
 
     public void PlayHawkerStart()
     {
@@ -169,15 +173,20 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
+        Customer.GetComponent<Animator>().SetBool("SheakHead", true);
+
         // How long you want to make me wait? I wait here very long already.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
+
         // Sorry about that can I take your order
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
         yield return new WaitForSeconds(narrationAudioClips_1[2].length);
         // Give me 2 chicken rice
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        Customer.GetComponent<Animator>().SetBool("Idle", true);
 
         promptManager.ShowPrompt(SceneID.Stall, 0, false, 6f);
         // Hand over cash
@@ -248,8 +257,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         bandaidContainer.GetComponent<PlasterContainer>().enabled = true;
 
         yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
-        //MovePLayer();
-        Boss.gameObject.SetActive(true);
+                                                                           //MovePLayer();
+                                                                           // Boss.gameObject.SetActive(true);
+        Boss.GetComponent<WaypointManager>().startwalktrigger();
+        Boss.GetComponent<Animator>().SetBool("IsWalking", true);
+        yield return new WaitForSeconds(1.5f);
+        Boss.GetComponent<Animator>().SetBool("IsWalking", false);
         // boss confront
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
@@ -409,6 +422,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // ----------------------------------------------------------------------
     public IEnumerator ThrowPlate()
     {
+
+        Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
+        yield return new WaitForSeconds(0.5f);
         // Spawn the projectile at the spawn point
         GameObject proj = Instantiate(
             PlateProjectilePrefab,
@@ -492,6 +508,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In Home")]
     [SerializeField] GameObject Ladle;
     [SerializeField] GameObject Sean;
+    [SerializeField] GameObject Model;
     [SerializeField] AudioSource SeanAudioSource;
     [SerializeField] Light HomeLight;
     public void PlayFamilyStart()
@@ -501,6 +518,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator FamilyStart()
     {
+
         //GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeIn");
         //yield return new WaitForSeconds(2);
         //GameManager.instance.fadePanel.GetComponent<Animator>().ResetTrigger("FadeIn");
@@ -510,6 +528,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
         // Finally, why come back so late?? Food cold already.
+        Model.GetComponent<Animator>().SetBool("GetAngry", true);
+        Debug.Log("wife get angry");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
@@ -524,6 +544,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Can only eat rice with vegetables. All thanks to your good for nothing father / mother!
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        Model.GetComponent<Animator>().SetBool("GetAngry", false);
+        Debug.Log("wife get angry");
 
         promptManager.ShowPrompt(sceneID, 0, false, 2f);
 
@@ -567,12 +590,17 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         HomeLight.color = Color.black;
 
         // Daddy / Mummy what happened??? I cannot see!! [pause] Daddy / Mummy I’m scared
+        Sean.GetComponent<Animator>().SetBool("Crying", true);
+        Debug.Log("child starts crying");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
         // It's ok son, it's ok.
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
+
+        Sean.GetComponent<Animator>().SetBool("Crying", false);
+        Debug.Log("child stop crying");
 
 
         promptManager.ShowPrompt(sceneID, 1, false, 2f);
@@ -593,8 +621,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     IEnumerator FinalHome()
     {
         // Daddy / Mummy why no light??
+        Sean.GetComponent<Animator>().SetBool("Crying", true);
+        Debug.Log("child starts crying");
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
+        Sean.GetComponent<Animator>().SetBool("Crying", false);
+        Debug.Log("child stop crying");
 
         // fade out
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
@@ -642,7 +674,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PlayChoppedHand();
+        }
+        else if (Input.GetKeyDown(KeyCode.S))
+        {
+            PlayTraySegment();
+        }
     }
 
     void StopPrevDialogue()
