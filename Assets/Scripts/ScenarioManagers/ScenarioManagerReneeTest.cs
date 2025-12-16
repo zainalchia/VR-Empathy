@@ -448,6 +448,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // ----------------------------------------------------------------------
     public IEnumerator ThrowPlate()
     {
+        yield return new WaitForSeconds(2f);
 
         Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
