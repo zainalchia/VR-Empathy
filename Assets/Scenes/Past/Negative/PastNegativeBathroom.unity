@@ -6182,6 +6182,7 @@ GameObject:
   - component: {fileID: 902460261}
   - component: {fileID: 902460260}
   - component: {fileID: 902460269}
+  - component: {fileID: 902460270}
   m_Layer: 0
   m_Name: Comb
   m_TagString: BathroomProp
@@ -6265,8 +6266,8 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 902460265}
   _rigidbody: {fileID: 902460260}
-  _grabSource: {fileID: 0}
-  _useClosestPointAsGrabSource: 1
+  _grabSource: {fileID: 943088580}
+  _useClosestPointAsGrabSource: 0
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
   _physicsGrabbable: {fileID: 902460264}
@@ -6392,6 +6393,37 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4493585093827132993, guid: f106dbbfe9f99854ea931930712e084d, type: 3}
+--- !u!114 &902460270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 902460259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddc75b802ae39a498c7e41d0a4c0c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 943088579}
+  lefthandXPosition: 0
+  lefthandYPosition: 0
+  lefthandZPosition: 0.12
+  lefthandXRotation: 180
+  lefthandYRotation: 0
+  lefthandZRotation: -90
+  righthandXPosition: 0
+  righthandYPosition: 0
+  righthandZPosition: 0.12
+  righthandXRotation: 0
+  righthandYRotation: 0
+  righthandZRotation: -90
+--- !u!1 &907868741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5525380005753893801, guid: 29e931f41ac83f0418f2f218628838ac,
+    type: 3}
+  m_PrefabInstance: {fileID: 1747184220}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &916599299
 GameObject:
   m_ObjectHideFlags: 0
@@ -6472,7 +6504,7 @@ Transform:
   m_GameObject: {fileID: 943088579}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6591,6 +6623,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2098710150}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 9ef78495eee1f694281d1dade940e819,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2098710151}
   m_SourcePrefab: {fileID: 100100000, guid: 9ef78495eee1f694281d1dade940e819, type: 3}
 --- !u!4 &955252052 stripped
 Transform:
@@ -7693,6 +7729,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 5.8510513, y: 0.7201463, z: 7.524655}
   m_Center: {x: 0.06361801, y: -0.81762606, z: 0.3688077}
+--- !u!114 &1145874667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145874657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddc75b802ae39a498c7e41d0a4c0c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 907868741}
+  lefthandXPosition: -3
+  lefthandYPosition: -3
+  lefthandZPosition: 0
+  lefthandXRotation: 90
+  lefthandYRotation: 0
+  lefthandZRotation: 0
+  righthandXPosition: 3
+  righthandYPosition: -3
+  righthandZPosition: 0
+  righthandXRotation: 90
+  righthandYRotation: 0
+  righthandZRotation: 0
 --- !u!1 &1157555226
 GameObject:
   m_ObjectHideFlags: 0
@@ -7811,6 +7872,7 @@ MonoBehaviour:
   teleportLocked: 0
   DropFood: 0
   GoToFirstAid: 0
+  GoToTray: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
@@ -12251,8 +12313,11 @@ MonoBehaviour:
   timeForWashingUp: 20
   CashEndPoint: {fileID: 0}
   Boss: {fileID: 0}
+  BossAudio: {fileID: 0}
   heartbeatUI: {fileID: 0}
   Customer: {fileID: 0}
+  ChoppingBlock: {fileID: 0}
+  Chicken: {fileID: 0}
   bandaidContainer: {fileID: 0}
   lidAnimator: {fileID: 0}
   lidPopTrigger: PopOff
@@ -14566,13 +14631,13 @@ MonoBehaviour:
   lefthandXPosition: 0
   lefthandYPosition: 0.005
   lefthandZPosition: 0
-  lefthandXRotation: 60
+  lefthandXRotation: 90
   lefthandYRotation: 90
   lefthandZRotation: 90
   righthandXPosition: 0
   righthandYPosition: 0.005
   righthandZPosition: 0
-  righthandXRotation: 60
+  righthandXRotation: 90
   righthandYRotation: 90
   righthandZRotation: 90
 --- !u!1 &1580138838
@@ -16993,6 +17058,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1145874659}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 29e931f41ac83f0418f2f218628838ac,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1145874667}
   m_SourcePrefab: {fileID: 100100000, guid: 29e931f41ac83f0418f2f218628838ac, type: 3}
 --- !u!1001 &1753220446
 PrefabInstance:
@@ -18232,13 +18301,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069677373}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0.0010000038, y: 0.00019557268, z: -0.00006618021}
-  m_LocalScale: {x: 0.001, y: 0.0010000002, z: 0.0010000002}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2074530117}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1001 &2074530115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18363,6 +18432,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2074530118}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 48ad882e6dc9d4d49b82c7fb29a0899c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2074530127}
   m_SourcePrefab: {fileID: 100100000, guid: 48ad882e6dc9d4d49b82c7fb29a0899c, type: 3}
 --- !u!1 &2074530116 stripped
 GameObject:
@@ -18513,6 +18586,31 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+--- !u!114 &2074530127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074530116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddc75b802ae39a498c7e41d0a4c0c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 2069677373}
+  lefthandXPosition: 0
+  lefthandYPosition: 0
+  lefthandZPosition: 0
+  lefthandXRotation: 0
+  lefthandYRotation: 0
+  lefthandZRotation: 180
+  righthandXPosition: 0
+  righthandYPosition: 0
+  righthandZPosition: 0
+  righthandXRotation: 0
+  righthandYRotation: 0
+  righthandZRotation: 180
 --- !u!4 &2087433404 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4e813899785b7ef408ef735a8ff6c585,
@@ -18768,6 +18866,31 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0000001, y: 1.0000001, z: 1.0000001}
   m_Center: {x: 0, y: 0.0000019073486, z: -0.000011444092}
+--- !u!114 &2098710151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098710138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eddc75b802ae39a498c7e41d0a4c0c66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grabPoint: {fileID: 211309304}
+  lefthandXPosition: 0
+  lefthandYPosition: 0
+  lefthandZPosition: 2
+  lefthandXRotation: 180
+  lefthandYRotation: 180
+  lefthandZRotation: 0
+  righthandXPosition: 0
+  righthandYPosition: 0
+  righthandZPosition: 2
+  righthandXRotation: 180
+  righthandYRotation: 180
+  righthandZRotation: 0
 --- !u!1 &2119393759
 GameObject:
   m_ObjectHideFlags: 0
