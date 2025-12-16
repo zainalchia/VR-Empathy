@@ -24,7 +24,6 @@ public class ChickenChopManager : MonoBehaviour
     private bool canCut = true;
     private bool customerVO = false;
 
-    [SerializeField] private float cutCooldown = 0.3f;
 
     private ScenarioManagerReneeTest sceneManager;
 
@@ -137,10 +136,7 @@ public class ChickenChopManager : MonoBehaviour
             ShowCurrentCutLine();
     }
 
-    private void ResetCut()
-    {
-        canCut = true;
-    }
+
     private IEnumerator CutSequence()
     {
         canCut = false;
