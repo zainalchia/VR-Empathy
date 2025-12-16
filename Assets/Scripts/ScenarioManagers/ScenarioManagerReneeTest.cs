@@ -189,6 +189,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
+        Customer.GetComponent<Animator>().SetBool("HandOverMoney", true);
+
         Customer.GetComponent<Animator>().SetBool("Idle", true);
 
         promptManager.ShowPrompt(SceneID.Stall, 0, false, 6f);
