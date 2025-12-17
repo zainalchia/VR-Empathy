@@ -166,6 +166,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private GameObject cleaverObject;
     private Outline cleaverOutline;
 
+    [Header("Teleporter")]
+    [SerializeField] private GameObject ToTray;
 
     public void PlayHawkerStart()
     {
@@ -289,18 +291,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         TrayOfFood.SetActive(true);
         promptManager.ShowPrompt(SceneID.Stall, 4, false, 6f);
 
-        if (playerTeleport != null)
-        {
-            playerTeleport.GoToTray = true; //enables to tp
-
-            var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots(); //get all hotspots
-            if (jobHotspots.Length > 3)//index 2
-            {
-                jobHotspots[3].SetActive(true); //show hotspot
-                if (jobHotspots[3].transform.childCount > 0) //visuals
-                    jobHotspots[3].transform.GetChild(0).gameObject.SetActive(true);
-            }
-        }
+        ToTray.SetActive(true);
 
     }
 
@@ -376,6 +367,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Force grab with right hand only
         var grabInteractable = plaster.GetComponent<GrabInteractable>();
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
+
     }
 
     [SerializeField] GameObject TrayOfFood;

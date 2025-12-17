@@ -11185,7 +11185,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 704027392}
   m_SourcePrefab: {fileID: 100100000, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
 --- !u!4 &704027390 stripped
 Transform:
@@ -11199,6 +11203,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 704027389}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &704027392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704027391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextTeleporter: {fileID: 0}
+  smallScale: {x: 0.5, y: 0.5, z: 0.5}
+  largeScale: {x: 1, y: 1, z: 1}
+  raycastDirectionOffset: {x: 0, y: 0, z: 0, w: 1}
 --- !u!1001 &727120503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17954,7 +17974,6 @@ MonoBehaviour:
   - {fileID: 1202423593}
   - {fileID: 1949589123}
   - {fileID: 533358067}
-  - {fileID: 704027391}
   MoveToTableHotspots:
   - {fileID: 743383509}
   - {fileID: 297416187}
@@ -18741,6 +18760,7 @@ MonoBehaviour:
     type: 3}
   plasterSpawnPoint: {fileID: 933124847}
   cleaverObject: {fileID: 919132148138377190}
+  ToTray: {fileID: 704027391}
   TrayOfFood: {fileID: 620099835}
   DroppedFood: {fileID: 757077370}
   PlayerCloth: {fileID: 18335542}
