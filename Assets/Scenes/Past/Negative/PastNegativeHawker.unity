@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 32070926}
   - component: {fileID: 32070925}
   - component: {fileID: 32070924}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Walls (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9869,7 +9869,7 @@ Transform:
   m_GameObject: {fileID: 658150351}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.511, y: 1.932, z: 0}
+  m_LocalPosition: {x: 2.511, y: 1.932, z: -0.484}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -18755,6 +18755,9 @@ MonoBehaviour:
   PlateSpawnPoint: {fileID: 1645267160}
   PlateTargetPoint: {fileID: 658150352}
   plateSpeed: 10
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
   Ladle: {fileID: 0}
   Sean: {fileID: 0}
   Model: {fileID: 0}
@@ -29816,6 +29819,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3824977623558944134, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_VolumeLayerMask.m_Bits
+      value: 98305
+      objectReference: {fileID: 0}
     - target: {fileID: 4207753694588439285, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -29844,7 +29852,7 @@ PrefabInstance:
     - target: {fileID: 4207753694588978431, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_CullingMask.m_Bits
-      value: 13879
+      value: 112183
       objectReference: {fileID: 0}
     - target: {fileID: 4207753694598570727, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -30804,7 +30812,7 @@ Transform:
   m_GameObject: {fileID: 1645267159}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.816, y: 0.939, z: -0.247}
+  m_LocalPosition: {x: -0.816, y: 0.939, z: 0.219}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

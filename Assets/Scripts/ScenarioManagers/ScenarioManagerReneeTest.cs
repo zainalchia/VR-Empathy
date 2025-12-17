@@ -388,6 +388,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [SerializeField] float plateSpeed = 10f;             // how fast it flies
 
+    [Header("Plate Collision")]
+    [SerializeField] private LayerMask wallLayer;
+
+
 
     public void PlayTraySegment()
     {
@@ -466,6 +470,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             PlateSpawnPoint.position,
             PlateSpawnPoint.rotation
         );
+        // Force plate layer
+        proj.layer = LayerMask.NameToLayer("Plate");
+
+        // Disable collisions with everything except Wall
+        int plateLayer = proj.layer;
+
+        
 
         Rigidbody rb = proj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
