@@ -6,9 +6,10 @@ public class PlateCollision : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        // Find parent script and notify the impact
-        FindObjectOfType<ScenarioManagerReneeTest>().PlateImpact();
-        
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        {
+            FindObjectOfType<ScenarioManagerReneeTest>().PlateImpact();
+        }
     }
 }
 

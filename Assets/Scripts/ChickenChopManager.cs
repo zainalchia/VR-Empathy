@@ -11,7 +11,7 @@ public class ChickenChopManager : MonoBehaviour
     public float blendLerpTime = 0.25f;
 
     [Header("Cut Line Objects (Pre-Placed)")]
-    public List<GameObject> cutLines;   // <<< ADDED
+    public List<GameObject> cutLines;   
 
     [Header("UI / Effects")]
     public HeartbeatUI uiManager;
@@ -180,15 +180,15 @@ public class ChickenChopManager : MonoBehaviour
         if (uiManager == null)
             return;
 
-        if (currentPiece == 2)
+        if (currentPiece == 1)
         {
             uiManager.StartSoftRed();
         }
-        else if (currentPiece == 3)
+        else if (currentPiece == 2)
         {
             uiManager.StartRed();
         }
-        else if (currentPiece == 4)
+        else if (currentPiece == 3)
         {
             uiManager.StartDeepRed();
         }

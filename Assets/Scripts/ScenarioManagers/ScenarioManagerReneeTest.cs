@@ -162,6 +162,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private GameObject plasterPrefab;
     [SerializeField] private Transform plasterSpawnPoint;
 
+    [Header("Cleaver")]
+    [SerializeField] private GameObject cleaverObject;
+    private Outline cleaverOutline;
+
 
     public void PlayHawkerStart()
     {
@@ -203,6 +207,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         // player has put cash into register
         playerTeleport.hasPlacedCash = true;
+
+        if (cleaverOutline != null)
+            cleaverOutline.enabled = true;
 
         // TP to the next hotspot
         playerTeleport.MoveToSection = true;
@@ -381,6 +388,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [SerializeField] float plateSpeed = 10f;             // how fast it flies
 
+    [Header("Plate Collision")]
+    [SerializeField] private LayerMask wallLayer;
+
+
 
     public void PlayTraySegment()
     {
@@ -459,6 +470,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             PlateSpawnPoint.position,
             PlateSpawnPoint.rotation
         );
+        // Force plate layer
+        proj.layer = LayerMask.NameToLayer("Plate");
+
+        // Disable collisions with everything except Wall
+        int plateLayer = proj.layer;
+
+        
 
         Rigidbody rb = proj.GetComponent<Rigidbody>();
         rb.isKinematic = false;
@@ -678,6 +696,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         SetupNarration();
         playerTeleport.currentScene = ScenarioID.PastNegative;
+        if (cleaverObject != null)
+        {
+            cleaverOutline = cleaverObject.GetComponent<Outline>();
+            if (cleaverOutline != null)
+                cleaverOutline.enabled = false;
+        }
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
