@@ -271,7 +271,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         BossAudio.GetComponent<WaypointManager>().startwalktrigger();
         yield return new WaitForSeconds(2F);
         // boss confront
-        BossAudio.GetComponent<AudioSource>().PlayOneShot(narrationAudioClips_1[7]);
+        BossAudio.GetComponent<AudioSource>().Play();
 
         BossAudio.GetComponent<WaypointManager>().enabled = false;
         //narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
