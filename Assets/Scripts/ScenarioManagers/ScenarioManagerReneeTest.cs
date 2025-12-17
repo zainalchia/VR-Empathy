@@ -162,6 +162,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private GameObject plasterPrefab;
     [SerializeField] private Transform plasterSpawnPoint;
 
+    [Header("Cleaver")]
+    [SerializeField] private GameObject cleaverObject;
+    private Outline cleaverOutline;
+
 
     public void PlayHawkerStart()
     {
