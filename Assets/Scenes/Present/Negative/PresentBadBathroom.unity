@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.28540036, g: 0.45722115, b: 0.5927939, a: 1}
+  m_IndirectSpecularColor: {r: 0.2868987, g: 0.45747802, b: 0.5948961, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5466,6 +5466,12 @@ MonoBehaviour:
   playerHead: {fileID: 0}
   mirrorRoot: {fileID: 0}
   mirrorCamera: {fileID: 0}
+  maxYOffset: 0.5
+  maxZOffset: 0.5
+  minXRotation: -20
+  maxXRotation: 20
+  minYRotation: -30
+  maxYRotation: 30
 --- !u!1 &1178772239
 GameObject:
   m_ObjectHideFlags: 0
@@ -16043,7 +16049,7 @@ PrefabInstance:
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: orthographic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -16054,6 +16060,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FOVAxisMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
+        type: 3}
+      propertyPath: far clip plane
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}

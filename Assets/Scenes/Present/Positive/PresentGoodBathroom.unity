@@ -14340,12 +14340,17 @@ PrefabInstance:
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: orthographic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: field of view
       value: 27.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
+        type: 3}
+      propertyPath: far clip plane
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -14397,6 +14402,12 @@ MonoBehaviour:
   playerHead: {fileID: 0}
   mirrorRoot: {fileID: 0}
   mirrorCamera: {fileID: 0}
+  maxYOffset: 0.5
+  maxZOffset: 0.5
+  minXRotation: -20
+  maxXRotation: 20
+  minYRotation: -30
+  maxYRotation: 30
 --- !u!1001 &2138493840
 PrefabInstance:
   m_ObjectHideFlags: 0

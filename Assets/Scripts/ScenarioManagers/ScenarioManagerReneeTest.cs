@@ -147,10 +147,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("In Hawker stall")]
     [SerializeField] GameObject CashEndPoint;
     [SerializeField] GameObject Boss;
+    [SerializeField] GameObject BossAudio;
     private bool playOnce = true;
     [SerializeField] private HeartbeatUI heartbeatUI;
     [SerializeField] private GameObject Customer;
-
+    [SerializeField] private GameObject ChoppingBlock;
+    [SerializeField] private GameObject Chicken;
+ 
     [Header("Plaster")]
     [SerializeField] private GameObject bandaidContainer;
     [SerializeField] private Animator lidAnimator;
@@ -185,6 +188,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Give me 2 chicken rice
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
+
+        Customer.GetComponent<Animator>().SetBool("HandOverMoney", true);
 
         Customer.GetComponent<Animator>().SetBool("Idle", true);
 
@@ -259,16 +264,36 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
                                                                            //MovePLayer();
                                                                            // Boss.gameObject.SetActive(true);
-        Boss.GetComponent<WaypointManager>().startwalktrigger();
-        Boss.GetComponent<Animator>().SetBool("IsWalking", true);
-        yield return new WaitForSeconds(1.5f);
-        Boss.GetComponent<Animator>().SetBool("IsWalking", false);
+                                                                           //Boss.GetComponent<WaypointManager>().startwalktrigger();
+                                                                           //Boss.GetComponent<Animator>().SetBool("IsWalking", true);
+                                                                           //yield return new WaitForSeconds(1.5f);
+                                                                           //Boss.GetComponent<Animator>().SetBool("IsWalking", false);
+        BossAudio.GetComponent<WaypointManager>().startwalktrigger();
+        yield return new WaitForSeconds(2F);
         // boss confront
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
+        BossAudio.GetComponent<AudioSource>().Play();
+
+        BossAudio.GetComponent<WaypointManager>().enabled = false;
+        //narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
+        ChoppingBlock.SetActive(false);
+        Chicken.SetActive(false);
         TrayOfFood.SetActive(true);
         promptManager.ShowPrompt(SceneID.Stall, 4, false, 6f);
+
+        if (playerTeleport != null)
+        {
+            playerTeleport.GoToTray = true; //enables to tp
+
+            var jobHotspots = playerTeleport.GetMoveToJobPositionHotspots(); //get all hotspots
+            if (jobHotspots.Length > 3)//index 2
+            {
+                jobHotspots[3].SetActive(true); //show hotspot
+                if (jobHotspots[3].transform.childCount > 0) //visuals
+                    jobHotspots[3].transform.GetChild(0).gameObject.SetActive(true);
+            }
+        }
 
     }
 
@@ -371,6 +396,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void PlayFoodDrop()
     {
+
         // Drop the tray
         TrayOfFood.transform.SetParent(null);
         TrayOfFood.GetComponent<FoodTray>().AbleToGrab = false;
@@ -422,7 +448,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     // ----------------------------------------------------------------------
     public IEnumerator ThrowPlate()
     {
+        yield return new WaitForSeconds(2f);
 
+        Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
         yield return new WaitForSeconds(0.5f);
         // Spawn the projectile at the spawn point
