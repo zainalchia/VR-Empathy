@@ -208,6 +208,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // player has put cash into register
         playerTeleport.hasPlacedCash = true;
 
+        if (cleaverOutline != null)
+            cleaverOutline.enabled = true;
+
         // TP to the next hotspot
         playerTeleport.MoveToSection = true;
         //reset hotspot
@@ -682,6 +685,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         SetupNarration();
         playerTeleport.currentScene = ScenarioID.PastNegative;
+        if (cleaverObject != null)
+        {
+            cleaverOutline = cleaverObject.GetComponent<Outline>();
+            if (cleaverOutline != null)
+                cleaverOutline.enabled = false;
+        }
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
