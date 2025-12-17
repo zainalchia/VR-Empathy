@@ -24,7 +24,6 @@ public class ChickenChopManager : MonoBehaviour
     private bool canCut = true;
     private bool customerVO = false;
 
-    [SerializeField] private float cutCooldown = 0.3f;
 
     private ScenarioManagerReneeTest sceneManager;
 
@@ -86,66 +85,9 @@ public class ChickenChopManager : MonoBehaviour
         if (!canCut || currentPiece >= blendShapeIndices.Count)
             return;
 
-        // ===== Blendshape Animation =====
-        int shapeIndex = blendShapeIndices[currentPiece];
-        StartCoroutine(LerpBlendShape(shapeIndex, 0f, 100f, blendLerpTime));
-
-        // ===== UI Logic =====
-        if (uiManager != null)
-        {
-            if (currentPiece == 2)
-            {
-                uiManager.StartSoftRed();
-                cutCooldown = 0.8f;
-            }
-            else if (currentPiece == 3)
-            {
-                uiManager.StartRed();
-                cutCooldown = 1.0f;
-            }
-            else if (currentPiece == 4)
-            {
-                uiManager.StartDeepRed();
-                cutCooldown = 1.2f;
-            }
-            else if (currentPiece == 5)
-            {
-                uiManager.KnifeAccidentFlash();
-
-                if (bloodEffect != null)
-                    StartCoroutine(ActivateBloodEffect(bloodEffect));
-
-                StartCoroutine(BleedingHand());
-
-                cutCooldown = 1.7f;
-                sceneManager.PlayChoppedHand();
-            }
-        }
-
-        // ===== Move to Next Cut =====
-        currentPiece++;               // increment first
-        ShowCurrentCutLine();         // then show the next line
-
-        // ===== Final Cut =====
-        if (currentPiece >= blendShapeIndices.Count)
-        {
-            cutCooldown = 0.3f;
-
-            GameObject knife = GameObject.FindWithTag("Knife");
-            if (knife != null)
-            {
-                var forceGrab = knife.GetComponent<ForceStayGrabbed>();
-                if (forceGrab != null)
-                    forceGrab.SetForceGrabActive(false);
-
-                ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
-                knife.GetComponent<Grabbable>().enabled = false;
-            }
-        }
-
-        canCut = false;
-        Invoke(nameof(ResetCut), cutCooldown);
+        StartCoroutine(CutSequence());
     }
+
 
 
     private IEnumerator LerpBlendShape(int index, float start, float end, float duration)
@@ -194,8 +136,88 @@ public class ChickenChopManager : MonoBehaviour
             ShowCurrentCutLine();
     }
 
-    private void ResetCut()
+
+    private IEnumerator CutSequence()
     {
+        canCut = false;
+
+        // Hide all cut lines while cutting
+        HideAllCutLines();
+
+        int shapeIndex = blendShapeIndices[currentPiece];
+        bool isFinalCut = (currentPiece == blendShapeIndices.Count - 1);
+
+        if (isFinalCut)
+        {
+            // Start blendshape but DO NOT wait for it
+            StartCoroutine(LerpBlendShape(shapeIndex, 0f, 100f, blendLerpTime));
+
+            HandleUILogic();
+            HandleFinalCut();
+
+            currentPiece++;
+            canCut = true;
+            yield break;
+        }
+
+        // Normal cuts wait for blendshape
+        yield return StartCoroutine(
+            LerpBlendShape(shapeIndex, 0f, 100f, blendLerpTime)
+        );
+
+        HandleUILogic();
+
+        currentPiece++;
+
+        // Show next cut line after animation
+        ShowCurrentCutLine();
+
         canCut = true;
     }
+
+    private void HandleUILogic()
+    {
+        if (uiManager == null)
+            return;
+
+        if (currentPiece == 2)
+        {
+            uiManager.StartSoftRed();
+        }
+        else if (currentPiece == 3)
+        {
+            uiManager.StartRed();
+        }
+        else if (currentPiece == 4)
+        {
+            uiManager.StartDeepRed();
+        }
+        else if (currentPiece == 5)
+        {
+            uiManager.KnifeAccidentFlash();
+
+            if (bloodEffect != null)
+                StartCoroutine(ActivateBloodEffect(bloodEffect));
+
+            StartCoroutine(BleedingHand());
+
+            sceneManager.PlayChoppedHand();
+        }
+    }
+
+    private void HandleFinalCut()
+    {
+        GameObject knife = GameObject.FindWithTag("Knife");
+        if (knife == null)
+            return;
+
+        var forceGrab = knife.GetComponent<ForceStayGrabbed>();
+        if (forceGrab != null)
+            forceGrab.SetForceGrabActive(false);
+
+        ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+        knife.GetComponent<Grabbable>().enabled = false;
+    }
+
+
 }

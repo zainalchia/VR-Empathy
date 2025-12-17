@@ -7552,6 +7552,13 @@ MonoBehaviour:
   taiChiAnimations: []
   toDoTaiChi: 0
   toStartSpasming: 0
+  toUsePlaster: 0
+  plasterContainer: {fileID: 0}
+  plaster: {fileID: 0}
+  leftHandRenderer: {fileID: 0}
+  bloodEffect: {fileID: 0}
+  plasteredHandMaterial: {fileID: 0}
+  handHealed: 0
 --- !u!114 &1115407452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10834,7 +10841,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6c1cab01d99fcd344ae26feac73a7e3b,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1518123029}
+      addedObject: {fileID: 1518123023}
   m_SourcePrefab: {fileID: 100100000, guid: 6c1cab01d99fcd344ae26feac73a7e3b, type: 3}
 --- !u!1 &1518123002 stripped
 GameObject:
@@ -11010,7 +11017,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.18021357, y: 0.2378251, z: 0.14}
   m_Center: {x: 4.3749495e-16, y: 0.00000017508864, z: 0.000000059604645}
---- !u!114 &1518123029
+--- !u!114 &1518123023
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11019,10 +11026,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1518123002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa329946da141f24191b5da03f3c6918, type: 3}
+  m_Script: {fileID: 11500000, guid: eddc75b802ae39a498c7e41d0a4c0c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   grabPoint: {fileID: 65931705}
+  lefthandXPosition: 0.1133
+  lefthandYPosition: -0.127
+  lefthandZPosition: -0.0045
+  lefthandXRotation: 0
+  lefthandYRotation: 0
+  lefthandZRotation: 0
+  righthandXPosition: -0.1122
+  righthandYPosition: -0.127
+  righthandZPosition: -0.0045
+  righthandXRotation: 0
+  righthandYRotation: 0
+  righthandZRotation: 0
 --- !u!1001 &1523771366
 PrefabInstance:
   m_ObjectHideFlags: 0
