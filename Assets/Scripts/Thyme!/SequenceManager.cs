@@ -9,7 +9,8 @@ enum Hand
 {
 	Left,
 	Right,
-	Current
+	Current,
+	Free
 }
 
 public class SequenceManager : MonoBehaviour
@@ -288,12 +289,20 @@ public class SequenceManager : MonoBehaviour
 				}
 
 				case Hand.Current:
-					if(ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
+					if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
 						ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
 					if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
 						ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
 					break;
-			}
+
+				case Hand.Free:
+                    if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == null)
+                        ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
+                    if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == null)
+                        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+					break;
+
+            }
 			Exit();
 		}
 	}
