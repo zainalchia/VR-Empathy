@@ -379,6 +379,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     public Transform PlateTargetPoint;  // where the plate flies toward
 
     [SerializeField] float plateSpeed = 10f;             // how fast it flies
+    [Header("Plate Shards")]
+    [SerializeField] private Transform plateShardSpawnPoint;
 
     [Header("Plate Collision")]
     [SerializeField] private LayerMask wallLayer;
@@ -485,18 +487,23 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         }
 
         // If it still exists, destroy and spawn shards
+        // If it still exists, destroy and spawn shards
         if (proj != null)
         {
-            Vector3 hitPoint = proj.transform.position;
+            Vector3 spawnPoint = plateShardSpawnPoint != null
+                ? plateShardSpawnPoint.position
+                : proj.transform.position;
+
             Destroy(proj);
 
-            // Spawn every shard prefab in the list
+            // Spawn every shard prefab at a fixed point
             foreach (GameObject shardPrefab in PlateShardPrefabs)
             {
-                GameObject shards = Instantiate(shardPrefab, hitPoint, Quaternion.identity);
+                GameObject shards = Instantiate(shardPrefab, spawnPoint, Quaternion.identity);
                 shards.SetActive(true);
             }
         }
+
 
         // Let player clean up
         PlayerCloth.SetActive(true);
