@@ -4,6 +4,9 @@ public class ItemHoldingAdjuster : MonoBehaviour
 {
     [SerializeField] GameObject grabPoint;
 
+    [Header("Options")]
+    [SerializeField] bool useBothHandsAverage = true; // TOGGLE
+
     [Header("Left Hand Pose")]
     [SerializeField] float lefthandXPosition;
     [SerializeField] float lefthandYPosition;
@@ -29,8 +32,8 @@ public class ItemHoldingAdjuster : MonoBehaviour
 
     private void Update()
     {
-        // If both hands touch, average the two poses
-        if (leftTouching && rightTouching)
+        // If both hands touch AND toggle is enabled  average poses
+        if (useBothHandsAverage && leftTouching && rightTouching)
         {
             Vector3 avgPos = new Vector3(
                 (lefthandXPosition + righthandXPosition) * 0.5f,
@@ -55,7 +58,7 @@ public class ItemHoldingAdjuster : MonoBehaviour
         {
             leftTouching = true;
 
-            if (!rightTouching)
+            if (!rightTouching || !useBothHandsAverage)
             {
                 grabPoint.transform.localPosition =
                     new Vector3(lefthandXPosition, lefthandYPosition, lefthandZPosition);
@@ -68,7 +71,7 @@ public class ItemHoldingAdjuster : MonoBehaviour
         {
             rightTouching = true;
 
-            if (!leftTouching)
+            if (!leftTouching || !useBothHandsAverage)
             {
                 grabPoint.transform.localPosition =
                     new Vector3(righthandXPosition, righthandYPosition, righthandZPosition);
