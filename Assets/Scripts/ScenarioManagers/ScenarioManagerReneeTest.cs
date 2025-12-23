@@ -1,6 +1,7 @@
 ﻿using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -148,6 +149,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject CashEndPoint;
     [SerializeField] GameObject Boss;
     [SerializeField] GameObject BossAudio;
+    [SerializeField] GameObject bossThrowPosition;
     private bool playOnce = true;
     [SerializeField] private HeartbeatUI heartbeatUI;
     [SerializeField] private GameObject Customer;
@@ -228,6 +230,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                 jobHotspots[1].transform.GetChild(0).gameObject.SetActive(true);
         }
         knifeObject.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+
+        Boss.transform.position = bossThrowPosition.transform.position;
+        Boss.transform.eulerAngles = Vector3.zero;
     }
     public void PlayChoppedHand()
     {
