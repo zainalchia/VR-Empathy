@@ -462,6 +462,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        // "Wah why you so stupid ah?!! I'm going to cut your pay!"
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[12]);
+        yield return new WaitForSeconds(narrationAudioClips_1[12].length);
+
         Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
         yield return new WaitForSeconds(0.5f);
