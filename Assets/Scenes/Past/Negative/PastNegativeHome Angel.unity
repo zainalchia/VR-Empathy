@@ -746,6 +746,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a8c3a54e355f7f44b8a7575fffca8ca, type: 3}
+--- !u!1 &53749813 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892455538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &53749815
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53749813}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &58408731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2415,6 +2442,11 @@ MonoBehaviour:
   - {fileID: 1445004755}
   - {fileID: 1479146199}
   - {fileID: 1008135460}
+  porridgeObjects:
+  - {fileID: 1892455541}
+  - {fileID: 1892455539}
+  - {fileID: 1892455542}
+  - {fileID: 1892455540}
 --- !u!114 &156639216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5990,6 +6022,7 @@ MonoBehaviour:
   - {fileID: 1445004755}
   - {fileID: 1479146199}
   - {fileID: 1008135460}
+  porridgeObjects: []
 --- !u!54 &574353673
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -14756,10 +14789,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4378969607674023326, guid: 5a1474c8ce687a346aee543c46038011,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 5a1474c8ce687a346aee543c46038011,
         type: 3}
       propertyPath: m_Name
       value: ricecooker
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a1474c8ce687a346aee543c46038011,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4447455625754907457, guid: 5a1474c8ce687a346aee543c46038011,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 8383186000639300383, guid: 5a1474c8ce687a346aee543c46038011,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -19015,17 +19068,110 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -911516829095460416, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -911516829095460416, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -200881531325459466, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 429674072565739092, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 07cef21890b4bdf4f9a5800fa55c1313,
         type: 3}
       propertyPath: m_Name
       value: fixed_porridge (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_TagString
+      value: Porridge
+      objectReference: {fileID: 0}
+    - target: {fileID: 2303148880719571301, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564188551290911487, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564188551290911487, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6470568342744580955, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795496587137737055, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8795496587137737055, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8449164562695489218, guid: 07cef21890b4bdf4f9a5800fa55c1313, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 53749815}
   m_SourcePrefab: {fileID: 100100000, guid: 07cef21890b4bdf4f9a5800fa55c1313, type: 3}
+--- !u!1 &1892455539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 429674072565739092, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892455538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1892455540 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6470568342744580955, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892455538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1892455541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -200881531325459466, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892455538}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1892455542 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2303148880719571301, guid: 07cef21890b4bdf4f9a5800fa55c1313,
+    type: 3}
+  m_PrefabInstance: {fileID: 1892455538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1907005421
 PrefabInstance:
   m_ObjectHideFlags: 0
