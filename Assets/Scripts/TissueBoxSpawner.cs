@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class TissueBoxHold : MonoBehaviour
+public class TissueBoxSpawner : MonoBehaviour
 {
     [Header("Spawn")]
     public GameObject tissuePrefab;
