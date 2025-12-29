@@ -13,8 +13,10 @@ GameObject:
   - component: {fileID: 829348319387526684}
   - component: {fileID: 5636644636544189169}
   - component: {fileID: 4038783497520864827}
+  - component: {fileID: 7049031937535323274}
+  - component: {fileID: -4557958003667874061}
   - component: {fileID: -7003335786700557707}
-  - component: {fileID: 6221407101714387953}
+  - component: {fileID: 817617410756482102}
   m_Layer: 0
   m_Name: TempTissueBox
   m_TagString: Untagged
@@ -135,6 +137,48 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7049031937535323274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685568853459669007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interactorFilters: []
+  _maxInteractors: -1
+  _maxSelectingInteractors: -1
+  _data: {fileID: 0}
+  _pointableElement: {fileID: -4557958003667874061}
+  _rigidbody: {fileID: 4038783497520864827}
+  _grabSource: {fileID: 0}
+  _useClosestPointAsGrabSource: 0
+  _releaseDistance: 0
+  _resetGrabOnGrabsUpdated: 1
+  _physicsGrabbable: {fileID: 0}
+--- !u!114 &-4557958003667874061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685568853459669007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _transferOnSecondSelection: 0
+  _addNewPointsToFront: 0
+  _forwardElement: {fileID: 0}
+  _oneGrabTransformer: {fileID: 0}
+  _twoGrabTransformer: {fileID: 0}
+  _targetTransform: {fileID: 0}
+  _maxGrabPoints: -1
 --- !u!114 &-7003335786700557707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +197,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &6221407101714387953
+--- !u!114 &817617410756482102
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,3 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36406a9b04d4bb46aef16409a9df11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tissuePrefab: {fileID: 1100555092924096292, guid: a959dc20c3ca52044be6616a585ad115,
+    type: 3}
+  leftHandAttach: {fileID: 0}
+  rightHandAttach: {fileID: 0}
