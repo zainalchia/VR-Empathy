@@ -1,15 +1,22 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class TissueBoxHold : MonoBehaviour
+public class TissueBoxSpawner : MonoBehaviour
 {
-    [Header("Spawn")]
-    public GameObject tissuePrefab;
+    [Header("Tissue")]
+    public GameObject tissueObject; // already placed in scene
     public Transform leftHandAttach;
     public Transform rightHandAttach;
 
     private bool leftHandTouching;
     private bool rightHandTouching;
     private bool hasGivenTissue = false;
+
+    void Start()
+    {
+        // Ensure tissue is initially disabled
+        if (tissueObject != null)
+            tissueObject.SetActive(false);
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -31,7 +38,7 @@ public class TissueBoxHold : MonoBehaviour
 
     void Update()
     {
-        if (hasGivenTissue)
+        if (hasGivenTissue || tissueObject == null)
             return;
 
         bool leftTrigger =
@@ -40,12 +47,10 @@ public class TissueBoxHold : MonoBehaviour
         bool rightTrigger =
             OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > 0.2f;
 
-        // Left hand gets tissue
         if (leftHandTouching && leftTrigger)
         {
             GiveTissue(leftHandAttach);
         }
-        // Right hand gets tissue
         else if (rightHandTouching && rightTrigger)
         {
             GiveTissue(rightHandAttach);
@@ -56,14 +61,10 @@ public class TissueBoxHold : MonoBehaviour
     {
         hasGivenTissue = true;
 
-        GameObject tissue = Instantiate(
-            tissuePrefab,
-            handAttach.position,
-            handAttach.rotation
-        );
-
-        tissue.transform.SetParent(handAttach);
-        tissue.transform.localPosition = Vector3.zero;
-        tissue.transform.localRotation = Quaternion.identity;
+        // Enable tissue object and parent it to hand
+        tissueObject.SetActive(true);
+        tissueObject.transform.SetParent(handAttach);
+        tissueObject.transform.localPosition = Vector3.zero;
+        tissueObject.transform.localRotation = Quaternion.identity;
     }
 }
