@@ -371,6 +371,18 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!114 &18335545 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1581427118351747039, guid: 42acec9af6eed9a4a885a252fda7b611,
+    type: 3}
+  m_PrefabInstance: {fileID: 1146068187}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 18335542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!137 &21536826 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 7950288885091432978, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -11216,6 +11228,8 @@ MonoBehaviour:
   bleedingHandMaterial: {fileID: 2100000, guid: 9e7db9bb6e609f448bd850ed8eca81c0,
     type: 2}
   bloodEffect: {fileID: 1333380323}
+  sfxSource: {fileID: 0}
+  choppingClip: {fileID: 0}
 --- !u!114 &479391324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15753,17 +15767,17 @@ PrefabInstance:
     - target: {fileID: 8519012554227522082, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.237
+      value: 1.104
       objectReference: {fileID: 0}
     - target: {fileID: 8519012554227522082, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.009
       objectReference: {fileID: 0}
     - target: {fileID: 8519012554227522082, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.373
+      value: 0.943
       objectReference: {fileID: 0}
     - target: {fileID: 8519012554227522082, guid: c28691789b147e944a884d3043a8a831,
         type: 3}
@@ -18816,6 +18830,12 @@ Transform:
   - {fileID: 916599300}
   m_Father: {fileID: 584361344}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1015516055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7631801609028913560, guid: c28691789b147e944a884d3043a8a831,
+    type: 3}
+  m_PrefabInstance: {fileID: 757077369}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1022967878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23429,6 +23449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chopManager: {fileID: 479391323}
+  forceStayGrabbed: {fileID: 0}
+  chopper: {fileID: 0}
 --- !u!1001 &1133758375
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26489,7 +26511,20 @@ MonoBehaviour:
   - rid: 154194936214323212
   - rid: 154194936214323214
   - rid: 154194936214323216
-  - rid: 154194936214323217
+  - rid: 6176682073276809235
+  - rid: 6176682073276809237
+  - rid: 6176682073276809239
+  - rid: 6176682073276809216
+  - rid: 6176682073276809218
+  - rid: 6176682073276809220
+  - rid: 6176682073276809222
+  - rid: 6176682073276809232
+  - rid: 6176682073276809224
+  - rid: 6176682073276809226
+  - rid: 6176682073276809230
+  - rid: 6176682073276809240
+  - rid: 6176682073276809242
+  - rid: 6176682073276809244
   references:
     version: 2
     RefIds:
@@ -26587,23 +26622,177 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 479391321}
-              m_TargetAssemblyTypeName: 
-              m_MethodName: 
-              m_Mode: 0
+            - m_Target: {fileID: 479391326}
+              m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+              m_MethodName: Reset
+              m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: 
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 154194936214323217
-      type: {class: SequenceManager/SequenceEvent, ns: , asm: Assembly-CSharp}
+    - rid: 6176682073276809216
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
-        type: 0
+        name: '[Audio] Child likes chicken'
+        type: 5
+        audioSource: {fileID: 1425413655}
+        audioClip: {fileID: 8300000, guid: 772f2125346e34a4f89da67cab38d43f, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 772f2125346e34a4f89da67cab38d43f, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 6176682073276809218
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Customer likes chicken'
+        type: 5
+        audioSource: {fileID: 1425413655}
+        audioClip: {fileID: 8300000, guid: 6910e97fe0e7dc249858156c81a0d829, type: 3}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 1
+        loop: 0
+    - rid: 6176682073276809220
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] You like chicken'
+        type: 5
+        audioSource: {fileID: 204506546}
+        audioClip: {fileID: 8300000, guid: a678e54c81aed9c4da2f0317b5c0305a, type: 3}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 1
+        loop: 0
+    - rid: 6176682073276809222
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Customer leaves'
+        type: 5
+        audioSource: {fileID: 204506546}
+        audioClip: {fileID: 8300000, guid: cc9e4e94178b5a5468029e4ff0a95801, type: 3}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 1
+        loop: 0
+    - rid: 6176682073276809224
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Boss wants you to clean table'
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: 9e871cc31b84062409fadee9fa59f65b, type: 3}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 1
+        loop: 0
+    - rid: 6176682073276809226
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Sure thing, Boss!'
+        type: 5
+        audioSource: {fileID: 204506546}
+        audioClip: {fileID: 8300000, guid: a2db2d5f17799fb419bd4129dfa0cc38, type: 3}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 1
+        loop: 0
+    - rid: 6176682073276809230
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to grab cloth
+        type: 3
+        interactable: {fileID: 18335545}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 6176682073276809232
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable cloth
+        type: 6
+        gameObject: {fileID: 18335542}
+        active: 1
+    - rid: 6176682073276809235
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for chicken to be chopped
+        type: 7
+        gameObject: {fileID: 1654079645}
+        active: 1
+    - rid: 6176682073276809237
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Swap chicken for plate & mess
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 479391321}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 757077370}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 620099835}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 6176682073276809239
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for tray pickup
+        type: 3
+        interactable: {fileID: 620099838}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 6176682073276809240
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for mess to be cleaned
+        type: 7
+        gameObject: {fileID: 1015516055}
+        active: 1
+    - rid: 6176682073276809242
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Boss praises you'
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: a24e709b4f189214b86b2f6a060cc4b9, type: 3}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 1
+        loop: 0
+    - rid: 6176682073276809244
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: Next scene
+        type: 13
+        sceneName: PastPositiveHome
 --- !u!1001 &1202423591
 PrefabInstance:
   m_ObjectHideFlags: 0
