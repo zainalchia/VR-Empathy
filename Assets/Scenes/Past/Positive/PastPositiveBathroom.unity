@@ -5669,7 +5669,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -5721,8 +5721,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   whitelist:
-  - {fileID: 2042881091}
-  - {fileID: 1755570897}
+  - {fileID: 1160836521}
+  - {fileID: 1715912901}
 --- !u!54 &677545111
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -23418,6 +23418,61 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1654800899}
     m_Modifications:
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: whitelist.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: whitelist.Array.data[0]
+      value: 
+      objectReference: {fileID: 1160836521}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: whitelist.Array.data[1]
+      value: 
+      objectReference: {fileID: 1715912901}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: set_text
+      objectReference: {fileID: 0}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: TMPro.TMP_Text, Unity.TextMeshPro
+      objectReference: {fileID: 0}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: yes
+      objectReference: {fileID: 0}
+    - target: {fileID: 553996693314599713, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1103108582026298981, guid: 34717ab755f12cd42a7fdedc8204d1db,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -23472,11 +23527,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Dispenser Interaction
-      objectReference: {fileID: 0}
-    - target: {fileID: 5327243358241065983, guid: 34717ab755f12cd42a7fdedc8204d1db,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
