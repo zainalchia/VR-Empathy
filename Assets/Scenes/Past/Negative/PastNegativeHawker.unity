@@ -7639,7 +7639,7 @@ GameObject:
   m_Component:
   - component: {fileID: 479391322}
   - component: {fileID: 479391323}
-  - component: {fileID: 479391324}
+  - component: {fileID: 479391327}
   - component: {fileID: 479391325}
   - component: {fileID: 479391326}
   m_Layer: 0
@@ -7697,19 +7697,6 @@ MonoBehaviour:
   bloodEffect: {fileID: 1333380323}
   sfxSource: {fileID: 479391326}
   choppingClip: {fileID: 8300000, guid: d6f8045ae26f753499e48f216c606243, type: 3}
---- !u!114 &479391324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479391321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5f71c185cc81cd4498e50b53aed79b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chopManager: {fileID: 479391323}
 --- !u!65 &479391325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7827,6 +7814,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &479391327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479391321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993938357fb253f429c307a5480f452e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chopManager: {fileID: 479391323}
 --- !u!1 &491047297
 GameObject:
   m_ObjectHideFlags: 0
@@ -18214,6 +18214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chopManager: {fileID: 479391323}
+  forceStayGrabbed: {fileID: 0}
   chopper: {fileID: 919132148138377190}
 --- !u!1001 &1133758375
 PrefabInstance:
@@ -19478,6 +19479,7 @@ MonoBehaviour:
   Model: {fileID: 0}
   SeanAudioSource: {fileID: 0}
   HomeLight: {fileID: 0}
+  tissueBox: {fileID: 0}
   PlayerDestination: {fileID: 0}
   Player: {fileID: 0}
 --- !u!114 &1201703112
