@@ -15,12 +15,16 @@ public class SaneChickenChopper : MonoBehaviour
 
     public int currentCutIndex = 0;
 
+    private void Awake()
+    {
+        Reset();
+    }
+
     private void Update()
     {
         for (int i = 0; i < cutLines.Count; i++)
         {
             cutLines[i].SetActive(i == currentCutIndex);
-            chickenMesh.SetBlendShapeWeight(i, 0);
         }
     }
 
@@ -40,6 +44,12 @@ public class SaneChickenChopper : MonoBehaviour
     public void Reset()
     {
         currentCutIndex = 0;
+
+        for (int i = 0; i < cutLines.Count; i++)
+        {
+            cutLines[i].SetActive(i == currentCutIndex);
+            chickenMesh.SetBlendShapeWeight(i, 0);
+        }
     }
 
     public void NextCut()
