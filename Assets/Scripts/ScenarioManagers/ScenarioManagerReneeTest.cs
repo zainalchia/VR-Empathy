@@ -276,6 +276,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         bandaidContainer.GetComponent<GrabInteractable>().enabled = true;
         bandaidContainer.GetComponent<PhysicsGrabbable>().enabled = true;
         bandaidContainer.GetComponent<PlasterContainer>().enabled = true;
+        bandaidContainer.GetComponent<Outline>().enabled = true;
 
         yield return new WaitUntil(() => GameManager.instance.handHealed); //only happen when handhealed is true
                                                                            //MovePLayer();
@@ -304,7 +305,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         if (lidAnimator != null)
             lidAnimator.SetTrigger(lidPopTrigger);
-
+        bandaidContainer.GetComponent<Outline>().enabled = false;
         // slight delay on the lid
         StartCoroutine(MoveLidAfterDelay(0.5f));
     }
