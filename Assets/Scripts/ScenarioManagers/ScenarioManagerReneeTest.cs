@@ -560,7 +560,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[11].length);
 
         yield return new WaitForSeconds(4f);
-        SceneManager.LoadScene("PastNegativeHome Angel", LoadSceneMode.Single);
+        SceneManager.LoadScene("PastNegativeHome", LoadSceneMode.Single);
     }
     #endregion
 
