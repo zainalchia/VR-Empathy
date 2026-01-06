@@ -11,7 +11,7 @@ public class SaneTeleporter : MonoBehaviour
 	[SerializeField] Vector3 smallScale;
 	[SerializeField] Vector3 largeScale;
 	[SerializeField] Quaternion raycastDirectionOffset = Quaternion.identity;
-	const float radiusMultiplier = 0.5f;
+	[SerializeField] float radiusMultiplier = 1.0f;
 
 
 	private void Update()
@@ -19,7 +19,6 @@ public class SaneTeleporter : MonoBehaviour
 		Vector3 targetSize = smallScale;
 
 		// do math to check if ray from controller intersects sphere
-		Debug.Log(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger));
 
 		// left hand
 		if(
