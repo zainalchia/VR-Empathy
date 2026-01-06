@@ -572,6 +572,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject Model;
     [SerializeField] AudioSource SeanAudioSource;
     [SerializeField] Light HomeLight;
+    [Header("Sean Tissue Box")]
+    [SerializeField] private GameObject tissueBox;
+    private Outline tissueBoxOutline;
     public void PlayFamilyStart()
     {
         lastRoutine = StartCoroutine(FamilyStart());
@@ -666,13 +669,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         promptManager.ShowPrompt(sceneID, 1, false, 2f);
 
-        // Carry sean segment
-        Sean.GetComponent<Grabbable>().enabled = true;
-        //Sean.GetComponent<ForceStayGrabbed>().enabled = true;
-        Sean.GetComponent<PhysicsGrabbable>().enabled = true;
-        Sean.GetComponent<GrabInteractable>().enabled = true;
-        Sean.GetComponent<Sean>().enabled = true;
-        //Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        // Tissue Cry Segment
+        if (tissueBoxOutline != null)
+            tissueBoxOutline.enabled = true;
     }
     public void PlayFinalHome() // Called in Sean.cs
     {
@@ -717,6 +716,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             if (cleaverOutline != null)
                 cleaverOutline.enabled = false;
         }
+        // Tissue box setup
+        if (tissueBox != null)
+        {
+           tissueBoxOutline = tissueBox.GetComponent<Outline>();
+
+            if (tissueBoxOutline != null)
+                tissueBoxOutline.enabled = false; // disabled until Sean segment
+        }
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
@@ -735,6 +742,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             PlayFamilyStart();
             //PlayLightOFf();
         }
+       
+
     }
 
 
