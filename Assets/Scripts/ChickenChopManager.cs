@@ -20,6 +20,9 @@ public class ChickenChopManager : MonoBehaviour
     [SerializeField] private Material bleedingHandMaterial;
     [SerializeField] private GameObject bloodEffect;
 
+    [SerializeField] private AudioSource sfxSource;          // assign in Inspector (can be same as another source)
+    [SerializeField] private AudioClip choppingClip;         // assign in Inspector
+
     private bool isHolding = false;
     private bool canCut = true;
     private bool customerVO = false;
@@ -84,6 +87,12 @@ public class ChickenChopManager : MonoBehaviour
 
         if (!canCut || currentPiece >= blendShapeIndices.Count)
             return;
+
+        // Play chopping sound
+        if (choppingClip != null && sfxSource != null)
+        {
+            sfxSource.PlayOneShot(choppingClip);
+        }
 
         StartCoroutine(CutSequence());
     }

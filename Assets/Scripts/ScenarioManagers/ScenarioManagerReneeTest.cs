@@ -1,6 +1,7 @@
 ﻿using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -148,6 +149,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject CashEndPoint;
     [SerializeField] GameObject Boss;
     [SerializeField] GameObject BossAudio;
+    [SerializeField] GameObject bossThrowPosition;
     private bool playOnce = true;
     [SerializeField] private HeartbeatUI heartbeatUI;
     [SerializeField] private GameObject Customer;
@@ -228,6 +230,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                 jobHotspots[1].transform.GetChild(0).gameObject.SetActive(true);
         }
         knifeObject.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+
+        Boss.transform.position = bossThrowPosition.transform.position;
+        Boss.transform.eulerAngles = Vector3.zero;
     }
     public void PlayChoppedHand()
     {
@@ -262,7 +267,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                     jobHotspots[2].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
-
+        cleaverObject.SetActive(false);
+        ChoppingBlock.SetActive(false);
+        Chicken.SetActive(false);
         // Enable bandaid interaction
         GameManager.instance.toUsePlaster = true;
         bandaidContainer.GetComponent<Grabbable>().enabled = true;
@@ -286,9 +293,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
-        ChoppingBlock.SetActive(false);
-        Chicken.SetActive(false);
-        TrayOfFood.SetActive(true);
+
         promptManager.ShowPrompt(SceneID.Stall, 4, false, 6f);
 
         ToTray.SetActive(true);
@@ -328,6 +333,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void SpawnPlaster()
     {
+        TrayOfFood.SetActive(true);
+
         // plaster inside the bottle
         GameObject plaster = Instantiate(plasterPrefab, plasterSpawnPoint.position, plasterSpawnPoint.rotation);
         GameManager.instance.plaster = plaster;
@@ -455,6 +462,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        // "Wah why you so stupid ah?!! I'm going to cut your pay!"
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[12]);
+        yield return new WaitForSeconds(narrationAudioClips_1[12].length);
+
         Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
         yield return new WaitForSeconds(0.5f);
@@ -506,7 +517,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
 
         // Let player clean up
-        PlayerCloth.SetActive(true);
+        PlayerCloth.GetComponent<Outline>().enabled = true;
+        PlayerCloth.GetComponent<Cloth>().enabled = true;
+        PlayerCloth.GetComponent<GrabInteractable>().enabled = true;
+        PlayerCloth.GetComponent<ForceStayGrabbed>().enabled = true;
+        PlayerCloth.GetComponent<Grabbable>().enabled = true;
         PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
         promptManager.ShowPrompt(SceneID.Stall, 5, false, 6f);
     }
@@ -556,6 +571,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject Model;
     [SerializeField] AudioSource SeanAudioSource;
     [SerializeField] Light HomeLight;
+    [Header("Sean Tissue Box")]
+    [SerializeField] private GameObject tissueBox;
+    private Outline tissueBoxOutline;
     public void PlayFamilyStart()
     {
         lastRoutine = StartCoroutine(FamilyStart());
@@ -650,13 +668,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         promptManager.ShowPrompt(sceneID, 1, false, 2f);
 
-        // Carry sean segment
-        Sean.GetComponent<Grabbable>().enabled = true;
-        //Sean.GetComponent<ForceStayGrabbed>().enabled = true;
-        Sean.GetComponent<PhysicsGrabbable>().enabled = true;
-        Sean.GetComponent<GrabInteractable>().enabled = true;
-        Sean.GetComponent<Sean>().enabled = true;
-        //Sean.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+        // Tissue Cry Segment
+        if (tissueBoxOutline != null)
+            tissueBoxOutline.enabled = true;
     }
     public void PlayFinalHome() // Called in Sean.cs
     {
@@ -701,6 +715,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             if (cleaverOutline != null)
                 cleaverOutline.enabled = false;
         }
+        // Tissue box setup
+        if (tissueBox != null)
+        {
+           tissueBoxOutline = tissueBox.GetComponent<Outline>();
+
+            if (tissueBoxOutline != null)
+                tissueBoxOutline.enabled = false; // disabled until Sean segment
+        }
 
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
@@ -719,6 +741,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             PlayFamilyStart();
             //PlayLightOFf();
         }
+       
+
     }
 
 
