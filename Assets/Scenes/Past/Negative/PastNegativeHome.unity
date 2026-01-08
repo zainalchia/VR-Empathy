@@ -732,7 +732,7 @@ ParentConstraint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46809702}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Weight: 1
   m_TranslationAtRest: {x: 16.003, y: 1.024, z: 7.9}
@@ -1015,6 +1015,96 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65053046}
   m_Mesh: {fileID: 6329158148709259305, guid: c3df2492920004c4eae87f407e53390e, type: 3}
+--- !u!1001 &70006620
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 841793096}
+    m_Modifications:
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.845
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.871
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: nextTeleporter
+      value: 
+      objectReference: {fileID: 1002358823}
+    - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Name
+      value: Sane Teleporter (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4fd206a797488a843a83492093c69e92, type: 3}
+--- !u!4 &70006621 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+    type: 3}
+  m_PrefabInstance: {fileID: 70006620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &70006622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
+    type: 3}
+  m_PrefabInstance: {fileID: 70006620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &70129665
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2027,7 +2117,7 @@ PrefabInstance:
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -2294,6 +2384,7 @@ MonoBehaviour:
   - {fileID: 1445004755}
   - {fileID: 1479146199}
   - {fileID: 1008135460}
+  porridgeObjects: []
 --- !u!114 &156639216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5012,7 +5103,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   son: {fileID: 795504036}
-  collisionTimeToTrigger: 3
 --- !u!65 &353933998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7420,6 +7510,7 @@ MonoBehaviour:
   - {fileID: 1445004755}
   - {fileID: 1479146199}
   - {fileID: 1008135460}
+  porridgeObjects: []
 --- !u!54 &574353673
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9984,6 +10075,8 @@ Transform:
   m_Children:
   - {fileID: 146886848}
   - {fileID: 2087483479}
+  - {fileID: 70006621}
+  - {fileID: 1002358822}
   m_Father: {fileID: 1654987016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &879986900 stripped
@@ -11262,6 +11355,97 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 996763156}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1002358821
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 841793096}
+    m_Modifications:
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.447
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.546
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Name
+      value: Sane Teleporter (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4fd206a797488a843a83492093c69e92, type: 3}
+--- !u!4 &1002358822 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002358821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1002358823 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+    type: 3}
+  m_PrefabInstance: {fileID: 1002358821}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1008135460
 GameObject:
   m_ObjectHideFlags: 0
@@ -13880,11 +14064,6 @@ MonoBehaviour:
   events:
   - rid: 154194485549989889
   - rid: 154194441199157249
-  - rid: 8750925748685766660
-  - rid: 8750925748685766669
-  - rid: 8750925748685766670
-  - rid: 8750925748685766676
-  - rid: 8750925748685766679
   - rid: 154194441199157251
   - rid: 154194441199157253
   - rid: 6500772572562194435
@@ -13915,9 +14094,17 @@ MonoBehaviour:
   - rid: 154194754885124109
   - rid: 154194754885124114
   - rid: 154194754885124116
+  - rid: 3631777251340320769
+  - rid: 3631777251340320771
+  - rid: 8750925748685766660
+  - rid: 8750925748685766669
+  - rid: 8750925748685766670
+  - rid: 8750925748685766676
+  - rid: 8750925748685766679
   - rid: 8750925748685766658
   - rid: 8750925748685766672
   - rid: 8750925748685766671
+  - rid: 3631777251340320773
   - rid: 154194485549989892
   - rid: 154194441199157284
   references:
@@ -14129,7 +14316,7 @@ MonoBehaviour:
         interactable: {fileID: 1093040539}
         outlineItem: 1
         itemStaysGrabbed: 1
-        forceEnableGrabbable: 1
+        forceEnableGrabbable: 0
     - rid: 154194754885124102
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
@@ -14142,7 +14329,7 @@ MonoBehaviour:
       data:
         name: Force match into player hand
         type: 8
-        hand: 0
+        hand: 1
         interactable: {fileID: 46809707}
     - rid: 154194754885124107
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -14156,6 +14343,18 @@ MonoBehaviour:
               m_TargetAssemblyTypeName: UnityEngine.Animations.ParentConstraint,
                 UnityEngine
               m_MethodName: set_constraintActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 46809702}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
               m_Mode: 6
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
@@ -14261,6 +14460,25 @@ MonoBehaviour:
         gameObject2: {fileID: 46809702}
         condition: 1
         distance: 0.15
+    - rid: 3631777251340320769
+      type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: DropMatch
+        type: 9
+        interactable: {fileID: 1093040539}
+    - rid: 3631777251340320771
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: TissueTeleport
+        type: 6
+        gameObject: {fileID: 70006622}
+        active: 1
+    - rid: 3631777251340320773
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait
+        type: 2
+        waitTime: 2
     - rid: 6500772572562194433
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -14329,7 +14547,7 @@ MonoBehaviour:
         audioSource: {fileID: 0}
         audioClip: {fileID: 0}
         audioClipAlt: {fileID: 0}
-        waitForEnd: 1
+        waitForEnd: 0
         loop: 0
     - rid: 8750925748685766660
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -14386,7 +14604,7 @@ MonoBehaviour:
         audioSource: {fileID: 0}
         audioClip: {fileID: 0}
         audioClipAlt: {fileID: 0}
-        waitForEnd: 1
+        waitForEnd: 0
         loop: 0
     - rid: 8750925748685766672
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
@@ -14396,7 +14614,7 @@ MonoBehaviour:
         audioSource: {fileID: 0}
         audioClip: {fileID: 0}
         audioClipAlt: {fileID: 0}
-        waitForEnd: 1
+        waitForEnd: 0
         loop: 0
     - rid: 8750925748685766676
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
