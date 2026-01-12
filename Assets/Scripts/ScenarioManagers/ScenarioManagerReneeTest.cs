@@ -267,9 +267,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                     jobHotspots[2].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
-        cleaverObject.SetActive(false);
-        ChoppingBlock.SetActive(false);
-        Chicken.SetActive(false);
+        
         // Enable bandaid interaction
         GameManager.instance.toUsePlaster = true;
         bandaidContainer.GetComponent<Grabbable>().enabled = true;
@@ -300,6 +298,19 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         ToTray.SetActive(true);
 
     }
+
+    public void OnTeleportedToBandAid()
+    {
+        if (cleaverObject != null)
+            cleaverObject.SetActive(false);
+
+        if (ChoppingBlock != null)
+            ChoppingBlock.SetActive(false);
+
+        if (Chicken != null)
+            Chicken.SetActive(false);
+    }
+
 
     public void OnPlasterContainerGrabbed()
     {

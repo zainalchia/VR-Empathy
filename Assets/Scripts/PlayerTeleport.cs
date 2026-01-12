@@ -365,6 +365,12 @@ public class PlayerTeleport : MonoBehaviour
                         // Arrived at chopping board
                         promptManager.ShowPrompt(SceneID.Stall, 2);
                     }
+                    else if (currentHotspotIndex == 2)
+                    {
+                     
+                        if (scenarioManager != null)
+                            scenarioManager.OnTeleportedToBandAid();
+                    }
                 }
             }
 
