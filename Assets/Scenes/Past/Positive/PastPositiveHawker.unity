@@ -15793,6 +15793,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 757077369}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &757077371 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 859868599801736739, guid: c28691789b147e944a884d3043a8a831,
+    type: 3}
+  m_PrefabInstance: {fileID: 757077369}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &757077372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9215862334400541921, guid: c28691789b147e944a884d3043a8a831,
+    type: 3}
+  m_PrefabInstance: {fileID: 757077369}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &757077373 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 981111029417977362, guid: c28691789b147e944a884d3043a8a831,
+    type: 3}
+  m_PrefabInstance: {fileID: 757077369}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &762061563
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26520,11 +26538,15 @@ MonoBehaviour:
   - rid: 6176682073276809218
   - rid: 6176682073276809220
   - rid: 6176682073276809222
+  - rid: 9222563068242296835
   - rid: 6176682073276809232
   - rid: 6176682073276809224
   - rid: 6176682073276809226
   - rid: 6176682073276809230
   - rid: 6176682073276809240
+  - rid: 9222563068242296840
+  - rid: 9222563068242296841
+  - rid: 9222563068242296843
   - rid: 6176682073276809242
   - rid: 6176682073276809244
   references:
@@ -26803,7 +26825,7 @@ MonoBehaviour:
     - rid: 6176682073276809240
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: Wait for mess to be cleaned
+        name: Wait for mess to be cleaned (1)
         type: 7
         gameObject: {fileID: 1015516055}
         active: 1
@@ -26823,6 +26845,47 @@ MonoBehaviour:
         name: Next scene
         type: 13
         sceneName: PastPositiveHome
+    - rid: 9222563068242296835
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Disable Tray
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 620099835}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 9222563068242296840
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for mess to be cleaned (2)
+        type: 7
+        gameObject: {fileID: 757077373}
+        active: 1
+    - rid: 9222563068242296841
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for mess to be cleaned (3)
+        type: 7
+        gameObject: {fileID: 757077372}
+        active: 1
+    - rid: 9222563068242296843
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for mess to be cleaned (4)
+        type: 7
+        gameObject: {fileID: 757077371}
+        active: 1
 --- !u!1001 &1202423591
 PrefabInstance:
   m_ObjectHideFlags: 0
