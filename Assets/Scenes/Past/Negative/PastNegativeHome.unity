@@ -9439,7 +9439,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -10144,8 +10144,8 @@ MonoBehaviour:
   _maxInteractors: -1
   _maxSelectingInteractors: -1
   _data: {fileID: 0}
-  _pointableElement: {fileID: 0}
-  _rigidbody: {fileID: 0}
+  _pointableElement: {fileID: 833786774}
+  _rigidbody: {fileID: 833786770}
   _grabSource: {fileID: 0}
   _useClosestPointAsGrabSource: 0
   _releaseDistance: 0
@@ -10164,7 +10164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pointable: {fileID: 833786774}
-  _rigidbody: {fileID: 0}
+  _rigidbody: {fileID: 833786770}
   _scaleMassWithSize: 1
 --- !u!114 &833786773
 MonoBehaviour:
@@ -10206,7 +10206,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833786767}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -14181,10 +14181,8 @@ MonoBehaviour:
   - rid: 154194754885124116
   - rid: 3631777251340320769
   - rid: 3631777251340320771
-  - rid: 8750925748685766660
-  - rid: 8750925748685766669
-  - rid: 8750925748685766670
-  - rid: 8750925748685766676
+  - rid: 3636061043015548942
+  - rid: 3636061043015548936
   - rid: 8750925748685766679
   - rid: 8750925748685766658
   - rid: 8750925748685766672
@@ -14564,6 +14562,22 @@ MonoBehaviour:
         name: Wait
         type: 2
         waitTime: 2
+    - rid: 3636061043015548936
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to grab handkerchief
+        type: 3
+        interactable: {fileID: 833786771}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 3636061043015548942
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Prompt player to grab handkerchief
+        type: 1
+        text: Give your son the handkerchief.
+        duration: 3
     - rid: 6500772572562194433
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -14634,53 +14648,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 0}
         waitForEnd: 0
         loop: 0
-    - rid: 8750925748685766660
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Highlight the tissue box on the table
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-    - rid: 8750925748685766669
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Enable the tissue box
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-    - rid: 8750925748685766670
-      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
-      data:
-        name: Prompt player to grab tissue
-        type: 1
-        text: Give your son a tissue.
-        duration: 3
     - rid: 8750925748685766671
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -14701,19 +14668,12 @@ MonoBehaviour:
         audioClipAlt: {fileID: 0}
         waitForEnd: 0
         loop: 0
-    - rid: 8750925748685766676
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for tissue to be grabbed by the player
-        type: 7
-        gameObject: {fileID: 0}
-        active: 1
     - rid: 8750925748685766679
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: Wait for tissue to despawn once coming into contact with Sean
+        name: Wait for handkerchief to despawn once coming into contact with Sean
         type: 7
-        gameObject: {fileID: 0}
+        gameObject: {fileID: 833786767}
         active: 0
 --- !u!1001 &1158408708
 PrefabInstance:
