@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class SaneTeleporter : MonoBehaviour
 {
+
 	[Header("Refrences")]
 	[SerializeField] SaneTeleporter nextTeleporter = null;
 
 	[Header("Settings")]
 	[SerializeField] Vector3 smallScale;
 	[SerializeField] Vector3 largeScale;
+
+	// old hand stuff
+#if false
 	[SerializeField] Quaternion raycastDirectionOffset = Quaternion.identity;
-	const float radiusMultiplier = 0.5f;
+	[SerializeField] float radiusMultiplier = 1.0f;
+#endif
+
+	[SerializeField] float viewRadius = 90.0f; // in degrees
 
 
 	private void Update()
 	{
 		Vector3 targetSize = smallScale;
 
+		// hand stuff
+#if false
+
 		// do math to check if ray from controller intersects sphere
-		Debug.Log(OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger));
 
 		// left hand
 		if(
@@ -58,10 +67,26 @@ public class SaneTeleporter : MonoBehaviour
 		}
 
 		transform.localScale = Vector3.Lerp(transform.localScale, targetSize, Time.deltaTime * 5);
+#endif
+
+		float angle = Vector3.Dot(Camera.main.transform.forward, (transform.position - Camera.main.transform.position).normalized);
+
+		// if not within view radius
+		if (angle * 57.2957795131f > viewRadius)
+			targetSize = smallScale;
+		else
+		{
+			targetSize = largeScale;
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                MovePlayerHere();
+                return;
+            }
+        }
+        transform.localScale = Vector3.Lerp(transform.localScale, targetSize, Time.deltaTime * 5);
 
 
-
-	}
+    }
 
 	bool CheckSphereIntersect(Vector3 rayDirection, Vector3 spherePosition, float radius)
 	{
