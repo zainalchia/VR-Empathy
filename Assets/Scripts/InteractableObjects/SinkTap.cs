@@ -6,7 +6,7 @@ using Oculus.Interaction;
 public class SinkTap : MonoBehaviour
 {
     [SerializeField] GameObject water;
-    bool waterIsOn = false;
+    bool waterIsOn = true;
     bool canInteract = true;
     [SerializeField] GameObject handle;
 
