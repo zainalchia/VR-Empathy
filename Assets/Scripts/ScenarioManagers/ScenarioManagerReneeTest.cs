@@ -35,6 +35,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("Narration Variables")]
     [SerializeField] public AudioSource narrationAudioSource;
+    [SerializeField] public AudioSource bossAudioSource;
 
     // For voices
     [HideInInspector] public AudioClip[] narrationAudioClips_1;
@@ -94,7 +95,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //============================================================
 
         // Oi Robert / Ling! How long you want to use the toilet?! Faster come back work!
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        bossAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
         // sigh. Okay, coming boss.
