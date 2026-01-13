@@ -1841,7 +1841,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4ee1749a7d3d04a41aa3007863e4e3ea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.581
+      value: 0.128
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ee1749a7d3d04a41aa3007863e4e3ea,
         type: 3}
@@ -1851,7 +1851,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4ee1749a7d3d04a41aa3007863e4e3ea,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.729
+      value: -0.051
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ee1749a7d3d04a41aa3007863e4e3ea,
         type: 3}
@@ -2224,7 +2224,7 @@ Transform:
   m_GameObject: {fileID: 156639207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.947, y: 1.517, z: 8.162}
+  m_LocalPosition: {x: 12.329, y: 1.517, z: 9.965}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4056,7 +4056,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.89
+      value: 12.631
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -4066,7 +4066,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.806
+      value: 10.642
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -4144,7 +4144,9 @@ PrefabInstance:
       value: OVRMainCharacter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 34111136647625535, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
+    - {fileID: 2596148559515123696, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
@@ -4217,18 +4219,6 @@ GameObject:
 --- !u!1 &272985364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4207753694588884739, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 272985354}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &272985365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2596148559515123696, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 272985354}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &272985366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 34111136647625535, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
     type: 3}
   m_PrefabInstance: {fileID: 272985354}
   m_PrefabAsset: {fileID: 0}
@@ -14027,8 +14017,8 @@ MonoBehaviour:
   grabInteractors:
   - {fileID: 272985361}
   - {fileID: 272985360}
-  MaleModel: {fileID: 272985365}
-  FemaleModel: {fileID: 272985366}
+  MaleModel: {fileID: 0}
+  FemaleModel: {fileID: 0}
   leftHand: {fileID: 272985358}
   rightHand: {fileID: 272985356}
   characterModel: {fileID: 0}
@@ -14114,6 +14104,7 @@ MonoBehaviour:
   playerTeleport: {fileID: 296962440}
   testitem: {fileID: 0}
   narrationAudioSource: {fileID: 272985355}
+  bossAudioSource: {fileID: 0}
   narrationAudioClips_1: []
   narrationAudioClips_1_Male:
   - {fileID: 8300000, guid: 6e0671fb31a864b4c8d26a8bdfb0f455, type: 3}
@@ -30576,7 +30567,7 @@ Transform:
   m_GameObject: {fileID: 5140029302951195599}
   serializedVersion: 2
   m_LocalRotation: {x: -1.5852009e-15, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.135, y: 0, z: 1.832}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.326053, y: 0.28014696, z: 3.1739707}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30606,7 +30597,7 @@ Transform:
   m_GameObject: {fileID: 4527545743434877020}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000037748947, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.605, y: 0.926, z: 8.177}
+  m_LocalPosition: {x: 12.683, y: 0.926, z: 10.016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
