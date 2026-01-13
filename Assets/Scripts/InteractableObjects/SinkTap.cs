@@ -41,8 +41,8 @@ public class SinkTap : MonoBehaviour
     {
         if (!canInteract) return;
 
-        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null) // when touched by hand
-        {
+        //if (other.gameObject.GetComponentInParent<GrabInteractor>() != null) // when touched by hand
+        //{
             if (waterIsOn)
             {
                 waterIsOn = false;
@@ -55,7 +55,7 @@ public class SinkTap : MonoBehaviour
             }
             TurnHandle();
             canInteract = false;
-        }
+        //}
     }
 
     private void OnTriggerExit(Collider other)
