@@ -4144,7 +4144,9 @@ PrefabInstance:
       value: OVRMainCharacter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 34111136647625535, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
+    - {fileID: 2596148559515123696, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
@@ -4217,18 +4219,6 @@ GameObject:
 --- !u!1 &272985364 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4207753694588884739, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 272985354}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &272985365 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2596148559515123696, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 272985354}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &272985366 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 34111136647625535, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
     type: 3}
   m_PrefabInstance: {fileID: 272985354}
   m_PrefabAsset: {fileID: 0}
@@ -14027,8 +14017,8 @@ MonoBehaviour:
   grabInteractors:
   - {fileID: 272985361}
   - {fileID: 272985360}
-  MaleModel: {fileID: 272985365}
-  FemaleModel: {fileID: 272985366}
+  MaleModel: {fileID: 0}
+  FemaleModel: {fileID: 0}
   leftHand: {fileID: 272985358}
   rightHand: {fileID: 272985356}
   characterModel: {fileID: 0}
@@ -14114,6 +14104,7 @@ MonoBehaviour:
   playerTeleport: {fileID: 296962440}
   testitem: {fileID: 0}
   narrationAudioSource: {fileID: 272985355}
+  bossAudioSource: {fileID: 0}
   narrationAudioClips_1: []
   narrationAudioClips_1_Male:
   - {fileID: 8300000, guid: 6e0671fb31a864b4c8d26a8bdfb0f455, type: 3}
