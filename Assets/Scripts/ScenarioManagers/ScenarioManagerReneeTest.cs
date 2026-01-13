@@ -85,13 +85,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Sigh. Okay just have to wash my face and freshen up and get back to work
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
-        promptManager.ShowPrompt(sceneID, 0, false, 2f);
+        promptManager.ShowPrompt(sceneID, 0, false, 3f);
 
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
 
         //boss should call the player over to get out quickly here and then player starts moving
-        promptManager.ShowPrompt(sceneID, 1, false, 2f);
+        promptManager.ShowPrompt(sceneID, 1, false, 5f);
         //============================================================
 
         // Oi Robert / Ling! How long you want to use the toilet?! Faster come back work!
@@ -103,11 +103,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[2].length);
 
         // Teleport from sink to toilet door
+        promptManager.ShowPrompt(sceneID, 2, false, 10f);
         door.GetComponent<Outline>().enabled = true;
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true;
-        promptManager.ShowPrompt(sceneID, 2, false, 5f);
+      
         PlayAllowOpenDoor();
     }
 
@@ -130,7 +131,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void PlayAllowOpenDoor()
     {
-        StopPrevDialogue();
         lastRoutine = StartCoroutine(AllowOpenDoor());
     }
 
