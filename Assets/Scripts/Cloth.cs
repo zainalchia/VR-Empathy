@@ -24,7 +24,7 @@ public class Cloth : MonoBehaviour
         {
             if (AbleToClean)
             {
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
                 AbleToClean = false;
                 startTimer = true;
 

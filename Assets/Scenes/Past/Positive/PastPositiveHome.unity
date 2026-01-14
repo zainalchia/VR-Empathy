@@ -722,7 +722,7 @@ ParentConstraint:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 46809702}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Weight: 1
   m_TranslationAtRest: {x: 16.003, y: 1.024, z: 7.9}
@@ -5932,8 +5932,8 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
+  m_UseGravity: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -7045,6 +7045,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: birthdaycake
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c920ed8387b487c418b872994d47d873,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: c920ed8387b487c418b872994d47d873,
         type: 3}
@@ -14967,6 +14972,7 @@ MonoBehaviour:
   playerTeleport: {fileID: 296962440}
   testitem: {fileID: 0}
   narrationAudioSource: {fileID: 272985355}
+  bossAudioSource: {fileID: 0}
   narrationAudioClips_1: []
   narrationAudioClips_1_Male:
   - {fileID: 8300000, guid: 6e0671fb31a864b4c8d26a8bdfb0f455, type: 3}
@@ -15067,6 +15073,9 @@ MonoBehaviour:
   - rid: 154195071710789673
   - rid: 154195071710789677
   - rid: 154195071710789684
+  - rid: 4897766071759798277
+  - rid: 4897766071759798278
+  - rid: 4897766071759798280
   - rid: 154195071710789686
   - rid: 154195071710789690
   - rid: 154195071710789692
@@ -15076,6 +15085,8 @@ MonoBehaviour:
   - rid: 9222562903833444359
   - rid: 9222562903833444362
   - rid: 9222562903833444364
+  - rid: 4897766071759798283
+  - rid: 4897766071759798285
   references:
     version: 2
     RefIds:
@@ -15473,6 +15484,62 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 921ee76e3760d6f4bb925cbd7f1a1d96, type: 3}
         waitForEnd: 1
         loop: 0
+    - rid: 4897766071759798277
+      type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Drop Match
+        type: 9
+        interactable: {fileID: 1093040539}
+    - rid: 4897766071759798278
+      type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Drop Matchbox
+        type: 9
+        interactable: {fileID: 46809707}
+    - rid: 4897766071759798280
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Disable match stuff
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 46809702}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 1093040535}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 4897766071759798283
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: wait
+        type: 2
+        waitTime: 1
+    - rid: 4897766071759798285
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: go back to main menu
+        type: 13
+        sceneName: MainMenu
     - rid: 9222562903833444352
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -15524,15 +15591,15 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 1012412483}
-              m_TargetAssemblyTypeName: 
-              m_MethodName: 
-              m_Mode: 0
+            - m_Target: {fileID: 1012412486}
+              m_TargetAssemblyTypeName: UIImageFader, Assembly-CSharp
+              m_MethodName: Activate
+              m_Mode: 4
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: 
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
-                m_FloatArgument: 0
+                m_FloatArgument: 1
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
@@ -16545,7 +16612,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e23b94ba7f792e41894022c408fc966,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1258239964}
   m_SourcePrefab: {fileID: 100100000, guid: 3e23b94ba7f792e41894022c408fc966, type: 3}
 --- !u!4 &1258239962 stripped
 Transform:
@@ -16553,6 +16624,34 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1258239961}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1258239963 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3e23b94ba7f792e41894022c408fc966,
+    type: 3}
+  m_PrefabInstance: {fileID: 1258239961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1258239964
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258239963}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2237492104608250895, guid: 3e23b94ba7f792e41894022c408fc966, type: 3}
 --- !u!1001 &1261125404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21088,6 +21187,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plate Crack
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0ca4935e20baa2d43a3c3a530aa3732f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 0ca4935e20baa2d43a3c3a530aa3732f,
         type: 3}
