@@ -11013,6 +11013,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 762629789}
   m_Mesh: {fileID: -5546347261141537002, guid: c3df2492920004c4eae87f407e53390e, type: 3}
+--- !u!4 &783398661 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4248271838965508648, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 272985354}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &795504035
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24991,6 +24997,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022219405}
   m_Mesh: {fileID: -4545423930167495100, guid: c3df2492920004c4eae87f407e53390e, type: 3}
+--- !u!1 &2029788571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2029788572}
+  - component: {fileID: 2029788573}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2029788572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029788571}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 12.782, y: 0, z: 7.641}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2029788573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2029788571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2186e6e17a02c6f43a68b786879f223d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transformToSnap: {fileID: 783398661}
 --- !u!1 &2039587634
 GameObject:
   m_ObjectHideFlags: 0
@@ -36359,6 +36410,7 @@ SceneRoots:
   - {fileID: 1156376157}
   - {fileID: 39652209}
   - {fileID: 1012412482}
+  - {fileID: 2029788572}
   - {fileID: 272985354}
   - {fileID: 1775558474}
   - {fileID: 1561834081}
