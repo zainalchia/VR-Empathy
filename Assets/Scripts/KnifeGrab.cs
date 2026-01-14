@@ -24,6 +24,8 @@ public class KnifeGrab : MonoBehaviour
             hasGrabbed = true;
 
         }
+
+
     }
     private void OnTriggerEnter(Collider other)
     {

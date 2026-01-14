@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public ScenarioID scenarioID = ScenarioID.PresentGood;
     public SceneID sceneID = SceneID.Bathroom;
 
-    public TextMeshProUGUI testText;
+    public TextMeshPro testText;
     public GameObject postProcessing;
 
     // OVR PLAYER

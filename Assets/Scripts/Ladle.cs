@@ -81,14 +81,14 @@ public class Ladle : MonoBehaviour
                 return false;
         }
 
-        for (int i = 0; i < porridgeObjects.Count; i++)
-        {
-            if (porridgeObjects[i] == null)
-                return false;
+        //for (int i = 0; i < porridgeObjects.Count; i++)
+        //{
+        //    if (porridgeObjects[i] == null)
+        //        return false;
 
-            if (!porridgeObjects[i].activeInHierarchy)
-                return false;
-        }
+        //    if (!porridgeObjects[i].activeInHierarchy)
+        //        return false;
+        //}
         return true;
     }
 }

@@ -35,6 +35,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     [Header("Narration Variables")]
     [SerializeField] public AudioSource narrationAudioSource;
+    [SerializeField] public AudioSource bossAudioSource;
 
     // For voices
     [HideInInspector] public AudioClip[] narrationAudioClips_1;
@@ -84,17 +85,17 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Sigh. Okay just have to wash my face and freshen up and get back to work
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
-        promptManager.ShowPrompt(sceneID, 0, false, 2f);
+        promptManager.ShowPrompt(sceneID, 0, false, 3f);
 
         // Give time for player to wash up
         yield return new WaitForSeconds(timeForWashingUp);
 
         //boss should call the player over to get out quickly here and then player starts moving
-        promptManager.ShowPrompt(sceneID, 1, false, 2f);
+        promptManager.ShowPrompt(sceneID, 1, false, 5f);
         //============================================================
 
         // Oi Robert / Ling! How long you want to use the toilet?! Faster come back work!
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        bossAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
         // sigh. Okay, coming boss.
@@ -102,11 +103,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(narrationAudioClips_1[2].length);
 
         // Teleport from sink to toilet door
+        promptManager.ShowPrompt(sceneID, 2, false, 10f);
         door.GetComponent<Outline>().enabled = true;
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true;
-        promptManager.ShowPrompt(sceneID, 2, false, 5f);
+      
         PlayAllowOpenDoor();
     }
 
@@ -129,7 +131,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     public void PlayAllowOpenDoor()
     {
-        StopPrevDialogue();
         lastRoutine = StartCoroutine(AllowOpenDoor());
     }
 
@@ -267,9 +268,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                     jobHotspots[2].transform.GetChild(0).gameObject.SetActive(true);
             }
         }
-        cleaverObject.SetActive(false);
-        ChoppingBlock.SetActive(false);
-        Chicken.SetActive(false);
+        
         // Enable bandaid interaction
         GameManager.instance.toUsePlaster = true;
         bandaidContainer.GetComponent<Grabbable>().enabled = true;
@@ -300,6 +299,19 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         ToTray.SetActive(true);
 
     }
+
+    public void OnTeleportedToBandAid()
+    {
+        if (cleaverObject != null)
+            cleaverObject.SetActive(false);
+
+        if (ChoppingBlock != null)
+            ChoppingBlock.SetActive(false);
+
+        if (Chicken != null)
+            Chicken.SetActive(false);
+    }
+
 
     public void OnPlasterContainerGrabbed()
     {
