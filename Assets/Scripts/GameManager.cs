@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Hand")]
     public Renderer leftHandRenderer;       
-    public ParticleSystem bloodEffect;        
+    public GameObject bloodEffect;        
     public Material plasteredHandMaterial;
     public bool handHealed = false;
 
