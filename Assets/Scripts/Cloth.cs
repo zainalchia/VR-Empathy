@@ -39,6 +39,7 @@ public class Cloth : MonoBehaviour
 
     private void Update()
     {
+
         // Handle cleaning cooldown
         if (startTimer)
         {
