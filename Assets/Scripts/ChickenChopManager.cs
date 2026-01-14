@@ -18,8 +18,6 @@ public class ChickenChopManager : MonoBehaviour
     [SerializeField] private Renderer handRenderer;
     [SerializeField] private Material normalHandMaterial;
     [SerializeField] private Material bleedingHandMaterial;
-    [SerializeField] private GameObject bloodEffect;
-
     [SerializeField] private AudioSource sfxSource;          // assign in Inspector (can be same as another source)
     [SerializeField] private AudioClip choppingClip;         // assign in Inspector
 
@@ -205,8 +203,11 @@ public class ChickenChopManager : MonoBehaviour
         {
             uiManager.KnifeAccidentFlash();
 
-            if (bloodEffect != null)
-                StartCoroutine(ActivateBloodEffect(bloodEffect));
+            if (GameManager.instance.bloodEffect != null)
+            {
+                //StartCoroutine(ActivateBloodEffect(bloodEffect));
+                GameManager.instance.bloodEffect.SetActive(true);
+            }
 
             StartCoroutine(BleedingHand());
 
