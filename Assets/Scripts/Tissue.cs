@@ -1,19 +1,19 @@
 using UnityEngine;
 
-public class Tissue: MonoBehaviour
+public class Handkerchief: MonoBehaviour
 {
 
     [Header("Collision Target")]
     public GameObject son; // Sean object
 
-
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == son)
+        if (other.transform.root == son.transform)
         {
             gameObject.SetActive(false);
         }
     }
 
-    
+
+
 }
