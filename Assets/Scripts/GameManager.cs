@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public ScenarioID scenarioID = ScenarioID.PresentGood;
     public SceneID sceneID = SceneID.Bathroom;
 
-    public TextMeshProUGUI testText;
+    public TextMeshPro testText;
     public GameObject postProcessing;
 
     // OVR PLAYER
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Hand")]
     public Renderer leftHandRenderer;       
-    public ParticleSystem bloodEffect;        
+    public GameObject bloodEffect;        
     public Material plasteredHandMaterial;
     public bool handHealed = false;
 

@@ -24,7 +24,7 @@ public class Cloth : MonoBehaviour
         {
             if (AbleToClean)
             {
-                Destroy(other.gameObject);
+                other.gameObject.SetActive(false);
                 AbleToClean = false;
                 startTimer = true;
 
@@ -39,6 +39,7 @@ public class Cloth : MonoBehaviour
 
     private void Update()
     {
+
         // Handle cleaning cooldown
         if (startTimer)
         {

@@ -6,7 +6,7 @@ public class PlasterHealer : MonoBehaviour
 {
     //references
     private Renderer leftHandRenderer;
-    private ParticleSystem bloodEffect;
+    private GameObject bloodEffect;
     private Material plasteredHandMaterial;
 
     private void Start()
@@ -22,9 +22,9 @@ public class PlasterHealer : MonoBehaviour
         if (other.CompareTag("LeftHand"))
         {
             //stop bleed effect
-            if (bloodEffect != null && bloodEffect.isPlaying)
+            if (bloodEffect != null && bloodEffect.activeInHierarchy)
             {
-                bloodEffect.Stop();
+                bloodEffect.SetActive(false);
             }
 
             //change hand material to plaster
