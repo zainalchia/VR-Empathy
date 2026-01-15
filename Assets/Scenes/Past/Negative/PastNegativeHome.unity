@@ -10554,6 +10554,37 @@ Transform:
   - {fileID: 1002358822}
   m_Father: {fileID: 1654987016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &852708087
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 852708088}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &852708088
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 852708087}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1093040543}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &879986900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8219067751679274776, guid: 78f18fbbf83693e4e8e6918ee823653b,
@@ -12818,7 +12849,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 1093040541}
   _rigidbody: {fileID: 1093040536}
-  _grabSource: {fileID: 0}
+  _grabSource: {fileID: 852708088}
   _useClosestPointAsGrabSource: 0
   _releaseDistance: 0
   _resetGrabOnGrabsUpdated: 1
@@ -12915,6 +12946,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 237413117}
+  - {fileID: 852708088}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1104557057
@@ -14663,6 +14695,7 @@ MonoBehaviour:
   playerTeleport: {fileID: 296962440}
   testitem: {fileID: 0}
   narrationAudioSource: {fileID: 272985355}
+  bossAudioSource: {fileID: 0}
   narrationAudioClips_1: []
   narrationAudioClips_1_Male:
   - {fileID: 8300000, guid: 6e0671fb31a864b4c8d26a8bdfb0f455, type: 3}
