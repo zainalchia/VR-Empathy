@@ -645,7 +645,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1201703111}
         m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
         m_MethodName: BathroomDoorOpen
         m_Mode: 1
@@ -2075,6 +2075,134 @@ Transform:
   - {fileID: 869396500}
   m_Father: {fileID: 584361344}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &324975323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 324975325}
+  - component: {fileID: 324975324}
+  m_Layer: 0
+  m_Name: WalkingAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &324975324
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324975323}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 538ed407099f94149a1957218b142391, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &324975325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 324975323}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.0016995185, z: -0, w: 0.99999857}
+  m_LocalPosition: {x: 20.084, y: 0.9353, z: -12.869}
+  m_LocalScale: {x: 1, y: 0.96999997, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &331021201
 GameObject:
   m_ObjectHideFlags: 0
@@ -12302,8 +12430,14 @@ MonoBehaviour:
   cashOutline: {fileID: 0}
   knifeOutline: {fileID: 0}
   knifeObject: {fileID: 0}
-  DoorHandle: {fileID: 0}
-  door: {fileID: 0}
+  DoorHandle: {fileID: 76183881}
+  door: {fileID: 76183879}
+  comb: {fileID: 5544565935569413195}
+  glasses: {fileID: 2074530116}
+  cup: {fileID: 1424571318}
+  book: {fileID: 1145874657}
+  meds: {fileID: 2098710138}
+  walkingSound: {fileID: 324975324}
   timeForWashingUp: 20
   CashEndPoint: {fileID: 0}
   Boss: {fileID: 0}
@@ -19466,6 +19600,11 @@ PrefabInstance:
       propertyPath: _useClosestPointAsGrabSource
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6638165669960810959, guid: 37c936377e089204c8eb4ad52b956762,
+        type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 521dc5f83322b4e428f552bfe36158c9, type: 3}
     - target: {fileID: 8398107261271765194, guid: 37c936377e089204c8eb4ad52b956762,
         type: 3}
       propertyPath: m_Name
@@ -19788,6 +19927,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4383623622802029589, guid: 34717ab755f12cd42a7fdedc8204d1db,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4997334623113330539, guid: 34717ab755f12cd42a7fdedc8204d1db,
         type: 3}
       propertyPath: m_Name
@@ -19924,3 +20068,4 @@ SceneRoots:
   - {fileID: 510927254}
   - {fileID: 999427167}
   - {fileID: 76183886}
+  - {fileID: 324975325}
