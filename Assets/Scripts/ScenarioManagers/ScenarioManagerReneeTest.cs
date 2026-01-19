@@ -172,6 +172,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("Teleporter")]
     [SerializeField] private GameObject ToTray;
 
+    [Header("Tray")]
+    [SerializeField] private Outline trayOutline;
+
     public void PlayHawkerStart()
     {
         lastRoutine = StartCoroutine(HawkerStart());
@@ -293,6 +296,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
+        if (trayOutline != null)
+            trayOutline.enabled = true;
 
         promptManager.ShowPrompt(SceneID.Stall, 4, false, 6f);
 
