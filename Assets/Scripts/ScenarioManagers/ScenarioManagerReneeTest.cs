@@ -65,6 +65,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     Coroutine lastRoutine = null;
     [SerializeField] DoorKnob DoorHandle;
     [SerializeField] GameObject door;
+    [SerializeField] GameObject doorOutline;
     [SerializeField] GameObject comb;
     [SerializeField] GameObject glasses;
     [SerializeField] GameObject cup;
@@ -112,7 +113,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         // Teleport from sink to toilet door
         promptManager.ShowPrompt(sceneID, 2, false, 10f);
-        door.GetComponent<Outline>().enabled = true;
+        doorOutline.GetComponent<Outline>().enabled = true;
         comb.GetComponent<Outline>().enabled = false;
         glasses.GetComponent<Outline>().enabled = false;
         book.GetComponent<Outline>().enabled = false;
