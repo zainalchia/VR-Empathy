@@ -119,11 +119,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         book.GetComponent<Outline>().enabled = false;
         cup.GetComponent<Outline>().enabled = false;
         meds.GetComponent<Outline>().enabled = false;
-        comb.GetComponent<Grabbable>().enabled = false;
-        glasses.GetComponent<Grabbable>().enabled = false;
-        book.GetComponent<Grabbable>().enabled = false;
-        cup.GetComponent<Grabbable>().enabled = false;
-        meds.GetComponent<Grabbable>().enabled = false;
+        comb.GetComponent<GrabInteractable>().enabled = false;
+        glasses.GetComponent<GrabInteractable>().enabled = false;
+        book.GetComponent<GrabInteractable>().enabled = false;
+        cup.GetComponent<GrabInteractable>().enabled = false;
+        meds.GetComponent<GrabInteractable>().enabled = false;
 
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
