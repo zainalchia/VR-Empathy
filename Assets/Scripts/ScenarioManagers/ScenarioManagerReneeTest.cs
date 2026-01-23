@@ -430,25 +430,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] private LayerMask wallLayer;
 
 
-
-    public void PlayTraySegment()
-    {
-        lastRoutine = StartCoroutine(HawkerTraySegment());
-    }
-    IEnumerator HawkerTraySegment()
-    {
-        //TrayTeleportHotspot.gameObject.SetActive(true);
-        //playerTeleport.MoveToTable = true;
-        yield return new WaitForSeconds(2);
-        PlayFoodDrop();
-    }
+    
 
     public void PlayFoodDrop()
     {
 
         // Drop the tray
         TrayOfFood.transform.SetParent(null);
-        TrayOfFood.GetComponent<FoodTray>().AbleToGrab = false;
         Rigidbody rb = TrayOfFood.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.useGravity = true;
@@ -459,26 +447,24 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
         ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
 
-        // Detect when tray hits floor
-        if (TrayOfFood.transform.position.y <= 0.2f)
+       
+    }
+
+    public void OnTrayHitFloor(Vector3 trayPosition) //called from tray script
+    {
+        TrayOfFood.SetActive(false);
+
+        DroppedFood.transform.position = new Vector3(
+            trayPosition.x,
+            0.05f,
+            trayPosition.z
+        );
+        DroppedFood.SetActive(true);
+
+        if (playOnce)
         {
-            TrayOfFood.SetActive(false);
-            DroppedFood.transform.position = new Vector3(
-                TrayOfFood.transform.position.x,
-                0.05f,
-                TrayOfFood.transform.position.z
-            );
-            DroppedFood.SetActive(true);
-           
-
-            if (playOnce)
-            {
-                playOnce = false;
-
-                
-                // throw plate
-                lastRoutine = StartCoroutine(ThrowPlate());
-            }
+            playOnce = false;
+            lastRoutine = StartCoroutine(ThrowPlate());
         }
     }
 
@@ -767,10 +753,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PlayChoppedHand();
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            PlayTraySegment();
         }
     }
 
