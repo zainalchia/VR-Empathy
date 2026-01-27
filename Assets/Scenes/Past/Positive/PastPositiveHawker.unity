@@ -10191,7 +10191,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 2f91ad38728316c4d85a9b081b740016,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.377
+      value: 1.527
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f91ad38728316c4d85a9b081b740016,
         type: 3}
@@ -10246,7 +10246,7 @@ PrefabInstance:
     - target: {fileID: -7029948723529949830, guid: 2f91ad38728316c4d85a9b081b740016,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4292154010595695564, guid: 2f91ad38728316c4d85a9b081b740016,
         type: 3}
@@ -10302,6 +10302,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: cash note
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f91ad38728316c4d85a9b081b740016,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11254,6 +11259,7 @@ GameObject:
   - component: {fileID: 479391322}
   - component: {fileID: 479391325}
   - component: {fileID: 479391326}
+  - component: {fileID: 479391327}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -11314,7 +11320,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chickenMesh: {fileID: 1965108567}
   blendShapeIndices: 000000000100000002000000030000000400000005000000
-  blendLerpTime: 0.05
+  blendLerpTime: 1
   cutLines:
   - {fileID: 2063717290}
   - {fileID: 142253723}
@@ -11322,7 +11328,23 @@ MonoBehaviour:
   - {fileID: 125062097}
   - {fileID: 942255242}
   - {fileID: 1654079645}
+  chopCooldown: 1
+  grabInteractable: {fileID: 1130414781}
+  forceStayGrabbed: {fileID: 1130414782}
   currentCutIndex: 0
+--- !u!114 &479391327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479391321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6000c416366a2546938dd781d0e1061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chopper: {fileID: 479391326}
 --- !u!1 &491047297
 GameObject:
   m_ObjectHideFlags: 0
@@ -26522,6 +26544,13 @@ MonoBehaviour:
   knifeObject: {fileID: 1130414777}
   DoorHandle: {fileID: 0}
   door: {fileID: 0}
+  doorOutline: {fileID: 0}
+  comb: {fileID: 0}
+  glasses: {fileID: 0}
+  cup: {fileID: 0}
+  book: {fileID: 0}
+  meds: {fileID: 0}
+  walkingSound: {fileID: 0}
   timeForWashingUp: 3
   CashEndPoint: {fileID: 1537895747}
   Boss: {fileID: 73526720}
@@ -26540,19 +26569,15 @@ MonoBehaviour:
   plasterSpawnPoint: {fileID: 933124847}
   cleaverObject: {fileID: 0}
   ToTray: {fileID: 0}
+  trayOutline: {fileID: 0}
   TrayOfFood: {fileID: 620099835}
   DroppedFood: {fileID: 757077370}
   PlayerCloth: {fileID: 18335542}
   PlateProjectilePrefab: {fileID: 1685568853459669007, guid: 88dcfca951c29ff48adcd2bf79cf1cc7,
     type: 3}
-  PlateShardPrefabs:
-  - {fileID: 8556946241642788862, guid: 2123474389de9634a9bf5bfab6610736, type: 3}
-  - {fileID: 8556946241642788862, guid: 2123474389de9634a9bf5bfab6610736, type: 3}
-  - {fileID: 8556946241642788862, guid: 2123474389de9634a9bf5bfab6610736, type: 3}
   PlateSpawnPoint: {fileID: 1645267160}
   PlateTargetPoint: {fileID: 658150352}
   plateSpeed: 5
-  plateShardSpawnPoint: {fileID: 0}
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -26602,12 +26627,13 @@ MonoBehaviour:
   - rid: 154194936214323207
   - rid: 3631777410367094794
   - rid: 154194936214323210
+  - rid: 3636061291123572737
   - rid: 154194936214323212
   - rid: 154194936214323214
   - rid: 4897765866541416449
   - rid: 4897765866541416451
   - rid: 154194936214323216
-  - rid: 6176682073276809235
+  - rid: 3636061378538110976
   - rid: 6176682073276809237
   - rid: 6176682073276809239
   - rid: 6176682073276809216
@@ -26798,6 +26824,19 @@ MonoBehaviour:
                 m_StringArgument: Women Idle
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 3636061291123572737
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Prompt player to move cash
+        type: 1
+        text: Take the cash and put it into the cash register.
+        duration: 3
+    - rid: 3636061378538110976
+      type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for chicken to be chopped
+        type: 4
+        interactable: {fileID: 1130414781}
     - rid: 4897765866541416449
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -26889,13 +26928,6 @@ MonoBehaviour:
         name: Enable cloth
         type: 6
         gameObject: {fileID: 18335542}
-        active: 1
-    - rid: 6176682073276809235
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for chicken to be chopped
-        type: 7
-        gameObject: {fileID: 1654079645}
         active: 1
     - rid: 6176682073276809237
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -36156,22 +36188,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a98c400f5853a84c89b050a4bd1fb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnGrab:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1201703111}
-        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
-        m_MethodName: PlayTraySegment
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  AbleToGrab: 1
 --- !u!54 &1444257780
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -40172,7 +40188,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.501
+      value: -0.106
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -47942,7 +47958,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6f7e501a903234d4fb57021e481cde50,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.086
+      value: 1.059
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6f7e501a903234d4fb57021e481cde50,
         type: 3}
@@ -51945,7 +51961,7 @@ PrefabInstance:
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.449
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
