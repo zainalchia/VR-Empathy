@@ -194,6 +194,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("Teleporter")]
     [SerializeField] private GameObject ToTray;
 
+    [Header("Tray")]
+    [SerializeField] private Outline trayOutline;
+
     public void PlayHawkerStart()
     {
         lastRoutine = StartCoroutine(HawkerStart());
@@ -315,6 +318,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         //narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
+        if (trayOutline != null)
+            trayOutline.enabled = true;
 
         promptManager.ShowPrompt(SceneID.Stall, 4, false, 6f);
 
@@ -467,27 +472,17 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                 TrayOfFood.transform.position.z
             );
             DroppedFood.SetActive(true);
+           
 
             if (playOnce)
             {
                 playOnce = false;
 
                 
-                // After scolding, throw plate
+                // throw plate
                 lastRoutine = StartCoroutine(ThrowPlate());
             }
         }
-    }
-
-    IEnumerator BossScoldingDialogue()
-    {
-        // "Wah why you so stupid ah?!! I'm going to cut your pay!"
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
-        yield return new WaitForSeconds(narrationAudioClips_1[8].length);
-
-        // "Nah clean this mess up! Stupid!"
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
-        yield return new WaitForSeconds(narrationAudioClips_1[9].length);
     }
 
     // ----------------------------------------------------------------------
@@ -498,8 +493,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         // "Wah why you so stupid ah?!! I'm going to cut your pay!"
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[12]);
-        yield return new WaitForSeconds(narrationAudioClips_1[12].length);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
+        yield return new WaitForSeconds(narrationAudioClips_1[8].length);
+
+        // "Nah clean this mess up! Stupid!"
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
+        yield return new WaitForSeconds(narrationAudioClips_1[9].length);
 
         Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
@@ -530,24 +529,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         {
             rb.velocity = direction * plateSpeed;
             yield return null;
-        }
-
-        // If it still exists, destroy and spawn shards
-        // If it still exists, destroy and spawn shards
-        if (proj != null)
-        {
-            Vector3 spawnPoint = plateShardSpawnPoint != null
-                ? plateShardSpawnPoint.position
-                : proj.transform.position;
-
-            Destroy(proj);
-
-            // Spawn every shard prefab at a fixed point
-            foreach (GameObject shardPrefab in PlateShardPrefabs)
-            {
-                GameObject shards = Instantiate(shardPrefab, spawnPoint, Quaternion.identity);
-                shards.SetActive(true);
-            }
         }
 
 
