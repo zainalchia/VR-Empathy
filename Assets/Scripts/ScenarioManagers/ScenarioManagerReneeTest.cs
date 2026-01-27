@@ -65,6 +65,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     Coroutine lastRoutine = null;
     [SerializeField] DoorKnob DoorHandle;
     [SerializeField] GameObject door;
+    [SerializeField] GameObject doorOutline;
+    [SerializeField] GameObject comb;
+    [SerializeField] GameObject glasses;
+    [SerializeField] GameObject cup;
+    [SerializeField] GameObject book;
+    [SerializeField] GameObject meds;
+    [SerializeField] AudioSource walkingSound;
 
     public float timeForWashingUp = 5f;
 
@@ -78,6 +85,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         //PostProcessingController.instance.UsingGlasses(true); // so that no blur effect yet
         //ControllerInteractionsManager.instance.autoDropItems = false; // no dropping item yet
+        door.GetComponent<BoxCollider>().enabled = false;
 
         yield return new WaitForSeconds(4f); // screen fade in timing
 
@@ -96,6 +104,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         // Oi Robert / Ling! How long you want to use the toilet?! Faster come back work!
         bossAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        door.GetComponent<BoxCollider>().enabled = true;
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
         // sigh. Okay, coming boss.
@@ -104,7 +113,18 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         // Teleport from sink to toilet door
         promptManager.ShowPrompt(sceneID, 2, false, 10f);
-        door.GetComponent<Outline>().enabled = true;
+        doorOutline.GetComponent<Outline>().enabled = true;
+        comb.GetComponent<Outline>().enabled = false;
+        glasses.GetComponent<Outline>().enabled = false;
+        book.GetComponent<Outline>().enabled = false;
+        cup.GetComponent<Outline>().enabled = false;
+        meds.GetComponent<Outline>().enabled = false;
+        comb.GetComponent<GrabInteractable>().enabled = false;
+        glasses.GetComponent<GrabInteractable>().enabled = false;
+        book.GetComponent<GrabInteractable>().enabled = false;
+        cup.GetComponent<GrabInteractable>().enabled = false;
+        meds.GetComponent<GrabInteractable>().enabled = false;
+
         playerTeleport.SetCurrentHotspotIndex(-1);
         firstTeleportToiletHotspot.SetActive(true);
         playerTeleport.MoveToToiletDoor = true;
@@ -123,7 +143,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // fade screen 
         GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4;
         GameManager.instance.fadePanel.GetComponent<Animator>().SetTrigger("FadeOut");
-        yield return new WaitForSeconds(3f);
+        walkingSound.Play();
+        yield return new WaitForSeconds(8f);
 
         // load next scene 
         SceneManager.LoadScene("PastNegativeHawker", LoadSceneMode.Single);
@@ -137,6 +158,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     IEnumerator AllowOpenDoor()
     {
+
         // can open bathroom door from here
         DoorHandle.AllowDoorOpen();
 
