@@ -2770,6 +2770,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1838441162735669761, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3353817918328592355, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_Camera
@@ -2927,7 +2932,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 355501367}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &355501373 stripped
+--- !u!114 &355501371 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
     type: 3}
@@ -2951,7 +2956,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a48baa1fdb776734e8f4eb969a4d3503, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 355501373}
+  image: {fileID: 355501371}
   time: 1
   opacity: 0
 --- !u!114 &355501376 stripped
@@ -3953,7 +3958,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -5588,11 +5593,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -6069543109717637648, guid: dd17ca51a91b1e64387edc160c9177a3,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 677545107}
+      addedObject: {fileID: 677545111}
     - targetCorrespondingSourceObject: {fileID: -6069543109717637648, guid: dd17ca51a91b1e64387edc160c9177a3,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 677545111}
+      addedObject: {fileID: 677545115}
   m_SourcePrefab: {fileID: 100100000, guid: dd17ca51a91b1e64387edc160c9177a3, type: 3}
 --- !u!1 &677545095 stripped
 GameObject:
@@ -5741,34 +5746,6 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
---- !u!114 &677545107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677545095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1008325045}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  whitelist: []
 --- !u!54 &677545111
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5796,6 +5773,33 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &677545115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677545095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e5214bbe422d748904dc940af059a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1008325045}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &678268757
 GameObject:
   m_ObjectHideFlags: 0
@@ -14344,6 +14348,7 @@ MonoBehaviour:
   - rid: 6176681889884798984
   - rid: 6176681889884798980
   - rid: 6176681889884798982
+  - rid: 3636061403108868098
   - rid: 3636061383514914817
   - rid: 6176681889884798985
   - rid: 9222563068242296833
@@ -14504,7 +14509,7 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
-            - m_Target: {fileID: 1436708710}
+            - m_Target: {fileID: 1436708715}
               m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
               m_MethodName: set_enabled
               m_Mode: 6
@@ -14516,6 +14521,13 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 3636061403108868098
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Teleport Tutorial
+        type: 1
+        text: Look at the teleport circle and press the Trigger button to teleport.
+        duration: 3
     - rid: 6176681889884798978
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
