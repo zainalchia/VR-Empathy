@@ -1,64 +1,63 @@
 using Oculus.Interaction;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class Cloth : MonoBehaviour
 {
     [SerializeField] GameObject DroppedFood;
-    public UnityEvent FinishCleaning;
-    public UnityEvent WhileCleaning;
 
-    private float cleanInterval = 1f;
-    private bool AbleToClean = true;
-    private bool startTimer = false;
-    private float timer = 0f;
-    private bool CustomerDialogue = true;
+    public UnityEvent WhileCleaning;
+    public UnityEvent FinishCleaning;
+
+    [Header("Dialogue Timing")]
+    [SerializeField] private float customerDialogueDuration = 3f;
+
+    private bool customerDialoguePlayed = false;
     private bool hasFinished = false;
+    private bool waitingForDialogue = false;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("ToClean"))
         {
-            if (AbleToClean)
-            {
-                other.gameObject.SetActive(false);
-                AbleToClean = false;
-                startTimer = true;
+            other.gameObject.SetActive(false);
 
-                if (CustomerDialogue)
-                {
-                    WhileCleaning.Invoke();
-                    CustomerDialogue = false;
-                }
+            if (!customerDialoguePlayed)
+            {
+                customerDialoguePlayed = true;
+                WhileCleaning.Invoke();
+                StartCoroutine(CustomerDialogueTimer());
             }
+        }
+    }
+
+    private IEnumerator CustomerDialogueTimer()
+    {
+        waitingForDialogue = true;
+        yield return new WaitForSeconds(customerDialogueDuration);
+        waitingForDialogue = false;
+
+        // If cleaning already finished, fire now
+        if (hasFinished)
+        {
+            FinishCleaning.Invoke();
         }
     }
 
     private void Update()
     {
+        if (hasFinished)
+            return;
 
-        // Handle cleaning cooldown
-        if (startTimer)
+        GameObject[] remaining = GameObject.FindGameObjectsWithTag("ToClean");
+        if (remaining.Length == 0)
         {
-            timer += Time.deltaTime;
-            if (timer >= cleanInterval)
-            {
-                timer = 0f;
-                startTimer = false;
-                AbleToClean = true;
-            }
-        }
+            hasFinished = true;
 
-        // NEW: Check if all "ToClean" objects are gone
-        if (!hasFinished)
-        {
-            GameObject[] remaining = GameObject.FindGameObjectsWithTag("ToClean");
-            if (remaining.Length == 0)
+            // If dialogue is still playing, wait
+            if (!waitingForDialogue)
             {
-                hasFinished = true;
                 FinishCleaning.Invoke();
             }
         }
