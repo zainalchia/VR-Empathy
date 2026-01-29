@@ -26,8 +26,11 @@ public class SaneChickenChopper : MonoBehaviour
     private bool leftHandHolding = false;
     private bool hasDropped = false;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         ResetChicken();
     }
 
@@ -89,10 +92,16 @@ public class SaneChickenChopper : MonoBehaviour
         if (currentCutIndex >= blendShapeIndices.Count)
             return;
 
+        // 🔊 Play chop sound
+        if (audioSource != null && audioSource.clip != null)
+        {
+            audioSource.PlayOneShot(audioSource.clip);
+        }
+
         StartCoroutine(LerpBlendShape(currentCutIndex, 0, 100, blendLerpTime));
         StartCoroutine(ChopCooldownRoutine());
 
-        // Drop the cleaver on 6th cut 
+        // Drop the cleaver on 6th cut
         if (currentCutIndex == 5 && !hasDropped)
         {
             DropCleaver();
@@ -111,7 +120,6 @@ public class SaneChickenChopper : MonoBehaviour
         if (grabInteractable != null)
             grabInteractable.enabled = false;
 
-        // Force both hands to release (safe even if not holding)
         if (ControllerInteractionsManager.instance != null)
         {
             ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
