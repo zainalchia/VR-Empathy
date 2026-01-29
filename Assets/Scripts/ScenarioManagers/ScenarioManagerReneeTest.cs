@@ -421,37 +421,22 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject DroppedFood;
     [SerializeField] GameObject PlayerCloth;
     [SerializeField] GameObject PlateProjectilePrefab;   // plate to spawn & throw
-    [SerializeField] List<GameObject> PlateShardPrefabs = new List<GameObject>();
     public Transform PlateSpawnPoint;   // where plate appears
     public Transform PlateTargetPoint;  // where the plate flies toward
 
     [SerializeField] float plateSpeed = 10f;             // how fast it flies
-    [Header("Plate Shards")]
-    [SerializeField] private Transform plateShardSpawnPoint;
 
     [Header("Plate Collision")]
     [SerializeField] private LayerMask wallLayer;
 
 
-
-    public void PlayTraySegment()
-    {
-        lastRoutine = StartCoroutine(HawkerTraySegment());
-    }
-    IEnumerator HawkerTraySegment()
-    {
-        //TrayTeleportHotspot.gameObject.SetActive(true);
-        //playerTeleport.MoveToTable = true;
-        yield return new WaitForSeconds(2);
-        PlayFoodDrop();
-    }
+    
 
     public void PlayFoodDrop()
     {
 
         // Drop the tray
         TrayOfFood.transform.SetParent(null);
-        TrayOfFood.GetComponent<FoodTray>().AbleToGrab = false;
         Rigidbody rb = TrayOfFood.GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.useGravity = true;
@@ -462,26 +447,24 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
         ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
 
-        // Detect when tray hits floor
-        if (TrayOfFood.transform.position.y <= 0.2f)
+       
+    }
+
+    public void OnTrayHitFloor(Vector3 trayPosition) //called from tray script
+    {
+        TrayOfFood.SetActive(false);
+
+        DroppedFood.transform.position = new Vector3(
+            trayPosition.x,
+            0.05f,
+            trayPosition.z
+        );
+        DroppedFood.SetActive(true);
+
+        if (playOnce)
         {
-            TrayOfFood.SetActive(false);
-            DroppedFood.transform.position = new Vector3(
-                TrayOfFood.transform.position.x,
-                0.05f,
-                TrayOfFood.transform.position.z
-            );
-            DroppedFood.SetActive(true);
-           
-
-            if (playOnce)
-            {
-                playOnce = false;
-
-                
-                // throw plate
-                lastRoutine = StartCoroutine(ThrowPlate());
-            }
+            playOnce = false;
+            lastRoutine = StartCoroutine(ThrowPlate());
         }
     }
 
@@ -492,38 +475,37 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
-        // "Wah why you so stupid ah?!! I'm going to cut your pay!"
+        // Dialogue
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
 
-        // "Nah clean this mess up! Stupid!"
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
         yield return new WaitForSeconds(narrationAudioClips_1[9].length);
 
         Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
         yield return new WaitForSeconds(0.5f);
-        // Spawn the projectile at the spawn point
-        GameObject proj = Instantiate(
-            PlateProjectilePrefab,
-            PlateSpawnPoint.position,
-            PlateSpawnPoint.rotation
-        );
-        // Force plate layer
+
+        // ------------------------------------------------------------------
+        // ENABLE EXISTING PLATE (instead of Instantiate)
+        // ------------------------------------------------------------------
+        GameObject proj = PlateProjectilePrefab;
+
+        proj.SetActive(true);
+        proj.transform.position = PlateSpawnPoint.position;
+        proj.transform.rotation = PlateSpawnPoint.rotation;
+
         proj.layer = LayerMask.NameToLayer("Plate");
 
-        // Disable collisions with everything except Wall
-        int plateLayer = proj.layer;
-
-        
-
         Rigidbody rb = proj.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         rb.isKinematic = false;
+        rb.useGravity = true;
 
-        // Direction toward the target
-        Vector3 target = PlateTargetPoint.position;
-        Vector3 direction = (target - PlateSpawnPoint.position).normalized;
+        plateHitGround = false;
 
+        Vector3 direction = (PlateTargetPoint.position - PlateSpawnPoint.position).normalized;
 
         while (proj != null && !plateHitGround)
         {
@@ -531,16 +513,19 @@ public class ScenarioManagerReneeTest : MonoBehaviour
             yield return null;
         }
 
-
-        // Let player clean up
+        // ------------------------------------------------------------------
+        // Enable cleaning
+        // ------------------------------------------------------------------
         PlayerCloth.GetComponent<Outline>().enabled = true;
         PlayerCloth.GetComponent<Cloth>().enabled = true;
         PlayerCloth.GetComponent<GrabInteractable>().enabled = true;
         PlayerCloth.GetComponent<ForceStayGrabbed>().enabled = true;
         PlayerCloth.GetComponent<Grabbable>().enabled = true;
         PlayerCloth.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+
         promptManager.ShowPrompt(SceneID.Stall, 5, false, 6f);
     }
+
 
 
 
@@ -768,10 +753,6 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PlayChoppedHand();
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            PlayTraySegment();
         }
     }
 

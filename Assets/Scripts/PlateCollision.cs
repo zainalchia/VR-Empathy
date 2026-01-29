@@ -6,17 +6,17 @@ public class PlateCollision : MonoBehaviour
     [Header("SFX")]
     [SerializeField] private AudioClip plateSmashSFX;
 
-    [Header("Shards")]
-    [SerializeField] private List<GameObject> shardPrefabs;
+    [Header("Shards (disabled in scene)")]
+    [SerializeField] private List<GameObject> shardObjects;
 
     private bool hasImpacted = false;
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
         if (hasImpacted)
             return;
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Wall"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Wall"))
         {
             hasImpacted = true;
 
@@ -30,12 +30,20 @@ public class PlateCollision : MonoBehaviour
                 );
             }
 
-            // Spawn shards exactly where the plate breaks
-            Vector3 spawnPos = transform.position;
-
-            foreach (GameObject shard in shardPrefabs)
+            // Enable pre-placed shards (no repositioning)
+            foreach (GameObject shard in shardObjects)
             {
-                Instantiate(shard, spawnPos, Quaternion.identity);
+                if (shard == null) continue;
+
+                shard.SetActive(true);
+
+                Rigidbody rb = shard.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.isKinematic = false;
+                    rb.useGravity = true;
+                    rb.WakeUp();
+                }
             }
 
             // Notify scenario manager
@@ -45,6 +53,7 @@ public class PlateCollision : MonoBehaviour
                 manager.PlateImpact();
             }
 
+            // Remove plate
             Destroy(gameObject);
         }
     }
