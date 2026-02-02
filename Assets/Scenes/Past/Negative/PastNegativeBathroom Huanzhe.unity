@@ -4293,11 +4293,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dispenser Interaction (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3249929507482167767, guid: 41259916023474245a8a005fff611c60, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 618860288}
   m_SourcePrefab: {fileID: 100100000, guid: 41259916023474245a8a005fff611c60, type: 3}
+--- !u!1 &618860286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 618860285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &618860287 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5216871452872531067, guid: 41259916023474245a8a005fff611c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 618860285}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &618860288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 618860286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e5214bbe422d748904dc940af059a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 618860287}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &619061538
 GameObject:
   m_ObjectHideFlags: 0
@@ -12484,6 +12528,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3249929507482167767, guid: 41259916023474245a8a005fff611c60,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
         type: 3}
       propertyPath: m_Name
@@ -12494,11 +12543,55 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0.0281
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3249929507482167767, guid: 41259916023474245a8a005fff611c60, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1185399690}
   m_SourcePrefab: {fileID: 100100000, guid: 41259916023474245a8a005fff611c60, type: 3}
+--- !u!1 &1185399689 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 1185399688}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1185399690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185399689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e5214bbe422d748904dc940af059a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1185399691}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!198 &1185399691 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5216871452872531067, guid: 41259916023474245a8a005fff611c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 1185399688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1201697906
 GameObject:
   m_ObjectHideFlags: 0
@@ -12800,15 +12893,14 @@ MonoBehaviour:
   plasterSpawnPoint: {fileID: 0}
   cleaverObject: {fileID: 0}
   ToTray: {fileID: 0}
+  trayOutline: {fileID: 0}
   TrayOfFood: {fileID: 0}
   DroppedFood: {fileID: 0}
   PlayerCloth: {fileID: 0}
   PlateProjectilePrefab: {fileID: 0}
-  PlateShardPrefabs: []
   PlateSpawnPoint: {fileID: 0}
   PlateTargetPoint: {fileID: 0}
   plateSpeed: 10
-  plateShardSpawnPoint: {fileID: 0}
   wallLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -13011,11 +13103,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dispenser Interaction (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3249929507482167767, guid: 41259916023474245a8a005fff611c60, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1254446514}
   m_SourcePrefab: {fileID: 100100000, guid: 41259916023474245a8a005fff611c60, type: 3}
+--- !u!1 &1254446512 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 1254446511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1254446513 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5216871452872531067, guid: 41259916023474245a8a005fff611c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 1254446511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1254446514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1254446512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e5214bbe422d748904dc940af059a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1254446513}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1256125509
 GameObject:
   m_ObjectHideFlags: 0
@@ -20576,16 +20712,65 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3249929507482167767, guid: 41259916023474245a8a005fff611c60,
+        type: 3}
+      propertyPath: unityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
         type: 3}
       propertyPath: m_Name
       value: Dispenser Interaction
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3249929507482167767, guid: 41259916023474245a8a005fff611c60, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8490825902868324319}
   m_SourcePrefab: {fileID: 100100000, guid: 41259916023474245a8a005fff611c60, type: 3}
+--- !u!1 &8490825902868324317 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8066010676296363421, guid: 41259916023474245a8a005fff611c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 8490825902868324316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8490825902868324318 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5216871452872531067, guid: 41259916023474245a8a005fff611c60,
+    type: 3}
+  m_PrefabInstance: {fileID: 8490825902868324316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8490825902868324319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8490825902868324317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88e5214bbe422d748904dc940af059a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8490825902868324318}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &8526806271266186133
 PrefabInstance:
   m_ObjectHideFlags: 0
