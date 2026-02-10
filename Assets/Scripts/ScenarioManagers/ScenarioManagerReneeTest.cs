@@ -479,6 +479,15 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
 
+ 
+        FaceBossToPlayer();
+        Animator bossAnimator = Boss.GetComponent<Animator>();
+        if (bossAnimator != null)
+        {
+            bossAnimator.SetTrigger("Shouting");
+        }
+        yield return new WaitForSeconds(0.6f);
+
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
         yield return new WaitForSeconds(narrationAudioClips_1[9].length);
 
@@ -527,6 +536,17 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
 
 
+    void FaceBossToPlayer()
+    {
+        if (Boss == null || Player == null)
+            return;
+
+        Vector3 direction = Player.transform.position - Boss.transform.position;
+        direction.y = 0f; // keep rotation flat
+
+        if (direction.sqrMagnitude > 0.001f)
+            Boss.transform.rotation = Quaternion.LookRotation(direction);
+    }
 
 
 
