@@ -475,25 +475,18 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        Boss.transform.localRotation = Quaternion.Euler(0f, 75f, 0f);
+        yield return new WaitForSeconds(0.6f);
+
         // Dialogue
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
 
- 
-        FaceBossToPlayer();
-        Animator bossAnimator = Boss.GetComponent<Animator>();
-        if (bossAnimator != null)
-        {
-            bossAnimator.SetTrigger("Shouting");
-        }
-        yield return new WaitForSeconds(0.6f);
-
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
-        yield return new WaitForSeconds(narrationAudioClips_1[9].length);
-
         Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
         Boss.GetComponent<Animator>().SetTrigger("ThrowingPlate");
         yield return new WaitForSeconds(0.5f);
+
+        
 
         // ------------------------------------------------------------------
         // ENABLE EXISTING PLATE (instead of Instantiate)
@@ -502,7 +495,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         proj.SetActive(true);
         proj.transform.position = PlateSpawnPoint.position;
-        proj.transform.rotation = PlateSpawnPoint.rotation;
+        proj.transform.rotation = Quaternion.identity;
+        proj.transform.SetParent(null);
+
 
         proj.layer = LayerMask.NameToLayer("Plate");
 
@@ -536,18 +531,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     }
 
 
-    void FaceBossToPlayer()
-    {
-        if (Boss == null || Player == null)
-            return;
-
-        Vector3 direction = Player.transform.position - Boss.transform.position;
-        direction.y = 0f; // keep rotation flat
-
-        if (direction.sqrMagnitude > 0.001f)
-            Boss.transform.rotation = Quaternion.LookRotation(direction);
-    }
-
+  
 
 
     // You need to set this from a collision script on the plate
@@ -557,6 +541,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         // Call this from OnCollisionEnter on the Plate object
         plateHitGround = true;
+
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
     }
 
 
