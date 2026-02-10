@@ -167,6 +167,7 @@ public class Outline : MonoBehaviour {
     Destroy(outlineFillMaterial);
   }
 
+
   void Bake() {
 
     // Generate smooth normals for each mesh
