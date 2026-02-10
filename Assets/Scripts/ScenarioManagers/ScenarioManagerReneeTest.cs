@@ -774,6 +774,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         {
             PlayChoppedHand();
         }
+
     }
 
     void StopPrevDialogue()
