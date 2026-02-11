@@ -315,7 +315,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         BossAudio.GetComponent<AudioSource>().Play();
 
         BossAudio.GetComponent<WaypointManager>().enabled = false;
-        //narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
+        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
         if (trayOutline != null)
