@@ -12,25 +12,18 @@ public class TesterScript : MonoBehaviour
     [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
     [SerializeField] ScenarioManagerReneeTest scenarioManagerReneeTest;
 
-    private void RunTestMethodWDelay(Action methodToTest)
+    private void RunTestMethod(Action methodToTest)
     {
-        StartCoroutine(RunTestMethodWDelay_Coroutine(methodToTest));
-    }
-
-    private IEnumerator RunTestMethodWDelay_Coroutine(Action methodToTest)
-    {
-        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
-
         // Invoke the passed method
         methodToTest();
 
-        Debug.Log("running method: " + methodToTest);
+        Debug.Log("running method: " + nameof(methodToTest));
     }
 
     private void MoveObj(GameObject go, Vector3 moveVector)
     {
         go.transform.Translate(moveVector, Space.World);
-        Debug.Log("moving obj: " + go.name + "with distance of " + moveVector.ToString());
+        Debug.Log("moving obj: " + go.name + " with distance of " + moveVector.ToString());
     }
 
     #region Present Bad Bathroom
@@ -164,21 +157,29 @@ public class TesterScript : MonoBehaviour
         yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
         MoveObj(scenarioManagerReneeTest.cashObject, new Vector3(-0.5f, 0f, 0f));
 
-        RunTestMethodWDelay(scenarioManagerReneeTest.PlayChoppedHand);
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        scenarioManagerReneeTest.playerTeleport.testPressTrigger = true; // to teleport
+        Debug.Log("teleport");
 
-        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
-        scenarioManagerReneeTest.OnTeleportedToBandAid();
-        Debug.Log("OnTeleportedToBandAid");
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        RunTestMethod(scenarioManagerReneeTest.PlayChoppedHand);
 
-        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        scenarioManagerReneeTest.playerTeleport.testPressTrigger = true; // to teleport
+        Debug.Log("teleport");
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        RunTestMethod(scenarioManagerReneeTest.OnTeleportedToBandAid);
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
         scenarioManagerReneeTest.OnPlasterContainerGrabbed();
         Debug.Log("OnPlasterContainerGrabbed");
 
-        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
         scenarioManagerReneeTest.SpawnPlaster();
         Debug.Log("SpawnPlaster");
 
-        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
         scenarioManagerReneeTest.PlayFoodDrop();
         Debug.Log("PlayFoodDrop");
 
