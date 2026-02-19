@@ -417,7 +417,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
     }
 
-    [SerializeField] GameObject TrayOfFood;
+    public GameObject TrayOfFood;
     [SerializeField] GameObject DroppedFood;
     [SerializeField] GameObject PlayerCloth;
     [SerializeField] GameObject PlateProjectilePrefab;   // plate to spawn & throw
