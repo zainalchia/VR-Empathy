@@ -6,11 +6,32 @@ using UnityEngine.SceneManagement;
 
 public class TesterScript : MonoBehaviour
 {
-    [Tooltip("Press this to begin test")] [SerializeField] bool startTest = false;
+    [Header("Press this to begin test")] [SerializeField] bool startTest = false;
     public string currentSceneName;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
     [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
     [SerializeField] ScenarioManagerReneeTest scenarioManagerReneeTest;
+
+    private void RunTestMethodWDelay(Action methodToTest)
+    {
+        StartCoroutine(RunTestMethodWDelay_Coroutine(methodToTest));
+    }
+
+    private IEnumerator RunTestMethodWDelay_Coroutine(Action methodToTest)
+    {
+        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
+
+        // Invoke the passed method
+        methodToTest();
+
+        Debug.Log("running method: " + methodToTest);
+    }
+
+    private void MoveObj(GameObject go, Vector3 moveVector)
+    {
+        go.transform.Translate(moveVector, Space.World);
+        Debug.Log("moving obj: " + go.name + "with distance of " + moveVector.ToString());
+    }
 
     #region Present Bad Bathroom
     void StartPresentBadTestPart1()
@@ -141,12 +162,9 @@ public class TesterScript : MonoBehaviour
         Debug.Log("in past negative hawker test part 1");
 
         yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
-        scenarioManagerReneeTest.OnCashPlaced();
-        Debug.Log("on cash placed");
+        MoveObj(scenarioManagerReneeTest.cashObject, new Vector3(-0.5f, 0f, 0f));
 
-        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
-        scenarioManagerReneeTest.PlayChoppedHand();
-        Debug.Log("play chopped hand");
+        RunTestMethodWDelay(scenarioManagerReneeTest.PlayChoppedHand);
 
         yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
         scenarioManagerReneeTest.OnTeleportedToBandAid();

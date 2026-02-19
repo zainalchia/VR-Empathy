@@ -44,7 +44,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
 
 
-    [SerializeField] private GameObject cashObject;
+    [SerializeField] public GameObject cashObject;
     [SerializeField] private Outline cashOutline;
     [SerializeField] public Outline knifeOutline;
     public GameObject knifeObject;
