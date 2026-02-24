@@ -17,7 +17,7 @@ public class TesterScript : MonoBehaviour
         // Invoke the passed method
         methodToTest();
 
-        Debug.Log("running method: " + nameof(methodToTest));
+        Debug.Log("running method: " + methodToTest.Method.Name);
     }
 
     private void MoveObj(GameObject go, Vector3 moveVector)
@@ -154,34 +154,33 @@ public class TesterScript : MonoBehaviour
     {
         Debug.Log("in past negative hawker test part 1");
 
-        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
+        float delay = 10f;
+
+        yield return new WaitForSeconds(delay); // to let the dialogue and stuff finish
         MoveObj(scenarioManagerReneeTest.cashObject, new Vector3(-0.5f, 0f, 0f));
 
-        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(delay); // to let the dialogue and stuff finish
         scenarioManagerReneeTest.playerTeleport.testPressTrigger = true; // to teleport
         Debug.Log("teleport");
 
-        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(delay); // to let the dialogue and stuff finish
         RunTestMethod(scenarioManagerReneeTest.PlayChoppedHand);
 
-        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(delay); // to let the dialogue and stuff finish
         scenarioManagerReneeTest.playerTeleport.testPressTrigger = true; // to teleport
         Debug.Log("teleport");
 
-        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
-        RunTestMethod(scenarioManagerReneeTest.OnTeleportedToBandAid);
-
-        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(delay); // to let the dialogue and stuff finish
         scenarioManagerReneeTest.OnPlasterContainerGrabbed();
         Debug.Log("OnPlasterContainerGrabbed");
 
-        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        yield return new WaitForSeconds(delay); // to let the dialogue and stuff finish
         scenarioManagerReneeTest.SpawnPlaster();
         Debug.Log("SpawnPlaster");
 
-        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
-        scenarioManagerReneeTest.PlayFoodDrop();
-        Debug.Log("PlayFoodDrop");
+        yield return new WaitForSeconds(delay); // to let the dialogue and stuff finish
+        MoveObj(scenarioManagerReneeTest.TrayOfFood, new Vector3(0f, 0f, -0.5f));
+        RunTestMethod(scenarioManagerReneeTest.PlayFoodDrop);
 
         Debug.Log("finish testing");
     }
