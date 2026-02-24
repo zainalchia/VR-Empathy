@@ -36,6 +36,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("Narration Variables")]
     [SerializeField] public AudioSource narrationAudioSource;
     [SerializeField] public AudioSource bossAudioSource;
+    [SerializeField] public AudioSource customerAudioSource;
 
     // For voices
     [HideInInspector] public AudioClip[] narrationAudioClips_1;
@@ -207,20 +208,20 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         // Finally. Faster la serve customer!
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[0]);
+        bossAudioSource.PlayOneShot(narrationAudioClips_1[0]);
         yield return new WaitForSeconds(narrationAudioClips_1[0].length);
 
         Customer.GetComponent<Animator>().SetBool("SheakHead", true);
 
         // How long you want to make me wait? I wait here very long already.
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[1]);
+        customerAudioSource.PlayOneShot(narrationAudioClips_1[1]);
         yield return new WaitForSeconds(narrationAudioClips_1[1].length);
 
         // Sorry about that can I take your order
         narrationAudioSource.PlayOneShot(narrationAudioClips_1[2]);
         yield return new WaitForSeconds(narrationAudioClips_1[2].length);
         // Give me 2 chicken rice
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[3]);
+        customerAudioSource.PlayOneShot(narrationAudioClips_1[3]);
         yield return new WaitForSeconds(narrationAudioClips_1[3].length);
 
         Customer.GetComponent<Animator>().SetBool("HandOverMoney", true);
@@ -275,7 +276,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
 
         // Boss scolds player
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[6]);
+        bossAudioSource.PlayOneShot(narrationAudioClips_1[6]);
         //Boss.gameObject.SetActive(true);
         yield return new WaitForSeconds(narrationAudioClips_1[6].length);
 
@@ -309,13 +310,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
                                                                            //Boss.GetComponent<Animator>().SetBool("IsWalking", true);
                                                                            //yield return new WaitForSeconds(1.5f);
                                                                            //Boss.GetComponent<Animator>().SetBool("IsWalking", false);
-        BossAudio.GetComponent<WaypointManager>().startwalktrigger();
-        yield return new WaitForSeconds(2F);
-        // boss confront
-        BossAudio.GetComponent<AudioSource>().Play();
-
-        BossAudio.GetComponent<WaypointManager>().enabled = false;
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[7]);
+        
+        bossAudioSource.PlayOneShot(narrationAudioClips_1[7]);
         yield return new WaitForSeconds(narrationAudioClips_1[7].length);
 
         if (trayOutline != null)
@@ -479,7 +475,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
 
         // Dialogue
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[8]);
+        bossAudioSource.PlayOneShot(narrationAudioClips_1[8]);
         yield return new WaitForSeconds(narrationAudioClips_1[8].length);
 
         Boss.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
@@ -542,13 +538,13 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         // Call this from OnCollisionEnter on the Plate object
         plateHitGround = true;
 
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[9]);
+        bossAudioSource.PlayOneShot(narrationAudioClips_1[9]);
     }
 
 
     public void PlayCustomerDialogue() // called in Cloth
     {
-        narrationAudioSource.PlayOneShot(narrationAudioClips_1[10]);
+        customerAudioSource.PlayOneShot(narrationAudioClips_1[10]);
     }
     public void PlayFinishedCleaning() // called in Cloth 
     {
