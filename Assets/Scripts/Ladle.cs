@@ -11,7 +11,7 @@ public class Ladle : MonoBehaviour
     [SerializeField] private List<GameObject> porridgeObjects = new List<GameObject>();
 
     private bool hasInteractedWith = false;
-    private int currentIndex = 0;
+    //private int currentIndex = 0;
     private bool PlayOnce = true;
 
     private void OnTriggerEnter(Collider other)
@@ -31,17 +31,31 @@ public class Ladle : MonoBehaviour
             }
         }
 
+        /*
         if (other.CompareTag("Porridge") && hasInteractedWith == false)
         {
             Debug.Log("porridge has been contacted");
 
             DeactivateNextObject();
             hasInteractedWith = true;
-        }
+        } */
     }
 
     private void ActivateNextObject()
     {
+        // all pot food disappears
+        foreach (GameObject go in porridgeObjects)
+        {
+            go.SetActive(false);
+        }
+
+        // all food bowl food appears
+        foreach (GameObject go in requiredObjects)
+        {
+            go.SetActive(true);
+        }
+
+        /*
         // If all objects already activated, do nothing
         if (currentIndex >= requiredObjects.Count)
             return;
@@ -54,11 +68,12 @@ public class Ladle : MonoBehaviour
             Debug.Log("Activated object: " + obj.name);
         }
 
-        currentIndex++;
+        currentIndex++; */
     }
 
     private void DeactivateNextObject()
     {
+        /*
         if (currentIndex >= porridgeObjects.Count) return;
 
         GameObject obj = porridgeObjects[currentIndex];
@@ -67,7 +82,7 @@ public class Ladle : MonoBehaviour
         {
             obj .SetActive(false);
             Debug.Log("Deactivate object: " + obj.name);
-        }
+        } */
     }
 
     private bool AllObjectsActive()
