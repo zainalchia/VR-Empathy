@@ -10,19 +10,19 @@ public class Ladle : MonoBehaviour
     [SerializeField] private List<GameObject> requiredObjects = new List<GameObject>();
     [SerializeField] private List<GameObject> porridgeObjects = new List<GameObject>();
 
-    private bool hasInteractedWith = false;
+    //private bool hasInteractedWith = false;
     //private int currentIndex = 0;
     private bool PlayOnce = true;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("FoodBowl") && hasInteractedWith == true)
+        if (other.CompareTag("FoodBowl")) //&& hasInteractedWith == true)
         {
             Debug.Log("Bowl has been contacted");
 
             ActivateNextObject();
 
-            hasInteractedWith = false;
+            //hasInteractedWith = false;
 
             if (PlayOnce && AllObjectsActive())
             {
