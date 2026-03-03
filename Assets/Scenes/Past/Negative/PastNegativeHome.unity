@@ -3184,6 +3184,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3626410948948643884, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
+    - target: {fileID: -65133048035004534, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
     - target: {fileID: 919132149155446097, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
         type: 3}
       propertyPath: m_Name
@@ -5069,6 +5079,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: -3626410948948643884, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
+    - target: {fileID: -65133048035004534, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
     - target: {fileID: 919132149155446097, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
         type: 3}
       propertyPath: m_Name
@@ -8359,6 +8379,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: -3626410948948643884, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
+    - target: {fileID: -65133048035004534, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
     - target: {fileID: 919132149155446097, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
         type: 3}
       propertyPath: m_Name
@@ -10672,6 +10702,7 @@ MonoBehaviour:
   - rid: 154194441199157265
   - rid: 2280641336010604545
   - rid: 154194441199157267
+  - rid: 339782154465574939
   - rid: 6500772750264369155
   - rid: 154194441199157270
   - rid: 154194441199157272
@@ -10914,7 +10945,7 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0.1
                 m_StringArgument: 
-                m_BoolArgument: 0
+                m_BoolArgument: 1
               m_CallState: 2
     - rid: 154194441199157270
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
@@ -11103,6 +11134,18 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 1
               m_CallState: 2
+            - m_Target: {fileID: 1360311222}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 154194754885124116
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -11170,6 +11213,15 @@ MonoBehaviour:
         gameObject2: {fileID: 46809702}
         condition: 1
         distance: 0.15
+    - rid: 339782154465574939
+      type: {class: SequenceManager/SEvent_ChangeMaterialColor, ns: , asm: Assembly-CSharp}
+      data:
+        name: Change lightbulb material to black
+        type: 14
+        materials:
+        - {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
+        desiredColor: {r: 0, g: 0, b: 0, a: 1}
+        emission: 0
     - rid: 2280641336010604545
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -23818,6 +23870,16 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: -3626410948948643884, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
+    - target: {fileID: -65133048035004534, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b891a372a4479d14994fd7eba5aac9c2, type: 2}
     - target: {fileID: 919132149155446097, guid: f4fb624c82f36054ab7fdfcb5f3c14a0,
         type: 3}
       propertyPath: m_Name
