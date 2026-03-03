@@ -720,8 +720,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.01, y: 0.01, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.016162872, y: 0.0132126855, z: 0.019918803}
+  m_Center: {x: -0.05499363, y: 0.0016063428, z: -0.0049594026}
 --- !u!54 &46809705
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10742,7 +10742,7 @@ MonoBehaviour:
       data:
         name: Prompt player to feed son
         type: 1
-        text: Put food into your son's bowl.
+        text: Use the ladle on the table and scoop the porridge into the bowl.
         duration: 2
     - rid: 154194441199157259
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
@@ -11015,10 +11015,10 @@ MonoBehaviour:
     - rid: 154194754885124102
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to light match
+        name: Strike the matchstick on the matchbox to light the match.
         type: 1
-        text: Light the match.
-        duration: 3
+        text: St
+        duration: 5
     - rid: 154194754885124104
       type: {class: SequenceManager/SEvent_ForceGrab, ns: , asm: Assembly-CSharp}
       data:
@@ -11187,9 +11187,9 @@ MonoBehaviour:
     - rid: 4498990730211491841
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Give your son a tissue
+        name: Prompt player to grab tissue
         type: 1
-        text: Give your son a tissue.
+        text: Pick up the handkerchief and give it to your crying son.
         duration: 3
     - rid: 4549856677127782403
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -11234,7 +11234,7 @@ MonoBehaviour:
     - rid: 4897766369404125184
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to grab tissue
+        name: Give your son a tissue
         type: 3
         interactable: {fileID: 704984721}
         outlineItem: 1
@@ -14680,7 +14680,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.03
+      value: -0.0247
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
         type: 3}
@@ -14695,22 +14695,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
-        type: 3}
-      propertyPath: m_LocalRotation.y
       value: 0.7072302
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
         type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7069834
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
+        type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7069834
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
         type: 3}
@@ -14720,7 +14720,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 585d5eec1b686fb42b08c7c8776723e6,
         type: 3}
