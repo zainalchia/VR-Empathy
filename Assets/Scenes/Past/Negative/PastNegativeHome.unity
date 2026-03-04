@@ -5433,6 +5433,7 @@ GameObject:
   m_Component:
   - component: {fileID: 576037540}
   - component: {fileID: 576037539}
+  - component: {fileID: 576037541}
   m_Layer: 0
   m_Name: electricsoundwhenblackout
   m_TagString: Untagged
@@ -5450,15 +5451,15 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 8ad04449ae027484cb8d440a4731ebcd, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_audioClip: {fileID: 8300000, guid: 5d1d2e9459b05214dac7c78add3bda57, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.854
+  m_Pitch: 1.7
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 121
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -5551,6 +5552,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!170 &576037541
+AudioDistortionFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 576037538}
+  m_Enabled: 1
+  m_DistortionLevel: 0.54
 --- !u!1 &578086224 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 07cef21890b4bdf4f9a5800fa55c1313,
@@ -10477,6 +10487,7 @@ MonoBehaviour:
   SeanAudioSource: {fileID: 795504042}
   HomeLight: {fileID: 0}
   tissueBox: {fileID: 0}
+  electricSFX: {fileID: 0}
   PlayerDestination: {fileID: 0}
   Player: {fileID: 0}
 --- !u!114 &1156376159
