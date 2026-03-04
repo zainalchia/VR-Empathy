@@ -331,7 +331,35 @@ public class GameManager : MonoBehaviour
                 MaleModel.SetActive(false);
             }
         }
+        StartCoroutine(StartRotateTowards());
     }
+
+
+    private IEnumerator StartRotateTowards()
+    {
+        while (ovrCamRig == null || centerEyeAnchor == null)
+            yield return null;
+
+        Vector3 flat;
+        do
+        {
+            yield return null; 
+            flat = Vector3.ProjectOnPlane(centerEyeAnchor.transform.forward, Vector3.up).normalized;
+        }
+        while (flat.sqrMagnitude < 0.0001f);
+
+        float angle;
+        if(SceneManager.GetActiveScene().name == "PastNegativeHome")
+        {
+            angle = Vector3.SignedAngle(flat, Vector3.back, Vector3.up);
+        }
+        else
+        {
+            angle = Vector3.SignedAngle(flat, Vector3.forward, Vector3.up);
+        }
+        ovrCamRig.transform.Rotate(Vector3.up, angle);
+    }
+
 
     // Update is called once per frame
     void Update()
