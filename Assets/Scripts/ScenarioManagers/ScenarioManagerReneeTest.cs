@@ -630,11 +630,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     public void PlayLightOFf() // Called in Ladle.cs
     {
         lastRoutine = StartCoroutine(LightOff());
-        // Play sound at 50% volume
-        if (electricSFXAudioSource != null)
-        {
-            electricSFXAudioSource.Play();
-        }
+       
     }
     IEnumerator LightOff()
     {
