@@ -8,6 +8,9 @@ public class Cash : MonoBehaviour
     [SerializeField] private ScenarioPromptManager promptManager;
     [SerializeField] private SceneID sceneID = SceneID.Stall;
 
+    [Header("SFX")]
+    [SerializeField] private AudioClip cashSFX;
+
     [Header("Other")]
     [SerializeField] private Collider registerSlotCollider; //collider to the place the cash
     [SerializeField] private Outline registerOutline;
@@ -47,6 +50,15 @@ public class Cash : MonoBehaviour
     private void PlaceCash()
     {
         hasBeenPlaced = true;
+
+        if (cashSFX != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                cashSFX,
+                transform.position,
+                0.3f
+            );
+        }
 
         //turn off outline
         if (registerOutline != null)
