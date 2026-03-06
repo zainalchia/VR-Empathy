@@ -577,7 +577,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     private Outline tissueBoxOutline;
 
     [Header("SFX")]
-    [SerializeField] private AudioClip electricSFX; GameObject electricsoundwhenblackout;
+    [SerializeField] private AudioSource electricSFXAudioSource;
 
     public void PlayFamilyStart()
     {
@@ -629,13 +629,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     {
         lastRoutine = StartCoroutine(LightOff());
         // Play sound at 50% volume
-        if (electricSFX != null)
+        if (electricSFXAudioSource != null)
         {
-            AudioSource.PlayClipAtPoint(
-                electricSFX,
-                transform.position,
-                0.2f
-            );
+            electricSFXAudioSource.Play();
         }
     }
     IEnumerator LightOff()
