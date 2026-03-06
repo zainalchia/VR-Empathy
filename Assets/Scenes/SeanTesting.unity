@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -171,7 +171,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ff7827e019077f41b973ed7e9d0d276, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDistance: 0.1
+  toDissappear: 0
+  minScale: 0
+  maxScale: 0
+  ScaleChange: {x: 0, y: 0, z: 0}
 --- !u!65 &22677067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1105,6 +1108,7 @@ MonoBehaviour:
   targetWeight: 0.9
   initalWeight: 0.65
   isUsingGlasses: 0
+  initialBlurDone: 0
 --- !u!1 &1096985349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,12 +1330,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcbe46e9ef4196248b890ddfb00ac2ee, type: 3}
---- !u!1 &1110062023 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8514931866048053499, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 1110062022}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1110062024 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7751894235159375006, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -1359,12 +1357,6 @@ MonoBehaviour:
 --- !u!1 &1110062026 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4207753694588884739, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 1110062022}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1110062027 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4207753694588884741, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
     type: 3}
   m_PrefabInstance: {fileID: 1110062022}
   m_PrefabAsset: {fileID: 0}
@@ -1415,14 +1407,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenarioID: 3
+  sceneID: 0
+  testText: {fileID: 0}
+  postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 1110062026}
-  middleEyeAnchor: {fileID: 1110062027}
+  centerEyeAnchor: {fileID: 0}
   grabInteractors:
   - {fileID: 1110062025}
   - {fileID: 1110062024}
-  characterModel: {fileID: 1110062023}
+  MaleModel: {fileID: 0}
+  FemaleModel: {fileID: 0}
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 0}
+  characterModel: {fileID: 0}
   alertText: {fileID: 0}
   fadePanel: {fileID: 0}
+  whiteFadePanel: {fileID: 0}
+  goodbyeText: {fileID: 0}
+  goodbyeText2: {fileID: 0}
   glasses: {fileID: 1570781994}
   toPutGlassesOn: 0
   toTakeGlassesOff: 1
@@ -1442,13 +1445,39 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   dentures: {fileID: 1973788612}
-  toPutDenturesOn: 0
   toTakeDenturesOff: 0
+  OnDenturesTakeOff:
+    m_PersistentCalls:
+      m_Calls: []
+  medicine: {fileID: 0}
+  pill: {fileID: 0}
+  toConsumeMedicine: 0
+  OnMedicineConsumed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnMedicineGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  leftPalm: {fileID: 0}
+  rightPalm: {fileID: 0}
+  photoFrame: {fileID: 0}
+  toViewPhotoFrame: 0
+  OnPhotoFrameViewed:
+    m_PersistentCalls:
+      m_Calls: []
+  toLookAtObjective: 0
   toPickUpPhone: 0
   canAnswerPhone: 0
-  taiChiInstructor: {fileID: 0}
+  taiChiAnimations: []
   toDoTaiChi: 0
   toStartSpasming: 0
+  toUsePlaster: 0
+  plasterContainer: {fileID: 0}
+  plaster: {fileID: 0}
+  leftHandRenderer: {fileID: 0}
+  bloodEffect: {fileID: 0}
+  plasteredHandMaterial: {fileID: 0}
+  handHealed: 0
 --- !u!114 &1115407452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1492,7 +1521,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allowDropItems: 1
+  leftGrabInteractor: {fileID: 0}
+  rightGrabInteractor: {fileID: 0}
+  leftHandTrackingComponent: {fileID: 0}
+  timeToOpenCloseFist: 0.2
+  autoDropItems: 1
   dropGlassesInterval: 1
   dropGlassesCount: 2
   audioSource_player: {fileID: 0}
@@ -1526,9 +1559,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numOfPoses: 8
   timeDelayBeforeNextPose: 2
+  triggerHitbox: 0
+  OnNextPose:
+    m_PersistentCalls:
+      m_Calls: []
   OnPosesFinish:
     m_PersistentCalls:
       m_Calls: []
+  spawnNextHitboxes:
+    m_PersistentCalls:
+      m_Calls: []
+  taiChiAnimator: {fileID: 0}
+  taiChiInstructorAnimator: {fileID: 0}
+  checkStartAnim: 0
 --- !u!54 &1119370943
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1756,6 +1799,14 @@ MonoBehaviour:
     m_Bits: 1024
   defaultTimeBeforeNextMove: 2
   teleportHotspots: []
+  playerAudio: {fileID: 0}
+  scenarioManagerPresentBad: {fileID: 0}
+  OnLastTeleport:
+    m_PersistentCalls:
+      m_Calls: []
+  OnFirstGrab:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1359192840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3191,9 +3242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 714dc6bd0c216344bb200669afb51c88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameObjectPosition:
-  - {fileID: 0}
-  - {fileID: 0}
+  debugText: {fileID: 0}
+  maxLines: 50
 --- !u!114 &2036579282
 MonoBehaviour:
   m_ObjectHideFlags: 0
