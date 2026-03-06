@@ -38,6 +38,7 @@ public class SequenceManager : MonoBehaviour
 			[InspectorName("Wait for distance between objects")	] SET_WaitDistance			,
 			[InspectorName("Trigger Unity Event")				] SET_UnityEvent			,
 			[InspectorName("Go to scene")						] SET_GoToScene				,
+			[InspectorName("Change material color")				] SET_ChangeMaterialColor	,
 			[InspectorName("")									] SET_COUNT // NOT an actual type! here for easy counting!!!
 		}
 
@@ -56,7 +57,8 @@ public class SequenceManager : MonoBehaviour
 			typeof(SEvent_LerpPostProcessingWeight	),
 			typeof(SEvent_WaitForDistance			),
 			typeof(SEvent_TriggerUnityEvent			),
-			typeof(SEvent_GoToScene			),
+			typeof(SEvent_GoToScene					),
+			typeof(SEvent_ChangeMaterialColor		),
 		};
 
 		public SequenceEventEnum type;
@@ -408,6 +410,29 @@ public class SequenceManager : MonoBehaviour
 			}
 
 		}
+	}
+	
+	public class SEvent_ChangeMaterialColor : SequenceEvent
+	{
+		[SerializeField] Material[] materials;
+		[SerializeField] Color desiredColor;
+		[SerializeField] bool emission;
+
+		public override void OnEnter()
+        {
+            base.OnEnter();
+
+			foreach (Material mat in materials)
+			{
+				mat.color = desiredColor;	
+				if (emission)
+					mat.EnableKeyword("_EMISSION");
+				else
+					mat.DisableKeyword("_EMISSION");
+			}
+			Exit();
+			return;
+        }
 	}
 
 	public class SEvent_TriggerUnityEvent : SequenceEvent

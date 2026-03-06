@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.2628027, g: 0.28940117, b: 0.29594058, a: 1}
+  m_IndirectSpecularColor: {r: 0.60825694, g: 0.6327409, b: 0.6379506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2937,6 +2937,7 @@ MonoBehaviour:
   MoveToToiletDoorHotspots: []
   MoveToHawkerStallHotspots: []
   MoveToJobPositionHotspots: []
+  MoveToTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -2974,10 +2975,17 @@ MonoBehaviour:
   MovingToKaraokeCorner: 0
   MoveToToiletDoor: 0
   MoveToHawkerStall: 0
+  MoveToTable: 0
   MoveToSection: 0
+  hasPlacedCash: 0
+  teleportLocked: 0
+  DropFood: 0
+  GoToFirstAid: 0
+  GoToTray: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
+  scenarioManager: {fileID: 0}
 --- !u!1001 &169200027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21213,6 +21221,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scenarioID: 3
+  sceneID: 0
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 308433642}
@@ -21266,6 +21276,13 @@ MonoBehaviour:
   - {fileID: 1112064377}
   toDoTaiChi: 1
   toStartSpasming: 0
+  toUsePlaster: 0
+  plasterContainer: {fileID: 0}
+  plaster: {fileID: 0}
+  leftHandRenderer: {fileID: 0}
+  bloodEffect: {fileID: 0}
+  plasteredHandMaterial: {fileID: 0}
+  handHealed: 0
 --- !u!114 &1115407452
 MonoBehaviour:
   m_ObjectHideFlags: 0
