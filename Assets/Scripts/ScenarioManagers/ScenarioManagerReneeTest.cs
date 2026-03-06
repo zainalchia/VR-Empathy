@@ -577,6 +577,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [Header("Sean Tissue Box")]
     [SerializeField] private GameObject tissueBox;
     private Outline tissueBoxOutline;
+
+    [Header("SFX")]
+    [SerializeField] private AudioSource electricSFXAudioSource;
+
     public void PlayFamilyStart()
     {
         lastRoutine = StartCoroutine(FamilyStart());
@@ -626,6 +630,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     public void PlayLightOFf() // Called in Ladle.cs
     {
         lastRoutine = StartCoroutine(LightOff());
+        // Play sound at 50% volume
+        if (electricSFXAudioSource != null)
+        {
+            electricSFXAudioSource.Play();
+        }
     }
     IEnumerator LightOff()
     {
