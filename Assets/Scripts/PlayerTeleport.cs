@@ -167,12 +167,14 @@ public class PlayerTeleport : MonoBehaviour
         }
         else if (currentScene == ScenarioID.PastNegative)
         {
-            if (AbleToTeleport)
+            if (AbleToTeleport || testPressTrigger)
             {
                 if (teleportLocked) return;
 
-                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) || testPressTrigger && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+                if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove) || testPressTrigger)
                 {
+                    Debug.Log("fu");
+
                     if (MoveToToiletDoor && currentHotspotIndex != MoveToToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                     {
                         timer = 0;
@@ -242,12 +244,12 @@ public class PlayerTeleport : MonoBehaviour
                         MoveToLocation(MoveToJobPositionHotspots[currentHotspotIndex], MoveToJobPositionHotspots);
                         GoToTray = false;
                     }
-                        testPressTrigger = false;
                 }
                 else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
                 {
                     buttonPressed = false;
                 }
+                testPressTrigger = false;
             }
         }
         else if (currentScene == ScenarioID.PastPositive)
