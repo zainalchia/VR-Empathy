@@ -6,7 +6,7 @@ using Oculus.Interaction;
 public class SinkTap : MonoBehaviour
 {
     [SerializeField] GameObject water;
-    bool waterIsOn = true;
+    bool waterIsOn = false;
     bool canInteract = true;
     [SerializeField] GameObject handle;
 
@@ -25,13 +25,13 @@ public class SinkTap : MonoBehaviour
         }
     }
 
-    private void TurnHandle()
+    public void TurnHandle()
     {
         float desiredRotation; 
 
         if (waterIsOn) 
         {
-            desiredRotation = 30f;
+            desiredRotation = -30f;
         }
         else
         {
@@ -42,6 +42,11 @@ public class SinkTap : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
+    {
+        OnPlayerTouch();
+    }
+
+    public void OnPlayerTouch()
     {
         if (!canInteract) return;
 
