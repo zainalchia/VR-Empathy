@@ -2,15 +2,29 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TesterScript : MonoBehaviour
 {
-    public enum Scene { presentBadBathroom, presentBadLivingRoom, presentBadBedroom, presentGoodBathroom, pastBad };
-    [Tooltip("Press this to begin test")] [SerializeField] bool startTest = false;
-    public Scene scenario;
+    [Header("Press this to begin test")] [SerializeField] bool startTest = false;
+    public string currentSceneName;
     [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
     [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
     [SerializeField] ScenarioManagerReneeTest scenarioManagerReneeTest;
+
+    private void RunTestMethod(Action methodToTest)
+    {
+        // Invoke the passed method
+        methodToTest();
+
+        Debug.Log("running method: " + nameof(methodToTest));
+    }
+
+    private void MoveObj(GameObject go, Vector3 moveVector)
+    {
+        go.transform.Translate(moveVector, Space.World);
+        Debug.Log("moving obj: " + go.name + " with distance of " + moveVector.ToString());
+    }
 
     #region Present Bad Bathroom
     void StartPresentBadTestPart1()
@@ -94,8 +108,8 @@ public class TesterScript : MonoBehaviour
     }
     #endregion
 
-    #region Past Bad
-    void StartPastBadTestPart1()
+    #region Past Negative Bathroom
+    void StartPastNegativeBathroomTestPart1()
     {
         try
         {
@@ -123,13 +137,68 @@ public class TesterScript : MonoBehaviour
     }
     #endregion
 
+    #region Past Negative Hawker
+    void StartPastNegativeHawkerTestPart1()
+    {
+        try
+        {
+            StartCoroutine(StartPastNegativeHawkerTestPart1_Coroutine());
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Error at hawker part 1: " + e.Message);
+        }
+    }
+
+    IEnumerator StartPastNegativeHawkerTestPart1_Coroutine()
+    {
+        Debug.Log("in past negative hawker test part 1");
+
+        yield return new WaitForSeconds(20f); // to let the dialogue and stuff finish
+        MoveObj(scenarioManagerReneeTest.cashObject, new Vector3(-0.5f, 0f, 0f));
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        scenarioManagerReneeTest.playerTeleport.testPressTrigger = true; // to teleport
+        Debug.Log("teleport");
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        RunTestMethod(scenarioManagerReneeTest.PlayChoppedHand);
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        scenarioManagerReneeTest.playerTeleport.testPressTrigger = true; // to teleport
+        Debug.Log("teleport");
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        RunTestMethod(scenarioManagerReneeTest.OnTeleportedToBandAid);
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        scenarioManagerReneeTest.OnPlasterContainerGrabbed();
+        Debug.Log("OnPlasterContainerGrabbed");
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        scenarioManagerReneeTest.SpawnPlaster();
+        Debug.Log("SpawnPlaster");
+
+        yield return new WaitForSeconds(2f); // to let the dialogue and stuff finish
+        scenarioManagerReneeTest.PlayFoodDrop();
+        Debug.Log("PlayFoodDrop");
+
+        Debug.Log("finish testing");
+    }
+
+
+
+    #endregion
     void StartTest()
     {
         Debug.Log("Test started");
 
-        switch (scenario)
+        // get current scene
+        currentSceneName = SceneManager.GetActiveScene().name;
+
+        switch (currentSceneName)
         {
-            case Scene.presentBadBathroom:
+            case "PresentBadBathroom":
 
                 try
                 {
@@ -142,11 +211,11 @@ public class TesterScript : MonoBehaviour
 
                 break;
 
-            case Scene.presentBadLivingRoom:
+            case "PresentBadLivingRoom":
 
                 break;
 
-            case Scene.presentBadBedroom:
+            case "PresentBadBedroom":
 
                 try
                 {
@@ -159,7 +228,7 @@ public class TesterScript : MonoBehaviour
 
                 break;
 
-            case Scene.presentGoodBathroom:
+            case "PresentGoodBathroom":
 
                 try
                 {
@@ -172,11 +241,24 @@ public class TesterScript : MonoBehaviour
 
                 break;
 
-            case Scene.pastBad:
+            case "PastNegativeBathroom":
 
                 try
                 {
-                    StartPastBadTestPart1();
+                    StartPastNegativeBathroomTestPart1();
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("Error at scene start: " + e.Message);
+                }
+
+                break;
+
+            case "PastNegativeHawker":
+
+                try
+                {
+                    StartPastNegativeHawkerTestPart1();
                 }
                 catch (Exception e)
                 {

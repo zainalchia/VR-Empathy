@@ -6,7 +6,6 @@ using System.Collections;
 public class Cloth : MonoBehaviour
 {
     [SerializeField] GameObject DroppedFood;
-
     public UnityEvent WhileCleaning;
     public UnityEvent FinishCleaning;
 
@@ -46,7 +45,7 @@ public class Cloth : MonoBehaviour
     }
 
     private void Update()
-    {
+    {  
         if (hasFinished)
             return;
 

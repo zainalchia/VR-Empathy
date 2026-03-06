@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5048,6 +5048,13 @@ MonoBehaviour:
   taiChiAnimations: []
   toDoTaiChi: 0
   toStartSpasming: 0
+  toUsePlaster: 0
+  plasterContainer: {fileID: 0}
+  plaster: {fileID: 0}
+  leftHandRenderer: {fileID: 0}
+  bloodEffect: {fileID: 0}
+  plasteredHandMaterial: {fileID: 0}
+  handHealed: 0
 --- !u!114 &1115407452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5216,6 +5223,8 @@ MonoBehaviour:
   firstTeleportHotspot: {fileID: 0}
   playerTeleport: {fileID: 1794564264}
   promptManager: {fileID: 1719580650}
+  scenarioID: 3
+  sceneID: 0
   MaxAlertHideTimer: 5
   BathroomItems: {fileID: 0}
   timeForWashingUp: 30
@@ -10005,6 +10014,7 @@ MonoBehaviour:
   MoveToToiletDoorHotspots: []
   MoveToHawkerStallHotspots: []
   MoveToJobPositionHotspots: []
+  MoveToTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -10030,10 +10040,17 @@ MonoBehaviour:
   MovingToKaraokeCorner: 0
   MoveToToiletDoor: 0
   MoveToHawkerStall: 0
+  MoveToTable: 0
   MoveToSection: 0
   hasPlacedCash: 0
+  teleportLocked: 0
+  DropFood: 0
+  GoToFirstAid: 0
+  GoToTray: 0
+  currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
+  scenarioManager: {fileID: 0}
 --- !u!4 &1794564265
 Transform:
   m_ObjectHideFlags: 0
