@@ -229,7 +229,7 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         GameManager.instance.fadePanel.GetComponent<Animator>().speed = 4; // to make it fade it in 1 sec. may need to lower back the speed later
 
         cane = newCane;
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(cane.GetComponent<GrabInteractable>());
+        GameManager.instance.grabInteractors[1].ForceSelect(cane.GetComponent<GrabInteractable>());
         firstTeleportHotspot.SetActive(true); // enable first teleport hotspot
         promptManager.ShowPrompt(GameManager.instance.sceneID, 2);
         questControllerImage.SetActive(true);

@@ -28,10 +28,10 @@ public class DropAfterDistance : MonoBehaviour
             // reset
             if (totalDistance < distanceBeforeDrop) return;
 
-            if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
-                ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
-            if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
-                ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+            if (GameManager.instance.grabInteractors[0].SelectedInteractable == interactable)
+                GameManager.instance.grabInteractors[0].ForceRelease();
+            if (GameManager.instance.grabInteractors[1].SelectedInteractable == interactable)
+                GameManager.instance.grabInteractors[1].ForceRelease();
         }
     }
 

@@ -45,7 +45,7 @@ public class Sean : MonoBehaviour
         if (LTouching && RTouching && LTriggerPressed && RTriggerPressed)
         {
             Holding = true;
-            ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(gameObject.GetComponent<GrabInteractable>());
+            GameManager.instance.grabInteractors[1].ForceSelect(gameObject.GetComponent<GrabInteractable>());
             if (PlayOnce)
             {
                 OnGrab.Invoke();
@@ -57,7 +57,7 @@ public class Sean : MonoBehaviour
         if (!LTouching || !RTouching || !LTriggerPressed || !RTriggerPressed)
         {
             Holding = false;
-            ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+            GameManager.instance.grabInteractors[1].ForceRelease();
         }
 
         GetComponent<Grabbable>().enabled = GetComponent<PhysicsGrabbable>().enabled = GetComponent<GrabInteractable>().enabled = Holding;

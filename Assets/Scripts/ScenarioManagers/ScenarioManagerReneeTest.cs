@@ -409,7 +409,7 @@ public class ScenarioManagerReneeTest : MonoBehaviour
 
         // Force grab with right hand only
         var grabInteractable = plaster.GetComponent<GrabInteractable>();
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
+        GameManager.instance.grabInteractors[1].ForceSelect(grabInteractable);
 
     }
 
@@ -440,8 +440,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         TrayOfFood.GetComponent<ForceStayGrabbed>().SetForceGrabActive(false);
         TrayOfFood.GetComponent<Grabbable>().enabled = false;
 
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
-        ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
+        GameManager.instance.grabInteractors[1].ForceRelease();
+        GameManager.instance.grabInteractors[0].ForceRelease();
 
        
     }
@@ -641,8 +641,8 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         Ladle.GetComponent<GrabInteractable>().enabled = false;
         Ladle.GetComponent<Rigidbody>().isKinematic = false;
         Ladle.GetComponent<Rigidbody>().useGravity = true;
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
-        ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
+        GameManager.instance.grabInteractors[1].ForceRelease();
+        GameManager.instance.grabInteractors[0].ForceRelease();
 
         // Disable Ladle
         //Ladle.gameObject.SetActive(false);

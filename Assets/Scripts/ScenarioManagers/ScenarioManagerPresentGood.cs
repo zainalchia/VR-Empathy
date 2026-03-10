@@ -769,7 +769,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         StartCoroutine(SetNPCToPlayPos(KaraokeCornerNPCs[0].gameObject, 300, 1));
                 
         KaraokeMic.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
+        GameManager.instance.grabInteractors[1].ForceSelect(KaraokeMic.GetComponent<GrabInteractable>());
 
         narrationAudioSource.clip = narrationAudioClips_2[9];
 
@@ -1057,9 +1057,9 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         // auto grab
         var grabInteractable = pill.GetComponent<GrabInteractable>();
             if (handIndex == 0) // bottle lfet hand so pill on the right vice versa
-                ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(grabInteractable);
+                GameManager.instance.grabInteractors[1].ForceSelect(grabInteractable);
             else
-                ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(grabInteractable);
+                GameManager.instance.grabInteractors[0].ForceSelect(grabInteractable);
 
             var forceGrab = pill.GetComponent<ForceStayGrabbed>();
             if (forceGrab != null)

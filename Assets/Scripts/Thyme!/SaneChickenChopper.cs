@@ -122,8 +122,8 @@ public class SaneChickenChopper : MonoBehaviour
 
         if (ControllerInteractionsManager.instance != null)
         {
-            ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
-            ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+            GameManager.instance.grabInteractors[0].ForceRelease();
+            GameManager.instance.grabInteractors[1].ForceRelease();
         }
     }
 

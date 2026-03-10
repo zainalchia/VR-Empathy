@@ -173,10 +173,10 @@ public class SequenceManager : MonoBehaviour
 
 			if (itemStaysGrabbed)
 			{
-				if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
-					ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
-				if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
-					ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+				if (GameManager.instance.grabInteractors[0].SelectedInteractable == interactable)
+					GameManager.instance.grabInteractors[0].ForceSelect(interactable);
+				if (GameManager.instance.grabInteractors[1].SelectedInteractable == interactable)
+					GameManager.instance.grabInteractors[1].ForceSelect(interactable);
 			}
 
 			// un-outline item, if applicable
@@ -280,28 +280,28 @@ public class SequenceManager : MonoBehaviour
 			{
 				case Hand.Left:
 				{
-					ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
+					GameManager.instance.grabInteractors[0].ForceSelect(interactable);
 					break;
 				}
 
 				case Hand.Right:
 				{
-					ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+					GameManager.instance.grabInteractors[1].ForceSelect(interactable);
 					break;
 				}
 
 				case Hand.Current:
-					if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
-						ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
-					if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
-						ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+					if (GameManager.instance.grabInteractors[0].SelectedInteractable == interactable)
+						GameManager.instance.grabInteractors[0].ForceSelect(interactable);
+					if (GameManager.instance.grabInteractors[1].SelectedInteractable == interactable)
+						GameManager.instance.grabInteractors[1].ForceSelect(interactable);
 					break;
 
 				case Hand.Free:
-                    if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == null)
-                        ControllerInteractionsManager.instance.leftGrabInteractor.ForceSelect(interactable);
-                    if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == null)
-                        ControllerInteractionsManager.instance.rightGrabInteractor.ForceSelect(interactable);
+                    if (GameManager.instance.grabInteractors[0].SelectedInteractable == null)
+                        GameManager.instance.grabInteractors[0].ForceSelect(interactable);
+                    if (GameManager.instance.grabInteractors[1].SelectedInteractable == null)
+                        GameManager.instance.grabInteractors[1].ForceSelect(interactable);
 					break;
 
             }
@@ -317,10 +317,10 @@ public class SequenceManager : MonoBehaviour
 		public override void OnEnter()
 		{
 			base.OnEnter();
-			if (ControllerInteractionsManager.instance.leftGrabInteractor.SelectedInteractable == interactable)
-				ControllerInteractionsManager.instance.leftGrabInteractor.ForceRelease();
-			if (ControllerInteractionsManager.instance.rightGrabInteractor.SelectedInteractable == interactable)
-				ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+			if (GameManager.instance.grabInteractors[0].SelectedInteractable == interactable)
+				GameManager.instance.grabInteractors[0].ForceRelease();
+			if (GameManager.instance.grabInteractors[1].SelectedInteractable == interactable)
+				GameManager.instance.grabInteractors[1].ForceRelease();
 			Exit();
 		}
 	}
