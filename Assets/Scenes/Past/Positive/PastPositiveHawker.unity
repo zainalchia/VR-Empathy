@@ -28471,6 +28471,7 @@ MonoBehaviour:
   - rid: 3783327431779155969
   - rid: 154194936214323214
   - rid: 4897765866541416449
+  - rid: 3783327436181078024
   - rid: 4897765866541416451
   - rid: 3636061403108868104
   - rid: 154194936214323216
@@ -28872,6 +28873,13 @@ MonoBehaviour:
                 m_StringArgument: Talk
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 3783327436181078024
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Prompt to grab the knife
+        type: 1
+        text: Grab the knife with your right hand.
+        duration: 5
     - rid: 4498990571523145729
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -28905,7 +28913,7 @@ MonoBehaviour:
     - rid: 4897765866541416451
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt knife pickup
+        name: Highlight the knife pickup
         type: 3
         interactable: {fileID: 1130414781}
         outlineItem: 1
