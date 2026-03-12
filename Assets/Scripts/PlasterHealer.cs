@@ -44,6 +44,6 @@ public class PlasterHealer : MonoBehaviour
         if (ControllerInteractionsManager.instance == null)
             return;
 
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+        GameManager.instance.grabInteractors[1].ForceRelease();
     }
 }

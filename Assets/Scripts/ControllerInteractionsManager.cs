@@ -23,8 +23,6 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     #region Grabbing Items
     private List<GrabInteractor> grabInteractorsWithinRange = new List<GrabInteractor>();
-    public GrabInteractor leftGrabInteractor;
-    public GrabInteractor rightGrabInteractor;
     bool canTakeOffGlasses = false;
     bool canTakeOffDentures = false;
     bool toReleaseLeftHand = false;
@@ -235,10 +233,10 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     public void LockLeftHandToItem(GameObject itemToLock, Transform targetHandPose)
     {
-        if (leftGrabInteractor != null && itemToLock != null && targetHandPose != null)
+        if (GameManager.instance.grabInteractors[0] != null && itemToLock != null && targetHandPose != null)
         {
-            leftGrabInteractor.gameObject.transform.position = targetHandPose.position;
-            leftGrabInteractor.gameObject.transform.rotation = targetHandPose.rotation;
+            GameManager.instance.grabInteractors[0].gameObject.transform.position = targetHandPose.position;
+            GameManager.instance.grabInteractors[0].gameObject.transform.rotation = targetHandPose.rotation;
 
             if (leftHandTrackingComponent != null)
             {
@@ -246,13 +244,13 @@ public class ControllerInteractionsManager : MonoBehaviour
                 leftHandTrackingComponent.enabled = false;
             }
 
-            Rigidbody handRb = leftGrabInteractor.gameObject.GetComponent<Rigidbody>();
+            Rigidbody handRb = GameManager.instance.grabInteractors[0].gameObject.GetComponent<Rigidbody>();
             if (handRb != null)
             {
                 handRb.isKinematic = true;
             }
 
-            leftGrabInteractor.ForceSelect(itemToLock.GetComponent<GrabInteractable>());
+            GameManager.instance.grabInteractors[0].ForceSelect(itemToLock.GetComponent<GrabInteractable>());
             lockedItemLeftHand = itemToLock;
             isLeftHandLocked = true;
 
@@ -271,9 +269,9 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     public void UnlockLeftHand()
     {
-        if (isLeftHandLocked && leftGrabInteractor != null)
+        if (isLeftHandLocked && GameManager.instance.grabInteractors[0] != null)
         {
-            leftGrabInteractor.ForceRelease();
+            GameManager.instance.grabInteractors[0].ForceRelease();
 
             if (lockedItemLeftHand != null && lockedItemLeftHand.GetComponent<Rigidbody>() != null)
             {
@@ -284,7 +282,7 @@ public class ControllerInteractionsManager : MonoBehaviour
             {
                 leftHandTrackingComponent.enabled = wasLeftHandTrackingComponentEnabled;
             }
-            Rigidbody handRb = leftGrabInteractor.gameObject.GetComponent<Rigidbody>();
+            Rigidbody handRb = GameManager.instance.grabInteractors[0].gameObject.GetComponent<Rigidbody>();
             if (handRb != null)
             {
                 // handRb.isKinematic = false; 
@@ -303,9 +301,6 @@ public class ControllerInteractionsManager : MonoBehaviour
     public bool autoDropItems = true;
     [SerializeField] private float dropGlassesInterval = 1;
     [SerializeField] private int dropGlassesCount = 2;
-
-    [SerializeField] private AudioSource audioSource_player;
-    [SerializeField] private AudioClip audioClip_sighAfterDrop;
 
     [SerializeField] private GameObject dropItemFX;
     [SerializeField] public GameObject leftHandAnchor;
