@@ -11048,6 +11048,10 @@ MonoBehaviour:
   MoveToTableHotspots:
   - {fileID: 0}
   - {fileID: 0}
+  MoveToPastPositiveToiletDoorHotspots:
+  - {fileID: 0}
+  MoveToHouseHotspots: []
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 1
   OnLastTeleport:
     m_PersistentCalls:
@@ -11104,6 +11108,7 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
+  MoveToPastPositiveToiletDoor: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
@@ -15952,6 +15957,7 @@ MonoBehaviour:
   - rid: 6176681913310248963
   - rid: 1812711536940810241
   - rid: 6176681913310248965
+  - rid: 5984391380314357769
   references:
     version: 2
     RefIds:
@@ -16124,6 +16130,11 @@ MonoBehaviour:
         type: 1
         text: Look at the teleport circle and press the Trigger button to teleport.
         duration: 3
+    - rid: 5984391380314357769
+      type: {class: SequenceManager/SequenceEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 0
     - rid: 6176681889884798978
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:

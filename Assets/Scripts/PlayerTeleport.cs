@@ -35,9 +35,13 @@ public class PlayerTeleport : MonoBehaviour
     #endregion
 
     #region Past Positive Hotspots
-    //[Header("Past Positive Hotspots")]
-    //[SerializeField] GameObject[] MoveToHouseHotspots;
-    //[SerializeField] GameObject[] MoveToDiningTableHotspots;
+    [Header("Past Positive Hotspots")]
+    public GameObject[] MoveToPastPositiveToiletDoorHotspots;
+    [SerializeField] GameObject[] MoveToHouseHotspots;
+    [SerializeField] GameObject[] MoveToDiningTableHotspots;
+
+    public GameObject[] GetMoveToPastPositiveToiletDoorHotspots() => MoveToPastPositiveToiletDoorHotspots;
+
     #endregion
 
     //#region Past Positive Hotspots
@@ -79,6 +83,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool GoToTray = false;
 
     //Past positive==============================================================================================================
+    public bool MoveToPastPositiveToiletDoor = false;
     //public bool MovingToLivingRoom = false;
     //public bool MovingToMainDoor = false;
     //public bool MovingToCheckersChair = false;
@@ -254,6 +259,16 @@ public class PlayerTeleport : MonoBehaviour
         {
             if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
             {
+                if (MoveToPastPositiveToiletDoor && currentHotspotIndex != MoveToPastPositiveToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                {
+                    timer = 0;
+
+                    defaultTimeBeforeNextMove = 1.5f; // in general
+
+                    currentHotspotIndex += 1;
+
+                    MoveToLocation(MoveToPastPositiveToiletDoorHotspots[currentHotspotIndex], MoveToPastPositiveToiletDoorHotspots);
+                }
 
             }
             else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
@@ -395,7 +410,14 @@ public class PlayerTeleport : MonoBehaviour
 
         else if (currentScene == ScenarioID.PastPositive)
         {
-
+            if (hotspotArray == MoveToPastPositiveToiletDoorHotspots)
+            {
+                if (currentHotspotIndex == hotspotArray.Length - 1)
+                {
+                    OnLastTeleport.Invoke();
+                    MoveToToiletDoor = false;
+                }
+            }
         }
     }
 
