@@ -51,7 +51,16 @@ public class InViewDetector : MonoBehaviour
     {
         if (obj.CompareTag("TeleportHotspot"))
         {
-            _playerTeleport.CheckTeleport(lookingAt);
+            if (_playerTeleport) // if using the old system
+            {
+                _playerTeleport.CheckTeleport(lookingAt);
+            }
+            
+            if (obj.GetComponent<SaneTeleporter>()) // if using "sane teleporter" system. combine these 2 systems in future
+            {
+                obj.GetComponent<SaneTeleporter>().SetCanTeleportHere(lookingAt);
+            }
+
             obj.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", lookingAt);
         }
     }

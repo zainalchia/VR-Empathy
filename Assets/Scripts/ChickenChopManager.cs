@@ -225,7 +225,7 @@ public class ChickenChopManager : MonoBehaviour
         if (forceGrab != null)
             forceGrab.SetForceGrabActive(false);
 
-        ControllerInteractionsManager.instance.rightGrabInteractor.ForceRelease();
+        GameManager.instance.grabInteractors[1].ForceRelease(); // right hand
         knife.GetComponent<Grabbable>().enabled = false;
     }
 

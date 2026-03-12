@@ -349,7 +349,7 @@ public class GameManager : MonoBehaviour
         while (flat.sqrMagnitude < 0.0001f);
 
         float angle;
-        if(SceneManager.GetActiveScene().name == "PastNegativeHome")
+        if(SceneManager.GetActiveScene().name == "PastNegativeHome" || SceneManager.GetActiveScene().name == "PastPositiveHome")
         {
             angle = Vector3.SignedAngle(flat, Vector3.back, Vector3.up);
         }

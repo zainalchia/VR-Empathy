@@ -19,6 +19,7 @@ public class SaneTeleporter : MonoBehaviour
 #endif
 
 	[SerializeField] float viewRadius = 90.0f; // in degrees
+	private bool canTeleportHere = false;
 
 
 	private void Update()
@@ -69,9 +70,10 @@ public class SaneTeleporter : MonoBehaviour
 		transform.localScale = Vector3.Lerp(transform.localScale, targetSize, Time.deltaTime * 5);
 #endif
 
+		/*
 		float angle = Vector3.Dot(Camera.main.transform.forward, (transform.position - Camera.main.transform.position).normalized);
 
-		// if not within view radius
+		// if not within view radius		
 		if (angle * 57.2957795131f > viewRadius)
 			targetSize = smallScale;
 		else
@@ -83,9 +85,15 @@ public class SaneTeleporter : MonoBehaviour
                 return;
             }
         }
-        transform.localScale = Vector3.Lerp(transform.localScale, targetSize, Time.deltaTime * 5);
+        transform.localScale = Vector3.Lerp(transform.localScale, targetSize, Time.deltaTime * 5); */
 
-
+		if (canTeleportHere)
+		{
+			if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                MovePlayerHere();                
+            }
+		}
     }
 
 	bool CheckSphereIntersect(Vector3 rayDirection, Vector3 spherePosition, float radius)
@@ -100,10 +108,14 @@ public class SaneTeleporter : MonoBehaviour
 
 	void MovePlayerHere()
 	{
-		Debug.Log("Thyme - Trying to move player");
 		GameManager.instance.ovrCamRig.transform.position = transform.position;
         gameObject.SetActive(false);
         if (nextTeleporter != null) nextTeleporter.gameObject.SetActive(true);
     }
 
+	public void SetCanTeleportHere(bool trueOrFalse)
+	{
+		canTeleportHere = trueOrFalse;
+		Debug.Log("looking at " + gameObject.name);
+	}
 }

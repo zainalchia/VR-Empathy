@@ -173,8 +173,6 @@ public class PlayerTeleport : MonoBehaviour
 
                 if ((OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove) || testPressTrigger)
                 {
-                    Debug.Log("fu");
-
                     if (MoveToToiletDoor && currentHotspotIndex != MoveToToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
                     {
                         timer = 0;
