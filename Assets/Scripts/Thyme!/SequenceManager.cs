@@ -38,8 +38,9 @@ public class SequenceManager : MonoBehaviour
 			[InspectorName("Wait for distance between objects")	] SET_WaitDistance			,
 			[InspectorName("Trigger Unity Event")				] SET_UnityEvent			,
 			[InspectorName("Go to scene")						] SET_GoToScene				,
-			[InspectorName("Change material color")				] SET_ChangeMaterialColor	,
-			[InspectorName("")									] SET_COUNT // NOT an actual type! here for easy counting!!!
+			[InspectorName("Change material color")				] SET_ChangeMaterialColor,
+            [InspectorName("Change texture")					] SET_ChangeMaterialTexture,
+            [InspectorName("")									] SET_COUNT // NOT an actual type! here for easy counting!!!
 		}
 
 		public static readonly System.Type[] SequenceEventTypes = new System.Type[(int)SequenceEventEnum.SET_COUNT]
@@ -59,7 +60,8 @@ public class SequenceManager : MonoBehaviour
 			typeof(SEvent_TriggerUnityEvent			),
 			typeof(SEvent_GoToScene					),
 			typeof(SEvent_ChangeMaterialColor		),
-		};
+            typeof(SEvent_ChangeMaterialTexture     ),
+        };
 
 		public SequenceEventEnum type;
 #endif
@@ -435,7 +437,25 @@ public class SequenceManager : MonoBehaviour
         }
 	}
 
-	public class SEvent_TriggerUnityEvent : SequenceEvent
+    public class SEvent_ChangeMaterialTexture : SequenceEvent
+    {
+        [SerializeField] Material[] currentMaterial;
+        [SerializeField] Texture newTexture;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+
+            foreach (Material mat in currentMaterial)
+            {
+                mat.mainTexture = newTexture;
+            }
+            Exit();
+            return;
+        }
+    }
+
+    public class SEvent_TriggerUnityEvent : SequenceEvent
 	{
 		[SerializeField] UnityEvent unityEvent;
 

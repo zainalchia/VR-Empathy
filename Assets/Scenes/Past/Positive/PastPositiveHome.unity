@@ -739,6 +739,7 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+  renderers: []
 --- !u!4 &46809711
 Transform:
   m_ObjectHideFlags: 0
@@ -2337,6 +2338,7 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+  renderers: []
 --- !u!1001 &159157891
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4575,6 +4577,7 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+  renderers: []
 --- !u!4 &361904557
 Transform:
   m_ObjectHideFlags: 0
@@ -6796,6 +6799,7 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+  renderers: []
 --- !u!114 &574353672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8940,6 +8944,7 @@ MonoBehaviour:
   precomputeOutline: 1
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!1818360609 &795504049
 RotationConstraint:
   m_ObjectHideFlags: 0
@@ -11351,6 +11356,7 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+  renderers: []
 --- !u!4 &1093040543
 Transform:
   m_ObjectHideFlags: 0
@@ -11968,13 +11974,13 @@ MonoBehaviour:
   - rid: 4897766071759798280
   - rid: 154195071710789686
   - rid: 154195071710789690
-  - rid: 6600812759341334536
+  - rid: 5984391377358422018
   - rid: 154195071710789692
   - rid: 3636061403108868126
   - rid: 9222562903833444352
   - rid: 9222562903833444354
   - rid: 9222562903833444357
-  - rid: 6600812759341334529
+  - rid: 5984391377358422019
   - rid: 9222562903833444359
   - rid: 9222562903833444362
   - rid: 9222562903833444364
@@ -12522,22 +12528,22 @@ MonoBehaviour:
         name: go back to main menu
         type: 13
         sceneName: MainMenu
-    - rid: 6600812759341334529
-      type: {class: SequenceManager/SEvent_ChangeTexture, ns: , asm: Assembly-CSharp}
-      data:
-        name: Child cleaned mouth
-        type: 15
-        currentMaterial:
-        - {fileID: 2100000, guid: 854ffed1ec7173443b719de6d8d5ed3e, type: 2}
-        newTexture: {fileID: 2800000, guid: 9e415798a3ff9c346b098e1acd49eafb, type: 3}
-    - rid: 6600812759341334536
-      type: {class: SequenceManager/SEvent_ChangeTexture, ns: , asm: Assembly-CSharp}
+    - rid: 5984391377358422018
+      type: {class: SequenceManager/SEvent_ChangeMaterialTexture, ns: , asm: Assembly-CSharp}
       data:
         name: Child dirtied mouth
         type: 15
         currentMaterial:
         - {fileID: 2100000, guid: 854ffed1ec7173443b719de6d8d5ed3e, type: 2}
         newTexture: {fileID: 2800000, guid: 30fb3c029b864e74583b73a7f5b1e42b, type: 3}
+    - rid: 5984391377358422019
+      type: {class: SequenceManager/SEvent_ChangeMaterialTexture, ns: , asm: Assembly-CSharp}
+      data:
+        name: Child clean mouth
+        type: 15
+        currentMaterial:
+        - {fileID: 2100000, guid: 854ffed1ec7173443b719de6d8d5ed3e, type: 2}
+        newTexture: {fileID: 2800000, guid: 9e415798a3ff9c346b098e1acd49eafb, type: 3}
     - rid: 9222562903833444352
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
