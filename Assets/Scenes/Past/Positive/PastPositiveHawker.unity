@@ -296,6 +296,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
       propertyPath: largeScale.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -605,6 +610,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!114 &18335545 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1581427118351747039, guid: 42acec9af6eed9a4a885a252fda7b611,
@@ -11662,6 +11668,7 @@ MonoBehaviour:
     - {x: -0.57735026, y: -0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+  renderers: []
 --- !u!114 &465085323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13373,6 +13380,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!1 &589068678
 GameObject:
   m_ObjectHideFlags: 0
@@ -13964,6 +13972,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!4 &620099848 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d7ef61db094ebb24cab4789711ce13ad,
@@ -24961,6 +24970,7 @@ MonoBehaviour:
     - {x: 0.9010797, y: 0.073954694, z: 0.42730096}
     - {x: 0.79006636, y: 0.5764711, z: 0.20850949}
     - {x: 0.86727804, y: 0.35734436, z: 0.34660307}
+  renderers: []
 --- !u!114 &1130414787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25436,6 +25446,13 @@ MonoBehaviour:
   - {fileID: 1761344548}
   - {fileID: 572046754}
   - {fileID: 172641226}
+  MoveToPastPositiveToiletDoorHotspots: []
+  MoveToPastPositiveHawkerHotspots:
+  - {fileID: 1834933647}
+  - {fileID: 5395641}
+  - {fileID: 1767182956}
+  MoveToPastPositiveHouseHotspots: []
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 1
   OnLastTeleport:
     m_PersistentCalls:
@@ -25492,7 +25509,9 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
-  currentScene: 0
+  MoveToPastPositiveToiletDoor: 0
+  MoveToPastPositiveHawker: 0
+  currentScene: 1
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
   scenarioManager: {fileID: 1201703111}
@@ -28099,15 +28118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftGrabInteractor: {fileID: 1576574049}
-  rightGrabInteractor: {fileID: 1576574048}
   leftHandTrackingComponent: {fileID: 894610800}
   timeToOpenCloseFist: 0.25
   autoDropItems: 0
   dropGlassesInterval: 0
   dropGlassesCount: 0
-  audioSource_player: {fileID: 204506546}
-  audioClip_sighAfterDrop: {fileID: 0}
   dropItemFX: {fileID: 1429954232896169633, guid: d67309e7f1b0a4cb5b6e68d1c27493c7,
     type: 3}
   leftHandAnchor: {fileID: 470420664}
@@ -28248,6 +28263,7 @@ MonoBehaviour:
   - rid: 154194936214323212
   - rid: 154194936214323214
   - rid: 4897765866541416449
+  - rid: 6600812801746010117
   - rid: 3636061403108868104
   - rid: 4897765866541416451
   - rid: 154194936214323216
@@ -28256,6 +28272,7 @@ MonoBehaviour:
   - rid: 3636061403108868108
   - rid: 4498990571523145734
   - rid: 4498990571523145732
+  - rid: 6600812801746010117
   - rid: 4498990571523145729
   - rid: 6176682073276809216
   - rid: 6176682073276809218
@@ -28267,6 +28284,7 @@ MonoBehaviour:
   - rid: 3636061403108868111
   - rid: 6176682073276809230
   - rid: 6600812759341334534
+  - rid: 6600812801746010117
   - rid: 3636061379182198788
   - rid: 3636061379182198789
   - rid: 3636061379182198790
@@ -28766,6 +28784,26 @@ MonoBehaviour:
         type: 6
         gameObject: {fileID: 1767182956}
         active: 1
+    - rid: 6600812801746010117
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set teleport to true
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1157555228}
+              m_TargetAssemblyTypeName: PlayerTeleport, Assembly-CSharp
+              m_MethodName: SetCheckToTrue
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 7202277470793891841
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -36928,6 +36966,7 @@ MonoBehaviour:
     - {x: 0.7071064, y: -0.7071071, z: 0}
     - {x: 1, y: 0, z: 0}
     - {x: 0.7071064, y: -0.7071071, z: 0}
+  renderers: []
 --- !u!1 &1354256052
 GameObject:
   m_ObjectHideFlags: 0
@@ -37550,6 +37589,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!1001 &1405566417
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39612,6 +39652,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!1001 &1502365018
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -42311,6 +42352,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!114 &1567438787
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44464,6 +44506,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!4 &1641051521 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7950288885086120758, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -50570,6 +50613,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
       propertyPath: largeScale.x
       value: 0.5
       objectReference: {fileID: 0}
@@ -54696,6 +54744,11 @@ PrefabInstance:
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
