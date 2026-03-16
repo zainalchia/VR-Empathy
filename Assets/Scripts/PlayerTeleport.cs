@@ -336,7 +336,7 @@ public class PlayerTeleport : MonoBehaviour
                 return;
             }
         }
-        StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f, hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
+        if(SceneManager.GetActiveScene().name != "PastPositiveHawker") StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f, hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
         if (currentScene == ScenarioID.PresentGood)
         {
