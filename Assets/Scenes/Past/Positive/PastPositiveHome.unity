@@ -1998,6 +1998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
       propertyPath: nextTeleporter
       value: 
       objectReference: {fileID: 0}
@@ -2035,7 +2040,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 136287517}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136287518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
@@ -2096,6 +2101,11 @@ PrefabInstance:
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
@@ -3504,6 +3514,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4407612004520020038, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: _playerTeleport
+      value: 
+      objectReference: {fileID: 296962440}
     - target: {fileID: 5037048907622942247, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3658,6 +3673,14 @@ MonoBehaviour:
   - {fileID: 0}
   MoveToJobPositionHotspots: []
   MoveToTableHotspots: []
+  MoveToPastPositiveToiletDoorHotspots: []
+  MoveToPastPositiveHawkerHotspots: []
+  MoveToPastPositiveHouseHotspots:
+  - {fileID: 146886849}
+  - {fileID: 2087483480}
+  - {fileID: 1859045834}
+  - {fileID: 136287518}
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -3690,7 +3713,10 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
-  currentScene: 0
+  MoveToPastPositiveToiletDoor: 0
+  MoveToPastPositiveHawker: 0
+  MoveToPastPositiveHouse: 0
+  currentScene: 1
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
   scenarioManager: {fileID: 0}
@@ -5620,6 +5646,11 @@ PrefabInstance:
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
@@ -12089,12 +12120,14 @@ MonoBehaviour:
   - rid: 154195071710789657
   - rid: 154195071710789640
   - rid: 3636061403108868119
+  - rid: 6600812869794660358
   - rid: 154195071710789642
   - rid: 154195071710789644
   - rid: 154195071710789646
   - rid: 154195071710789648
   - rid: 354177140404781057
   - rid: 154195071710789663
+  - rid: 6600812869794660358
   - rid: 154195071710789665
   - rid: 154195071710789667
   - rid: 154195071710789659
@@ -12680,6 +12713,26 @@ MonoBehaviour:
         name: go back to main menu
         type: 13
         sceneName: MainMenu
+    - rid: 6600812869794660358
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set teleport to true
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 296962440}
+              m_TargetAssemblyTypeName: PlayerTeleport, Assembly-CSharp
+              m_MethodName: SetCheckToTrue
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 9222562903833444352
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -26161,6 +26214,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Name
@@ -26195,7 +26253,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2087483478}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087483480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
