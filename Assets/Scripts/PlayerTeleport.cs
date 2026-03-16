@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerTeleport : MonoBehaviour
 {
@@ -35,9 +36,16 @@ public class PlayerTeleport : MonoBehaviour
     #endregion
 
     #region Past Positive Hotspots
-    //[Header("Past Positive Hotspots")]
-    //[SerializeField] GameObject[] MoveToHouseHotspots;
-    //[SerializeField] GameObject[] MoveToDiningTableHotspots;
+    [Header("Past Positive Hotspots")]
+    [SerializeField] GameObject[] MoveToPastPositiveToiletDoorHotspots;
+    [SerializeField] GameObject[] MoveToPastPositiveHawkerHotspots;
+    [SerializeField] GameObject[] MoveToPastPositiveHouseHotspots;
+    [SerializeField] GameObject[] MoveToDiningTableHotspots;
+
+    public GameObject[] GetMoveToPastPositiveToiletDoorHotspots() => MoveToPastPositiveToiletDoorHotspots;
+    public GameObject[] GetMoveToPastPositiveHawkerHotspots() => MoveToPastPositiveHawkerHotspots;
+    public GameObject[] GetMoveToPastPositiveHouseHotspots() => MoveToPastPositiveHouseHotspots;
+
     #endregion
 
     //#region Past Positive Hotspots
@@ -79,6 +87,9 @@ public class PlayerTeleport : MonoBehaviour
     public bool GoToTray = false;
 
     //Past positive==============================================================================================================
+    public bool MoveToPastPositiveToiletDoor = false; 
+    public bool MoveToPastPositiveHawker = false;
+    public bool MoveToPastPositiveHouse = false;
     //public bool MovingToLivingRoom = false;
     //public bool MovingToMainDoor = false;
     //public bool MovingToCheckersChair = false;
@@ -252,13 +263,47 @@ public class PlayerTeleport : MonoBehaviour
         }
         else if (currentScene == ScenarioID.PastPositive)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+            if (AbleToTeleport || testPressTrigger)
             {
 
-            }
-            else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
-            {
-                buttonPressed = false;
+                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+                {
+                    if (MoveToPastPositiveToiletDoor && currentHotspotIndex != MoveToPastPositiveToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+
+                        MoveToLocation(MoveToPastPositiveToiletDoorHotspots[currentHotspotIndex], MoveToPastPositiveToiletDoorHotspots);
+                    }
+                    else if (MoveToPastPositiveHawker && currentHotspotIndex != MoveToPastPositiveHawkerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+
+                        MoveToLocation(MoveToPastPositiveHawkerHotspots[currentHotspotIndex], MoveToPastPositiveHawkerHotspots);
+                    }
+                    else if (MoveToPastPositiveHouse && currentHotspotIndex != MoveToPastPositiveHouseHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+
+                        MoveToLocation(MoveToPastPositiveHouseHotspots[currentHotspotIndex], MoveToPastPositiveHouseHotspots);
+                    }
+
+                }
+                else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
+                {
+                    buttonPressed = false;
+                }
             }
         }
     }
@@ -392,10 +437,29 @@ public class PlayerTeleport : MonoBehaviour
 
         }
 
-
         else if (currentScene == ScenarioID.PastPositive)
         {
-
+            if (hotspotArray == MoveToPastPositiveToiletDoorHotspots)
+            {
+                if (currentHotspotIndex == hotspotArray.Length - 1)
+                {
+                    OnLastTeleport.Invoke();
+                    MoveToPastPositiveToiletDoor = false;
+                }
+            }
+            else if (hotspotArray == MoveToPastPositiveHawkerHotspots)
+            {
+                OnLastTeleport.Invoke();
+                MoveToPastPositiveHawker = false;
+            }
+            else if (hotspotArray == MoveToPastPositiveHouseHotspots)
+            {
+                if (currentHotspotIndex == 1)
+                {
+                    OnLastTeleport.Invoke();
+                    MoveToPastPositiveHouse = false;
+                }
+            }
         }
     }
 
@@ -459,6 +523,22 @@ public class PlayerTeleport : MonoBehaviour
     public void CheckTeleport(bool CanTeleport)
     {
         AbleToTeleport = CanTeleport;
+    }
+
+    public void SetCheckToTrue()
+    {
+        if(SceneManager.GetActiveScene().name == "PastPositiveBathroom")
+        {
+            MoveToPastPositiveToiletDoor = true;
+        }
+        else if (SceneManager.GetActiveScene().name == "PastPositiveHawker")
+        {
+            MoveToPastPositiveHawker = true;
+        }
+        else if (SceneManager.GetActiveScene().name == "PastPositiveHome")
+        {
+            MoveToPastPositiveHouse = true;
+        }
     }
 
 }

@@ -10990,6 +10990,12 @@ MonoBehaviour:
   MoveToTableHotspots:
   - {fileID: 0}
   - {fileID: 0}
+  MoveToPastPositiveToiletDoorHotspots:
+  - {fileID: 2095956409}
+  - {fileID: 701457125}
+  MoveToPastPositiveHawkerHotspots: []
+  MoveToPastPositiveHouseHotspots: []
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 1
   OnLastTeleport:
     m_PersistentCalls:
@@ -11046,7 +11052,10 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
-  currentScene: 0
+  MoveToPastPositiveToiletDoor: 0
+  MoveToPastPositiveHawker: 0
+  MoveToPastPositiveHouse: 0
+  currentScene: 1
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
   scenarioManager: {fileID: 0}
@@ -15889,6 +15898,7 @@ MonoBehaviour:
   - rid: 3636061403108868098
   - rid: 3636061383514914817
   - rid: 6176681889884798985
+  - rid: 6600812801746010113
   - rid: 9222563068242296833
   - rid: 6176681913310248961
   - rid: 6176681913310248963
@@ -16082,7 +16092,7 @@ MonoBehaviour:
       data:
         name: Wait
         type: 2
-        waitTime: 30
+        waitTime: 5
     - rid: 6176681889884798982
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -16213,6 +16223,26 @@ MonoBehaviour:
         name: Next Scene
         type: 13
         sceneName: PastPositiveHawker
+    - rid: 6600812801746010113
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set teleport to true
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1157555228}
+              m_TargetAssemblyTypeName: PlayerTeleport, Assembly-CSharp
+              m_MethodName: SetCheckToTrue
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 9222563068242296833
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -24484,6 +24514,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8390731883649222293, guid: e9ff4daa0f518481e922ea337b680773,
+        type: 3}
+      propertyPath: _playerTeleport
+      value: 
+      objectReference: {fileID: 1157555228}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
