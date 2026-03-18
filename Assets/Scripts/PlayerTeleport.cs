@@ -442,9 +442,12 @@ public class PlayerTeleport : MonoBehaviour
             {
                 if (currentHotspotIndex == hotspotArray.Length - 1)
                 {
-                    showNextTeleport = true;
                     OnLastTeleport.Invoke();
                     MoveToPastPositiveToiletDoor = false;
+                }
+                else
+                {
+                    showNextTeleport = true;
                 }
             }
             else if (hotspotArray == MoveToPastPositiveHawkerHotspots)
