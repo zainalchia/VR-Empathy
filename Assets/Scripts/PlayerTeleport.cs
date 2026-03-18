@@ -99,6 +99,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool testPressTrigger = false; // used for TesterScript to simulate trigger button press in editor.
     [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
     [SerializeField] private ScenarioManagerReneeTest scenarioManager;
+    private bool showNextTeleport;
 
     
     void Update()
@@ -275,7 +276,6 @@ public class PlayerTeleport : MonoBehaviour
                         defaultTimeBeforeNextMove = 1.5f; // in general
 
                         currentHotspotIndex += 1;
-
                         MoveToLocation(MoveToPastPositiveToiletDoorHotspots[currentHotspotIndex], MoveToPastPositiveToiletDoorHotspots);
                     }
                     else if (MoveToPastPositiveHawker && currentHotspotIndex != MoveToPastPositiveHawkerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
@@ -336,7 +336,6 @@ public class PlayerTeleport : MonoBehaviour
                 return;
             }
         }
-        if(SceneManager.GetActiveScene().name != "PastPositiveHawker") StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f, hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
         if (currentScene == ScenarioID.PresentGood)
         {
@@ -443,6 +442,7 @@ public class PlayerTeleport : MonoBehaviour
             {
                 if (currentHotspotIndex == hotspotArray.Length - 1)
                 {
+                    showNextTeleport = true;
                     OnLastTeleport.Invoke();
                     MoveToPastPositiveToiletDoor = false;
                 }
@@ -459,8 +459,13 @@ public class PlayerTeleport : MonoBehaviour
                     OnLastTeleport.Invoke();
                     MoveToPastPositiveHouse = false;
                 }
+                else
+                {
+                    showNextTeleport = true;
+                }
             }
         }
+        if (showNextTeleport) StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f, hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
     }
 
     IEnumerator ShowingNextHotspot(float delay, GameObject[] hotspotArray)
@@ -495,6 +500,8 @@ public class PlayerTeleport : MonoBehaviour
         //    if (currentHotspotIndex != 2)
         //    return;
         //}   
+
+        showNextTeleport = false;
         if (hotspotArray == MoveToJobPositionHotspots && currentHotspotIndex + 1 == 2) //block auto activation of first aid
             return;
 
