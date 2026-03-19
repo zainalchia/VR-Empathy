@@ -769,13 +769,9 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         {
             PlayChoppedHand();
         }
-
-        if (goBackToMainMenu)
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
-            {
-                SceneManager.LoadScene("MainMenuOnly", LoadSceneMode.Single);
-            }
+            if (goBackToMainMenu) SceneManager.LoadScene("MainMenuOnly", LoadSceneMode.Single);
         }
 
     }

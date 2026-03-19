@@ -1,5 +1,6 @@
 using Oculus.Interaction;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
@@ -40,6 +41,7 @@ public class SequenceManager : MonoBehaviour
             [InspectorName("Go to scene")] SET_GoToScene,
             [InspectorName("Change material color")] SET_ChangeMaterialColor,
             [InspectorName("Change texture")] SET_ChangeMaterialTexture,
+            [InspectorName("Wait for trigger")] SET_WaitForTrigger,
             [InspectorName("")] SET_COUNT // NOT an actual type! here for easy counting!!!
         }
 
@@ -61,6 +63,7 @@ public class SequenceManager : MonoBehaviour
             typeof(SEvent_GoToScene                 ),
             typeof(SEvent_ChangeMaterialColor       ),
             typeof(SEvent_ChangeMaterialTexture     ),
+            typeof(SEvent_WaitForTrigger            ),
         };
 
         public SequenceEventEnum type;
@@ -455,6 +458,27 @@ public class SequenceManager : MonoBehaviour
         }
     }
 
+    public class SEvent_WaitForTrigger : SequenceEvent
+    {
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                Exit();
+            }
+            else
+            {
+                return;
+            }
+        }
+    }
     public class SEvent_TriggerUnityEvent : SequenceEvent
     {
         [SerializeField] UnityEvent unityEvent;

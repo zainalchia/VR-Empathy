@@ -170,8 +170,10 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     [SerializeField] GameObject knob;
     [SerializeField] GameObject questControllerImage;
     [SerializeField] GameObject newCane;
+    [SerializeField] GameObject gameOverCanvas;
     bool toGoLivingRoom = false;
     bool alertRemovedAfterFirstTP = false;
+    bool checkTrigger = false;
 
     public void PlaySegment1Part2()
     {
@@ -220,7 +222,12 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // load next scene here
-        SceneManager.LoadScene("PresentBadLivingRoom", LoadSceneMode.Single);
+        if(SceneManager.GetActiveScene().name == "PresentBadBathroom") SceneManager.LoadScene("PresentBadLivingRoom", LoadSceneMode.Single);
+        else
+        {
+            gameOverCanvas.SetActive(true);
+            checkTrigger = true;
+        }
     }
 
     public void SetupSegment1Part2_1()
@@ -685,6 +692,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            if(checkTrigger) SceneManager.LoadScene("MainMenuOnly", LoadSceneMode.Single);
+        }
+
         if (sceneToPlay == SceneToPlay.Hallway)
         {
             #region Going to living room

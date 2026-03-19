@@ -130,8 +130,10 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     [Header("Moving towards living room")]
     public DoorKnob bathroomDoor;
     [SerializeField] GameObject knob;
+    [SerializeField] GameObject gameOverCanvas;
     bool toGoLivingRoom = false;
     bool alertRemovedAfterFirstTP = false;
+    bool checkTrigger = false;
 
     public void PlaySegment1Part2()
     {
@@ -169,7 +171,12 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // load next scene here
-        SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
+        if (SceneManager.GetActiveScene().name == "PresentBadBathroom") SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
+        else
+        {
+            gameOverCanvas.SetActive(true);
+            checkTrigger = true;
+        }
     }
 
     public void SetupSegment1Part2_1()
@@ -1214,6 +1221,11 @@ public class ScenarioManagerPresentGood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+        {
+            if (checkTrigger) SceneManager.LoadScene("MainMenuOnly", LoadSceneMode.Single);
+        }
+
         if (sceneToPlay == SceneToPlay.Bathroom)
         {
             if(AlertHideTimer > 0)
