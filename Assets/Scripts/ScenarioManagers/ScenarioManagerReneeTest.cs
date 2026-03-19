@@ -74,6 +74,10 @@ public class ScenarioManagerReneeTest : MonoBehaviour
     [SerializeField] GameObject meds;
     [SerializeField] AudioSource walkingSound;
 
+
+    [SerializeField] GameObject gameOverCanvas;
+
+    private bool goBackToMainMenu = false;
     public float timeForWashingUp = 5f;
 
     public void PlayBathroom()
@@ -147,8 +151,12 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         walkingSound.Play();
         yield return new WaitForSeconds(8f);
 
-        // load next scene 
-        SceneManager.LoadScene("PastNegativeHawker", LoadSceneMode.Single);
+        // load next scene
+        if (SceneManager.GetActiveScene().name == "PastNegativeBathroom") SceneManager.LoadScene("PastNegativeHawker", LoadSceneMode.Single);
+        else { 
+            gameOverCanvas.SetActive(true);
+            goBackToMainMenu = true;
+        }
     }
 
     public void PlayAllowOpenDoor()
@@ -760,6 +768,14 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             PlayChoppedHand();
+        }
+
+        if (goBackToMainMenu)
+        {
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
+            {
+                SceneManager.LoadScene("MainMenuOnly", LoadSceneMode.Single);
+            }
         }
 
     }
