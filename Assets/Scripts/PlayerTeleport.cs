@@ -537,7 +537,7 @@ public class PlayerTeleport : MonoBehaviour
 
     public void SetCheckToTrue()
     {
-        if(SceneManager.GetActiveScene().name == "PastPositiveBathroom")
+        if(SceneManager.GetActiveScene().name == "PastPositiveBathroom" || SceneManager.GetActiveScene().name == "PastPositiveBathroomOnly")
         {
             MoveToPastPositiveToiletDoor = true;
         }
