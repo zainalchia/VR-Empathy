@@ -171,7 +171,7 @@ public class ScenarioManagerPresentGood : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // load next scene here
-        if (SceneManager.GetActiveScene().name == "PresentBadBathroom") SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
+        if (SceneManager.GetActiveScene().name == "PresentGoodBathroom") SceneManager.LoadScene("PresentGoodLivingRoom", LoadSceneMode.Single);
         else
         {
             gameOverCanvas.SetActive(true);
