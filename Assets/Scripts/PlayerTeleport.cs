@@ -365,6 +365,7 @@ public class PlayerTeleport : MonoBehaviour
         }
         else if (currentScene == ScenarioID.PastNegative)
         {
+            showNextTeleport = true;
             if (hotspotArray == MoveToToiletDoorHotspots)
             {
                 if (currentHotspotIndex == hotspotArray.Length - 1)
