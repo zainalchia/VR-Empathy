@@ -11895,7 +11895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenarioID: 0
+  scenarioID: 1
   sceneID: 2
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
@@ -12120,7 +12120,6 @@ MonoBehaviour:
   - rid: 9222562903833444364
   - rid: 4897766071759798283
   - rid: 4897766071759798285
-  - rid: 7953133165060816898
   references:
     version: 2
     RefIds:
@@ -12680,31 +12679,12 @@ MonoBehaviour:
             m_Calls:
             - m_Target: {fileID: 910347939}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 3
+              m_MethodName: set_avatar
+              m_Mode: 2
               m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
-    - rid: 7953133165060816898
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 910347939}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 3
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_ObjectArgument: {fileID: 9000000, guid: f7b32b09de197354fb2cc8a1fabeecad,
+                  type: 3}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Avatar, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: 
