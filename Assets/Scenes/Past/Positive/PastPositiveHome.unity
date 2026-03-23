@@ -12109,6 +12109,7 @@ MonoBehaviour:
   - rid: 4897766071759798280
   - rid: 154195071710789686
   - rid: 154195071710789690
+  - rid: 7953133057336147980
   - rid: 154195071710789692
   - rid: 3636061403108868126
   - rid: 9222562903833444352
@@ -12120,8 +12121,7 @@ MonoBehaviour:
   - rid: 9222562903833444364
   - rid: 4897766071759798283
   - rid: 4897766071759798285
-  - rid: 7953133057336147980
-  - rid: 7953133057336147979
+  - rid: 7953133165060816898
   references:
     version: 2
     RefIds:
@@ -12671,15 +12671,30 @@ MonoBehaviour:
         name: go back to main menu
         type: 13
         sceneName: MainMenu
-    - rid: 7953133057336147979
-      type: {class: SequenceManager/SequenceEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 0
     - rid: 7953133057336147980
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
         name: Clapping
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 910347939}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 3
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7953133165060816898
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
         type: 12
         unityEvent:
           m_PersistentCalls:
