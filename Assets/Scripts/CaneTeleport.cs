@@ -45,20 +45,29 @@ public class CaneTeleport : MonoBehaviour
     {
         // Raycast to floor to check there are any hotspot
         Ray ray = new Ray(transform.position, -transform.forward);
+
+        UnityEngine.Debug.DrawRay(
+            ray.origin,
+            ray.direction * maxDistanceMoveable,
+            Color.red
+        );
+
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, maxDistanceMoveable, teleportLayer, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out hit, maxDistanceMoveable, teleportLayer, QueryTriggerInteraction.Collide))
         {
             canMove = true;
             lastHitGameObject = hit.collider.gameObject;
             posX = lastHitGameObject.transform.position.x;
             posZ = lastHitGameObject.transform.position.z;
 
+            UnityEngine.Debug.LogWarning("testtinngngngngng");
             // enable hotspot indicator when pointing cane at hotspot
             //lastHitGameObject.GetComponent<MeshRenderer>().enabled = true;
-            if(lastHitGameObject.activeSelf && timer >= defaultTimeBeforeNextMove && showWaypointTimer <= 0) lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", true);
+            if (lastHitGameObject.activeSelf && timer >= defaultTimeBeforeNextMove && showWaypointTimer <= 0) lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", true);
         }
         else
         {
+            UnityEngine.Debug.Log("failllllllllllllllllllllllllllll");
             canMove = false;
             if (lastHitGameObject != null) // disable hotspot indicator when not pointing at hotspot
             {
@@ -158,6 +167,7 @@ public class CaneTeleport : MonoBehaviour
             {
                 if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable) // only runs when player is holding cane
                 {
+                    UnityEngine.Debug.LogWarning("asdadads");
                     // check if this is first time grabbing the cane
                     if (grabbedFirstTime == false)
                     {
