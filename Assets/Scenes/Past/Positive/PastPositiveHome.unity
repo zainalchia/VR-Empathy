@@ -6577,6 +6577,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 517282862}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &517282865 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: b8114a584e7ad1f45a6c48ea84f97649,
+    type: 3}
+  m_PrefabInstance: {fileID: 517282862}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &549035855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8754,6 +8760,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sean
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f7b32b09de197354fb2cc8a1fabeecad,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: f7b32b09de197354fb2cc8a1fabeecad,
         type: 3}
@@ -12103,17 +12114,21 @@ MonoBehaviour:
   - rid: 154195071710789673
   - rid: 154195071710789677
   - rid: 154195071710789684
+  - rid: 7953133057336147980
   - rid: 4897766071759798277
   - rid: 4897766071759798278
   - rid: 4897766071759798280
   - rid: 154195071710789686
   - rid: 154195071710789690
-  - rid: 7953133057336147980
+  - rid: 7953133211677884425
   - rid: 154195071710789692
+  - rid: 7953133211677884435
+  - rid: 7953133211677884417
   - rid: 3636061403108868126
   - rid: 9222562903833444352
   - rid: 9222562903833444354
   - rid: 9222562903833444357
+  - rid: 7953133211677884428
   - rid: 9222562903833444359
   - rid: 3783327436181078019
   - rid: 9222562903833444362
@@ -12672,24 +12687,104 @@ MonoBehaviour:
     - rid: 7953133057336147980
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: Clapping
+        name: Spouse clapping their hands
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1632259632}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Clap
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 517282865}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Clap
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7953133211677884417
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 'Son eating the cake '
         type: 12
         unityEvent:
           m_PersistentCalls:
             m_Calls:
             - m_Target: {fileID: 910347939}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: set_avatar
-              m_Mode: 2
+              m_MethodName: SetTrigger
+              m_Mode: 5
               m_Arguments:
-                m_ObjectArgument: {fileID: 9000000, guid: f7b32b09de197354fb2cc8a1fabeecad,
-                  type: 3}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Avatar, UnityEngine
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
-                m_StringArgument: 
+                m_StringArgument: Eat
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7953133211677884425
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Son clapping his hand
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 910347939}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Clap
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7953133211677884428
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Sean finished the cake
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 910347939}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Happy
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7953133211677884435
+      type: {class: SequenceManager/SEvent_ChangeMaterialColor, ns: , asm: Assembly-CSharp}
+      data:
+        name: Son got messy face
+        type: 14
+        materials:
+        - {fileID: 2100000, guid: 79d57b2256808d04b85b00f0fa9c4c49, type: 2}
+        desiredColor: {r: 0, g: 0, b: 0, a: 1}
+        emission: 0
     - rid: 9222562903833444352
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -16790,6 +16885,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1632259632 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 78f18fbbf83693e4e8e6918ee823653b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1632259627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1640972120
 PrefabInstance:
   m_ObjectHideFlags: 0
