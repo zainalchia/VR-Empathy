@@ -147,8 +147,11 @@ public class ScenarioManagerReneeTest : MonoBehaviour
         walkingSound.Play();
         yield return new WaitForSeconds(8f);
 
-        // load next scene 
-        SceneManager.LoadScene("PastNegativeHawker", LoadSceneMode.Single);
+        // load next scene
+        if (SceneManager.GetActiveScene().name == "PastNegativeBathroom") SceneManager.LoadScene("PastNegativeHawker", LoadSceneMode.Single);
+        else {
+            SceneManager.LoadScene("ThanksForPlaying", LoadSceneMode.Single);
+        }
     }
 
     public void PlayAllowOpenDoor()

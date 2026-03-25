@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PlayerTeleport : MonoBehaviour
 {
@@ -35,9 +36,16 @@ public class PlayerTeleport : MonoBehaviour
     #endregion
 
     #region Past Positive Hotspots
-    //[Header("Past Positive Hotspots")]
-    //[SerializeField] GameObject[] MoveToHouseHotspots;
-    //[SerializeField] GameObject[] MoveToDiningTableHotspots;
+    [Header("Past Positive Hotspots")]
+    [SerializeField] GameObject[] MoveToPastPositiveToiletDoorHotspots;
+    [SerializeField] GameObject[] MoveToPastPositiveHawkerHotspots;
+    [SerializeField] GameObject[] MoveToPastPositiveHouseHotspots;
+    [SerializeField] GameObject[] MoveToDiningTableHotspots;
+
+    public GameObject[] GetMoveToPastPositiveToiletDoorHotspots() => MoveToPastPositiveToiletDoorHotspots;
+    public GameObject[] GetMoveToPastPositiveHawkerHotspots() => MoveToPastPositiveHawkerHotspots;
+    public GameObject[] GetMoveToPastPositiveHouseHotspots() => MoveToPastPositiveHouseHotspots;
+
     #endregion
 
     //#region Past Positive Hotspots
@@ -79,6 +87,9 @@ public class PlayerTeleport : MonoBehaviour
     public bool GoToTray = false;
 
     //Past positive==============================================================================================================
+    public bool MoveToPastPositiveToiletDoor = false; 
+    public bool MoveToPastPositiveHawker = false;
+    public bool MoveToPastPositiveHouse = false;
     //public bool MovingToLivingRoom = false;
     //public bool MovingToMainDoor = false;
     //public bool MovingToCheckersChair = false;
@@ -88,6 +99,7 @@ public class PlayerTeleport : MonoBehaviour
     public bool testPressTrigger = false; // used for TesterScript to simulate trigger button press in editor.
     [SerializeField] ScenarioManagerPresentGood scenarioManagerPresentGood;
     [SerializeField] private ScenarioManagerReneeTest scenarioManager;
+    private bool showNextTeleport;
 
     
     void Update()
@@ -252,13 +264,46 @@ public class PlayerTeleport : MonoBehaviour
         }
         else if (currentScene == ScenarioID.PastPositive)
         {
-            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+            if (AbleToTeleport || testPressTrigger)
             {
 
-            }
-            else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
-            {
-                buttonPressed = false;
+                if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger) && !buttonPressed && timer >= defaultTimeBeforeNextMove)
+                {
+                    if (MoveToPastPositiveToiletDoor && currentHotspotIndex != MoveToPastPositiveToiletDoorHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+                        MoveToLocation(MoveToPastPositiveToiletDoorHotspots[currentHotspotIndex], MoveToPastPositiveToiletDoorHotspots);
+                    }
+                    else if (MoveToPastPositiveHawker && currentHotspotIndex != MoveToPastPositiveHawkerHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+
+                        MoveToLocation(MoveToPastPositiveHawkerHotspots[currentHotspotIndex], MoveToPastPositiveHawkerHotspots);
+                    }
+                    else if (MoveToPastPositiveHouse && currentHotspotIndex != MoveToPastPositiveHouseHotspots.Length - 1 && timer >= defaultTimeBeforeNextMove)
+                    {
+                        timer = 0;
+
+                        defaultTimeBeforeNextMove = 1.5f; // in general
+
+                        currentHotspotIndex += 1;
+
+                        MoveToLocation(MoveToPastPositiveHouseHotspots[currentHotspotIndex], MoveToPastPositiveHouseHotspots);
+                    }
+
+                }
+                else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger) && buttonPressed)
+                {
+                    buttonPressed = false;
+                }
             }
         }
     }
@@ -291,7 +336,6 @@ public class PlayerTeleport : MonoBehaviour
                 return;
             }
         }
-        StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f, hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
 
         if (currentScene == ScenarioID.PresentGood)
         {
@@ -321,6 +365,7 @@ public class PlayerTeleport : MonoBehaviour
         }
         else if (currentScene == ScenarioID.PastNegative)
         {
+            showNextTeleport = true;
             if (hotspotArray == MoveToToiletDoorHotspots)
             {
                 if (currentHotspotIndex == hotspotArray.Length - 1)
@@ -392,11 +437,39 @@ public class PlayerTeleport : MonoBehaviour
 
         }
 
-
         else if (currentScene == ScenarioID.PastPositive)
         {
-
+            if (hotspotArray == MoveToPastPositiveToiletDoorHotspots)
+            {
+                if (currentHotspotIndex == hotspotArray.Length - 1)
+                {
+                    OnLastTeleport.Invoke();
+                    MoveToPastPositiveToiletDoor = false;
+                }
+                else
+                {
+                    showNextTeleport = true;
+                }
+            }
+            else if (hotspotArray == MoveToPastPositiveHawkerHotspots)
+            {
+                OnLastTeleport.Invoke();
+                MoveToPastPositiveHawker = false;
+            }
+            else if (hotspotArray == MoveToPastPositiveHouseHotspots)
+            {
+                if (currentHotspotIndex == 1)
+                {
+                    OnLastTeleport.Invoke();
+                    MoveToPastPositiveHouse = false;
+                }
+                else
+                {
+                    showNextTeleport = true;
+                }
+            }
         }
+        if (showNextTeleport) StartCoroutine(ShowingNextHotspot(defaultTimeBeforeNextMove - 0.5f, hotspotArray)); // by default 1 second delay unless its hotspot 5 which is the food table (-0.5 to show hotspot first before being able to move)
     }
 
     IEnumerator ShowingNextHotspot(float delay, GameObject[] hotspotArray)
@@ -431,6 +504,8 @@ public class PlayerTeleport : MonoBehaviour
         //    if (currentHotspotIndex != 2)
         //    return;
         //}   
+
+        showNextTeleport = false;
         if (hotspotArray == MoveToJobPositionHotspots && currentHotspotIndex + 1 == 2) //block auto activation of first aid
             return;
 
@@ -459,6 +534,22 @@ public class PlayerTeleport : MonoBehaviour
     public void CheckTeleport(bool CanTeleport)
     {
         AbleToTeleport = CanTeleport;
+    }
+
+    public void SetCheckToTrue()
+    {
+        if(SceneManager.GetActiveScene().name == "PastPositiveBathroom" || SceneManager.GetActiveScene().name == "PastPositiveBathroomOnly")
+        {
+            MoveToPastPositiveToiletDoor = true;
+        }
+        else if (SceneManager.GetActiveScene().name == "PastPositiveHawker")
+        {
+            MoveToPastPositiveHawker = true;
+        }
+        else if (SceneManager.GetActiveScene().name == "PastPositiveHome")
+        {
+            MoveToPastPositiveHouse = true;
+        }
     }
 
 }

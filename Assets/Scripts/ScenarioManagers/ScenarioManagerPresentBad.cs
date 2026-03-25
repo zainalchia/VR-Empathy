@@ -220,7 +220,11 @@ public class ScenarioManagerPresentBad : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         // load next scene here
-        SceneManager.LoadScene("PresentBadLivingRoom", LoadSceneMode.Single);
+        if(SceneManager.GetActiveScene().name == "PresentBadBathroom") SceneManager.LoadScene("PresentBadLivingRoom", LoadSceneMode.Single);
+        else
+        {
+            SceneManager.LoadScene("ThanksForPlaying", LoadSceneMode.Single);
+        }
     }
 
     public void SetupSegment1Part2_1()

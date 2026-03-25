@@ -1998,6 +1998,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
       propertyPath: nextTeleporter
       value: 
       objectReference: {fileID: 0}
@@ -2035,7 +2040,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 136287517}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136287518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
@@ -2096,6 +2101,11 @@ PrefabInstance:
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
@@ -2264,7 +2274,6 @@ Transform:
   - {fileID: 1651255003}
   - {fileID: 1788095735}
   - {fileID: 940757303}
-  - {fileID: 3863739321042653926}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 210.413, z: 0}
 --- !u!65 &156639209
@@ -2826,17 +2835,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: df03883340ea5e0469f83efa7fb0a373,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5324
+      value: 0.5981
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df03883340ea5e0469f83efa7fb0a373,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.255
+      value: -0.3941
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df03883340ea5e0469f83efa7fb0a373,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.778
+      value: 0.8576
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: df03883340ea5e0469f83efa7fb0a373,
         type: 3}
@@ -3505,6 +3514,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4407612004520020038, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: _playerTeleport
+      value: 
+      objectReference: {fileID: 296962440}
     - target: {fileID: 5037048907622942247, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3513,7 +3527,7 @@ PrefabInstance:
     - target: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_Pitch
-      value: 0.95
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 6587107056749831078, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -3659,6 +3673,14 @@ MonoBehaviour:
   - {fileID: 0}
   MoveToJobPositionHotspots: []
   MoveToTableHotspots: []
+  MoveToPastPositiveToiletDoorHotspots: []
+  MoveToPastPositiveHawkerHotspots: []
+  MoveToPastPositiveHouseHotspots:
+  - {fileID: 146886849}
+  - {fileID: 2087483480}
+  - {fileID: 1859045834}
+  - {fileID: 136287518}
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -3691,7 +3713,10 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
-  currentScene: 0
+  MoveToPastPositiveToiletDoor: 0
+  MoveToPastPositiveHawker: 0
+  MoveToPastPositiveHouse: 0
+  currentScene: 1
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
   scenarioManager: {fileID: 0}
@@ -4716,7 +4741,7 @@ Transform:
   m_GameObject: {fileID: 361904549}
   serializedVersion: 2
   m_LocalRotation: {x: 0.58036804, y: 0.8107116, z: 0.044785976, w: 0.062561065}
-  m_LocalPosition: {x: 11.912, y: 0.9963, z: 9.691}
+  m_LocalPosition: {x: 12.07, y: 1.052, z: 9.879}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5621,6 +5646,11 @@ PrefabInstance:
     - target: {fileID: 3142162694553711752, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
@@ -9861,12 +9891,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 903873746}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &910347939 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: f7b32b09de197354fb2cc8a1fabeecad,
-    type: 3}
-  m_PrefabInstance: {fileID: 795504035}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &916342006
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10749,6 +10773,11 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4848855392656614273, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5733402971437742045, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_IsActive
@@ -10766,7 +10795,11 @@ PrefabInstance:
       objectReference: {fileID: 1365671159}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3354651424086631995, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1795495783}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 5733402971437742045, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
@@ -10812,6 +10845,12 @@ MonoBehaviour:
   image: {fileID: 1012412490}
   time: 1
   opacity: 1
+--- !u!224 &1012412487 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3354651424086631995, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012412482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1012412490 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
@@ -12083,15 +12122,18 @@ MonoBehaviour:
   - rid: 154195071710789636
   - rid: 154195071710789654
   - rid: 154195071710789638
+  - rid: 6600812871027785731
   - rid: 154195071710789657
   - rid: 154195071710789640
   - rid: 3636061403108868119
+  - rid: 6600812871027785738
   - rid: 154195071710789642
   - rid: 154195071710789644
   - rid: 154195071710789646
   - rid: 154195071710789648
   - rid: 354177140404781057
   - rid: 154195071710789663
+  - rid: 6600812871027785738
   - rid: 154195071710789665
   - rid: 154195071710789667
   - rid: 154195071710789659
@@ -12114,14 +12156,14 @@ MonoBehaviour:
   - rid: 9222562903833444352
   - rid: 9222562903833444354
   - rid: 9222562903833444357
+  - rid: 6600812871027785733
   - rid: 9222562903833444359
   - rid: 3783327436181078019
   - rid: 9222562903833444362
   - rid: 9222562903833444364
+  - rid: 3783327436181078022
   - rid: 4897766071759798283
   - rid: 4897766071759798285
-  - rid: 7953133057336147980
-  - rid: 7953133057336147979
   references:
     version: 2
     RefIds:
@@ -12606,7 +12648,7 @@ MonoBehaviour:
       data:
         name: Tissue prompt
         type: 1
-        text: Grab the tissue and clean your son's mouth.
+        text: Pick up a piece of tissue paper and hand it to your son.
         duration: 3
     - rid: 3783327436181078019
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
@@ -12614,6 +12656,13 @@ MonoBehaviour:
         name: Trigger the Ending Music
         type: 6
         gameObject: {fileID: 80749982}
+        active: 1
+    - rid: 3783327436181078022
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Show End game text
+        type: 6
+        gameObject: {fileID: 1795495782}
         active: 1
     - rid: 4897766071759798277
       type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
@@ -12664,30 +12713,41 @@ MonoBehaviour:
       data:
         name: wait
         type: 2
-        waitTime: 1
+        waitTime: 10
     - rid: 4897766071759798285
       type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
       data:
         name: go back to main menu
         type: 13
         sceneName: MainMenu
-    - rid: 7953133057336147979
-      type: {class: SequenceManager/SequenceEvent, ns: , asm: Assembly-CSharp}
+    - rid: 6600812871027785731
+      type: {class: SequenceManager/SEvent_ChangeMaterialTexture, ns: , asm: Assembly-CSharp}
       data:
-        name: 
-        type: 0
-    - rid: 7953133057336147980
+        name: Child dirtied mouth
+        type: 15
+        currentMaterial:
+        - {fileID: 2100000, guid: 854ffed1ec7173443b719de6d8d5ed3e, type: 2}
+        newTexture: {fileID: 2800000, guid: 30fb3c029b864e74583b73a7f5b1e42b, type: 3}
+    - rid: 6600812871027785733
+      type: {class: SequenceManager/SEvent_ChangeMaterialTexture, ns: , asm: Assembly-CSharp}
+      data:
+        name: Child cleaned mouth
+        type: 15
+        currentMaterial:
+        - {fileID: 2100000, guid: 854ffed1ec7173443b719de6d8d5ed3e, type: 2}
+        newTexture: {fileID: 2800000, guid: 9e415798a3ff9c346b098e1acd49eafb, type: 3}
+    - rid: 6600812871027785738
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: Clapping
+        name: Set teleport to true
         type: 12
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 910347939}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 3
+            - m_Target: {fileID: 296962440}
+              m_TargetAssemblyTypeName: PlayerTeleport, Assembly-CSharp
+              m_MethodName: SetCheckToTrue
+              m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -18055,7 +18115,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
+  MinDistance: 2.7588446
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -18830,6 +18890,140 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1795080722}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1795495782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795495783}
+  - component: {fileID: 1795495785}
+  - component: {fileID: 1795495784}
+  m_Layer: 5
+  m_Name: Goodbye Text
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1795495783
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795495782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.005193, y: 1.0051929, z: 1.005193}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1012412487}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 400, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1795495784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795495782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "Thanks for playing! \n\nYou may take off the headset now"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1795495785
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795495782}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1800871154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26043,6 +26237,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Name
@@ -26077,7 +26276,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2087483478}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087483480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
@@ -31522,10 +31721,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4527545743434877020}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000035557516, y: -0.33576605, z: -0.000000012674828,
-    w: 0.94194543}
-  m_LocalPosition: {x: -0.29030362, y: -0.7762483, z: -0.7795641}
-  m_LocalScale: {x: 1.5371251, y: 1.5371253, z: 1.5371251}
+  m_LocalRotation: {x: -0.0000000029043914, y: 0.99703574, z: 0.00000003763712, w: 0.07693979}
+  m_LocalPosition: {x: 12.525611, y: 0.926, z: 9.871765}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3365986828712741796}
@@ -31533,7 +31731,7 @@ Transform:
   - {fileID: 1445004756}
   - {fileID: 1479146200}
   - {fileID: 1008135461}
-  m_Father: {fileID: 156639208}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 171.175, z: 0}
 --- !u!1 &4027055098444143449
 GameObject:
@@ -32073,6 +32271,7 @@ SceneRoots:
   - {fileID: 1083976926}
   - {fileID: 156639208}
   - {fileID: 574353679}
+  - {fileID: 3863739321042653926}
   - {fileID: 1856784648}
   - {fileID: 1736832076}
   - {fileID: 795504035}
