@@ -22,6 +22,8 @@ public class InViewDetector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log(other.name + " is not in view");
+
         if (objsInView.Contains(other.gameObject))
             objsInView.Remove(other.gameObject);
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -247,13 +247,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65931705}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1518123003}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &132121015
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2906,6 +2906,7 @@ MonoBehaviour:
     - {x: 0.36083865, y: -0.69222957, z: -0.6249909}
     - {x: 0.72167736, y: -0.69222957, z: 0}
     - {x: 0.6249909, y: -0.69222957, z: -0.36083865}
+  renderers: []
 --- !u!23 &433582228
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3866,6 +3867,7 @@ MonoBehaviour:
     - {x: 0.36083865, y: -0.69222957, z: -0.6249909}
     - {x: 0.72167736, y: -0.69222957, z: 0}
     - {x: 0.6249909, y: -0.69222957, z: -0.36083865}
+  renderers: []
 --- !u!1001 &537418198
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5153,7 +5155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &883178009
 Transform:
   m_ObjectHideFlags: 0
@@ -6445,6 +6447,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: old man reading corner
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 134c067e8bab53948a987d666e558805,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 943223448204509391, guid: 134c067e8bab53948a987d666e558805,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7571,15 +7578,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftGrabInteractor: {fileID: 308433641}
-  rightGrabInteractor: {fileID: 308433640}
   leftHandTrackingComponent: {fileID: 2276772900260340217}
   timeToOpenCloseFist: 0.2
   autoDropItems: 1
   dropGlassesInterval: 1
   dropGlassesCount: 2
-  audioSource_player: {fileID: 1726075247}
-  audioClip_sighAfterDrop: {fileID: 0}
   dropItemFX: {fileID: 1429954232896169633, guid: d67309e7f1b0a4cb5b6e68d1c27493c7,
     type: 3}
   leftHandAnchor: {fileID: 2276772900260340215}
@@ -7948,7 +7951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -11035,13 +11038,13 @@ MonoBehaviour:
   lefthandYPosition: -0.127
   lefthandZPosition: -0.0045
   lefthandXRotation: 0
-  lefthandYRotation: 0
+  lefthandYRotation: 180
   lefthandZRotation: 0
   righthandXPosition: -0.1122
   righthandYPosition: -0.127
   righthandZPosition: -0.0045
   righthandXRotation: 0
-  righthandYRotation: 0
+  righthandYRotation: 180
   righthandZRotation: 0
 --- !u!1001 &1523771366
 PrefabInstance:
@@ -13387,12 +13390,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1719580649}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1726075247 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 2276772900260340213}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1728101240
 GameObject:
   m_ObjectHideFlags: 0
@@ -15306,6 +15303,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: old woman reading corner
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bb035f61aa5a0af48a143d99a835dda7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 943223448204509391, guid: bb035f61aa5a0af48a143d99a835dda7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -17014,6 +17016,7 @@ MonoBehaviour:
     - {x: 0.36083865, y: -0.69222957, z: -0.6249909}
     - {x: 0.72167736, y: -0.69222957, z: 0}
     - {x: 0.6249909, y: -0.69222957, z: -0.36083865}
+  renderers: []
 --- !u!1 &1966430223
 GameObject:
   m_ObjectHideFlags: 0
@@ -20773,6 +20776,7 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 1}
     - {x: 0.51214015, y: 0.5121297, z: 0.68951833}
     - {x: 0, y: 0, z: 1}
+  renderers: []
 --- !u!23 &7416691524095962651
 MeshRenderer:
   m_ObjectHideFlags: 0
