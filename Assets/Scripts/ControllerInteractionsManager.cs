@@ -302,9 +302,9 @@ public class ControllerInteractionsManager : MonoBehaviour
     [SerializeField] private float dropGlassesInterval = 1;
     [SerializeField] private int dropGlassesCount = 2;
 
-    [SerializeField] private GameObject dropItemFX;
-    [SerializeField] public GameObject leftHandAnchor;
-    [SerializeField] private GameObject rightHandAnchor;
+    public GameObject dropItemFX;
+    public GameObject leftHandAnchor;
+    public GameObject rightHandAnchor;
 
     public UnityEvent OnGlassesDrop;
 

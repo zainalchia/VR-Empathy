@@ -23,15 +23,26 @@ public class DropAfterDistance : MonoBehaviour
         {
             // add distance moved this frame
             totalDistance += (transform.position - positionLastFrame).magnitude;
-            positionLastFrame = transform.position;
-
-            // reset
-            if (totalDistance < distanceBeforeDrop) return;
-
+            positionLastFrame = transform.position;            
+        }
+        else
+        {
             if (GameManager.instance.grabInteractors[0].SelectedInteractable == interactable)
+            {
                 GameManager.instance.grabInteractors[0].ForceRelease();
+                Instantiate(ControllerInteractionsManager.instance.dropItemFX, ControllerInteractionsManager.instance.leftHandAnchor.transform); // particle fx                
+            }
             if (GameManager.instance.grabInteractors[1].SelectedInteractable == interactable)
+            {
                 GameManager.instance.grabInteractors[1].ForceRelease();
+                Instantiate(ControllerInteractionsManager.instance.dropItemFX, ControllerInteractionsManager.instance.rightHandAnchor.transform); // particle fx
+            }
+
+            // play specs drop sound
+            if(gameObject.GetComponent<AudioSource>())
+                gameObject.GetComponent<AudioSource>().Play();  
+
+            Activate();
         }
     }
 
