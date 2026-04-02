@@ -166,9 +166,10 @@ public class PlayerTeleport : MonoBehaviour
                 {
                     buttonPressed = false;
                 }
-
+            }
                 if (MovingToCheckersChair) // Teleport to checkers seat wihtout trigger press
                 {
+                    Debug.Log("aiuhsdiha");
                     currentHotspotIndex += 1;
                     MoveToLocation(MoveToCheckersChairHotspots[currentHotspotIndex], MoveToCheckersChairHotspots);
                     MoveToCheckersChairHotspots = null;
@@ -182,7 +183,6 @@ public class PlayerTeleport : MonoBehaviour
 
 
                 // move input to a manager script if possible
-            }
         }
         else if (currentScene == ScenarioID.PastNegative)
         {
