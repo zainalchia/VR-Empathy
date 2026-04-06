@@ -71,7 +71,10 @@ public class MainMenuManager : MonoBehaviour
     public void toGenderScreen()
     {
         scenarioScreen.SetActive(false);
-        genderScreen.SetActive(true);
+
+        // to temporarily disable gender select and force select female for demo
+        //genderScreen.SetActive(true);
+        SelectGender(false);
     }
 
     public void toVideoScreen()
