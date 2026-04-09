@@ -1054,6 +1054,7 @@ GameObject:
   - component: {fileID: 59322011}
   - component: {fileID: 59322010}
   - component: {fileID: 59322009}
+  - component: {fileID: 59322012}
   m_Layer: 0
   m_Name: Cutline3
   m_TagString: MeatPiece
@@ -1147,6 +1148,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59322007}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &59322012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59322007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1001 &73526719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2136,6 +2166,7 @@ GameObject:
   - component: {fileID: 125062101}
   - component: {fileID: 125062100}
   - component: {fileID: 125062099}
+  - component: {fileID: 125062102}
   m_Layer: 0
   m_Name: Cutline4
   m_TagString: MeatPiece
@@ -2229,6 +2260,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125062097}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &125062102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125062097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1 &140407412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2346,6 +2406,7 @@ GameObject:
   - component: {fileID: 142253727}
   - component: {fileID: 142253726}
   - component: {fileID: 142253725}
+  - component: {fileID: 142253728}
   m_Layer: 0
   m_Name: Cutline2
   m_TagString: MeatPiece
@@ -2439,6 +2500,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142253723}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &142253728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142253723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1001 &161691205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7373,6 +7463,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: cash note
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f91ad38728316c4d85a9b081b740016,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -8318,10 +8413,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 479391322}
-  - component: {fileID: 479391323}
-  - component: {fileID: 479391327}
   - component: {fileID: 479391325}
   - component: {fileID: 479391326}
+  - component: {fileID: 479391328}
+  - component: {fileID: 479391329}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -8346,36 +8441,6 @@ Transform:
   - {fileID: 1965108566}
   m_Father: {fileID: 1376757961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &479391323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479391321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7016e3ed6335887478920138ad342ede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chickenMesh: {fileID: 1965108567}
-  blendShapeIndices: 000000000100000002000000030000000400000005000000
-  blendLerpTime: 1
-  cutLines:
-  - {fileID: 2063717290}
-  - {fileID: 142253723}
-  - {fileID: 59322007}
-  - {fileID: 125062097}
-  - {fileID: 942255242}
-  - {fileID: 1654079645}
-  uiManager: {fileID: 998075450}
-  handRenderer: {fileID: 21536826}
-  normalHandMaterial: {fileID: 2100000, guid: eece8e965ed381d41997e3fcee592b0a, type: 2}
-  bleedingHandMaterial: {fileID: 2100000, guid: 9e7db9bb6e609f448bd850ed8eca81c0,
-    type: 2}
-  sfxSource: {fileID: 479391326}
-  choppingClip: {fileID: 8300000, guid: d6f8045ae26f753499e48f216c606243, type: 3}
-  currentPiece: 0
 --- !u!65 &479391325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8391,7 +8456,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8493,7 +8558,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &479391327
+--- !u!114 &479391328
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8502,10 +8567,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 479391321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 993938357fb253f429c307a5480f452e, type: 3}
+  m_Script: {fileID: 11500000, guid: 564076856ec3ce8478ecefe4587f8f42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chopManager: {fileID: 479391323}
+  chickenMesh: {fileID: 1965108567}
+  blendShapeIndices: 000000000100000002000000030000000400000005000000
+  blendLerpTime: 1
+  cutLines:
+  - {fileID: 2063717290}
+  - {fileID: 142253723}
+  - {fileID: 59322007}
+  - {fileID: 125062097}
+  - {fileID: 942255242}
+  - {fileID: 1654079645}
+  chopCooldown: 1
+  grabInteractable: {fileID: 1130414781}
+  forceStayGrabbed: {fileID: 1130414782}
+  currentCutIndex: 0
+--- !u!114 &479391329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479391321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6000c416366a2546938dd781d0e1061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chopper: {fileID: 479391328}
 --- !u!1 &491047297
 GameObject:
   m_ObjectHideFlags: 0
@@ -13769,7 +13860,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f976f0588ec004697d75a58386a675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chopManager: {fileID: 479391323}
+  chopManager: {fileID: 0}
 --- !u!65 &791924687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15434,6 +15525,7 @@ GameObject:
   - component: {fileID: 942255246}
   - component: {fileID: 942255245}
   - component: {fileID: 942255244}
+  - component: {fileID: 942255247}
   m_Layer: 0
   m_Name: Cutline5
   m_TagString: MeatPiece
@@ -15527,6 +15619,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942255242}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &942255247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942255242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1001 &942491380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17891,7 +18012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08fcfb4e5ef49564a80026e19d775c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chopManager: {fileID: 479391323}
+  chopManager: {fileID: 0}
   forceStayGrabbed: {fileID: 0}
   chopper: {fileID: 919132148138377190}
 --- !u!1001 &1133758375
@@ -19111,16 +19232,20 @@ MonoBehaviour:
   - rid: 3636061291123572737
   - rid: 154194936214323212
   - rid: 3783327431779155969
-  - rid: 75970898493964295
+  - rid: 75970963517210643
   - rid: 75970898493964298
   - rid: 4897765866541416449
   - rid: 3783327436181078024
   - rid: 4897765866541416451
   - rid: 3636061403108868104
   - rid: 154194936214323216
-  - rid: 75970917543444483
   - rid: 75970917543444485
+  - rid: 75970963517210646
+  - rid: 75970963517210631
+  - rid: 75970963517210648
+  - rid: 75970963517210633
   - rid: 3636061378538110976
+  - rid: 75970963517210635
   - rid: 75970917543444487
   - rid: 75970917543444490
   - rid: 75970917543444492
@@ -19185,13 +19310,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 983b0a2c8b18f3e42abce05d4005fe71, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 75970898493964295
-      type: {class: SequenceManager/SEvent_SetPosition, ns: , asm: Assembly-CSharp}
-      data:
-        name: Set boss position
-        type: 17
-        target: {fileID: 73526720}
-        PositionSetTo: {fileID: 287672077}
     - rid: 75970898493964298
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -19212,13 +19330,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 1
               m_CallState: 2
-    - rid: 75970917543444483
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for first chicken to be cut
-        type: 7
-        gameObject: {fileID: 142253723}
-        active: 1
     - rid: 75970917543444485
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -19277,6 +19388,87 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 1
               m_CallState: 2
+    - rid: 75970963517210631
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Second meat cut
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 998075450}
+              m_TargetAssemblyTypeName: HeartbeatUI, Assembly-CSharp
+              m_MethodName: StartRed
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75970963517210633
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Third meat cut
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 998075450}
+              m_TargetAssemblyTypeName: HeartbeatUI, Assembly-CSharp
+              m_MethodName: StartDeepRed
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75970963517210635
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Last piece cut
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 998075450}
+              m_TargetAssemblyTypeName: HeartbeatUI, Assembly-CSharp
+              m_MethodName: KnifeAccidentFlash
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75970963517210643
+      type: {class: SequenceManager/SEvent_WaitForTargetPiece, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set boss position
+        type: 17
+        chickenChopper: {fileID: 0}
+        targetPiece: 0
+    - rid: 75970963517210646
+      type: {class: SequenceManager/SEvent_WaitForTargetPiece, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for second meat to be cut
+        type: 17
+        chickenChopper: {fileID: 479391328}
+        targetPiece: 2
+    - rid: 75970963517210648
+      type: {class: SequenceManager/SEvent_WaitForTargetPiece, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for third meat cut
+        type: 17
+        chickenChopper: {fileID: 479391328}
+        targetPiece: 3
     - rid: 154194936214323201
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -19319,7 +19511,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 479391323}
+            - m_Target: {fileID: 479391328}
               m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
               m_MethodName: set_enabled
               m_Mode: 6
@@ -19330,18 +19522,6 @@ MonoBehaviour:
                 m_FloatArgument: 0
                 m_StringArgument: 
                 m_BoolArgument: 1
-              m_CallState: 2
-            - m_Target: {fileID: 479391323}
-              m_TargetAssemblyTypeName: ChickenChopManager, Assembly-CSharp
-              m_MethodName: ResetHoldState
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
               m_CallState: 2
     - rid: 3631777410367094791
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -30644,7 +30824,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -30659,7 +30839,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999738
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -30669,7 +30849,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.00724309
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -30684,7 +30864,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -32210,6 +32390,7 @@ GameObject:
   - component: {fileID: 1654079648}
   - component: {fileID: 1654079647}
   - component: {fileID: 1654079646}
+  - component: {fileID: 1654079650}
   m_Layer: 0
   m_Name: Cutline6
   m_TagString: MeatPiece
@@ -32303,6 +32484,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1577985497}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1654079650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654079645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1 &1654742175
 GameObject:
   m_ObjectHideFlags: 0
@@ -36740,6 +36950,7 @@ GameObject:
   - component: {fileID: 2063717294}
   - component: {fileID: 2063717293}
   - component: {fileID: 2063717292}
+  - component: {fileID: 2063717295}
   m_Layer: 0
   m_Name: Cutline1
   m_TagString: MeatPiece
@@ -36833,6 +37044,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2063717290}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2063717295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063717290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!4 &2068007713 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16130432a28c2d44cb56a165e869fb42,
@@ -38341,6 +38581,7 @@ Transform:
   - {fileID: 2071076080}
   - {fileID: 464069031}
   - {fileID: 1587099065}
+  - {fileID: 7479229132819993097}
   m_Father: {fileID: 1376757961}
   m_LocalEulerAnglesHint: {x: 0, y: 0.711, z: -90}
 --- !u!1 &700794105827945349
@@ -41266,12 +41507,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9139078954196830315}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.552714e-15, y: -5.509153e-23, z: -0.000000015506885, w: 1}
-  m_LocalPosition: {x: -0.00074611977, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.000000015506885, w: 1}
+  m_LocalPosition: {x: 0.019358538, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8120026536092334948}
+  m_Father: {fileID: 543450652611552604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7527824762856018440
 MeshFilter:
@@ -41529,8 +41770,7 @@ Transform:
   m_LocalPosition: {x: 0.020104658, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7479229132819993097}
+  m_Children: []
   m_Father: {fileID: 543450652611552604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8224757248827295672
