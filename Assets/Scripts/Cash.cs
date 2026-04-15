@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cash : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private ScenarioPromptManager promptManager;
+    //[SerializeField] private ScenarioPromptManager promptManager;
     [SerializeField] private SceneID sceneID = SceneID.Stall;
 
     [Header("SFX")]
@@ -83,6 +83,6 @@ public class Cash : MonoBehaviour
         gameObject.SetActive(false);
 
         // Trigger the next prompt
-        promptManager.ShowPrompt(SceneID.Stall, 1, false, 6f);
+        //promptManager.ShowPrompt(SceneID.Stall, 1, false, 6f);
     }
 }

@@ -41,6 +41,7 @@ public class SequenceManager : MonoBehaviour
             [InspectorName("Go to scene")] SET_GoToScene,
             [InspectorName("Change material color")] SET_ChangeMaterialColor,
             [InspectorName("Change texture")] SET_ChangeMaterialTexture,
+            [InspectorName("Change material")] SET_ChangeMaterial,
             [InspectorName("Wait for trigger")] SET_WaitForTrigger,
             [InspectorName("Wait for target piece")] SET_WaitForTargetPiece,
             [InspectorName("Set position")] SET_SetGOPosition,
@@ -65,6 +66,7 @@ public class SequenceManager : MonoBehaviour
             typeof(SEvent_GoToScene                 ),
             typeof(SEvent_ChangeMaterialColor       ),
             typeof(SEvent_ChangeMaterialTexture     ),
+            typeof(SEvent_ChangeMaterial            ),
             typeof(SEvent_WaitForTrigger            ),
             typeof(SEvent_WaitForTargetPiece        ),
             typeof(SEvent_SetPosition               ),
@@ -443,7 +445,7 @@ public class SequenceManager : MonoBehaviour
             return;
         }
     }
-
+    
     public class SEvent_ChangeMaterialTexture : SequenceEvent
     {
         [SerializeField] Material[] currentMaterial;
@@ -457,6 +459,21 @@ public class SequenceManager : MonoBehaviour
             {
                 mat.mainTexture = newTexture;
             }
+            Exit();
+            return;
+        }
+    }
+    public class SEvent_ChangeMaterial : SequenceEvent
+    {
+        [SerializeField] Material currentMaterial;
+        [SerializeField] Material newMaterial;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            
+            currentMaterial = newMaterial;
+
             Exit();
             return;
         }
@@ -499,9 +516,6 @@ public class SequenceManager : MonoBehaviour
             if (targetPiece == chickenChopper.currentCutIndex)
             {
                 Exit();
-            }
-            else
-            {
                 return;
             }
         }
@@ -524,9 +538,6 @@ public class SequenceManager : MonoBehaviour
             {
                 target.transform.position = PositionSetTo.transform.position;
                 Exit();
-            }
-            else
-            {
                 return;
             }
         }
