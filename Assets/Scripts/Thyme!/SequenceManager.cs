@@ -45,6 +45,7 @@ public class SequenceManager : MonoBehaviour
             [InspectorName("Wait for trigger")] SET_WaitForTrigger,
             [InspectorName("Wait for target piece")] SET_WaitForTargetPiece,
             [InspectorName("Set position")] SET_SetGOPosition,
+            [InspectorName("Instantiate GO")] SET_InstantiateGO,
             [InspectorName("")] SET_COUNT // NOT an actual type! here for easy counting!!!
         }
 
@@ -70,6 +71,7 @@ public class SequenceManager : MonoBehaviour
             typeof(SEvent_WaitForTrigger            ),
             typeof(SEvent_WaitForTargetPiece        ),
             typeof(SEvent_SetPosition               ),
+            typeof(SEvent_InstantiateGO             ),
         };
 
         public SequenceEventEnum type;
@@ -465,14 +467,14 @@ public class SequenceManager : MonoBehaviour
     }
     public class SEvent_ChangeMaterial : SequenceEvent
     {
-        [SerializeField] Material currentMaterial;
+        [SerializeField] Renderer currentMaterial;
         [SerializeField] Material newMaterial;
 
         public override void OnEnter()
         {
             base.OnEnter();
             
-            currentMaterial = newMaterial;
+            currentMaterial.material = newMaterial;
 
             Exit();
             return;
@@ -520,7 +522,6 @@ public class SequenceManager : MonoBehaviour
             }
         }
     }
-
     public class SEvent_SetPosition : SequenceEvent
     {
         [SerializeField] GameObject target;
@@ -543,6 +544,16 @@ public class SequenceManager : MonoBehaviour
         }
     }
 
+    public class SEvent_InstantiateGO : SequenceEvent
+    {
+        [SerializeField] GameObject newGO;
+        [SerializeField] Transform plasterSpawnPoint;
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            Instantiate(newGO, plasterSpawnPoint.position, plasterSpawnPoint.rotation);
+        }
+    }
 
     public class SEvent_TriggerUnityEvent : SequenceEvent
     {

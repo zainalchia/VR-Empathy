@@ -16,6 +16,11 @@ public class PlasterHealer : MonoBehaviour
         plasteredHandMaterial = GameManager.instance.plasteredHandMaterial;
     }
 
+    private void Awake()
+    {
+        SpawnPlaster();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("LeftHand"))

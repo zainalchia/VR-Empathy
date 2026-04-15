@@ -10223,6 +10223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a98c400f5853a84c89b050a4bd1fb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DroppedFood: {fileID: 757077370}
 --- !u!1 &620550092
 GameObject:
   m_ObjectHideFlags: 0
@@ -19243,45 +19244,29 @@ MonoBehaviour:
   - rid: 75970917543444492
   - rid: 4498990571523145732
   - rid: 75970917543444494
+  - rid: 75971099741913100
   - rid: 5361626918747373572
   - rid: 75971098403930113
+  - rid: 75971099741913103
+  - rid: 75971099741913104
   - rid: 5361626918747373570
-  - rid: 5361626918747373574
-  - rid: 5361626925535330304
+  - rid: 75971104161136645
+  - rid: 75971104161136643
   - rid: 6176682073276809237
+  - rid: 75971099741913110
+  - rid: 75971099741913112
   - rid: 3636061403108868108
   - rid: 4498990571523145734
+  - rid: 75971099741913114
   - rid: 5361626925535330306
-  - rid: 5361626925535330308
-  - rid: 6600812871027785735
-  - rid: 4498990571523145729
-  - rid: 3783327431779155971
-  - rid: 6176682073276809216
-  - rid: 6176682073276809218
-  - rid: 3783327526191104005
-  - rid: 6176682073276809220
-  - rid: 6176682073276809222
-  - rid: 3783327526191104007
-  - rid: 3783327431779155975
-  - rid: 6176682073276809224
-  - rid: 6176682073276809232
-  - rid: 6176682073276809226
-  - rid: 3783327526191104009
-  - rid: 3636061403108868111
+  - rid: 75971104161136641
   - rid: 6176682073276809230
-  - rid: 3783327431779155973
-  - rid: 6600812871027785735
   - rid: 3636061379182198788
-  - rid: 3636061379182198789
-  - rid: 3636061379182198790
-  - rid: 3636061379182198791
   - rid: 6176682073276809240
   - rid: 9222563068242296840
   - rid: 9222563068242296841
   - rid: 9222563068242296843
   - rid: 3783327526191104011
-  - rid: 3783327431779155975
-  - rid: 6176682073276809242
   - rid: 7202277470793891841
   - rid: 3636061403108868117
   - rid: 3783327526191104015
@@ -19459,8 +19444,7 @@ MonoBehaviour:
       data:
         name: Player hand injured
         type: 16
-        currentMaterial: {fileID: 2100000, guid: eece8e965ed381d41997e3fcee592b0a,
-          type: 2}
+        currentMaterial: {fileID: 21536826}
         newMaterial: {fileID: 2100000, guid: 9e7db9bb6e609f448bd850ed8eca81c0, type: 2}
     - rid: 75971099741913096
       type: {class: SequenceManager/SEvent_SetPosition, ns: , asm: Assembly-CSharp}
@@ -19483,6 +19467,100 @@ MonoBehaviour:
         type: 18
         chickenChopper: {fileID: 479391328}
         targetPiece: 3
+    - rid: 75971099741913100
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Make container grabbable
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 4163876324062302918}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 75971099741913103
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Trigger lid animation
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 6839807958188523297}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: lidPopTrigger
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971099741913104
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Delay
+        type: 2
+        waitTime: 0.5
+    - rid: 75971099741913110
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Boss prepared food for the player
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: 0f59ce4944253b248bc61a22898ca8ad, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 0f59ce4944253b248bc61a22898ca8ad, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75971099741913112
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable teleport
+        type: 6
+        gameObject: {fileID: 704027391}
+        active: 1
+    - rid: 75971099741913114
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Give customer tray prompt
+        type: 1
+        text: '[Pick up the tray and hand it to the customer.]'
+        duration: 2
+    - rid: 75971104161136641
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Boss scolds player for dropping food
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: e924ff3d5f018b84eaec4236631a778a, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: e924ff3d5f018b84eaec4236631a778a, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75971104161136643
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for plaster to be placed on hand
+        type: 7
+        gameObject: {fileID: 1355832383}
+        active: 0
+    - rid: 75971104161136645
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set plaster to active
+        type: 6
+        gameObject: {fileID: 1355832383}
+        active: 1
     - rid: 154194936214323201
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -19600,67 +19678,7 @@ MonoBehaviour:
             m_Calls:
             - m_Target: {fileID: 0}
               m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-    - rid: 3636061379182198789
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: EnableOutline (2)
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-    - rid: 3636061379182198790
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: EnableOutline (3)
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-    - rid: 3636061379182198791
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: EnableOutline (4)
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 479391321}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
+              m_MethodName: 
               m_Mode: 6
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
@@ -19685,13 +19703,6 @@ MonoBehaviour:
         type: 1
         text: Carry the tray to the customer.
         duration: 3
-    - rid: 3636061403108868111
-      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
-      data:
-        name: Cloth Prompt
-        type: 1
-        text: Take the cloth and clean up.
-        duration: 3
     - rid: 3636061403108868117
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -19712,65 +19723,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 3783327431779155971
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Swap Boss Position
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_MethodName: SetActive
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_MethodName: SetActive
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-    - rid: 3783327431779155973
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Teleport back to the chopping board
-        type: 6
-        gameObject: {fileID: 0}
-        active: 1
-    - rid: 3783327431779155975
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Animate boss talking
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: Talk
-                m_BoolArgument: 0
-              m_CallState: 2
     - rid: 3783327436181078024
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
@@ -19779,24 +19731,6 @@ MonoBehaviour:
         text: Grab the knife with your right hand.
         duration: 5
     - rid: 3783327526191104003
-      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait
-        type: 2
-        waitTime: 1
-    - rid: 3783327526191104005
-      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait
-        type: 2
-        waitTime: 1
-    - rid: 3783327526191104007
-      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
-      data:
-        name: wait
-        type: 2
-        waitTime: 2
-    - rid: 3783327526191104009
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
         name: Wait
@@ -19814,13 +19748,6 @@ MonoBehaviour:
         name: Wait
         type: 2
         waitTime: 2
-    - rid: 4498990571523145729
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for tray to be given
-        type: 7
-        gameObject: {fileID: 0}
-        active: 0
     - rid: 4498990571523145732
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -19849,15 +19776,15 @@ MonoBehaviour:
     - rid: 5361626918747373570
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: Trigger lid animation
+        name: Move lid to table
         type: 12
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 6839807958188523297}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 5
+            - m_Target: {fileID: 6839807958188523298}
+              m_TargetAssemblyTypeName: LidMover, Assembly-CSharp
+              m_MethodName: MoveToTable
+              m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -19875,108 +19802,12 @@ MonoBehaviour:
         outlineItem: 1
         itemStaysGrabbed: 0
         forceEnableGrabbable: 0
-    - rid: 5361626918747373574
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Instantiate plaster
-        type: 6
-        gameObject: {fileID: 2302020819398177655, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
-          type: 3}
-        active: 1
-    - rid: 5361626925535330304
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Move plaster to hand
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: -9072095777978360968, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
-                type: 3}
-              m_TargetAssemblyTypeName: PlasterHealer, Assembly-CSharp
-              m_MethodName: SpawnPlaster
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
     - rid: 5361626925535330306
       type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
       data:
         name: Wait for player to drop tray
         type: 4
         interactable: {fileID: 620099838}
-    - rid: 5361626925535330308
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Set food tray inactive
-        type: 6
-        gameObject: {fileID: 620099835}
-        active: 0
-    - rid: 6176682073276809216
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: '[Audio] Child likes chicken'
-        type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 8300000, guid: 61ce77da0fc97424b9b8bdbacbe7db80, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: de9f0f45bd5ec1040b9cf054d85dbf5a, type: 3}
-        waitForEnd: 1
-        loop: 0
-    - rid: 6176682073276809218
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: '[Audio] Customer likes chicken'
-        type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 8300000, guid: 9aad5684e2e61c545baa2e6c53628927, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: 9aad5684e2e61c545baa2e6c53628927, type: 3}
-        waitForEnd: 1
-        loop: 0
-    - rid: 6176682073276809220
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: '[Audio] You like chicken'
-        type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 8300000, guid: b6b27d16889025545853c588c37aab0f, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: 8e3d7264814a6c54e920dd1d8802e197, type: 3}
-        waitForEnd: 1
-        loop: 0
-    - rid: 6176682073276809222
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: '[Audio] Customer leaves'
-        type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 8300000, guid: 40598505ccf23f84faa46470aca0e579, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: 40598505ccf23f84faa46470aca0e579, type: 3}
-        waitForEnd: 1
-        loop: 0
-    - rid: 6176682073276809224
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: '[Audio] Boss wants you to clean table'
-        type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 8300000, guid: 4ff0febf00ced2e41bec051aa7a91124, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: 069a13f5dbf7f84469300b36fdf9158c, type: 3}
-        waitForEnd: 1
-        loop: 0
-    - rid: 6176682073276809226
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: '[Audio] Sure thing, Boss!'
-        type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 8300000, guid: a4ed9470fa6146344b73858ec906983d, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: dc9b00be0dbbe2449896f4833628c81c, type: 3}
-        waitForEnd: 1
-        loop: 0
     - rid: 6176682073276809230
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
@@ -19986,13 +19817,6 @@ MonoBehaviour:
         outlineItem: 1
         itemStaysGrabbed: 1
         forceEnableGrabbable: 1
-    - rid: 6176682073276809232
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Enable cloth
-        type: 6
-        gameObject: {fileID: 0}
-        active: 1
     - rid: 6176682073276809237
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -20069,46 +19893,16 @@ MonoBehaviour:
         type: 7
         gameObject: {fileID: 0}
         active: 0
-    - rid: 6176682073276809242
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: '[Audio] Boss praises you'
-        type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 8300000, guid: a58a7256d8ed1294386f3f74695245fe, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: a58a7256d8ed1294386f3f74695245fe, type: 3}
-        waitForEnd: 1
-        loop: 0
     - rid: 6176682073276809244
       type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
       data:
         name: Next scene
         type: 13
         sceneName: PastPositiveHome
-    - rid: 6600812871027785735
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Set teleport to true
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: PlayerTeleport, Assembly-CSharp
-              m_MethodName: 
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
     - rid: 7202277470793891841
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: '[Audio] Player thx boss'
+        name: '[Audio] Player thinks to himself'
         type: 5
         audioSource: {fileID: 0}
         audioClip: {fileID: 8300000, guid: 896568e3ea7cf3046ac314e7a677e641, type: 3}
@@ -28414,6 +28208,85 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354256052}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1355832382
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.231
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.364
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.27736685
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302020819398177655, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_Name
+      value: plaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302020819398177655, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8, type: 3}
+--- !u!1 &1355832383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2302020819398177655, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1355832382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1359718947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40143,7 +40016,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2965364718963279911}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
   m_Name: 
@@ -42406,3 +42279,4 @@ SceneRoots:
   - {fileID: 1823928456}
   - {fileID: 1362139827}
   - {fileID: 705087491}
+  - {fileID: 1355832382}
