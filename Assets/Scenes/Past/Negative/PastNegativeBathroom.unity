@@ -7860,13 +7860,13 @@ MonoBehaviour:
   refreshEditor: 0
   events:
   - rid: 6176681889884798978
+  - rid: 5361627003736293396
   - rid: 6176681889884798984
   - rid: 6176681889884798980
   - rid: 6176681889884798982
   - rid: 3636061403108868098
   - rid: 3636061383514914817
   - rid: 6176681889884798985
-  - rid: 6600812801746010113
   - rid: 9222563068242296833
   - rid: 6176681913310248961
   - rid: 6176681913310248963
@@ -8021,6 +8021,13 @@ MonoBehaviour:
         text: Look at the teleport circle on the ground and squeeze the Trigger when
           it turns green to Teleport.
         duration: 7
+    - rid: 5361627003736293396
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Use items at sink prompt
+        type: 1
+        text: '[Freshen up with the items at the sink]'
+        duration: 3
     - rid: 6176681889884798978
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -8120,14 +8127,15 @@ MonoBehaviour:
       data:
         name: Activate Teleport Chain
         type: 6
-        gameObject: {fileID: 0}
+        gameObject: {fileID: 624183064}
         active: 1
     - rid: 6176681913310248961
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
         name: Wait for player to touch door handle
         type: 7
-        gameObject: {fileID: 500767558385481019}
+        gameObjects:
+        - {fileID: 500767558385481019}
         active: 0
     - rid: 6176681913310248963
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -8155,26 +8163,6 @@ MonoBehaviour:
         name: Next Scene
         type: 13
         sceneName: PastNegativeHawker
-    - rid: 6600812801746010113
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Set teleport to true
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 624183064}
-              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_MethodName: SetActive
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
     - rid: 9222563068242296833
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:

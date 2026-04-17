@@ -43,7 +43,7 @@ public class PlasterHealer : MonoBehaviour
         ForceRightHandDrop();
 
         // Remove plaster
-        Destroy(gameObject, 0.2f);
+        gameObject.SetActive(false);
     }
 
     private void ForceRightHandDrop()

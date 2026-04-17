@@ -12128,7 +12128,7 @@ MonoBehaviour:
   - rid: 3636061403108868119
   - rid: 6600812871027785738
   - rid: 154195071710789642
-  - rid: 154195071710789644
+  - rid: 5361627003736293392
   - rid: 154195071710789646
   - rid: 154195071710789648
   - rid: 354177140404781057
@@ -12400,19 +12400,13 @@ MonoBehaviour:
         type: 6
         gameObject: {fileID: 146886849}
         active: 1
-    - rid: 154195071710789644
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for last teleport to activate
-        type: 7
-        gameObject: {fileID: 2087483480}
-        active: 1
     - rid: 154195071710789646
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
         name: Wait for player to be at last teleport
         type: 7
-        gameObject: {fileID: 2087483480}
+        gameObjects:
+        - {fileID: 2087483480}
         active: 0
     - rid: 154195071710789648
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
@@ -12524,14 +12518,16 @@ MonoBehaviour:
       data:
         name: Wait for last tp to activate
         type: 7
-        gameObject: {fileID: 136287518}
+        gameObjects:
+        - {fileID: 136287518}
         active: 1
     - rid: 154195071710789667
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
         name: Wait for last tp to deactivate
         type: 7
-        gameObject: {fileID: 136287518}
+        gameObjects:
+        - {fileID: 136287518}
         active: 0
     - rid: 154195071710789671
       type: {class: SequenceManager/SEvent_WaitForDistance, ns: , asm: Assembly-CSharp}
@@ -12720,6 +12716,14 @@ MonoBehaviour:
         name: go back to main menu
         type: 13
         sceneName: MainMenu
+    - rid: 5361627003736293392
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for first tp
+        type: 7
+        gameObjects:
+        - {fileID: 146886849}
+        active: 1
     - rid: 6600812871027785731
       type: {class: SequenceManager/SEvent_ChangeMaterialTexture, ns: , asm: Assembly-CSharp}
       data:
@@ -12777,7 +12781,8 @@ MonoBehaviour:
       data:
         name: Wait for tissue to be used
         type: 7
-        gameObject: {fileID: 361904549}
+        gameObjects:
+        - {fileID: 361904549}
         active: 0
     - rid: 9222562903833444359
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}

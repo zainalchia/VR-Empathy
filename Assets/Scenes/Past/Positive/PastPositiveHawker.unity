@@ -29128,9 +29128,6 @@ MonoBehaviour:
   - rid: 3636061379182198790
   - rid: 3636061379182198791
   - rid: 6176682073276809240
-  - rid: 9222563068242296840
-  - rid: 9222563068242296841
-  - rid: 9222563068242296843
   - rid: 3783327526191104011
   - rid: 3783327431779155975
   - rid: 6176682073276809242
@@ -29183,7 +29180,8 @@ MonoBehaviour:
       data:
         name: Wait for cash to be put into register
         type: 7
-        gameObject: {fileID: 465085310}
+        gameObjects:
+        - {fileID: 465085310}
         active: 0
     - rid: 154194936214323214
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -29553,7 +29551,8 @@ MonoBehaviour:
       data:
         name: Wait for tray to be given
         type: 7
-        gameObject: {fileID: 620099835}
+        gameObjects:
+        - {fileID: 620099835}
         active: 0
     - rid: 4498990571523145732
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
@@ -29576,7 +29575,8 @@ MonoBehaviour:
       data:
         name: Wait for teleport
         type: 7
-        gameObject: {fileID: 1834933647}
+        gameObjects:
+        - {fileID: 1834933647}
         active: 1
     - rid: 4897765866541416451
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
@@ -29737,7 +29737,11 @@ MonoBehaviour:
       data:
         name: Wait for mess to be cleaned (1)
         type: 7
-        gameObject: {fileID: 1954752784}
+        gameObjects:
+        - {fileID: 1954752784}
+        - {fileID: 725041287}
+        - {fileID: 71049843}
+        - {fileID: 685836807}
         active: 0
     - rid: 6176682073276809242
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
@@ -29785,27 +29789,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 811bae9f3a17a60498648572103ea700, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 9222563068242296840
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for mess to be cleaned (2)
-        type: 7
-        gameObject: {fileID: 725041287}
-        active: 0
-    - rid: 9222563068242296841
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for mess to be cleaned (3)
-        type: 7
-        gameObject: {fileID: 71049843}
-        active: 0
-    - rid: 9222563068242296843
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for mess to be cleaned (4)
-        type: 7
-        gameObject: {fileID: 685836807}
-        active: 0
 --- !u!1001 &1202423591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39109,6 +39092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a98c400f5853a84c89b050a4bd1fb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DroppedFood: {fileID: 0}
 --- !u!54 &1444257780
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -43087,37 +43071,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DroppedFood: {fileID: 0}
-  WhileCleaning:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
-        m_MethodName: PlayCustomerDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  FinishCleaning:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
-        m_MethodName: PlayFinishedCleaning
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   customerDialogueDuration: 3
+  customerAudioSource: {fileID: 0}
+  customerAudioClip: {fileID: 0}
 --- !u!54 &1567438792
 Rigidbody:
   m_ObjectHideFlags: 0
