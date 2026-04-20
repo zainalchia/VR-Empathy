@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.28533655, g: 0.45767683, b: 0.5936687, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2858,6 +2858,7 @@ MonoBehaviour:
     - {x: -0.61096567, y: 0.51664853, z: 0.5998294}
     - {x: -0.48327494, y: 0.589423, z: -0.64732206}
     - {x: -0.6435721, y: -0.012431982, z: -0.76528454}
+  renderers: []
 --- !u!1 &354212912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 21fab5bfbe438452fb0d36fac3589153,
@@ -2888,6 +2889,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!1 &373692579
 GameObject:
   m_ObjectHideFlags: 0
@@ -4500,6 +4502,7 @@ MonoBehaviour:
     - {x: -0.9947484, y: 0.10234987, z: 0}
     - {x: -0.7033934, y: -0.072370395, z: 0.70710695}
     - {x: -0.99474853, y: -0.10234919, z: 0}
+  renderers: []
 --- !u!4 &926231271 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 64ac900fc2a531f4990222e85563f0df,
@@ -10556,6 +10559,7 @@ MonoBehaviour:
     - {x: 0.92037475, y: -0.2924599, z: 0.2595721}
     - {x: 0.97667927, y: 0.0214521, z: 0.21362905}
     - {x: 0.9834898, y: 0.018580409, z: 0.18000722}
+  renderers: []
 --- !u!114 &1936565574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16987,6 +16991,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
         type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
       propertyPath: caneOutline
       value: 
       objectReference: {fileID: 1753885426}
@@ -17139,7 +17148,7 @@ PrefabInstance:
         type: 3}
       propertyPath: testText
       value: 
-      objectReference: {fileID: 1924261028}
+      objectReference: {fileID: 0}
     - target: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
         type: 3}
       propertyPath: MaleModel
@@ -17299,6 +17308,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7330522279698956918}
+    - targetCorrespondingSourceObject: {fileID: 4947871553479497366, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7330522279698956919}
   m_SourcePrefab: {fileID: 100100000, guid: 762801de029432c44a40e4065bb93349, type: 3}
 --- !u!1 &5817889223404952108 stripped
 GameObject:
@@ -17595,7 +17608,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 5817889223404952107}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817889223404952108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27d2eff92ffe04743943e3b2ed758679, type: 3}
   m_Name: 
@@ -17637,6 +17650,109 @@ MonoBehaviour:
   scenarioManagerPresentBad: {fileID: 7330522279698956916}
   scenarioManagerPresentGood: {fileID: 0}
   scenarioManagerReneeTest: {fileID: 0}
+--- !u!114 &7330522279698956919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817889223404952108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acdd4dbf41d0895469e29609f2081811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refreshEditor: 0
+  events:
+  - rid: 75971211654856705
+  - rid: 75971211654856710
+  - rid: 75971211654856708
+  - rid: 75971211654856712
+  references:
+    version: 2
+    RefIds:
+    - rid: 75971211654856705
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Player talking to him/herself
+        type: 5
+        audioSource: {fileID: 1726075247}
+        audioClip: {fileID: 8300000, guid: 765b77930b5d149438791771e6ea5755, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: ac3a41d552e7c5845860a0495526f10e, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75971211654856708
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to freshen up
+        type: 2
+        waitTime: 20
+    - rid: 75971211654856710
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set outline
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8032421237078485443}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 1936565573}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 319927142}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 354212914}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 75971211654856712
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 5
+        audioSource: {fileID: 1726075247}
+        audioClip: {fileID: 8300000, guid: ee7eeb490503c48ff8dc69cc8372c299, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: ee419e1bfdba7cf4eb5921ad7d16c838, type: 3}
+        waitForEnd: 1
+        loop: 0
 --- !u!4 &7420753592346597749
 Transform:
   m_ObjectHideFlags: 0
@@ -18432,6 +18548,7 @@ MonoBehaviour:
     - {x: 0, y: -0.4472135, z: 0.8944273}
     - {x: -0.31622776, y: -0.31622776, z: 0.8944272}
     - {x: -0.2705982, y: -0.6532814, z: 0.7071068}
+  renderers: []
 --- !u!114 &8032421237078485444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18961,6 +19078,7 @@ MonoBehaviour:
     - {x: 0.108844414, y: 0.23206367, z: 0.96659166}
     - {x: -0.108844414, y: 0.23206367, z: 0.96659166}
     - {x: -0.108844414, y: -0.23206367, z: 0.96659166}
+  renderers: []
 --- !u!114 &8718233878095769987
 MonoBehaviour:
   m_ObjectHideFlags: 0

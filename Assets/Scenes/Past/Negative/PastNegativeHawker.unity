@@ -3616,9 +3616,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
+      propertyPath: bossTransform
+      value: 
+      objectReference: {fileID: 73526725}
+    - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
+        type: 3}
       propertyPath: PlateSpawnPoint
       value: 
       objectReference: {fileID: 1645267160}
+    - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1272374763}
     - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
       propertyPath: PlateTargetPoint
@@ -8671,7 +8681,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 0.75
+  weight: 0.5
   sharedProfile: {fileID: 11400000, guid: ada010128838c0f4e815e12cd82e82d9, type: 2}
 --- !u!4 &491047299
 Transform:
@@ -19271,6 +19281,7 @@ MonoBehaviour:
   - rid: 154194936214323203
   - rid: 3631777410367094794
   - rid: 3783327526191104003
+  - rid: 75971211654856719
   - rid: 154194936214323210
   - rid: 3636061291123572737
   - rid: 154194936214323212
@@ -19286,6 +19297,7 @@ MonoBehaviour:
   - rid: 75971099741913098
   - rid: 75970963517210633
   - rid: 3636061378538110976
+  - rid: 75971211654856714
   - rid: 75970963517210635
   - rid: 75971099741913093
   - rid: 75970917543444487
@@ -19295,7 +19307,6 @@ MonoBehaviour:
   - rid: 75970917543444494
   - rid: 75971099741913100
   - rid: 5361626918747373572
-  - rid: 75971098403930113
   - rid: 75971099741913103
   - rid: 75971099741913104
   - rid: 5361626918747373570
@@ -19310,6 +19321,7 @@ MonoBehaviour:
   - rid: 5361626925535330306
   - rid: 5361627003736293381
   - rid: 75971104161136641
+  - rid: 75971211654856717
   - rid: 5361626994218631173
   - rid: 5361626994218631169
   - rid: 5361627003736293383
@@ -19488,13 +19500,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 4dd3baa81f65e464481d4c6a2441c257, type: 3}
         waitForEnd: 0
         loop: 0
-    - rid: 75971098403930113
-      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
-      data:
-        name: Test
-        type: 1
-        text: testinngg plaster grabbed
-        duration: 3
     - rid: 75971099741913093
       type: {class: SequenceManager/SEvent_ChangeMaterial, ns: , asm: Assembly-CSharp}
       data:
@@ -19618,6 +19623,53 @@ MonoBehaviour:
         type: 6
         gameObject: {fileID: 1355832383}
         active: 1
+    - rid: 75971211654856714
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set chopper to inactive
+        type: 6
+        gameObject: {fileID: 919132148138377190}
+        active: 0
+    - rid: 75971211654856717
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Boss looks at player
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 253476750}
+              m_TargetAssemblyTypeName: PlateCollision, Assembly-CSharp
+              m_MethodName: BossLookAt
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971211654856719
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Woman idle
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 38531087}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Idle
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 154194936214323201
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -19849,23 +19901,11 @@ MonoBehaviour:
     - rid: 5361626994218631169
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: Boss look at wall
+        name: Boss throws plate
         type: 12
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 73526725}
-              m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
-              m_MethodName: LookAt
-              m_Mode: 2
-              m_Arguments:
-                m_ObjectArgument: {fileID: 658150352}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
             - m_Target: {fileID: 73526721}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
@@ -20006,18 +20046,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
-            - m_Target: {fileID: 919132148138377190}
-              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_MethodName: SetActive
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
             - m_Target: {fileID: 620099835}
               m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
               m_MethodName: SetActive
@@ -20029,6 +20057,18 @@ MonoBehaviour:
                 m_FloatArgument: 0
                 m_StringArgument: 
                 m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 780974856}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
               m_CallState: 2
     - rid: 6176682073276809244
       type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
@@ -21603,6 +21643,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffd6c05ac733ba2438bac8373b6d5250,
     type: 3}
   m_PrefabInstance: {fileID: 1655147172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1272374763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1576574047}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1279145266
 PrefabInstance:

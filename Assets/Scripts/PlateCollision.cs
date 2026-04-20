@@ -18,6 +18,8 @@ public class PlateCollision : MonoBehaviour
     public Transform PlateTargetPoint;  // where the plate flies toward
 
     [SerializeField] float plateSpeed = 10f;             // how fast it flies
+    [SerializeField] Transform bossTransform;
+    [SerializeField] Transform playerTransform;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -92,5 +94,11 @@ public class PlateCollision : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    public void BossLookAt()
+    {
+        Transform playerrotate = playerTransform;
+        bossTransform.LookAt(playerrotate);
     }
 }

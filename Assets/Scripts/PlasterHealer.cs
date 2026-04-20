@@ -8,12 +8,15 @@ public class PlasterHealer : MonoBehaviour
     private Renderer leftHandRenderer;
     private GameObject bloodEffect;
     private Material plasteredHandMaterial;
+    private BoxCollider plasterCollider;
 
     private void Start()
     {
         leftHandRenderer = GameManager.instance.leftHandRenderer;
         bloodEffect = GameManager.instance.bloodEffect;
         plasteredHandMaterial = GameManager.instance.plasteredHandMaterial;
+        plasterCollider = GetComponent<BoxCollider>();
+        plasterCollider.enabled = false;
     }
 
     private void Awake()
@@ -88,6 +91,7 @@ public class PlasterHealer : MonoBehaviour
         // Force grab with right hand only
         var grabInteractable = plaster.GetComponent<GrabInteractable>();
         GameManager.instance.grabInteractors[1].ForceSelect(grabInteractable);
+        plasterCollider.enabled = true;
 
     }
 }

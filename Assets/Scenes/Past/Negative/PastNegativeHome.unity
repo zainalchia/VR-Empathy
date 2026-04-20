@@ -958,6 +958,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
       propertyPath: nextTeleporter
       value: 
       objectReference: {fileID: 1002358823}
@@ -1797,6 +1802,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -9224,6 +9234,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Name
@@ -9252,7 +9267,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1002358821}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
@@ -10075,7 +10090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1131735782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10752,8 +10767,6 @@ MonoBehaviour:
   - rid: 154194754885124097
   - rid: 154194754885124126
   - rid: 154194754885124119
-  - rid: 5361627003736293394
-  - rid: 154194754885124123
   - rid: 154194754885124099
   - rid: 154194754885124107
   - rid: 154194754885124131
@@ -11231,14 +11244,6 @@ MonoBehaviour:
         type: 6
         gameObject: {fileID: 146886849}
         active: 1
-    - rid: 154194754885124123
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for player to get to last teleport point
-        type: 7
-        gameObjects:
-        - {fileID: 2087483480}
-        active: 0
     - rid: 154194754885124126
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -11423,14 +11428,6 @@ MonoBehaviour:
         outlineItem: 1
         itemStaysGrabbed: 1
         forceEnableGrabbable: 1
-    - rid: 5361627003736293394
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for first tp
-        type: 7
-        gameObjects:
-        - {fileID: 146886849}
-        active: 1
     - rid: 6500772572562194435
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -12971,7 +12968,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1334261413
 Transform:
   m_ObjectHideFlags: 0
@@ -24048,6 +24045,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Name
@@ -24069,20 +24071,14 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2087483478}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2087483480 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
-    type: 3}
-  m_PrefabInstance: {fileID: 2087483478}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &2087483481 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
     type: 3}
   m_PrefabInstance: {fileID: 2087483478}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2087483480}
-  m_Enabled: 0
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
