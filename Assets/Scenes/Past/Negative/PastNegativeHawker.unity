@@ -19275,8 +19275,8 @@ MonoBehaviour:
   refreshEditor: 0
   events:
   - rid: 154194936214323201
-  - rid: 3631777410367094791
   - rid: 75970898493964292
+  - rid: 75971211654856723
   - rid: 75970898493964294
   - rid: 154194936214323203
   - rid: 3631777410367094794
@@ -19490,6 +19490,18 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+            - m_Target: {fileID: 456077262}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
     - rid: 75971075682336770
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -19670,6 +19682,26 @@ MonoBehaviour:
                 m_StringArgument: Idle
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 75971211654856723
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Customer shake head
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 38531087}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: SheakHead
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 154194936214323201
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -19724,26 +19756,6 @@ MonoBehaviour:
                 m_FloatArgument: 0
                 m_StringArgument: 
                 m_BoolArgument: 1
-              m_CallState: 2
-    - rid: 3631777410367094791
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Boss shaking head
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 73526721}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: Play
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: ShackHead
-                m_BoolArgument: 0
               m_CallState: 2
     - rid: 3631777410367094794
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
