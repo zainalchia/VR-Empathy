@@ -2,6 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 using TMPro;
+using System.Runtime.CompilerServices;
 
 public class SurveyController : MonoBehaviour
 {
@@ -14,7 +15,17 @@ public class SurveyController : MonoBehaviour
         public SurveyQnType surveyQnType;
         public string[] choices;
     }
+
+    [Serializable]
+    private class SurveyAns
+    {
+        public string timestamp;
+        public int age;
+        public string[] answers;
+    }
+
     [SerializeField] private SurveyQn[] surveyQns;
+    private SurveyAns surveyAns = new SurveyAns();
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private GameObject mcqGO;
     [SerializeField] private GameObject trueFalseGO;
@@ -81,7 +92,7 @@ public class SurveyController : MonoBehaviour
         if (qsNumber < surveyQns.Length - 1 && surveyQns[qsNumber + 1] != null)        
             nextButton.SetActive(true); 
         else
-            submitButton.SetActive(true); 
+            submitButton.SetActive(true);        
     }
 
     public void PressNext()
@@ -98,10 +109,21 @@ public class SurveyController : MonoBehaviour
 
     public void PressSubmit()
     {
-        
+        // used for testing purpose. put everything into one line and output to screen
+        surveyAns.timestamp = DateTime.Now.ToString();
+        surveyAns.age = 18;
+        string outputString = surveyAns.timestamp + "," + surveyAns.age;
+        foreach (string answer in surveyAns.answers)
+        {
+            outputString += "," + answer;
+        }
+        questionText.text = outputString;
+
+        // put everything into one line and append csv
+        AppendCSV(outputString);
     }
 
-    private void AppendCSV()
+    private void AppendCSV(string textToWrite)
     {
         try
         {
@@ -117,8 +139,8 @@ public class SurveyController : MonoBehaviour
             // StreamWriter append set to true
             using (StreamWriter sw = File.AppendText(path))
             {
-                sw.WriteLine("test");
-                Debug.Log(path);
+                sw.WriteLine("\n" + textToWrite);
+                Debug.Log("csv appended at: " + path);
             }
 
             Debug.Log("blegh2");
@@ -138,9 +160,12 @@ public class SurveyController : MonoBehaviour
         }
     }
 
-    public void SelectLevel(string levelname)
+    public void SelectAnswer(TextMeshProUGUI textObj)
     {
-        //levelSelected = levelname;
+        Debug.Log(textObj.text);
+        string selectedAnswer = textObj.text;
+        surveyAns.answers[currentQs] = selectedAnswer;
+        Debug.Log(surveyAns.answers[currentQs]);
     }
 
     public void toGenderScreen()
@@ -153,6 +178,10 @@ public class SurveyController : MonoBehaviour
     void Start()
     {
         //AppendCSV();
+
+        // declare answers array
+        surveyAns.answers = new string[surveyQns.Length];
+        
         PopulateSurveyPage(currentQs);
     }
 
