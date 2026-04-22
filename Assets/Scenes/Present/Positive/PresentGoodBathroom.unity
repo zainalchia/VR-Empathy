@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18365513, g: 0.22912003, b: 0.30506986, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2132,6 +2132,7 @@ MonoBehaviour:
     - {x: -0.61096567, y: 0.51664853, z: 0.5998294}
     - {x: -0.48327494, y: 0.589423, z: -0.64732206}
     - {x: -0.6435721, y: -0.012431982, z: -0.76528454}
+  renderers: []
 --- !u!1 &189618163
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,6 +3284,10 @@ MonoBehaviour:
   MoveToHawkerStallHotspots: []
   MoveToJobPositionHotspots: []
   MoveToTableHotspots: []
+  MoveToPastPositiveToiletDoorHotspots: []
+  MoveToPastPositiveHawkerHotspots: []
+  MoveToPastPositiveHouseHotspots: []
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -3315,6 +3320,9 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
+  MoveToPastPositiveToiletDoor: 0
+  MoveToPastPositiveHawker: 0
+  MoveToPastPositiveHouse: 0
   currentScene: 3
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
@@ -4004,6 +4012,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!1 &758137579 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 34111136647625535, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -5357,6 +5366,7 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!1001 &1092479193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5526,6 +5536,7 @@ GameObject:
   - component: {fileID: 1178772242}
   - component: {fileID: 1178772241}
   - component: {fileID: 1178772243}
+  - component: {fileID: 1178772244}
   m_Layer: 5
   m_Name: FadeScreen
   m_TagString: Untagged
@@ -5564,7 +5575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -5611,6 +5622,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1178772244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178772239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48baa1fdb776734e8f4eb969a4d3503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 0}
+  time: 0
+  opacity: 0
 --- !u!1001 &1201756595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8218,6 +8244,7 @@ MonoBehaviour:
     - {x: 0.92037475, y: -0.2924599, z: 0.2595721}
     - {x: 0.97667927, y: 0.0214521, z: 0.21362905}
     - {x: 0.9834898, y: 0.018580409, z: 0.18000722}
+  renderers: []
 --- !u!114 &1936565574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8696,6 +8723,7 @@ MonoBehaviour:
     - {x: -0.9947484, y: 0.10234987, z: 0}
     - {x: -0.7033934, y: -0.072370395, z: 0.70710695}
     - {x: -0.99474853, y: -0.10234919, z: 0}
+  renderers: []
 --- !u!1 &1976928774
 GameObject:
   m_ObjectHideFlags: 0
@@ -14272,11 +14300,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d331c4eca5bc8174589bfc551bdde2c2, type: 2}
+      objectReference: {fileID: 2100000, guid: 50050442875439148a5a56436a3eca26, type: 2}
     - target: {fileID: 2789381100868991240, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812130701070791112, guid: 416068c380b68f34a9b21aed02e67532,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 3812130701070791112, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -14357,11 +14390,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8600000, guid: 7826ab22ac7ccf546ad0dc7a6cee7634, type: 2}
+      objectReference: {fileID: 8400000, guid: 75fd2f1f0d9104140ae7cd11d9620cc0, type: 2}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: near clip plane
-      value: 0.75
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -14376,39 +14409,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7501658711325309529, guid: 416068c380b68f34a9b21aed02e67532,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2129228393}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 416068c380b68f34a9b21aed02e67532, type: 3}
---- !u!1 &2129228391 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7501658711325309529, guid: 416068c380b68f34a9b21aed02e67532,
-    type: 3}
-  m_PrefabInstance: {fileID: 2129228390}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2129228393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129228391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd8015968a8467a418c3843068de28f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHead: {fileID: 0}
-  mirrorRoot: {fileID: 0}
-  mirrorCamera: {fileID: 0}
-  maxYOffset: 0.5
-  maxZOffset: 0.5
-  minXRotation: -20
-  maxXRotation: 20
-  minYRotation: -30
-  maxYRotation: 30
 --- !u!1001 &2138493840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15888,15 +15890,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftGrabInteractor: {fileID: 308433641}
-  rightGrabInteractor: {fileID: 308433640}
   leftHandTrackingComponent: {fileID: 0}
   timeToOpenCloseFist: 0.2
   autoDropItems: 1
   dropGlassesInterval: 0.5
   dropGlassesCount: 2
-  audioSource_player: {fileID: 1726075247}
-  audioClip_sighAfterDrop: {fileID: 0}
   dropItemFX: {fileID: 1429954232896169633, guid: d67309e7f1b0a4cb5b6e68d1c27493c7,
     type: 3}
   leftHandAnchor: {fileID: 1762427431}
@@ -17099,6 +17097,7 @@ MonoBehaviour:
     - {x: 0.70666534, y: 0.08027335, z: 0.7029796}
     - {x: 0.56876177, y: 0.5944377, z: -0.5684661}
     - {x: 0.56876194, y: 0.5944379, z: 0.5684659}
+  renderers: []
 --- !u!114 &6432067307027011970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17900,6 +17899,7 @@ MonoBehaviour:
     - {x: 0, y: -0.4472135, z: 0.8944273}
     - {x: -0.31622776, y: -0.31622776, z: 0.8944272}
     - {x: -0.2705982, y: -0.6532814, z: 0.7071068}
+  renderers: []
 --- !u!114 &8032421237078485444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18134,6 +18134,7 @@ MonoBehaviour:
     - {x: 0.108844414, y: 0.23206367, z: 0.96659166}
     - {x: -0.108844414, y: 0.23206367, z: 0.96659166}
     - {x: -0.108844414, y: -0.23206367, z: 0.96659166}
+  renderers: []
 --- !u!114 &8718233878095769987
 MonoBehaviour:
   m_ObjectHideFlags: 0

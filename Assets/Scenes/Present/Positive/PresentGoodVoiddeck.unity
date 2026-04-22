@@ -2838,7 +2838,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2938,6 +2938,10 @@ MonoBehaviour:
   MoveToHawkerStallHotspots: []
   MoveToJobPositionHotspots: []
   MoveToTableHotspots: []
+  MoveToPastPositiveToiletDoorHotspots: []
+  MoveToPastPositiveHawkerHotspots: []
+  MoveToPastPositiveHouseHotspots: []
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -2982,9 +2986,12 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
-  currentScene: 0
+  MoveToPastPositiveToiletDoor: 0
+  MoveToPastPositiveHawker: 0
+  MoveToPastPositiveHouse: 0
+  currentScene: 3
   testPressTrigger: 0
-  scenarioManagerPresentGood: {fileID: 0}
+  scenarioManagerPresentGood: {fileID: 1115407455}
   scenarioManager: {fileID: 0}
 --- !u!1001 &169200027
 PrefabInstance:
@@ -14561,7 +14568,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f48261456088404b95d94e5bb864620, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CenterEyeAnchor: {fileID: 308433646}
 --- !u!4 &805715790 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9177506659151718909, guid: e347fa8fa11545448acb9c4fda8f7de8,
@@ -15706,6 +15712,7 @@ MonoBehaviour:
     - {x: 0.6325438, y: -0.7273081, z: -0.26629168}
     - {x: 0.63557565, y: -0.7273093, z: 0.2589687}
     - {x: 0.68630123, y: -0.72730654, z: -0.003966603}
+  renderers: []
 --- !u!114 &834863813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18293,6 +18300,7 @@ MonoBehaviour:
     - {x: 0.57735026, y: 0.57735026, z: -0.57735026}
     - {x: 0.57735026, y: 0.57735026, z: 0.57735026}
     - {x: 0.57735026, y: -0.57735026, z: 0.57735026}
+  renderers: []
 --- !u!65 &1017577328
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21295,15 +21303,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftGrabInteractor: {fileID: 308433641}
-  rightGrabInteractor: {fileID: 308433640}
   leftHandTrackingComponent: {fileID: 0}
   timeToOpenCloseFist: 0.2
   autoDropItems: 1
   dropGlassesInterval: 0.5
   dropGlassesCount: 2
-  audioSource_player: {fileID: 1726075247}
-  audioClip_sighAfterDrop: {fileID: 0}
   dropItemFX: {fileID: 1429954232896169633, guid: d67309e7f1b0a4cb5b6e68d1c27493c7,
     type: 3}
   leftHandAnchor: {fileID: 1762427431}
@@ -21494,7 +21498,7 @@ MonoBehaviour:
   player: {fileID: 308433642}
   lookDetection: {fileID: 1393291064}
   checkersNPCRotationTime: 2
-  firstCheckersHotspot: {fileID: 1567339333}
+  firstCheckersHotspot: {fileID: 1901481972}
   FirstEnemyCheckerPiece: {fileID: 7857889442385796004}
   SecondEnemyCheckerPiece: {fileID: 415178220}
   EnemyPieceFirstDestination: {fileID: 1899937690}
@@ -22176,7 +22180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -27061,6 +27065,7 @@ MonoBehaviour:
   precomputeOutline: 1
   bakeKeys: []
   bakeValues: []
+  renderers: []
 --- !u!65 &1543560794
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32497,7 +32502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -33979,6 +33984,11 @@ PrefabInstance:
       propertyPath: _headPoseRelativeOffsetTranslation.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4407612004520020038, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: _playerTeleport
+      value: 
+      objectReference: {fileID: 164654413}
     - target: {fileID: 5037048907636774657, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.x

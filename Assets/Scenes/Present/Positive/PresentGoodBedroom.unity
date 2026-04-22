@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1385,6 +1385,7 @@ MonoBehaviour:
     - {x: 0.36083865, y: -0.69222957, z: -0.6249909}
     - {x: 0.72167736, y: -0.69222957, z: 0}
     - {x: 0.6249909, y: -0.69222957, z: -0.36083865}
+  renderers: []
 --- !u!23 &433582228
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2429,6 +2430,7 @@ MonoBehaviour:
     - {x: 0.36083865, y: -0.69222957, z: -0.6249909}
     - {x: 0.72167736, y: -0.69222957, z: 0}
     - {x: 0.6249909, y: -0.69222957, z: -0.36083865}
+  renderers: []
 --- !u!1 &554351170
 GameObject:
   m_ObjectHideFlags: 0
@@ -3151,6 +3153,7 @@ MonoBehaviour:
     - {x: -0.00000070197297, y: -1, z: -0.00000014531584}
     - {x: -0.00000069400346, y: -1, z: 0}
     - {x: -0.0000006940035, y: -1, z: 0}
+  renderers: []
 --- !u!23 &584886501
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4287,7 +4290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -4853,6 +4856,7 @@ MonoBehaviour:
     - {x: -0.00000070197297, y: -1, z: -0.00000014531584}
     - {x: -0.00000069400346, y: -1, z: 0}
     - {x: -0.0000006940035, y: -1, z: 0}
+  renderers: []
 --- !u!23 &957486594
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5067,15 +5071,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7557a3a164fa64e48a41715461d036cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftGrabInteractor: {fileID: 308433641}
-  rightGrabInteractor: {fileID: 308433640}
   leftHandTrackingComponent: {fileID: 2081080085}
   timeToOpenCloseFist: 0.2
   autoDropItems: 0
   dropGlassesInterval: 0
   dropGlassesCount: 0
-  audioSource_player: {fileID: 1726075247}
-  audioClip_sighAfterDrop: {fileID: 0}
   dropItemFX: {fileID: 1429954232896169633, guid: d67309e7f1b0a4cb5b6e68d1c27493c7,
     type: 3}
   leftHandAnchor: {fileID: 2276772900260340215}
@@ -5516,7 +5516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: d80d9fcd309de264086fde9d328371d3, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -9360,12 +9360,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1719580649}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1726075247 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 2276772900260340213}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1728101240
 GameObject:
   m_ObjectHideFlags: 0
@@ -10015,6 +10009,10 @@ MonoBehaviour:
   MoveToHawkerStallHotspots: []
   MoveToJobPositionHotspots: []
   MoveToTableHotspots: []
+  MoveToPastPositiveToiletDoorHotspots: []
+  MoveToPastPositiveHawkerHotspots: []
+  MoveToPastPositiveHouseHotspots: []
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 2
   OnLastTeleport:
     m_PersistentCalls:
@@ -10047,6 +10045,9 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
+  MoveToPastPositiveToiletDoor: 0
+  MoveToPastPositiveHawker: 0
+  MoveToPastPositiveHouse: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
@@ -10802,6 +10803,7 @@ MonoBehaviour:
     - {x: 0.36083865, y: -0.69222957, z: -0.6249909}
     - {x: 0.72167736, y: -0.69222957, z: 0}
     - {x: 0.6249909, y: -0.69222957, z: -0.36083865}
+  renderers: []
 --- !u!1 &1966430223
 GameObject:
   m_ObjectHideFlags: 0
@@ -14611,6 +14613,7 @@ MonoBehaviour:
     - {x: 0, y: 0, z: 1}
     - {x: 0.51214015, y: 0.5121297, z: 0.68951833}
     - {x: 0, y: 0, z: 1}
+  renderers: []
 --- !u!23 &7416691524095962651
 MeshRenderer:
   m_ObjectHideFlags: 0

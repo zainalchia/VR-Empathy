@@ -353,6 +353,10 @@ public class GameManager : MonoBehaviour
         {
             angle = Vector3.SignedAngle(flat, Vector3.back, Vector3.up);
         }
+        else if (SceneManager.GetActiveScene().name == "PresentGoodLivingRoom" || SceneManager.GetActiveScene().name == "PresentBadLivingRoom")
+        {
+            angle = Vector3.SignedAngle(flat, Vector3.left, Vector3.up);
+        }
         else
         {
             angle = Vector3.SignedAngle(flat, Vector3.forward, Vector3.up);
