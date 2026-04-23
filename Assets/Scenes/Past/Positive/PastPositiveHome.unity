@@ -1999,7 +1999,7 @@ PrefabInstance:
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -2040,7 +2040,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 136287517}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136287518}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
@@ -2106,7 +2106,7 @@ PrefabInstance:
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -3638,7 +3638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &296962440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3646,7 +3646,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296962439}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aa8b20fed8ae9d4eac39c682473cb1c, type: 3}
   m_Name: 
@@ -5651,7 +5651,7 @@ PrefabInstance:
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -12128,9 +12128,13 @@ MonoBehaviour:
   - rid: 3636061403108868119
   - rid: 6600812871027785738
   - rid: 154195071710789642
+  - rid: 5361627003736293392
+  - rid: 154195071710789646
   - rid: 154195071710789648
   - rid: 354177140404781057
   - rid: 154195071710789663
+  - rid: 6600812871027785738
+  - rid: 154195071710789665
   - rid: 154195071710789667
   - rid: 154195071710789659
   - rid: 154195071710789650
@@ -12396,6 +12400,14 @@ MonoBehaviour:
         type: 6
         gameObject: {fileID: 146886849}
         active: 1
+    - rid: 154195071710789646
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to be at last teleport
+        type: 7
+        gameObjects:
+        - {fileID: 2087483480}
+        active: 0
     - rid: 154195071710789648
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
@@ -12501,12 +12513,21 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 1
               m_CallState: 2
+    - rid: 154195071710789665
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for last tp to activate
+        type: 7
+        gameObjects:
+        - {fileID: 136287518}
+        active: 1
     - rid: 154195071710789667
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
         name: Wait for last tp to deactivate
         type: 7
-        gameObject: {fileID: 136287518}
+        gameObjects:
+        - {fileID: 136287518}
         active: 0
     - rid: 154195071710789671
       type: {class: SequenceManager/SEvent_WaitForDistance, ns: , asm: Assembly-CSharp}
@@ -12695,6 +12716,14 @@ MonoBehaviour:
         name: go back to main menu
         type: 13
         sceneName: MainMenu
+    - rid: 5361627003736293392
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for first tp
+        type: 7
+        gameObjects:
+        - {fileID: 146886849}
+        active: 1
     - rid: 6600812871027785731
       type: {class: SequenceManager/SEvent_ChangeMaterialTexture, ns: , asm: Assembly-CSharp}
       data:
@@ -12718,7 +12747,19 @@ MonoBehaviour:
         type: 12
         unityEvent:
           m_PersistentCalls:
-            m_Calls: []
+            m_Calls:
+            - m_Target: {fileID: 296962440}
+              m_TargetAssemblyTypeName: PlayerTeleport, Assembly-CSharp
+              m_MethodName: SetCheckToTrue
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 9222562903833444352
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -12740,7 +12781,8 @@ MonoBehaviour:
       data:
         name: Wait for tissue to be used
         type: 7
-        gameObject: {fileID: 361904549}
+        gameObjects:
+        - {fileID: 361904549}
         active: 0
     - rid: 9222562903833444359
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
@@ -26203,7 +26245,7 @@ PrefabInstance:
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -26239,7 +26281,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2087483478}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087483480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 

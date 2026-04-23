@@ -1,3 +1,5 @@
+using Oculus.Interaction;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +12,14 @@ public class PlateCollision : MonoBehaviour
     [SerializeField] private List<GameObject> shardObjects;
 
     private bool hasImpacted = false;
+    private bool plateHitGround;
+
+    public Transform PlateSpawnPoint;   // where plate appears
+    public Transform PlateTargetPoint;  // where the plate flies toward
+
+    [SerializeField] float plateSpeed = 10f;             // how fast it flies
+    [SerializeField] Transform bossTransform;
+    [SerializeField] Transform playerTransform;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -46,15 +56,49 @@ public class PlateCollision : MonoBehaviour
                 }
             }
 
-            // Notify scenario manager
-            ScenarioManagerReneeTest manager = FindObjectOfType<ScenarioManagerReneeTest>();
-            if (manager != null)
-            {
-                manager.PlateImpact();
-            }
+            plateHitGround = true;
 
             // Remove plate
             Destroy(gameObject);
         }
+    }
+
+    public void PlateThrown()
+    {
+        StartCoroutine(ThrowPlate());
+    }
+
+    public IEnumerator ThrowPlate()
+    {
+        //yield return new WaitForSeconds(0.5f);
+
+        gameObject.transform.rotation = Quaternion.identity;
+        gameObject.transform.SetParent(null);
+
+
+        gameObject.layer = LayerMask.NameToLayer("Plate");
+
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = false;
+        rb.useGravity = true;
+
+        plateHitGround = false;
+
+        Vector3 direction = (PlateTargetPoint.position - PlateSpawnPoint.position).normalized;
+
+        while (gameObject != null && !plateHitGround)
+        {
+            rb.velocity = direction * plateSpeed;
+            yield return null;
+        }
+
+    }
+
+    public void BossLookAt()
+    {
+        Transform playerrotate = playerTransform;
+        bossTransform.LookAt(playerrotate);
     }
 }

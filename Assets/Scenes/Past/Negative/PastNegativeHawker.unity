@@ -677,6 +677,12 @@ PrefabInstance:
       addedObject: {fileID: 854279510}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 991299c2bf12d6a469207a871a5b85b8, type: 3}
+--- !u!95 &38531087 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 991299c2bf12d6a469207a871a5b85b8,
+    type: 3}
+  m_PrefabInstance: {fileID: 38531086}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &48503515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1048,6 +1054,7 @@ GameObject:
   - component: {fileID: 59322011}
   - component: {fileID: 59322010}
   - component: {fileID: 59322009}
+  - component: {fileID: 59322012}
   m_Layer: 0
   m_Name: Cutline3
   m_TagString: MeatPiece
@@ -1141,6 +1148,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 59322007}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &59322012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59322007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1001 &73526719
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1290,6 +1326,12 @@ PrefabInstance:
 --- !u!1 &73526720 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9b4c799885109904db9e1c13c4aba49c,
+    type: 3}
+  m_PrefabInstance: {fileID: 73526719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &73526721 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 9b4c799885109904db9e1c13c4aba49c,
     type: 3}
   m_PrefabInstance: {fileID: 73526719}
   m_PrefabAsset: {fileID: 0}
@@ -1551,37 +1593,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DroppedFood: {fileID: 757077370}
-  WhileCleaning:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1201703111}
-        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
-        m_MethodName: PlayCustomerDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  FinishCleaning:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1201703111}
-        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
-        m_MethodName: PlayFinishedCleaning
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   customerDialogueDuration: 6
+  customerAudioSource: {fileID: 854279512}
+  customerAudioClip: {fileID: 8300000, guid: 52ac2487aef089241b0cad75418e5f1c, type: 3}
 --- !u!54 &88598922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2124,6 +2138,7 @@ GameObject:
   - component: {fileID: 125062101}
   - component: {fileID: 125062100}
   - component: {fileID: 125062099}
+  - component: {fileID: 125062102}
   m_Layer: 0
   m_Name: Cutline4
   m_TagString: MeatPiece
@@ -2217,6 +2232,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 125062097}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &125062102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125062097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1 &140407412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2334,6 +2378,7 @@ GameObject:
   - component: {fileID: 142253727}
   - component: {fileID: 142253726}
   - component: {fileID: 142253725}
+  - component: {fileID: 142253728}
   m_Layer: 0
   m_Name: Cutline2
   m_TagString: MeatPiece
@@ -2427,6 +2472,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 142253723}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &142253728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 142253723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1001 &161691205
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3468,7 +3542,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1424815986}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4797532070032361971, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
@@ -3488,17 +3562,17 @@ PrefabInstance:
     - target: {fileID: 4797532070032361971, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.816
       objectReference: {fileID: 0}
     - target: {fileID: 4797532070032361971, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.682
       objectReference: {fileID: 0}
     - target: {fileID: 4797532070032361971, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.456
       objectReference: {fileID: 0}
     - target: {fileID: 4797532070032361971, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
@@ -3542,6 +3616,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
+      propertyPath: bossTransform
+      value: 
+      objectReference: {fileID: 73526725}
+    - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
+        type: 3}
+      propertyPath: PlateSpawnPoint
+      value: 
+      objectReference: {fileID: 1645267160}
+    - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
+        type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1272374763}
+    - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
+        type: 3}
+      propertyPath: PlateTargetPoint
+      value: 
+      objectReference: {fileID: 658150352}
+    - target: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
+        type: 3}
       propertyPath: shardObjects.Array.data[0]
       value: 
       objectReference: {fileID: 795031910}
@@ -3578,12 +3672,16 @@ PrefabInstance:
     - target: {fileID: 9185946030455120500, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9185946030455120500, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 253476755}
   m_SourcePrefab: {fileID: 100100000, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7, type: 3}
 --- !u!1 &253476748 stripped
 GameObject:
@@ -3591,12 +3689,39 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 253476747}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &253476749 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4797532070032361971, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
+--- !u!114 &253476750 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5751932612560169502, guid: ce8ba3f2d1c156e40a3d4028bd53d9b7,
     type: 3}
   m_PrefabInstance: {fileID: 253476747}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253476748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8658b570c23b7b4ea7bdcef5330136b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &253476755
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253476748}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.006, y: 0.006, z: 0.0004}
+  m_Center: {x: 0, y: 0, z: 0.0002}
 --- !u!4 &256622077 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16130432a28c2d44cb56a165e869fb42,
@@ -5495,6 +5620,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 0}
@@ -5637,7 +5767,11 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 491047299}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5733402971437742045, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 355501373}
   m_SourcePrefab: {fileID: 100100000, guid: c5446b5edb5620e4ebda8642f07f0a96, type: 3}
 --- !u!114 &355501368 stripped
 MonoBehaviour:
@@ -5669,6 +5803,33 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 355501367}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &355501372 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 741469665503868245, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 355501367}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355501369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &355501373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355501369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48baa1fdb776734e8f4eb969a4d3503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 355501372}
+  time: 1
+  opacity: 0
 --- !u!114 &355501376 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
@@ -7299,7 +7460,7 @@ PrefabInstance:
     - target: {fileID: -7029948723529949830, guid: 2f91ad38728316c4d85a9b081b740016,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -4292154010595695564, guid: 2f91ad38728316c4d85a9b081b740016,
         type: 3}
@@ -7360,6 +7521,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: cash note
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 2f91ad38728316c4d85a9b081b740016,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8124,7 +8290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f38762a182ba445ab16b573bb0d71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  promptManager: {fileID: 1874118775}
   sceneID: 1
   cashSFX: {fileID: 8300000, guid: 5e241f4ca087ef941a432fe9c0473bc1, type: 3}
   registerSlotCollider: {fileID: 1340403987}
@@ -8300,10 +8465,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 479391322}
-  - component: {fileID: 479391323}
-  - component: {fileID: 479391327}
   - component: {fileID: 479391325}
   - component: {fileID: 479391326}
+  - component: {fileID: 479391328}
+  - component: {fileID: 479391329}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -8328,35 +8493,6 @@ Transform:
   - {fileID: 1965108566}
   m_Father: {fileID: 1376757961}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &479391323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 479391321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7016e3ed6335887478920138ad342ede, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  chickenMesh: {fileID: 1965108567}
-  blendShapeIndices: 000000000100000002000000030000000400000005000000
-  blendLerpTime: 1
-  cutLines:
-  - {fileID: 2063717290}
-  - {fileID: 142253723}
-  - {fileID: 59322007}
-  - {fileID: 125062097}
-  - {fileID: 942255242}
-  - {fileID: 1654079645}
-  uiManager: {fileID: 998075450}
-  handRenderer: {fileID: 21536826}
-  normalHandMaterial: {fileID: 2100000, guid: eece8e965ed381d41997e3fcee592b0a, type: 2}
-  bleedingHandMaterial: {fileID: 2100000, guid: 9e7db9bb6e609f448bd850ed8eca81c0,
-    type: 2}
-  sfxSource: {fileID: 479391326}
-  choppingClip: {fileID: 8300000, guid: d6f8045ae26f753499e48f216c606243, type: 3}
 --- !u!65 &479391325
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8372,7 +8508,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -8474,7 +8610,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &479391327
+--- !u!114 &479391328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 479391321}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 564076856ec3ce8478ecefe4587f8f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  chickenMesh: {fileID: 1965108567}
+  blendShapeIndices: 000000000100000002000000030000000400000005000000
+  blendLerpTime: 1
+  cutLines:
+  - {fileID: 2063717290}
+  - {fileID: 142253723}
+  - {fileID: 59322007}
+  - {fileID: 125062097}
+  - {fileID: 942255242}
+  - {fileID: 1654079645}
+  chopCooldown: 1
+  grabInteractable: {fileID: 1130414781}
+  forceStayGrabbed: {fileID: 1130414782}
+  currentCutIndex: 0
+--- !u!114 &479391329
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8483,10 +8645,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 479391321}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 993938357fb253f429c307a5480f452e, type: 3}
+  m_Script: {fileID: 11500000, guid: e6000c416366a2546938dd781d0e1061, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chopManager: {fileID: 479391323}
+  chopper: {fileID: 479391328}
 --- !u!1 &491047297
 GameObject:
   m_ObjectHideFlags: 0
@@ -8503,7 +8665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &491047298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8519,7 +8681,7 @@ MonoBehaviour:
   m_IsGlobal: 1
   priority: 0
   blendDistance: 0
-  weight: 0.75
+  weight: 0.5
   sharedProfile: {fileID: 11400000, guid: ada010128838c0f4e815e12cd82e82d9, type: 2}
 --- !u!4 &491047299
 Transform:
@@ -8984,7 +9146,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 533358068}
   m_SourcePrefab: {fileID: 100100000, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
 --- !u!4 &533358066 stripped
 Transform:
@@ -8998,6 +9164,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 533358065}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &533358068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533358067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextTeleporter: {fileID: 0}
+  smallScale: {x: 0, y: 0, z: 0}
+  largeScale: {x: 0, y: 0, z: 0}
+  viewRadius: 90
 --- !u!4 &535315627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6550804457596160997, guid: c2ff9a62d0009a64a81cc1a4bba59fd5,
@@ -10100,6 +10282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a98c400f5853a84c89b050a4bd1fb3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DroppedFood: {fileID: 757077370}
 --- !u!1 &620550092
 GameObject:
   m_ObjectHideFlags: 0
@@ -11528,7 +11711,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1949589124}
   m_SourcePrefab: {fileID: 100100000, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
 --- !u!4 &700951749 stripped
 Transform:
@@ -11780,6 +11967,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 704027392}
+    - targetCorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 704027393}
   m_SourcePrefab: {fileID: 100100000, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
 --- !u!4 &704027390 stripped
 Transform:
@@ -11808,6 +11999,22 @@ MonoBehaviour:
   nextTeleporter: {fileID: 0}
   smallScale: {x: 0.5, y: 0.5, z: 0.5}
   largeScale: {x: 1, y: 1, z: 1}
+  viewRadius: 90
+--- !u!114 &704027393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 704027391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextTeleporter: {fileID: 0}
+  smallScale: {x: 0, y: 0, z: 0}
+  largeScale: {x: 0, y: 0, z: 0}
   viewRadius: 90
 --- !u!1 &705087488
 GameObject:
@@ -13706,7 +13913,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f976f0588ec004697d75a58386a675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chopManager: {fileID: 479391323}
+  chopManager: {fileID: 0}
 --- !u!65 &791924687
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15371,6 +15578,7 @@ GameObject:
   - component: {fileID: 942255246}
   - component: {fileID: 942255245}
   - component: {fileID: 942255244}
+  - component: {fileID: 942255247}
   m_Layer: 0
   m_Name: Cutline5
   m_TagString: MeatPiece
@@ -15464,6 +15672,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 942255242}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &942255247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942255242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1001 &942491380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17823,12 +18060,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148138377190}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 08fcfb4e5ef49564a80026e19d775c62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chopManager: {fileID: 479391323}
+  chopManager: {fileID: 0}
   forceStayGrabbed: {fileID: 0}
   chopper: {fileID: 919132148138377190}
 --- !u!1001 &1133758375
@@ -18039,7 +18276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1157555227
 Transform:
   m_ObjectHideFlags: 0
@@ -18062,7 +18299,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157555226}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5aa8b20fed8ae9d4eac39c682473cb1c, type: 3}
   m_Name: 
@@ -18086,6 +18323,10 @@ MonoBehaviour:
   - {fileID: 1761344548}
   - {fileID: 572046754}
   - {fileID: 172641226}
+  MoveToPastPositiveToiletDoorHotspots: []
+  MoveToPastPositiveHawkerHotspots: []
+  MoveToPastPositiveHouseHotspots: []
+  MoveToDiningTableHotspots: []
   defaultTimeBeforeNextMove: 1
   OnLastTeleport:
     m_PersistentCalls:
@@ -18142,6 +18383,9 @@ MonoBehaviour:
   DropFood: 0
   GoToFirstAid: 0
   GoToTray: 0
+  MoveToPastPositiveToiletDoor: 0
+  MoveToPastPositiveHawker: 0
+  MoveToPastPositiveHouse: 0
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
@@ -18773,6 +19017,7 @@ GameObject:
   - component: {fileID: 1201703110}
   - component: {fileID: 1201703111}
   - component: {fileID: 1201703112}
+  - component: {fileID: 1201703113}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -18792,8 +19037,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scenarioID: 3
-  sceneID: 0
+  scenarioID: 0
+  sceneID: 1
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 1576574053}
@@ -18903,7 +19148,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201703106}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37a84bb9d8a013045a4b0914bc772141, type: 3}
   m_Name: 
@@ -19005,7 +19250,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201703106}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
   m_Name: 
@@ -19015,6 +19260,856 @@ MonoBehaviour:
   scenarioManagerPresentBad: {fileID: 0}
   scenarioManagerPresentGood: {fileID: 0}
   scenarioManagerReneeTest: {fileID: 1201703111}
+--- !u!114 &1201703113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201703106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acdd4dbf41d0895469e29609f2081811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refreshEditor: 0
+  events:
+  - rid: 154194936214323201
+  - rid: 75970898493964292
+  - rid: 75971211654856723
+  - rid: 75970898493964294
+  - rid: 154194936214323203
+  - rid: 3631777410367094794
+  - rid: 3783327526191104003
+  - rid: 75971211654856719
+  - rid: 154194936214323210
+  - rid: 3636061291123572737
+  - rid: 154194936214323212
+  - rid: 75971099741913096
+  - rid: 75970898493964298
+  - rid: 3783327436181078024
+  - rid: 4897765866541416451
+  - rid: 3636061403108868104
+  - rid: 154194936214323216
+  - rid: 75971099741913097
+  - rid: 75970963517210631
+  - rid: 75971075682336770
+  - rid: 75971099741913098
+  - rid: 75970963517210633
+  - rid: 3636061378538110976
+  - rid: 75971211654856714
+  - rid: 75970963517210635
+  - rid: 75971099741913093
+  - rid: 75970917543444487
+  - rid: 75970917543444490
+  - rid: 75970917543444492
+  - rid: 4498990571523145732
+  - rid: 75970917543444494
+  - rid: 75971099741913100
+  - rid: 5361626918747373572
+  - rid: 75971099741913103
+  - rid: 75971099741913104
+  - rid: 5361626918747373570
+  - rid: 75971104161136645
+  - rid: 75971104161136643
+  - rid: 6176682073276809237
+  - rid: 75971099741913110
+  - rid: 75971099741913112
+  - rid: 3636061403108868108
+  - rid: 4498990571523145734
+  - rid: 75971099741913114
+  - rid: 5361626925535330306
+  - rid: 5361627003736293381
+  - rid: 75971104161136641
+  - rid: 75971211654856717
+  - rid: 5361626994218631173
+  - rid: 5361626994218631169
+  - rid: 5361627003736293383
+  - rid: 5361626994218631175
+  - rid: 5361627003736293385
+  - rid: 5361627003736293377
+  - rid: 5361627003736293379
+  - rid: 5361627003736293398
+  - rid: 6176682073276809230
+  - rid: 5361627003736293387
+  - rid: 5361627003736293388
+  - rid: 5361627003736293390
+  - rid: 3783327526191104011
+  - rid: 7202277470793891841
+  - rid: 3636061403108868117
+  - rid: 3783327526191104015
+  - rid: 6176682073276809244
+  references:
+    version: 2
+    RefIds:
+    - rid: 75970898493964292
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Customer scolding you
+        type: 5
+        audioSource: {fileID: 854279512}
+        audioClip: {fileID: 8300000, guid: 59ab5d8963138aa4ca307916cd8837c9, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 59ab5d8963138aa4ca307916cd8837c9, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75970898493964294
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Player apologise
+        type: 5
+        audioSource: {fileID: 204506546}
+        audioClip: {fileID: 8300000, guid: 11042bbd4bce52f4a8625b03bd3a25e2, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 983b0a2c8b18f3e42abce05d4005fe71, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75970898493964298
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable teleport
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1949589123}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 75970917543444487
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Player got hurt
+        type: 5
+        audioSource: {fileID: 204506546}
+        audioClip: {fileID: 8300000, guid: 58d02ae931cf5c442995cee5fb49c27e, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 9b3293c36c99ce64296983f879712792, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75970917543444490
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Boss scolding player for cutting himself
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: e240ad4cfff4c964f9518c23e28a25c2, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: e240ad4cfff4c964f9518c23e28a25c2, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75970917543444492
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Grab plaster prompt
+        type: 1
+        text: '[Take a plaster from the first aid box and wrap it around your injured
+          finger.]'
+        duration: 6
+    - rid: 75970917543444494
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable teleport
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 533358068}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 75970963517210631
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Second meat cut
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 998075450}
+              m_TargetAssemblyTypeName: HeartbeatUI, Assembly-CSharp
+              m_MethodName: StartRed
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75970963517210633
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Third meat cut
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 998075450}
+              m_TargetAssemblyTypeName: HeartbeatUI, Assembly-CSharp
+              m_MethodName: StartDeepRed
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75970963517210635
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Last piece cut
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 998075450}
+              m_TargetAssemblyTypeName: HeartbeatUI, Assembly-CSharp
+              m_MethodName: KnifeAccidentFlash
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 456077262}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 75971075682336770
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Customer complaining to hurry up
+        type: 5
+        audioSource: {fileID: 854279512}
+        audioClip: {fileID: 8300000, guid: 4dd3baa81f65e464481d4c6a2441c257, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 4dd3baa81f65e464481d4c6a2441c257, type: 3}
+        waitForEnd: 0
+        loop: 0
+    - rid: 75971099741913093
+      type: {class: SequenceManager/SEvent_ChangeMaterial, ns: , asm: Assembly-CSharp}
+      data:
+        name: Player hand injured
+        type: 16
+        currentMaterial: {fileID: 21536826}
+        newMaterial: {fileID: 2100000, guid: 9e7db9bb6e609f448bd850ed8eca81c0, type: 2}
+    - rid: 75971099741913096
+      type: {class: SequenceManager/SEvent_SetPosition, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set boss position
+        type: 19
+        target: {fileID: 73526720}
+        PositionSetTo: {fileID: 2002045218}
+    - rid: 75971099741913097
+      type: {class: SequenceManager/SEvent_WaitForTargetPiece, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for second meat to be cut
+        type: 18
+        chickenChopper: {fileID: 479391328}
+        targetPiece: 2
+    - rid: 75971099741913098
+      type: {class: SequenceManager/SEvent_WaitForTargetPiece, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for third meat cut
+        type: 18
+        chickenChopper: {fileID: 479391328}
+        targetPiece: 3
+    - rid: 75971099741913100
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Make container grabbable
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 4163876324062302918}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 75971099741913103
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Trigger lid animation
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 6839807958188523297}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: lidPopTrigger
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971099741913104
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Delay
+        type: 2
+        waitTime: 0.5
+    - rid: 75971099741913110
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Boss prepared food for the player
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: 0f59ce4944253b248bc61a22898ca8ad, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 0f59ce4944253b248bc61a22898ca8ad, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75971099741913112
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable teleport
+        type: 6
+        gameObject: {fileID: 704027391}
+        active: 1
+    - rid: 75971099741913114
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Give customer tray prompt
+        type: 1
+        text: '[Pick up the tray and hand it to the customer.]'
+        duration: 2
+    - rid: 75971104161136641
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Boss scolds player for dropping food
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: 25231e791bda17c4199cd11eb847671e, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 25231e791bda17c4199cd11eb847671e, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75971104161136643
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for plaster to be placed on hand
+        type: 7
+        gameObjects:
+        - {fileID: 1355832383}
+        active: 0
+    - rid: 75971104161136645
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set plaster to active
+        type: 6
+        gameObject: {fileID: 1355832383}
+        active: 1
+    - rid: 75971211654856714
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set chopper to inactive
+        type: 6
+        gameObject: {fileID: 919132148138377190}
+        active: 0
+    - rid: 75971211654856717
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Boss looks at player
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 253476750}
+              m_TargetAssemblyTypeName: PlateCollision, Assembly-CSharp
+              m_MethodName: BossLookAt
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971211654856719
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Woman idle
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 38531087}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Idle
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971211654856723
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Customer shake head
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 38531087}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: SheakHead
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 154194936214323201
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Boss scolds you'
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: 45f49d3332a13464eb891cb2ee696e90, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 45f49d3332a13464eb891cb2ee696e90, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 154194936214323203
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Customer Orders'
+        type: 5
+        audioSource: {fileID: 854279512}
+        audioClip: {fileID: 8300000, guid: 2b4c8b5757422434880363994504ca91, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 2b4c8b5757422434880363994504ca91, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 154194936214323210
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable Cash
+        type: 6
+        gameObject: {fileID: 465085310}
+        active: 1
+    - rid: 154194936214323212
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for cash to be put into register
+        type: 7
+        gameObjects:
+        - {fileID: 465085310}
+        active: 0
+    - rid: 154194936214323216
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Start Chopping Chicken
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 479391328}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 3631777410367094794
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Women pay cash
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 38531087}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: HandOverMoney
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 3636061291123572737
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Prompt player to move cash
+        type: 1
+        text: Take the cash and put it into the cash register.
+        duration: 3
+    - rid: 3636061378538110976
+      type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for hand injured
+        type: 4
+        interactable: {fileID: 1130414781}
+    - rid: 3636061403108868104
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Cleaver Prompt
+        type: 1
+        text: You now have a knife in your right hand. Hold the chicken with your
+          left hand and chop with your right hand.
+        duration: 5
+    - rid: 3636061403108868108
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Tray Prompt
+        type: 1
+        text: Carry the tray to the customer.
+        duration: 3
+    - rid: 3636061403108868117
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade out
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 355501373}
+              m_TargetAssemblyTypeName: UIImageFader, Assembly-CSharp
+              m_MethodName: Activate
+              m_Mode: 4
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 1
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 3783327436181078024
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Prompt to grab the knife
+        type: 1
+        text: Grab the knife with your right hand.
+        duration: 5
+    - rid: 3783327526191104003
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait
+        type: 2
+        waitTime: 1
+    - rid: 3783327526191104011
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait
+        type: 2
+        waitTime: 2
+    - rid: 3783327526191104015
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait
+        type: 2
+        waitTime: 2
+    - rid: 4498990571523145732
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Enable Plaster Teleport
+        type: 6
+        gameObject: {fileID: 533358067}
+        active: 1
+    - rid: 4498990571523145734
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for tray pickup
+        type: 3
+        interactable: {fileID: 620099838}
+        outlineItem: 0
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 4897765866541416451
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Highlight and wait for knife pickup
+        type: 3
+        interactable: {fileID: 1130414781}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 5361626918747373570
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Move lid to table
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 6839807958188523298}
+              m_TargetAssemblyTypeName: LidMover, Assembly-CSharp
+              m_MethodName: MoveToTable
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: PopOff
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 5361626918747373572
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for lid grab
+        type: 3
+        interactable: {fileID: 4163876324062302917}
+        outlineItem: 1
+        itemStaysGrabbed: 0
+        forceEnableGrabbable: 0
+    - rid: 5361626925535330306
+      type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to drop tray
+        type: 4
+        interactable: {fileID: 620099838}
+    - rid: 5361626994218631169
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Boss throws plate
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 73526721}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: ThrowingPlate
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 5361626994218631173
+      type: {class: SequenceManager/SEvent_SetPosition, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set plate position
+        type: 19
+        target: {fileID: 253476748}
+        PositionSetTo: {fileID: 1645267159}
+    - rid: 5361626994218631175
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set plate to active
+        type: 6
+        gameObject: {fileID: 253476748}
+        active: 1
+    - rid: 5361627003736293377
+      type: {class: SequenceManager/SEvent_WaitGameObjectDestroy, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for plate to be destroyed
+        type: 21
+        gameObject: {fileID: 253476748}
+    - rid: 5361627003736293379
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Clean this mess stupid
+        type: 5
+        audioSource: {fileID: 835883772}
+        audioClip: {fileID: 8300000, guid: d3159b908da463d46b481c47861f0d54, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: d3159b908da463d46b481c47861f0d54, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 5361627003736293381
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Delay for tray to drop to floor
+        type: 2
+        waitTime: 1
+    - rid: 5361627003736293383
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Throw plate delay
+        type: 2
+        waitTime: 0.5
+    - rid: 5361627003736293385
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Throw plate
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 253476750}
+              m_TargetAssemblyTypeName: PlateCollision, Assembly-CSharp
+              m_MethodName: PlateThrown
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 5361627003736293387
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for mess to be cleared
+        type: 7
+        gameObjects:
+        - {fileID: 1759321218}
+        - {fileID: 1581491766}
+        - {fileID: 649078398}
+        - {fileID: 1324788172}
+        - {fileID: 795031910}
+        - {fileID: 2428520658873026480}
+        - {fileID: 512669118996839767}
+        - {fileID: 3042180029197949449}
+        - {fileID: 822167681207551715}
+        - {fileID: 7321331079683404518}
+        active: 0
+    - rid: 5361627003736293388
+      type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Drop cloth
+        type: 9
+        interactable: {fileID: 88598917}
+    - rid: 5361627003736293390
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set cloth to inactive
+        type: 6
+        gameObject: {fileID: 88598914}
+        active: 0
+    - rid: 5361627003736293398
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Use cloth prompt
+        type: 1
+        text: '[Take the cloth and clean up the mess on the floor.]'
+        duration: 3
+    - rid: 6176682073276809230
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to grab cloth
+        type: 3
+        interactable: {fileID: 88598917}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 6176682073276809237
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Swap chicken for plate & mess
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 479391321}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 620099835}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 780974856}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 620099845}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 6176682073276809244
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: Next scene
+        type: 13
+        sceneName: PastNegativeHome
+    - rid: 7202277470793891841
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Audio] Player thinks to himself'
+        type: 5
+        audioSource: {fileID: 204506546}
+        audioClip: {fileID: 8300000, guid: 3706a0e3d5b23cf41836b632342b7e66, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: be6407eea3f8b2c4da8b2511b14ad9d0, type: 3}
+        waitForEnd: 1
+        loop: 0
 --- !u!1001 &1202423591
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19146,7 +20241,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1202423594}
   m_SourcePrefab: {fileID: 100100000, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
 --- !u!4 &1202423592 stripped
 Transform:
@@ -19160,6 +20259,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1202423591}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1202423594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1202423593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextTeleporter: {fileID: 0}
+  smallScale: {x: 0, y: 0, z: 0}
+  largeScale: {x: 0, y: 0, z: 0}
+  viewRadius: 90
 --- !u!1001 &1204455676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20552,6 +21667,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffd6c05ac733ba2438bac8373b6d5250,
     type: 3}
   m_PrefabInstance: {fileID: 1655147172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1272374763 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 1576574047}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1279145266
 PrefabInstance:
@@ -27273,6 +28394,85 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354256052}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1355832382
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.231
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.364
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.27736685
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 593875219573890907, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302020819398177655, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_Name
+      value: plaster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302020819398177655, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8, type: 3}
+--- !u!1 &1355832383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2302020819398177655, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
+    type: 3}
+  m_PrefabInstance: {fileID: 1355832382}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1359718947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27946,7 +29146,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1424815986}
-  - component: {fileID: 1424815989}
   - component: {fileID: 1424815988}
   - component: {fileID: 1424815987}
   m_Layer: 16
@@ -27968,8 +29167,7 @@ Transform:
   m_LocalPosition: {x: -0.816, y: 1.682, z: -0.456}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 253476749}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1424815987
@@ -28020,25 +29218,6 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 2
---- !u!114 &1424815989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1424815985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8658b570c23b7b4ea7bdcef5330136b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  plateSmashSFX: {fileID: 8300000, guid: d0952337b9932bc468814fa52eb0e514, type: 3}
-  shardObjects:
-  - {fileID: 795031910}
-  - {fileID: 1324788172}
-  - {fileID: 649078398}
-  - {fileID: 1581491766}
-  - {fileID: 1759321218}
 --- !u!4 &1437689856 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ffd6c05ac733ba2438bac8373b6d5250,
@@ -29751,7 +30930,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -29766,7 +30945,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.9999738
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -29776,7 +30955,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.00724309
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -29791,7 +30970,7 @@ PrefabInstance:
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 0.83
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -31317,6 +32496,7 @@ GameObject:
   - component: {fileID: 1654079648}
   - component: {fileID: 1654079647}
   - component: {fileID: 1654079646}
+  - component: {fileID: 1654079650}
   m_Layer: 0
   m_Name: Cutline6
   m_TagString: MeatPiece
@@ -31410,6 +32590,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1577985497}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1654079650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1654079645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!1 &1654742175
 GameObject:
   m_ObjectHideFlags: 0
@@ -33770,6 +34979,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScenarioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2001248829966643381, guid: de2aa261b86273e41ae7b98704280be7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3133565269879424242, guid: de2aa261b86273e41ae7b98704280be7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -34453,6 +35667,22 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 700951748}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1949589124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949589123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nextTeleporter: {fileID: 0}
+  smallScale: {x: 0, y: 0, z: 0}
+  largeScale: {x: 0, y: 0, z: 0}
+  viewRadius: 90
 --- !u!1001 &1952634412
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35831,6 +37061,7 @@ GameObject:
   - component: {fileID: 2063717294}
   - component: {fileID: 2063717293}
   - component: {fileID: 2063717292}
+  - component: {fileID: 2063717295}
   m_Layer: 0
   m_Name: Cutline1
   m_TagString: MeatPiece
@@ -35924,6 +37155,35 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2063717290}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2063717295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2063717290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35f3280455f406842b8bcaa45218d7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unityEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 479391328}
+        m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
+        m_MethodName: NextCut
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  whitelist:
+  - {fileID: 9139078954196830315}
 --- !u!4 &2068007713 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16130432a28c2d44cb56a165e869fb42,
@@ -37432,6 +38692,7 @@ Transform:
   - {fileID: 2071076080}
   - {fileID: 464069031}
   - {fileID: 1587099065}
+  - {fileID: 7479229132819993097}
   m_Father: {fileID: 1376757961}
   m_LocalEulerAnglesHint: {x: 0, y: 0.711, z: -90}
 --- !u!1 &700794105827945349
@@ -38920,7 +40181,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2965364718963279911}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
   m_Name: 
@@ -40357,12 +41618,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9139078954196830315}
   serializedVersion: 2
-  m_LocalRotation: {x: -3.552714e-15, y: -5.509153e-23, z: -0.000000015506885, w: 1}
-  m_LocalPosition: {x: -0.00074611977, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0.000000015506885, w: 1}
+  m_LocalPosition: {x: 0.019358538, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8120026536092334948}
+  m_Father: {fileID: 543450652611552604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7527824762856018440
 MeshFilter:
@@ -40620,8 +41881,7 @@ Transform:
   m_LocalPosition: {x: 0.020104658, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7479229132819993097}
+  m_Children: []
   m_Father: {fileID: 543450652611552604}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8224757248827295672
@@ -41184,3 +42444,5 @@ SceneRoots:
   - {fileID: 1823928456}
   - {fileID: 1362139827}
   - {fileID: 705087491}
+  - {fileID: 1355832382}
+  - {fileID: 253476747}

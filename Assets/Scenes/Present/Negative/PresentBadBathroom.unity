@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.28589094, g: 0.45810828, b: 0.5919031, a: 1}
+  m_IndirectSpecularColor: {r: 0.28533655, g: 0.45767683, b: 0.5936687, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5102,33 +5102,21 @@ MonoBehaviour:
   Door_Anchor: {fileID: 0}
   DoorHandle_Anchor: {fileID: 0}
   canOpenDoor: 0
-  GateOpenSource: {fileID: 0}
+  GateOpenSource: {fileID: 982161144}
   OnDoorOpen:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982161144}
-        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-        m_MethodName: Play
-        m_Mode: 1
+      - m_Target: {fileID: 1178772239}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: Open
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 7330522279698956916}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: BathroomDoorOpen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Open
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   OffDoorOutline:
     m_PersistentCalls:
@@ -5487,6 +5475,7 @@ GameObject:
   - component: {fileID: 1178772242}
   - component: {fileID: 1178772241}
   - component: {fileID: 1178772243}
+  - component: {fileID: 1178772244}
   m_Layer: 5
   m_Name: FadeScreen
   m_TagString: Untagged
@@ -5529,7 +5518,7 @@ MonoBehaviour:
   m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -5572,6 +5561,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1178772244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1178772239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48baa1fdb776734e8f4eb969a4d3503, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 1178772241}
+  time: 1
+  opacity: 0
 --- !u!1 &1186978907
 GameObject:
   m_ObjectHideFlags: 0
@@ -15934,7 +15938,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 50050442875439148a5a56436a3eca26, type: 2}
+      objectReference: {fileID: 2100000, guid: d331c4eca5bc8174589bfc551bdde2c2, type: 2}
     - target: {fileID: 2655014704022758881, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: m_StaticEditorFlags
@@ -15953,12 +15957,7 @@ PrefabInstance:
     - target: {fileID: 2789381100868991240, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3812130701070791112, guid: 416068c380b68f34a9b21aed02e67532,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: -0.7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3812130701070791112, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -16079,11 +16078,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 8400000, guid: 75fd2f1f0d9104140ae7cd11d9620cc0, type: 2}
+      objectReference: {fileID: 8600000, guid: 7826ab22ac7ccf546ad0dc7a6cee7634, type: 2}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
       propertyPath: near clip plane
-      value: 0.1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 7703702382691232833, guid: 416068c380b68f34a9b21aed02e67532,
         type: 3}
@@ -16884,6 +16883,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6872d198dca952c40aefc0a497e8a0f9, type: 3}
+--- !u!114 &2586940751914089131 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3063130459301642122, guid: 6872d198dca952c40aefc0a497e8a0f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 2586940751914089130}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412595808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4140864653740968207
 GameObject:
   m_ObjectHideFlags: 0
@@ -16993,6 +17004,11 @@ PrefabInstance:
         type: 3}
       propertyPath: glasses
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
         type: 3}
@@ -17608,7 +17624,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 5817889223404952107}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5817889223404952108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27d2eff92ffe04743943e3b2ed758679, type: 3}
   m_Name: 
@@ -17664,15 +17680,362 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshEditor: 0
   events:
-  - rid: 75970782730911744
+  - rid: 75971211654856705
+  - rid: 75971211654856710
+  - rid: 75971211654856708
+  - rid: 75971211654856712
+  - rid: 75971234018885645
+  - rid: 75971234018885633
+  - rid: 75971234018885637
+  - rid: 75971234018885635
+  - rid: 75971234018885649
+  - rid: 75971234018885652
+  - rid: 75971234018885655
+  - rid: 75971234018885659
+  - rid: 75971234018885661
+  - rid: 75971234018885657
   references:
     version: 2
     RefIds:
-    - rid: 75970782730911744
-      type: {class: SequenceManager/SequenceEvent, ns: , asm: Assembly-CSharp}
+    - rid: 75971211654856705
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
-        type: 0
+        name: Player talking to him/herself
+        type: 5
+        audioSource: {fileID: 1726075247}
+        audioClip: {fileID: 8300000, guid: 765b77930b5d149438791771e6ea5755, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: ac3a41d552e7c5845860a0495526f10e, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75971211654856708
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to freshen up
+        type: 2
+        waitTime: 20
+    - rid: 75971211654856710
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set outline
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8032421237078485443}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 1936565573}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 319927142}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 354212914}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 8718233878095769986}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 1178772239}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971211654856712
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Where is my walking stick
+        type: 5
+        audioSource: {fileID: 1726075247}
+        audioClip: {fileID: 8300000, guid: ee7eeb490503c48ff8dc69cc8372c299, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: ee419e1bfdba7cf4eb5921ad7d16c838, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75971234018885633
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Walking stick prompt
+        type: 1
+        text: '[Take your walking stick behind you]'
+        duration: 3
+    - rid: 75971234018885635
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Open door
+        type: 1
+        text: '[Place your hand on the door to open it]'
+        duration: 3
+    - rid: 75971234018885637
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for cane pickup
+        type: 3
+        interactable: {fileID: 2586940751914089131}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 1
+    - rid: 75971234018885645
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Props ungrabbable and un-outlined
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8032421237078485443}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 1936565573}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 319927142}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 354212914}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 8718233878095769986}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 6432067307027011964}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 8032421237078485436}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 1936565565}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 8705098870684757318}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 281866964}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 8718233878095769981}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971234018885649
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Allow door to be grabbed
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 982161141}
+              m_TargetAssemblyTypeName: DoorKnob, Assembly-CSharp
+              m_MethodName: AllowDoorOpen
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971234018885652
+      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for door grab
+        type: 7
+        gameObjects:
+        - {fileID: 1178772239}
+        active: 1
+    - rid: 75971234018885655
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade screen
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1178772244}
+              m_TargetAssemblyTypeName: UIImageFader, Assembly-CSharp
+              m_MethodName: Activate
+              m_Mode: 4
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 75971234018885657
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: Go to next scene
+        type: 13
+        sceneName: PresentBadLivingRoom
+    - rid: 75971234018885659
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Door opening sound
+        type: 5
+        audioSource: {fileID: 982161144}
+        audioClip: {fileID: 8300000, guid: 690d0f5bf31c7ed4a9ff3aa83024269d, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 690d0f5bf31c7ed4a9ff3aa83024269d, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 75971234018885661
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Slight delay
+        type: 2
+        waitTime: 1
 --- !u!4 &7420753592346597749
 Transform:
   m_ObjectHideFlags: 0

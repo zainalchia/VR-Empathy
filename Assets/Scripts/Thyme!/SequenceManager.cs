@@ -41,7 +41,12 @@ public class SequenceManager : MonoBehaviour
             [InspectorName("Go to scene")] SET_GoToScene,
             [InspectorName("Change material color")] SET_ChangeMaterialColor,
             [InspectorName("Change texture")] SET_ChangeMaterialTexture,
+            [InspectorName("Change material")] SET_ChangeMaterial,
             [InspectorName("Wait for trigger")] SET_WaitForTrigger,
+            [InspectorName("Wait for target piece")] SET_WaitForTargetPiece,
+            [InspectorName("Set position")] SET_SetGOPosition,
+            [InspectorName("Instantiate GO")] SET_InstantiateGO,
+            [InspectorName("Wait for GameObject destroyed")] SET_WaitGameObjectDestroy,
             [InspectorName("")] SET_COUNT // NOT an actual type! here for easy counting!!!
         }
 
@@ -63,7 +68,12 @@ public class SequenceManager : MonoBehaviour
             typeof(SEvent_GoToScene                 ),
             typeof(SEvent_ChangeMaterialColor       ),
             typeof(SEvent_ChangeMaterialTexture     ),
+            typeof(SEvent_ChangeMaterial            ),
             typeof(SEvent_WaitForTrigger            ),
+            typeof(SEvent_WaitForTargetPiece        ),
+            typeof(SEvent_SetPosition               ),
+            typeof(SEvent_InstantiateGO             ),
+            typeof(SEvent_WaitGameObjectDestroy     ),
         };
 
         public SequenceEventEnum type;
@@ -256,19 +266,25 @@ public class SequenceManager : MonoBehaviour
 
     public class SEvent_WaitForGameObjectActive : SequenceEvent
     {
-        [SerializeField] GameObject gameObject;
+        [SerializeField] GameObject[] gameObjects;
         [SerializeField] bool active = true;
 
         public override void OnEnter()
         {
-            base.OnEnter();
-            if (gameObject == null) Exit();
+            base.OnEnter(); 
+            foreach (GameObject go in gameObjects)
+            {
+                if (go == null) Exit();
+            }
         }
 
         public override void Update()
         {
             base.Update();
-            if (gameObject.activeInHierarchy != active) return;
+            foreach(GameObject go in gameObjects)
+            {
+                if (go.activeInHierarchy != active) return;
+            }
             Exit();
         }
     }
@@ -439,7 +455,7 @@ public class SequenceManager : MonoBehaviour
             return;
         }
     }
-
+    
     public class SEvent_ChangeMaterialTexture : SequenceEvent
     {
         [SerializeField] Material[] currentMaterial;
@@ -453,6 +469,21 @@ public class SequenceManager : MonoBehaviour
             {
                 mat.mainTexture = newTexture;
             }
+            Exit();
+            return;
+        }
+    }
+    public class SEvent_ChangeMaterial : SequenceEvent
+    {
+        [SerializeField] Renderer currentMaterial;
+        [SerializeField] Material newMaterial;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            
+            currentMaterial.material = newMaterial;
+
             Exit();
             return;
         }
@@ -479,6 +510,78 @@ public class SequenceManager : MonoBehaviour
             }
         }
     }
+    public class SEvent_WaitForTargetPiece : SequenceEvent
+    {
+        [SerializeField] SaneChickenChopper chickenChopper;
+        [SerializeField] int targetPiece;
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (targetPiece == chickenChopper.currentCutIndex)
+            {
+                Exit();
+                return;
+            }
+        }
+    }
+    public class SEvent_SetPosition : SequenceEvent
+    {
+        [SerializeField] GameObject target;
+        [SerializeField] GameObject PositionSetTo;
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (target != null && PositionSetTo != null)
+            {
+                target.transform.position = PositionSetTo.transform.position;
+                Exit();
+                return;
+            }
+        }
+    }
+
+    public class SEvent_InstantiateGO : SequenceEvent
+    {
+        [SerializeField] GameObject newGO;
+        [SerializeField] Transform plasterSpawnPoint;
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            Instantiate(newGO, plasterSpawnPoint.position, plasterSpawnPoint.rotation);
+        }
+    }
+
+    public class SEvent_WaitGameObjectDestroy : SequenceEvent
+    {
+        [SerializeField] GameObject gameObject;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            if (gameObject == null) return;
+            Exit();
+        }
+    }
+
+
+
     public class SEvent_TriggerUnityEvent : SequenceEvent
     {
         [SerializeField] UnityEvent unityEvent;

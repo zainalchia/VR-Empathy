@@ -28,7 +28,7 @@ public class ChickenChopManager : MonoBehaviour
 
     private ScenarioManagerReneeTest sceneManager;
 
-    private int currentPiece = 0;
+    public int currentPiece = 0;
 
     private void Start()
     {
@@ -210,8 +210,6 @@ public class ChickenChopManager : MonoBehaviour
             }
 
             StartCoroutine(BleedingHand());
-
-            sceneManager.PlayChoppedHand();
         }
     }
 
