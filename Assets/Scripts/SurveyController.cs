@@ -8,14 +8,21 @@ using UnityEngine.UI;
 
 public class SurveyController : MonoBehaviour
 {
-    private enum SurveyQnType { mcq }
+    private enum SurveyQnType { mcq, rating }
 
     [Serializable]
     private class SurveyQn
     {
         public string question;
         public SurveyQnType surveyQnType;
+
+        [Header("MCQ")]
         public string[] choices;
+
+        [Header("Rating")]
+        public string lowRatingCriteria;
+        public string highRatingCriteria;
+        public int noOfRatings = 5;
     }
 
     [Serializable]
@@ -31,6 +38,10 @@ public class SurveyController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private GameObject mcqGO;
     [SerializeField] private GameObject choice1GO;
+    [SerializeField] private GameObject ratingGO;
+    [SerializeField] private TextMeshProUGUI lowRatingText;
+    [SerializeField] private TextMeshProUGUI highRatingText;
+    [SerializeField] private GameObject rating1GO;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject prevButton;
     [SerializeField] private GameObject submitButton;
@@ -72,7 +83,15 @@ public class SurveyController : MonoBehaviour
             Destroy(mcqGO.transform.GetChild(i).gameObject);
         }
 
+        // destroy all generated ratings from previous questions, to not mess with newly generated ratings. but keep 1st one cause that is the one being duplicated to form the others
+        // skip [0] because it's the low criteria text, skip [1] because it's the first checkbox being used to duplicate. skip final one cause it's the high criteria text
+        for (int i = 2; i < ratingGO.transform.childCount - 1; i++)
+        {
+            Destroy(ratingGO.transform.GetChild(i).gameObject);
+        }
+
         mcqGO.SetActive(false);
+        ratingGO.SetActive(false);
 
         switch (surveyQns[qsNumber].surveyQnType)
         {
@@ -110,6 +129,31 @@ public class SurveyController : MonoBehaviour
                         }
                     }
                 }
+                break;
+            case SurveyQnType.rating:
+                ratingGO.SetActive(true);
+
+                lowRatingText.text = surveyQns[qsNumber].lowRatingCriteria;
+                highRatingText.text = surveyQns[qsNumber].highRatingCriteria;
+
+                if (surveyQns[qsNumber].noOfRatings > 1)
+                {
+                    for (int i = 1; i < surveyQns[qsNumber].noOfRatings; i++)
+                    {
+                        GameObject newChoice = Instantiate(rating1GO, ratingGO.transform);
+
+                        newChoice.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = (i + 1).ToString();
+
+                        // if this mcq has been selected, make the checkbox black instead of white
+                        if (surveyAns.answers[qsNumber] == (i + 1).ToString())
+                            newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
+                        else
+                            newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+                    }
+                }
+
+                highRatingText.gameObject.transform.parent.SetAsLastSibling(); // to make the high rating text appear after the checkboxes
+
                 break;
         }
     }    
@@ -188,12 +232,6 @@ public class SurveyController : MonoBehaviour
 
         // repopulate survey page whenever selected
         PopulateSurveyPage(currentQs);
-    }
-
-    public void toGenderScreen()
-    {
-        //scenarioScreen.SetActive(false);
-        //genderScreen.SetActive(true);
     }
 
     // Start is called before the first frame update
