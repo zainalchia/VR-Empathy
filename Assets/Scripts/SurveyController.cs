@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class SurveyController : MonoBehaviour
 {
-    private enum SurveyQnType { mcq, trueFalse }
+    private enum SurveyQnType { mcq }
 
     [Serializable]
     private class SurveyQn
@@ -30,7 +30,6 @@ public class SurveyController : MonoBehaviour
     private SurveyAns surveyAns = new SurveyAns();
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private GameObject mcqGO;
-    [SerializeField] private GameObject trueFalseGO;
     [SerializeField] private GameObject choice1GO;
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject prevButton;
@@ -74,7 +73,6 @@ public class SurveyController : MonoBehaviour
         }
 
         mcqGO.SetActive(false);
-        trueFalseGO.SetActive(false);
 
         switch (surveyQns[qsNumber].surveyQnType)
         {
@@ -112,10 +110,6 @@ public class SurveyController : MonoBehaviour
                         }
                     }
                 }
-                break;
-
-            case SurveyQnType.trueFalse:
-                trueFalseGO.SetActive(true);
                 break;
         }
     }    
