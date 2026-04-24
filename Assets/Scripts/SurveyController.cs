@@ -3,6 +3,8 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class SurveyController : MonoBehaviour
 {
@@ -46,39 +48,7 @@ public class SurveyController : MonoBehaviour
         questionText.text = (qsNumber + 1).ToString() + ". " + surveyQns[qsNumber].question;
 
         // show mcq or true false
-        mcqGO.SetActive(false);
-        trueFalseGO.SetActive(false);
-
-        switch (surveyQns[qsNumber].surveyQnType)
-        {
-            case SurveyQnType.mcq:
-                mcqGO.SetActive(true);
-
-                // change 1st mcq choice text to match the one from data
-                if (choice1GO.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>())
-                {
-                    if (surveyQns[qsNumber].choices.Length > 0)
-                    {
-                        choice1GO.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = surveyQns[qsNumber].choices[0];
-
-                        // to clone 1st mcq choice object and change the text to match subsequent data
-                        if (surveyQns[qsNumber].choices.Length > 1)
-                        {
-                            for (int i = 1; i < surveyQns[qsNumber].choices.Length; i++)
-                            {
-                                GameObject newChoice = Instantiate(choice1GO, mcqGO.transform);
-
-                                newChoice.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = surveyQns[qsNumber].choices[i];
-                            }
-                        }
-                    }
-                }
-                break;
-
-            case SurveyQnType.trueFalse:
-                trueFalseGO.SetActive(true);
-                break;
-        }
+        ClearMCQAndRepopulate(qsNumber);
 
         prevButton.SetActive(false);              
         nextButton.SetActive(false); 
@@ -94,6 +64,61 @@ public class SurveyController : MonoBehaviour
         else
             submitButton.SetActive(true);        
     }
+
+    private void ClearMCQAndRepopulate(int qsNumber)
+    {
+        // destroy all generated mcq from previous questions, to not mess with newly generated mcq. but keep 1st one cause that is the one being duplicated to form the others
+        for (int i = 1; i < mcqGO.transform.childCount; i++)
+        {
+            Destroy(mcqGO.transform.GetChild(i).gameObject);
+        }
+
+        mcqGO.SetActive(false);
+        trueFalseGO.SetActive(false);
+
+        switch (surveyQns[qsNumber].surveyQnType)
+        {
+            case SurveyQnType.mcq:
+                mcqGO.SetActive(true);
+
+                // change 1st mcq choice text to match the one from data
+                if (choice1GO.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>())
+                {
+                    if (surveyQns[qsNumber].choices.Length > 0)
+                    {
+                        choice1GO.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = surveyQns[qsNumber].choices[0];
+
+                        // if this mcq has been selected, make the checkbox black instead of white
+                        if (surveyAns.answers[qsNumber] == surveyQns[qsNumber].choices[0])                        
+                            choice1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
+                        else
+                            choice1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+
+                        // to clone 1st mcq choice object and change the text to match subsequent data
+                        if (surveyQns[qsNumber].choices.Length > 1)
+                        {
+                            for (int i = 1; i < surveyQns[qsNumber].choices.Length; i++)
+                            {
+                                GameObject newChoice = Instantiate(choice1GO, mcqGO.transform);
+
+                                newChoice.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = surveyQns[qsNumber].choices[i];
+
+                                // if this mcq has been selected, make the checkbox black instead of white
+                                if (surveyAns.answers[qsNumber] == surveyQns[qsNumber].choices[i])
+                                    newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
+                                else
+                                    newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+                            }
+                        }
+                    }
+                }
+                break;
+
+            case SurveyQnType.trueFalse:
+                trueFalseGO.SetActive(true);
+                break;
+        }
+    }    
 
     public void PressNext()
     {
@@ -166,6 +191,9 @@ public class SurveyController : MonoBehaviour
         string selectedAnswer = textObj.text;
         surveyAns.answers[currentQs] = selectedAnswer;
         Debug.Log(surveyAns.answers[currentQs]);
+
+        // repopulate survey page whenever selected
+        PopulateSurveyPage(currentQs);
     }
 
     public void toGenderScreen()
