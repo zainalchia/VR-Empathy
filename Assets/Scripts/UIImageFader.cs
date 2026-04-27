@@ -17,11 +17,14 @@ public class UIImageFader : MonoBehaviour
 
 		Color color = image.color;
 		timer -= Time.deltaTime;
-		if(timer <= 0)
+		if (timer <= 0)
+		{
 			color.a = opacity;
+		}
 		else
-
-            color.a = Mathf.Lerp(opacity, startingColor.a, timer / time);
+        {
+            color.a = Mathf.Lerp(startingColor.a, opacity, 1 - (timer / time));
+        }
 
         image.color = color;
 

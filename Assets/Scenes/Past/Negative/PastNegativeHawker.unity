@@ -2589,12 +2589,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 883ac930b09b1574c8f1fff68b270b61, type: 3}
---- !u!1 &163910894 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 991299c2bf12d6a469207a871a5b85b8,
-    type: 3}
-  m_PrefabInstance: {fileID: 38531086}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &163910896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 991299c2bf12d6a469207a871a5b85b8,
@@ -12900,12 +12894,12 @@ PrefabInstance:
         type: 3}
       propertyPath: WhileCleaning.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1201703111}
+      objectReference: {fileID: 0}
     - target: {fileID: 194694799097209681, guid: 42acec9af6eed9a4a885a252fda7b611,
         type: 3}
       propertyPath: FinishCleaning.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1201703111}
+      objectReference: {fileID: 0}
     - target: {fileID: 1927514033727987306, guid: 42acec9af6eed9a4a885a252fda7b611,
         type: 3}
       propertyPath: m_IsTrigger
@@ -18389,7 +18383,7 @@ MonoBehaviour:
   currentScene: 0
   testPressTrigger: 0
   scenarioManagerPresentGood: {fileID: 0}
-  scenarioManager: {fileID: 1201703111}
+  scenarioManager: {fileID: 0}
 --- !u!1001 &1158985798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19015,8 +19009,6 @@ GameObject:
   - component: {fileID: 1201703108}
   - component: {fileID: 1201703107}
   - component: {fileID: 1201703110}
-  - component: {fileID: 1201703111}
-  - component: {fileID: 1201703112}
   - component: {fileID: 1201703113}
   m_Layer: 0
   m_Name: GameManager
@@ -19141,125 +19133,6 @@ MonoBehaviour:
   allowControllerVibration: 0
   vibrationStrength: 255
   vibrationFrequency: 2
---- !u!114 &1201703111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201703106}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a84bb9d8a013045a4b0914bc772141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToPlay: 1
-  firstTeleportToiletHotspot: {fileID: 0}
-  promptManager: {fileID: 1874118775}
-  scenarioID: 0
-  sceneID: 0
-  playerTeleport: {fileID: 1157555228}
-  testitem: {fileID: 0}
-  narrationAudioSource: {fileID: 204506546}
-  bossAudioSource: {fileID: 835883772}
-  customerAudioSource: {fileID: 854279512}
-  narrationAudioClips_1: []
-  narrationAudioClips_1_Male:
-  - {fileID: 8300000, guid: 45f49d3332a13464eb891cb2ee696e90, type: 3}
-  - {fileID: 8300000, guid: 59ab5d8963138aa4ca307916cd8837c9, type: 3}
-  - {fileID: 8300000, guid: 983b0a2c8b18f3e42abce05d4005fe71, type: 3}
-  - {fileID: 8300000, guid: 2b4c8b5757422434880363994504ca91, type: 3}
-  - {fileID: 8300000, guid: 4dd3baa81f65e464481d4c6a2441c257, type: 3}
-  - {fileID: 8300000, guid: 9b3293c36c99ce64296983f879712792, type: 3}
-  - {fileID: 8300000, guid: e240ad4cfff4c964f9518c23e28a25c2, type: 3}
-  - {fileID: 8300000, guid: 0f59ce4944253b248bc61a22898ca8ad, type: 3}
-  - {fileID: 8300000, guid: 25231e791bda17c4199cd11eb847671e, type: 3}
-  - {fileID: 8300000, guid: d3159b908da463d46b481c47861f0d54, type: 3}
-  - {fileID: 8300000, guid: 52ac2487aef089241b0cad75418e5f1c, type: 3}
-  - {fileID: 8300000, guid: be6407eea3f8b2c4da8b2511b14ad9d0, type: 3}
-  - {fileID: 8300000, guid: a054d444b1ef52e4db6716245e79a230, type: 3}
-  narrationAudioClips_1_Female:
-  - {fileID: 8300000, guid: 45f49d3332a13464eb891cb2ee696e90, type: 3}
-  - {fileID: 8300000, guid: 59ab5d8963138aa4ca307916cd8837c9, type: 3}
-  - {fileID: 8300000, guid: 11042bbd4bce52f4a8625b03bd3a25e2, type: 3}
-  - {fileID: 8300000, guid: 2b4c8b5757422434880363994504ca91, type: 3}
-  - {fileID: 8300000, guid: 4dd3baa81f65e464481d4c6a2441c257, type: 3}
-  - {fileID: 8300000, guid: 58d02ae931cf5c442995cee5fb49c27e, type: 3}
-  - {fileID: 8300000, guid: e240ad4cfff4c964f9518c23e28a25c2, type: 3}
-  - {fileID: 8300000, guid: 0f59ce4944253b248bc61a22898ca8ad, type: 3}
-  - {fileID: 8300000, guid: 25231e791bda17c4199cd11eb847671e, type: 3}
-  - {fileID: 8300000, guid: d3159b908da463d46b481c47861f0d54, type: 3}
-  - {fileID: 8300000, guid: 52ac2487aef089241b0cad75418e5f1c, type: 3}
-  - {fileID: 8300000, guid: 3706a0e3d5b23cf41836b632342b7e66, type: 3}
-  - {fileID: 8300000, guid: a054d444b1ef52e4db6716245e79a230, type: 3}
-  cashObject: {fileID: 465085310}
-  cashOutline: {fileID: 465085320}
-  knifeOutline: {fileID: 1130414786}
-  knifeObject: {fileID: 919132148138377190}
-  DoorHandle: {fileID: 0}
-  door: {fileID: 0}
-  doorOutline: {fileID: 0}
-  comb: {fileID: 0}
-  glasses: {fileID: 0}
-  cup: {fileID: 0}
-  book: {fileID: 0}
-  meds: {fileID: 0}
-  walkingSound: {fileID: 0}
-  timeForWashingUp: 3
-  CashEndPoint: {fileID: 1537895747}
-  Boss: {fileID: 73526720}
-  BossAudio: {fileID: 835883771}
-  bossThrowPosition: {fileID: 287672077}
-  heartbeatUI: {fileID: 998075450}
-  Customer: {fileID: 163910894}
-  ChoppingBlock: {fileID: 780974856}
-  Chicken: {fileID: 479391321}
-  bandaidContainer: {fileID: 2965364718963279911}
-  lidAnimator: {fileID: 6839807958188523297}
-  lidPopTrigger: PopOff
-  lidMover: {fileID: 6839807958188523298}
-  plasterPrefab: {fileID: 2302020819398177655, guid: 25c249d3a53f15f4fa7a8bec1c3ef8e8,
-    type: 3}
-  plasterSpawnPoint: {fileID: 933124847}
-  cleaverObject: {fileID: 919132148138377190}
-  ToTray: {fileID: 704027391}
-  trayOutline: {fileID: 620099845}
-  TrayOfFood: {fileID: 620099835}
-  DroppedFood: {fileID: 757077370}
-  PlayerCloth: {fileID: 88598914}
-  PlateProjectilePrefab: {fileID: 253476748}
-  PlateSpawnPoint: {fileID: 1645267160}
-  PlateTargetPoint: {fileID: 658150352}
-  plateSpeed: 6.5
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 32768
-  Ladle: {fileID: 0}
-  Sean: {fileID: 0}
-  Model: {fileID: 0}
-  SeanAudioSource: {fileID: 0}
-  HomeLight: {fileID: 0}
-  tissueBox: {fileID: 0}
-  electricSFXAudioSource: {fileID: 0}
-  PlayerDestination: {fileID: 0}
-  Player: {fileID: 1770079627}
---- !u!114 &1201703112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201703106}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTest: 0
-  currentSceneName: 
-  scenarioManagerPresentBad: {fileID: 0}
-  scenarioManagerPresentGood: {fileID: 0}
-  scenarioManagerReneeTest: {fileID: 1201703111}
 --- !u!114 &1201703113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19813,16 +19686,16 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 355501373}
-              m_TargetAssemblyTypeName: UIImageFader, Assembly-CSharp
-              m_MethodName: Activate
-              m_Mode: 4
+            - m_Target: {fileID: 1527316551}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 1
-                m_StringArgument: 
+                m_StringArgument: FadeOut
                 m_BoolArgument: 0
               m_CallState: 2
     - rid: 3783327436181078024
@@ -30452,6 +30325,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1523399329}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1527316551 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1838441162735669761, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 355501367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1537895747
 GameObject:
   m_ObjectHideFlags: 0
@@ -40146,7 +40025,7 @@ MonoBehaviour:
   OnContainerGrabbed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1201703111}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
         m_MethodName: OnPlasterContainerGrabbed
         m_Mode: 1

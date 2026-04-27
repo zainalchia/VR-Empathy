@@ -2575,6 +2575,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 219352807}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &223234559 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1838441162735669761, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1012412482}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &223820262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10795,6 +10801,8 @@ MonoBehaviour:
   - rid: 154194485549989892
   - rid: 154194441199157284
   - rid: 8460281867681398787
+  - rid: 5361627232578043905
+  - rid: 5361627232578043908
   references:
     version: 2
     RefIds:
@@ -11107,16 +11115,16 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 1012412486}
-              m_TargetAssemblyTypeName: UIImageFader, Assembly-CSharp
-              m_MethodName: Activate
-              m_Mode: 4
+            - m_Target: {fileID: 223234559}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 1
-                m_StringArgument: 
+                m_StringArgument: FadeOut
                 m_BoolArgument: 1
               m_CallState: 2
     - rid: 154194754885124097
@@ -11428,6 +11436,17 @@ MonoBehaviour:
         outlineItem: 1
         itemStaysGrabbed: 1
         forceEnableGrabbable: 1
+    - rid: 5361627232578043905
+      type: {class: SequenceManager/SEvent_WaitForTrigger, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player trigger
+        type: 17
+    - rid: 5361627232578043908
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: Go to main menu
+        type: 13
+        sceneName: MainMenu
     - rid: 6500772572562194435
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
