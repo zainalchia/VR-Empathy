@@ -23,7 +23,8 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] float defaultTimeBeforeNextMove = 2; // adds a delay in between teleports, set to 0 for no delay
     [SerializeField] GameObject[] teleportHotspots;
     [SerializeField] AudioSource playerAudio;
-    [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
+    [SerializeField] AudioClip[] maleSighAudio;
+    [SerializeField] AudioClip[] femaleSighAudio;
     public UnityEvent OnLastTeleport;
 
     bool buttonPressed = false;
@@ -94,7 +95,7 @@ public class CaneTeleport : MonoBehaviour
             
             if (currentHotspotIndex == 4)
             {
-                defaultTimeBeforeNextMove = 19; // delay showing of next hotspot for blurring of eyes and voicelines
+                defaultTimeBeforeNextMove = 8; // delay showing of next hotspot for blurring of eyes and voicelines
             }
 
             teleportHotspots[currentHotspotIndex].gameObject.SetActive(false); // hide current hotspot instantly
@@ -112,16 +113,16 @@ public class CaneTeleport : MonoBehaviour
         if (currentHotspotIndex == 1)
         {
             if (MainMenuManager.isGenderMale)
-                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[0]);
+                playerAudio.PlayOneShot(maleSighAudio[0]);
             else
-                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[0]);
+                playerAudio.PlayOneShot(femaleSighAudio[0]);
         }
         else if (currentHotspotIndex == 6)
         {
             if (MainMenuManager.isGenderMale)
-                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[1]);
+                playerAudio.PlayOneShot(maleSighAudio[1]);
             else
-                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[1]);
+                playerAudio.PlayOneShot(femaleSighAudio[1]);
         }        
     }
 

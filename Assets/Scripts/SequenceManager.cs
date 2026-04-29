@@ -575,8 +575,11 @@ public class SequenceManager : MonoBehaviour
         public override void Update()
         {
             base.Update();
-            if (gameObject == null) return;
-            Exit();
+            if (gameObject == null)
+            {
+                Exit();
+                return;
+            }
         }
     }
 
