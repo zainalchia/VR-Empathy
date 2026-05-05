@@ -13584,7 +13584,7 @@ PrefabInstance:
         type: 3}
       propertyPath: femaleAudioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 10be92536c98c4f9a9fe6f53e5dd061b, type: 3}
+      objectReference: {fileID: 8300000, guid: e6505c59ae68f45ac9673204297de625, type: 3}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
       propertyPath: playerAudioSource
@@ -14819,7 +14819,9 @@ MonoBehaviour:
   - rid: 75971415428038663
   - rid: 75971415428038661
   - rid: 75971415428038667
+  - rid: 7725293058360082433
   - rid: 75971415428038665
+  - rid: 7725293058360082435
   - rid: 5471714211565142028
   - rid: 5471714211565142030
   - rid: 5471714211565142032
@@ -15010,7 +15012,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 1615119058}
+            - m_Target: {fileID: 1178772243}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -15196,6 +15198,46 @@ MonoBehaviour:
       data:
         name: Wait for phone call to end
         type: 22
+    - rid: 7725293058360082433
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set glasses ungrabbable
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1301409470}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293058360082435
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set glasses grabbable
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1301409470}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
 --- !u!4 &7420753592346597749
 Transform:
   m_ObjectHideFlags: 0
