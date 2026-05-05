@@ -3053,6 +3053,7 @@ RectTransform:
   m_Children:
   - {fileID: 1615119056}
   - {fileID: 1178772240}
+  - {fileID: 1024782697}
   - {fileID: 1628411039}
   - {fileID: 622116045}
   m_Father: {fileID: 0}
@@ -7290,6 +7291,103 @@ Transform:
   - {fileID: 2117732090}
   m_Father: {fileID: 1358817242}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &1024782696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1024782697}
+  - component: {fileID: 1024782700}
+  - component: {fileID: 1024782699}
+  - component: {fileID: 1024782698}
+  m_Layer: 5
+  m_Name: WhiteFadeScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1024782697
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024782696}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 434608764}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1024782698
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024782696}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9f8c7de42744cce468ec512b57b87ae2, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1024782699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024782696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1024782700
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1024782696}
+  m_CullTransparentMesh: 1
 --- !u!1 &1067658919
 GameObject:
   m_ObjectHideFlags: 0
@@ -7455,6 +7553,7 @@ GameObject:
   - component: {fileID: 1115407453}
   - component: {fileID: 1115407454}
   - component: {fileID: 1115407455}
+  - component: {fileID: 1115407456}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7492,6 +7591,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenarioID: 2
   sceneID: 5
+  flag: 0
   testText: {fileID: 0}
   postProcessing: {fileID: 421615959}
   ovrCamRig: {fileID: 308433642}
@@ -7595,7 +7695,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115407447}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 27d2eff92ffe04743943e3b2ed758679, type: 3}
   m_Name: 
@@ -7778,6 +7878,468 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debugText: {fileID: 0}
   maxLines: 50
+--- !u!114 &1115407456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115407447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acdd4dbf41d0895469e29609f2081811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refreshEditor: 0
+  events:
+  - rid: 7725293058360082437
+  - rid: 7725293058360082439
+  - rid: 7725293058360082443
+  - rid: 7725293058360082447
+  - rid: 7725293058360082441
+  - rid: 7725293058360082445
+  - rid: 7725293058360082451
+  - rid: 7725293062026690567
+  - rid: 7725293058360082454
+  - rid: 7725293058360082459
+  - rid: 7725293058360082457
+  - rid: 7725293062026690565
+  - rid: 7725293062026690562
+  - rid: 7725293062026690569
+  - rid: 7725293062026690571
+  - rid: 7725293062026690574
+  - rid: 7725293062026690576
+  - rid: 7725293062026690578
+  - rid: 7725293062026690564
+  - rid: 7725293062026690580
+  - rid: 7725293062026690583
+  - rid: 7725293062026690585
+  - rid: 7725293062026690587
+  - rid: 7725293062026690589
+  - rid: 7725293062026690619
+  - rid: 7725293062026690621
+  - rid: 7725293062026690591
+  - rid: 7725293062026690593
+  - rid: 7725293062026690595
+  - rid: 7725293062026690599
+  - rid: 7725293062026690597
+  - rid: 7725293062026690602
+  - rid: 7725293062026690606
+  - rid: 7725293062026690604
+  - rid: 7725293062026690609
+  - rid: 7725293062026690611
+  - rid: 7725293062026690613
+  - rid: 7725293062026690615
+  - rid: 7725293062026690617
+  references:
+    version: 2
+    RefIds:
+    - rid: 7725293058360082437
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Small delay
+        type: 2
+        waitTime: 2
+    - rid: 7725293058360082439
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Sean didnt come for dinner audio
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: 10be92536c98c4f9a9fe6f53e5dd061b, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 12a000af674974503951269edd8ce2ae, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293058360082441
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for denture pickup
+        type: 3
+        interactable: {fileID: 1539590059}
+        outlineItem: 0
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 0
+    - rid: 7725293058360082443
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Allow denture pickup
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1539590059}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 1115407451}
+              m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+              m_MethodName: SetFlagTrue
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7725293058360082445
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for denture to be placed in cup
+        type: 22
+    - rid: 7725293058360082447
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Grab denture prompt
+        type: 1
+        text: '[I have to take off my dentures and place in the cup. Grab your face
+          area]'
+        duration: 3
+    - rid: 7725293058360082451
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Move table
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 8401952775049721580}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: move
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293058360082454
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Small delay
+        type: 2
+        waitTime: 2
+    - rid: 7725293058360082457
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Delay
+        type: 2
+        waitTime: 5
+    - rid: 7725293058360082459
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: ea10a50bc426e45eaa0eb5c0cc539d5a, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 6ff3013de6d78e74ca5bd144a8bc5ac2, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293062026690562
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 2
+        waitTime: 5
+    - rid: 7725293062026690564
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade back in
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1024782698}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeIn
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293062026690565
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade into white
+        type: 6
+        gameObject: {fileID: 1024782696}
+        active: 1
+    - rid: 7725293062026690567
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Furniture start spasm
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1115407451}
+              m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+              m_MethodName: StartSpasming
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293062026690569
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Spawn parents
+        type: 6
+        gameObject: {fileID: 883178008}
+        active: 1
+    - rid: 7725293062026690571
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set particle active
+        type: 6
+        gameObject: {fileID: 1672819944}
+        active: 1
+    - rid: 7725293062026690574
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set old mode active
+        type: 6
+        gameObject: {fileID: 1827313233}
+        active: 1
+    - rid: 7725293062026690576
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set new mode inactive
+        type: 6
+        gameObject: {fileID: 1498610870}
+        active: 0
+    - rid: 7725293062026690578
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set post processing active
+        type: 6
+        gameObject: {fileID: 421615959}
+        active: 1
+    - rid: 7725293062026690580
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Pa, ma is that you audio
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: ee58cdafa6cc44f09a9f2f5cd73411bc, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 9edb0a8c0daf351448c6c7c38d15dad5, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293062026690583
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Dad audio
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: b0c1df875ebad284eba235b6e3ade087, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 82cccec94c340774984705208d28ffa2, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293062026690585
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Yes ma, yes pa audio
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: 6d3b087dd27794deb94c1cca01c18b6b, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: a3c4f90f95a8667448fd288e9cb04811, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293062026690587
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade out
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1024782698}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeOut
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293062026690589
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: I'm hallucinating audio
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: b7a7622ff4117435494652416e749a2a, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: ba3427bab56e9cb4783932b32874aa7c, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293062026690591
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade in
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1024782698}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeIn
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293062026690593
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Small delay
+        type: 2
+        waitTime: 2
+    - rid: 7725293062026690595
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Sad piano audio
+        type: 5
+        audioSource: {fileID: 1530332904}
+        audioClip: {fileID: 8300000, guid: 908b899b6d7a05847849ff8dc8f13742, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 908b899b6d7a05847849ff8dc8f13742, type: 3}
+        waitForEnd: 0
+        loop: 1
+    - rid: 7725293062026690597
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Sad player audio
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: 7bb652519eae64aed929d89ec635df8c, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 9c6474508c5c2a94b906e98fbb30c30d, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293062026690599
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Short delay
+        type: 2
+        waitTime: 1
+    - rid: 7725293062026690602
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for 1st bottle pickup
+        type: 3
+        interactable: {fileID: 2006039832}
+        outlineItem: 0
+        itemStaysGrabbed: 0
+        forceEnableGrabbable: 0
+    - rid: 7725293062026690604
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Aiya audio
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: 8a1fcdf06cbca460cbf6acddf94654fa, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: befe137cbf1dd384fb3580793454f514, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293062026690606
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for 2nd bottle pickup
+        type: 3
+        interactable: {fileID: 1484599795}
+        outlineItem: 0
+        itemStaysGrabbed: 0
+        forceEnableGrabbable: 0
+    - rid: 7725293062026690609
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 3
+        interactable: {fileID: 1518123006}
+        outlineItem: 1
+        itemStaysGrabbed: 0
+        forceEnableGrabbable: 0
+    - rid: 7725293062026690611
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: I miss you audio
+        type: 5
+        audioSource: {fileID: 1302677441}
+        audioClip: {fileID: 8300000, guid: e76401beea8424794bc0735065332957, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: ccbda5c67a5aa924c9730709433b30b8, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293062026690613
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade out
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1178772243}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeOut
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293062026690615
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Short delay
+        type: 2
+        waitTime: 5
+    - rid: 7725293062026690617
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 1628411038}
+        active: 1
+    - rid: 7725293062026690619
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set old mode inactive
+        type: 6
+        gameObject: {fileID: 1827313233}
+        active: 0
+    - rid: 7725293062026690621
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set new mode active
+        type: 6
+        gameObject: {fileID: 1498610870}
+        active: 1
 --- !u!1 &1126156522
 GameObject:
   m_ObjectHideFlags: 0
@@ -9376,6 +9938,12 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.002524047, y: 0.0027251048, z: 0.0009063266}
   m_Center: {x: -0.0009356284, y: 0.000000391039, z: -0.0000043654572}
+--- !u!82 &1302677441 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1306158997
 GameObject:
   m_ObjectHideFlags: 0
@@ -12447,19 +13015,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDenturePlaced:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1115407453}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: DenturesPlacedInCup
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   secondDenture: {fileID: 0}
 --- !u!1001 &1618410897
 PrefabInstance:
@@ -19230,17 +19786,17 @@ MonoBehaviour:
   OnDenturePlaced:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407453}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: DenturesPlacedInCup
-        m_Mode: 1
+      - m_Target: {fileID: 1115407451}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
   secondDenture: {fileID: 1330141375}
 --- !u!65 &6738866492078758476

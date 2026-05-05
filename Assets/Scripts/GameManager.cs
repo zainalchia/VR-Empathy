@@ -339,6 +339,10 @@ public class GameManager : MonoBehaviour
     {
         flag = true;
     }
+    public void StartSpasming()
+    {
+        toStartSpasming = true;
+    }
 
     private IEnumerator StartRotateTowards()
     {

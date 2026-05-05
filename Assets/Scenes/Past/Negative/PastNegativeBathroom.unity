@@ -620,6 +620,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1201703107}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   OffDoorOutline:
     m_PersistentCalls:
       m_Calls: []
@@ -7726,6 +7738,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenarioID: 0
   sceneID: 0
+  flag: 0
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 1342711938}
@@ -7850,7 +7863,7 @@ MonoBehaviour:
   - rid: 3636061383514914817
   - rid: 6176681889884798985
   - rid: 9222563068242296833
-  - rid: 5361627143626031105
+  - rid: 7725293058360082452
   - rid: 6176681913310248963
   - rid: 1812711536940810241
   - rid: 6176681913310248965
@@ -8010,15 +8023,6 @@ MonoBehaviour:
         type: 1
         text: '[Freshen up with the items at the sink]'
         duration: 3
-    - rid: 5361627143626031105
-      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for player to touch door handle
-        type: 3
-        interactable: {fileID: 76183888}
-        outlineItem: 0
-        itemStaysGrabbed: 0
-        forceEnableGrabbable: 0
     - rid: 6176681889884798978
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -8146,6 +8150,11 @@ MonoBehaviour:
         name: Next Scene
         type: 13
         sceneName: PastNegativeHawker
+    - rid: 7725293058360082452
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to touch door handle
+        type: 22
     - rid: 9222563068242296833
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
