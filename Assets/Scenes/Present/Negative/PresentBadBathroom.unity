@@ -5202,17 +5202,17 @@ MonoBehaviour:
   OnDoorOpen:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 412595808}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 7330522279698956922}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlag
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 982161144}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
@@ -17697,7 +17697,7 @@ MonoBehaviour:
   - rid: 75971234018885637
   - rid: 75971234018885635
   - rid: 75971392959152134
-  - rid: 75971415428038696
+  - rid: 7725293057836318720
   - rid: 75971415428038695
   - rid: 75971392959152140
   - rid: 75971392959152138
@@ -18045,14 +18045,23 @@ MonoBehaviour:
                 m_StringArgument: FadeOut
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 75971415428038696
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+    - rid: 7725293057836318720
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
         name: Wait for door open
-        type: 7
-        gameObjects:
-        - {fileID: 412595808}
-        active: 0
+        type: 22
+--- !u!114 &7330522279698956922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+    type: 3}
+  m_PrefabInstance: {fileID: 5817889223404952107}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817889223404952108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7420753592346597749
 Transform:
   m_ObjectHideFlags: 0

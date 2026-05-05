@@ -13618,7 +13618,7 @@ PrefabInstance:
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
       propertyPath: OnPhoneCallEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
@@ -13629,7 +13629,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnPhoneCallEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 412595808}
+      objectReference: {fileID: 5817889223404952109}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
       propertyPath: OnAnswerPhone.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -13648,7 +13648,7 @@ PrefabInstance:
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
       propertyPath: OnPhoneCallEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: SetFlagTrue
       objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
@@ -13673,7 +13673,7 @@ PrefabInstance:
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
       propertyPath: OnPhoneCallEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
@@ -14622,6 +14622,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5817889223404952107}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5817889223404952109 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+    type: 3}
+  m_PrefabInstance: {fileID: 5817889223404952107}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817889223404952108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &5914924554777064626
 Transform:
   m_ObjectHideFlags: 0
@@ -14815,7 +14827,7 @@ MonoBehaviour:
   - rid: 75971415428038669
   - rid: 75971415428038671
   - rid: 75971415428038673
-  - rid: 75971415428038683
+  - rid: 7725293057836318721
   - rid: 75971415428038685
   - rid: 5471714211565142019
   - rid: 75971415428038687
@@ -14990,14 +15002,6 @@ MonoBehaviour:
         type: 6
         gameObject: {fileID: 421615959}
         active: 1
-    - rid: 75971415428038683
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for phone call to end
-        type: 7
-        gameObjects:
-        - {fileID: 412595808}
-        active: 0
     - rid: 75971415428038685
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -15187,6 +15191,11 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7725293057836318721
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for phone call to end
+        type: 22
 --- !u!4 &7420753592346597749
 Transform:
   m_ObjectHideFlags: 0

@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     public ScenarioID scenarioID = ScenarioID.PresentGood;
     public SceneID sceneID = SceneID.Bathroom;
+    public bool flag = false;
 
     public TextMeshPro testText;
     public GameObject postProcessing;
@@ -334,6 +335,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartRotateTowards());
     }
 
+    public void SetFlagTrue()
+    {
+        flag = true;
+    }
 
     private IEnumerator StartRotateTowards()
     {

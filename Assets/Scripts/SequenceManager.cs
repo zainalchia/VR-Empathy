@@ -47,6 +47,7 @@ public class SequenceManager : MonoBehaviour
             [InspectorName("Set position")] SET_SetGOPosition,
             [InspectorName("Instantiate GO")] SET_InstantiateGO,
             [InspectorName("Wait for GameObject destroyed")] SET_WaitGameObjectDestroy,
+            [InspectorName("Wait for flag")] SET_WaitForFlag,
             [InspectorName("")] SET_COUNT // NOT an actual type! here for easy counting!!!
         }
 
@@ -74,6 +75,7 @@ public class SequenceManager : MonoBehaviour
             typeof(SEvent_SetPosition               ),
             typeof(SEvent_InstantiateGO             ),
             typeof(SEvent_WaitGameObjectDestroy     ),
+            typeof(SEvent_WaitForFlag     ),
         };
 
         public SequenceEventEnum type;
@@ -582,7 +584,24 @@ public class SequenceManager : MonoBehaviour
             }
         }
     }
+    public class SEvent_WaitForFlag : SequenceEvent
+    {
+        public override void OnEnter()
+        {
+            base.OnEnter();
+        }
 
+        public override void Update()
+        {
+            base.Update();
+            if (GameManager.instance.flag == true)
+            {
+                GameManager.instance.flag = false;
+                Exit();
+                return;
+            }
+        }
+    }
 
 
     public class SEvent_TriggerUnityEvent : SequenceEvent
