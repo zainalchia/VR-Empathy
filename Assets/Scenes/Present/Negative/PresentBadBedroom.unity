@@ -587,12 +587,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226627334}
   m_Mesh: {fileID: 7370032442005724429, guid: d17c83d952ea2d9489dabe8b603de5fb, type: 3}
---- !u!1 &231650609 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bb035f61aa5a0af48a143d99a835dda7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1858171123}
-  m_PrefabAsset: {fileID: 0}
 --- !u!20 &235955366 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4207753694588978431, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -984,7 +978,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 422728089}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0dfc257093f29ed4389210a7e2ddfdac, type: 2}
   m_CullingMode: 0
@@ -1008,7 +1002,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0d7ef9cc53fdf3d428e97f4ba82f1c87, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -3302,12 +3296,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 476978274}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &507078321 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 134c067e8bab53948a987d666e558805,
-    type: 3}
-  m_PrefabInstance: {fileID: 918303356}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &533227410
 GameObject:
   m_ObjectHideFlags: 0
@@ -7259,6 +7247,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 918303356}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &918303358 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 134c067e8bab53948a987d666e558805,
+    type: 3}
+  m_PrefabInstance: {fileID: 918303356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &925326308
 GameObject:
   m_ObjectHideFlags: 0
@@ -7550,7 +7544,6 @@ GameObject:
   - component: {fileID: 1115407449}
   - component: {fileID: 1115407451}
   - component: {fileID: 1115407452}
-  - component: {fileID: 1115407453}
   - component: {fileID: 1115407454}
   - component: {fileID: 1115407455}
   - component: {fileID: 1115407456}
@@ -7688,86 +7681,6 @@ MonoBehaviour:
   allowControllerVibration: 1
   vibrationStrength: 255
   vibrationFrequency: 2
---- !u!114 &1115407453
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115407447}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d2eff92ffe04743943e3b2ed758679, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToPlay: 1
-  narrationAudioSource: {fileID: 1115407454}
-  narrationAudioClips_General_Male:
-  - {fileID: 8300000, guid: a0eed95a082fca448bdaf56c7fff199a, type: 3}
-  narrationAudioClips_General_Female:
-  - {fileID: 8300000, guid: 4204e7160c3db4975a13732cd8054b68, type: 3}
-  narrationAudioClips_Bathroom_Male: []
-  narrationAudioClips_Bathroom_Female: []
-  narrationAudioClips_Bathroom: []
-  narrationAudioClips_Bedroom_Male:
-  - {fileID: 8300000, guid: 12a000af674974503951269edd8ce2ae, type: 3}
-  - {fileID: 8300000, guid: 6ff3013de6d78e74ca5bd144a8bc5ac2, type: 3}
-  - {fileID: 8300000, guid: 9edb0a8c0daf351448c6c7c38d15dad5, type: 3}
-  - {fileID: 8300000, guid: 82cccec94c340774984705208d28ffa2, type: 3}
-  - {fileID: 8300000, guid: a3c4f90f95a8667448fd288e9cb04811, type: 3}
-  - {fileID: 8300000, guid: ba3427bab56e9cb4783932b32874aa7c, type: 3}
-  - {fileID: 8300000, guid: 9c6474508c5c2a94b906e98fbb30c30d, type: 3}
-  - {fileID: 8300000, guid: befe137cbf1dd384fb3580793454f514, type: 3}
-  - {fileID: 8300000, guid: ccbda5c67a5aa924c9730709433b30b8, type: 3}
-  narrationAudioClips_Bedroom_Female:
-  - {fileID: 8300000, guid: 10be92536c98c4f9a9fe6f53e5dd061b, type: 3}
-  - {fileID: 8300000, guid: ea10a50bc426e45eaa0eb5c0cc539d5a, type: 3}
-  - {fileID: 8300000, guid: ee58cdafa6cc44f09a9f2f5cd73411bc, type: 3}
-  - {fileID: 8300000, guid: b0c1df875ebad284eba235b6e3ade087, type: 3}
-  - {fileID: 8300000, guid: 6d3b087dd27794deb94c1cca01c18b6b, type: 3}
-  - {fileID: 8300000, guid: b7a7622ff4117435494652416e749a2a, type: 3}
-  - {fileID: 8300000, guid: 7bb652519eae64aed929d89ec635df8c, type: 3}
-  - {fileID: 8300000, guid: 8a1fcdf06cbca460cbf6acddf94654fa, type: 3}
-  - {fileID: 8300000, guid: e76401beea8424794bc0735065332957, type: 3}
-  narrationAudioClips_2: []
-  cane: {fileID: 0}
-  caneOutline: {fileID: 0}
-  firstTeleportHotspot: {fileID: 0}
-  promptManager: {fileID: 1719580650}
-  timeForWashingUp: 30
-  bathroomDoor: {fileID: 0}
-  knob: {fileID: 0}
-  questControllerImage: {fileID: 0}
-  newCane: {fileID: 0}
-  phone: {fileID: 0}
-  mobilePhone: {fileID: 0}
-  glasses: {fileID: 0}
-  glassesOutline: {fileID: 0}
-  tvAudio: {fileID: 0}
-  Glass: {fileID: 6738866492078758474}
-  CupOutline: {fileID: 6738866492078758477}
-  parents: {fileID: 883178008}
-  mother: {fileID: 231650609}
-  father: {fileID: 507078321}
-  tableWithMedicine: {fileID: 7623545440912542551}
-  sideTable: {fileID: 1187788872}
-  hallucinationParticleFX: {fileID: 1672819944}
-  chair: {fileID: 1728101240}
-  cabinet: {fileID: 6014503084830996457}
-  originallyHeldMedicine: {fileID: 2006039829}
-  animatedMedicine: {fileID: 422728089}
-  SecondOriginallyHeldMedicine: {fileID: 1484599792}
-  SecondAnimatedMedicine: {fileID: 1278154432}
-  PillBottleHighlight: {fileID: 1951452155}
-  SecondPillBottleHighlight: {fileID: 433582225}
-  photoFrame: {fileID: 1518123002}
-  oldMode: {fileID: 1827313233}
-  newMode: {fileID: 1498610870}
-  photoFrameOutline: {fileID: 533227410}
-  HandsUp: {fileID: 7400000, guid: 2c47165b2967d874589894b81fc7191f, type: 2}
-  HandsDown: {fileID: 7400000, guid: 54cc1ff3b2a94fe4584dc63e605e5ac0, type: 2}
-  bedroomNegativeAudioSource: {fileID: 1530332904}
-  bedroomNegativeBGM: {fileID: 8300000, guid: 908b899b6d7a05847849ff8dc8f13742, type: 3}
 --- !u!82 &1115407454
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7911,21 +7824,40 @@ MonoBehaviour:
   - rid: 7725293062026690576
   - rid: 7725293062026690578
   - rid: 7725293062026690564
+  - rid: 7725293080440209409
   - rid: 7725293062026690580
+  - rid: 7725293080440209456
   - rid: 7725293062026690583
   - rid: 7725293062026690585
   - rid: 7725293062026690587
+  - rid: 7725293080440209411
+  - rid: 7725293080440209445
   - rid: 7725293062026690589
   - rid: 7725293062026690619
   - rid: 7725293062026690621
+  - rid: 7725293080440209428
+  - rid: 7725293080440209413
+  - rid: 7725293080440209415
+  - rid: 7725293080440209419
+  - rid: 7725293080440209420
+  - rid: 7725293080440209421
+  - rid: 7725293080440209424
+  - rid: 7725293080440209425
   - rid: 7725293062026690591
   - rid: 7725293062026690593
   - rid: 7725293062026690595
   - rid: 7725293062026690599
   - rid: 7725293062026690597
-  - rid: 7725293062026690602
-  - rid: 7725293062026690606
+  - rid: 7725293080440209440
+  - rid: 7725293080440209431
+  - rid: 7725293080440209441
+  - rid: 7725293080440209434
+  - rid: 7725293080440209447
+  - rid: 7725293080440209432
+  - rid: 7725293080440209443
+  - rid: 7725293080440209436
   - rid: 7725293062026690604
+  - rid: 7725293080440209450
   - rid: 7725293062026690609
   - rid: 7725293062026690611
   - rid: 7725293062026690613
@@ -7971,18 +7903,6 @@ MonoBehaviour:
               m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
               m_MethodName: set_enabled
               m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-            - m_Target: {fileID: 1115407451}
-              m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-              m_MethodName: SetFlagTrue
-              m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8089,7 +8009,7 @@ MonoBehaviour:
             m_Calls:
             - m_Target: {fileID: 1115407451}
               m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-              m_MethodName: StartSpasming
+              m_MethodName: SpasmingControl
               m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
@@ -8246,15 +8166,6 @@ MonoBehaviour:
         name: Short delay
         type: 2
         waitTime: 1
-    - rid: 7725293062026690602
-      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for 1st bottle pickup
-        type: 3
-        interactable: {fileID: 2006039832}
-        outlineItem: 0
-        itemStaysGrabbed: 0
-        forceEnableGrabbable: 0
     - rid: 7725293062026690604
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -8265,22 +8176,13 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: befe137cbf1dd384fb3580793454f514, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 7725293062026690606
-      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for 2nd bottle pickup
-        type: 3
-        interactable: {fileID: 1484599795}
-        outlineItem: 0
-        itemStaysGrabbed: 0
-        forceEnableGrabbable: 0
     - rid: 7725293062026690609
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
         name: 
         type: 3
         interactable: {fileID: 1518123006}
-        outlineItem: 1
+        outlineItem: 0
         itemStaysGrabbed: 0
         forceEnableGrabbable: 0
     - rid: 7725293062026690611
@@ -8340,6 +8242,248 @@ MonoBehaviour:
         type: 6
         gameObject: {fileID: 1498610870}
         active: 1
+    - rid: 7725293080440209409
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 2
+        waitTime: 5
+    - rid: 7725293080440209411
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 2
+        waitTime: 4
+    - rid: 7725293080440209413
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 7623545440912542551}
+        active: 1
+    - rid: 7725293080440209415
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 50754954528081030}
+        active: 1
+    - rid: 7725293080440209419
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 1728101240}
+        active: 1
+    - rid: 7725293080440209420
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 1187788872}
+        active: 1
+    - rid: 7725293080440209421
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 6014503084830996457}
+        active: 1
+    - rid: 7725293080440209424
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 883178008}
+        active: 0
+    - rid: 7725293080440209425
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 1672819944}
+        active: 0
+    - rid: 7725293080440209428
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1115407451}
+              m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+              m_MethodName: SpasmingControl
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293080440209431
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for 1st bottle pickup
+        type: 22
+    - rid: 7725293080440209432
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for 2nd bottle pickup
+        type: 22
+    - rid: 7725293080440209434
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 422728089}
+        active: 1
+    - rid: 7725293080440209436
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 1278154432}
+        active: 1
+    - rid: 7725293080440209440
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1951452155}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 2006039838}
+              m_TargetAssemblyTypeName: Medicine, Assembly-CSharp
+              m_MethodName: SetPickUp
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7725293080440209441
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 2006039829}
+        active: 0
+    - rid: 7725293080440209443
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 1484599792}
+        active: 0
+    - rid: 7725293080440209445
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 421615959}
+        active: 0
+    - rid: 7725293080440209447
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 433582225}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 1484599801}
+              m_TargetAssemblyTypeName: Medicine, Assembly-CSharp
+              m_MethodName: SetPickUp
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7725293080440209450
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1518123006}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 533227410}
+              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+              m_MethodName: SetActive
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7725293080440209456
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 918303358}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: Talk
+                m_BoolArgument: 0
+              m_CallState: 2
 --- !u!1 &1126156522
 GameObject:
   m_ObjectHideFlags: 0
@@ -9610,7 +9754,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278154432}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 0dfc257093f29ed4389210a7e2ddfdac, type: 2}
   m_CullingMode: 0
@@ -9634,7 +9778,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 0d7ef9cc53fdf3d428e97f4ba82f1c87, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -11217,9 +11361,9 @@ MonoBehaviour:
   OnDroppedMedication:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407453}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: SecondMedicationDropped
+      - m_Target: {fileID: 1115407451}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11455,7 +11599,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518123002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
@@ -11474,7 +11618,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518123002}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
   m_Name: 
@@ -11506,7 +11650,7 @@ MonoBehaviour:
   lookedAtComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407453}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
         m_MethodName: StaredAtPhoto
         m_Mode: 1
@@ -11600,15 +11744,15 @@ MonoBehaviour:
   lefthandXPosition: 0.1133
   lefthandYPosition: -0.127
   lefthandZPosition: -0.0045
-  lefthandXRotation: 0
+  lefthandXRotation: 180
   lefthandYRotation: 0
-  lefthandZRotation: 0
+  lefthandZRotation: 180
   righthandXPosition: -0.1122
   righthandYPosition: -0.127
   righthandZPosition: -0.0045
-  righthandXRotation: 0
+  righthandXRotation: 180
   righthandYRotation: 0
-  righthandZRotation: 0
+  righthandZRotation: 180
 --- !u!1001 &1523771366
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11956,7 +12100,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1539590057}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
   m_Name: 
@@ -13923,18 +14067,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2aa261b86273e41ae7b98704280be7, type: 3}
---- !u!114 &1719580650 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1719580649}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1719580651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3133565269879424242, guid: de2aa261b86273e41ae7b98704280be7,
@@ -17896,9 +18028,9 @@ MonoBehaviour:
   OnDroppedMedication:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407453}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentBad, Assembly-CSharp
-        m_MethodName: FirstMedicationDropped
+      - m_Target: {fileID: 1115407451}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19787,16 +19919,16 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1115407451}
-        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-        m_MethodName: set_enabled
-        m_Mode: 6
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
   secondDenture: {fileID: 1330141375}
 --- !u!65 &6738866492078758476
