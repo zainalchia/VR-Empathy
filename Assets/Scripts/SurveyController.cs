@@ -5,6 +5,7 @@ using TMPro;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine.UI;
+using Unity.VisualScripting.AssemblyQualifiedNameParser;
 
 public class SurveyController : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class SurveyController : MonoBehaviour
 
     [Serializable]
     private class SurveyQn
-    {
+    {        
         public string question;
         public SurveyQnType surveyQnType;
 
@@ -45,11 +46,91 @@ public class SurveyController : MonoBehaviour
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject prevButton;
     [SerializeField] private GameObject submitButton;
+    private TextAsset csvFile;
+    private string[] csvInputStrings;
+
     private int currentQs = 0;
 
-    private void GrabDataFromCSV()
+    private void LoadDataFromCSV(string filename)
     {
-        // todo?
+        try
+        {
+            string fileText = System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Application.persistentDataPath + "/" + filename));
+            string[] fileTextSplit = fileText.Split(new string[] { "\n" }, System.StringSplitOptions.None);
+            int tableSize = fileTextSplit.Length;
+            csvInputStrings = new string[fileTextSplit.Length];
+
+            for (int i = 0; i < tableSize; i++)
+            {
+                csvInputStrings[i] = fileTextSplit[i];
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log("no file found at " + Application.persistentDataPath);
+        }
+    }
+
+    private void LoadSurveyQuestions()
+    {
+        // grab csv from streaming assets
+        LoadDataFromCSV("surveyquestions.csv");
+
+        surveyQns = new SurveyQn[csvInputStrings.Length - 1];
+
+        //skip the headers in the CSV file        
+        // question, question type, choices
+        // question, question type, low rating criteria, high rating criteria, no of ratings
+        for (int i = 1; i < csvInputStrings.Length; i++)
+        {
+            string line = csvInputStrings[i].Trim();
+            Debug.Log(line);
+            if (string.IsNullOrWhiteSpace(line)) continue;
+
+            string[] parts = line.Split(',');
+            
+            surveyQns[i - 1] = new SurveyQn();
+            surveyQns[i - 1].question = parts[0];
+
+            if (System.Enum.TryParse(parts[1].Trim(), true, out SurveyQnType qnType)) 
+            {
+                surveyQns[i - 1].surveyQnType = qnType;
+            }
+            else
+            {
+                Debug.Log("qn type not valid");
+                continue;
+            }
+
+            switch (surveyQns[i - 1].surveyQnType)
+            {
+                case SurveyQnType.mcq:
+
+                    // to populate the choices mcqs
+                    surveyQns[i - 1].choices = new string[parts.Length - 3];
+                    for (int j = 3; j < parts.Length; j++)
+                    {
+                        surveyQns[i - 1].choices[j - 3] = parts[j];
+                    }
+                    break;
+
+                case SurveyQnType.rating:
+                    
+                    surveyQns[i - 1].lowRatingCriteria = parts[2];
+                    surveyQns[i - 1].highRatingCriteria = parts[3];
+                    
+                    if (int.TryParse(parts[4], out int noOfRatingsInt))
+                    {
+                        surveyQns[i - 1].noOfRatings = noOfRatingsInt;
+                    }
+                    else
+                    {
+                        Debug.Log("no of ratings not valid");
+                        continue;
+                    }
+                    break;
+            }
+        }
     }
 
     private void PopulateSurveyPage(int qsNumber)
@@ -205,17 +286,6 @@ public class SurveyController : MonoBehaviour
                 sw.WriteLine("\n" + textToWrite);
                 Debug.Log("csv appended at: " + path);
             }
-
-            Debug.Log("blegh2");
-            /*
-            string fileText = System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Application.persistentDataPath + filename));
-            string[] fileTextSplit = fileText.Split(new string[] { "\n" }, System.StringSplitOptions.None);
-            int tableSize = fileTextSplit.Length;
-
-            for (int i = 0; i < tableSize; i++)
-            {
-                //narration[i] = fileTextSplit[i];
-            } */
         }
         catch (Exception e)
         {
@@ -237,7 +307,7 @@ public class SurveyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //AppendCSV();
+        LoadSurveyQuestions();
 
         // declare answers array
         surveyAns.answers = new string[surveyQns.Length];
