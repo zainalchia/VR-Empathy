@@ -336,14 +336,25 @@ public class SequenceManager : MonoBehaviour
     {
         //[SerializeField] Hand hand;
         [SerializeField] GrabInteractable interactable;
+        [SerializeField] GameObject particleFX;
 
         public override void OnEnter()
         {
             base.OnEnter();
             if (GameManager.instance.grabInteractors[0].SelectedInteractable == interactable)
+            {
                 GameManager.instance.grabInteractors[0].ForceRelease();
+
+                if (particleFX != null) // optional
+                    Instantiate(particleFX, ControllerInteractionsManager.instance.leftHandAnchor.transform);
+            }
             if (GameManager.instance.grabInteractors[1].SelectedInteractable == interactable)
+            {
                 GameManager.instance.grabInteractors[1].ForceRelease();
+
+                if (particleFX != null) // optional
+                    Instantiate(particleFX, ControllerInteractionsManager.instance.rightHandAnchor.transform);
+            }
             Exit();
         }
     }
