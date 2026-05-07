@@ -364,6 +364,13 @@ public class GameManager : MonoBehaviour
         ovrCamRig.transform.Rotate(Vector3.up, angle);
     }
 
+    public void LoadNextScenario()
+    {
+        if (MainMenuManager.presentLevelSelected != null)
+        {
+            SceneManager.LoadScene(MainMenuManager.presentLevelSelected);
+        }
+    }
 
     // Update is called once per frame
     void Update()

@@ -21,10 +21,12 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     Material mainMenuSkybox;
 
-    string levelSelected;
+    public static string pastLevelSelected;
+    public static string presentLevelSelected;
 
     [SerializeField] Sprite[] snippets;
     [SerializeField] Image[] snippetsBg;
+    [SerializeField] NumberPadScript numberPadScript;
     int minRange, maxRange;
 
     public enum VideoToPlay
@@ -52,26 +54,60 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(levelSelected);
+        if(pastLevelSelected != null)
+        {
+            SceneManager.LoadScene(pastLevelSelected);
+        }
+        else
+        {
+            SceneManager.LoadScene(presentLevelSelected);
+        }
     }
 
     public void SelectGender(bool isMale)
     {
+        if(int.Parse(numberPadScript.num) > 100)
+        {
+            return;
+        }
         isGenderMale = isMale;
+        toScenarioScreen();
+        //genderScreen.SetActive(false);
+        //videoScreen.SetActive(true);
+        //toVideoScreen();
+    }
+
+    public void SelectPastLevel(string levelname)
+    {
+        pastLevelSelected = levelname;
+    }
+    public void SelectPresentLevel(string levelname)
+    {
+        presentLevelSelected = levelname;
+    }
+
+    public void ToggleOtherScenario(Button button)
+    {
+        button.enabled = !button.enabled;
+    }
+
+    public void ChangeColor(RawImage image)
+    {
+        //Select / Deselect scenario
+        if (image.color.r == 225)
+        {
+            image.color = new Color(0, 225, 0);
+        }
+        else if (image.color.r == 0)
+        {
+            image.color = new Color(225, 225, 225);
+        }
+    }
+
+    public void toScenarioScreen()
+    {
+        scenarioScreen.SetActive(true);
         genderScreen.SetActive(false);
-        videoScreen.SetActive(true);
-        toVideoScreen();
-    }
-
-    public void SelectLevel(string levelname)
-    {
-        levelSelected = levelname;
-    }
-
-    public void toGenderScreen()
-    {
-        scenarioScreen.SetActive(false);
-        genderScreen.SetActive(true);
     }
 
     public void toVideoScreen()
