@@ -79,11 +79,17 @@ public class MainMenuManager : MonoBehaviour
 
     public void SelectPastLevel(string levelname)
     {
-        pastLevelSelected = levelname;
+        if(pastLevelSelected == null)
+            pastLevelSelected = levelname;
+        else
+            pastLevelSelected = null;
     }
     public void SelectPresentLevel(string levelname)
     {
-        presentLevelSelected = levelname;
+        if (pastLevelSelected == null)
+            presentLevelSelected = levelname;
+        else
+            presentLevelSelected = null;
     }
 
     public void ToggleOtherScenario(Button button)
