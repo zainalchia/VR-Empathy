@@ -20,11 +20,17 @@ public class MobilePhone : MonoBehaviour
     [SerializeField] Material videoScreenMat;
     [SerializeField] Material phoneMat;
 
+    [Header("Player Audio")]
+    [SerializeField] AudioClip maleAudioClip;
+    [SerializeField] AudioClip femaleAudioClip;
+    [SerializeField] AudioSource playerAudioSource;
+
     public UnityEvent OnPickUpPhoneFirstTime;
-    public UnityEvent OnAnswerPhone;
+    public UnityEvent OnPhoneCallEnd;
 
     List<Material> materials = new List<Material>();
     bool hasBeenPickedUpFirstTime = false;
+    bool isPhoneAnswered = false;
 
     public void SetPhoneCalling()
     {
@@ -83,6 +89,14 @@ public class MobilePhone : MonoBehaviour
                 }
             }
         }
+        if (!GameManager.instance.canAnswerPhone)
+        {
+            if (!playerAudioSource.isPlaying)
+            {
+                if(isPhoneAnswered)
+                    OnPhoneCallEnd.Invoke();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -97,7 +111,11 @@ public class MobilePhone : MonoBehaviour
                     {
                         GameManager.instance.canAnswerPhone = false;
                         SetPhoneAnswered();
-                        OnAnswerPhone.Invoke();
+                        if(MainMenuManager.isGenderMale)
+                            playerAudioSource.PlayOneShot(maleAudioClip);
+                        else
+                            playerAudioSource.PlayOneShot(femaleAudioClip);
+                        isPhoneAnswered = true;
                     }
                 }
             }

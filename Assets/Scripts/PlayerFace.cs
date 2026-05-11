@@ -33,6 +33,7 @@ public class PlayerFace : MonoBehaviour
                 GameManager.instance.glasses.GetComponent<Rigidbody>().useGravity = false;
                 GameManager.instance.glasses.SetActive(false);
                 OnGlassesPutOn.Invoke();
+                GameManager.instance.canAnswerPhone = true;
                 GameManager.instance.toPutGlassesOn = false;
             }                
         }

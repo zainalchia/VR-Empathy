@@ -1170,7 +1170,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319927141}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -2878,7 +2878,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354212912}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -5048,11 +5048,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6fb2ffa1373c9524698be9b10d1f4f66,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 982161141}
+      addedObject: {fileID: 982161144}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 6fb2ffa1373c9524698be9b10d1f4f66,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 982161144}
+      addedObject: {fileID: 982161153}
   m_SourcePrefab: {fileID: 100100000, guid: 6fb2ffa1373c9524698be9b10d1f4f66, type: 3}
 --- !u!4 &982161136 stripped
 Transform:
@@ -5087,41 +5087,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.1
   m_Center: {x: -0.16, y: 0.2, z: -0.13820511}
---- !u!114 &982161141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 982161137}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 178253dd96d72de49b98a4e8270e6bed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Door_Anchor: {fileID: 0}
-  DoorHandle_Anchor: {fileID: 0}
-  canOpenDoor: 0
-  GateOpenSource: {fileID: 982161144}
-  OnDoorOpen:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1178772239}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Open
-          m_BoolArgument: 1
-        m_CallState: 2
-  OffDoorOutline:
-    m_PersistentCalls:
-      m_Calls: []
-  type: 0
 --- !u!82 &982161144
 AudioSource:
   m_ObjectHideFlags: 0
@@ -5218,6 +5183,65 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &982161153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 982161137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 178253dd96d72de49b98a4e8270e6bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Door_Anchor: {fileID: 0}
+  DoorHandle_Anchor: {fileID: 0}
+  canOpenDoor: 0
+  GateOpenSource: {fileID: 982161144}
+  OnDoorOpen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7330522279698956922}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 982161144}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OffDoorOutline:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 926231268}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  type: 0
 --- !u!1 &1003645882
 GameObject:
   m_ObjectHideFlags: 0
@@ -10136,7 +10160,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936565560}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -16530,7 +16554,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 7330522279698956916}
+      objectReference: {fileID: 0}
     - target: {fileID: 6587107056749831078, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: m_TagString
@@ -16673,10 +16697,15 @@ PrefabInstance:
       propertyPath: m_IsKinematic
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3543667628877398903, guid: 6872d198dca952c40aefc0a497e8a0f9,
+    - target: {fileID: 3063130459301642122, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3543667628877398903, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4895088882468253383, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
@@ -16775,9 +16804,14 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 589bcae0dccb64ff686a381e7c69aefc, type: 3}
     - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
+      propertyPath: maleSighAudio.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
       propertyPath: scenarioManagerPresentBad
       value: 
-      objectReference: {fileID: 7330522279698956916}
+      objectReference: {fileID: 0}
     - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
       propertyPath: teleportHotspots.Array.data[0]
@@ -16842,7 +16876,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnFirstGrab.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 7330522279698956916}
+      objectReference: {fileID: 0}
     - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
       propertyPath: OnFirstGrab.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -16856,7 +16890,7 @@ PrefabInstance:
     - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
       propertyPath: OnFirstGrab.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: AllowDoorOpen
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
@@ -16890,7 +16924,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2586940751914089130}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412595808}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
   m_Name: 
@@ -17024,7 +17058,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bathroomDoor
       value: 
-      objectReference: {fileID: 982161141}
+      objectReference: {fileID: 0}
     - target: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
         type: 3}
       propertyPath: glassesOutline
@@ -17305,6 +17339,11 @@ PrefabInstance:
       propertyPath: rightGrabInteractor
       value: 
       objectReference: {fileID: 2276772900260340214}
+    - target: {fileID: 7277603912207185784, guid: 762801de029432c44a40e4065bb93349,
+        type: 3}
+      propertyPath: OnGlassesDrop.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8497980951892939287, guid: 762801de029432c44a40e4065bb93349,
         type: 3}
       propertyPath: alertTextController
@@ -17313,6 +17352,7 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7139200262989164425, guid: 762801de029432c44a40e4065bb93349, type: 3}
     - {fileID: 3196500072296591045, guid: 762801de029432c44a40e4065bb93349, type: 3}
+    - {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -17320,10 +17360,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7330522279698956917}
-    - targetCorrespondingSourceObject: {fileID: 4947871553479497366, guid: 762801de029432c44a40e4065bb93349,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7330522279698956918}
     - targetCorrespondingSourceObject: {fileID: 4947871553479497366, guid: 762801de029432c44a40e4065bb93349,
         type: 3}
       insertIndex: -1
@@ -17617,18 +17653,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &7330522279698956916 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3407524192125189410, guid: 762801de029432c44a40e4065bb93349,
-    type: 3}
-  m_PrefabInstance: {fileID: 5817889223404952107}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5817889223404952108}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27d2eff92ffe04743943e3b2ed758679, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7330522279698956917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17649,23 +17673,6 @@ MonoBehaviour:
   - {fileID: 1348460632}
   - {fileID: 1348460631}
   - {fileID: 1348460630}
---- !u!114 &7330522279698956918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5817889223404952108}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTest: 0
-  currentSceneName: 
-  scenarioManagerPresentBad: {fileID: 7330522279698956916}
-  scenarioManagerPresentGood: {fileID: 0}
-  scenarioManagerReneeTest: {fileID: 0}
 --- !u!114 &7330522279698956919
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17680,20 +17687,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshEditor: 0
   events:
-  - rid: 75971211654856705
   - rid: 75971211654856710
+  - rid: 75971211654856705
   - rid: 75971211654856708
   - rid: 75971211654856712
   - rid: 75971234018885645
   - rid: 75971234018885633
+  - rid: 75971415428038691
   - rid: 75971234018885637
   - rid: 75971234018885635
-  - rid: 75971234018885649
-  - rid: 75971234018885652
-  - rid: 75971234018885655
-  - rid: 75971234018885659
-  - rid: 75971234018885661
-  - rid: 75971234018885657
+  - rid: 75971392959152134
+  - rid: 7725293057836318720
+  - rid: 75971415428038695
+  - rid: 75971392959152140
+  - rid: 75971392959152138
   references:
     version: 2
     RefIds:
@@ -17781,18 +17788,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 1
               m_CallState: 2
-            - m_Target: {fileID: 1178772239}
-              m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-              m_MethodName: SetActive
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
     - rid: 75971211654856712
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -17825,7 +17820,7 @@ MonoBehaviour:
         interactable: {fileID: 2586940751914089131}
         outlineItem: 1
         itemStaysGrabbed: 1
-        forceEnableGrabbable: 1
+        forceEnableGrabbable: 0
     - rid: 75971234018885645
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -17966,15 +17961,27 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 75971234018885649
+    - rid: 75971392959152134
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: Allow door to be grabbed
+        name: Outline door knob
         type: 12
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 982161141}
+            - m_Target: {fileID: 926231268}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 982161153}
               m_TargetAssemblyTypeName: DoorKnob, Assembly-CSharp
               m_MethodName: AllowDoorOpen
               m_Mode: 1
@@ -17984,58 +17991,77 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: 
-                m_BoolArgument: 0
+                m_BoolArgument: 1
               m_CallState: 2
-    - rid: 75971234018885652
-      type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
+    - rid: 75971392959152138
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
       data:
-        name: Wait for door grab
-        type: 7
-        gameObjects:
-        - {fileID: 1178772239}
-        active: 1
-    - rid: 75971234018885655
+        name: Go to living room
+        type: 13
+        sceneName: PresentBadLivingRoom
+    - rid: 75971392959152140
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Small delay
+        type: 2
+        waitTime: 5
+    - rid: 75971415428038691
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: Fade screen
+        name: Enable cane to be grabbable
         type: 12
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 1178772244}
-              m_TargetAssemblyTypeName: UIImageFader, Assembly-CSharp
-              m_MethodName: Activate
-              m_Mode: 4
+            - m_Target: {fileID: 2586940751914089131}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 75971415428038695
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade out
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1178772243}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeOut
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 75971234018885657
-      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+    - rid: 7725293057836318720
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
-        name: Go to next scene
-        type: 13
-        sceneName: PresentBadLivingRoom
-    - rid: 75971234018885659
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: Door opening sound
-        type: 5
-        audioSource: {fileID: 982161144}
-        audioClip: {fileID: 8300000, guid: 690d0f5bf31c7ed4a9ff3aa83024269d, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: 690d0f5bf31c7ed4a9ff3aa83024269d, type: 3}
-        waitForEnd: 1
-        loop: 0
-    - rid: 75971234018885661
-      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
-      data:
-        name: Slight delay
-        type: 2
-        waitTime: 1
+        name: Wait for door open
+        type: 22
+--- !u!114 &7330522279698956922 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4041586149288324034, guid: 762801de029432c44a40e4065bb93349,
+    type: 3}
+  m_PrefabInstance: {fileID: 5817889223404952107}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5817889223404952108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99af6b7416f61147b9923d7bd559d0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &7420753592346597749
 Transform:
   m_ObjectHideFlags: 0
@@ -18352,7 +18378,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4961946615217511000}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
