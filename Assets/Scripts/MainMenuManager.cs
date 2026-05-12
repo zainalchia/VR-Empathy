@@ -67,7 +67,6 @@ public class MainMenuManager : MonoBehaviour
     public void SelectGender(bool isMale)
     {
         isGenderMale = isMale;
-        toScenarioScreen();
         //genderScreen.SetActive(false);
         //videoScreen.SetActive(true);
         //toVideoScreen();
