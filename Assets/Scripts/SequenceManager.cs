@@ -48,6 +48,7 @@ public class SequenceManager : MonoBehaviour
             [InspectorName("Instantiate GO")] SET_InstantiateGO,
             [InspectorName("Wait for GameObject destroyed")] SET_WaitGameObjectDestroy,
             [InspectorName("Wait for flag")] SET_WaitForFlag,
+            [InspectorName("Go to second scenario")] SET_GoToSecondScenario,
             [InspectorName("")] SET_COUNT // NOT an actual type! here for easy counting!!!
         }
 
@@ -75,7 +76,8 @@ public class SequenceManager : MonoBehaviour
             typeof(SEvent_SetPosition               ),
             typeof(SEvent_InstantiateGO             ),
             typeof(SEvent_WaitGameObjectDestroy     ),
-            typeof(SEvent_WaitForFlag     ),
+            typeof(SEvent_WaitForFlag               ),
+            typeof(SEvent_GoToSecondScenario        ),
         };
 
         public SequenceEventEnum type;
@@ -614,6 +616,19 @@ public class SequenceManager : MonoBehaviour
         }
     }
 
+    public class SEvent_GoToSecondScenario : SequenceEvent
+    {
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            if (MainMenuManager.presentLevelSelected != null)
+                SceneManager.LoadScene(MainMenuManager.presentLevelSelected);
+            else
+                SceneManager.LoadScene("Survey");
+            Exit();
+        }
+    }
 
     public class SEvent_TriggerUnityEvent : SequenceEvent
     {
@@ -638,8 +653,6 @@ public class SequenceManager : MonoBehaviour
             Exit();
         }
     }
-
-
 
 
 

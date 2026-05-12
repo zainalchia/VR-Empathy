@@ -11937,6 +11937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenarioID: 0
   sceneID: 2
+  flag: 0
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 272985364}
@@ -12161,9 +12162,7 @@ MonoBehaviour:
   - rid: 3783327436181078019
   - rid: 9222562903833444362
   - rid: 9222562903833444364
-  - rid: 3783327436181078022
-  - rid: 5361627232578043909
-  - rid: 4897766071759798285
+  - rid: 5471714376494874625
   references:
     version: 2
     RefIds:
@@ -12653,25 +12652,20 @@ MonoBehaviour:
         type: 6
         gameObject: {fileID: 80749982}
         active: 1
-    - rid: 3783327436181078022
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Show End game text
-        type: 6
-        gameObject: {fileID: 1795495782}
-        active: 1
     - rid: 4897766071759798277
       type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
       data:
         name: Drop Match
         type: 9
         interactable: {fileID: 1093040539}
+        particleFX: {fileID: 0}
     - rid: 4897766071759798278
       type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
       data:
         name: Drop Matchbox
         type: 9
         interactable: {fileID: 46809707}
+        particleFX: {fileID: 0}
     - rid: 4897766071759798280
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -12704,12 +12698,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 4897766071759798285
-      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
-      data:
-        name: go back to main menu
-        type: 13
-        sceneName: MainMenu
     - rid: 5361627003736293392
       type: {class: SequenceManager/SEvent_WaitForGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -12718,11 +12706,11 @@ MonoBehaviour:
         gameObjects:
         - {fileID: 146886849}
         active: 1
-    - rid: 5361627232578043909
-      type: {class: SequenceManager/SEvent_WaitForTrigger, ns: , asm: Assembly-CSharp}
+    - rid: 5471714376494874625
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
-        name: wait
-        type: 17
+        name: go back to main menu
+        type: 23
     - rid: 6600812871027785731
       type: {class: SequenceManager/SEvent_ChangeMaterialTexture, ns: , asm: Assembly-CSharp}
       data:

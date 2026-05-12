@@ -6,6 +6,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine.UI;
 using Unity.VisualScripting.AssemblyQualifiedNameParser;
+using UnityEngine.SceneManagement;
 
 public class SurveyController : MonoBehaviour
 {

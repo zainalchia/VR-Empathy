@@ -21,8 +21,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     Material mainMenuSkybox;
 
-    public static string pastLevelSelected;
-    public static string presentLevelSelected;
+    public static string pastLevelSelected = null;
+    public static string presentLevelSelected = null;
 
     [SerializeField] Sprite[] snippets;
     [SerializeField] Image[] snippetsBg;
@@ -66,10 +66,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void SelectGender(bool isMale)
     {
-        if(int.Parse(numberPadScript.num) > 100)
-        {
-            return;
-        }
         isGenderMale = isMale;
         toScenarioScreen();
         //genderScreen.SetActive(false);

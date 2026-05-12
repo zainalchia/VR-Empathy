@@ -10577,6 +10577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenarioID: 0
   sceneID: 2
+  flag: 0
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 272985364}
@@ -10800,9 +10801,7 @@ MonoBehaviour:
   - rid: 3631777251340320773
   - rid: 154194485549989892
   - rid: 154194441199157284
-  - rid: 8460281867681398787
-  - rid: 5361627232578043905
-  - rid: 5361627232578043908
+  - rid: 5471714376494874624
   references:
     version: 2
     RefIds:
@@ -11323,6 +11322,7 @@ MonoBehaviour:
         name: DropMatch
         type: 9
         interactable: {fileID: 1093040539}
+        particleFX: {fileID: 0}
     - rid: 3631777251340320771
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -11436,17 +11436,11 @@ MonoBehaviour:
         outlineItem: 1
         itemStaysGrabbed: 1
         forceEnableGrabbable: 1
-    - rid: 5361627232578043905
-      type: {class: SequenceManager/SEvent_WaitForTrigger, ns: , asm: Assembly-CSharp}
+    - rid: 5471714376494874624
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
-        name: Wait for player trigger
-        type: 17
-    - rid: 5361627232578043908
-      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
-      data:
-        name: Go to main menu
-        type: 13
-        sceneName: MainMenu
+        name: Go to survey
+        type: 23
     - rid: 6500772572562194435
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -11487,13 +11481,6 @@ MonoBehaviour:
                 m_StringArgument: Crying
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 8460281867681398787
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Show thanks for playing
-        type: 6
-        gameObject: {fileID: 555575439}
-        active: 1
     - rid: 8750925748685766658
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:

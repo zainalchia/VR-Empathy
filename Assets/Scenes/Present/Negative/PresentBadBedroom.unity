@@ -7810,7 +7810,7 @@ MonoBehaviour:
   - rid: 7725293058360082443
   - rid: 7725293058360082447
   - rid: 7725293058360082441
-  - rid: 7725293058360082445
+  - rid: 5471714376494874626
   - rid: 7725293058360082451
   - rid: 7725293062026690567
   - rid: 7725293058360082454
@@ -7849,11 +7849,11 @@ MonoBehaviour:
   - rid: 7725293062026690599
   - rid: 7725293062026690597
   - rid: 7725293080440209440
-  - rid: 7725293080440209431
+  - rid: 5471714376494874627
   - rid: 7725293080440209441
   - rid: 7725293080440209434
   - rid: 7725293080440209447
-  - rid: 7725293080440209432
+  - rid: 5471714376494874628
   - rid: 7725293080440209443
   - rid: 7725293080440209436
   - rid: 7725293062026690604
@@ -7862,10 +7862,31 @@ MonoBehaviour:
   - rid: 7725293062026690611
   - rid: 7725293062026690613
   - rid: 7725293062026690615
-  - rid: 7725293062026690617
+  - rid: 5471714376494874630
   references:
     version: 2
     RefIds:
+    - rid: 5471714376494874626
+      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for denture to be placed in cup
+        type: 22
+    - rid: 5471714376494874627
+      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for 1st bottle pickup
+        type: 22
+    - rid: 5471714376494874628
+      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for 2nd bottle pickup
+        type: 22
+    - rid: 5471714376494874630
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: Go to survey
+        type: 13
+        sceneName: Survey
     - rid: 7725293058360082437
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
@@ -7911,11 +7932,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 1
               m_CallState: 2
-    - rid: 7725293058360082445
-      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for denture to be placed in cup
-        type: 22
     - rid: 7725293058360082447
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
@@ -8221,13 +8237,6 @@ MonoBehaviour:
         name: Short delay
         type: 2
         waitTime: 5
-    - rid: 7725293062026690617
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 6
-        gameObject: {fileID: 1628411038}
-        active: 1
     - rid: 7725293062026690619
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -8323,16 +8332,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 7725293080440209431
-      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for 1st bottle pickup
-        type: 22
-    - rid: 7725293080440209432
-      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for 2nd bottle pickup
-        type: 22
     - rid: 7725293080440209434
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:

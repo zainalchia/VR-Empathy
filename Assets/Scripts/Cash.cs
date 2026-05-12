@@ -64,9 +64,6 @@ public class Cash : MonoBehaviour
         if (registerOutline != null)
             registerOutline.enabled = false;
 
-        //confirm cash have been placed, tells manager
-        FindObjectOfType<ScenarioManagerReneeTest>().OnCashPlaced();
-
         //hide alert
         if (AlertTextController.instance != null)
             AlertTextController.instance.SetInactive();
