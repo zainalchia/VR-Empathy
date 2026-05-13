@@ -111,6 +111,24 @@ public class MainMenuManager : MonoBehaviour
         genderScreen.SetActive(false);
     }
 
+    public void RandomizeScenario()
+    {
+        int randomPastScenario = UnityEngine.Random.Range(0, 2);
+        int randomPresentScenario = UnityEngine.Random.Range(0, 2);
+
+        if (randomPastScenario == 0)
+            pastLevelSelected = "PastNegativeBathroom";
+        else
+            pastLevelSelected = "PastPositiveBathroom";
+
+        if (randomPresentScenario == 0)
+            presentLevelSelected = "PresentBadBathroom";
+        else
+            presentLevelSelected = "PresentGoodBathroom";
+
+        LoadLevel();
+    }
+
     public void toVideoScreen()
     {
         StartCoroutine(VideoPlaying());
