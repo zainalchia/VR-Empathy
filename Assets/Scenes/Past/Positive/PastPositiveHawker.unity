@@ -28861,6 +28861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenarioID: 3
   sceneID: 0
+  flag: 0
   testText: {fileID: 0}
   postProcessing: {fileID: 0}
   ovrCamRig: {fileID: 1576574053}
@@ -29103,6 +29104,7 @@ MonoBehaviour:
   - rid: 6176682073276809237
   - rid: 3636061403108868108
   - rid: 4498990571523145734
+  - rid: 7725293240241881092
   - rid: 4498990571523145732
   - rid: 4498990571523145729
   - rid: 3783327431779155971
@@ -29243,18 +29245,6 @@ MonoBehaviour:
                 m_FloatArgument: 0
                 m_StringArgument: 
                 m_BoolArgument: 1
-              m_CallState: 2
-            - m_Target: {fileID: 479391326}
-              m_TargetAssemblyTypeName: SaneChickenChopper, Assembly-CSharp
-              m_MethodName: Reset
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
               m_CallState: 2
     - rid: 3631777410367094791
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -29766,6 +29756,12 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 811bae9f3a17a60498648572103ea700, type: 3}
         waitForEnd: 1
         loop: 0
+    - rid: 7725293240241881092
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Delay
+        type: 2
+        waitTime: 1
 --- !u!1001 &1202423591
 PrefabInstance:
   m_ObjectHideFlags: 0

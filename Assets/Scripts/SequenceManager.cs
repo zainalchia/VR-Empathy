@@ -49,6 +49,7 @@ public class SequenceManager : MonoBehaviour
             [InspectorName("Wait for GameObject destroyed")] SET_WaitGameObjectDestroy,
             [InspectorName("Wait for flag")] SET_WaitForFlag,
             [InspectorName("Go to second scenario")] SET_GoToSecondScenario,
+            [InspectorName("Set rotation")] SET_SetRotation,
             [InspectorName("")] SET_COUNT // NOT an actual type! here for easy counting!!!
         }
 
@@ -78,6 +79,7 @@ public class SequenceManager : MonoBehaviour
             typeof(SEvent_WaitGameObjectDestroy     ),
             typeof(SEvent_WaitForFlag               ),
             typeof(SEvent_GoToSecondScenario        ),
+            typeof(SEvent_SetRotation               ),
         };
 
         public SequenceEventEnum type;
@@ -626,6 +628,21 @@ public class SequenceManager : MonoBehaviour
                 SceneManager.LoadScene(MainMenuManager.presentLevelSelected);
             else
                 SceneManager.LoadScene("Survey");
+            Exit();
+        }
+    }
+    public class SEvent_SetRotation : SequenceEvent
+    {
+        [SerializeField] GameObject target;
+        [SerializeField] Vector3 newRotation;
+
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            if (target != null && newRotation != null)
+            {
+                target.transform.eulerAngles = newRotation;
+            }
             Exit();
         }
     }

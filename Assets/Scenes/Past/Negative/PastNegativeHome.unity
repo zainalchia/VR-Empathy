@@ -2017,7 +2017,7 @@ MonoBehaviour:
   PouredFood:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1156376158}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
         m_MethodName: PlayLightOFf
         m_Mode: 1
@@ -7642,7 +7642,7 @@ MonoBehaviour:
   OnGrab:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1156376158}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
         m_MethodName: PlayFinalHome
         m_Mode: 1
@@ -10527,7 +10527,6 @@ GameObject:
   - component: {fileID: 1156376157}
   - component: {fileID: 1156376156}
   - component: {fileID: 1156376154}
-  - component: {fileID: 1156376158}
   - component: {fileID: 1156376159}
   m_Layer: 0
   m_Name: GameManager
@@ -10652,91 +10651,6 @@ Transform:
   - {fileID: 296962441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1156376158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156376153}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a84bb9d8a013045a4b0914bc772141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToPlay: 2
-  firstTeleportToiletHotspot: {fileID: 0}
-  promptManager: {fileID: 2078662128}
-  scenarioID: 0
-  sceneID: 2
-  playerTeleport: {fileID: 296962440}
-  testitem: {fileID: 0}
-  narrationAudioSource: {fileID: 272985355}
-  bossAudioSource: {fileID: 0}
-  customerAudioSource: {fileID: 0}
-  narrationAudioClips_1: []
-  narrationAudioClips_1_Male:
-  - {fileID: 8300000, guid: 6e0671fb31a864b4c8d26a8bdfb0f455, type: 3}
-  - {fileID: 8300000, guid: 42812d52df36538489e7dd6fc08e68d8, type: 3}
-  - {fileID: 8300000, guid: 6f7147bfc7d90d44a86adbb4303d0ebb, type: 3}
-  - {fileID: 8300000, guid: 56d2246dc3a85f34aa26d899ca9a6e2e, type: 3}
-  - {fileID: 8300000, guid: 8bf679777d9ef9443b846027b7697ecc, type: 3}
-  - {fileID: 8300000, guid: bcdcfb539307a8f42a98684b0c255ed4, type: 3}
-  - {fileID: 8300000, guid: b2510da9edbace34ca817c2731ff0889, type: 3}
-  - {fileID: 8300000, guid: ac29b845ae524f5419ca4795a5bffe85, type: 3}
-  - {fileID: 8300000, guid: 6be3437a2ee8e4e4fb62a9cee69f9e61, type: 3}
-  - {fileID: 8300000, guid: bbad2d19e80b5464f8ea1e96393790cd, type: 3}
-  narrationAudioClips_1_Female: []
-  cashObject: {fileID: 0}
-  cashOutline: {fileID: 0}
-  knifeOutline: {fileID: 0}
-  knifeObject: {fileID: 0}
-  DoorHandle: {fileID: 0}
-  door: {fileID: 0}
-  doorOutline: {fileID: 0}
-  comb: {fileID: 0}
-  glasses: {fileID: 0}
-  cup: {fileID: 0}
-  book: {fileID: 0}
-  meds: {fileID: 0}
-  walkingSound: {fileID: 0}
-  timeForWashingUp: 5
-  CashEndPoint: {fileID: 0}
-  Boss: {fileID: 0}
-  BossAudio: {fileID: 0}
-  bossThrowPosition: {fileID: 0}
-  heartbeatUI: {fileID: 0}
-  Customer: {fileID: 0}
-  ChoppingBlock: {fileID: 0}
-  Chicken: {fileID: 0}
-  bandaidContainer: {fileID: 0}
-  lidAnimator: {fileID: 0}
-  lidPopTrigger: PopOff
-  lidMover: {fileID: 0}
-  plasterPrefab: {fileID: 0}
-  plasterSpawnPoint: {fileID: 0}
-  cleaverObject: {fileID: 0}
-  ToTray: {fileID: 0}
-  trayOutline: {fileID: 0}
-  TrayOfFood: {fileID: 0}
-  DroppedFood: {fileID: 0}
-  PlayerCloth: {fileID: 0}
-  PlateProjectilePrefab: {fileID: 0}
-  PlateSpawnPoint: {fileID: 0}
-  PlateTargetPoint: {fileID: 0}
-  plateSpeed: 10
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  Ladle: {fileID: 156639207}
-  Sean: {fileID: 795504036}
-  Model: {fileID: 941264695}
-  SeanAudioSource: {fileID: 795504042}
-  HomeLight: {fileID: 0}
-  tissueBox: {fileID: 0}
-  electricSFXAudioSource: {fileID: 0}
-  PlayerDestination: {fileID: 0}
-  Player: {fileID: 0}
 --- !u!114 &1156376159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10797,11 +10711,12 @@ MonoBehaviour:
   - rid: 4897766071759798273
   - rid: 8750925748685766672
   - rid: 8750925748685766671
-  - rid: 3783327248309026817
   - rid: 3631777251340320773
   - rid: 154194485549989892
+  - rid: 3783327248309026817
   - rid: 154194441199157284
-  - rid: 5471714376494874624
+  - rid: 7725293240241881098
+  - rid: 7725293240241881096
   references:
     version: 2
     RefIds:
@@ -11436,11 +11351,6 @@ MonoBehaviour:
         outlineItem: 1
         itemStaysGrabbed: 1
         forceEnableGrabbable: 1
-    - rid: 5471714376494874624
-      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
-      data:
-        name: Go to survey
-        type: 23
     - rid: 6500772572562194435
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -11481,6 +11391,17 @@ MonoBehaviour:
                 m_StringArgument: Crying
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7725293240241881096
+      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
+      data:
+        name: Go to survey
+        type: 23
+    - rid: 7725293240241881098
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 2
+        waitTime: 5
     - rid: 8750925748685766658
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -11499,7 +11420,7 @@ MonoBehaviour:
         audioSource: {fileID: 795504042}
         audioClip: {fileID: 8300000, guid: 225592c69e483574b832b7b56d9e259e, type: 3}
         audioClipAlt: {fileID: 8300000, guid: 225592c69e483574b832b7b56d9e259e, type: 3}
-        waitForEnd: 1
+        waitForEnd: 0
         loop: 0
     - rid: 8750925748685766672
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
@@ -23981,18 +23902,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2078662126}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2078662128 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 2078662126}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2087483478
 PrefabInstance:
   m_ObjectHideFlags: 0

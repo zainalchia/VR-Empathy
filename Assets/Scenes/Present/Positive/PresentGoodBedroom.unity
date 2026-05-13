@@ -4953,6 +4953,7 @@ GameObject:
   - component: {fileID: 1115407452}
   - component: {fileID: 1115407454}
   - component: {fileID: 1115407455}
+  - component: {fileID: 1115407456}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4990,6 +4991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenarioID: 3
   sceneID: 5
+  flag: 0
   testText: {fileID: 0}
   postProcessing: {fileID: 421615959}
   ovrCamRig: {fileID: 308433642}
@@ -5189,7 +5191,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115407447}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 16d80075f9e5dc14d8be0047a9ff6ac1, type: 3}
   m_Name: 
@@ -5281,6 +5283,40 @@ MonoBehaviour:
   capMover: {fileID: 0}
   capOpenSFX: {fileID: 0}
   gulpSFX: {fileID: 0}
+--- !u!114 &1115407456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115407447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acdd4dbf41d0895469e29609f2081811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refreshEditor: 0
+  events:
+  - rid: 7725293240241881108
+  - rid: 7725293240241881107
+  references:
+    version: 2
+    RefIds:
+    - rid: 7725293240241881107
+      type: {class: SequenceManager/SequenceEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 0
+    - rid: 7725293240241881108
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 5
+        audioSource: {fileID: 0}
+        audioClip: {fileID: 0}
+        audioClipAlt: {fileID: 0}
+        waitForEnd: 1
+        loop: 0
 --- !u!1001 &1159907794
 PrefabInstance:
   m_ObjectHideFlags: 0

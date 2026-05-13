@@ -2171,7 +2171,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &472293864
 Transform:
   m_ObjectHideFlags: 0
@@ -21648,6 +21648,7 @@ MonoBehaviour:
   - rid: 5361627232578043916
   - rid: 5361627232578043919
   - rid: 5361627232578043913
+  - rid: 7725293240241881105
   - rid: 5361627232578043921
   - rid: 5361627232578043923
   - rid: 5361627232578043925
@@ -21678,7 +21679,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 3527830699462025940}
               m_TargetAssemblyTypeName: MobilePhone, Assembly-CSharp
               m_MethodName: SetPhoneCalling
               m_Mode: 1
@@ -21705,8 +21706,8 @@ MonoBehaviour:
         name: I need my glasses audio
         type: 5
         audioSource: {fileID: 2276772900260340214}
-        audioClip: {fileID: 8300000, guid: 32d26129d29a54ab287a97a1a1f5dbd5, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: bfd5d6e0e5b08bb43ae5ad2d4100ea41, type: 3}
+        audioClip: {fileID: 8300000, guid: 5443a18922e42f2459867d99a4e9a794, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 1b15dac8a589aa346b635e383ceafba8, type: 3}
         waitForEnd: 1
         loop: 0
     - rid: 75971415428038657
@@ -21822,11 +21823,11 @@ MonoBehaviour:
     - rid: 5361627232578043913
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: Play food is cold audio
+        name: Weather is good audio
         type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 8300000, guid: 9e97b4a71fa07434dae97ac80d15d851, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: 263dfaaa844ac2041b23b901f2545dfb, type: 3}
+        audioSource: {fileID: 2276772900260340214}
+        audioClip: {fileID: 8300000, guid: dd722f2147f25ac4d9a5ce92138c2019, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: e12a3db942bee414a8b4281a0865ad58, type: 3}
         waitForEnd: 1
         loop: 0
     - rid: 5361627232578043916
@@ -21909,6 +21910,16 @@ MonoBehaviour:
       data:
         name: Wait for phone call to end
         type: 22
+    - rid: 7725293240241881105
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: food is ready audio
+        type: 5
+        audioSource: {fileID: 2276772900260340214}
+        audioClip: {fileID: 8300000, guid: 70ba8b8fada4fba418c4be8fc26ca665, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 07ad98dec21465c46890f98e999663eb, type: 3}
+        waitForEnd: 1
+        loop: 0
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0
