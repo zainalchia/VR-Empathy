@@ -2017,9 +2017,9 @@ MonoBehaviour:
   PouredFood:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
-        m_MethodName: PlayLightOFf
+      - m_Target: {fileID: 1156376156}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10673,7 +10673,8 @@ MonoBehaviour:
   - rid: 154194441199157255
   - rid: 154194441199157257
   - rid: 154194441199157259
-  - rid: 154194441199157288
+  - rid: 7725293265862000657
+  - rid: 7725293265862000659
   - rid: 154194441199157263
   - rid: 154194441199157265
   - rid: 2280641336010604545
@@ -10995,12 +10996,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 3e0bd8a5dff2e59479925887d0fe21e0, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 154194441199157288
-      type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for player to drop ladle
-        type: 4
-        interactable: {fileID: 156639211}
     - rid: 154194485549989889
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -11402,6 +11397,18 @@ MonoBehaviour:
         name: 
         type: 2
         waitTime: 5
+    - rid: 7725293265862000657
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to drop ladle
+        type: 22
+    - rid: 7725293265862000659
+      type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Force ladle drop
+        type: 9
+        interactable: {fileID: 156639211}
+        particleFX: {fileID: 0}
     - rid: 8750925748685766658
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
