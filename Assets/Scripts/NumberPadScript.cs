@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,5 +29,14 @@ public class NumberPadScript : MonoBehaviour
     public void UpdateNumberPadScreen(GameObject numShown)
     {
         numShown.GetComponent<TextMeshProUGUI>().text = num;
+    }
+
+    public int StringToInt()
+    {
+        int intNum;
+
+        intNum = Convert.ToInt32(num);
+
+        return intNum;
     }
 }

@@ -10,7 +10,7 @@ using UnityEngine.Video;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public static bool isGenderMale = false; //true = male, false = female
+    public static bool isGenderMale; //true = male, false = female
     public static bool videoOrMenu = false; // false = menu, true = video
     public static VideoToPlay video = VideoToPlay.BeforePresentBad;
     [SerializeField]
@@ -28,6 +28,12 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] Image[] snippetsBg;
     [SerializeField] NumberPadScript numberPadScript;
     int minRange, maxRange;
+
+    NumberPadScript numberPad;
+    [SerializeField] private int smallestNum;
+    [SerializeField] private int biggestNum;
+    private bool genderHasBeenSelected = false;
+    private int intNum;
 
     public enum VideoToPlay
     {
@@ -67,6 +73,7 @@ public class MainMenuManager : MonoBehaviour
     public void SelectGender(bool isMale)
     {
         isGenderMale = isMale;
+        genderHasBeenSelected = true;
         //genderScreen.SetActive(false);
         //videoScreen.SetActive(true);
         //toVideoScreen();
@@ -92,21 +99,21 @@ public class MainMenuManager : MonoBehaviour
         button.enabled = !button.enabled;
     }
 
-    public void ChangeColor(RawImage image)
+    public void SetColorRed(RawImage image)
     {
-        //Select / Deselect scenario
-        if (image.color.r == 225)
-        {
-            image.color = new Color(0, 225, 0);
-        }
-        else if (image.color.r == 0)
-        {
-            image.color = new Color(225, 225, 225);
-        }
+        image.color = new Color(255, 0, 0);
+    }
+    public void SetColorGreen(RawImage image)
+    {
+        image.color = new Color(0, 255, 0);
     }
 
     public void toScenarioScreen()
     {
+        //if (numberPad.StringToInt() < biggestNum) return;
+
+        if (genderHasBeenSelected == false) return;
+
         scenarioScreen.SetActive(true);
         genderScreen.SetActive(false);
     }

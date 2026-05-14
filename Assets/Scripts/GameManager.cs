@@ -7,6 +7,8 @@ using UnityEngine.Events;
 using TMPro;
 using System.Runtime.CompilerServices;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -379,6 +381,18 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(MainMenuManager.presentLevelSelected);
         }
+    }
+
+    public void ToggleBlur()
+    {
+
+        float blur = postProcessing.GetComponent<DepthOfField>().focalLength.value;
+
+        if (blur == 1) blur = 10;
+        else blur = 1;
+
+        postProcessing.GetComponent<DepthOfField>().focalLength.value = blur;
+
     }
 
     // Update is called once per frame

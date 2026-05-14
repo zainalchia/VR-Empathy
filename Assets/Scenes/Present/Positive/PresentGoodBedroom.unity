@@ -5298,25 +5298,132 @@ MonoBehaviour:
   refreshEditor: 0
   events:
   - rid: 7725293240241881108
-  - rid: 7725293240241881107
+  - rid: 7725293261248528384
+  - rid: 7725293261248528387
+  - rid: 7725293261248528394
+  - rid: 7725293261248528395
+  - rid: 7725293261248528397
+  - rid: 7725293261248528399
+  - rid: 7725293261248528401
+  - rid: 7725293261248528405
+  - rid: 7725293261248528403
   references:
     version: 2
     RefIds:
-    - rid: 7725293240241881107
-      type: {class: SequenceManager/SequenceEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 0
     - rid: 7725293240241881108
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Take to go to bed audio
         type: 5
-        audioSource: {fileID: 0}
-        audioClip: {fileID: 0}
-        audioClipAlt: {fileID: 0}
+        audioSource: {fileID: 2276772900260340216}
+        audioClip: {fileID: 8300000, guid: 2afd35e0cc3286b45bd10f8d90aa29e9, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: dbffc2ee1a8ee1b4eb9a9477df569b9d, type: 3}
         waitForEnd: 1
         loop: 0
+    - rid: 7725293261248528384
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Take dentures off prompt
+        type: 1
+        text: I have to take off my dentures and place in the cup. [Grab your face
+          area]
+        duration: 3
+    - rid: 7725293261248528387
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Outline cup
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 6738866492078758477}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7725293261248528394
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for denture to be picked up
+        type: 3
+        interactable: {fileID: 1539590059}
+        outlineItem: 0
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 0
+    - rid: 7725293261248528395
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for denture to be placed in cup
+        type: 22
+    - rid: 7725293261248528397
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 6738866492078758477}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293261248528399
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Tired audio
+        type: 5
+        audioSource: {fileID: 2276772900260340216}
+        audioClip: {fileID: 8300000, guid: 050cf708c380db843b2bbf9ad3fb46bf, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 41196693576dd1641aafd3364d0bdb82, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293261248528401
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 937546951}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeIn
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293261248528403
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: Go to next scene
+        type: 13
+        sceneName: PresentGoodVoiddeck
+    - rid: 7725293261248528405
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Delay
+        type: 2
+        waitTime: 3
 --- !u!1001 &1159907794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12855,6 +12962,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2276772900260340213}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &2276772900260340216 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2276772900260340218 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5037048907636542295, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -13113,9 +13226,9 @@ MonoBehaviour:
   OnDenturePlaced:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407455}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
-        m_MethodName: DenturesPlacedInCup
+      - m_Target: {fileID: 1115407451}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

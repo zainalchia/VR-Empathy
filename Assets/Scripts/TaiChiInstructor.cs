@@ -18,6 +18,8 @@ public class TaiChiInstructor : MonoBehaviour
     int currentPose = 0;
     public bool checkStartAnim; // enable for npc
     bool finished = false;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private GameObject taichiTargetDestination;
 
     //public void ReadyForNextPose() // called in animation event 1 frame before the last frame
     //{
@@ -115,5 +117,57 @@ public class TaiChiInstructor : MonoBehaviour
 
     }
 
-    
+    public void InstructorWalk()
+    {
+        StartCoroutine(MoveFriendPosition(gameObject, 0.25f, taichiTargetDestination.transform.position, 180));
+    }
+
+
+    IEnumerator MoveFriendPosition(GameObject friend, float stopDistance, Vector3 targetDestination, float targetYRotation)
+    {
+        var directionVector = (targetDestination - friend.transform.position).normalized;
+
+        friend.GetComponent<Animator>().SetBool("isWalking", true);
+
+        while (Vector3.Distance(targetDestination, friend.transform.position) > stopDistance)
+        {
+            friend.transform.position += directionVector * moveSpeed * Time.deltaTime;
+            yield return null;
+        }
+
+        friend.GetComponent<Animator>().SetBool("isWalking", false);
+        yield return new WaitForSeconds(1);
+
+        // Start rotation lerp
+        float rotationDuration = 1.0f; // Adjust this value for faster/slower rotation
+        float elapsedTime = 0;
+
+        Quaternion startRotation = friend.transform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(
+            friend.transform.rotation.eulerAngles.x,
+            targetYRotation,
+            friend.transform.rotation.eulerAngles.z
+        );
+
+        while (elapsedTime < rotationDuration)
+        {
+            // Calculate the lerp value (0 to 1) based on elapsed time
+            float t = elapsedTime / rotationDuration;
+
+            // Use a smoothing function if you want (optional)
+            t = Mathf.SmoothStep(0, 1, t);
+
+            // Use Quaternion.Slerp for the shortest rotation path
+            friend.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure we end at the exact target rotation
+        friend.transform.rotation = targetRotation;
+    }
+
+
+
 }

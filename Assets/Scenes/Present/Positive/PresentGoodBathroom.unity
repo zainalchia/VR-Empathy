@@ -233,18 +233,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 59890575}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &59890577 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 59890575}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &107894796
 GameObject:
   m_ObjectHideFlags: 0
@@ -3292,7 +3280,7 @@ MonoBehaviour:
   OnLastTeleport:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3357422135080932660}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
         m_MethodName: OpenDoorPrompt
         m_Mode: 1
@@ -8883,7 +8871,7 @@ MonoBehaviour:
   ButtonTouched:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3357422135080932660}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
         m_MethodName: TriggerStartGame
         m_Mode: 1
@@ -14687,9 +14675,7 @@ GameObject:
   - component: {fileID: 1155942851945915638}
   - component: {fileID: 3357422135080932659}
   - component: {fileID: 3205872392655426376}
-  - component: {fileID: 3357422135080932660}
   - component: {fileID: 2345401382498451322}
-  - component: {fileID: 3357422135080932661}
   - component: {fileID: 3357422135080932662}
   m_Layer: 0
   m_Name: GameManager
@@ -16002,121 +15988,6 @@ MonoBehaviour:
   bloodEffect: {fileID: 0}
   plasteredHandMaterial: {fileID: 0}
   handHealed: 0
---- !u!114 &3357422135080932660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750601898310710368}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d80075f9e5dc14d8be0047a9ff6ac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToPlay: 0
-  narrationAudioSource: {fileID: 2345401382498451322}
-  playerAudioSource: {fileID: 1726075247}
-  narrationAudioClips_1: []
-  narrationAudioClips_1_Male:
-  - {fileID: 8300000, guid: 46e6ea7f72188b446b1a4e3eb259b099, type: 3}
-  - {fileID: 8300000, guid: 20d6276bb4246384bac457c3483c59f4, type: 3}
-  - {fileID: 8300000, guid: 5dff7b6e0a80c4e45af6cddf1d86d22d, type: 3}
-  - {fileID: 8300000, guid: 3ac95ea1330f74db299dae2ed7899ade, type: 3}
-  - {fileID: 8300000, guid: be6cad0dec255df4fa808b0b05f18950, type: 3}
-  narrationAudioClips_1_Female:
-  - {fileID: 8300000, guid: b7ae3580201d3c24798af1c4250b62c6, type: 3}
-  - {fileID: 8300000, guid: a567d144e13e7864fb3950b402c5367a, type: 3}
-  - {fileID: 8300000, guid: dd722f2147f25ac4d9a5ce92138c2019, type: 3}
-  - {fileID: 8300000, guid: 9c07f26e4782643f1b85b2071e5e4ac7, type: 3}
-  - {fileID: 8300000, guid: be6cad0dec255df4fa808b0b05f18950, type: 3}
-  narrationAudioClips_2_Male: []
-  narrationAudioClips_2_Female: []
-  narrationAudioClips_3_Male: []
-  narrationAudioClips_3_Female: []
-  firstTeleportHotspot: {fileID: 494444110}
-  playerTeleport: {fileID: 472293865}
-  promptManager: {fileID: 59890577}
-  scenarioID: 3
-  sceneID: 0
-  MaxAlertHideTimer: 3
-  BathroomItems: {fileID: 554351170}
-  timeForWashingUp: 20
-  bathroomDoor: {fileID: 982161141}
-  knob: {fileID: 1957188677}
-  phone: {fileID: 0}
-  secondPhone: {fileID: 0}
-  mobilePhone: {fileID: 0}
-  glassesOutline: {fileID: 0}
-  MaleFriends:
-  - {fileID: 0}
-  - {fileID: 0}
-  FemaleFriends:
-  - {fileID: 0}
-  - {fileID: 0}
-  moveSpeed: 0.75
-  Glass: {fileID: 0}
-  CupOutline: {fileID: 0}
-  KaraokeCornerNPCs:
-  - {fileID: 0}
-  WhiteFadeEffect: {fileID: 0}
-  taiChiManager: {fileID: 0}
-  taichiInstructor: {fileID: 0}
-  taichiTargetDestination: {fileID: 0}
-  taichiAudioSource: {fileID: 0}
-  taiChiBGM: {fileID: 0}
-  taichiNPC: {fileID: 0}
-  checkersNPC: {fileID: 0}
-  teleportPoint: {fileID: 0}
-  player: {fileID: 0}
-  lookDetection: {fileID: 0}
-  checkersNPCRotationTime: 2
-  firstCheckersHotspot: {fileID: 0}
-  FirstEnemyCheckerPiece: {fileID: 0}
-  SecondEnemyCheckerPiece: {fileID: 0}
-  EnemyPieceFirstDestination: {fileID: 0}
-  EnemyPieceSecondDestination: {fileID: 0}
-  EnemyPieceThirdDestination: {fileID: 0}
-  PlayerPieceFirstDestination: {fileID: 0}
-  PlayerPieceSecondDestination: {fileID: 0}
-  PlayerPiece: {fileID: 0}
-  PlayerPieceOutline: {fileID: 0}
-  CheckerPieces: {fileID: 0}
-  radio: {fileID: 0}
-  firstToKaraokeCornerHotspot: {fileID: 0}
-  KaraokeMic: {fileID: 0}
-  TVScreen: {fileID: 0}
-  TVScreen2: {fileID: 0}
-  bedroomAudioSource: {fileID: 0}
-  bedroomBGM: {fileID: 0}
-  MedicineBottle: {fileID: 0}
-  MedicineOutline: {fileID: 0}
-  PhotoFrame: {fileID: 0}
-  PhotoFrameOutline: {fileID: 0}
-  capAnimator: {fileID: 0}
-  capPopTrigger: PopOff
-  pillPrefab: {fileID: 0}
-  pillSpawnPoint: {fileID: 0}
-  capMover: {fileID: 0}
-  capOpenSFX: {fileID: 0}
-  gulpSFX: {fileID: 0}
---- !u!114 &3357422135080932661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1750601898310710368}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTest: 0
-  currentSceneName: 
-  scenarioManagerPresentBad: {fileID: 0}
-  scenarioManagerPresentGood: {fileID: 3357422135080932660}
-  scenarioManagerReneeTest: {fileID: 0}
 --- !u!114 &3357422135080932662
 MonoBehaviour:
   m_ObjectHideFlags: 0
