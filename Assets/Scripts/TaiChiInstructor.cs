@@ -11,6 +11,7 @@ public class TaiChiInstructor : MonoBehaviour
     public UnityEvent OnNextPose;
     public UnityEvent OnPosesFinish;
     public UnityEvent spawnNextHitboxes;
+    public UnityEvent reachedEndPoint;
     [SerializeField] Animator taiChiAnimator;
     [SerializeField] Animator taiChiInstructorAnimator; // set for npc
     float timerToGoNext = 0f;
@@ -166,6 +167,7 @@ public class TaiChiInstructor : MonoBehaviour
 
         // Ensure we end at the exact target rotation
         friend.transform.rotation = targetRotation;
+        reachedEndPoint.Invoke();
     }
 
 

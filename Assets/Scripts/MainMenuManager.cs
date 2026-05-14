@@ -29,7 +29,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] NumberPadScript numberPadScript;
     int minRange, maxRange;
 
-    NumberPadScript numberPad;
     [SerializeField] private int smallestNum;
     [SerializeField] private int biggestNum;
     private bool genderHasBeenSelected = false;
@@ -110,7 +109,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void toScenarioScreen()
     {
-        //if (numberPad.StringToInt() < biggestNum) return;
+        if (numberPadScript.StringToInt() > biggestNum || numberPadScript.StringToInt() < smallestNum) return;
 
         if (genderHasBeenSelected == false) return;
 

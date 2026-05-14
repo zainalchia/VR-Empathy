@@ -9952,9 +9952,9 @@ MonoBehaviour:
   OnPosesFinish:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407455}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
-        m_MethodName: TaichiFinished
+      - m_Target: {fileID: 1115407451}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9967,6 +9967,21 @@ MonoBehaviour:
   spawnNextHitboxes:
     m_PersistentCalls:
       m_Calls: []
+  reachedEndPoint:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1115407451}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   taiChiAnimator: {fileID: 485374219}
   taiChiInstructorAnimator: {fileID: 0}
   checkStartAnim: 0
@@ -10152,6 +10167,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   spawnNextHitboxes:
+    m_PersistentCalls:
+      m_Calls: []
+  reachedEndPoint:
     m_PersistentCalls:
       m_Calls: []
   taiChiAnimator: {fileID: 1707831731}
@@ -14483,6 +14501,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   spawnNextHitboxes:
+    m_PersistentCalls:
+      m_Calls: []
+  reachedEndPoint:
     m_PersistentCalls:
       m_Calls: []
   taiChiAnimator: {fileID: 0}
@@ -18882,6 +18903,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 159.225, y: -90.311005, z: -90.04498}
+--- !u!1 &1098627286 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8531340850437012666, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1100359524
 GameObject:
   m_ObjectHideFlags: 0
@@ -21088,6 +21115,9 @@ MonoBehaviour:
   spawnNextHitboxes:
     m_PersistentCalls:
       m_Calls: []
+  reachedEndPoint:
+    m_PersistentCalls:
+      m_Calls: []
   taiChiAnimator: {fileID: 1112064379}
   taiChiInstructorAnimator: {fileID: 485374219}
   checkStartAnim: 1
@@ -21554,6 +21584,12 @@ MonoBehaviour:
   - rid: 7725293261248528409
   - rid: 7725293261248528407
   - rid: 7725293261248528412
+  - rid: 7725293265862000641
+  - rid: 7725293265862000644
+  - rid: 7725293265862000646
+  - rid: 7725293265862000648
+  - rid: 7725293265862000652
+  - rid: 7725293265862000650
   references:
     version: 2
     RefIds:
@@ -21595,6 +21631,73 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293265862000641
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for instructor to reach end point
+        type: 22
+    - rid: 7725293265862000644
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Play tai chi instructor audio
+        type: 5
+        audioSource: {fileID: 485374216}
+        audioClip: {fileID: 8300000, guid: 6cf7b600b1586420eb3c52dde7367b60, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 6cf7b600b1586420eb3c52dde7367b60, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 7725293265862000646
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 485374219}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: Play
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 25_taichi_type23
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293265862000648
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 22
+    - rid: 7725293265862000650
+      type: {class: SequenceManager/SEvent_SetPosition, ns: , asm: Assembly-CSharp}
+      data:
+        name: Player to checkers
+        type: 19
+        target: {fileID: 1098627286}
+        PositionSetTo: {fileID: 1901481972}
+    - rid: 7725293265862000652
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1853978757}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeIn
                 m_BoolArgument: 0
               m_CallState: 2
 --- !u!1001 &1126204119
