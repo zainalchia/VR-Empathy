@@ -11677,7 +11677,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1331159757}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
   m_Name: 
@@ -19821,7 +19821,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039994823576403878}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a1bc992571301d4a9602ac95ef4c71a, type: 3}
   m_Name: 
@@ -20814,8 +20814,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
-      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -20826,7 +20831,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1331159757}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_Target
@@ -20835,7 +20840,7 @@ PrefabInstance:
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GlassesPutOn
+      value: SetActive
       objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -20845,12 +20850,17 @@ PrefabInstance:
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: ScenarioManagerPresentGood, Assembly-CSharp
+      value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
@@ -21476,7 +21486,7 @@ MonoBehaviour:
   goodbyeText: {fileID: 0}
   goodbyeText2: {fileID: 0}
   glasses: {fileID: 1331159757}
-  toPutGlassesOn: 0
+  toPutGlassesOn: 1
   toTakeGlassesOff: 0
   OnGlassesTakeOff:
     m_PersistentCalls:
@@ -21554,7 +21564,6 @@ MonoBehaviour:
   - rid: 75971415428038657
   - rid: 75971392959152144
   - rid: 5471714211565142026
-  - rid: 7725293261248528413
   - rid: 75971392959152146
   - rid: 75971415428038677
   - rid: 75971415428038659
@@ -21616,6 +21625,18 @@ MonoBehaviour:
           m_PersistentCalls:
             m_Calls:
             - m_Target: {fileID: 1622863541839690188}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+            - m_Target: {fileID: 725747686293246001}
               m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
               m_MethodName: set_enabled
               m_Mode: 6
@@ -21702,7 +21723,7 @@ MonoBehaviour:
       data:
         name: Go to next scene
         type: 13
-        sceneName: PresentBadBedroom
+        sceneName: PresentGoodBedroom
     - rid: 5361627232578043911
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -21810,26 +21831,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 07ad98dec21465c46890f98e999663eb, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 7725293261248528413
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Set blur
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 437078206}
-              m_TargetAssemblyTypeName: 
-              m_MethodName: 
-              m_Mode: 0
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: 
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0
@@ -21887,15 +21888,18 @@ MonoBehaviour:
   videoScreenMat: {fileID: 2100000, guid: 8ef33f06becde9140ae598e750d536e7, type: 2}
   phoneMat: {fileID: -7498848774435975009, guid: ebd248194eb214d4c86f7687749b81fc,
     type: 3}
-  maleAudioClip: {fileID: 0}
-  femaleAudioClip: {fileID: 0}
-  playerAudioSource: {fileID: 0}
+  maleAudioClip: {fileID: 8300000, guid: 831c974f0ae17284384684b3299b56fa, type: 3}
+  femaleAudioClip: {fileID: 8300000, guid: 676ee645415866443bf9ad4f1a0f666c, type: 3}
+  playerAudioSource: {fileID: 7424066081342745005}
   OnPickUpPhoneFirstTime:
     m_PersistentCalls:
+      m_Calls: []
+  OnPhoneCallEnd:
+    m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
-        m_MethodName: PhonePickedUp
+      - m_Target: {fileID: 3357422135080932659}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21905,9 +21909,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnPhoneCallEnd:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!33 &3672323976417625307
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -22145,7 +22146,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1039994823576403878}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
