@@ -256,8 +256,8 @@ public class SurveyController : MonoBehaviour
     {
         // used for testing purpose. put everything into one line and output to screen
         surveyAns.timestamp = DateTime.Now.ToString();
-        surveyAns.age = 18;
-        string outputString = surveyAns.timestamp + "," + surveyAns.age;
+        surveyAns.age = MainMenuManager.ageInput;
+        string outputString = surveyAns.timestamp + "," + MainMenuManager.pastLevelSelected + "," + MainMenuManager.presentLevelSelected + "," + surveyAns.age;
         foreach (string answer in surveyAns.answers)
         {
             outputString += "," + answer;

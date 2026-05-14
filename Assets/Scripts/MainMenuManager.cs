@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -23,6 +24,7 @@ public class MainMenuManager : MonoBehaviour
 
     public static string pastLevelSelected = null;
     public static string presentLevelSelected = null;
+    public static int ageInput;
 
     [SerializeField] Sprite[] snippets;
     [SerializeField] Image[] snippetsBg;
@@ -33,6 +35,7 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private int biggestNum;
     private bool genderHasBeenSelected = false;
     private int intNum;
+    private string csvInputString;
 
     public enum VideoToPlay
     {
@@ -45,6 +48,8 @@ public class MainMenuManager : MonoBehaviour
         RenderSettings.skybox = mainMenuSkybox;
         Debug.Log("Character gender: " + isGenderMale);
         //ShowSnippetOnHover(0);
+
+        LoadAgeFromCSV();
     }
 
     private void Awake()
@@ -115,6 +120,8 @@ public class MainMenuManager : MonoBehaviour
 
         scenarioScreen.SetActive(true);
         genderScreen.SetActive(false);
+
+        ageInput = numberPadScript.StringToInt();
     }
 
     public void RandomizeScenario()
@@ -192,6 +199,57 @@ public class MainMenuManager : MonoBehaviour
                     i = minRange-1;
             await Task.Delay(3000);
         }
+    }
+
+    private void LoadDataFromCSV(string filename)
+    {
+        try
+        {
+            string fileText = System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Application.persistentDataPath + "/" + filename));
+            string[] fileTextSplit = fileText.Split(new string[] { "\n" }, System.StringSplitOptions.None);
+            int tableSize = fileTextSplit.Length;
+
+            csvInputString = fileTextSplit[0];
+
+        }
+        catch (Exception e)
+        {
+            Debug.Log("no file found at " + Application.persistentDataPath);
+        }
+    }
+
+    private void LoadAgeFromCSV()
+    {
+        try
+        {
+            // grab csv from streaming assets
+            LoadDataFromCSV("surveyquestions.csv");
+
+            string[] parts = csvInputString.Split(',');
+
+            if (int.TryParse(parts[0], out int lowerLimit))
+            {
+                smallestNum = lowerLimit;
+            }
+            else
+            {
+                Debug.Log("lower limit not valid");                
+            }
+
+            if (int.TryParse(parts[1], out int upperLimit))
+            {
+                biggestNum = upperLimit;
+            }
+            else
+            {
+                Debug.Log("upper limit not valid");                
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log("failed to load age from CSV : " + e.ToString());
+        }
+        
     }
 
     private void Update()
