@@ -170,6 +170,9 @@ public class TaiChiInstructor : MonoBehaviour
         reachedEndPoint.Invoke();
     }
 
-
+    public void StartInstructorAnimation()
+    {
+        taiChiInstructorAnimator.SetBool("StartAnimation", true);
+    }
 
 }

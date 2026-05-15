@@ -248,6 +248,80 @@ Transform:
   m_Children: []
   m_Father: {fileID: 543450652030430077}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &185441537
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.123
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.133
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.448
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.28859755
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.17704634
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.59214264
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.7312546
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -75.513
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 115.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -121.89
+      objectReference: {fileID: 0}
+    - target: {fileID: 7353184804070589308, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_Name
+      value: Capsule
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f2396e8344f64e1419f889a81e9cb00c, type: 3}
+--- !u!1 &185441538 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7353184804070589308, guid: f2396e8344f64e1419f889a81e9cb00c,
+    type: 3}
+  m_PrefabInstance: {fileID: 185441537}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &214937349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b8eb8d51fa6e594ebe2a547baa8a851,
@@ -2399,6 +2473,7 @@ GameObject:
   - component: {fileID: 1115407452}
   - component: {fileID: 1115407454}
   - component: {fileID: 1115407455}
+  - component: {fileID: 1115407456}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2436,6 +2511,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scenarioID: 3
   sceneID: 5
+  flag: 0
   testText: {fileID: 0}
   postProcessing: {fileID: 421615959}
   ovrCamRig: {fileID: 308433642}
@@ -2732,6 +2808,212 @@ MonoBehaviour:
   capMover: {fileID: 1275949281}
   capOpenSFX: {fileID: 8300000, guid: 696bbcc7b05f88b4c95b1e78047a8a02, type: 3}
   gulpSFX: {fileID: 8300000, guid: e5056d85d190ea04d8f3e1132bce1197, type: 3}
+--- !u!114 &1115407456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115407447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acdd4dbf41d0895469e29609f2081811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  refreshEditor: 0
+  events:
+  - rid: 5471714462093017178
+  - rid: 5471714462093017180
+  - rid: 5471714462093017182
+  - rid: 5471714462093017184
+  - rid: 5471714462093017186
+  - rid: 5471714462093017189
+  - rid: 5471714462093017191
+  - rid: 5471714462093017198
+  - rid: 5471714462093017195
+  - rid: 5471714462093017197
+  - rid: 5471714462093017200
+  - rid: 5471714462093017202
+  - rid: 5471714462093017205
+  - rid: 5471714462093017208
+  - rid: 5471714462093017210
+  - rid: 5471714462093017212
+  - rid: 5471714462093017215
+  references:
+    version: 2
+    RefIds:
+    - rid: 5471714462093017178
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Did so much today audio
+        type: 5
+        audioSource: {fileID: 2276772900260340216}
+        audioClip: {fileID: 8300000, guid: f598321d27f82de4daba7fe164a28da5, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 8ecade9f95b1e7343adf31a705be3613, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 5471714462093017180
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 1
+        text: I need to take my vitamins. [Put the vitamin to your face area]
+        duration: 3
+    - rid: 5471714462093017182
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 3
+        interactable: {fileID: 1484599795}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 0
+    - rid: 5471714462093017184
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1275949280}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: capPopTrigger
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 5471714462093017186
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 2
+        waitTime: 0.5
+    - rid: 5471714462093017189
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 5
+        audioSource: {fileID: 1854819445}
+        audioClip: {fileID: 8300000, guid: 696bbcc7b05f88b4c95b1e78047a8a02, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 696bbcc7b05f88b4c95b1e78047a8a02, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 5471714462093017191
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1275949281}
+              m_TargetAssemblyTypeName: CapMover, Assembly-CSharp
+              m_MethodName: MoveToTable
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 5471714462093017195
+      type: {class: SequenceManager/SEvent_WaitForDistance, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 11
+        gameObject1: {fileID: 185441538}
+        gameObject2: {fileID: 2276772900260340217}
+        condition: 0
+        distance: 5
+    - rid: 5471714462093017197
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 185441538}
+        active: 0
+    - rid: 5471714462093017198
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 185441538}
+        active: 1
+    - rid: 5471714462093017200
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 5
+        audioSource: {fileID: 2276772900260340216}
+        audioClip: {fileID: 8300000, guid: e5056d85d190ea04d8f3e1132bce1197, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: e5056d85d190ea04d8f3e1132bce1197, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 5471714462093017202
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 2
+        waitTime: 1
+    - rid: 5471714462093017205
+      type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 3
+        interactable: {fileID: 1518123006}
+        outlineItem: 1
+        itemStaysGrabbed: 1
+        forceEnableGrabbable: 0
+    - rid: 5471714462093017208
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: Final audio
+        type: 5
+        audioSource: {fileID: 2276772900260340216}
+        audioClip: {fileID: 8300000, guid: 0fcf15706a351814c87a218b4c3a8f9c, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: ddcaa3ede19677b4f8148f43dc5752aa, type: 3}
+        waitForEnd: 1
+        loop: 0
+    - rid: 5471714462093017210
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1178772243}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeIn
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 5471714462093017212
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 2
+        waitTime: 5
+    - rid: 5471714462093017215
+      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 13
+        sceneName: Survey
 --- !u!1 &1178772239
 GameObject:
   m_ObjectHideFlags: 0
@@ -10137,6 +10419,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2276772900260340213}
   m_PrefabAsset: {fileID: 0}
+--- !u!82 &2276772900260340216 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2276772900260340217 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6213440704789884116, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+    type: 3}
+  m_PrefabInstance: {fileID: 2276772900260340213}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2276772900260340218 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5037048907636542295, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -10581,3 +10875,4 @@ SceneRoots:
   - {fileID: 434608764}
   - {fileID: 555886116}
   - {fileID: 1350899398}
+  - {fileID: 185441537}

@@ -17,5 +17,16 @@ public class NPCController : MonoBehaviour
         transform.rotation = rotation;
     }
 
-    
+    public void TriggerAnimation(string animationParameter)
+    {
+        Animator animator = gameObject.GetComponent<Animator>();
+
+        if (animationParameter != null)
+        {
+            if(animator.GetBool(animationParameter) == true)
+                animator.SetBool(animationParameter, false);
+            else
+                animator.SetBool(animationParameter, true);
+        }
+    }
 }

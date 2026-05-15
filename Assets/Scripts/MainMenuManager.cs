@@ -92,7 +92,7 @@ public class MainMenuManager : MonoBehaviour
     }
     public void SelectPresentLevel(string levelname)
     {
-        if (pastLevelSelected == null)
+        if (presentLevelSelected == null)
             presentLevelSelected = levelname;
         else
             presentLevelSelected = null;
