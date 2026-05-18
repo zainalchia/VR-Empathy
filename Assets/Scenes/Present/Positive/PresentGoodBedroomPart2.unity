@@ -256,20 +256,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6602662853270769687, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: active
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6602662853270769687, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: forceStay
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.123
+      value: -2.29
       objectReference: {fileID: 0}
     - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.133
+      value: 1.087
       objectReference: {fileID: 0}
     - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.448
+      value: -1.318
       objectReference: {fileID: 0}
     - target: {fileID: 6111264647291283519, guid: f2396e8344f64e1419f889a81e9cb00c,
         type: 3}
@@ -311,10 +321,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Capsule
       objectReference: {fileID: 0}
+    - target: {fileID: 7353184804070589308, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8483714290845751386, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7353184804070589308, guid: f2396e8344f64e1419f889a81e9cb00c,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 185441548}
   m_SourcePrefab: {fileID: 100100000, guid: f2396e8344f64e1419f889a81e9cb00c, type: 3}
 --- !u!1 &185441538 stripped
 GameObject:
@@ -322,6 +346,33 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 185441537}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &185441548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 185441538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebb47a34b64fd154189e0212458d5834, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnCapsuleAte:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1115407451}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &214937349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8b8eb8d51fa6e594ebe2a547baa8a851,
@@ -2472,7 +2523,6 @@ GameObject:
   - component: {fileID: 1115407451}
   - component: {fileID: 1115407452}
   - component: {fileID: 1115407454}
-  - component: {fileID: 1115407455}
   - component: {fileID: 1115407456}
   m_Layer: 0
   m_Name: GameManager
@@ -2558,7 +2608,7 @@ MonoBehaviour:
   OnMedicineConsumed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407455}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
         m_MethodName: MedicineTaken
         m_Mode: 1
@@ -2716,98 +2766,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1115407455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115407447}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d80075f9e5dc14d8be0047a9ff6ac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToPlay: 2
-  narrationAudioSource: {fileID: 1115407454}
-  playerAudioSource: {fileID: 0}
-  narrationAudioClips_1: []
-  narrationAudioClips_1_Male: []
-  narrationAudioClips_1_Female: []
-  narrationAudioClips_2_Male: []
-  narrationAudioClips_2_Female: []
-  narrationAudioClips_3_Male:
-  - {fileID: 8300000, guid: 25acce9059b51fe4d877ca881eb93cf1, type: 3}
-  - {fileID: 8300000, guid: 5420a03950e9ef1439a5277be294c1db, type: 3}
-  - {fileID: 8300000, guid: 8ecade9f95b1e7343adf31a705be3613, type: 3}
-  - {fileID: 8300000, guid: ddcaa3ede19677b4f8148f43dc5752aa, type: 3}
-  narrationAudioClips_3_Female:
-  - {fileID: 8300000, guid: 2afd35e0cc3286b45bd10f8d90aa29e9, type: 3}
-  - {fileID: 8300000, guid: 050cf708c380db843b2bbf9ad3fb46bf, type: 3}
-  - {fileID: 8300000, guid: f598321d27f82de4daba7fe164a28da5, type: 3}
-  - {fileID: 8300000, guid: 0fcf15706a351814c87a218b4c3a8f9c, type: 3}
-  firstTeleportHotspot: {fileID: 0}
-  playerTeleport: {fileID: 1368707508}
-  promptManager: {fileID: 1719580650}
-  scenarioID: 3
-  sceneID: 0
-  MaxAlertHideTimer: 5
-  BathroomItems: {fileID: 0}
-  timeForWashingUp: 30
-  bathroomDoor: {fileID: 0}
-  knob: {fileID: 0}
-  phone: {fileID: 0}
-  secondPhone: {fileID: 0}
-  mobilePhone: {fileID: 0}
-  glassesOutline: {fileID: 0}
-  MaleFriends: []
-  FemaleFriends: []
-  moveSpeed: 0
-  Glass: {fileID: 0}
-  CupOutline: {fileID: 0}
-  KaraokeCornerNPCs: []
-  WhiteFadeEffect: {fileID: 0}
-  taiChiManager: {fileID: 0}
-  taichiInstructor: {fileID: 0}
-  taichiTargetDestination: {fileID: 0}
-  taichiAudioSource: {fileID: 0}
-  taiChiBGM: {fileID: 0}
-  taichiNPC: {fileID: 0}
-  checkersNPC: {fileID: 0}
-  teleportPoint: {fileID: 0}
-  player: {fileID: 0}
-  lookDetection: {fileID: 0}
-  checkersNPCRotationTime: 2
-  firstCheckersHotspot: {fileID: 0}
-  FirstEnemyCheckerPiece: {fileID: 0}
-  SecondEnemyCheckerPiece: {fileID: 0}
-  EnemyPieceFirstDestination: {fileID: 0}
-  EnemyPieceSecondDestination: {fileID: 0}
-  EnemyPieceThirdDestination: {fileID: 0}
-  PlayerPieceFirstDestination: {fileID: 0}
-  PlayerPieceSecondDestination: {fileID: 0}
-  PlayerPiece: {fileID: 0}
-  PlayerPieceOutline: {fileID: 0}
-  CheckerPieces: {fileID: 0}
-  radio: {fileID: 0}
-  firstToKaraokeCornerHotspot: {fileID: 0}
-  KaraokeMic: {fileID: 0}
-  TVScreen: {fileID: 0}
-  TVScreen2: {fileID: 0}
-  bedroomAudioSource: {fileID: 1854819445}
-  bedroomBGM: {fileID: 8300000, guid: c3eb83b2f0513634fbe67c470da59e70, type: 3}
-  MedicineBottle: {fileID: 1484599792}
-  MedicineOutline: {fileID: 1484599804}
-  PhotoFrame: {fileID: 1518123002}
-  PhotoFrameOutline: {fileID: 1518123025}
-  capAnimator: {fileID: 1275949280}
-  capPopTrigger: PopOff
-  pillPrefab: {fileID: 7353184804070589308, guid: f2396e8344f64e1419f889a81e9cb00c,
-    type: 3}
-  pillSpawnPoint: {fileID: 625699242}
-  capMover: {fileID: 1275949281}
-  capOpenSFX: {fileID: 8300000, guid: 696bbcc7b05f88b4c95b1e78047a8a02, type: 3}
-  gulpSFX: {fileID: 8300000, guid: e5056d85d190ea04d8f3e1132bce1197, type: 3}
 --- !u!114 &1115407456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2824,21 +2782,22 @@ MonoBehaviour:
   events:
   - rid: 5471714462093017178
   - rid: 5471714462093017180
+  - rid: 7725293352101085186
   - rid: 5471714462093017182
-  - rid: 5471714462093017184
+  - rid: 7725293352101085199
   - rid: 5471714462093017186
+  - rid: 7725293352101085196
   - rid: 5471714462093017189
-  - rid: 5471714462093017191
   - rid: 5471714462093017198
-  - rid: 5471714462093017195
-  - rid: 5471714462093017197
+  - rid: 7725293352101085191
+  - rid: 7725293352101085201
   - rid: 5471714462093017200
-  - rid: 5471714462093017202
+  - rid: 7725293352101085194
   - rid: 5471714462093017205
   - rid: 5471714462093017208
   - rid: 5471714462093017210
   - rid: 5471714462093017212
-  - rid: 5471714462093017215
+  - rid: 7725293352101085193
   references:
     version: 2
     RefIds:
@@ -2855,95 +2814,39 @@ MonoBehaviour:
     - rid: 5471714462093017180
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Show vitamins prompt
         type: 1
         text: I need to take my vitamins. [Put the vitamin to your face area]
         duration: 3
     - rid: 5471714462093017182
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Wait for pill bottle pickup
         type: 3
         interactable: {fileID: 1484599795}
         outlineItem: 1
         itemStaysGrabbed: 1
         forceEnableGrabbable: 0
-    - rid: 5471714462093017184
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 1275949280}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: capPopTrigger
-                m_BoolArgument: 0
-              m_CallState: 2
     - rid: 5471714462093017186
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Small delay
         type: 2
-        waitTime: 0.5
+        waitTime: 1
     - rid: 5471714462093017189
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Cap audio
         type: 5
         audioSource: {fileID: 1854819445}
         audioClip: {fileID: 8300000, guid: 696bbcc7b05f88b4c95b1e78047a8a02, type: 3}
         audioClipAlt: {fileID: 8300000, guid: 696bbcc7b05f88b4c95b1e78047a8a02, type: 3}
-        waitForEnd: 1
+        waitForEnd: 0
         loop: 0
-    - rid: 5471714462093017191
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 1275949281}
-              m_TargetAssemblyTypeName: CapMover, Assembly-CSharp
-              m_MethodName: MoveToTable
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
-    - rid: 5471714462093017195
-      type: {class: SequenceManager/SEvent_WaitForDistance, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 11
-        gameObject1: {fileID: 185441538}
-        gameObject2: {fileID: 2276772900260340217}
-        condition: 0
-        distance: 5
-    - rid: 5471714462093017197
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 6
-        gameObject: {fileID: 185441538}
-        active: 0
     - rid: 5471714462093017198
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set capsule active
         type: 6
         gameObject: {fileID: 185441538}
         active: 1
@@ -2957,12 +2860,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: e5056d85d190ea04d8f3e1132bce1197, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 5471714462093017202
-      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 2
-        waitTime: 1
     - rid: 5471714462093017205
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
@@ -2999,7 +2896,7 @@ MonoBehaviour:
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
-                m_StringArgument: FadeIn
+                m_StringArgument: FadeOut
                 m_BoolArgument: 0
               m_CallState: 2
     - rid: 5471714462093017212
@@ -3007,13 +2904,129 @@ MonoBehaviour:
       data:
         name: 
         type: 2
-        waitTime: 5
-    - rid: 5471714462093017215
+        waitTime: 7
+    - rid: 7725293352101085186
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1484599795}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7725293352101085191
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for pill eaten
+        type: 22
+    - rid: 7725293352101085193
       type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
       data:
         name: 
         type: 13
         sceneName: Survey
+    - rid: 7725293352101085194
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1518123006}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7725293352101085196
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1275949280}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 1275949277}
+              m_TargetAssemblyTypeName: UnityEngine.Transform, UnityEngine
+              m_MethodName: set_parent
+              m_Mode: 2
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 1275949281}
+              m_TargetAssemblyTypeName: CapMover, Assembly-CSharp
+              m_MethodName: MoveToTable
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293352101085199
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1275949280}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: PopOff
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7725293352101085201
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set pill bottle inactive
+        type: 6
+        gameObject: {fileID: 1484599792}
+        active: 0
 --- !u!1 &1178772239
 GameObject:
   m_ObjectHideFlags: 0
@@ -5606,7 +5619,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484599792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
@@ -5723,7 +5736,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484599792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bedaac29a943f844a7074b53c8bdf9f, type: 3}
   m_Name: 
@@ -6223,7 +6236,7 @@ MonoBehaviour:
   OnBottleGrabbed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407455}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
         m_MethodName: OnMedicineBottleGrabbed
         m_Mode: 1
@@ -6256,7 +6269,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484599792}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ef49f28b4d7f247458490d76d6c25c59, type: 3}
   m_Name: 
@@ -6490,7 +6503,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518123002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 43f86b14a27b52f4f9298c33015b5c26, type: 3}
   m_Name: 
@@ -6541,7 +6554,7 @@ MonoBehaviour:
   lookedAtComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407455}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
         m_MethodName: PhotoFrameViewed
         m_Mode: 1
@@ -6576,7 +6589,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518123002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1bedaac29a943f844a7074b53c8bdf9f, type: 3}
   m_Name: 
@@ -6652,7 +6665,7 @@ MonoBehaviour:
   OnFrameGrabbed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1115407455}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
         m_MethodName: PhotoFrameViewed
         m_Mode: 1
@@ -7240,18 +7253,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2aa261b86273e41ae7b98704280be7, type: 3}
---- !u!114 &1719580650 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1719580649}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1719580651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3133565269879424242, guid: de2aa261b86273e41ae7b98704280be7,
@@ -9941,7 +9942,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1115407455}
+      objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
@@ -10422,12 +10423,6 @@ GameObject:
 --- !u!82 &2276772900260340216 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 2276772900260340213}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2276772900260340217 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6213440704789884116, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
     type: 3}
   m_PrefabInstance: {fileID: 2276772900260340213}
   m_PrefabAsset: {fileID: 0}

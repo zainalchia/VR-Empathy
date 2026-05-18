@@ -2831,7 +2831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &159231729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10919,6 +10919,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1253801747}
+  - {fileID: 1564685330}
   m_Father: {fileID: 2075980453}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &572270558
@@ -21538,15 +21539,14 @@ MonoBehaviour:
   - rid: 5471714462093017127
   - rid: 5471714462093017153
   - rid: 5471714462093017131
-  - rid: 5471714462093017133
   - rid: 5471714462093017135
+  - rid: 5471714462093017133
   - rid: 5471714462093017155
   - rid: 5471714462093017139
   - rid: 5471714462093017150
   - rid: 5471714462093017170
   - rid: 5471714462093017137
   - rid: 5471714462093017143
-  - rid: 5471714462093017146
   - rid: 5471714462093017172
   - rid: 5471714462093017148
   - rid: 5471714462093017157
@@ -21560,9 +21560,9 @@ MonoBehaviour:
     - rid: 5471714462093017095
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Fade out delay
         type: 2
-        waitTime: 5
+        waitTime: 8
     - rid: 5471714462093017097
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -21576,7 +21576,7 @@ MonoBehaviour:
     - rid: 5471714462093017099
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: White screen fade in
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -21590,15 +21590,15 @@ MonoBehaviour:
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
-                m_StringArgument: FadeOut
+                m_StringArgument: FadeIn
                 m_BoolArgument: 0
               m_CallState: 2
     - rid: 5471714462093017101
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: FadeIn delay
         type: 2
-        waitTime: 3
+        waitTime: 5
     - rid: 5471714462093017103
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -21607,7 +21607,7 @@ MonoBehaviour:
         audioSource: {fileID: 1543560791}
         audioClip: {fileID: 8300000, guid: f408304a65471f84e969bc733b402a5e, type: 3}
         audioClipAlt: {fileID: 8300000, guid: 8f833ff501cd91d45be63947144a77f5, type: 3}
-        waitForEnd: 1
+        waitForEnd: 0
         loop: 0
     - rid: 5471714462093017105
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
@@ -21619,7 +21619,7 @@ MonoBehaviour:
     - rid: 5471714462093017107
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Checker moving
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -21651,7 +21651,7 @@ MonoBehaviour:
     - rid: 5471714462093017109
       type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Wait for checkers to be done
         type: 22
     - rid: 5471714462093017115
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
@@ -21661,12 +21661,12 @@ MonoBehaviour:
         audioSource: {fileID: 1726075247}
         audioClip: {fileID: 8300000, guid: 64fb88e52403c414ebe9f87115fe4424, type: 3}
         audioClipAlt: {fileID: 8300000, guid: 89ca6bdbc52a53844b89e82c0e0be61a, type: 3}
-        waitForEnd: 1
+        waitForEnd: 0
         loop: 0
     - rid: 5471714462093017117
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: NPC crying
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -21686,13 +21686,13 @@ MonoBehaviour:
     - rid: 5471714462093017119
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Delay
         type: 2
         waitTime: 5
     - rid: 5471714462093017121
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: NPC talking animation
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -21712,7 +21712,7 @@ MonoBehaviour:
     - rid: 5471714462093017123
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Your getting better audio
         type: 5
         audioSource: {fileID: 1543560791}
         audioClip: {fileID: 8300000, guid: 9e2994ceea7758f4da5d850b7374543c, type: 3}
@@ -21722,7 +21722,7 @@ MonoBehaviour:
     - rid: 5471714462093017125
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Stop talking animation
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -21749,7 +21749,7 @@ MonoBehaviour:
     - rid: 5471714462093017129
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Thanks audio
         type: 5
         audioSource: {fileID: 1726075247}
         audioClip: {fileID: 8300000, guid: 0bf635fa5681f954d9933c8d509f6162, type: 3}
@@ -21759,43 +21759,7 @@ MonoBehaviour:
     - rid: 5471714462093017131
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 1853978757}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: FadeIn
-                m_BoolArgument: 0
-              m_CallState: 2
-    - rid: 5471714462093017133
-      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 2
-        waitTime: 2
-    - rid: 5471714462093017135
-      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
-      data:
-        name: And finally karaoke audio
-        type: 5
-        audioSource: {fileID: 1726075247}
-        audioClip: {fileID: 8300000, guid: e11513851c0f0474fa24febe801b4f02, type: 3}
-        audioClipAlt: {fileID: 8300000, guid: 337852b3e7d56694bba6f905dcad1aa6, type: 3}
-        waitForEnd: 1
-        loop: 0
-    - rid: 5471714462093017137
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
+        name: White screen fadeout
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -21810,6 +21774,42 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: FadeOut
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 5471714462093017133
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Small delay
+        type: 2
+        waitTime: 4
+    - rid: 5471714462093017135
+      type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
+      data:
+        name: And finally karaoke audio
+        type: 5
+        audioSource: {fileID: 1726075247}
+        audioClip: {fileID: 8300000, guid: e11513851c0f0474fa24febe801b4f02, type: 3}
+        audioClipAlt: {fileID: 8300000, guid: 337852b3e7d56694bba6f905dcad1aa6, type: 3}
+        waitForEnd: 0
+        loop: 0
+    - rid: 5471714462093017137
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade in and play karaoke
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1853978757}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeIn
                 m_BoolArgument: 0
               m_CallState: 2
             - m_Target: {fileID: 2041729771}
@@ -21827,7 +21827,7 @@ MonoBehaviour:
     - rid: 5471714462093017139
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set the karaoke screen active
         type: 6
         gameObject: {fileID: 2041729765}
         active: 1
@@ -21844,19 +21844,13 @@ MonoBehaviour:
     - rid: 5471714462093017143
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Player singing audio
         type: 5
         audioSource: {fileID: 1726075247}
         audioClip: {fileID: 8300000, guid: 7e4668b9b67b04f2abb46bd72af64c06, type: 3}
         audioClipAlt: {fileID: 8300000, guid: ce9d7fa4c70b64b11976020829ab4de4, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 5471714462093017146
-      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 2
-        waitTime: 1
     - rid: 5471714462093017148
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -21870,24 +21864,24 @@ MonoBehaviour:
     - rid: 5471714462093017150
       type: {class: SequenceManager/SEvent_ForceGrab, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Force mic hold
         type: 8
         hand: 1
         interactable: {fileID: 834863805}
     - rid: 5471714462093017153
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Disable tai chi audio
         type: 6
         gameObject: {fileID: 1164335768}
         active: 0
     - rid: 5471714462093017155
       type: {class: SequenceManager/SEvent_SetPosition, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Move player to position
         type: 19
         target: {fileID: 1098627286}
-        PositionSetTo: {fileID: 1253801748}
+        PositionSetTo: {fileID: 1564685329}
     - rid: 5471714462093017157
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -21901,7 +21895,7 @@ MonoBehaviour:
     - rid: 5471714462093017161
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Your son so filial audio
         type: 5
         audioSource: {fileID: 1726075247}
         audioClip: {fileID: 8300000, guid: 430a0b989c552b84788eb993b42d0f12, type: 3}
@@ -21925,19 +21919,19 @@ MonoBehaviour:
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
-                m_StringArgument: FadeIn
+                m_StringArgument: FadeOut
                 m_BoolArgument: 0
               m_CallState: 2
     - rid: 5471714462093017166
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Delay
         type: 2
         waitTime: 5
     - rid: 5471714462093017168
       type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Go to final scene
         type: 13
         sceneName: PresentGoodBedroomPart2
     - rid: 5471714462093017170
@@ -21999,7 +21993,7 @@ MonoBehaviour:
     - rid: 5471714462093017172
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Stop animations
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -22055,7 +22049,7 @@ MonoBehaviour:
     - rid: 7725293261248528407
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: First we did tai chi audio
         type: 5
         audioSource: {fileID: 1726075247}
         audioClip: {fileID: 8300000, guid: 4cbc0873fc189584bbf3319bd981ca76, type: 3}
@@ -22110,7 +22104,7 @@ MonoBehaviour:
     - rid: 7725293265862000646
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Tai chi npc start moving
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -22130,7 +22124,7 @@ MonoBehaviour:
     - rid: 7725293265862000648
       type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Wait for tai chi to end
         type: 22
     - rid: 7725293265862000650
       type: {class: SequenceManager/SEvent_SetPosition, ns: , asm: Assembly-CSharp}
@@ -22142,7 +22136,7 @@ MonoBehaviour:
     - rid: 7725293265862000652
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: White fade out
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -22156,7 +22150,7 @@ MonoBehaviour:
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
                 m_IntArgument: 0
                 m_FloatArgument: 0
-                m_StringArgument: FadeIn
+                m_StringArgument: FadeOut
                 m_BoolArgument: 0
               m_CallState: 2
 --- !u!114 &1115407457
@@ -23873,7 +23867,7 @@ PrefabInstance:
     - target: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6300489338024681438, guid: a68f2979c28309f41a04d6fd4a96a807, type: 3}
@@ -27790,6 +27784,37 @@ Transform:
   - {fileID: 1214490716}
   - {fileID: 169200028}
   m_Father: {fileID: 2009993760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1564685329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1564685330}
+  m_Layer: 0
+  m_Name: KaraokeTeleportPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1564685330
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1564685329}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.79, y: 0.35, z: 8.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 566608152}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1567339333
 GameObject:

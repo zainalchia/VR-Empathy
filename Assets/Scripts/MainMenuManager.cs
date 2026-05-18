@@ -37,6 +37,9 @@ public class MainMenuManager : MonoBehaviour
     private int intNum;
     private string csvInputString;
 
+    [SerializeField] private TextMeshProUGUI errorText;
+    private bool errorMsgIsShowing = false;
+
     public enum VideoToPlay
     {
         BeforePresentBad,
@@ -114,9 +117,29 @@ public class MainMenuManager : MonoBehaviour
 
     public void toScenarioScreen()
     {
-        if (numberPadScript.StringToInt() > biggestNum || numberPadScript.StringToInt() < smallestNum) return;
+        if (numberPadScript.StringToInt() > biggestNum || numberPadScript.StringToInt() < smallestNum || numberPadScript.StringToInt() == -1)
+        {
 
-        if (genderHasBeenSelected == false) return;
+            if (errorMsgIsShowing)
+            {
+                StopAllCoroutines();
+            }
+            
+            StartCoroutine(ErrorTextShown("Age is invalid!"));
+            return;
+        }
+
+        if (genderHasBeenSelected == false)
+        {
+
+            if (errorMsgIsShowing)
+            {
+                StopAllCoroutines();
+            }
+
+            StartCoroutine(ErrorTextShown("Gender has not been selected!"));
+            return;
+        }
 
         scenarioScreen.SetActive(true);
         genderScreen.SetActive(false);
@@ -156,6 +179,17 @@ public class MainMenuManager : MonoBehaviour
         if (!videoOrMenu) {
             proceedButton.SetActive(true);
         }
+    }
+
+    IEnumerator ErrorTextShown(string errorMsg)
+    {
+        errorMsgIsShowing = true;
+        errorText.text = errorMsg;
+
+        yield return new WaitForSeconds(3);
+
+        errorText.text = "";
+        errorMsgIsShowing = false;
     }
 
     private void PlayVideo()

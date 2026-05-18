@@ -15,7 +15,7 @@ public class CapMover : MonoBehaviour
     private IEnumerator MoveCapRoutine()
     {
         Vector3 start = transform.position;
-        Vector3 target = targetSpot.position;              // world pos
+        Vector3 target = targetSpot.position;// world pos
         float elapsed = 0f;
 
         while (elapsed < moveDuration)

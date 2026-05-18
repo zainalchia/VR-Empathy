@@ -33,9 +33,10 @@ public class NumberPadScript : MonoBehaviour
 
     public int StringToInt()
     {
-        int intNum;
+        int intNum = -1;
 
-        intNum = Convert.ToInt32(num);
+        if(num != "")
+            intNum = Convert.ToInt32(num);
 
         return intNum;
     }

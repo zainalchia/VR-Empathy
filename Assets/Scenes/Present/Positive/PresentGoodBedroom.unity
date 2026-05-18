@@ -4237,7 +4237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &937546950
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4267,7 +4267,7 @@ Animator:
   m_GameObject: {fileID: 937546949}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9f8c7de42744cce468ec512b57b87ae2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 35a52c137b42f8c41a2b1e10cfcd33bc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4952,7 +4952,6 @@ GameObject:
   - component: {fileID: 1115407451}
   - component: {fileID: 1115407452}
   - component: {fileID: 1115407454}
-  - component: {fileID: 1115407455}
   - component: {fileID: 1115407456}
   m_Layer: 0
   m_Name: GameManager
@@ -5184,105 +5183,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1115407455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1115407447}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16d80075f9e5dc14d8be0047a9ff6ac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToPlay: 1
-  narrationAudioSource: {fileID: 1115407454}
-  playerAudioSource: {fileID: 0}
-  narrationAudioClips_1: []
-  narrationAudioClips_1_Male:
-  - {fileID: 8300000, guid: df7355509241f04479da49fb3b810fe6, type: 3}
-  - {fileID: 8300000, guid: 332809c25298d9e44acd2e6541eb7fa3, type: 3}
-  - {fileID: 8300000, guid: 0b671c1c156add44796946cab051ac56, type: 3}
-  - {fileID: 8300000, guid: 2256d924eddcc344e90863782da70444, type: 3}
-  - {fileID: 8300000, guid: 7c6a32f573d014242a108c52053a9e65, type: 3}
-  - {fileID: 8300000, guid: 676ee645415866443bf9ad4f1a0f666c, type: 3}
-  narrationAudioClips_1_Female:
-  - {fileID: 8300000, guid: df7355509241f04479da49fb3b810fe6, type: 3}
-  - {fileID: 8300000, guid: 332809c25298d9e44acd2e6541eb7fa3, type: 3}
-  - {fileID: 8300000, guid: 0b671c1c156add44796946cab051ac56, type: 3}
-  - {fileID: 8300000, guid: 2256d924eddcc344e90863782da70444, type: 3}
-  - {fileID: 8300000, guid: 7c6a32f573d014242a108c52053a9e65, type: 3}
-  - {fileID: 8300000, guid: 676ee645415866443bf9ad4f1a0f666c, type: 3}
-  narrationAudioClips_2_Male: []
-  narrationAudioClips_2_Female: []
-  narrationAudioClips_3_Male:
-  - {fileID: 8300000, guid: dbffc2ee1a8ee1b4eb9a9477df569b9d, type: 3}
-  - {fileID: 8300000, guid: 41196693576dd1641aafd3364d0bdb82, type: 3}
-  narrationAudioClips_3_Female:
-  - {fileID: 8300000, guid: 2afd35e0cc3286b45bd10f8d90aa29e9, type: 3}
-  - {fileID: 8300000, guid: 050cf708c380db843b2bbf9ad3fb46bf, type: 3}
-  firstTeleportHotspot: {fileID: 0}
-  playerTeleport: {fileID: 1794564264}
-  promptManager: {fileID: 1719580650}
-  scenarioID: 3
-  sceneID: 0
-  MaxAlertHideTimer: 5
-  BathroomItems: {fileID: 0}
-  timeForWashingUp: 30
-  bathroomDoor: {fileID: 0}
-  knob: {fileID: 0}
-  phone: {fileID: 0}
-  secondPhone: {fileID: 0}
-  mobilePhone: {fileID: 0}
-  glassesOutline: {fileID: 0}
-  MaleFriends: []
-  FemaleFriends: []
-  moveSpeed: 0
-  Glass: {fileID: 6738866492078758474}
-  CupOutline: {fileID: 6738866492078758477}
-  KaraokeCornerNPCs: []
-  WhiteFadeEffect: {fileID: 576098502}
-  taiChiManager: {fileID: 0}
-  taichiInstructor: {fileID: 0}
-  taichiTargetDestination: {fileID: 0}
-  taichiAudioSource: {fileID: 0}
-  taiChiBGM: {fileID: 0}
-  taichiNPC: {fileID: 0}
-  checkersNPC: {fileID: 0}
-  teleportPoint: {fileID: 0}
-  player: {fileID: 0}
-  lookDetection: {fileID: 0}
-  checkersNPCRotationTime: 2
-  firstCheckersHotspot: {fileID: 0}
-  FirstEnemyCheckerPiece: {fileID: 0}
-  SecondEnemyCheckerPiece: {fileID: 0}
-  EnemyPieceFirstDestination: {fileID: 0}
-  EnemyPieceSecondDestination: {fileID: 0}
-  EnemyPieceThirdDestination: {fileID: 0}
-  PlayerPieceFirstDestination: {fileID: 0}
-  PlayerPieceSecondDestination: {fileID: 0}
-  PlayerPiece: {fileID: 0}
-  PlayerPieceOutline: {fileID: 0}
-  CheckerPieces: {fileID: 0}
-  radio: {fileID: 0}
-  firstToKaraokeCornerHotspot: {fileID: 0}
-  KaraokeMic: {fileID: 0}
-  TVScreen: {fileID: 0}
-  TVScreen2: {fileID: 0}
-  bedroomAudioSource: {fileID: 0}
-  bedroomBGM: {fileID: 0}
-  MedicineBottle: {fileID: 0}
-  MedicineOutline: {fileID: 0}
-  PhotoFrame: {fileID: 0}
-  PhotoFrameOutline: {fileID: 0}
-  capAnimator: {fileID: 0}
-  capPopTrigger: PopOff
-  pillPrefab: {fileID: 0}
-  pillSpawnPoint: {fileID: 0}
-  capMover: {fileID: 0}
-  capOpenSFX: {fileID: 0}
-  gulpSFX: {fileID: 0}
 --- !u!114 &1115407456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5304,7 +5204,7 @@ MonoBehaviour:
   - rid: 7725293261248528395
   - rid: 7725293261248528397
   - rid: 7725293261248528399
-  - rid: 7725293261248528401
+  - rid: 7725293352101085184
   - rid: 7725293261248528405
   - rid: 7725293261248528403
   references:
@@ -5392,26 +5292,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 41196693576dd1641aafd3364d0bdb82, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 7725293261248528401
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 937546951}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: FadeIn
-                m_BoolArgument: 0
-              m_CallState: 2
     - rid: 7725293261248528403
       type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
       data:
@@ -5423,7 +5303,14 @@ MonoBehaviour:
       data:
         name: Delay
         type: 2
-        waitTime: 3
+        waitTime: 5
+    - rid: 7725293352101085184
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: 
+        type: 6
+        gameObject: {fileID: 937546949}
+        active: 1
 --- !u!1001 &1159907794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9485,18 +9372,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de2aa261b86273e41ae7b98704280be7, type: 3}
---- !u!114 &1719580650 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1719580649}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1719580651 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3133565269879424242, guid: de2aa261b86273e41ae7b98704280be7,
@@ -12516,7 +12391,7 @@ PrefabInstance:
         type: 3}
       propertyPath: OnDenturesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1115407455}
+      objectReference: {fileID: 0}
     - target: {fileID: 6392263965765410391, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}
       propertyPath: OnGlassesPutOn.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
