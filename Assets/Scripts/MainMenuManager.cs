@@ -117,34 +117,34 @@ public class MainMenuManager : MonoBehaviour
 
     public void toScenarioScreen()
     {
-        if (numberPadScript.StringToInt() > biggestNum || numberPadScript.StringToInt() < smallestNum || numberPadScript.StringToInt() == -1)
-        {
+        //if (numberPadScript.StringToInt() > biggestNum || numberPadScript.StringToInt() < smallestNum || numberPadScript.StringToInt() == -1)
+        //{
 
-            if (errorMsgIsShowing)
-            {
-                StopAllCoroutines();
-            }
+        //    if (errorMsgIsShowing)
+        //    {
+        //        StopAllCoroutines();
+        //    }
             
-            StartCoroutine(ErrorTextShown("Age is invalid!"));
-            return;
-        }
+        //    StartCoroutine(ErrorTextShown("Age is invalid!"));
+        //    return;
+        //}
 
-        if (genderHasBeenSelected == false)
-        {
+        //if (genderHasBeenSelected == false)
+        //{
 
-            if (errorMsgIsShowing)
-            {
-                StopAllCoroutines();
-            }
+        //    if (errorMsgIsShowing)
+        //    {
+        //        StopAllCoroutines();
+        //    }
 
-            StartCoroutine(ErrorTextShown("Gender has not been selected!"));
-            return;
-        }
+        //    StartCoroutine(ErrorTextShown("Gender has not been selected!"));
+        //    return;
+        //}
 
         scenarioScreen.SetActive(true);
         genderScreen.SetActive(false);
 
-        ageInput = numberPadScript.StringToInt();
+        //ageInput = numberPadScript.StringToInt();
     }
 
     public void RandomizeScenario()

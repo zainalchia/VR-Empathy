@@ -7,8 +7,15 @@ using UnityEngine.UI;
 
 public class NumberPadScript : MonoBehaviour
 {
-    public string num;
+    private string num;
     string newNum;
+    private bool errorMsgIsShowing;
+    [SerializeField] private TextMeshProUGUI errorText;
+
+    [SerializeField] private int biggestNum;
+    [SerializeField] private int smallestNum;
+    [SerializeField] private GameObject quizScreen;
+    [SerializeField] private GameObject ageScreen;
 
     public void NumberAdd(int number)
     {
@@ -39,5 +46,36 @@ public class NumberPadScript : MonoBehaviour
             intNum = Convert.ToInt32(num);
 
         return intNum;
+    }
+
+    public void CheckAgeRange()
+    {
+        if (StringToInt() > biggestNum || StringToInt() < smallestNum || StringToInt() == -1)
+        {
+
+            if (errorMsgIsShowing)
+            {
+                StopAllCoroutines();
+            }
+
+            StartCoroutine(ErrorTextShown("Age is invalid!"));
+            return;
+        }
+        else
+        {
+            quizScreen.SetActive(true);
+            ageScreen.SetActive(false);
+        }
+    }
+
+    IEnumerator ErrorTextShown(string errorMsg)
+    {
+        errorMsgIsShowing = true;
+        errorText.text = errorMsg;
+
+        yield return new WaitForSeconds(3);
+
+        errorText.text = "";
+        errorMsgIsShowing = false;
     }
 }
