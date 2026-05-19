@@ -257,11 +257,32 @@ public class SurveyController : MonoBehaviour
         // used for testing purpose. put everything into one line and output to screen
         surveyAns.timestamp = DateTime.Now.ToString();
         surveyAns.age = MainMenuManager.ageInput;
-        string outputString = surveyAns.timestamp + "," + MainMenuManager.pastLevelSelected + "," + MainMenuManager.presentLevelSelected + "," + surveyAns.age;
+        string outputString = surveyAns.timestamp + "," + surveyAns.age + ",";
+
+        foreach (string level in MainMenuManager.levelsPlayed)
+        {
+            switch (level)
+            {
+                case "PastNegativeBathroom":
+                    outputString += "," + "Past Negative";
+                    break;
+                case "PastPositiveBathroom":
+                    outputString += "," + "Past Positive";
+                    break;
+                case "PresentBadBathroom":
+                    outputString += "," + "Present Negative";
+                    break;
+                case "PresentGoodBathroom":
+                    outputString += "," + "Present Positive";
+                    break;
+            }
+        }
+
         foreach (string answer in surveyAns.answers)
         {
             outputString += "," + answer;
         }
+
         questionText.text = outputString;
 
         // put everything into one line and append csv

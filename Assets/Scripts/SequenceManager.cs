@@ -50,6 +50,7 @@ public class SequenceManager : MonoBehaviour
             [InspectorName("Wait for flag")] SET_WaitForFlag,
             [InspectorName("Go to second scenario")] SET_GoToSecondScenario,
             [InspectorName("Set rotation")] SET_SetRotation,
+            [InspectorName("Add to LevelsPlayed list")] SET_AddToLevelsPlayedList,
             [InspectorName("")] SET_COUNT // NOT an actual type! here for easy counting!!!
         }
 
@@ -80,6 +81,7 @@ public class SequenceManager : MonoBehaviour
             typeof(SEvent_WaitForFlag               ),
             typeof(SEvent_GoToSecondScenario        ),
             typeof(SEvent_SetRotation               ),
+            typeof(SEvent_AddToLevelsPlayedList     ),
         };
 
         public SequenceEventEnum type;
@@ -667,6 +669,16 @@ public class SequenceManager : MonoBehaviour
         {
             base.OnEnter();
             SceneManager.LoadScene(sceneName);
+            Exit();
+        }
+    }
+
+    public class SEvent_AddToLevelsPlayedList : SequenceEvent
+    {
+        public override void OnEnter()
+        {
+            base.OnEnter();
+            MainMenuManager.levelsPlayed.Add(SceneManager.GetActiveScene().name);
             Exit();
         }
     }

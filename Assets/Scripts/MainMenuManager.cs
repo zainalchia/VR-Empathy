@@ -24,6 +24,7 @@ public class MainMenuManager : MonoBehaviour
 
     public static string pastLevelSelected = null;
     public static string presentLevelSelected = null;
+    public static List<string> levelsPlayed;
     public static int ageInput;
 
     [SerializeField] Sprite[] snippets;
