@@ -15,13 +15,14 @@ public class MainMenuManager : MonoBehaviour
     public static bool videoOrMenu = false; // false = menu, true = video
     public static VideoToPlay video = VideoToPlay.BeforePresentBad;
     [SerializeField]
-    GameObject scenarioScreen, genderScreen, videoScreen, proceedButton;
+    GameObject scenarioScreen, genderScreen, videoScreen, proceedButton, secretMenu;
     [SerializeField]
     VideoClip[] videos;
 
     [SerializeField]
     Material mainMenuSkybox;
 
+    public static bool enableSurvey = true;
     public static string pastLevelSelected = null;
     public static string presentLevelSelected = null;
     public static List<string> levelsPlayed;
@@ -40,6 +41,9 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI errorText;
     private bool errorMsgIsShowing = false;
+
+    private int pressedBtnA = 0;
+    private bool enableSceneRandomizer;
 
     public enum VideoToPlay
     {
@@ -125,7 +129,7 @@ public class MainMenuManager : MonoBehaviour
         //    {
         //        StopAllCoroutines();
         //    }
-            
+
         //    StartCoroutine(ErrorTextShown("Age is invalid!"));
         //    return;
         //}
@@ -142,8 +146,15 @@ public class MainMenuManager : MonoBehaviour
         //    return;
         //}
 
-        scenarioScreen.SetActive(true);
-        genderScreen.SetActive(false);
+        if (!enableSceneRandomizer)
+        {
+            scenarioScreen.SetActive(true);
+            genderScreen.SetActive(false);
+        }
+        else
+        {
+            RandomizeScenario();
+        }
 
         //ageInput = numberPadScript.StringToInt();
     }
@@ -290,5 +301,46 @@ public class MainMenuManager : MonoBehaviour
     private void Update()
     {
         Debug.Log(video);
+
+
+        if (OVRInput.GetDown(OVRInput.RawButton.A))
+        {
+            pressedBtnA += 1;
+        }
+        if (OVRInput.GetDown(OVRInput.RawButton.B))
+        {
+            if (pressedBtnA >= 5)
+            {
+                SecretMenu();
+            }
+        }
+
+    }
+
+    public void SecretMenu()
+    {
+        if (genderScreen.activeSelf == true)
+        {
+            genderScreen.SetActive(false);
+            secretMenu.SetActive(true);
+        }
+        else
+        {
+            genderScreen.SetActive(true);
+            secretMenu.SetActive(false);
+        }
+    }
+
+    public void ToggleSurvey(RawImage checkboxColor)
+    {
+        enableSurvey = !enableSurvey;
+        if (enableSurvey) checkboxColor.color = new Color(0, 255, 0);
+        else checkboxColor.color = new Color(255, 255, 255);
+    }
+    public void ToggleSceneRandomizer(RawImage checkboxColor)
+    {
+        enableSceneRandomizer = !enableSceneRandomizer;
+        if (enableSceneRandomizer) checkboxColor.color = new Color(0, 255, 0);
+        else checkboxColor.color = new Color(255, 255, 255);
     }
 }

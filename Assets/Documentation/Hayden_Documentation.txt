@@ -1,0 +1,284 @@
+DOCUMENTATION
+
+[Scenes, Prefabs, GameObjects]
+Player IK Rig - Drag OVRMainCharacter prefab into scene, enable shoes for character model when necessary
+-> YouTube video in case got error
+-> DO NOT DELETE MAINCHARACTERMODEL PREFAB, that one is for the rig
+-> CenterEyeAnchor - contains InViewDetector similar to SKKU MR project
+-> Face - GameObject in CenterEyeAnchor, to detect collisions with face
+
+Floor - Ensure all walkable floor has Layer set to "Floor" for leg IK to work
+
+UI - for UI Canvas use UI Cam and not centerEyeAnchor cam
+
+FadeScreen UI Object - Auto FadeOut at the start of the scene, is in ScenarioManagerPresentBad.cs so can follow and see how to end the game with FadeIn
+
+[Scripts]
+///==================GAME MANAGER SCRIPTS================
+GameManager.cs - Centralised master controller for the game.
+
+Purpose:
+Acts as the main singleton that holds global variables, player state flags, references to key scene objects, and shared utility functions. Almost every other gameplay script will reference this to check or update game-wide states. Ensures that important information (like whether the player is currently wearing glasses, in the middle of Tai Chi, or allowed to interact with certain objects) is consistent across all scripts and scenes.
+
+Key Responsibilities:
+- Holds references to critical scene objects: player rig, left and right hands, cameras, fade panels, models for male/female characters, glasses, dentures, etc.
+- Tracks game-wide interaction flags such as:
+  toPickUpPhone (waiting for player to pick up phone)
+  toPutGlassesOn / toTakeDenturesOff (waiting for these specific actions)
+  toDoTaiChi (ready to start Tai Chi sequence)
+  toStartSpasming (trigger illusion behaviour in furniture)
+  toLookAtObjective (ready for a look-based event to be completed)
+- Manages fade-in/fade-out transitions for scene changes using fadePanel’s Animator.
+- Handles display of on-screen alerts through ShowAlert(...) and HideAlert() functions.
+- Provides utility methods used by other scripts, including:
+  DebugLog(string) – sends debug text to in-game console via DebugTextTest.
+  IsPlayerWithinPosition(...) – checks if the player is inside a specified 3D area, often used for triggering scenario steps when the player walks into a zone.
+  FindPiecesToFlip(...) and AnimateFlippingPieces(...) – special logic for the Othello/checkers style mini-games.
+
+How it interacts with other scripts:
+- Scenario managers (e.g., ScenarioManagerPresentBad/Good/ReneeTest) call GameManager methods to show alerts, trigger fades, and set player interaction flags.
+- AlertTextController relies on GameManager to initiate alert messages.
+- ControllerInteractionsManager checks GameManager’s flags before allowing/disallowing certain interactions.
+- PostProcessingController can be toggled via GameManager to simulate blurred vision when glasses are off.
+- TaiChiManager sequences can be triggered through references held in GameManager.
+
+Usage:
+- Only one GameManager should exist in the scene (singleton pattern).
+- All scene objects that need centralised control should be assigned in the Inspector.
+- When creating new gameplay steps, set/clear the appropriate GameManager flags so other systems respond correctly (e.g., set toPickUpPhone = true before showing the phone’s prompt).
+///==================GAME MANAGER SCRIPTS================
+
+///==================SCENE MANAGER SCRIPTS================
+ScenarioManagerPresentBad.cs - sceneToPlay enum is used to select where the flow of event starts from (Bathroom/Bedroom)
+-> narration_1 & narrationAudioClips_1 is for Bathroom+LivingRoom Scene / narration_2 & narrationAudioClips_2 is for Bedroom Scene
+-> drop glasses sound effect can play together with the narration clip (In function DropGlassesReaction(), line 196)
+Purpose:
+Controls narrative flow for the Present-Bad scenario (Bathroom and Bedroom). Manages glasses, dentures, cane, teleportation, and illusion mechanics.
+Scenes:
+Bathroom: Starts with washing, cane interaction, glasses, and a phone call.
+Bedroom: Handles hallucinations, medication interaction, and ending sequence.
+Key Functions:
+PlaySegment1Part1() to Part3_3(): Bathroom narrative sequence (wash, grab cane, pick up phone, glasses interaction, phone call).
+DropGlassesReaction(): Plays sound and triggers alert when glasses are dropped.
+PlaySegment2Part1() to Segment2Part2_3(): Bedroom hallucination sequence.
+FirstMedicationDropped() / SecondMedicationDropped(): Triggers scripted animations and narration.
+StaredAtPhoto(): Final memory trigger, leads to fade out and scene transition.
+StopPrevDialogue(): Stops current coroutine and hides alert.
+PlayAudioAndNarration(...): Utility functions for showing alerts + playing audio with variations.
+
+ScenarioManagerPresentGood.cs - Purpose:
+Controls flow for the Present-Good scenario (Bathroom → Living Room → Void Deck). Coordinates narration, events, teleportation, and NPC movement.
+Scenes:
+Bathroom/LivingRoom: Interact with bathroom items, answer phones, and interact with friends.
+Voiddeck: Involves Tai Chi, checkers, mic interaction, karaoke.
+Key Functions:
+PlaySegment1Part1() to Part5(): Guides player from bathroom to answering phone to leaving house.
+PlaySegment2Part1() → MovingFromTaichiToCheckers(): Tai Chi to checkers transition.
+PlayCheckersTransition() → PlaySecondPieceCaptured(): Manages checkers interactions.
+MovingFromChessToKaraokeCorner(): Transition after checkers win.
+PlayMicOnFace() / PlayMicOffFace(): Mic interaction logic for karaoke.
+PlayEndOfScenario(): Ends scene with fade and goodbye screen.
+StopPrevDialogue(), PlayAudioAndNarration(...): Utility methods for alert/audio flow.
+
+ScenarioManagerReneeTest.cs - Test scenario manager for “PastNegative” type scenes (Hawker Bathroom → Hawker Stall).
+SceneToPlay Enum: Determines if flow starts from Bathroom or Stall.
+HawkerPartOne():
+Displays washing up prompt.
+After delay, enables first teleport hotspot to toilet door.
+Sets PlayerTeleport.MoveToToiletDoor = true.
+HawkerPartTwo():
+Triggered after bathroom segment, intended to move player towards hawker stall.
+Activates second teleport hotspot if MoveToToiletDoor is false.
+Usage:
+Designed for testing scene flow and prompt integration with ScenarioPromptManager.
+Can be expanded to add narration/audio sequences like ScenarioManagerPresentBad and PresentGood.
+
+ScenarioPromptManager.cs - Handles loading and displaying on-screen prompts for specific scenario/scene combinations from a CSV file.
+CSV Structure: First row is headers; each subsequent row contains ScenarioID, SceneID, and the prompt text.
+Prompt Display: Uses AlertTextController to show prompts with optional duration and “stay on screen” mode.
+Key Functions:
+ShowPrompt(...): Displays a specific prompt by scenario, scene, and index.
+GetAllPrompts(...): Returns all prompts for a given scenario and scene (for sequencing logic).
+ChangeScene(...): Updates internal SceneID tracking.
+Usage in Project:
+Attach to a manager object in your scene.
+Assign the CSV file and AlertTextController in the Inspector.
+Call ShowPrompt(...) from scenario managers when you want a prompt to appear in-game.
+///==================SCENE MANAGER SCRIPTS================
+
+ControllerInteractionsManager.cs - contains controller related functions like vibrating, dropping, grabbing and hand animations as well
+-> YouTube video on controller vibration
+-> taking off Glasses/Dentures from face is also triggered from this script
+-> Oculus Interactions Force Select function may not work as intended (grabbed object does not follow hand) so theres a function that forces the object to follow the hand (wont affect the rotation of object). Can see from RemoveGlasses() or RemoveDentures() functions on how its done. (Line 90 and 154)
+
+PostProcessingController.cs - blurry effect for when player does not have glasses on
+-> can play around with the weight in the inspector until you find the desired effect
+-> try not to change the one I set in the scenes already
+
+PlayerFace.cs - any collision with face is her
+-> UnityEvents for putting on Glasses is here
+-> is used to check if hand is near face area, allowing actions such as taking off glasses or dentures
+
+CaneTeleport.cs - Teleportation using cane
+-> Raycasts from the cane to hotspots, allowing player to teleport to it when button A is pressed
+-> Reference all teleport hotspots in order
+-> Teleport hotspots in scene should be disabled (To allow teleportation, enable the first teleport hotspot in the scene or by script
+
+InViewDetector.cs - for getting objects in players' view
+-> Used for MovingFurniture objects during the illusion in PresentBadBedroom scene
+
+MovingFurniture.cs - used on bedroom props during the illusion in PresentBadBedroom scene
+-> Objects will "spasm" on the spot until player looks at it the first time, afterwards when player looks away it will disappear
+
+DisappearObject.cs - used on the illusion ship during the illusion in PresentBadBedroom scene
+-> Set location points in the inspector and the object will move between those points
+-> Set material surface type to transparent
+
+DoorKnob.cs - currently only used on bathroom door in PresentBadBathroom scene
+-> can copy from the scene and use on other scene
+-> similar to SKKU MR project also so Zainal should know how it works
+
+TaiChiInstructor.cs - Used for playing the taichi animations
+-> To start the animations, call this line in scenario manager that you created, GameManager.instance.taiChiInstructor.GetComponent<TaiChiInstructor>().NextPose()
+-> It will auto play all the animations
+-> To continue the flow of event after animations finish, add your scenario manager function into the UnityEvent OnPosesFinish()
+
+MobilePhone.cs - Used on mobile phone object located in the living room
+-> Will play the recorded video on the phone
+
+DentureCup.cs - Used on denture cup object in PresentBadRedroom scene
+-> Just to position dentures into the cup and continue the flow of events in scenario manager
+
+IObjectInteractable.cs - Interface for misc/non-important objects that can be interacted with, mostly is on the toiletries
+-> GenericToiletries, Mug and Toothpaste uses this
+
+GenericToiletries.cs, Mug.cs, Toothpaste.cs, SinkTap.cs - misc objects that are interactable
+-> Nothing much about this
+
+IKFootSolver.cs, IKTargetFollowVRRig.cs - used for player rig
+-> Do not delete if not gg
+
+AlertTextController.cs - Copied over from SKKU MR project
+-> Can ask Zainal if unsure
+
+FollowObj.cs, SlowDownHands - Zainal's script, can ask him if unsure
+
+///==================REDUNDANT SCRIPTS================
+VelocityEstimator.cs - Legacy component from Valve’s VR code used for estimating slice velocity.
+Was originally tied to the EzySlice system for determining slice direction/force.
+Currently redundant unless you are re-enabling real-time slice detection instead of manual slicing triggers.
+
+SliceLimit.cs - Small helper script for EzySlice.
+Tracks remaining number of cuts a sliced object can take.
+Used in older slicing logic; no longer needed if objects aren’t meant to be sliced multiple times.
+
+SlicedObject.cs - Implements slicing via the EzySlice library.
+Uses VelocityEstimator and SliceLimit to control slice direction and max cuts.
+Adds Rigidbody + MeshCollider to sliced pieces and applies explosion force for effect.
+Status in Project: Redundant unless mesh slicing is reintroduced — the EzySlice system is more for physical mesh cutting, not currently central to gameplay.
+
+ChoppingBlockController.cs - Custom interaction for locking the player’s left hand to an item on a chopping block.
+Intended for a chopping/cutting minigame.
+Works by detecting when ControllerInteractionsManager.leftHandAnchor enters a trigger and snapping to a leftHandSnapPoint.
+Status: Currently unused; could be adapted for fixed-position hand interactions in future scenes.
+
+DebugTextTest.cs - In-game debug console overlay.
+Shows Unity Debug.Log output inside VR so you can test without the editor console.
+Useful for validating logic in standalone builds.
+Intended to be improved to display logs on interaction with a test object.
+///==================REDUNDANT SCRIPTS================
+
+SmoothPivotRotator.cs - Utility for smoothly rotating an object to a target rotation, with optional auto-return.
+Common Use: Animated props (fans, levers) or subtle scene motion.
+Can be triggered via script or UnityEvent with StartDefaultRotation() / StartRotationTo(...).
+autoReturn can reset rotation after a delay.
+
+PlayerTransparency.cs - Adjusts transparency of listed models based on player’s camera pitch angle.
+Example: Fade the player body model when looking down to prevent obstruction.
+Usage: Assign any player model GameObjects with SkinnedMeshRenderer to the models list.
+
+-----4/2/2025-----
+
+AudioFade.cs - Used for audio fading, self explanatory just use the Fadein and Fadeout functions
+
+ChessPieceChecker.cs - Used in Voiddeck scene only to check win condition for chess (Unused since changed to othello, you can modify this script for that)
+
+FanBladeRotating.cs - Used for rotating flan blades
+
+FanRotator.cs - Used for moving the standalone fan to look left and right
+
+LookAtObjective.cs - Used as a modular script, it will call an event after looked at an object for the specified amount of time
+- If you wish to add a new objective using this here are the steps
+ 1. Select gameobject that you want the player to look at
+ 2. Change tag to "LookatInteract"
+ 3. Add this script to said object
+ 4. Change variables according to your needs.
+
+MainMenuManager.cs - Script used to manage all functions of the main menu
+
+TaichiManager.cs & TaichiHitbox.cs - Used together, every circle has the TaichiHitbox.cs that basically tells the manager that it has been hit etc.
+
+----23/05/2025----
+
+PlayerTeleport.cs - Used to teleport the player without having to use the cane by setting player position to the next hotspot index in the current hotspot index array
+
+CheckersHighlightChecker.cs - Used to invoke unity events for opponent pieces to move after player checker piece has moved to its highlighted position 
+(each higlight has this script attached to it)
+
+MicController.cs - Used to detect if mic has been picked up and if mic is on player's face
+
+
+----20/11/2025----
+
+InViewDetector.cs ->  LookAtTeleport checks if your're looking at teleport hotspot and play active animation
+
+FoodTray.cs -> Upon grabbing it invokes the next part of dropping the tray
+
+Cloth.cs -> Destroys gameobejcts with "ToClean" tag upon collision and if the gameobject which contains the spilled food has 0 children it invokes the next part
+
+Ladle.cs -> Invokes next part upon collision with gameobject with tag "FoodBowl"
+
+Sean.cs -> Checks if both hands are touching and if both trigger is pressed to force scelet the gameobject into the player's hand else it will be dropped and ungrabble
+
+Mouthwash.cs + comb.cs -> changes grabpoint depending on which hand is grabbing the gameobject
+
+----21/11/2025---- (Past negative scripts)
+
+Cash.cs - Picking up the cash and detecting when it's placed into the register.
+-> Locks teleport + shows outline when cash is grabbed.
+-> Detects cash in register, hides the cash, and triggers the next prompt.
+
+ChickenChopManager.cs - Chicken-chopping minigame, including cut progression, feedback, and the accident event
+-> Shows/hides cut guide lines and updates which piece is being chopped
+-> Detects knife hits, the chop sequence, and triggers bleeding + voice-over
+
+LeftHandHold.cs – Detects when the player holds the chicken with their left hand and updates the chopping system
+-> Checks left-hand contact + trigger press to confirm the chicken is being held
+-> Shows the correct cutting guide line when holding, and hides lines when hand released
+
+KnifeChopDetector.cs – Knife collides with the chicken and triggers the next chop action.
+-> Calls OnKnifeHit() when the knife touches a meat piece
+
+KnifeGrab.cs
+–> Detects when the knife is first grabbed so the game can track that the chopping interaction has begun.
+
+HeartbeatUI.cs – Controls the heartbeat sound + vignette screen effect during moments.
+-> Adjusts pulsing vignette intensity and heartbeat speed based on stress level.
+-> Knife-accident feedback, constant red state, and fades everything back to normal after healing.
+
+(Plaster object and medicine bottle object in present positive is similar, managed in scenemanager)
+PlasterContainer.cs – detects when the plaster container is grabbed and triggers the lid-opening sequence.
+-> Uses GrabInteractable to detect the first grab.
+
+LidMover.cs – Moves the plaster container lid in a smooth "jump" arc from its original position to a target spot (table).
+-> Animates the lid, just by increase y axis (like opening).
+-> Called after the lid pops, detaching it and landing it on the table.
+
+PlasterHealer.cs – Plaster touches the player’s left hand and triggers the healing effect.
+-> Stops the bleeding particles and swaps the hand material to the plastered-hand material.
+-> Deletes the plaster object and sets handHealed = true so the story can continue.
+
+----Others----
+PhotoFrame.cs – Handles grabbing the photo frame (and detecting which hand is used.)
+-> Adjusts grab point position based on left/right hand and triggers the “look at photo” event when the player successfully grabs it.
+-> this script is similar to others when trying to fix the grab point, so this always will be on the specific grab point we want based on rotations.
