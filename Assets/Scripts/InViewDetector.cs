@@ -5,7 +5,6 @@ using UnityEngine;
 public class InViewDetector : MonoBehaviour
 {
     List<GameObject> objsInView = new List<GameObject>();
-    [SerializeField] PlayerTeleport _playerTeleport;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -53,10 +52,6 @@ public class InViewDetector : MonoBehaviour
     {
         if (obj.CompareTag("TeleportHotspot"))
         {
-            if (_playerTeleport) // if using the old system
-            {
-                _playerTeleport.CheckTeleport(lookingAt);
-            }
             
             if (obj.GetComponent<SaneTeleporter>()) // if using "sane teleporter" system. combine these 2 systems in future
             {

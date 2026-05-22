@@ -7243,136 +7243,6 @@ MonoBehaviour:
   righthandXRotation: 90
   righthandYRotation: 0
   righthandZRotation: 0
---- !u!1 &1157555226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1157555227}
-  - component: {fileID: 1157555228}
-  m_Layer: 0
-  m_Name: PlayerTeleportController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1157555227
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157555226}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1201703108}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1157555228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1157555226}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5aa8b20fed8ae9d4eac39c682473cb1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoveToLivingRoomHotspots: []
-  MoveToMainDoorHotspots: []
-  MoveToCheckersChairHotspots: []
-  MoveToKaraokeCornerHotspots: []
-  sceneToPlay: {fileID: 1874118775}
-  MoveToToiletDoorHotspots:
-  - {fileID: 1168026814}
-  - {fileID: 1730717513}
-  MoveToHawkerStallHotspots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  MoveToJobPositionHotspots:
-  - {fileID: 0}
-  MoveToTableHotspots:
-  - {fileID: 0}
-  - {fileID: 0}
-  MoveToPastPositiveToiletDoorHotspots: []
-  MoveToPastPositiveHawkerHotspots: []
-  MoveToPastPositiveHouseHotspots: []
-  MoveToDiningTableHotspots: []
-  defaultTimeBeforeNextMove: 1
-  OnLastTeleport:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SmoothPivotRotator, Assembly-CSharp
-        m_MethodName: StartDefaultRotation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 837449615}
-        m_TargetAssemblyTypeName: SmoothPivotRotator, Assembly-CSharp
-        m_MethodName: StartDefaultRotation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
-        m_MethodName: HawkerPartTwo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLastTeleport2:
-    m_PersistentCalls:
-      m_Calls: []
-  MovingToLivingRoom: 0
-  MovingToMainDoor: 0
-  MovingToCheckersChair: 0
-  MovingToKaraokeCorner: 0
-  MoveToToiletDoor: 0
-  MoveToHawkerStall: 0
-  MoveToTable: 0
-  MoveToSection: 0
-  hasPlacedCash: 0
-  teleportLocked: 0
-  DropFood: 0
-  GoToFirstAid: 0
-  GoToTray: 0
-  MoveToPastPositiveToiletDoor: 0
-  MoveToPastPositiveHawker: 0
-  MoveToPastPositiveHouse: 0
-  currentScene: 0
-  testPressTrigger: 0
-  scenarioManagerPresentGood: {fileID: 0}
-  scenarioManager: {fileID: 0}
 --- !u!1 &1168026814 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
@@ -7816,7 +7686,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1874118774}
-  - {fileID: 1157555227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1201703110
@@ -7860,7 +7729,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshEditor: 0
   events:
-  - rid: 7170432535185063937
   - rid: 6176681889884798978
   - rid: 5361627003736293396
   - rid: 6176681889884798984
@@ -8157,11 +8025,6 @@ MonoBehaviour:
         name: Next Scene
         type: 13
         sceneName: PastNegativeHawker
-    - rid: 7170432535185063937
-      type: {class: SequenceManager/SEvent_AddToLevelsPlayedList, ns: , asm: Assembly-CSharp}
-      data:
-        name: Add Past Negative to survey
-        type: 25
     - rid: 7725293058360082452
       type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
@@ -13062,18 +12925,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1874118773}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1874118775 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1874118773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1917294154
 GameObject:
   m_ObjectHideFlags: 0
@@ -15180,7 +15031,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _playerTeleport
       value: 
-      objectReference: {fileID: 1157555228}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

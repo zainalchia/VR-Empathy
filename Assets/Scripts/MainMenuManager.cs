@@ -313,6 +313,10 @@ public class MainMenuManager : MonoBehaviour
             {
                 SecretMenu();
             }
+            else
+            {
+                pressedBtnA = 0;
+            }
         }
 
     }

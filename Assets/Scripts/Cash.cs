@@ -30,22 +30,13 @@ public class Cash : MonoBehaviour
         {
             hasBeenGrabbed = true;
 
-            var teleport = FindObjectOfType<PlayerTeleport>();
-            teleport.teleportLocked = true; // prevent teleport while grabbing
 
             if (registerOutline != null)
                 registerOutline.enabled = true;
 
-            // small cooldown (so grab doesn’t trigger teleport)
-            teleport.StartCoroutine(UnlockTeleport(teleport, 1f));
         }
     }
 
-    private IEnumerator UnlockTeleport(PlayerTeleport tp, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        tp.teleportLocked = false;
-    }
 
     private void PlaceCash()
     {

@@ -25,14 +25,10 @@ public class ChickenChopManager : MonoBehaviour
     private bool canCut = true;
     private bool customerVO = false;
 
-
-    private ScenarioManagerReneeTest sceneManager;
-
     public int currentPiece = 0;
 
     private void Start()
     {
-        sceneManager = FindObjectOfType<ScenarioManagerReneeTest>();
 
         // Reset blendshapes
         if (chickenMesh != null)
@@ -76,12 +72,6 @@ public class ChickenChopManager : MonoBehaviour
     {
         if (!isHolding)
             return;
-
-        if (!customerVO && sceneManager != null)
-        {
-            sceneManager.narrationAudioSource.PlayOneShot(sceneManager.narrationAudioClips_1[4]);
-            customerVO = true;
-        }
 
         if (!canCut || currentPiece >= blendShapeIndices.Count)
             return;

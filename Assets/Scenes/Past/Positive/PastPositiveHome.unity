@@ -1999,7 +1999,7 @@ PrefabInstance:
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -2040,7 +2040,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 136287517}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 136287518}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
@@ -2106,7 +2106,7 @@ PrefabInstance:
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -2410,9 +2410,9 @@ MonoBehaviour:
   PouredFood:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1156376158}
-        m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
-        m_MethodName: PlayLightOFf
+      - m_Target: {fileID: 1156376156}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SetFlagTrue
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3651,75 +3651,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa8b20fed8ae9d4eac39c682473cb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveToLivingRoomHotspots: []
-  MoveToMainDoorHotspots: []
-  MoveToCheckersChairHotspots: []
-  MoveToKaraokeCornerHotspots: []
-  sceneToPlay: {fileID: 0}
-  MoveToToiletDoorHotspots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  MoveToHawkerStallHotspots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  MoveToJobPositionHotspots: []
-  MoveToTableHotspots: []
-  MoveToPastPositiveToiletDoorHotspots: []
-  MoveToPastPositiveHawkerHotspots: []
-  MoveToPastPositiveHouseHotspots:
-  - {fileID: 146886849}
-  - {fileID: 2087483480}
-  - {fileID: 1859045834}
-  - {fileID: 136287518}
-  MoveToDiningTableHotspots: []
-  defaultTimeBeforeNextMove: 2
-  OnLastTeleport:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLastTeleport2:
-    m_PersistentCalls:
-      m_Calls: []
-  MovingToLivingRoom: 0
-  MovingToMainDoor: 0
-  MovingToCheckersChair: 0
-  MovingToKaraokeCorner: 0
-  MoveToToiletDoor: 0
-  MoveToHawkerStall: 0
-  MoveToTable: 0
-  MoveToSection: 0
-  hasPlacedCash: 0
-  teleportLocked: 0
-  DropFood: 0
-  GoToFirstAid: 0
-  GoToTray: 0
-  MoveToPastPositiveToiletDoor: 0
-  MoveToPastPositiveHawker: 0
-  MoveToPastPositiveHouse: 0
-  currentScene: 1
-  testPressTrigger: 0
-  scenarioManagerPresentGood: {fileID: 0}
-  scenarioManager: {fileID: 0}
 --- !u!4 &296962441
 Transform:
   m_ObjectHideFlags: 0
@@ -5651,7 +5582,7 @@ PrefabInstance:
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -11915,7 +11846,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leftHandTrackingComponent: {fileID: 0}
-  timeToOpenCloseFist: 1
+  timeToOpenCloseFist: 0.25
   autoDropItems: 1
   dropGlassesInterval: 1
   dropGlassesCount: 2
@@ -12030,79 +11961,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37a84bb9d8a013045a4b0914bc772141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToPlay: 2
-  firstTeleportToiletHotspot: {fileID: 0}
-  promptManager: {fileID: 2078662128}
-  scenarioID: 0
-  sceneID: 2
-  playerTeleport: {fileID: 296962440}
-  testitem: {fileID: 0}
-  narrationAudioSource: {fileID: 272985355}
-  bossAudioSource: {fileID: 0}
-  customerAudioSource: {fileID: 0}
-  narrationAudioClips_1: []
-  narrationAudioClips_1_Male:
-  - {fileID: 8300000, guid: 6e0671fb31a864b4c8d26a8bdfb0f455, type: 3}
-  - {fileID: 8300000, guid: 42812d52df36538489e7dd6fc08e68d8, type: 3}
-  - {fileID: 8300000, guid: 6f7147bfc7d90d44a86adbb4303d0ebb, type: 3}
-  - {fileID: 8300000, guid: 56d2246dc3a85f34aa26d899ca9a6e2e, type: 3}
-  - {fileID: 8300000, guid: 8bf679777d9ef9443b846027b7697ecc, type: 3}
-  - {fileID: 8300000, guid: bcdcfb539307a8f42a98684b0c255ed4, type: 3}
-  - {fileID: 8300000, guid: b2510da9edbace34ca817c2731ff0889, type: 3}
-  - {fileID: 8300000, guid: ac29b845ae524f5419ca4795a5bffe85, type: 3}
-  - {fileID: 8300000, guid: 6be3437a2ee8e4e4fb62a9cee69f9e61, type: 3}
-  - {fileID: 8300000, guid: bbad2d19e80b5464f8ea1e96393790cd, type: 3}
-  narrationAudioClips_1_Female: []
-  cashObject: {fileID: 0}
-  cashOutline: {fileID: 0}
-  knifeOutline: {fileID: 0}
-  knifeObject: {fileID: 0}
-  DoorHandle: {fileID: 0}
-  door: {fileID: 0}
-  doorOutline: {fileID: 0}
-  comb: {fileID: 0}
-  glasses: {fileID: 0}
-  cup: {fileID: 0}
-  book: {fileID: 0}
-  meds: {fileID: 0}
-  walkingSound: {fileID: 0}
-  timeForWashingUp: 5
-  CashEndPoint: {fileID: 0}
-  Boss: {fileID: 0}
-  BossAudio: {fileID: 0}
-  bossThrowPosition: {fileID: 0}
-  heartbeatUI: {fileID: 0}
-  Customer: {fileID: 0}
-  ChoppingBlock: {fileID: 0}
-  Chicken: {fileID: 0}
-  bandaidContainer: {fileID: 0}
-  lidAnimator: {fileID: 0}
-  lidPopTrigger: PopOff
-  lidMover: {fileID: 0}
-  plasterPrefab: {fileID: 0}
-  plasterSpawnPoint: {fileID: 0}
-  cleaverObject: {fileID: 0}
-  ToTray: {fileID: 0}
-  trayOutline: {fileID: 0}
-  TrayOfFood: {fileID: 0}
-  DroppedFood: {fileID: 0}
-  PlayerCloth: {fileID: 0}
-  PlateProjectilePrefab: {fileID: 0}
-  PlateSpawnPoint: {fileID: 0}
-  PlateTargetPoint: {fileID: 0}
-  plateSpeed: 10
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  Ladle: {fileID: 156639207}
-  Sean: {fileID: 795504036}
-  Model: {fileID: 0}
-  SeanAudioSource: {fileID: 795504042}
-  HomeLight: {fileID: 0}
-  tissueBox: {fileID: 0}
-  electricSFXAudioSource: {fileID: 0}
-  PlayerDestination: {fileID: 0}
-  Player: {fileID: 0}
 --- !u!114 &1156376159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12124,7 +11982,8 @@ MonoBehaviour:
   - rid: 154195071710789633
   - rid: 154194441199157257
   - rid: 154194441199157259
-  - rid: 154194441199157288
+  - rid: 7725293443409510403
+  - rid: 7725293443409510405
   - rid: 154195071710789635
   - rid: 154195071710789636
   - rid: 154195071710789654
@@ -12133,14 +11992,13 @@ MonoBehaviour:
   - rid: 154195071710789657
   - rid: 154195071710789640
   - rid: 3636061403108868119
-  - rid: 6600812871027785738
   - rid: 154195071710789642
   - rid: 5361627003736293392
   - rid: 154195071710789646
   - rid: 154195071710789648
   - rid: 354177140404781057
   - rid: 154195071710789663
-  - rid: 6600812871027785738
+  - rid: 7725293443409510410
   - rid: 154195071710789665
   - rid: 154195071710789667
   - rid: 154195071710789659
@@ -12219,12 +12077,6 @@ MonoBehaviour:
         outlineItem: 1
         itemStaysGrabbed: 1
         forceEnableGrabbable: 1
-    - rid: 154194441199157288
-      type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for player to drop ladle
-        type: 4
-        interactable: {fileID: 156639211}
     - rid: 154194485549989889
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -12711,7 +12563,7 @@ MonoBehaviour:
         name: Wait for first tp
         type: 7
         gameObjects:
-        - {fileID: 146886849}
+        - {fileID: 2087483480}
         active: 1
     - rid: 6600812871027785731
       type: {class: SequenceManager/SEvent_ChangeMaterialTexture, ns: , asm: Assembly-CSharp}
@@ -12729,26 +12581,6 @@ MonoBehaviour:
         currentMaterial:
         - {fileID: 2100000, guid: 854ffed1ec7173443b719de6d8d5ed3e, type: 2}
         newTexture: {fileID: 2800000, guid: 9e415798a3ff9c346b098e1acd49eafb, type: 3}
-    - rid: 6600812871027785738
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Set teleport to true
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 296962440}
-              m_TargetAssemblyTypeName: PlayerTeleport, Assembly-CSharp
-              m_MethodName: SetCheckToTrue
-              m_Mode: 1
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 0
-              m_CallState: 2
     - rid: 7725293240241881099
       type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
       data:
@@ -12760,6 +12592,25 @@ MonoBehaviour:
         name: 
         type: 2
         waitTime: 5
+    - rid: 7725293443409510403
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for player to drop ladle
+        type: 22
+    - rid: 7725293443409510405
+      type: {class: SequenceManager/SEvent_ForceDrop, ns: , asm: Assembly-CSharp}
+      data:
+        name: Force ladle drop
+        type: 9
+        interactable: {fileID: 156639211}
+        particleFX: {fileID: 0}
+    - rid: 7725293443409510410
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Set teleport to true
+        type: 6
+        gameObject: {fileID: 1859045834}
+        active: 1
     - rid: 9222562903833444352
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -26172,18 +26023,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2078662126}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2078662128 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 2078662126}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2087483478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26245,7 +26084,7 @@ PrefabInstance:
     - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
@@ -26281,7 +26120,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 2087483478}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087483480}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4baebc3f94bae6b488023d16f464d0eb, type: 3}
   m_Name: 
