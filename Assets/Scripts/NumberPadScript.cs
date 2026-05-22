@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class NumberPadScript : MonoBehaviour
 {
-    private string num;
+    private string num = "";
     string newNum;
     private bool errorMsgIsShowing;
     [SerializeField] private TextMeshProUGUI errorText;
@@ -19,7 +19,7 @@ public class NumberPadScript : MonoBehaviour
 
     public void NumberAdd(int number)
     {
-        if (num.Length > 3) return;
+        if (num.Length == 2) return;
 
         num += number.ToString();
     }
