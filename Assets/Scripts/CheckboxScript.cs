@@ -26,13 +26,13 @@ public class CheckboxScript : MonoBehaviour
         {
             isChecked = true;
             image.color = new Color(0, 255, 0);
-            toBeShown = false;
+            toBeShown = true;
         }
         else
         {
             isChecked = false;
             image.color = new Color(255, 255, 255);
-            toBeShown = true;
+            toBeShown = false;
         }
     }
 
