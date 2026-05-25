@@ -678,7 +678,17 @@ public class SequenceManager : MonoBehaviour
         public override void OnEnter()
         {
             base.OnEnter();
-            MainMenuManager.levelsPlayed.Add(SceneManager.GetActiveScene().name);
+
+            try
+            {
+                MainMenuManager.levelsPlayed.Add(SceneManager.GetActiveScene().name);
+                Debug.Log("added " + SceneManager.GetActiveScene().name + " to levels played list");
+            }
+            catch (Exception e)
+            {
+                Debug.Log("failed to add to levels played list " + e);
+            }
+            
             Exit();
         }
     }

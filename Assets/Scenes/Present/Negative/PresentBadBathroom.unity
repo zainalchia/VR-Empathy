@@ -39,7 +39,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 410087040}
-  m_IndirectSpecularColor: {r: 0.28533655, g: 0.45767683, b: 0.5936687, a: 1}
+  m_IndirectSpecularColor: {r: 0.28589094, g: 0.45810828, b: 0.5919031, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17687,6 +17687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshEditor: 0
   events:
+  - rid: 7170432663954915333
   - rid: 75971211654856710
   - rid: 75971211654856705
   - rid: 75971211654856708
@@ -18045,6 +18046,11 @@ MonoBehaviour:
                 m_StringArgument: FadeOut
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7170432663954915333
+      type: {class: SequenceManager/SEvent_AddToLevelsPlayedList, ns: , asm: Assembly-CSharp}
+      data:
+        name: add to levels played list
+        type: 25
     - rid: 7725293057836318720
       type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
