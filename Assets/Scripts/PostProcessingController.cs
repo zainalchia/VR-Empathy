@@ -47,6 +47,11 @@ public class PostProcessingController : MonoBehaviour
     {
         isUsingGlasses = trueOrFalse;
     }
+
+    public void SetInitialBlurDone(bool trueOrFalse)
+    {
+        initialBlurDone = trueOrFalse;
+    }
     #endregion
 
     // Start is called before the first frame update

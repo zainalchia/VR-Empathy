@@ -2428,7 +2428,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &421615960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14795,15 +14795,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshEditor: 0
   events:
+  - rid: 7170432668072149002
   - rid: 75971392959152129
   - rid: 5361627232578043911
   - rid: 5361627232578043916
   - rid: 5361627232578043919
   - rid: 5361627232578043913
   - rid: 5471714211565142024
-  - rid: 5471714211565142017
+  - rid: 7170432668072149004
   - rid: 5471714211565142020
-  - rid: 5471714211565142022
+  - rid: 7170432668072149006
   - rid: 5361627232578043921
   - rid: 5361627232578043923
   - rid: 5361627232578043925
@@ -14812,7 +14813,6 @@ MonoBehaviour:
   - rid: 75971415428038657
   - rid: 75971392959152144
   - rid: 5471714211565142026
-  - rid: 75971415428038679
   - rid: 75971392959152146
   - rid: 75971415428038677
   - rid: 75971415428038659
@@ -14828,6 +14828,7 @@ MonoBehaviour:
   - rid: 5471714211565142035
   - rid: 75971415428038669
   - rid: 75971415428038671
+  - rid: 7170432668072149008
   - rid: 75971415428038673
   - rid: 7725293057836318721
   - rid: 75971415428038685
@@ -14999,13 +15000,6 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 1
               m_CallState: 2
-    - rid: 75971415428038679
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Set blur
-        type: 6
-        gameObject: {fileID: 421615959}
-        active: 1
     - rid: 75971415428038685
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -15098,13 +15092,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 16e790d80ec94184891b44d87087383f, type: 3}
         waitForEnd: 0
         loop: 1
-    - rid: 5471714211565142017
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Temporary blur
-        type: 6
-        gameObject: {fileID: 421615959}
-        active: 1
     - rid: 5471714211565142019
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
@@ -15121,13 +15108,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 5b2ed0392c4b41648b1b267ebb1be23b, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 5471714211565142022
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Unblur
-        type: 6
-        gameObject: {fileID: 421615959}
-        active: 0
     - rid: 5471714211565142024
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
@@ -15189,6 +15169,86 @@ MonoBehaviour:
               m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
               m_MethodName: Play
               m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7170432668072149002
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Unblur vision on start scene
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 421615960}
+              m_TargetAssemblyTypeName: PostProcessingController, Assembly-CSharp
+              m_MethodName: UsingGlasses
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7170432668072149004
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Blur vision
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 421615960}
+              m_TargetAssemblyTypeName: PostProcessingController, Assembly-CSharp
+              m_MethodName: UsingGlasses
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7170432668072149006
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Half unblur
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 421615960}
+              m_TargetAssemblyTypeName: PostProcessingController, Assembly-CSharp
+              m_MethodName: SetInitialBlurDone
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 7170432668072149008
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Full unblur
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 421615960}
+              m_TargetAssemblyTypeName: PostProcessingController, Assembly-CSharp
+              m_MethodName: UsingGlasses
+              m_Mode: 6
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
