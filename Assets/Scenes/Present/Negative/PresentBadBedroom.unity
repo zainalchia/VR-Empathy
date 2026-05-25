@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7810,7 +7810,7 @@ MonoBehaviour:
   - rid: 7725293058360082443
   - rid: 7725293058360082447
   - rid: 7725293058360082441
-  - rid: 5471714376494874626
+  - rid: 7170432668072148992
   - rid: 7725293058360082451
   - rid: 7725293062026690567
   - rid: 7725293058360082454
@@ -7849,11 +7849,11 @@ MonoBehaviour:
   - rid: 7725293062026690599
   - rid: 7725293062026690597
   - rid: 7725293080440209440
-  - rid: 5471714376494874627
+  - rid: 7170432668072148993
   - rid: 7725293080440209441
   - rid: 7725293080440209434
   - rid: 7725293080440209447
-  - rid: 5471714376494874628
+  - rid: 7170432668072148994
   - rid: 7725293080440209443
   - rid: 7725293080440209436
   - rid: 7725293062026690604
@@ -7866,27 +7866,27 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: 5471714376494874626
-      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for denture to be placed in cup
-        type: 22
-    - rid: 5471714376494874627
-      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for 1st bottle pickup
-        type: 22
-    - rid: 5471714376494874628
-      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
-      data:
-        name: Wait for 2nd bottle pickup
-        type: 22
     - rid: 5471714376494874630
       type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
       data:
         name: Go to survey
         type: 13
         sceneName: Survey
+    - rid: 7170432668072148992
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for denture to be placed in cup
+        type: 22
+    - rid: 7170432668072148993
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for 1st bottle pickup
+        type: 22
+    - rid: 7170432668072148994
+      type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for 2nd bottle pickup
+        type: 22
     - rid: 7725293058360082437
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
@@ -11699,7 +11699,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1518123002}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6286d2b1ee1bc048b5fd91b5d693570, type: 3}
   m_Name: 
