@@ -10404,7 +10404,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &1155477948
 AudioSource:
   m_ObjectHideFlags: 0
@@ -10416,10 +10416,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 908b899b6d7a05847849ff8dc8f13742, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.2
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -10715,6 +10715,7 @@ MonoBehaviour:
   - rid: 3631777251340320773
   - rid: 154194485549989892
   - rid: 3783327248309026817
+  - rid: 7170432668072148996
   - rid: 154194441199157284
   - rid: 7725293240241881098
   - rid: 7725293240241881096
@@ -11386,6 +11387,13 @@ MonoBehaviour:
                 m_StringArgument: Crying
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7170432668072148996
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Play sad music
+        type: 6
+        gameObject: {fileID: 1155477947}
+        active: 1
     - rid: 7725293240241881096
       type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
       data:
