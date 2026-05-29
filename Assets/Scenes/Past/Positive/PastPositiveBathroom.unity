@@ -6829,12 +6829,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e813899785b7ef408ef735a8ff6c585, type: 3}
---- !u!82 &755939308 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 5715645935878203513, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
-    type: 3}
-  m_PrefabInstance: {fileID: 1160836518}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &772922698 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -15531,8 +15525,6 @@ GameObject:
   - component: {fileID: 1201703108}
   - component: {fileID: 1201703107}
   - component: {fileID: 1201703110}
-  - component: {fileID: 1201703111}
-  - component: {fileID: 1201703112}
   - component: {fileID: 1201703113}
   m_Layer: 0
   m_Name: GameManager
@@ -15656,101 +15648,6 @@ MonoBehaviour:
   allowControllerVibration: 0
   vibrationStrength: 255
   vibrationFrequency: 2
---- !u!114 &1201703111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201703106}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a84bb9d8a013045a4b0914bc772141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneToPlay: 0
-  firstTeleportToiletHotspot: {fileID: 0}
-  promptManager: {fileID: 1874118775}
-  scenarioID: 0
-  sceneID: 0
-  playerTeleport: {fileID: 0}
-  testitem: {fileID: 0}
-  narrationAudioSource: {fileID: 755939308}
-  bossAudioSource: {fileID: 0}
-  customerAudioSource: {fileID: 0}
-  narrationAudioClips_1: []
-  narrationAudioClips_1_Male:
-  - {fileID: 8300000, guid: 0ae2abde54bbff74ca06047785f56a47, type: 3}
-  - {fileID: 8300000, guid: 879db57f7c0140b41b5b7a79f8fa2082, type: 3}
-  - {fileID: 8300000, guid: ce50e423e005b2f4bb26fff36a59ae7b, type: 3}
-  narrationAudioClips_1_Female: []
-  cashObject: {fileID: 0}
-  cashOutline: {fileID: 0}
-  knifeOutline: {fileID: 0}
-  knifeObject: {fileID: 0}
-  DoorHandle: {fileID: 0}
-  door: {fileID: 677545095}
-  doorOutline: {fileID: 0}
-  comb: {fileID: 0}
-  glasses: {fileID: 0}
-  cup: {fileID: 0}
-  book: {fileID: 0}
-  meds: {fileID: 0}
-  walkingSound: {fileID: 0}
-  timeForWashingUp: 20
-  CashEndPoint: {fileID: 0}
-  Boss: {fileID: 0}
-  BossAudio: {fileID: 0}
-  bossThrowPosition: {fileID: 0}
-  heartbeatUI: {fileID: 0}
-  Customer: {fileID: 0}
-  ChoppingBlock: {fileID: 0}
-  Chicken: {fileID: 0}
-  bandaidContainer: {fileID: 0}
-  lidAnimator: {fileID: 0}
-  lidPopTrigger: PopOff
-  lidMover: {fileID: 0}
-  plasterPrefab: {fileID: 0}
-  plasterSpawnPoint: {fileID: 0}
-  cleaverObject: {fileID: 0}
-  ToTray: {fileID: 0}
-  trayOutline: {fileID: 0}
-  TrayOfFood: {fileID: 0}
-  DroppedFood: {fileID: 0}
-  PlayerCloth: {fileID: 0}
-  PlateProjectilePrefab: {fileID: 0}
-  PlateSpawnPoint: {fileID: 0}
-  PlateTargetPoint: {fileID: 0}
-  plateSpeed: 10
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  Ladle: {fileID: 0}
-  Sean: {fileID: 0}
-  Model: {fileID: 0}
-  SeanAudioSource: {fileID: 0}
-  HomeLight: {fileID: 0}
-  tissueBox: {fileID: 0}
-  electricSFXAudioSource: {fileID: 0}
-  PlayerDestination: {fileID: 0}
-  Player: {fileID: 0}
---- !u!114 &1201703112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1201703106}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5eb07fcfa482429e8e19ae2cc8b86ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startTest: 0
-  currentSceneName: 
-  scenarioManagerPresentBad: {fileID: 0}
-  scenarioManagerPresentGood: {fileID: 0}
-  scenarioManagerReneeTest: {fileID: 1201703111}
 --- !u!114 &1201703113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15767,7 +15664,6 @@ MonoBehaviour:
   events:
   - rid: 7170432663954915331
   - rid: 6176681889884798978
-  - rid: 6176681889884798984
   - rid: 6176681889884798980
   - rid: 6176681889884798982
   - rid: 3636061403108868098
@@ -15977,86 +15873,6 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 40d5370c7cc83b24dada72c5da7736b4, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 6176681889884798984
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Enable Outlines
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 2098710142}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-            - m_Target: {fileID: 5544565935569413198}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-            - m_Target: {fileID: 1436708715}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-            - m_Target: {fileID: 2074530121}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-            - m_Target: {fileID: 1575867236}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
-            - m_Target: {fileID: 1145874660}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
-              m_CallState: 2
     - rid: 6176681889884798985
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -24212,18 +24028,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1874118773}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1874118775 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1874118773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1874623443
 PrefabInstance:
   m_ObjectHideFlags: 0
