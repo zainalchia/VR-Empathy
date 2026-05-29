@@ -65,6 +65,8 @@ public class SurveyController : MonoBehaviour
             {
                 csvInputStrings[i] = fileTextSplit[i];
             }
+
+            Debug.Log("successfully grabbed csv at " + Application.persistentDataPath);
         }
         catch (Exception e)
         {
