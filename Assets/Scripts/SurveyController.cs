@@ -84,9 +84,6 @@ public class SurveyController : MonoBehaviour
     {
         try
         {
-            // grab csv from streaming assets
-            LoadDataFromCSV("surveyquestions.csv");
-
             string[] parts = csvInputStrings[0].Split(',');
 
             int smallestNum = 16;
@@ -122,6 +119,7 @@ public class SurveyController : MonoBehaviour
     {
         // grab csv from streaming assets
         LoadDataFromCSV("surveyquestions.csv");
+        LoadAgeFromCSV();
 
         surveyQns = new SurveyQn[csvInputStrings.Length - 1];
 
@@ -154,10 +152,10 @@ public class SurveyController : MonoBehaviour
                 case SurveyQnType.mcq:
 
                     // to populate the choices mcqs
-                    surveyQns[i - 1].choices = new string[parts.Length - 3];
-                    for (int j = 3; j < parts.Length; j++)
+                    surveyQns[i - 1].choices = new string[parts.Length - 2];
+                    for (int j = 2; j < parts.Length; j++)
                     {
-                        surveyQns[i - 1].choices[j - 3] = parts[j];
+                        surveyQns[i - 1].choices[j - 2] = parts[j];
                     }
                     break;
 
