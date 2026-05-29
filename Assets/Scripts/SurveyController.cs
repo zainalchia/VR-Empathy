@@ -47,10 +47,16 @@ public class SurveyController : MonoBehaviour
     [SerializeField] private GameObject nextButton;
     [SerializeField] private GameObject prevButton;
     [SerializeField] private GameObject submitButton;
+    [SerializeField] private NumberPadScript numPadScript;
     private TextAsset csvFile;
     private string[] csvInputStrings;
 
     private int currentQs = 0;
+
+    public void UpdateAge(int newAge)
+    {
+        surveyAns.age = newAge;
+    }
 
     private void LoadDataFromCSV(string filename)
     {
@@ -71,6 +77,44 @@ public class SurveyController : MonoBehaviour
         catch (Exception e)
         {
             Debug.Log("no file found at " + Application.persistentDataPath);
+        }
+    }
+
+    private void LoadAgeFromCSV()
+    {
+        try
+        {
+            // grab csv from streaming assets
+            LoadDataFromCSV("surveyquestions.csv");
+
+            string[] parts = csvInputStrings[0].Split(',');
+
+            int smallestNum = 16;
+            int biggestNum = 28;
+
+            if (int.TryParse(parts[0], out int lowerLimit))
+            {
+                smallestNum = lowerLimit;
+            }
+            else
+            {
+                Debug.Log("lower limit not valid");
+            }
+
+            if (int.TryParse(parts[1], out int upperLimit))
+            {
+                biggestNum = upperLimit;
+            }
+            else
+            {
+                Debug.Log("upper limit not valid");
+            }
+
+            numPadScript.UpdateAgeLimits(smallestNum, biggestNum);
+        }
+        catch (Exception e)
+        {
+            Debug.Log("failed to load age from CSV : " + e.ToString());
         }
     }
 
@@ -258,7 +302,6 @@ public class SurveyController : MonoBehaviour
     {
         // used for testing purpose. put everything into one line and output to screen
         surveyAns.timestamp = DateTime.Now.ToString();
-        surveyAns.age = MainMenuManager.ageInput;
         string outputString = surveyAns.timestamp + "," + surveyAns.age;
 
         foreach (string level in MainMenuManager.levelsPlayed)

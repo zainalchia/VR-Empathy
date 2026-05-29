@@ -16,6 +16,7 @@ public class NumberPadScript : MonoBehaviour
     [SerializeField] private int smallestNum;
     [SerializeField] private GameObject quizScreen;
     [SerializeField] private GameObject ageScreen;
+    [SerializeField] private SurveyController surveyController;
 
     public void NumberAdd(int number)
     {
@@ -63,6 +64,7 @@ public class NumberPadScript : MonoBehaviour
         }
         else
         {
+            surveyController.UpdateAge(StringToInt());
             quizScreen.SetActive(true);
             ageScreen.SetActive(false);
         }
@@ -77,5 +79,11 @@ public class NumberPadScript : MonoBehaviour
 
         errorText.text = "";
         errorMsgIsShowing = false;
+    }
+
+    public void UpdateAgeLimits(int lower, int upper)
+    {
+        smallestNum = lower;
+        biggestNum = upper;
     }
 }
