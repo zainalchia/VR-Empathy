@@ -14,7 +14,11 @@ public class MainMenuManager : MonoBehaviour
     public static bool videoOrMenu = false; // false = menu, true = video
     public static VideoToPlay video = VideoToPlay.BeforePresentBad;
     [SerializeField]
+<<<<<<< Updated upstream
     GameObject scenarioScreen, genderScreen, videoScreen, proceedButton;
+=======
+    GameObject scenarioScreen, genderScreen, videoScreen, proceedButton, secretMenu, playerMenu;
+>>>>>>> Stashed changes
     [SerializeField]
     VideoClip[] videos;
 
@@ -136,5 +140,53 @@ public class MainMenuManager : MonoBehaviour
     private void Update()
     {
         Debug.Log(video);
+<<<<<<< Updated upstream
+=======
+
+
+        if (OVRInput.GetDown(OVRInput.RawButton.A))
+        {
+            pressedBtnA += 1;
+        }
+        if (OVRInput.GetDown(OVRInput.RawButton.B))
+        {
+            if (pressedBtnA >= 5)
+            {
+                SecretMenu();
+            }
+            else
+            {
+                pressedBtnA = 0;
+            }
+        }
+
+    }
+
+    public void SecretMenu()
+    {
+        if (playerMenu.activeSelf == true)
+        {
+            playerMenu.SetActive(false);
+            secretMenu.SetActive(true);
+        }
+        else
+        {
+            playerMenu.SetActive(true);
+            secretMenu.SetActive(false);
+        }
+    }
+
+    public void ToggleSurvey(RawImage checkboxColor)
+    {
+        enableSurvey = !enableSurvey;
+        if (enableSurvey) checkboxColor.color = new Color(0, 255, 0);
+        else checkboxColor.color = new Color(255, 255, 255);
+    }
+    public void ToggleSceneRandomizer(RawImage checkboxColor)
+    {
+        enableSceneRandomizer = !enableSceneRandomizer;
+        if (enableSceneRandomizer) checkboxColor.color = new Color(0, 255, 0);
+        else checkboxColor.color = new Color(255, 255, 255);
+>>>>>>> Stashed changes
     }
 }
