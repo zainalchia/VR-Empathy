@@ -15,16 +15,20 @@ public class InViewDetector : MonoBehaviour
 
         ObjectiveCheck(other.gameObject,true);
         FurnitureMoveCheck(other.gameObject, true);
+        LookAtTeleport(other.gameObject,true);
 
     }
 
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log(other.name + " is not in view");
+
         if (objsInView.Contains(other.gameObject))
             objsInView.Remove(other.gameObject);
 
         FurnitureMoveCheck(other.gameObject, false);
         ObjectiveCheck(other.gameObject, false);
+        LookAtTeleport(other.gameObject, false);
 
     }
 
@@ -41,6 +45,20 @@ public class InViewDetector : MonoBehaviour
         if (obj.CompareTag("LookAtInteract"))
         {
             obj.GetComponent<LookAtObjective>().beingLookedAtTrigger(lookingAt);
+        }
+    }
+
+    public void LookAtTeleport(GameObject obj,bool lookingAt)
+    {
+        if (obj.CompareTag("TeleportHotspot"))
+        {
+            
+            if (obj.GetComponent<SaneTeleporter>()) // if using "sane teleporter" system. combine these 2 systems in future
+            {
+                obj.GetComponent<SaneTeleporter>().SetCanTeleportHere(lookingAt);
+            }
+
+            obj.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", lookingAt);
         }
     }
 

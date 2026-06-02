@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class PostProcessingController : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PostProcessingController : MonoBehaviour
     private Coroutine currentCoroutine = null;
     public bool initialBlurDone = false;
 
+
     private IEnumerator VisionBlurEffect()
     {
         while (BlurTime < interval)
@@ -45,39 +47,51 @@ public class PostProcessingController : MonoBehaviour
     {
         isUsingGlasses = trueOrFalse;
     }
+
+    public void SetInitialBlurDone(bool trueOrFalse)
+    {
+        initialBlurDone = trueOrFalse;
+    }
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Volume>().profile.TryGet(out DepthOfField);
-        DepthOfField.aperture.value = 32;
+        if (SceneManager.GetActiveScene().name == "PresentBadLivingRoom") // for blurry effect
+        {
+            GetComponent<Volume>().profile.TryGet(out DepthOfField);
+            DepthOfField.aperture.value = 32;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isUsingGlasses)
+
+        if (SceneManager.GetActiveScene().name == "PresentBadLivingRoom") // for blurry effect
         {
-            if (!initialBlurDone)
+            if (!isUsingGlasses)
             {
-                targetWeight = 1;
+                if (!initialBlurDone)
+                {
+                    targetWeight = 1;
+                }
+                else
+                {
+                    interval = 3; // decreases bluriness across a span of 3 seconds
+                    targetWeight = 3;
+                }
             }
             else
             {
-                interval = 3; // decreases bluriness across a span of 3 seconds
-                targetWeight = 3;
+                targetWeight = 32;
             }
-        }
-        else
-        {
-            targetWeight = 32;
-        }
 
-        if(DepthOfField.aperture.value != targetWeight && currentCoroutine == null) // ensures that only one coroutine runs at any time and that it only runs when the target weight changes
-        {
-            BlurTime = 0f; // reset blur time
-            currentCoroutine = StartCoroutine(VisionBlurEffect()); // sets current coroutine to new coroutine started to keep track of current coroutine running
+            if (DepthOfField.aperture.value != targetWeight && currentCoroutine == null) // ensures that only one coroutine runs at any time and that it only runs when the target weight changes
+            {
+                BlurTime = 0f; // reset blur time
+                currentCoroutine = StartCoroutine(VisionBlurEffect()); // sets current coroutine to new coroutine started to keep track of current coroutine running
+            }
         }
     }
 

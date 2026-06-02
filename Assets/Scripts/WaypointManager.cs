@@ -10,50 +10,77 @@ public class WaypointManager : MonoBehaviour
     public List<Transform> wayPoints = new List<Transform>();
     [SerializeField] int wayPointIndex;
     [SerializeField] float moveSpeed, rotSpeed;
+
+    [Header("Rotation Adjustment")]
+    [SerializeField] float yRotationOffset = 0f; // added Y rotation adjuster
+
     [SerializeField] bool isMoving;
     [Tooltip("put 0 to make it infinite")]
     [SerializeField] int HowManyLoops;
-    bool isLoop = true;
+
+    bool isLoop = false;
     int loopRound = 0;
 
-    // Start is called before the first frame update
+    [SerializeField] bool startwalk = true;
+
     void Start()
     {
         BeginMovement();
     }
 
-    // Update is called once per frame
+    public void startwalktrigger()
+    {
+        startwalk = true;
+    }
+
     void Update()
     {
-        if(!isMoving)
-        {
+        if (startwalk == false)
             return;
-        }
-        if(wayPointIndex<wayPoints.Count)
+
+        if (!isMoving)
+            return;
+
+        if (wayPointIndex < wayPoints.Count)
         {
-            transform.position = Vector3.MoveTowards(transform.position, wayPoints[wayPointIndex].position, Time.deltaTime * moveSpeed);
+            // Move
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                wayPoints[wayPointIndex].position,
+                Time.deltaTime * moveSpeed);
+
+            // Rotate toward waypoint
             var direction = transform.position - wayPoints[wayPointIndex].position;
             var targetRot = Quaternion.LookRotation(direction, Vector3.up);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotSpeed);
+
+            // APPLY Y ROTATION OFFSET
+            targetRot *= Quaternion.Euler(0f, yRotationOffset, 0f);
+
+            transform.rotation = Quaternion.Lerp(
+                transform.rotation,
+                targetRot,
+                Time.deltaTime * rotSpeed);
+
+            // Check arrival
             var distance = Vector3.Distance(transform.position, wayPoints[wayPointIndex].position);
+            if (distance <= 0.05f)
             {
-                if (distance <= 0.05f)
+                wayPointIndex++;
+
+                if (isLoop && wayPointIndex >= wayPoints.Count)
                 {
-                    wayPointIndex++;
-                    if(isLoop && wayPointIndex>=wayPoints.Count)
+                    wayPointIndex = 0;
+                    loopRound++;
+
+                    if (loopRound >= HowManyLoops && HowManyLoops != 0)
                     {
-                        wayPointIndex = 0;
-                        loopRound++;
-                        if(loopRound >= HowManyLoops && HowManyLoops != 0)
-                        { 
-                            Destroy(gameObject); 
-                        }
+                        //Destroy(gameObject);
                     }
                 }
             }
         }
-        
     }
+
     public void BeginMovement()
     {
         wayPointIndex = 0;

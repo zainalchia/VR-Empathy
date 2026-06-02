@@ -23,7 +23,8 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] float defaultTimeBeforeNextMove = 2; // adds a delay in between teleports, set to 0 for no delay
     [SerializeField] GameObject[] teleportHotspots;
     [SerializeField] AudioSource playerAudio;
-    [SerializeField] ScenarioManagerPresentBad scenarioManagerPresentBad;
+    [SerializeField] AudioClip[] maleSighAudio;
+    [SerializeField] AudioClip[] femaleSighAudio;
     public UnityEvent OnLastTeleport;
 
     bool buttonPressed = false;
@@ -45,20 +46,29 @@ public class CaneTeleport : MonoBehaviour
     {
         // Raycast to floor to check there are any hotspot
         Ray ray = new Ray(transform.position, -transform.forward);
+
+        UnityEngine.Debug.DrawRay(
+            ray.origin,
+            ray.direction * maxDistanceMoveable,
+            Color.red
+        );
+
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, maxDistanceMoveable, teleportLayer, QueryTriggerInteraction.Ignore))
+        if (Physics.Raycast(ray, out hit, maxDistanceMoveable, teleportLayer, QueryTriggerInteraction.Collide))
         {
             canMove = true;
             lastHitGameObject = hit.collider.gameObject;
             posX = lastHitGameObject.transform.position.x;
             posZ = lastHitGameObject.transform.position.z;
 
+            UnityEngine.Debug.LogWarning("testtinngngngngng");
             // enable hotspot indicator when pointing cane at hotspot
             //lastHitGameObject.GetComponent<MeshRenderer>().enabled = true;
-            if(lastHitGameObject.activeSelf && timer >= defaultTimeBeforeNextMove && showWaypointTimer <= 0) lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", true);
+            if (lastHitGameObject.activeSelf && timer >= defaultTimeBeforeNextMove && showWaypointTimer <= 0) lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", true);
         }
         else
         {
+            UnityEngine.Debug.Log("failllllllllllllllllllllllllllll");
             canMove = false;
             if (lastHitGameObject != null) // disable hotspot indicator when not pointing at hotspot
             {
@@ -81,13 +91,11 @@ public class CaneTeleport : MonoBehaviour
 
             currentHotspotIndex += 1;
 
-            if (currentHotspotIndex == 1 || currentHotspotIndex == 6)
+            PlaySighSound();
+            
+            if (currentHotspotIndex == 4)
             {
-                PlaySighSound();
-            }
-            else if (currentHotspotIndex == 4)
-            {
-                defaultTimeBeforeNextMove = 20; // delay showing of next hotspot for blurring of eyes and voicelines
+                defaultTimeBeforeNextMove = 16; // delay showing of next hotspot for blurring of eyes and voicelines
             }
 
             teleportHotspots[currentHotspotIndex].gameObject.SetActive(false); // hide current hotspot instantly
@@ -102,19 +110,19 @@ public class CaneTeleport : MonoBehaviour
     private void PlaySighSound()
     {
         playerAudio.volume = 0.8f;
-        if (currentHotspotIndex == 2)
+        if (currentHotspotIndex == 1)
         {
             if (MainMenuManager.isGenderMale)
-                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[0]);
+                playerAudio.PlayOneShot(maleSighAudio[0]);
             else
-                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[0]);
+                playerAudio.PlayOneShot(femaleSighAudio[0]);
         }
-        else if (currentHotspotIndex == 7)
+        else if (currentHotspotIndex == 6)
         {
             if (MainMenuManager.isGenderMale)
-                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Male[1]);
+                playerAudio.PlayOneShot(maleSighAudio[1]);
             else
-                playerAudio.PlayOneShot(scenarioManagerPresentBad.narrationAudioClips_General_Female[1]);
+                playerAudio.PlayOneShot(femaleSighAudio[1]);
         }        
     }
 
@@ -160,6 +168,7 @@ public class CaneTeleport : MonoBehaviour
             {
                 if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable) // only runs when player is holding cane
                 {
+                    UnityEngine.Debug.LogWarning("asdadads");
                     // check if this is first time grabbing the cane
                     if (grabbedFirstTime == false)
                     {

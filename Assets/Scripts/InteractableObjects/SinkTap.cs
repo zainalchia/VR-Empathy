@@ -19,30 +19,39 @@ public class SinkTap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.M)) 
+        {
+            TurnHandle();
+        }
     }
 
-    private void TurnHandle()
+    public void TurnHandle()
     {
-        float desiredRotation;
-        if (waterIsOn)
+        float desiredRotation; 
+
+        if (waterIsOn) 
         {
-            desiredRotation = 30f;
+            desiredRotation = -30f;
         }
         else
         {
             desiredRotation = 0f;
         }
         float rY = Mathf.Lerp(handle.transform.localRotation.y, desiredRotation, 1f);
-        handle.transform.localRotation= Quaternion.Euler(0, rY, 0);
+        handle.transform.localRotation = Quaternion.Euler(0, rY, 0);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        OnPlayerTouch();
+    }
+
+    public void OnPlayerTouch()
+    {
         if (!canInteract) return;
 
-        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null) // when touched by hand
-        {
+        //if (other.gameObject.GetComponentInParent<GrabInteractor>() != null) // when touched by hand
+        //{
             if (waterIsOn)
             {
                 waterIsOn = false;
@@ -55,7 +64,7 @@ public class SinkTap : MonoBehaviour
             }
             TurnHandle();
             canInteract = false;
-        }
+        //}
     }
 
     private void OnTriggerExit(Collider other)

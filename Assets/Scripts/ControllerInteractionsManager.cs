@@ -6,6 +6,7 @@ using Oculus.Interaction;
 using Oculus.Interaction.Input; // Crucial for IHand and Handedness
 using UnityEngine.Events;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class ControllerInteractionsManager : MonoBehaviour
 {
@@ -22,8 +23,6 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     #region Grabbing Items
     private List<GrabInteractor> grabInteractorsWithinRange = new List<GrabInteractor>();
-    public GrabInteractor leftGrabInteractor;
-    public GrabInteractor rightGrabInteractor;
     bool canTakeOffGlasses = false;
     bool canTakeOffDentures = false;
     bool toReleaseLeftHand = false;
@@ -43,7 +42,6 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     // time taken to close/open fist
     [SerializeField] float timeToOpenCloseFist = 0.2f;
-    float speedToOpenCloseFist = 5.0f;
     bool leftFistClosed = false;
     bool rightFistClosed = false;
     float timerToOpenCloseFistLeft = 0.0f;
@@ -67,22 +65,22 @@ public class ControllerInteractionsManager : MonoBehaviour
     // 0 = left hand, 1 = right hand, 2 = not holding
     public int ObjInWhichHand(GameObject obj)
     {
+        int i = 0;
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
-            if (grabInteractor.HasSelectedInteractable && grabInteractor.SelectedInteractable.gameObject == obj)
+            if (grabInteractor.HasSelectedInteractable)
             {
-                // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-                IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-                if (hand != null)
+                if (grabInteractor.SelectedInteractable.gameObject == obj)
                 {
-                    return (hand.Handedness == Handedness.Left) ? 0 : 1;
+                    return i;
                 }
             }
+            i++;
         }
-        return 2; // Not holding
+        return i;
     }
 
-    public void ForceSelectedObjectFollow(GrabInteractor grabInteractor)
+    public void ForceSelectedObjectFollow(GrabInteractor grabInteractor) // called when force select is used as object does not follow hand, this function makes it follow the hand until it is let go
     {
         if (grabInteractor.HasSelectedInteractable)
         {
@@ -90,22 +88,15 @@ public class ControllerInteractionsManager : MonoBehaviour
         }
         else
         {
-            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-            if (hand != null)
+            if (grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
             {
-                if (hand.Handedness == Handedness.Left)
-                {
-                    leftHandForceSelected = false;
-                    if (lastHeldObjLeftHand != null)
-                        lastHeldObjLeftHand.GetComponent<Rigidbody>().isKinematic = false;
-                }
-                else if (hand.Handedness == Handedness.Right)
-                {
-                    rightHandForceSelected = false;
-                    if (lastHeldObjRightHand != null)
-                        lastHeldObjRightHand.GetComponent<Rigidbody>().isKinematic = false;
-                }
+                leftHandForceSelected = false;
+                lastHeldObjLeftHand.GetComponent<Rigidbody>().isKinematic = false;
+            }
+            else if (grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+            {
+                rightHandForceSelected = false;
+                lastHeldObjRightHand.GetComponent<Rigidbody>().isKinematic = false;
             }
         }
     }
@@ -195,46 +186,46 @@ public class ControllerInteractionsManager : MonoBehaviour
     {
         foreach (GrabInteractor grabInteractorWithinRange in grabInteractorsWithinRange)
         {
-            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = grabInteractorWithinRange.gameObject.GetComponentInParent<IHand>();
-            if (hand != null)
+            if ((controllerSide == OVRInput.Controller.LTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left))
             {
-                if (controllerSide == OVRInput.Controller.LTouch && hand.Handedness == Handedness.Left)
-                {
-                    canTakeOffDentures = false;
-                    grabInteractorsWithinRange.Clear();
+                canTakeOffDentures = false;
+                grabInteractorsWithinRange.Clear();
 
-                    leftHandForceSelected = true;
-                    lastHeldObjLeftHand = GameManager.instance.dentures;
-                    GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
+                // for force selected objects
+                leftHandForceSelected = true;
+                lastHeldObjLeftHand = GameManager.instance.dentures;
+                GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
+                // positions dentures to hand that force selected                
+                GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true); // force dentures to be on hand of player (basically cant drop)
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
+                GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
-                    GameManager.instance.dentures.SetActive(true);
-                    GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-                    GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
-                    GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
-                    GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
-                    grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
+                //GameManager.instance.OnDenturesTakeOff.Invoke();
+                GameManager.instance.toTakeDenturesOff = false;
+            }
+            else if (controllerSide == OVRInput.Controller.RTouch && grabInteractorWithinRange.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+            {
+                canTakeOffDentures = false;
+                grabInteractorsWithinRange.Clear();
 
-                    GameManager.instance.toTakeDenturesOff = false;
-                }
-                else if (controllerSide == OVRInput.Controller.RTouch && hand.Handedness == Handedness.Right)
-                {
-                    canTakeOffDentures = false;
-                    grabInteractorsWithinRange.Clear();
+                // for force selected objects
+                rightHandForceSelected = true;
+                lastHeldObjRightHand = GameManager.instance.dentures;
+                GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
 
-                    rightHandForceSelected = true;
-                    lastHeldObjRightHand = GameManager.instance.dentures;
-                    GameManager.instance.dentures.GetComponent<Rigidbody>().isKinematic = true;
+                // positions dentures to hand that force selected
+                GameManager.instance.dentures.SetActive(true);
+                GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
+                GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
+                GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
+                GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
+                grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
 
-                    GameManager.instance.dentures.SetActive(true);
-                    GameManager.instance.dentures.GetComponent<ForceStayGrabbed>().SetForceGrabActive(true);
-                    GameManager.instance.dentures.transform.position = grabInteractorWithinRange.gameObject.transform.position;
-                    GameManager.instance.dentures.transform.forward = Camera.main.transform.forward;
-                    GameManager.instance.dentures.transform.eulerAngles += new Vector3(-90, 0, 0);
-                    grabInteractorWithinRange.ForceSelect(GameManager.instance.dentures.GetComponent<GrabInteractable>());
-
-                    GameManager.instance.toTakeDenturesOff = false;
-                }
+                //GameManager.instance.OnDenturesTakeOff.Invoke();
+                GameManager.instance.toTakeDenturesOff = false;
             }
         }
     }
@@ -242,10 +233,10 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     public void LockLeftHandToItem(GameObject itemToLock, Transform targetHandPose)
     {
-        if (leftGrabInteractor != null && itemToLock != null && targetHandPose != null)
+        if (GameManager.instance.grabInteractors[0] != null && itemToLock != null && targetHandPose != null)
         {
-            leftGrabInteractor.gameObject.transform.position = targetHandPose.position;
-            leftGrabInteractor.gameObject.transform.rotation = targetHandPose.rotation;
+            GameManager.instance.grabInteractors[0].gameObject.transform.position = targetHandPose.position;
+            GameManager.instance.grabInteractors[0].gameObject.transform.rotation = targetHandPose.rotation;
 
             if (leftHandTrackingComponent != null)
             {
@@ -253,13 +244,13 @@ public class ControllerInteractionsManager : MonoBehaviour
                 leftHandTrackingComponent.enabled = false;
             }
 
-            Rigidbody handRb = leftGrabInteractor.gameObject.GetComponent<Rigidbody>();
+            Rigidbody handRb = GameManager.instance.grabInteractors[0].gameObject.GetComponent<Rigidbody>();
             if (handRb != null)
             {
                 handRb.isKinematic = true;
             }
 
-            leftGrabInteractor.ForceSelect(itemToLock.GetComponent<GrabInteractable>());
+            GameManager.instance.grabInteractors[0].ForceSelect(itemToLock.GetComponent<GrabInteractable>());
             lockedItemLeftHand = itemToLock;
             isLeftHandLocked = true;
 
@@ -278,9 +269,9 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     public void UnlockLeftHand()
     {
-        if (isLeftHandLocked && leftGrabInteractor != null)
+        if (isLeftHandLocked && GameManager.instance.grabInteractors[0] != null)
         {
-            leftGrabInteractor.ForceRelease();
+            GameManager.instance.grabInteractors[0].ForceRelease();
 
             if (lockedItemLeftHand != null && lockedItemLeftHand.GetComponent<Rigidbody>() != null)
             {
@@ -291,7 +282,7 @@ public class ControllerInteractionsManager : MonoBehaviour
             {
                 leftHandTrackingComponent.enabled = wasLeftHandTrackingComponentEnabled;
             }
-            Rigidbody handRb = leftGrabInteractor.gameObject.GetComponent<Rigidbody>();
+            Rigidbody handRb = GameManager.instance.grabInteractors[0].gameObject.GetComponent<Rigidbody>();
             if (handRb != null)
             {
                 // handRb.isKinematic = false; 
@@ -311,12 +302,9 @@ public class ControllerInteractionsManager : MonoBehaviour
     [SerializeField] private float dropGlassesInterval = 1;
     [SerializeField] private int dropGlassesCount = 2;
 
-    [SerializeField] private AudioSource audioSource_player;
-    [SerializeField] private AudioClip audioClip_sighAfterDrop;
-
-    [SerializeField] private GameObject dropItemFX;
-    [SerializeField] public GameObject leftHandAnchor;
-    [SerializeField] private GameObject rightHandAnchor;
+    public GameObject dropItemFX;
+    public GameObject leftHandAnchor;
+    public GameObject rightHandAnchor;
 
     public UnityEvent OnGlassesDrop;
 
@@ -338,12 +326,7 @@ public class ControllerInteractionsManager : MonoBehaviour
                         if (grabInteractor.SelectedInteractable.gameObject == GameManager.instance.glasses && dropGlassesCount > 0)
                         {
                             glassesTimerOn = true;
-                            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-                            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-                            if (hand != null)
-                            {
-                                lastHandToHold = hand.Handedness;
-                            }
+                            lastHandToHold = grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness;
                         }
                     }
                 }
@@ -351,34 +334,35 @@ public class ControllerInteractionsManager : MonoBehaviour
         }
 
         #region Glasses scripted dropping
-        if (glassesTimerOn)
-            dropGlassesTimer -= Time.deltaTime;
-
-        if (dropGlassesTimer <= 0)
+        if (SceneManager.GetActiveScene().name == "PresentBadLivingRoom")
         {
-            if (lastHandToHold == Handedness.Left)
+            if (glassesTimerOn)
+                dropGlassesTimer -= Time.deltaTime;
+
+            if (dropGlassesTimer <= 0)
             {
-                ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
+                if (lastHandToHold == Handedness.Left)
+                {
+                    ForceDropItemSpecificHand(OVRInput.Controller.LTouch);
 
-                Instantiate(dropItemFX, leftHandAnchor.transform);
+                    Instantiate(dropItemFX, leftHandAnchor.transform);
+                }
+                else if (lastHandToHold == Handedness.Right)
+                {
+                    ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
+
+                    Instantiate(dropItemFX, rightHandAnchor.transform);
+                }
+
+                OnGlassesDrop.Invoke();
+                dropGlassesCount -= 1;
+                if (dropGlassesCount >= 1)
+                    dropGlassesTimer = dropGlassesInterval;
+                else
+                    dropGlassesTimer = dropGlassesInterval / 2.0f;
             }
-            else if (lastHandToHold == Handedness.Right)
-            {
-                ForceDropItemSpecificHand(OVRInput.Controller.RTouch);
-
-                Instantiate(dropItemFX, rightHandAnchor.transform);
-            }
-
-            OnGlassesDrop.Invoke();
-            dropGlassesCount -= 1;
-            if (dropGlassesCount >= 1)
-                dropGlassesTimer = dropGlassesInterval;
-            else
-                dropGlassesTimer = dropGlassesInterval / 2.0f;
         }
         #endregion
-
-
     }
 
     public void ActivateItemDrop()
@@ -391,27 +375,17 @@ public class ControllerInteractionsManager : MonoBehaviour
 
     private void ForceDropItemSpecificHand(OVRInput.Controller controllerSide)
     {
-        if (controllerSide == OVRInput.Controller.LTouch && isLeftHandLocked)
-        {
-            return;
-        }
-
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
-            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-            if (hand != null)
+            if (controllerSide == OVRInput.Controller.LTouch && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left)
             {
-                if (controllerSide == OVRInput.Controller.LTouch && hand.Handedness == Handedness.Left)
-                {
-                    toReleaseLeftHand = false;
-                    grabInteractor.ForceRelease();
-                }
-                else if (controllerSide == OVRInput.Controller.RTouch && hand.Handedness == Handedness.Right)
-                {
-                    toReleaseRightHand = false;
-                    grabInteractor.ForceRelease();
-                }
+                toReleaseLeftHand = false;
+                grabInteractor.ForceRelease();
+            }
+            else if (controllerSide == OVRInput.Controller.RTouch && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right)
+            {
+                toReleaseRightHand = false;
+                grabInteractor.ForceRelease();
             }
         }
     }
@@ -446,11 +420,9 @@ public class ControllerInteractionsManager : MonoBehaviour
     {
         foreach (GrabInteractor grabInteractor in GameManager.instance.grabInteractors)
         {
-            // REVISED: Get IHand from the GrabInteractor's GameObject or its parent
-            IHand hand = grabInteractor.gameObject.GetComponentInParent<IHand>();
-            if (grabInteractor.HasSelectedInteractable && hand != null && hand.Handedness == Handedness.Left && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration") && !isLeftHandLocked)
+            if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Left && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
                 TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.LTouch);
-            else if (grabInteractor.HasSelectedInteractable && hand != null && hand.Handedness == Handedness.Right && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
+            else if (grabInteractor.HasSelectedInteractable && grabInteractor.gameObject.GetComponent<ControllerRef>().Handedness == Handedness.Right && !grabInteractor.SelectedInteractable.gameObject.CompareTag("NoVibration"))
                 TriggerVibration(40, vibrationFrequency, vibrationStrength, OVRInput.Controller.RTouch);
         }
     }
@@ -459,46 +431,55 @@ public class ControllerInteractionsManager : MonoBehaviour
     void Start()
     {
         dropGlassesTimer = dropGlassesInterval;
-        speedToOpenCloseFist = 1 / timeToOpenCloseFist;
     }
 
     void Update()
     {
         #region Hand Animations
+        
         if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger))
         {
-            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", true);
+            if (GameManager.instance.characterModel != null)
+                GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", true);
+            
             leftFistClosed = true;
         }
         else if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
         {
-            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", false);
+            if (GameManager.instance.characterModel != null)
+                GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isLeftGrabbing", false);
+            
             leftFistClosed = false;
         }
+        
 
         if (GameManager.instance.leftHand != null)
         {
             if (leftFistClosed)
             {
                 if (timerToOpenCloseFistLeft < 1.0f)
-                    timerToOpenCloseFistLeft += Time.deltaTime * speedToOpenCloseFist;
+                    timerToOpenCloseFistLeft += Time.deltaTime / timeToOpenCloseFist;
             }
             else
             {
                 if (timerToOpenCloseFistLeft > 0.0f)
-                    timerToOpenCloseFistLeft -= Time.deltaTime * speedToOpenCloseFist;
+                    timerToOpenCloseFistLeft -= Time.deltaTime / timeToOpenCloseFist;
             }
             GameManager.instance.leftHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistLeft);
         }
 
         if (OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))
         {
-            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", true);
+            if (GameManager.instance.characterModel != null)
+                GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", true);
+            
             rightFistClosed = true;
         }
         else if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
         {
-            GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", false);
+            if (GameManager.instance.characterModel != null)
+                GameManager.instance.characterModel.GetComponent<Animator>().SetBool("isRightGrabbing", false);
+            
             rightFistClosed = false;
         }
 
@@ -507,12 +488,12 @@ public class ControllerInteractionsManager : MonoBehaviour
             if (rightFistClosed)
             {
                 if (timerToOpenCloseFistRight < 1.0f)
-                    timerToOpenCloseFistRight += Time.deltaTime * speedToOpenCloseFist;
+                    timerToOpenCloseFistRight += Time.deltaTime / timeToOpenCloseFist;
             }
             else
             {
                 if (timerToOpenCloseFistRight > 0.0f)
-                    timerToOpenCloseFistRight -= Time.deltaTime * speedToOpenCloseFist;
+                    timerToOpenCloseFistRight -= Time.deltaTime / timeToOpenCloseFist;
             }
             GameManager.instance.rightHand.GetComponent<Animator>().SetFloat("Flex", timerToOpenCloseFistRight);
         }
@@ -581,5 +562,12 @@ public class ControllerInteractionsManager : MonoBehaviour
             CheckIfHolding();
         #endregion
 
+        #region Restart Game (at end game)
+        if (GameManager.instance.CheckIfCanRestart())
+        {
+            if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger) || OVRInput.GetDown(OVRInput.Button.SecondaryIndexTrigger))            
+                GameManager.instance.RestartGame();            
+        }
+        #endregion
     }
 }

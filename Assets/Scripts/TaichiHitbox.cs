@@ -34,65 +34,65 @@ public class TaichiHitbox : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
-        {
-            isHit = true;
-            this.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.02f);
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
+    //    {
+    //        isHit = true;
+    //        this.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.02f);
 
-            // the player one is mirror image of the instructor one. so left = right and vice versa
-            if (hand == Hand.left)
-            {
-                TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-                LinkedBallDisappear();
-            }
-            else if (hand == Hand.right)
-            {
-                TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-                LinkedBallDisappear();
-            }
-        }
+    //        // the player one is mirror image of the instructor one. so left = right and vice versa
+    //        if (hand == Hand.left)
+    //        {
+    //            TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+    //            LinkedBallDisappear();
+    //        }
+    //        else if (hand == Hand.right)
+    //        {
+    //            TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+    //            LinkedBallDisappear();
+    //        }
+    //    }
 
-    }
+    //}
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
-        {
-            isHit = true;
-            // this.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.05f);
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
+    //    {
+    //        isHit = true;
+    //        // this.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.05f);
 
-            // the player one is mirror image of the instructor one. so left = right and vice versa
-            if (hand == Hand.left)
-            {
-                TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-                LinkedBallDisappear();
-            }
-            else if (hand == Hand.right)
-            {
-                TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
-                LinkedBallDisappear();
-            }
-        }
-    }
+    //        // the player one is mirror image of the instructor one. so left = right and vice versa
+    //        if (hand == Hand.left)
+    //        {
+    //            TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+    //            LinkedBallDisappear();
+    //        }
+    //        else if (hand == Hand.right)
+    //        {
+    //            TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(0, 1, 0, 0.1f);
+    //            LinkedBallDisappear();
+    //        }
+    //    }
+    //}
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
-        {
-            isHit = false;
-            this.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.02f);
+//    private void OnTriggerExit(Collider other)
+//    {
+//        if (other.gameObject.GetComponentInParent<GrabInteractor>() != null && isActivated)
+//        {
+//            isHit = false;
+//            this.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.02f);
 
-            // the player one is mirror image of the instructor one. so left = right and vice versa
-            if (hand == Hand.left)
-            {
-                TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
-            }
-            else if (hand == Hand.right)
-            {
-                TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
-            }
-        }
-    }
+//            // the player one is mirror image of the instructor one. so left = right and vice versa
+//            if (hand == Hand.left)
+//            {
+//                TaiChiManager.instance.taichiNPCRightBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
+//            }
+//            else if (hand == Hand.right)
+//            {
+//                TaiChiManager.instance.taichiNPCLeftBall.GetComponent<Renderer>().material.color = new Color(1, 1, 0, 0.1f);
+//            }
+//        }
+//    }
 }

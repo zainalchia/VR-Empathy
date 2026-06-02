@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.Video;
 
 public class MobilePhone : MonoBehaviour
@@ -10,6 +11,7 @@ public class MobilePhone : MonoBehaviour
     [Header("Video Player Variables")]
     [SerializeField] VideoPlayer videoPlayer;
     [SerializeField] VideoClip phoneCalling;
+    [SerializeField] VideoClip phoneCallingBlurred;
     [SerializeField] VideoClip phoneAnswered;
     [SerializeField] VideoClip phoneHangUp;
 
@@ -18,18 +20,34 @@ public class MobilePhone : MonoBehaviour
     [SerializeField] Material videoScreenMat;
     [SerializeField] Material phoneMat;
 
+    [Header("Player Audio")]
+    [SerializeField] AudioClip maleAudioClip;
+    [SerializeField] AudioClip femaleAudioClip;
+    [SerializeField] AudioSource playerAudioSource;
+
     public UnityEvent OnPickUpPhoneFirstTime;
-    public UnityEvent OnAnswerPhone;
+    public UnityEvent OnPhoneCallEnd;
 
     List<Material> materials = new List<Material>();
     bool hasBeenPickedUpFirstTime = false;
+    bool isPhoneAnswered = false;
 
     public void SetPhoneCalling()
     {
         GetComponent<Renderer>().SetMaterials(materials); // to switch to the video material
-        videoPlayer.clip = phoneCalling;
+        if (SceneManager.GetActiveScene().name == "PresentGoodLivingRoom") 
+            videoPlayer.clip = phoneCallingBlurred;
+        else 
+            videoPlayer.clip = phoneCalling;
         videoPlayer.Play();
         GetComponent<AudioSource>().Play(); // will play ringing sound until phone is answered
+    }
+
+    // Called in ScenarioManagerPresentGood.cs, GlassesPutOn() function
+    public void UnblurPhone()
+    {
+        videoPlayer.clip = phoneCalling;
+        videoPlayer.Play();
     }
 
     public void SetPhoneAnswered()
@@ -71,6 +89,14 @@ public class MobilePhone : MonoBehaviour
                 }
             }
         }
+        if (!GameManager.instance.canAnswerPhone)
+        {
+            if (!playerAudioSource.isPlaying)
+            {
+                if(isPhoneAnswered)
+                    OnPhoneCallEnd.Invoke();
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -85,7 +111,11 @@ public class MobilePhone : MonoBehaviour
                     {
                         GameManager.instance.canAnswerPhone = false;
                         SetPhoneAnswered();
-                        OnAnswerPhone.Invoke();
+                        if(MainMenuManager.isGenderMale)
+                            playerAudioSource.PlayOneShot(maleAudioClip);
+                        else
+                            playerAudioSource.PlayOneShot(femaleAudioClip);
+                        isPhoneAnswered = true;
                     }
                 }
             }

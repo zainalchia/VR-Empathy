@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
@@ -10,26 +11,45 @@ using UnityEngine.Video;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public static bool isGenderMale = false; //true = male, false = female
+    public static bool isGenderMale; //true = male, false = female
     public static bool videoOrMenu = false; // false = menu, true = video
     public static VideoToPlay video = VideoToPlay.BeforePresentBad;
     [SerializeField]
+<<<<<<< HEAD
 <<<<<<< Updated upstream
     GameObject scenarioScreen, genderScreen, videoScreen, proceedButton;
 =======
     GameObject scenarioScreen, genderScreen, videoScreen, proceedButton, secretMenu, playerMenu;
 >>>>>>> Stashed changes
+=======
+    GameObject scenarioScreen, genderScreen, videoScreen, proceedButton, secretMenu;
+>>>>>>> Hayden
     [SerializeField]
     VideoClip[] videos;
 
     [SerializeField]
     Material mainMenuSkybox;
 
-    string levelSelected;
+    public static bool enableSurvey = true;
+    public static string pastLevelSelected = null;
+    public static string presentLevelSelected = null;
+    public static List<string> levelsPlayed = new List<string>();
+    public static int ageInput;
 
     [SerializeField] Sprite[] snippets;
     [SerializeField] Image[] snippetsBg;
+    [SerializeField] NumberPadScript numberPadScript;
     int minRange, maxRange;
+
+    private bool genderHasBeenSelected = false;
+    private int intNum;
+    private string csvInputString;
+
+    [SerializeField] private TextMeshProUGUI errorText;
+    private bool errorMsgIsShowing = false;
+
+    private int pressedBtnA = 0;
+    private bool enableSceneRandomizer;
 
     public enum VideoToPlay
     {
@@ -56,26 +76,109 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        SceneManager.LoadScene(levelSelected);
+        if(pastLevelSelected != null)
+        {
+            SceneManager.LoadScene(pastLevelSelected);
+        }
+        else
+        {
+            SceneManager.LoadScene(presentLevelSelected);
+        }
     }
 
     public void SelectGender(bool isMale)
     {
         isGenderMale = isMale;
-        genderScreen.SetActive(false);
-        videoScreen.SetActive(true);
-        toVideoScreen();
+        genderHasBeenSelected = true;
+        //genderScreen.SetActive(false);
+        //videoScreen.SetActive(true);
+        //toVideoScreen();
     }
 
-    public void SelectLevel(string levelname)
+    public void SelectPastLevel(string levelname)
     {
-        levelSelected = levelname;
+        if(pastLevelSelected == null)
+            pastLevelSelected = levelname;
+        else
+            pastLevelSelected = null;
+    }
+    public void SelectPresentLevel(string levelname)
+    {
+        if (presentLevelSelected == null)
+            presentLevelSelected = levelname;
+        else
+            presentLevelSelected = null;
     }
 
-    public void toGenderScreen()
+    public void ToggleOtherScenario(Button button)
     {
-        scenarioScreen.SetActive(false);
-        genderScreen.SetActive(true);
+        button.enabled = !button.enabled;
+    }
+
+    public void SetColorRed(RawImage image)
+    {
+        image.color = new Color(255, 0, 0);
+    }
+    public void SetColorGreen(RawImage image)
+    {
+        image.color = new Color(0, 255, 0);
+    }
+
+    public void toScenarioScreen()
+    {
+        //if (numberPadScript.StringToInt() > biggestNum || numberPadScript.StringToInt() < smallestNum || numberPadScript.StringToInt() == -1)
+        //{
+
+        //    if (errorMsgIsShowing)
+        //    {
+        //        StopAllCoroutines();
+        //    }
+
+        //    StartCoroutine(ErrorTextShown("Age is invalid!"));
+        //    return;
+        //}
+
+        //if (genderHasBeenSelected == false)
+        //{
+
+        //    if (errorMsgIsShowing)
+        //    {
+        //        StopAllCoroutines();
+        //    }
+
+        //    StartCoroutine(ErrorTextShown("Gender has not been selected!"));
+        //    return;
+        //}
+
+        if (!enableSceneRandomizer)
+        {
+            scenarioScreen.SetActive(true);
+            genderScreen.SetActive(false);
+        }
+        else
+        {
+            RandomizeScenario();
+        }
+
+        //ageInput = numberPadScript.StringToInt();
+    }
+
+    public void RandomizeScenario()
+    {
+        int randomPastScenario = UnityEngine.Random.Range(0, 2);
+        int randomPresentScenario = UnityEngine.Random.Range(0, 2);
+
+        if (randomPastScenario == 0)
+            pastLevelSelected = "PastNegativeBathroom";
+        else
+            pastLevelSelected = "PastPositiveBathroom";
+
+        if (randomPresentScenario == 0)
+            presentLevelSelected = "PresentBadBathroom";
+        else
+            presentLevelSelected = "PresentGoodBathroom";
+
+        LoadLevel();
     }
 
     public void toVideoScreen()
@@ -92,6 +195,17 @@ public class MainMenuManager : MonoBehaviour
         if (!videoOrMenu) {
             proceedButton.SetActive(true);
         }
+    }
+
+    IEnumerator ErrorTextShown(string errorMsg)
+    {
+        errorMsgIsShowing = true;
+        errorText.text = errorMsg;
+
+        yield return new WaitForSeconds(3);
+
+        errorText.text = "";
+        errorMsgIsShowing = false;
     }
 
     private void PlayVideo()
@@ -140,8 +254,11 @@ public class MainMenuManager : MonoBehaviour
     private void Update()
     {
         Debug.Log(video);
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Hayden
 
 
         if (OVRInput.GetDown(OVRInput.RawButton.A))
@@ -164,14 +281,24 @@ public class MainMenuManager : MonoBehaviour
 
     public void SecretMenu()
     {
+<<<<<<< HEAD
         if (playerMenu.activeSelf == true)
         {
             playerMenu.SetActive(false);
+=======
+        if (genderScreen.activeSelf == true)
+        {
+            genderScreen.SetActive(false);
+>>>>>>> Hayden
             secretMenu.SetActive(true);
         }
         else
         {
+<<<<<<< HEAD
             playerMenu.SetActive(true);
+=======
+            genderScreen.SetActive(true);
+>>>>>>> Hayden
             secretMenu.SetActive(false);
         }
     }
@@ -187,6 +314,9 @@ public class MainMenuManager : MonoBehaviour
         enableSceneRandomizer = !enableSceneRandomizer;
         if (enableSceneRandomizer) checkboxColor.color = new Color(0, 255, 0);
         else checkboxColor.color = new Color(255, 255, 255);
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> Hayden
     }
 }

@@ -1,0 +1,13 @@
+Hayden's Documentation
+
+SequenceManager - Used for all scenarios.
+
+WaitForTargetPiece is only used in past negative hawker scene for the chicken cutting scene.
+WaitForFlag is to be used with Game manager's flag variable. 
+GoToSecondScenario and GoToScene is different. GoToSecondScenario is to be used when a scenario is finished and need to decide whether transition to next
+	scenario or survey. Eg, if player has picked to play past negative scenario and present negative scenario, at the end of past negative use go to secondscenario
+	to check if player has selected another scenario to play or not, if yes then go to that scene else go to survey scene.
+
+
+If struggling to bug fix, look at videos of playthrough and compare where bug is located. Refer to sequence manager to see unity events on where the bug is.
+Eg, if in present negative living room scene the phone is not working, check the phone GO to see if anything is missing.

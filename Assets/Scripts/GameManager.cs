@@ -6,6 +6,9 @@ using Oculus.Interaction;
 using UnityEngine.Events;
 using TMPro;
 using System.Runtime.CompilerServices;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
+using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +24,11 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public TMP_Text consoleText;
+    public ScenarioID scenarioID = ScenarioID.PresentGood;
+    public SceneID sceneID = SceneID.Bathroom;
+    public bool flag = false;
+
+    public TextMeshPro testText;
     public GameObject postProcessing;
 
     // OVR PLAYER
@@ -43,9 +50,12 @@ public class GameManager : MonoBehaviour
     // UI FADE IN-OUT
     [Header("FADE IN-OUT PANEL")]
     public GameObject fadePanel;
+    public GameObject whiteFadePanel;
 
     [Header("Goodbye Text Panel")]
     public GameObject goodbyeText;
+    public GameObject goodbyeText2;
+    private bool canRestartGame = false;
 
     // PUTTING ON & TAKING OFF GLASSES
     [Header("GLASSES")]
@@ -59,6 +69,22 @@ public class GameManager : MonoBehaviour
     public GameObject dentures;
     public bool toTakeDenturesOff = false;
     public UnityEvent OnDenturesTakeOff;
+
+    [Header("MEDICINE")]
+    public GameObject medicine;
+    public GameObject pill;
+    public bool toConsumeMedicine = false;
+    public UnityEvent OnMedicineConsumed;
+    public UnityEvent OnMedicineGrabbed;
+
+    [Header("Hand Targets for Pill")]
+    public Transform leftPalm;
+    public Transform rightPalm;
+
+    [Header("PHOTO FRAME")]
+    public GameObject photoFrame;
+    public bool toViewPhotoFrame = false;
+    public UnityEvent OnPhotoFrameViewed;
 
     [Header("Any Look at Objectives")]
     public bool toLookAtObjective = false;
@@ -74,6 +100,18 @@ public class GameManager : MonoBehaviour
     // FURNITURE SPASMING (Bedroom Scene of Present-Bad)
     [Header("FURNITURE SPASMING")]
     public bool toStartSpasming = false;
+
+    // Plaster container
+    [Header("Plaster")]
+    public bool toUsePlaster = false;
+    public GameObject plasterContainer;
+    public GameObject plaster;
+
+    [Header("Hand")]
+    public Renderer leftHandRenderer;       
+    public GameObject bloodEffect;        
+    public Material plasteredHandMaterial;
+    public bool handHealed = false;
 
     public void DebugLog(string text)
     {
@@ -264,18 +302,25 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
+    #region Restart Game stuff (at end game)
+    public void SetCanRestart()
+    {
+        canRestartGame = true;
+    }
+    public bool CheckIfCanRestart()
+    {
+        return canRestartGame;
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        canRestartGame = false;
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
-        if (consoleText != null && GameManager.instance != null)
-        {
-            GameManager.instance.DebugLog("[Startup] " + consoleText.text);
-        }
-        else
-        {
-            Debug.LogWarning("ConsoleText or GameManager.instance is not assigned yet.");
-        }
-
         if (MaleModel != null && FemaleModel != null)
         {
             if (MainMenuManager.isGenderMale)
@@ -289,6 +334,65 @@ public class GameManager : MonoBehaviour
                 MaleModel.SetActive(false);
             }
         }
+        StartCoroutine(StartRotateTowards());
+    }
+
+    public void SetFlagTrue()
+    {
+        flag = true;
+    }
+    public void SpasmingControl()
+    {
+        toStartSpasming = !toStartSpasming;
+    }
+
+    private IEnumerator StartRotateTowards()
+    {
+        while (ovrCamRig == null || centerEyeAnchor == null)
+            yield return null;
+
+        Vector3 flat;
+        do
+        {
+            yield return null; 
+            flat = Vector3.ProjectOnPlane(centerEyeAnchor.transform.forward, Vector3.up).normalized;
+        }
+        while (flat.sqrMagnitude < 0.0001f);
+
+        float angle;
+        if(SceneManager.GetActiveScene().name == "PastNegativeHome" || SceneManager.GetActiveScene().name == "PastPositiveHome")
+        {
+            angle = Vector3.SignedAngle(flat, Vector3.back, Vector3.up);
+        }
+        else if (SceneManager.GetActiveScene().name == "PresentGoodLivingRoom" || SceneManager.GetActiveScene().name == "PresentBadLivingRoom")
+        {
+            angle = Vector3.SignedAngle(flat, Vector3.left, Vector3.up);
+        }
+        else
+        {
+            angle = Vector3.SignedAngle(flat, Vector3.forward, Vector3.up);
+        }
+        ovrCamRig.transform.Rotate(Vector3.up, angle);
+    }
+
+    public void LoadNextScenario()
+    {
+        if (MainMenuManager.presentLevelSelected != null)
+        {
+            SceneManager.LoadScene(MainMenuManager.presentLevelSelected);
+        }
+    }
+
+    public void ToggleBlur()
+    {
+
+        float blur = postProcessing.GetComponent<DepthOfField>().focalLength.value;
+
+        if (blur == 1) blur = 10;
+        else blur = 1;
+
+        postProcessing.GetComponent<DepthOfField>().focalLength.value = blur;
+
     }
 
     // Update is called once per frame
