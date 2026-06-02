@@ -268,14 +268,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void SecretMenu()
     {
-        if (genderScreen.activeSelf == true)
+        if (playerMenu.activeSelf == true)
         {
-            genderScreen.SetActive(false);
+            playerMenu.SetActive(false);
             secretMenu.SetActive(true);
         }
         else
         {
-            genderScreen.SetActive(true);
+            playerMenu.SetActive(true);
             secretMenu.SetActive(false);
         }
     }
