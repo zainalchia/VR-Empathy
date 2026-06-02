@@ -10,14 +10,24 @@ public class CheckToShowScenarioScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        if (checkBoxScript.toBeShown) return;
+        checkEnabledScenarios();
+    }
 
-        gameObject.SetActive(false);
+    private void OnEnable()
+    {
+        checkEnabledScenarios();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void checkEnabledScenarios() 
+    {
+        if (checkBoxScript.toBeShown) return;
+
+        gameObject.SetActive(false);
     }
 }

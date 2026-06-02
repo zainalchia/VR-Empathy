@@ -15,7 +15,7 @@ public class MainMenuManager : MonoBehaviour
     public static bool videoOrMenu = false; // false = menu, true = video
     public static VideoToPlay video = VideoToPlay.BeforePresentBad;
     [SerializeField]
-    GameObject scenarioScreen, genderScreen, videoScreen, proceedButton, secretMenu;
+    GameObject scenarioScreen, genderScreen, videoScreen, proceedButton, secretMenu, playerMenu;
     [SerializeField]
     VideoClip[] videos;
 
