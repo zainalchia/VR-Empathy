@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CheckboxScript : MonoBehaviour
 {
-    [SerializeField] bool isChecked = false;
+    public bool isChecked = false;
     bool isDisabled = false;
 
     RawImage image;
@@ -36,7 +36,7 @@ public class CheckboxScript : MonoBehaviour
         }
     }
 
-    public void OtherScenarioButton()
+    public void ChangeColorDisabledEnabled()
     {
         //Select / Deselect scenario
         if (!isDisabled)

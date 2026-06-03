@@ -14,13 +14,67 @@ public class MainMenuManager : MonoBehaviour
     public static bool isGenderMale; //true = male, false = female
     public static bool videoOrMenu = false; // false = menu, true = video
     public static VideoToPlay video = VideoToPlay.BeforePresentBad;
+
+    [Header("Menus")]
     [SerializeField]
-    GameObject scenarioScreen, genderScreen, videoScreen, proceedButton, secretMenu, playerMenu;
+    GameObject scenarioScreen;
+    [SerializeField]
+    GameObject genderScreen;
+    [SerializeField]
+    GameObject videoScreen; 
+    [SerializeField]
+    GameObject proceedButton;
+    [SerializeField] 
+    GameObject secretMenu;
+    [SerializeField]
+    GameObject playerMenu;
+
+    [Header("SecretMenuCheckboxes")]
+    [SerializeField]
+    CheckboxScript CheckboxA;
+    [SerializeField]
+    CheckboxScript CheckboxB;
+    [SerializeField]
+    CheckboxScript CheckboxC;
+    [SerializeField]
+    CheckboxScript CheckboxD;
+
+
+    [Header("Scenario Panel")]
+    [SerializeField]
+    GameObject scenarioAPanel;
+    [SerializeField]
+    GameObject scenarioBPanel,scenarioCPanel,scenarioDPanel;
+
+    [Header("Scenario Checkboxes")]
+    [SerializeField]
+    GameObject scenarioCheckboxA;
+    [SerializeField]
+    GameObject scenarioCheckboxB,scenarioCheckboxC,scenarioCheckboxD;
+
+    [Header("Scenario Buttons")]
+    [SerializeField]
+    Button scenarioButtonA;
+    [SerializeField]
+    Button scenarioButtonB, scenarioButtonC, scenarioButtonD;
+
+    [Header("Others")]
     [SerializeField]
     VideoClip[] videos;
 
     [SerializeField]
     Material mainMenuSkybox;
+
+
+
+
+    //dictonaries to keep tabs on the settings selected
+    //dictionary for scenarios enabled
+    private Dictionary<string, bool> scenariosAvailable = new Dictionary<string, bool>();
+    //dictionary for enabled settings
+    private Dictionary<string, bool> settingsToggled = new Dictionary<string, bool>();
+    //dictonary for selected scenarios
+    private Dictionary<string, bool> scenariosSelected = new Dictionary<string, bool>();
 
     public static bool enableSurvey = true;
     public static string pastLevelSelected = null;
@@ -54,6 +108,24 @@ public class MainMenuManager : MonoBehaviour
         RenderSettings.skybox = mainMenuSkybox;
         Debug.Log("Character gender: " + isGenderMale);
         //ShowSnippetOnHover(0);
+
+        //give setting dictionaries their values
+        //read from player prefs and initialise
+        
+        //else initialise with default
+        scenariosAvailable.Add("ScenarioA",true);
+        scenariosAvailable.Add("ScenarioB",true);
+        scenariosAvailable.Add("ScenarioC",true);
+        scenariosAvailable.Add("ScenarioD",true);
+
+        settingsToggled.Add("EnableSurvey", true);
+        settingsToggled.Add("RandomizeScenario", false);
+        settingsToggled.Add("1Past1Present", true);
+
+        scenariosSelected.Add("ScenarioA",false);
+        scenariosSelected.Add("ScenarioB",false);
+        scenariosSelected.Add("ScenarioC",false);
+        scenariosSelected.Add("ScenarioD",false);
     }
 
     private void Awake()
@@ -102,9 +174,20 @@ public class MainMenuManager : MonoBehaviour
             presentLevelSelected = null;
     }
 
-    public void ToggleOtherScenario(Button button)
+    public void ToggleOtherScenarioButton(Button imageButton)
     {
-        button.enabled = !button.enabled;
+        if (settingsToggled["1Past1Present"])
+        {
+            imageButton.enabled = !imageButton.enabled;
+        }
+    }
+
+    public void ToggleOtherScenarioCheckbox(Button checkboxButton)
+    {
+        if (settingsToggled["1Past1Present"])
+        {
+            checkboxButton.enabled = !checkboxButton.enabled;
+        }
     }
 
     public void SetColorRed(RawImage image)
@@ -270,13 +353,35 @@ public class MainMenuManager : MonoBehaviour
     {
         if (playerMenu.activeSelf == true)
         {
+            //open secret menu
             playerMenu.SetActive(false);
             secretMenu.SetActive(true);
+
+            //check dictionaries to see which settings are enabled/disabled
+
+            //set checkboxes based on enabled/disabled settings
+
         }
         else
         {
             playerMenu.SetActive(true);
             secretMenu.SetActive(false);
+
+            //update local param on settings that are enabled disabled
+            scenariosAvailable["ScenarioA"] = CheckboxA.isChecked;
+            scenariosAvailable["ScenarioB"] = CheckboxB.isChecked;
+            scenariosAvailable["ScenarioC"] = CheckboxC.isChecked;
+            scenariosAvailable["ScenarioD"] = CheckboxD.isChecked;
+            
+            //enable/disable scenarios in the scenario menu
+            scenarioAPanel.SetActive(scenariosAvailable["ScenarioA"]);
+            scenarioBPanel.SetActive(scenariosAvailable["ScenarioB"]);
+            scenarioCPanel.SetActive(scenariosAvailable["ScenarioC"]);
+            scenarioDPanel.SetActive(scenariosAvailable["ScenarioD"]);
+
+            //save settings to playerprefs
+            //including settingsToggled Dictionary
+            //reset values?
         }
     }
 
@@ -291,5 +396,83 @@ public class MainMenuManager : MonoBehaviour
         enableSceneRandomizer = !enableSceneRandomizer;
         if (enableSceneRandomizer) checkboxColor.color = new Color(0, 255, 0);
         else checkboxColor.color = new Color(255, 255, 255);
+    }
+
+    public void Toggle1Past1Present(RawImage checkboxColor)
+    {
+        //toggle 1past1present checkbox
+        if(settingsToggled["1Past1Present"])
+        {
+            //uncheck button
+            checkboxColor.color = new Color(255, 255, 255);
+            settingsToggled["1Past1Present"] = false;
+        } else
+        {
+            //check button
+            checkboxColor.color = new Color(0, 255, 0);
+            settingsToggled["1Past1Present"] = true;
+        }
+    }
+
+    public void checkScenarioButtonA()
+    {
+        checkScenarioButton(scenarioCheckboxA, "ScenarioA", scenarioCheckboxB, "ScenarioB", scenarioButtonB);
+    }
+
+    void checkScenarioButton(GameObject checkbox, string scenarioName, GameObject otherCheckbox, string otherScenarioName, Button otherScenarioButton)
+    {
+        CheckboxScript checkboxScript = checkbox.GetComponent<CheckboxScript>();
+        checkboxScript.ChangeColor();
+        scenariosSelected[scenarioName] = checkboxScript.isChecked;
+
+        if (settingsToggled["1Past1Present"])
+        {
+            //disable or enable the other scenario button
+            CheckboxScript otherCheckboxScript = otherCheckbox.GetComponent<CheckboxScript>();
+            Button otherCheckboxButton = otherCheckbox.GetComponent<Button>();
+
+            otherCheckboxScript.ChangeColorDisabledEnabled();
+            otherCheckboxButton.enabled = !otherCheckboxButton.enabled;
+            otherScenarioButton.enabled = !otherScenarioButton.enabled;
+
+            otherCheckboxScript.isChecked = false;
+            scenariosSelected[otherScenarioName] = false;
+        }
+    }
+
+
+    public void checkScenarioButtonB()
+    {
+        checkScenarioButton(scenarioCheckboxB, "ScenarioB", scenarioCheckboxA, "ScenarioA", scenarioButtonA);
+    }
+
+    void checkScenarioButtonC()
+    {
+        
+    }
+
+    void checkScenarioButtonD()
+    {
+        
+    }
+
+    void enableScenarioButtonA()
+    {
+        
+    }
+
+    void enableScenarioButtonB()
+    {
+        
+    }
+
+    void enableScenarioButtonC()
+    {
+        
+    }
+
+    void enableScenarioButtonD()
+    {
+        
     }
 }
