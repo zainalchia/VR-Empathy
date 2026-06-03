@@ -381,7 +381,12 @@ public class MainMenuManager : MonoBehaviour
 
             //save settings to playerprefs
             //including settingsToggled Dictionary
-            //reset values?
+
+            //reset values
+            resetButton(scenarioCheckboxA, scenarioButtonA, "ScenarioA");
+            resetButton(scenarioCheckboxB, scenarioButtonB, "ScenarioB");
+            resetButton(scenarioCheckboxC, scenarioButtonC, "ScenarioC");
+            resetButton(scenarioCheckboxD, scenarioButtonD, "ScenarioD");
         }
     }
 
@@ -456,23 +461,18 @@ public class MainMenuManager : MonoBehaviour
         
     }
 
-    void enableScenarioButtonA()
+    void resetButton(GameObject checkBox, Button scenarioButton, string scenarioName)
     {
-        
+        CheckboxScript checkboxScript = checkBox.GetComponent<CheckboxScript>();
+        checkboxScript.isChecked = false;
+        checkboxScript.isDisabled = false;
+        checkboxScript.image.color = new Color(255, 255, 255);
+
+        checkBox.GetComponent<Button>().enabled = true;
+
+        scenarioButton.enabled = true;
+
+        scenariosSelected[scenarioName] = false;
     }
 
-    void enableScenarioButtonB()
-    {
-        
-    }
-
-    void enableScenarioButtonC()
-    {
-        
-    }
-
-    void enableScenarioButtonD()
-    {
-        
-    }
 }

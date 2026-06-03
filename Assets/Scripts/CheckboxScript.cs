@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class CheckboxScript : MonoBehaviour
 {
     public bool isChecked = false;
-    bool isDisabled = false;
+    public bool isDisabled = false;
 
-    RawImage image;
+    public RawImage image;
 
     //Secret menu scenario
     public bool toBeShown = true;
