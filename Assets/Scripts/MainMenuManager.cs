@@ -28,6 +28,8 @@ public class MainMenuManager : MonoBehaviour
     GameObject secretMenu;
     [SerializeField]
     GameObject playerMenu;
+    [SerializeField]
+    GameObject startScreen;
 
     [Header("SecretMenuCheckboxes")]
     [SerializeField]
@@ -58,14 +60,38 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField]
     Button scenarioButtonB, scenarioButtonC, scenarioButtonD;
 
+    [Header("First Scene Name in Scenario")]
+    [SerializeField]
+    string FirstScenarioAName;
+    [SerializeField]
+    string FirstScenarioBName;
+    [SerializeField]
+    string FirstScenarioCName;
+    [SerializeField]
+    string FirstScenarioDName;
+
+    [Header("Last Scene Name in Scenario")]
+    [SerializeField]
+    string LastScenarioAName;
+    [SerializeField]
+    string LastScenarioBName;
+    [SerializeField]
+    string LastScenarioCName;
+    [SerializeField]
+    string LastScenarioDName;
+
+    public static Queue<string> scenariosQueued = new Queue<string>();
+
     [Header("Others")]
+    [SerializeField]
+    TMP_Text debugText;
     [SerializeField]
     VideoClip[] videos;
 
     [SerializeField]
     Material mainMenuSkybox;
 
-
+    private bool atStartScreen = false;
 
 
     //dictonaries to keep tabs on the settings selected
@@ -118,14 +144,14 @@ public class MainMenuManager : MonoBehaviour
         scenariosAvailable.Add("ScenarioC",true);
         scenariosAvailable.Add("ScenarioD",true);
 
-        settingsToggled.Add("EnableSurvey", true);
-        settingsToggled.Add("RandomizeScenario", false);
         settingsToggled.Add("1Past1Present", true);
 
         scenariosSelected.Add("ScenarioA",false);
         scenariosSelected.Add("ScenarioB",false);
         scenariosSelected.Add("ScenarioC",false);
         scenariosSelected.Add("ScenarioD",false);
+
+
     }
 
     private void Awake()
@@ -140,14 +166,24 @@ public class MainMenuManager : MonoBehaviour
 
     public void LoadLevel()
     {
-        if(pastLevelSelected != null)
+        string LevelName = "";
+        //remove the next scenario in the queue and get their scene name. 
+        switch (scenariosQueued.Dequeue())
         {
-            SceneManager.LoadScene(pastLevelSelected);
+            case "ScenarioA":
+                LevelName = FirstScenarioAName;
+                break;
+            case "ScenarioB":
+                LevelName = FirstScenarioBName;
+                break;
+            case "ScenarioC":
+                LevelName = FirstScenarioCName;
+                break;
+            case "ScenarioD":
+                LevelName = FirstScenarioDName;
+                break;
         }
-        else
-        {
-            SceneManager.LoadScene(presentLevelSelected);
-        }
+        SceneManager.LoadScene(LevelName);
     }
 
     public void SelectGender(bool isMale)
@@ -174,6 +210,7 @@ public class MainMenuManager : MonoBehaviour
             presentLevelSelected = null;
     }
 
+/*
     public void ToggleOtherScenarioButton(Button imageButton)
     {
         if (settingsToggled["1Past1Present"])
@@ -188,7 +225,7 @@ public class MainMenuManager : MonoBehaviour
         {
             checkboxButton.enabled = !checkboxButton.enabled;
         }
-    }
+    }*/
 
     public void SetColorRed(RawImage image)
     {
@@ -198,6 +235,7 @@ public class MainMenuManager : MonoBehaviour
     {
         image.color = new Color(0, 255, 0);
     }
+
 
     public void toScenarioScreen()
     {
@@ -232,12 +270,16 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
-            RandomizeScenario();
+            //if randomising scenario, skip scenario selection and go straight to start screen.
+            queueScenarios();
+            GoToStartScreen();
+            printDebug();
         }
 
         //ageInput = numberPadScript.StringToInt();
     }
 
+/*
     public void RandomizeScenario()
     {
         int randomPastScenario = UnityEngine.Random.Range(0, 2);
@@ -254,7 +296,7 @@ public class MainMenuManager : MonoBehaviour
             presentLevelSelected = "PresentGoodBathroom";
 
         LoadLevel();
-    }
+    }*/
 
     public void toVideoScreen()
     {
@@ -330,6 +372,7 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log(video);
 
+        //stop you from triggering secret menu at the start screen
 
         if (OVRInput.GetDown(OVRInput.RawButton.A))
         {
@@ -337,7 +380,7 @@ public class MainMenuManager : MonoBehaviour
         }
         if (OVRInput.GetDown(OVRInput.RawButton.B))
         {
-            if (pressedBtnA >= 5)
+            if (pressedBtnA >= 5 && !atStartScreen)
             {
                 SecretMenu();
             }
@@ -355,6 +398,7 @@ public class MainMenuManager : MonoBehaviour
         {
             //open secret menu
             playerMenu.SetActive(false);
+            startScreen.SetActive(false);
             secretMenu.SetActive(true);
 
             //check dictionaries to see which settings are enabled/disabled
@@ -366,6 +410,9 @@ public class MainMenuManager : MonoBehaviour
         {
             playerMenu.SetActive(true);
             secretMenu.SetActive(false);
+            genderScreen.SetActive(true);
+            scenarioScreen.SetActive(false);
+
 
             //update local param on settings that are enabled disabled
             scenariosAvailable["ScenarioA"] = CheckboxA.isChecked;
@@ -451,14 +498,14 @@ public class MainMenuManager : MonoBehaviour
         checkScenarioButton(scenarioCheckboxB, "ScenarioB", scenarioCheckboxA, "ScenarioA", scenarioButtonA);
     }
 
-    void checkScenarioButtonC()
+    public void checkScenarioButtonC()
     {
-        
+        checkScenarioButton(scenarioCheckboxC, "ScenarioC", scenarioCheckboxD, "ScenarioD", scenarioButtonD);
     }
 
-    void checkScenarioButtonD()
+    public void checkScenarioButtonD()
     {
-        
+        checkScenarioButton(scenarioCheckboxD, "ScenarioD", scenarioCheckboxC, "ScenarioC", scenarioButtonC);
     }
 
     void resetButton(GameObject checkBox, Button scenarioButton, string scenarioName)
@@ -473,6 +520,110 @@ public class MainMenuManager : MonoBehaviour
         scenarioButton.enabled = true;
 
         scenariosSelected[scenarioName] = false;
+    }
+
+    public void printDebug()
+    {
+        //check which scenarios are selected
+        //debugText.text = $"Scenario A: {scenariosSelected["ScenarioA"]}, Scenario B: {scenariosSelected["ScenarioB"]}, Scenario C: {scenariosSelected["ScenarioC"]}, Scenario D: {scenariosSelected["ScenarioD"]}, ";
+
+        //check scenarios queued up
+        debugText.text = "";
+        foreach(var scenario in scenariosQueued)
+        {
+            debugText.text += scenario;
+        }
+    }
+
+    public void queueScenarios ()
+    {
+        
+        
+        if(enableSceneRandomizer)
+        {
+            //parameters randomizer and 1past1present
+
+            //scenarios for randomizer.
+            //could randomise from 1 past 1 preset
+            //could randomise from all past
+            //could randomise from all present
+            //no matter when randomising, it will always be 1 past and 1 present or 1 past or 1 present
+            string randomPastScenario;
+            string randomPresentScenario;
+    
+            int pastScenarioNumbers = 0;
+            int presentScenarioNumbers = 0;
+
+            int randomPastScenarioIndex;
+            int randomPresentScenarioIndex;
+
+            List<string> validPastScenarios = new List<string>();
+            List<string> validPresentScenarios = new List<string>();
+
+            //randomised pulls from scenarios available and skips the scenario selection screen.
+            foreach(var scenario in scenariosAvailable)
+            {
+                switch (scenario.Key)
+                {
+                    case "ScenarioA":
+                    case "ScenarioB":
+                        if (scenario.Value)
+                        {
+                            validPastScenarios.Add(scenario.Key);
+                        }
+                        break;
+                    case "ScenarioC":
+                    case "ScenarioD":
+                        if (scenario.Value)
+                        {
+                            validPresentScenarios.Add(scenario.Key);
+                        }
+                        break;
+                }
+            }
+
+            //pick random past scenario
+            pastScenarioNumbers = validPastScenarios.Count;
+
+            if(pastScenarioNumbers > 0)
+            {
+                randomPastScenarioIndex = UnityEngine.Random.Range(0,pastScenarioNumbers);
+                //add them to queue
+                scenariosQueued.Enqueue(validPastScenarios[randomPastScenarioIndex]);
+            }
+
+            //pick random present scenario
+            presentScenarioNumbers = validPresentScenarios.Count;
+            if(presentScenarioNumbers > 0)
+            {
+                randomPresentScenarioIndex = UnityEngine.Random.Range(0,presentScenarioNumbers);
+                scenariosQueued.Enqueue(validPresentScenarios[randomPresentScenarioIndex]);
+            }
+
+
+        } else
+        {
+            //handle the non-randomised queuing
+            foreach(var scenario in scenariosSelected)
+            {
+                if (scenario.Value)
+                {
+                    scenariosQueued.Enqueue(scenario.Key);
+                }
+            }
+        }
+    }
+
+    public void GoToStartScreen()
+    {
+        if(scenariosQueued.Count == 0)
+        {
+            debugText.text = "No Scenarios Selected";
+            return;
+        }
+        atStartScreen = true;
+        startScreen.SetActive(true);
+        playerMenu.SetActive(false);
     }
 
 }

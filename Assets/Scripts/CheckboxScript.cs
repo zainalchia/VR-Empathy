@@ -5,12 +5,16 @@ using UnityEngine.UI;
 
 public class CheckboxScript : MonoBehaviour
 {
+    [HideInInspector]
     public bool isChecked = false;
+    [HideInInspector]
     public bool isDisabled = false;
 
+    [HideInInspector]
     public RawImage image;
 
     //Secret menu scenario
+    [HideInInspector]
     public bool toBeShown = true;
     
     // Start is called before the first frame update

@@ -22,6 +22,6 @@ public class LoadBackToMainMenu : MonoBehaviour
 
     public void ReloadBackToMainMenu()
     {
-        SceneManager.LoadScene("MainMenuOnly");
+        SceneManager.LoadScene("MainMenu");
     }
 }

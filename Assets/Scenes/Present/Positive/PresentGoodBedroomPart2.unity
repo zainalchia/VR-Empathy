@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028301, g: 0.22571309, b: 0.30692127, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2926,10 +2926,15 @@ MonoBehaviour:
   - rid: 5471714462093017208
   - rid: 5471714462093017210
   - rid: 5471714462093017212
-  - rid: 7725293352101085193
+  - rid: 1917700115382403072
   references:
     version: 2
     RefIds:
+    - rid: 1917700115382403072
+      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
+      data:
+        name: Go to next scenario
+        type: 23
     - rid: 5471714462093017178
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -3066,12 +3071,6 @@ MonoBehaviour:
       data:
         name: Wait for pill eaten
         type: 22
-    - rid: 7725293352101085193
-      type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
-      data:
-        name: Go to survey
-        type: 13
-        sceneName: Survey
     - rid: 7725293352101085194
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:

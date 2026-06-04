@@ -626,10 +626,37 @@ public class SequenceManager : MonoBehaviour
         public override void OnEnter()
         {
             base.OnEnter();
-            if (MainMenuManager.presentLevelSelected != null)
-                SceneManager.LoadScene(MainMenuManager.presentLevelSelected);
+            if (MainMenuManager.scenariosQueued.Count > 0)
+            {
+                string LevelName = "";
+                switch (MainMenuManager.scenariosQueued.Dequeue())
+                {
+                    case "ScenarioA":
+                        LevelName = "PastNegativeBathroom";
+                        break;
+                    case "ScenarioB":
+                        LevelName = "PastPostiveBathroom";
+                        break;
+                    case "ScenarioC":
+                        LevelName = "PresentBadBathroom";
+                        break;
+                    case "ScenarioD":
+                        LevelName = "PresentGoodBathroom";
+                        break;
+                }
+                SceneManager.LoadScene(LevelName);
+            }
             else
-                SceneManager.LoadScene("Survey");
+            {
+                if(MainMenuManager.enableSurvey)
+                    SceneManager.LoadScene("Survey");
+                else
+                {
+                    //skip to thanks for playing.
+                    SceneManager.LoadScene("ThanksForPlaying");
+                }
+                    
+            }
             Exit();
         }
     }
