@@ -7803,6 +7803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdd4dbf41d0895469e29609f2081811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugText: {fileID: 0}
   refreshEditor: 0
   events:
   - rid: 7725293058360082437
@@ -7812,17 +7813,19 @@ MonoBehaviour:
   - rid: 7725293058360082441
   - rid: 7170432668072148992
   - rid: 7725293058360082451
-  - rid: 7725293062026690567
-  - rid: 7725293058360082454
-  - rid: 7725293058360082459
   - rid: 7725293058360082457
+  - rid: 7725293062026690567
+  - rid: 7725293058360082459
+  - rid: 1917700197041307656
   - rid: 7725293062026690565
-  - rid: 7725293062026690562
+  - rid: 7725293058360082454
   - rid: 7725293062026690569
   - rid: 7725293062026690571
   - rid: 7725293062026690574
   - rid: 7725293062026690576
   - rid: 7725293062026690578
+  - rid: 7725293062026690562
+  - rid: 7725293080440209428
   - rid: 7725293062026690564
   - rid: 7725293080440209409
   - rid: 7725293062026690580
@@ -7830,12 +7833,11 @@ MonoBehaviour:
   - rid: 7725293062026690583
   - rid: 7725293062026690585
   - rid: 7725293062026690587
-  - rid: 7725293080440209411
+  - rid: 1917700197041307658
   - rid: 7725293080440209445
-  - rid: 7725293062026690589
   - rid: 7725293062026690619
   - rid: 7725293062026690621
-  - rid: 7725293080440209428
+  - rid: 7725293080440209411
   - rid: 7725293080440209413
   - rid: 7725293080440209415
   - rid: 7725293080440209419
@@ -7845,6 +7847,7 @@ MonoBehaviour:
   - rid: 7725293080440209425
   - rid: 7725293062026690591
   - rid: 7725293062026690593
+  - rid: 7725293062026690589
   - rid: 7725293062026690599
   - rid: 7725293062026690597
   - rid: 7725293080440209440
@@ -7862,15 +7865,21 @@ MonoBehaviour:
   - rid: 7725293062026690611
   - rid: 7725293062026690613
   - rid: 7725293062026690615
-  - rid: 1917700115382403073
   references:
     version: 2
     RefIds:
-    - rid: 1917700115382403073
-      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
+    - rid: 1917700197041307656
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: Go to next scenario
-        type: 23
+        name: Wait for scene change
+        type: 2
+        waitTime: 3
+    - rid: 1917700197041307658
+      type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
+      data:
+        name: Wait for fade effect to switch on
+        type: 2
+        waitTime: 0.9
     - rid: 7170432668072148992
       type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
@@ -7971,7 +7980,7 @@ MonoBehaviour:
       data:
         name: Small delay
         type: 2
-        waitTime: 2
+        waitTime: 0.5
     - rid: 7725293058360082457
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
@@ -7981,7 +7990,7 @@ MonoBehaviour:
     - rid: 7725293058360082459
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: '[Audio] What is happening?'
         type: 5
         audioSource: {fileID: 1302677441}
         audioClip: {fileID: 8300000, guid: ea10a50bc426e45eaa0eb5c0cc539d5a, type: 3}
@@ -8058,14 +8067,14 @@ MonoBehaviour:
     - rid: 7725293062026690574
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: Set old mode active
+        name: Set Old Bedroom active
         type: 6
         gameObject: {fileID: 1827313233}
         active: 1
     - rid: 7725293062026690576
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: Set new mode inactive
+        name: Set Present Bedroom inactive
         type: 6
         gameObject: {fileID: 1498610870}
         active: 0
@@ -8159,9 +8168,9 @@ MonoBehaviour:
     - rid: 7725293062026690593
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: Small delay
+        name: Wait to take it in
         type: 2
-        waitTime: 2
+        waitTime: 5
     - rid: 7725293062026690597
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -8250,68 +8259,68 @@ MonoBehaviour:
     - rid: 7725293080440209409
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Wait to take it in
         type: 2
-        waitTime: 5
+        waitTime: 1
     - rid: 7725293080440209411
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: Wait
+        name: Wait for furniture
         type: 2
-        waitTime: 4
+        waitTime: 0.1
     - rid: 7725293080440209413
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Activate Medicine
         type: 6
         gameObject: {fileID: 7623545440912542551}
         active: 1
     - rid: 7725293080440209415
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set Bed Active
         type: 6
         gameObject: {fileID: 50754954528081030}
         active: 1
     - rid: 7725293080440209419
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set Chair Active
         type: 6
         gameObject: {fileID: 1728101240}
         active: 1
     - rid: 7725293080440209420
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set Table Active
         type: 6
         gameObject: {fileID: 1187788872}
         active: 1
     - rid: 7725293080440209421
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set Cupboard Active
         type: 6
         gameObject: {fileID: 6014503084830996457}
         active: 1
     - rid: 7725293080440209424
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set Parents Inactive
         type: 6
         gameObject: {fileID: 883178008}
         active: 0
     - rid: 7725293080440209425
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set Hallucination inactive
         type: 6
         gameObject: {fileID: 1672819944}
         active: 0
     - rid: 7725293080440209428
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Stop Furniture from Spasming
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -8331,21 +8340,21 @@ MonoBehaviour:
     - rid: 7725293080440209434
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: set animated pill bottle active
         type: 6
         gameObject: {fileID: 422728089}
         active: 1
     - rid: 7725293080440209436
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: activate second pill bottle animation
         type: 6
         gameObject: {fileID: 1278154432}
         active: 1
     - rid: 7725293080440209440
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Enable Pills to be picked up
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -8377,14 +8386,14 @@ MonoBehaviour:
     - rid: 7725293080440209441
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set pill bottle inactive
         type: 6
         gameObject: {fileID: 2006039829}
         active: 0
     - rid: 7725293080440209443
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: deactivate 2nd pill bottle
         type: 6
         gameObject: {fileID: 1484599792}
         active: 0
@@ -8398,7 +8407,7 @@ MonoBehaviour:
     - rid: 7725293080440209447
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: set second pill bottle outline
         type: 12
         unityEvent:
           m_PersistentCalls:

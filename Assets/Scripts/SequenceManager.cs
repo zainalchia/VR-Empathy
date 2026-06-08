@@ -625,6 +625,7 @@ public class SequenceManager : MonoBehaviour
     public class SEvent_GoToSecondScenario : SequenceEvent
     {
 
+        [SerializeField] TMP_Text debugText ;
         public override void OnEnter()
         {
             base.OnEnter();
@@ -637,7 +638,7 @@ public class SequenceManager : MonoBehaviour
                         LevelName = "PastNegativeBathroom";
                         break;
                     case "ScenarioB":
-                        LevelName = "PastPostiveBathroom";
+                        LevelName = "PastPositiveBathroom";
                         break;
                     case "ScenarioC":
                         LevelName = "PresentBadBathroom";
@@ -646,10 +647,14 @@ public class SequenceManager : MonoBehaviour
                         LevelName = "PresentGoodBathroom";
                         break;
                 }
+                if(debugText != null)
+                    debugText.text = LevelName;
                 SceneManager.LoadScene(LevelName);
             }
             else
             {
+                if(debugText != null)
+                    debugText.text = "No scenarios in queue";
                 if(MainMenuManager.enableSurvey)
                     SceneManager.LoadScene("Survey");
                 else
@@ -662,6 +667,8 @@ public class SequenceManager : MonoBehaviour
             Exit();
         }
     }
+
+
     public class SEvent_SetRotation : SequenceEvent
     {
         [SerializeField] GameObject target;
