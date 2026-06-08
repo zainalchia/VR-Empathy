@@ -330,6 +330,13 @@ public class SurveyController : MonoBehaviour
 
         // put everything into one line and append csv
         AppendCSV(outputString);
+
+        LoadThanksForPlaying();
+    }
+
+    private void LoadThanksForPlaying()
+    {
+        SceneManager.LoadScene("ThanksForPlaying");
     }
 
     private void AppendCSV(string textToWrite)
