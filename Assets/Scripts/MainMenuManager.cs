@@ -40,6 +40,8 @@ public class MainMenuManager : MonoBehaviour
     CheckboxScript CheckboxC;
     [SerializeField]
     CheckboxScript CheckboxD;
+    [SerializeField]
+    RawImage surveyCheckbox,randomiseCheckbox,pastPresentCheckbox;
 
 
     [Header("Scenario Panel")]
@@ -96,7 +98,7 @@ public class MainMenuManager : MonoBehaviour
 
     //dictonaries to keep tabs on the settings selected
     //dictionary for scenarios enabled
-    private Dictionary<string, bool> scenariosAvailable = new Dictionary<string, bool>();
+    public static Dictionary<string, bool> scenariosAvailable = new Dictionary<string, bool>();
     //dictionary for enabled settings
     private Dictionary<string, bool> settingsToggled = new Dictionary<string, bool>();
     //dictonary for selected scenarios
@@ -121,7 +123,7 @@ public class MainMenuManager : MonoBehaviour
     private bool errorMsgIsShowing = false;
 
     private int pressedBtnA = 0;
-    private bool enableSceneRandomizer;
+    private bool enableSceneRandomizer = false;
 
     public enum VideoToPlay
     {
@@ -134,11 +136,8 @@ public class MainMenuManager : MonoBehaviour
         RenderSettings.skybox = mainMenuSkybox;
         Debug.Log("Character gender: " + isGenderMale);
         //ShowSnippetOnHover(0);
-
-        //give setting dictionaries their values
-        //read from player prefs and initialise
         
-        //else initialise with default
+        //initialise with default
         scenariosAvailable.Add("ScenarioA",true);
         scenariosAvailable.Add("ScenarioB",true);
         scenariosAvailable.Add("ScenarioC",true);
@@ -146,11 +145,83 @@ public class MainMenuManager : MonoBehaviour
 
         settingsToggled.Add("1Past1Present", true);
 
+        //retrieve settings from playerprefs and give parameters their values
+        if(PlayerPrefs.GetString("ScenarioA", "NoValue") == "False")
+        {
+            scenariosAvailable["ScenarioA"] = false;
+        }
+        if(PlayerPrefs.GetString("ScenarioB", "NoValue") == "False")
+        {
+            scenariosAvailable["ScenarioB"] = false;
+        }
+        if(PlayerPrefs.GetString("ScenarioC", "NoValue") == "False")
+        {
+            scenariosAvailable["ScenarioC"] = false;
+        }
+        if(PlayerPrefs.GetString("ScenarioD", "NoValue") == "False")
+        {
+            scenariosAvailable["ScenarioD"] = false;
+        }
+
+        if(PlayerPrefs.GetString("1Past1Present", "NoValue") == "False")
+        {
+            settingsToggled["1Past1Present"] = false;
+        }
+        if(PlayerPrefs.GetString("Randomise", "NoValue") == "True")
+        {
+            enableSceneRandomizer = true;
+        }
+        if(PlayerPrefs.GetString("SurveyEnabled", "NoValue") == "False")
+        {
+            enableSurvey = false;
+        }
+
+        //printDebug(scenariosAvailable["ScenarioA"].ToString());
+
+/*
+        bool result;
+
+        if (bool.TryParse(PlayerPrefs.GetString("1Past1Present"), out result))
+        {
+            settingsToggled["1Past1Present"] = result;
+        }
+
+        if (bool.TryParse(PlayerPrefs.GetString("Randomise"), out result))
+        {
+            enableSceneRandomizer = result;
+        }
+
+        if (bool.TryParse(PlayerPrefs.GetString("Randomise"), out result))
+        {
+            enableSurvey = result;
+        }
+
+
+        //with retrived data, update UI
+        if(settingsToggled["1Past1Present"])
+            pastPresentCheckbox.color = new Color(0,255,0);
+        else
+            pastPresentCheckbox.color = new Color(255,255,255);
+
+        if(enableSceneRandomizer)
+            randomiseCheckbox.color = new Color(0,255,0);
+        else
+            randomiseCheckbox.color = new Color(255,255,255);
+
+        if(enableSurvey)
+            surveyCheckbox.color = new Color(0,255,0);
+        else
+            surveyCheckbox.color = new Color(255,255,255);
+*/
+        
+
+        UpdateScenarioMenuScreen();
+
+        //initialise scenariosSelected dictionary
         scenariosSelected.Add("ScenarioA",false);
         scenariosSelected.Add("ScenarioB",false);
         scenariosSelected.Add("ScenarioC",false);
         scenariosSelected.Add("ScenarioD",false);
-
 
     }
 
@@ -210,22 +281,6 @@ public class MainMenuManager : MonoBehaviour
             presentLevelSelected = null;
     }
 
-/*
-    public void ToggleOtherScenarioButton(Button imageButton)
-    {
-        if (settingsToggled["1Past1Present"])
-        {
-            imageButton.enabled = !imageButton.enabled;
-        }
-    }
-
-    public void ToggleOtherScenarioCheckbox(Button checkboxButton)
-    {
-        if (settingsToggled["1Past1Present"])
-        {
-            checkboxButton.enabled = !checkboxButton.enabled;
-        }
-    }*/
 
     public void SetColorRed(RawImage image)
     {
@@ -273,7 +328,7 @@ public class MainMenuManager : MonoBehaviour
             //if randomising scenario, skip scenario selection and go straight to start screen.
             queueScenarios();
             GoToStartScreen();
-            printDebug();
+            //printDebug();
         }
 
         //ageInput = numberPadScript.StringToInt();
@@ -392,6 +447,7 @@ public class MainMenuManager : MonoBehaviour
 
     }
 
+    [ContextMenu("SecretMenu")] 
     public void SecretMenu()
     {
         if (playerMenu.activeSelf == true)
@@ -401,9 +457,27 @@ public class MainMenuManager : MonoBehaviour
             startScreen.SetActive(false);
             secretMenu.SetActive(true);
 
-            //check dictionaries to see which settings are enabled/disabled
+            // check dictionaries to see which settings are enabled/disabled
+            // set checkboxes based on enabled/disabled settings
+            StartCoroutine(UpdateSettingsUI());
 
-            //set checkboxes based on enabled/disabled settings
+            /*
+            //unsure why but the if comparison below doesnt trigger
+            printDebug($"{scenariosAvailable["ScenarioA"]} , {CheckboxA.isChecked}");
+            if (scenariosAvailable["ScenarioA"] != CheckboxA.isChecked)
+            {
+                printDebug("bool check works ");
+            } else if (CheckboxA == null)
+            {
+                printDebug("Checkbox A is null");
+
+            }*/
+
+            
+            //printDebug($"{scenariosAvailable["ScenarioA"]} , {CheckboxA.isChecked}, checkboxes executed");
+
+
+            //scenarioCheckboxA.GetComponent<CheckboxScript>().ChangeColor();
 
         }
         else
@@ -421,20 +495,34 @@ public class MainMenuManager : MonoBehaviour
             scenariosAvailable["ScenarioD"] = CheckboxD.isChecked;
             
             //enable/disable scenarios in the scenario menu
-            scenarioAPanel.SetActive(scenariosAvailable["ScenarioA"]);
-            scenarioBPanel.SetActive(scenariosAvailable["ScenarioB"]);
-            scenarioCPanel.SetActive(scenariosAvailable["ScenarioC"]);
-            scenarioDPanel.SetActive(scenariosAvailable["ScenarioD"]);
+            UpdateScenarioMenuScreen();
 
             //save settings to playerprefs
+            foreach (var scenarios in scenariosAvailable)
+            {
+                PlayerPrefs.SetString(scenarios.Key,scenarios.Value.ToString());
+            }
             //including settingsToggled Dictionary
+            PlayerPrefs.SetString("1Past1Present", settingsToggled["1Past1Present"].ToString());
+            PlayerPrefs.SetString("Randomise", enableSceneRandomizer.ToString());
+            PlayerPrefs.SetString("SurveyEnabled", enableSurvey.ToString());
 
             //reset values
             resetButton(scenarioCheckboxA, scenarioButtonA, "ScenarioA");
             resetButton(scenarioCheckboxB, scenarioButtonB, "ScenarioB");
             resetButton(scenarioCheckboxC, scenarioButtonC, "ScenarioC");
             resetButton(scenarioCheckboxD, scenarioButtonD, "ScenarioD");
+
+            PlayerPrefs.Save();
         }
+    }
+
+    private void UpdateScenarioMenuScreen()
+    {
+        scenarioAPanel.SetActive(scenariosAvailable["ScenarioA"]);
+        scenarioBPanel.SetActive(scenariosAvailable["ScenarioB"]);
+        scenarioCPanel.SetActive(scenariosAvailable["ScenarioC"]);
+        scenarioDPanel.SetActive(scenariosAvailable["ScenarioD"]);
     }
 
     public void ToggleSurvey(RawImage checkboxColor)
@@ -522,23 +610,26 @@ public class MainMenuManager : MonoBehaviour
         scenariosSelected[scenarioName] = false;
     }
 
-    public void printDebug()
+    public void printDebug(string log)
     {
         //check which scenarios are selected
         //debugText.text = $"Scenario A: {scenariosSelected["ScenarioA"]}, Scenario B: {scenariosSelected["ScenarioB"]}, Scenario C: {scenariosSelected["ScenarioC"]}, Scenario D: {scenariosSelected["ScenarioD"]}, ";
 
+        /*
         //check scenarios queued up
         debugText.text = "";
         foreach(var scenario in scenariosQueued)
         {
             debugText.text += scenario;
-        }
+        }*/
+
+        
+        //debugText.text = $"Player Prefs value:{PlayerPrefs.GetString("ScenarioA","NoValue")}, local data value: {scenariosAvailable["ScenarioA"].ToString()}" ;
+        debugText.text = log;
     }
 
     public void queueScenarios ()
-    {
-        
-        
+    {   
         if(enableSceneRandomizer)
         {
             //parameters randomizer and 1past1present
@@ -616,14 +707,66 @@ public class MainMenuManager : MonoBehaviour
 
     public void GoToStartScreen()
     {
+
         if(scenariosQueued.Count == 0)
         {
             debugText.text = "No Scenarios Selected";
             return;
         }
+
+        //check which scenarios are selected
+        printDebug($"Scenario A: {scenariosSelected["ScenarioA"]}, Scenario B: {scenariosSelected["ScenarioB"]}, Scenario C: {scenariosSelected["ScenarioC"]}, Scenario D: {scenariosSelected["ScenarioD"]}, ");
+
+        
         atStartScreen = true;
         startScreen.SetActive(true);
         playerMenu.SetActive(false);
     }
 
+    IEnumerator UpdateSettingsUI()
+    {
+
+        // 2. Pauses execution until the very next frame
+        //let the menu be enabled first
+        yield return null;
+        Debug.Log("One additional frame passed. Done!");
+        if (scenariosAvailable["ScenarioA"] != CheckboxA.isChecked)
+        {
+            CheckboxA.ChangeColor();
+        }
+        if (scenariosAvailable["ScenarioB"] != CheckboxB.isChecked)
+        {
+            CheckboxB.ChangeColor();
+        }
+        if (scenariosAvailable["ScenarioC"] != CheckboxC.isChecked)
+        {
+            CheckboxC.ChangeColor();
+        }
+        if (scenariosAvailable["ScenarioD"] != CheckboxD.isChecked)
+        {
+            CheckboxD.ChangeColor();
+        }
+
+        if (enableSceneRandomizer)
+        {
+            randomiseCheckbox.color = new Color(0,255,0);
+        } else
+        {
+            randomiseCheckbox.color = new Color(255,255,255);
+        }
+        if (enableSurvey)
+        {
+            surveyCheckbox.color = new Color(0,255,0);
+        } else
+        {
+            surveyCheckbox.color = new Color(255,255,255);
+        }
+        if (settingsToggled["1Past1Present"])
+        {
+            pastPresentCheckbox.color = new Color(0,255,0);
+        } else
+        {
+            pastPresentCheckbox.color = new Color(255,255,255);
+        }
+    }
 }

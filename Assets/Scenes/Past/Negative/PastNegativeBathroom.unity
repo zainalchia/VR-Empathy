@@ -7727,12 +7727,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdd4dbf41d0895469e29609f2081811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugText: {fileID: 0}
   refreshEditor: 0
   events:
   - rid: 7170432663954915329
   - rid: 6176681889884798978
+  - rid: 1917700197041307649
   - rid: 5361627003736293396
   - rid: 6176681889884798980
+  - rid: 6176681889884798978
   - rid: 6176681889884798982
   - rid: 3636061403108868098
   - rid: 3636061383514914817
@@ -7755,6 +7758,11 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: 538ed407099f94149a1957218b142391, type: 3}
         waitForEnd: 1
         loop: 0
+    - rid: 1917700197041307649
+      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
+      data:
+        name: Test Next Scenario
+        type: 23
     - rid: 3636061383514914817
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -7901,7 +7909,7 @@ MonoBehaviour:
     - rid: 6176681889884798978
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: '[Audio] Talk to self'
+        name: '[Audio] Sad start to the day'
         type: 5
         audioSource: {fileID: 755939308}
         audioClip: {fileID: 8300000, guid: 614ba660fe2b8f84f8adf6a420628f4f, type: 3}
@@ -7917,10 +7925,10 @@ MonoBehaviour:
     - rid: 6176681889884798982
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: '[Audio] Hype self up'
+        name: '[Audio] Reply to Boss'
         type: 5
         audioSource: {fileID: 755939308}
-        audioClip: {fileID: 8300000, guid: 584ee7c347a346a43bfb1970c2c3622b, type: 3}
+        audioClip: {fileID: 8300000, guid: 0b118d6569fea1f44b01513f7ade9e44, type: 3}
         audioClipAlt: {fileID: 8300000, guid: 40d5370c7cc83b24dada72c5da7736b4, type: 3}
         waitForEnd: 1
         loop: 0

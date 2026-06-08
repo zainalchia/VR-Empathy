@@ -2,6 +2,7 @@ using Oculus.Interaction;
 using System;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 using UnityEngine.Events;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,8 @@ enum Hand
 
 public class SequenceManager : MonoBehaviour
 {
-
+    [SerializeField]
+    TMP_Text debugText;
     // sequence event class defines
     [Serializable]
     public class SequenceEvent
