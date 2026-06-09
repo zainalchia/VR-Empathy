@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028301, g: 0.22571309, b: 0.30692127, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7865,6 +7865,7 @@ MonoBehaviour:
   - rid: 7725293062026690611
   - rid: 7725293062026690613
   - rid: 7725293062026690615
+  - rid: 1917700225704919041
   references:
     version: 2
     RefIds:
@@ -7880,6 +7881,12 @@ MonoBehaviour:
         name: Wait for fade effect to switch on
         type: 2
         waitTime: 0.9
+    - rid: 1917700225704919041
+      type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
+      data:
+        name: Load next scenario
+        type: 23
+        debugText: {fileID: 0}
     - rid: 7170432668072148992
       type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
