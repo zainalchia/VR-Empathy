@@ -32,6 +32,7 @@ public class SurveyController : MonoBehaviour
     {
         public string timestamp;
         public int age;
+        public string gender;
         public string[] answers;
     }
 
@@ -300,30 +301,42 @@ public class SurveyController : MonoBehaviour
     {
         // used for testing purpose. put everything into one line and output to screen
         surveyAns.timestamp = DateTime.Now.ToString();
-        string outputString = surveyAns.timestamp + ";" + surveyAns.age;
+        switch (MainMenuManager.isGenderMale)
+        {
+            case true:
+                surveyAns.gender = "Male";
+                break;
+            case false:
+                surveyAns.gender = "Female";
+                break;
+            default:
+                surveyAns.gender = "Others";
+                break;
+        }
+        string outputString = surveyAns.timestamp + "," + surveyAns.age + ',' + surveyAns.gender + ',';
 
         foreach (string level in MainMenuManager.levelsPlayed)
         {
             switch (level)
             {
                 case "PastNegativeBathroom":
-                    outputString += ";" + "Past Negative";
+                    outputString += " Past Negative";
                     break;
                 case "PastPositiveBathroom":
-                    outputString += ";" + "Past Positive";
+                    outputString += " Past Positive";
                     break;
                 case "PresentBadBathroom":
-                    outputString += ";" + "Present Negative";
+                    outputString += " Present Negative";
                     break;
                 case "PresentGoodBathroom":
-                    outputString += ";" + "Present Positive";
+                    outputString += " Present Positive";
                     break;
             }
         }
 
         foreach (string answer in surveyAns.answers)
         {
-            outputString += ";" + answer;
+            outputString += "," + answer;
         }
 
         questionText.text = outputString;
@@ -348,7 +361,7 @@ public class SurveyController : MonoBehaviour
             // check if file exists
             if (!File.Exists(path))
             {
-                File.WriteAllText(path, "Timestamp,Position\n");
+                File.WriteAllText(path, "Timestamp,Age,Gender,Scenarios,Results");
                 Debug.Log("yoohoo " + path);
             }
 

@@ -124,6 +124,7 @@ public class MainMenuManager : MonoBehaviour
 
     private int pressedBtnA = 0;
     private bool enableSceneRandomizer = false;
+    private bool onePastOnePresent = true;
 
     public enum VideoToPlay
     {
@@ -136,44 +137,71 @@ public class MainMenuManager : MonoBehaviour
         RenderSettings.skybox = mainMenuSkybox;
         Debug.Log("Character gender: " + isGenderMale);
         //ShowSnippetOnHover(0);
-        
-        //initialise with default
-        scenariosAvailable.Add("ScenarioA",true);
-        scenariosAvailable.Add("ScenarioB",true);
-        scenariosAvailable.Add("ScenarioC",true);
-        scenariosAvailable.Add("ScenarioD",true);
+        printDebug("Initialised");
 
-        settingsToggled.Add("1Past1Present", true);
+        if(scenariosAvailable.Count == 0)
+        {
+            //initialise with default
+            scenariosAvailable.Add("ScenarioA",true);
+            scenariosAvailable.Add("ScenarioB",true);
+            scenariosAvailable.Add("ScenarioC",true);
+            scenariosAvailable.Add("ScenarioD",true);
+        }
+        
+        //clear previous scenarios queued
+        scenariosQueued.Clear();
+
 
         //retrieve settings from playerprefs and give parameters their values
         if(PlayerPrefs.GetString("ScenarioA", "NoValue") == "False")
         {
             scenariosAvailable["ScenarioA"] = false;
+        } else
+        {
+            scenariosAvailable["ScenarioA"] = true;
         }
         if(PlayerPrefs.GetString("ScenarioB", "NoValue") == "False")
         {
             scenariosAvailable["ScenarioB"] = false;
+        } else
+        {
+            scenariosAvailable["ScenarioB"] = true;
         }
         if(PlayerPrefs.GetString("ScenarioC", "NoValue") == "False")
         {
             scenariosAvailable["ScenarioC"] = false;
+        } else
+        {
+            scenariosAvailable["ScenarioC"] = true;
         }
         if(PlayerPrefs.GetString("ScenarioD", "NoValue") == "False")
         {
             scenariosAvailable["ScenarioD"] = false;
+        } else
+        {
+            scenariosAvailable["ScenarioD"] = true;
         }
-
         if(PlayerPrefs.GetString("1Past1Present", "NoValue") == "False")
         {
-            settingsToggled["1Past1Present"] = false;
+            onePastOnePresent = false;
+        } else
+        {
+            onePastOnePresent = true;
+
         }
         if(PlayerPrefs.GetString("Randomise", "NoValue") == "True")
         {
             enableSceneRandomizer = true;
+        } else
+        {
+            enableSceneRandomizer = false;
         }
         if(PlayerPrefs.GetString("SurveyEnabled", "NoValue") == "False")
         {
             enableSurvey = false;
+        } else
+        {
+            enableSurvey = true;
         }
 
         //printDebug(scenariosAvailable["ScenarioA"].ToString());
@@ -215,7 +243,10 @@ public class MainMenuManager : MonoBehaviour
 */
         
 
-        UpdateScenarioMenuScreen();
+        //clear scenarios selected from previous run.
+        scenariosSelected.Clear();
+        //clear levels player from previous run
+        levelsPlayed.Clear();
 
         //initialise scenariosSelected dictionary
         scenariosSelected.Add("ScenarioA",false);
@@ -223,6 +254,8 @@ public class MainMenuManager : MonoBehaviour
         scenariosSelected.Add("ScenarioC",false);
         scenariosSelected.Add("ScenarioD",false);
 
+
+        UpdateScenarioMenuScreen();
     }
 
     private void Awake()
@@ -503,7 +536,7 @@ public class MainMenuManager : MonoBehaviour
                 PlayerPrefs.SetString(scenarios.Key,scenarios.Value.ToString());
             }
             //including settingsToggled Dictionary
-            PlayerPrefs.SetString("1Past1Present", settingsToggled["1Past1Present"].ToString());
+            PlayerPrefs.SetString("1Past1Present", onePastOnePresent.ToString());
             PlayerPrefs.SetString("Randomise", enableSceneRandomizer.ToString());
             PlayerPrefs.SetString("SurveyEnabled", enableSurvey.ToString());
 
@@ -541,16 +574,16 @@ public class MainMenuManager : MonoBehaviour
     public void Toggle1Past1Present(RawImage checkboxColor)
     {
         //toggle 1past1present checkbox
-        if(settingsToggled["1Past1Present"])
+        if(onePastOnePresent)
         {
             //uncheck button
             checkboxColor.color = new Color(255, 255, 255);
-            settingsToggled["1Past1Present"] = false;
+            onePastOnePresent = false;
         } else
         {
             //check button
             checkboxColor.color = new Color(0, 255, 0);
-            settingsToggled["1Past1Present"] = true;
+            onePastOnePresent = true;
         }
     }
 
@@ -565,7 +598,7 @@ public class MainMenuManager : MonoBehaviour
         checkboxScript.ChangeColor();
         scenariosSelected[scenarioName] = checkboxScript.isChecked;
 
-        if (settingsToggled["1Past1Present"])
+        if (onePastOnePresent)
         {
             //disable or enable the other scenario button
             CheckboxScript otherCheckboxScript = otherCheckbox.GetComponent<CheckboxScript>();
@@ -761,7 +794,7 @@ public class MainMenuManager : MonoBehaviour
         {
             surveyCheckbox.color = new Color(255,255,255);
         }
-        if (settingsToggled["1Past1Present"])
+        if (onePastOnePresent)
         {
             pastPresentCheckbox.color = new Color(0,255,0);
         } else
