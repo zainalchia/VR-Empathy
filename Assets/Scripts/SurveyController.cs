@@ -84,7 +84,7 @@ public class SurveyController : MonoBehaviour
     {
         try
         {
-            string[] parts = csvInputStrings[0].Split(',');
+            string[] parts = csvInputStrings[0].Split(';');
 
             int smallestNum = 16;
             int biggestNum = 28;
@@ -132,7 +132,7 @@ public class SurveyController : MonoBehaviour
             Debug.Log(line);
             if (string.IsNullOrWhiteSpace(line)) continue;
 
-            string[] parts = line.Split(',');
+            string[] parts = line.Split(';');
             
             surveyQns[i - 1] = new SurveyQn();
             surveyQns[i - 1].question = parts[0];
@@ -300,30 +300,30 @@ public class SurveyController : MonoBehaviour
     {
         // used for testing purpose. put everything into one line and output to screen
         surveyAns.timestamp = DateTime.Now.ToString();
-        string outputString = surveyAns.timestamp + "," + surveyAns.age;
+        string outputString = surveyAns.timestamp + ";" + surveyAns.age;
 
         foreach (string level in MainMenuManager.levelsPlayed)
         {
             switch (level)
             {
                 case "PastNegativeBathroom":
-                    outputString += "," + "Past Negative";
+                    outputString += ";" + "Past Negative";
                     break;
                 case "PastPositiveBathroom":
-                    outputString += "," + "Past Positive";
+                    outputString += ";" + "Past Positive";
                     break;
                 case "PresentBadBathroom":
-                    outputString += "," + "Present Negative";
+                    outputString += ";" + "Present Negative";
                     break;
                 case "PresentGoodBathroom":
-                    outputString += "," + "Present Positive";
+                    outputString += ";" + "Present Positive";
                     break;
             }
         }
 
         foreach (string answer in surveyAns.answers)
         {
-            outputString += "," + answer;
+            outputString += ";" + answer;
         }
 
         questionText.text = outputString;
