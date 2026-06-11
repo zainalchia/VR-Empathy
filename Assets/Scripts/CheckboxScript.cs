@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class CheckboxScript : MonoBehaviour
 {
     public bool isChecked = false;
-    [SerializeField]
-    string scenarioName;
     [HideInInspector]
     public bool isDisabled = false;
 

@@ -100,7 +100,6 @@ public class MainMenuManager : MonoBehaviour
     //dictionary for scenarios enabled
     public static Dictionary<string, bool> scenariosAvailable = new Dictionary<string, bool>();
     //dictionary for enabled settings
-    private Dictionary<string, bool> settingsToggled = new Dictionary<string, bool>();
     //dictonary for selected scenarios
     private Dictionary<string, bool> scenariosSelected = new Dictionary<string, bool>();
 
@@ -124,7 +123,10 @@ public class MainMenuManager : MonoBehaviour
 
     private int pressedBtnA = 0;
     private bool enableSceneRandomizer = false;
-    private bool onePastOnePresent = true;
+    /// <summary>
+    /// Note: Temporarily disable away the one past one present feature. 
+    /// </summary>
+    private bool onePastOnePresent = false;
 
     public enum VideoToPlay
     {
@@ -181,15 +183,16 @@ public class MainMenuManager : MonoBehaviour
         {
             scenariosAvailable["ScenarioD"] = true;
         }
-        if(PlayerPrefs.GetString("1Past1Present", "NoValue") == "False")
-        {
-            onePastOnePresent = false;
-        } else
-        {
-            onePastOnePresent = true;
+        //if (PlayerPrefs.GetString("1Past1Present", "NoValue") == "False")
+        //{
+        //    onePastOnePresent = false;
+        //}
+        //else
+        //{
+        //    onePastOnePresent = true;
 
-        }
-        if(PlayerPrefs.GetString("Randomise", "NoValue") == "True")
+        //}
+        if (PlayerPrefs.GetString("Randomise", "NoValue") == "True")
         {
             enableSceneRandomizer = true;
         } else
@@ -204,55 +207,27 @@ public class MainMenuManager : MonoBehaviour
             enableSurvey = true;
         }
 
-        //printDebug(scenariosAvailable["ScenarioA"].ToString());
-
-/*
-        bool result;
-
-        if (bool.TryParse(PlayerPrefs.GetString("1Past1Present"), out result))
-        {
-            settingsToggled["1Past1Present"] = result;
-        }
-
-        if (bool.TryParse(PlayerPrefs.GetString("Randomise"), out result))
-        {
-            enableSceneRandomizer = result;
-        }
-
-        if (bool.TryParse(PlayerPrefs.GetString("Randomise"), out result))
-        {
-            enableSurvey = result;
-        }
-
-
-        //with retrived data, update UI
-        if(settingsToggled["1Past1Present"])
-            pastPresentCheckbox.color = new Color(0,255,0);
-        else
-            pastPresentCheckbox.color = new Color(255,255,255);
-
-        if(enableSceneRandomizer)
-            randomiseCheckbox.color = new Color(0,255,0);
-        else
-            randomiseCheckbox.color = new Color(255,255,255);
-
-        if(enableSurvey)
-            surveyCheckbox.color = new Color(0,255,0);
-        else
-            surveyCheckbox.color = new Color(255,255,255);
-*/
-        
 
         //clear scenarios selected from previous run.
         scenariosSelected.Clear();
         //clear levels player from previous run
         levelsPlayed.Clear();
 
-        //initialise scenariosSelected dictionary
-        scenariosSelected.Add("ScenarioA",false);
-        scenariosSelected.Add("ScenarioB",false);
-        scenariosSelected.Add("ScenarioC",false);
-        scenariosSelected.Add("ScenarioD",false);
+        //initialise scenariosSelected keys if it doesn't exist
+        if(scenariosSelected.Count == 0)
+        {
+            scenariosSelected.Add("ScenarioA", true);
+            scenariosSelected.Add("ScenarioB", true);
+            scenariosSelected.Add("ScenarioC", true);
+            scenariosSelected.Add("ScenarioD", true);
+        } 
+        
+        //set disabled scenarios as unselected, and enabled scenarios as selected.
+        scenariosSelected["ScenarioA"] = scenariosAvailable["ScenarioA"];
+        scenariosSelected["ScenarioB"] = scenariosAvailable["ScenarioB"];
+        scenariosSelected["ScenarioC"] = scenariosAvailable["ScenarioC"];
+        scenariosSelected["ScenarioD"] = scenariosAvailable["ScenarioD"];
+        
 
 
         UpdateScenarioMenuScreen();
@@ -355,6 +330,7 @@ public class MainMenuManager : MonoBehaviour
         {
             scenarioScreen.SetActive(true);
             genderScreen.SetActive(false);
+            StartCoroutine(UpdateScenarioMenuUI());
         }
         else
         {
@@ -494,23 +470,6 @@ public class MainMenuManager : MonoBehaviour
             // set checkboxes based on enabled/disabled settings
             StartCoroutine(UpdateSettingsUI());
 
-            /*
-            //unsure why but the if comparison below doesnt trigger
-            printDebug($"{scenariosAvailable["ScenarioA"]} , {CheckboxA.isChecked}");
-            if (scenariosAvailable["ScenarioA"] != CheckboxA.isChecked)
-            {
-                printDebug("bool check works ");
-            } else if (CheckboxA == null)
-            {
-                printDebug("Checkbox A is null");
-
-            }*/
-
-            
-            //printDebug($"{scenariosAvailable["ScenarioA"]} , {CheckboxA.isChecked}, checkboxes executed");
-
-
-            //scenarioCheckboxA.GetComponent<CheckboxScript>().ChangeColor();
 
         }
         else
@@ -530,21 +489,27 @@ public class MainMenuManager : MonoBehaviour
             //enable/disable scenarios in the scenario menu
             UpdateScenarioMenuScreen();
 
-            //save settings to playerprefs
             foreach (var scenarios in scenariosAvailable)
             {
+                //save settings to playerprefs
                 PlayerPrefs.SetString(scenarios.Key,scenarios.Value.ToString());
+                //set default values of the scenario selection menu
+                scenariosSelected[scenarios.Key] = scenarios.Value;
             }
             //including settingsToggled Dictionary
-            PlayerPrefs.SetString("1Past1Present", onePastOnePresent.ToString());
+            //PlayerPrefs.SetString("1Past1Present", onePastOnePresent.ToString());
             PlayerPrefs.SetString("Randomise", enableSceneRandomizer.ToString());
             PlayerPrefs.SetString("SurveyEnabled", enableSurvey.ToString());
 
-            //reset values
+
+            /*
+             * comment this out unless benjy wants to switch the default back to unchecked
+            //reset values to unchecked
             resetButton(scenarioCheckboxA, scenarioButtonA, "ScenarioA");
             resetButton(scenarioCheckboxB, scenarioButtonB, "ScenarioB");
             resetButton(scenarioCheckboxC, scenarioButtonC, "ScenarioC");
             resetButton(scenarioCheckboxD, scenarioButtonD, "ScenarioD");
+            */
 
             PlayerPrefs.Save();
         }
@@ -801,5 +766,27 @@ public class MainMenuManager : MonoBehaviour
         {
             pastPresentCheckbox.color = new Color(255,255,255);
         }
+    }
+
+    IEnumerator UpdateScenarioMenuUI()
+    {
+        yield return null;
+        if (scenarioCheckboxA.GetComponent<CheckboxScript>().isChecked != scenariosSelected["ScenarioA"])
+        {
+            scenarioCheckboxA.GetComponent<CheckboxScript>().ChangeColor();
+        }
+        if (scenarioCheckboxB.GetComponent<CheckboxScript>().isChecked != scenariosSelected["ScenarioB"])
+        {
+            scenarioCheckboxB.GetComponent<CheckboxScript>().ChangeColor();
+        }
+        if (scenarioCheckboxC.GetComponent<CheckboxScript>().isChecked != scenariosSelected["ScenarioC"])
+        {
+            scenarioCheckboxC.GetComponent<CheckboxScript>().ChangeColor();
+        }
+        if (scenarioCheckboxD.GetComponent<CheckboxScript>().isChecked != scenariosSelected["ScenarioA"])
+        {
+            scenarioCheckboxD.GetComponent<CheckboxScript>().ChangeColor();
+        }
+
     }
 }
