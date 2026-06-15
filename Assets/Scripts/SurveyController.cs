@@ -234,7 +234,7 @@ public class SurveyController : MonoBehaviour
 
                         // if this mcq has been selected, make the checkbox black instead of white
                         if (surveyAns.answers[qsNumber] == surveyQns[qsNumber].choices[0])
-                            choice1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
+                            choice1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.green;
                         else
                             choice1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
 
@@ -249,7 +249,7 @@ public class SurveyController : MonoBehaviour
 
                                 // if this mcq has been selected, make the checkbox black instead of white
                                 if (surveyAns.answers[qsNumber] == surveyQns[qsNumber].choices[i])
-                                    newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
+                                    newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.green;
                                 else
                                     newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
                             }
@@ -270,7 +270,7 @@ public class SurveyController : MonoBehaviour
 
                     // if this mcq has been selected, make the checkbox black instead of white
                     if (surveyAns.answers[qsNumber] == "1")
-                        rating1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
+                        rating1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.green;
                     else
                         rating1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
 
@@ -283,7 +283,7 @@ public class SurveyController : MonoBehaviour
 
                         // if this mcq has been selected, make the checkbox black instead of white
                         if (surveyAns.answers[qsNumber] == (i + 1).ToString())
-                            newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
+                            newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.green;
                         else
                             newChoice.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
                     }
