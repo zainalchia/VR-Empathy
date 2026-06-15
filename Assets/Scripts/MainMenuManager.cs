@@ -139,7 +139,7 @@ public class MainMenuManager : MonoBehaviour
         RenderSettings.skybox = mainMenuSkybox;
         Debug.Log("Character gender: " + isGenderMale);
         //ShowSnippetOnHover(0);
-        printDebug("Initialised");
+        //printDebug("Initialised");
 
         if(scenariosAvailable.Count == 0)
         {
@@ -713,7 +713,7 @@ public class MainMenuManager : MonoBehaviour
         }
 
         //check which scenarios are selected
-        printDebug($"Scenario A: {scenariosSelected["ScenarioA"]}, Scenario B: {scenariosSelected["ScenarioB"]}, Scenario C: {scenariosSelected["ScenarioC"]}, Scenario D: {scenariosSelected["ScenarioD"]}, ");
+        //printDebug($"Scenario A: {scenariosSelected["ScenarioA"]}, Scenario B: {scenariosSelected["ScenarioB"]}, Scenario C: {scenariosSelected["ScenarioC"]}, Scenario D: {scenariosSelected["ScenarioD"]}, ");
 
         
         atStartScreen = true;
