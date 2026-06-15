@@ -233,7 +233,7 @@ public class SurveyController : MonoBehaviour
                         choice1GO.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = surveyQns[qsNumber].choices[0];
 
                         // if this mcq has been selected, make the checkbox black instead of white
-                        if (surveyAns.answers[qsNumber] == surveyQns[qsNumber].choices[0])                        
+                        if (surveyAns.answers[qsNumber] == surveyQns[qsNumber].choices[0])
                             choice1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
                         else
                             choice1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
@@ -265,6 +265,16 @@ public class SurveyController : MonoBehaviour
 
                 if (surveyQns[qsNumber].noOfRatings > 1)
                 {
+                    // change 1st rating choice to match the one from data
+                    rating1GO.transform.GetChild(1).gameObject.GetComponent<TextMeshProUGUI>().text = "1";
+
+                    // if this mcq has been selected, make the checkbox black instead of white
+                    if (surveyAns.answers[qsNumber] == "1")
+                        rating1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.black;
+                    else
+                        rating1GO.transform.GetChild(0).gameObject.GetComponent<Image>().color = Color.white;
+
+
                     for (int i = 1; i < surveyQns[qsNumber].noOfRatings; i++)
                     {
                         GameObject newChoice = Instantiate(rating1GO, ratingGO.transform);
