@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028301, g: 0.22571309, b: 0.30692127, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571337, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7811,7 +7811,9 @@ MonoBehaviour:
   - rid: 7725293058360082443
   - rid: 7725293058360082447
   - rid: 7725293058360082441
+  - rid: 9038714123265245185
   - rid: 7170432668072148992
+  - rid: 9038714123265245188
   - rid: 7725293058360082451
   - rid: 7725293058360082457
   - rid: 7725293062026690567
@@ -8493,6 +8495,46 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: Talk
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 9038714123265245185
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Highlight Dentures Cup
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 6738866492078758477}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 1
+              m_CallState: 2
+    - rid: 9038714123265245188
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Unhighlight Dentures cup
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 6738866492078758477}
+              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+              m_MethodName: set_enabled
+              m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
 --- !u!1 &1126156522
