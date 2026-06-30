@@ -34,7 +34,6 @@ public class ScenarioPromptManager : MonoBehaviour
 
     public ScenarioID activeScenario;
     [SerializeField] public TextAsset csvFile;
-    [SerializeField] private AlertTextController alertTextController;
 
     private Dictionary<string, List<PromptEntry>> promptMap = new();
 
@@ -103,10 +102,10 @@ public class ScenarioPromptManager : MonoBehaviour
             return;
         }
 
-        if (AlertTextController.instance == null && alertTextController != null)
+        if (AlertTextController.instance == null && GameManager.instance?.alertText != null)
         {
-            alertTextController.gameObject.SetActive(true); // Activate manually
-            AlertTextController.instance = alertTextController;
+            GameManager.instance.alertText.SetActive(true);
+            AlertTextController.instance = GameManager.instance.alertText.GetComponent<AlertTextController>();
         }
 
         if (AlertTextController.instance != null)
@@ -119,7 +118,7 @@ public class ScenarioPromptManager : MonoBehaviour
         }
         else
         {
-            Debug.LogError("AlertTextController.instance is null! Make sure it's assigned in the inspector.");
+            Debug.LogError("AlertTextController.instance is null! Make sure GameManager.alertText is assigned in the inspector.");
         }
     }
 
@@ -130,10 +129,10 @@ public class ScenarioPromptManager : MonoBehaviour
 
     public void ShowPrompt(string text, float duration)
     {
-        if (AlertTextController.instance == null && alertTextController != null)
+        if (AlertTextController.instance == null && GameManager.instance?.alertText != null)
         {
-            alertTextController.gameObject.SetActive(true); // Activate manually
-            AlertTextController.instance = alertTextController;
+            GameManager.instance.alertText.SetActive(true);
+            AlertTextController.instance = GameManager.instance.alertText.GetComponent<AlertTextController>();
         }
 
         if (AlertTextController.instance != null)
