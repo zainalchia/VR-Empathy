@@ -23,7 +23,6 @@ public class ChickenChopManager : MonoBehaviour
 
     private bool isHolding = false;
     private bool canCut = true;
-    private bool customerVO = false;
 
     public int currentPiece = 0;
 
@@ -194,10 +193,7 @@ public class ChickenChopManager : MonoBehaviour
             uiManager.KnifeAccidentFlash();
 
             if (GameManager.instance.bloodEffect != null)
-            {
-                //StartCoroutine(ActivateBloodEffect(bloodEffect));
                 GameManager.instance.bloodEffect.SetActive(true);
-            }
 
             StartCoroutine(BleedingHand());
         }

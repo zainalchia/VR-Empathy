@@ -27,11 +27,6 @@ public class DoorKnob : MonoBehaviour
         canOpenDoor = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (canOpenDoor)

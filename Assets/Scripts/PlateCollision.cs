@@ -1,4 +1,3 @@
-using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -70,8 +69,6 @@ public class PlateCollision : MonoBehaviour
 
     public IEnumerator ThrowPlate()
     {
-        //yield return new WaitForSeconds(0.5f);
-
         gameObject.transform.rotation = Quaternion.identity;
         gameObject.transform.SetParent(null);
 
@@ -98,7 +95,6 @@ public class PlateCollision : MonoBehaviour
 
     public void BossLookAt()
     {
-        Transform playerrotate = playerTransform;
-        bossTransform.LookAt(playerrotate);
+        bossTransform.LookAt(playerTransform);
     }
 }

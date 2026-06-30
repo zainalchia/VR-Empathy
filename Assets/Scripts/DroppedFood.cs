@@ -25,7 +25,7 @@ public class DroppedFood : MonoBehaviour
                 child.transform.localPosition.z < -0.5f ||
                 child.transform.localPosition.z > 0.3f)
             {
-                child.transform.localPosition.Set(0f, 0f, 0f);
+                child.transform.localPosition = Vector3.zero;
             }
         }
     }

@@ -1,6 +1,5 @@
 using Oculus.Interaction;
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
@@ -122,7 +121,6 @@ public class SequenceManager : MonoBehaviour
         public override void OnEnter()
         {
             base.OnEnter();
-            Debug.Log("[SEvent_Text DEBUG] " + text);
             ScenarioPromptManager.instance.ShowPrompt(text, duration);
             Exit();
         }
@@ -512,11 +510,6 @@ public class SequenceManager : MonoBehaviour
 
     public class SEvent_WaitForTrigger : SequenceEvent
     {
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
-
         public override void Update()
         {
             base.Update();
@@ -535,10 +528,6 @@ public class SequenceManager : MonoBehaviour
     {
         [SerializeField] SaneChickenChopper chickenChopper;
         [SerializeField] int targetPiece;
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
 
         public override void Update()
         {
@@ -555,10 +544,6 @@ public class SequenceManager : MonoBehaviour
     {
         [SerializeField] GameObject target;
         [SerializeField] GameObject PositionSetTo;
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
 
         public override void Update()
         {
@@ -588,11 +573,6 @@ public class SequenceManager : MonoBehaviour
     {
         [SerializeField] GameObject gameObject;
 
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
-
         public override void Update()
         {
             base.Update();
@@ -605,11 +585,6 @@ public class SequenceManager : MonoBehaviour
     }
     public class SEvent_WaitForFlag : SequenceEvent
     {
-        public override void OnEnter()
-        {
-            base.OnEnter();
-        }
-
         public override void Update()
         {
             base.Update();
@@ -677,10 +652,8 @@ public class SequenceManager : MonoBehaviour
         public override void OnEnter()
         {
             base.OnEnter();
-            if (target != null && newRotation != null)
-            {
+            if (target != null)
                 target.transform.eulerAngles = newRotation;
-            }
             Exit();
         }
     }
@@ -718,11 +691,9 @@ public class SequenceManager : MonoBehaviour
             try
             {
                 MainMenuManager.levelsPlayed.Add(SceneManager.GetActiveScene().name);
-                Debug.Log("added " + SceneManager.GetActiveScene().name + " to levels played list");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Debug.Log("failed to add to levels played list " + e);
             }
             
             Exit();

@@ -5,9 +5,7 @@ using UnityEngine;
 using Oculus.Interaction;
 using UnityEngine.Events;
 using TMPro;
-using System.Runtime.CompilerServices;
 using UnityEngine.SceneManagement;
-using UnityEngine.UIElements;
 using UnityEngine.Rendering.Universal;
 
 public class GameManager : MonoBehaviour
@@ -18,7 +16,7 @@ public class GameManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        else if (instance != null)
+        else
             Destroy(gameObject);
 
     }
@@ -228,15 +226,10 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            if (possiblePiecesToFlip != null)
+            if (possiblePiecesToFlip.Count > 0)
             {
-                if (possiblePiecesToFlip.Count > 0)
-                {
-                    foreach (var piece in possiblePiecesToFlip)
-                    {
-                        piecesToFlip.Add(piece);
-                    }
-                }
+                foreach (var piece in possiblePiecesToFlip)
+                    piecesToFlip.Add(piece);
             }
         }
 
@@ -248,9 +241,8 @@ public class GameManager : MonoBehaviour
         float durationPerPiece = 0.5f; // Time for each individual piece to flip
 
         // Flip each piece one at a time
-        if (piecesToFlip != null)
+        if (piecesToFlip != null && piecesToFlip.Count > 0)
         {
-            if (piecesToFlip.Count > 0)
             {
                 foreach (GameObject piece in piecesToFlip)
                 {
@@ -395,9 +387,4 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       
-    }
 }

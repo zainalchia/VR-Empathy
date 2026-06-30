@@ -1,19 +1,11 @@
 using Oculus.Interaction;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using UnityEngine;
 
 public class Toothpaste : MonoBehaviour
 {
     bool hasBeenUsed = false;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         // must set to isTrigger when grabbed as collision does not work when grabbed

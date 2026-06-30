@@ -16,7 +16,7 @@ public class ControllerInteractionsManager : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        else if (instance != null)
+        else
             Destroy(gameObject);
     }
     #endregion
@@ -259,7 +259,6 @@ public class ControllerInteractionsManager : MonoBehaviour
                 itemToLock.GetComponent<Rigidbody>().isKinematic = true;
             }
 
-            Debug.Log($"Left hand snapped to {targetHandPose.name} and locked onto: {itemToLock.name}");
         }
         else
         {
@@ -282,15 +281,8 @@ public class ControllerInteractionsManager : MonoBehaviour
             {
                 leftHandTrackingComponent.enabled = wasLeftHandTrackingComponentEnabled;
             }
-            Rigidbody handRb = GameManager.instance.grabInteractors[0].gameObject.GetComponent<Rigidbody>();
-            if (handRb != null)
-            {
-                // handRb.isKinematic = false; 
-            }
-
             isLeftHandLocked = false;
             lockedItemLeftHand = null;
-            Debug.Log("Left hand unlocked.");
         }
     }
 

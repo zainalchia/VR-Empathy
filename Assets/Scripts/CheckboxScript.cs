@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,30 +10,9 @@ public class CheckboxScript : MonoBehaviour
     [HideInInspector]
     public RawImage image;
 
-    //Secret menu scenario
     [HideInInspector]
     public bool toBeShown = true;
 
-    void onEnable()
-    {
-        
-        // try
-        // {
-        //     if (MainMenuManager.scenariosAvailable[scenarioName] != isChecked)
-        //     {
-        //         ChangeColor();
-        //     }
-        // }
-        // catch (KeyNotFoundException ex)
-        // {
-        //     // This block catches the specific error and keeps the app from crashing
-        //     Debug.Log("Error: The requested item was not found in inventory.");
-        // }
-
-        //ChangeColor();
-    }
-
-    // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<RawImage>();
@@ -43,8 +20,6 @@ public class CheckboxScript : MonoBehaviour
 
     public void ChangeColor()
     {
-        Debug.Log("Change Color");
-        //Select / Deselect scenario
         if (!isChecked)
         {
             isChecked = true;
@@ -61,7 +36,6 @@ public class CheckboxScript : MonoBehaviour
 
     public void ChangeColorDisabledEnabled()
     {
-        //Select / Deselect scenario
         if (!isDisabled)
         {
             isDisabled = true;

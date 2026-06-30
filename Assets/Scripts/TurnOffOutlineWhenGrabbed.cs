@@ -2,10 +2,12 @@ using Oculus.Interaction;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class TurnOffOutlineWhenGrabbed : MonoBehaviour
 {
     [SerializeField] Outline outline;
+    public UnityEvent OnGrabbed;
 
     private void Start()
     {
@@ -17,6 +19,7 @@ public class TurnOffOutlineWhenGrabbed : MonoBehaviour
     {
         if (ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(gameObject))
         {
+            OnGrabbed?.Invoke();
             outline.enabled = false;
             this.enabled = false;
         }

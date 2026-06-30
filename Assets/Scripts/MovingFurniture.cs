@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingFurniture : MonoBehaviour
 {
     bool isLookedAt = false;
-    bool disappearedOnce = false;
 
     Vector3 originalScale;
 
@@ -36,13 +33,11 @@ public class MovingFurniture : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         originalScale = transform.localScale;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (toDissappear)
@@ -55,7 +50,7 @@ public class MovingFurniture : MonoBehaviour
                 toDissappear = false;
             }
         }
-        else if (!isLookedAt && GameManager.instance.toStartSpasming && !disappearedOnce)
+        else if (!isLookedAt && GameManager.instance.toStartSpasming)
             RandomScaling();
 
         if (!GameManager.instance.toStartSpasming)

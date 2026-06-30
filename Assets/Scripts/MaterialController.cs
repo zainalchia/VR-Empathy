@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MaterialController : MonoBehaviour
@@ -40,10 +38,6 @@ public class MaterialController : MonoBehaviour
             render.material = newmat2;
             render.material.mainTexture = texture;
         }
-    }
-    private void LateUpdate()
-    {
-        
     }
     /// <summary>
     /// Return Image(Texture 2D) = NormalMap(Source Image(Texture2D) , Strength of Bump(Float)

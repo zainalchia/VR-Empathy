@@ -158,9 +158,4 @@ public class ScenarioPromptManager : MonoBehaviour
         return prompts;
     }
 
-    public void ChangeScene(SceneID scene)
-    {
-        SceneID newScene = scene;
-    }
-
 }

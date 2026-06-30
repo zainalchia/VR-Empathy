@@ -1,6 +1,4 @@
 using Oculus.Interaction;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -8,19 +6,6 @@ public class PlayerFace : MonoBehaviour
 {
     // script is on GameObject "Face", in middleEyeAnchor
     public UnityEvent OnGlassesPutOn;
-    //public UnityEvent OnDenturesPutOn;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -35,7 +20,7 @@ public class PlayerFace : MonoBehaviour
                 OnGlassesPutOn.Invoke();
                 GameManager.instance.canAnswerPhone = true;
                 GameManager.instance.toPutGlassesOn = false;
-            }                
+            }
         }
 
         // checks if hand is in range to take off glasses
@@ -52,19 +37,6 @@ public class PlayerFace : MonoBehaviour
         }
         #endregion
 
-        #region Dentures
-        //// putting on dentures
-        //if (GameManager.instance.toPutDenturesOn && ControllerInteractionsManager.instance.GetItemsGrabbedInHand().Contains(other.gameObject))
-        //{
-        //    if (other.gameObject == GameManager.instance.dentures)
-        //    {
-        //        GameManager.instance.dentures.GetComponent<Rigidbody>().useGravity = false;
-        //        GameManager.instance.dentures.SetActive(false);
-        //        OnDenturesPutOn.Invoke();
-        //        GameManager.instance.toPutDenturesOn = false;
-        //    }
-        //}
-
         // checks if hand is in range to take off dentures
         if (GameManager.instance.toTakeDenturesOff)
         {
@@ -77,7 +49,6 @@ public class PlayerFace : MonoBehaviour
                 }
             }
         }
-        #endregion
 
         if (other.gameObject.GetComponent<IObjectInteractable>() != null) // mug, toothbrush etc.
         {

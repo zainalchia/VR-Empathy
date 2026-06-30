@@ -45,8 +45,6 @@ public class IKFootSolver : MonoBehaviour
 
         Ray ray = new Ray(body.position + (body.right * footSpacing) + Vector3.up * rayStartYOffset, Vector3.down);
 
-        Debug.DrawRay(body.position + (body.right * footSpacing) + Vector3.up * rayStartYOffset, Vector3.down);
-            
         if (Physics.Raycast(ray, out RaycastHit info, rayLength, terrainLayer.value))
         {
             if (Vector3.Distance(newPosition, info.point) > stepDistance && !otherFoot.IsMoving() && lerp >= 1)

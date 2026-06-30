@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
@@ -13,7 +12,7 @@ public class PostProcessingController : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        else if (instance != null)
+        else
             Destroy(gameObject);
     }
     #endregion

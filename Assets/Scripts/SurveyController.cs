@@ -2,10 +2,7 @@ using System;
 using System.IO;
 using UnityEngine;
 using TMPro;
-using System.Runtime.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine.UI;
-using Unity.VisualScripting.AssemblyQualifiedNameParser;
 using UnityEngine.SceneManagement;
 
 public class SurveyController : MonoBehaviour
@@ -73,7 +70,6 @@ public class SurveyController : MonoBehaviour
                 csvInputStrings[i] = fileTextSplit[i];
             }
 
-            Debug.Log("successfully grabbed csv at " + Application.persistentDataPath);
         }
         catch (Exception e)
         {
@@ -130,7 +126,6 @@ public class SurveyController : MonoBehaviour
         for (int i = 1; i < csvInputStrings.Length; i++)
         {
             string line = csvInputStrings[i].Trim();
-            Debug.Log(line);
             if (string.IsNullOrWhiteSpace(line)) continue;
 
             string[] parts = line.Split(';');
@@ -372,14 +367,11 @@ public class SurveyController : MonoBehaviour
             if (!File.Exists(path))
             {
                 File.WriteAllText(path, "Timestamp,Age,Gender,Scenarios,Results");
-                Debug.Log("yoohoo " + path);
             }
 
-            // StreamWriter append set to true
             using (StreamWriter sw = File.AppendText(path))
             {
                 sw.WriteLine("\n" + textToWrite);
-                Debug.Log("csv appended at: " + path);
             }
         }
         catch (Exception e)
@@ -390,12 +382,7 @@ public class SurveyController : MonoBehaviour
 
     public void SelectAnswer(TextMeshProUGUI textObj)
     {
-        Debug.Log(textObj.text);
-        string selectedAnswer = textObj.text;
-        surveyAns.answers[currentQs] = selectedAnswer;
-        Debug.Log(surveyAns.answers[currentQs]);
-
-        // repopulate survey page whenever selected
+        surveyAns.answers[currentQs] = textObj.text;
         PopulateSurveyPage(currentQs);
     }
 
@@ -410,9 +397,4 @@ public class SurveyController : MonoBehaviour
         PopulateSurveyPage(currentQs);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

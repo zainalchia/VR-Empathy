@@ -61,20 +61,13 @@ public class CaneTeleport : MonoBehaviour
             posX = lastHitGameObject.transform.position.x;
             posZ = lastHitGameObject.transform.position.z;
 
-            UnityEngine.Debug.LogWarning("testtinngngngngng");
-            // enable hotspot indicator when pointing cane at hotspot
-            //lastHitGameObject.GetComponent<MeshRenderer>().enabled = true;
             if (lastHitGameObject.activeSelf && timer >= defaultTimeBeforeNextMove && showWaypointTimer <= 0) lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", true);
         }
         else
         {
-            UnityEngine.Debug.Log("failllllllllllllllllllllllllllll");
             canMove = false;
-            if (lastHitGameObject != null) // disable hotspot indicator when not pointing at hotspot
-            {
-                //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
+            if (lastHitGameObject != null)
                 lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", false);
-            }
         }
     }
 
@@ -152,12 +145,6 @@ public class CaneTeleport : MonoBehaviour
             return false;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
@@ -168,7 +155,6 @@ public class CaneTeleport : MonoBehaviour
             {
                 if (GetComponent<GrabInteractable>().Interactors.FirstOrDefault<GrabInteractor>().HasSelectedInteractable) // only runs when player is holding cane
                 {
-                    UnityEngine.Debug.LogWarning("asdadads");
                     // check if this is first time grabbing the cane
                     if (grabbedFirstTime == false)
                     {
@@ -192,9 +178,8 @@ public class CaneTeleport : MonoBehaviour
             }
             else
             {
-                if (lastHitGameObject != null) // disable any hotspot indicator when not holding cane
+                if (lastHitGameObject != null)
                 {
-                    //lastHitGameObject.GetComponent<MeshRenderer>().enabled = false;
                     lastHitGameObject.transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("hover", false);
                     lastHitGameObject = null;
                 }

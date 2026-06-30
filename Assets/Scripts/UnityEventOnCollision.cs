@@ -12,16 +12,16 @@ public class UnityEventOnCollision : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // check whitelist, if there is one 
-        if((whitelist != null) || (whitelist.Length != 0))
+        if((whitelist != null) && (whitelist.Length != 0))
             if (!whitelist.Contains(other.gameObject)) return;
 
         unityEvent.Invoke();
     }
 
     private void OnCollisionEnter(Collision collision)
-    {   
-        // check whitelist, if there is one 
-        if ((whitelist != null) || (whitelist.Length != 0))
+    {
+        // check whitelist, if there is one
+        if ((whitelist != null) && (whitelist.Length != 0))
             if (!whitelist.Contains(collision.gameObject)) return;
 
         unityEvent.Invoke();

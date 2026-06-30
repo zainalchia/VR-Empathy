@@ -85,12 +85,6 @@ public class AlertTextController : MonoBehaviour
         return alertAppended;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //initialColor = textMesh.color;
-    }
-
     // Update is called once per frame
     void Update()
     {

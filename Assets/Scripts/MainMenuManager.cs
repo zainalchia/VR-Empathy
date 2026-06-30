@@ -137,10 +137,6 @@ public class MainMenuManager : MonoBehaviour
     private void Start()
     {
         RenderSettings.skybox = mainMenuSkybox;
-        Debug.Log("Character gender: " + isGenderMale);
-        //ShowSnippetOnHover(0);
-        //printDebug("Initialised");
-
         if(scenariosAvailable.Count == 0)
         {
             //initialise with default
@@ -183,15 +179,6 @@ public class MainMenuManager : MonoBehaviour
         {
             scenariosAvailable["ScenarioD"] = true;
         }
-        //if (PlayerPrefs.GetString("1Past1Present", "NoValue") == "False")
-        //{
-        //    onePastOnePresent = false;
-        //}
-        //else
-        //{
-        //    onePastOnePresent = true;
-
-        //}
         if (PlayerPrefs.GetString("Randomise", "NoValue") == "True")
         {
             enableSceneRandomizer = true;
@@ -269,9 +256,6 @@ public class MainMenuManager : MonoBehaviour
     {
         isGenderMale = isMale;
         genderHasBeenSelected = true;
-        //genderScreen.SetActive(false);
-        //videoScreen.SetActive(true);
-        //toVideoScreen();
     }
 
     public void SelectPastLevel(string levelname)
@@ -302,30 +286,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void toScenarioScreen()
     {
-        //if (numberPadScript.StringToInt() > biggestNum || numberPadScript.StringToInt() < smallestNum || numberPadScript.StringToInt() == -1)
-        //{
-
-        //    if (errorMsgIsShowing)
-        //    {
-        //        StopAllCoroutines();
-        //    }
-
-        //    StartCoroutine(ErrorTextShown("Age is invalid!"));
-        //    return;
-        //}
-
-        //if (genderHasBeenSelected == false)
-        //{
-
-        //    if (errorMsgIsShowing)
-        //    {
-        //        StopAllCoroutines();
-        //    }
-
-        //    StartCoroutine(ErrorTextShown("Gender has not been selected!"));
-        //    return;
-        //}
-
         if (!enableSceneRandomizer)
         {
             scenarioScreen.SetActive(true);
@@ -340,27 +300,7 @@ public class MainMenuManager : MonoBehaviour
             //printDebug();
         }
 
-        //ageInput = numberPadScript.StringToInt();
     }
-
-/*
-    public void RandomizeScenario()
-    {
-        int randomPastScenario = UnityEngine.Random.Range(0, 2);
-        int randomPresentScenario = UnityEngine.Random.Range(0, 2);
-
-        if (randomPastScenario == 0)
-            pastLevelSelected = "PastNegativeBathroom";
-        else
-            pastLevelSelected = "PastPositiveBathroom";
-
-        if (randomPresentScenario == 0)
-            presentLevelSelected = "PresentBadBathroom";
-        else
-            presentLevelSelected = "PresentGoodBathroom";
-
-        LoadLevel();
-    }*/
 
     public void toVideoScreen()
     {
@@ -434,8 +374,6 @@ public class MainMenuManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(video);
-
         //stop you from triggering secret menu at the start screen
 
         if (OVRInput.GetDown(OVRInput.RawButton.A))
@@ -497,19 +435,9 @@ public class MainMenuManager : MonoBehaviour
                 scenariosSelected[scenarios.Key] = scenarios.Value;
             }
             //including settingsToggled Dictionary
-            //PlayerPrefs.SetString("1Past1Present", onePastOnePresent.ToString());
             PlayerPrefs.SetString("Randomise", enableSceneRandomizer.ToString());
             PlayerPrefs.SetString("SurveyEnabled", enableSurvey.ToString());
 
-
-            /*
-             * comment this out unless benjy wants to switch the default back to unchecked
-            //reset values to unchecked
-            resetButton(scenarioCheckboxA, scenarioButtonA, "ScenarioA");
-            resetButton(scenarioCheckboxB, scenarioButtonB, "ScenarioB");
-            resetButton(scenarioCheckboxC, scenarioButtonC, "ScenarioC");
-            resetButton(scenarioCheckboxD, scenarioButtonD, "ScenarioD");
-            */
 
             PlayerPrefs.Save();
         }
@@ -610,19 +538,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void printDebug(string log)
     {
-        //check which scenarios are selected
-        //debugText.text = $"Scenario A: {scenariosSelected["ScenarioA"]}, Scenario B: {scenariosSelected["ScenarioB"]}, Scenario C: {scenariosSelected["ScenarioC"]}, Scenario D: {scenariosSelected["ScenarioD"]}, ";
-
-        /*
-        //check scenarios queued up
-        debugText.text = "";
-        foreach(var scenario in scenariosQueued)
-        {
-            debugText.text += scenario;
-        }*/
-
-        
-        //debugText.text = $"Player Prefs value:{PlayerPrefs.GetString("ScenarioA","NoValue")}, local data value: {scenariosAvailable["ScenarioA"].ToString()}" ;
         debugText.text = log;
     }
 
@@ -724,10 +639,7 @@ public class MainMenuManager : MonoBehaviour
     IEnumerator UpdateSettingsUI()
     {
 
-        // 2. Pauses execution until the very next frame
-        //let the menu be enabled first
         yield return null;
-        Debug.Log("One additional frame passed. Done!");
         if (scenariosAvailable["ScenarioA"] != CheckboxA.isChecked)
         {
             CheckboxA.ChangeColor();
@@ -783,7 +695,7 @@ public class MainMenuManager : MonoBehaviour
         {
             scenarioCheckboxC.GetComponent<CheckboxScript>().ChangeColor();
         }
-        if (scenarioCheckboxD.GetComponent<CheckboxScript>().isChecked != scenariosSelected["ScenarioA"])
+        if (scenarioCheckboxD.GetComponent<CheckboxScript>().isChecked != scenariosSelected["ScenarioD"])
         {
             scenarioCheckboxD.GetComponent<CheckboxScript>().ChangeColor();
         }
