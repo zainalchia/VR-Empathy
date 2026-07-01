@@ -10684,6 +10684,7 @@ MonoBehaviour:
   - rid: 154194441199157255
   - rid: 154194441199157257
   - rid: 154194441199157259
+  - rid: 7061773985475461125
   - rid: 7725293265862000657
   - rid: 7725293265862000659
   - rid: 154194441199157263
@@ -10707,6 +10708,7 @@ MonoBehaviour:
   - rid: 154194754885124102
   - rid: 154194754885124134
   - rid: 154194754885124109
+  - rid: 7061773985475461125
   - rid: 154194754885124114
   - rid: 9222563320555896833
   - rid: 9222563320555896835
@@ -10720,6 +10722,7 @@ MonoBehaviour:
   - rid: 4498990730211491841
   - rid: 4897766369404125184
   - rid: 8750925748685766679
+  - rid: 7061773985475461125
   - rid: 4897766071759798273
   - rid: 8750925748685766672
   - rid: 8750925748685766671
@@ -10776,14 +10779,14 @@ MonoBehaviour:
     - rid: 154194441199157257
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to feed son
+        name: '[Prompt] player to feed son'
         type: 1
         text: Use the ladle on the table and scoop the porridge into the bowl.
-        duration: 2
+        duration: 0
     - rid: 154194441199157259
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to pick up ladle.
+        name: Wait for player to pick up ladle
         type: 3
         interactable: {fileID: 156639211}
         outlineItem: 1
@@ -11070,11 +11073,12 @@ MonoBehaviour:
     - rid: 154194754885124102
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Strike the matchstick on the matchbox to light the match.
+        name: '[Prompt] Strike the matchstick on the matchbox to light the match
+          (indefinitely until player lights match)'
         type: 1
         text: Use the matchstick in your hand and strike it on the matchbox in your
           other hand.
-        duration: 6
+        duration: 0
     - rid: 154194754885124104
       type: {class: SequenceManager/SEvent_ForceGrab, ns: , asm: Assembly-CSharp}
       data:
@@ -11281,10 +11285,10 @@ MonoBehaviour:
     - rid: 4498990730211491841
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to grab tissue
+        name: Prompt player to grab tissue (indefinitely until player gives son tissue)
         type: 1
         text: Pick up the handkerchief and give it to your crying son.
-        duration: 5
+        duration: 0
     - rid: 4549856677127782403
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -11396,6 +11400,26 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: Crying
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7061773985475461125
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Hide prompt
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1012412484}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
     - rid: 7170432668072148996

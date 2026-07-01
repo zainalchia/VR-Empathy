@@ -1490,6 +1490,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &88598916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8284,7 +8287,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80f38762a182ba445ab16b573bb0d71f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneID: 1
   cashSFX: {fileID: 8300000, guid: 5e241f4ca087ef941a432fe9c0473bc1, type: 3}
   registerSlotCollider: {fileID: 1340403987}
   registerOutline: {fileID: 1340403988}
@@ -8379,6 +8381,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 465085320}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &465085320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9173,7 +9178,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 0}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &535315627 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6550804457596160997, guid: c2ff9a62d0009a64a81cc1a4bba59fd5,
@@ -10251,6 +10258,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 620099845}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &620099845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11999,7 +12009,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 0}
   smallScale: {x: 0.5, y: 0.5, z: 0.5}
   largeScale: {x: 1, y: 1, z: 1}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &704027393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12015,7 +12027,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 0}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &705087488
 GameObject:
   m_ObjectHideFlags: 0
@@ -18053,6 +18067,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1130414786}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1130414788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19166,6 +19183,7 @@ MonoBehaviour:
   - rid: 154194936214323210
   - rid: 3636061291123572737
   - rid: 154194936214323212
+  - rid: 7061773985475461121
   - rid: 75971099741913096
   - rid: 7725293240241881102
   - rid: 75970898493964298
@@ -19174,6 +19192,7 @@ MonoBehaviour:
   - rid: 3636061403108868104
   - rid: 154194936214323216
   - rid: 75971099741913097
+  - rid: 7061773985475461121
   - rid: 75970963517210631
   - rid: 75971075682336770
   - rid: 75971099741913098
@@ -19189,10 +19208,12 @@ MonoBehaviour:
   - rid: 75970917543444494
   - rid: 75971099741913100
   - rid: 5361626918747373572
+  - rid: 7061773985475461121
   - rid: 75971099741913103
   - rid: 75971099741913104
   - rid: 5361626918747373570
   - rid: 75971104161136645
+  - rid: 7061773985475461123
   - rid: 75971104161136643
   - rid: 6176682073276809237
   - rid: 75971099741913110
@@ -19201,6 +19222,7 @@ MonoBehaviour:
   - rid: 4498990571523145734
   - rid: 75971099741913114
   - rid: 5361626925535330306
+  - rid: 7061773985475461121
   - rid: 5361627003736293381
   - rid: 75971104161136641
   - rid: 75971211654856717
@@ -19213,6 +19235,7 @@ MonoBehaviour:
   - rid: 5361627003736293379
   - rid: 5361627003736293398
   - rid: 6176682073276809230
+  - rid: 7061773985475461121
   - rid: 5361627003736293387
   - rid: 5361627003736293388
   - rid: 5361627003736293390
@@ -19287,11 +19310,10 @@ MonoBehaviour:
     - rid: 75970917543444492
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Grab plaster prompt
+        name: Grab plaster prompt (indefinitely, until grab plaster container)
         type: 1
-        text: '[Take a plaster from the first aid box and wrap it around your injured
-          finger.]'
-        duration: 6
+        text: '[Take a plaster from the first aid box]'
+        duration: 0
     - rid: 75970917543444494
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -19491,7 +19513,7 @@ MonoBehaviour:
         name: Give customer tray prompt
         type: 1
         text: '[Pick up the tray and hand it to the customer.]'
-        duration: 2
+        duration: 0
     - rid: 75971104161136641
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -19662,10 +19684,10 @@ MonoBehaviour:
     - rid: 3636061291123572737
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to move cash
+        name: Prompt player to move cash (indefinitely, until put cash in register)
         type: 1
         text: Take the cash and put it into the cash register.
-        duration: 3
+        duration: 0
     - rid: 3636061378538110976
       type: {class: SequenceManager/SEvent_WaitForItemDrop, ns: , asm: Assembly-CSharp}
       data:
@@ -19675,18 +19697,18 @@ MonoBehaviour:
     - rid: 3636061403108868104
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Cleaver Prompt
+        name: Cleaver Prompt (indefinitely, until chop chicken)
         type: 1
         text: You now have a knife in your right hand. Hold the chicken with your
           left hand and chop with your right hand.
-        duration: 5
+        duration: 0
     - rid: 3636061403108868108
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
         name: Tray Prompt
         type: 1
         text: Carry the tray to the customer.
-        duration: 3
+        duration: 0
     - rid: 3636061403108868117
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -19710,10 +19732,10 @@ MonoBehaviour:
     - rid: 3783327436181078024
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt to grab the knife
+        name: Prompt to grab the knife (indefinitely, until grab knife)
         type: 1
         text: Grab the knife with your right hand.
-        duration: 5
+        duration: 0
     - rid: 3783327526191104003
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
@@ -19911,7 +19933,7 @@ MonoBehaviour:
         name: Use cloth prompt
         type: 1
         text: '[Take the cloth and clean up the mess on the floor.]'
-        duration: 3
+        duration: 0
     - rid: 6176682073276809230
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
@@ -19983,6 +20005,33 @@ MonoBehaviour:
         name: Next scene
         type: 13
         sceneName: PastNegativeHome
+    - rid: 7061773985475461121
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Hide Prompt
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 355501376}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7061773985475461123
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Put plaster prompt (indefinitely, until plaster placed on hand)
+        type: 1
+        text: '[Wrap the plaster around your injured finger]'
+        duration: 0
     - rid: 7202277470793891841
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -19996,7 +20045,7 @@ MonoBehaviour:
     - rid: 7725293240241881102
       type: {class: SequenceManager/SEvent_SetRotation, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Set boss rotation
         type: 24
         target: {fileID: 73526720}
         newRotation: {x: 0, y: 0, z: 0}
@@ -20164,7 +20213,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 0}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1204455676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35566,7 +35617,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 0}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1952634412
 PrefabInstance:
   m_ObjectHideFlags: 0

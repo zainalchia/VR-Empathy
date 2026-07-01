@@ -10771,6 +10771,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1145874660}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 355501376}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1145874660
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15659,10 +15674,11 @@ MonoBehaviour:
   events:
   - rid: 7170432663954915331
   - rid: 6176681889884798978
+  - rid: 7061773985475461127
   - rid: 6176681889884798980
   - rid: 6176681889884798982
-  - rid: 3636061403108868098
   - rid: 3636061383514914817
+  - rid: 3636061403108868098
   - rid: 6176681889884798985
   - rid: 9222563068242296833
   - rid: 7725293240241881089
@@ -15837,11 +15853,11 @@ MonoBehaviour:
     - rid: 3636061403108868098
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Teleport Tutorial
+        name: '[Prompt] Teleport Tutorial (indefinitely until player tp)'
         type: 1
         text: Look at the teleport circle on the ground and squeeze the Trigger when
           it turns green to Teleport.
-        duration: 7
+        duration: 0
     - rid: 6176681889884798978
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -15901,6 +15917,13 @@ MonoBehaviour:
         name: Next Scene
         type: 13
         sceneName: PastPositiveHawker
+    - rid: 7061773985475461127
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] Use items at sink prompt (indefinitely, until grab items)'
+        type: 1
+        text: '[Freshen up with the items at the sink]'
+        duration: 0
     - rid: 7170432663954915331
       type: {class: SequenceManager/SEvent_AddToLevelsPlayedList, ns: , asm: Assembly-CSharp}
       data:
@@ -18192,6 +18215,41 @@ PrefabInstance:
       propertyPath: outline
       value: 
       objectReference: {fileID: 1575867236}
+    - target: {fileID: 3467799444113969355, guid: f23831a9d422caa49b85dc4227819aca,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467799444113969355, guid: f23831a9d422caa49b85dc4227819aca,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467799444113969355, guid: f23831a9d422caa49b85dc4227819aca,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 355501376}
+    - target: {fileID: 3467799444113969355, guid: f23831a9d422caa49b85dc4227819aca,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467799444113969355, guid: f23831a9d422caa49b85dc4227819aca,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideAlert
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467799444113969355, guid: f23831a9d422caa49b85dc4227819aca,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AlertTextController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3467799444113969355, guid: f23831a9d422caa49b85dc4227819aca,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3471178663736632460, guid: f23831a9d422caa49b85dc4227819aca,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -25362,6 +25420,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 2074530121}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 355501376}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2074530121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25876,6 +25949,41 @@ PrefabInstance:
       propertyPath: nextTeleporter
       value: 
       objectReference: {fileID: 701457124}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: OnTeleportHere.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: OnTeleportHere.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: OnTeleportHere.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 355501376}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: OnTeleportHere.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: OnTeleportHere.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideAlert
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: OnTeleportHere.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AlertTextController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523298643263274165, guid: 4fd206a797488a843a83492093c69e92,
+        type: 3}
+      propertyPath: OnTeleportHere.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4319271297979357059, guid: 4fd206a797488a843a83492093c69e92,
         type: 3}
       propertyPath: m_Name
@@ -26007,6 +26115,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 2098710142}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 355501376}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2098710142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26672,6 +26795,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 233052665}
     m_Modifications:
+    - target: {fileID: 3609478550367821500, guid: 37c936377e089204c8eb4ad52b956762,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609478550367821500, guid: 37c936377e089204c8eb4ad52b956762,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609478550367821500, guid: 37c936377e089204c8eb4ad52b956762,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 355501376}
+    - target: {fileID: 3609478550367821500, guid: 37c936377e089204c8eb4ad52b956762,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609478550367821500, guid: 37c936377e089204c8eb4ad52b956762,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideAlert
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609478550367821500, guid: 37c936377e089204c8eb4ad52b956762,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AlertTextController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3609478550367821500, guid: 37c936377e089204c8eb4ad52b956762,
+        type: 3}
+      propertyPath: OnGrabbed.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4872176624758291461, guid: 37c936377e089204c8eb4ad52b956762,
         type: 3}
       propertyPath: m_LocalPosition.x
