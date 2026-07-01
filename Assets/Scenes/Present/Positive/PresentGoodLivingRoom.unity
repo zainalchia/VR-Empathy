@@ -878,6 +878,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 150549358}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &150549361 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 150549358}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150549360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8f1c478037cd9428aa5e4c63ee2ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &150549362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3979677160577860020, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 150549358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &150861812
 GameObject:
   m_ObjectHideFlags: 0
@@ -7090,7 +7108,33 @@ MonoBehaviour:
   nextTeleporter: {fileID: 2138493843}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150549362}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 150549361}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1100359524
 GameObject:
   m_ObjectHideFlags: 0
@@ -7535,7 +7579,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 0}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1246584636
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11700,7 +11746,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 1913179774}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1399322205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6498954664497559598, guid: f91f595805e900b4cb6b9c1b4574d834,
@@ -12504,7 +12552,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 1613801120}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1426796195
 GameObject:
   m_ObjectHideFlags: 0
@@ -13588,7 +13638,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 0}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1622061332
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14313,7 +14365,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 1426053113}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1716715470
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14433,7 +14487,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 1365476799}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1721799677
 GameObject:
   m_ObjectHideFlags: 0
@@ -17233,7 +17289,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 1231675835}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &1936081188
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18966,7 +19024,9 @@ MonoBehaviour:
   nextTeleporter: {fileID: 1709069244}
   smallScale: {x: 0, y: 0, z: 0}
   largeScale: {x: 0, y: 0, z: 0}
-  viewRadius: 90
+  OnTeleportHere:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!23 &215656703594721625
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20931,12 +20991,16 @@ MonoBehaviour:
   refreshEditor: 0
   events:
   - rid: 5361627232578043911
+  - rid: 7061773989317705751
+  - rid: 7061773990839451649
   - rid: 5361627232578043916
   - rid: 5361627232578043919
   - rid: 5361627232578043913
   - rid: 7725293240241881105
   - rid: 5361627232578043921
+  - rid: 7061773989317705753
   - rid: 5361627232578043923
+  - rid: 7061773989317705755
   - rid: 5361627232578043925
   - rid: 5361627232578043927
   - rid: 75971392959152142
@@ -21053,10 +21117,10 @@ MonoBehaviour:
     - rid: 75971415428038673
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Answer phone prompt
+        name: '[Prompt] Answer phone'
         type: 1
         text: Swipe your phone to pick up
-        duration: 3
+        duration: 0
     - rid: 75971415428038677
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -21195,6 +21259,48 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7061773989317705751
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] Teleport tutorial (until 1st tp) '
+        type: 1
+        text: Look at the teleport circle on the ground and squeeze the Trigger when
+          it turns green to Teleport.
+        duration: 0
+    - rid: 7061773989317705753
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] Continue towards the sofa'
+        type: 1
+        text: Continue towards the sofa
+        duration: 0
+    - rid: 7061773989317705755
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Hide prompt
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 150549361}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7061773990839451649
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Show button to press image
+        type: 6
+        gameObject: {fileID: 150549362}
+        active: 1
     - rid: 7725293057836318721
       type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
@@ -21273,6 +21379,21 @@ MonoBehaviour:
   OnPickUpPhoneFirstTime:
     m_PersistentCalls:
       m_Calls: []
+  OnPhoneCallAnswered:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 150549361}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnPhoneCallEnd:
     m_PersistentCalls:
       m_Calls:

@@ -2543,10 +2543,13 @@ MonoBehaviour:
   - rid: 5471714462093017189
   - rid: 5471714462093017198
   - rid: 7725293352101085191
+  - rid: 7061773989317705747
   - rid: 7725293352101085201
   - rid: 5471714462093017200
   - rid: 7725293352101085194
+  - rid: 7061773989317705749
   - rid: 5471714462093017205
+  - rid: 7061773989317705747
   - rid: 7170432668072149000
   - rid: 5471714462093017208
   - rid: 5471714462093017210
@@ -2577,7 +2580,7 @@ MonoBehaviour:
         name: Show vitamins prompt
         type: 1
         text: I need to take my vitamins. [Put the vitamin to your face area]
-        duration: 3
+        duration: 0
     - rid: 5471714462093017182
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
@@ -2613,7 +2616,7 @@ MonoBehaviour:
     - rid: 5471714462093017200
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Play audio
         type: 5
         audioSource: {fileID: 2276772900260340216}
         audioClip: {fileID: 8300000, guid: e5056d85d190ea04d8f3e1132bce1197, type: 3}
@@ -2623,7 +2626,7 @@ MonoBehaviour:
     - rid: 5471714462093017205
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Wait to pick up photo frame
         type: 3
         interactable: {fileID: 1518123006}
         outlineItem: 1
@@ -2665,6 +2668,33 @@ MonoBehaviour:
         name: Wait
         type: 2
         waitTime: 7
+    - rid: 7061773989317705747
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Hide prompt
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1925577810}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7061773989317705749
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] pick up photo frame'
+        type: 1
+        text: Pick up the photo frame
+        duration: 0
     - rid: 7170432668072149000
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -2675,7 +2705,7 @@ MonoBehaviour:
     - rid: 7725293352101085186
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Make pill bottle grabbable
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -2700,7 +2730,7 @@ MonoBehaviour:
     - rid: 7725293352101085194
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Make photoframe grabbable
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -2720,7 +2750,7 @@ MonoBehaviour:
     - rid: 7725293352101085196
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Pill bottle animation pt 2
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -2764,7 +2794,7 @@ MonoBehaviour:
     - rid: 7725293352101085199
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Pill bottle animation
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -5792,6 +5822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1484599804}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1484599807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6140,6 +6173,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1518123025}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1518123022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7069,6 +7105,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1925577810 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 3398744201635516357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3398744201635516362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8f1c478037cd9428aa5e4c63ee2ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1951452155
 GameObject:
   m_ObjectHideFlags: 0

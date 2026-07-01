@@ -4644,7 +4644,6 @@ MonoBehaviour:
   - rid: 7725293261248528395
   - rid: 7725293261248528397
   - rid: 7725293261248528399
-  - rid: 7725293352101085184
   - rid: 7725293261248528405
   - rid: 7725293261248528403
   references:
@@ -4667,7 +4666,7 @@ MonoBehaviour:
         type: 1
         text: I have to take off my dentures and place in the cup. [Grab your face
           area]
-        duration: 3
+        duration: 0
     - rid: 7725293261248528387
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -4705,7 +4704,7 @@ MonoBehaviour:
     - rid: 7725293261248528397
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Unoutline Denture cup and hide prompt
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -4714,6 +4713,18 @@ MonoBehaviour:
               m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
               m_MethodName: set_enabled
               m_Mode: 6
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+            - m_Target: {fileID: 1567286643}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
+              m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}
                 m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -4744,13 +4755,6 @@ MonoBehaviour:
         name: Delay
         type: 2
         waitTime: 5
-    - rid: 7725293352101085184
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: 
-        type: 6
-        gameObject: {fileID: 0}
-        active: 1
 --- !u!1001 &1159907794
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7818,6 +7822,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 533227415}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1518123022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8302,6 +8309,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1567286638}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1567286643 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 1567286638}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567286642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8f1c478037cd9428aa5e4c63ee2ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1583120645
 GameObject:
   m_ObjectHideFlags: 0

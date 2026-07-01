@@ -2117,6 +2117,24 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 352309750}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &352309753 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3979677160577860020, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 352309750}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &352309754 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 352309750}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352309752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8f1c478037cd9428aa5e4c63ee2ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &367298010
 GameObject:
   m_ObjectHideFlags: 0
@@ -12814,9 +12832,44 @@ PrefabInstance:
       objectReference: {fileID: 1231675834}
     - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
       propertyPath: OnLastTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 412595810}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 352309753}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 352309754}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
       propertyPath: OnLastTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -12824,8 +12877,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
         type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: HideAlert
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: AlertTextController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
       propertyPath: OnLastTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454593273779970572, guid: 6872d198dca952c40aefc0a497e8a0f9,
+        type: 3}
+      propertyPath: OnFirstTeleport.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12990,6 +13073,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
+      propertyPath: OnPhoneCallAnswered.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+        type: 3}
       propertyPath: OnPickUpPhoneFirstTime.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -13025,6 +13113,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
+      propertyPath: OnPhoneCallAnswered.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+        type: 3}
       propertyPath: OnPhoneCallEnd.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
@@ -13035,14 +13128,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
+      propertyPath: OnPhoneCallAnswered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 352309754}
+    - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+        type: 3}
       propertyPath: OnPickUpPhoneFirstTime.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+        type: 3}
+      propertyPath: OnPhoneCallAnswered.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
       propertyPath: OnPickUpPhoneFirstTime.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8300000, guid: fd08562ecafae6e48afd016983e047e5, type: 3}
+    - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+        type: 3}
+      propertyPath: OnPhoneCallAnswered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: HideAlert
+      objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
       propertyPath: OnPickUpPhoneFirstTime.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -13060,6 +13168,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
+      propertyPath: OnPhoneCallAnswered.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: AlertTextController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+        type: 3}
       propertyPath: OnPickUpPhoneFirstTime.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -13071,6 +13184,11 @@ PrefabInstance:
     - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
         type: 3}
       propertyPath: OnPhoneCallEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106076837390518983, guid: b12f7b93802b3c446a9d0b88b024c9e3,
+        type: 3}
+      propertyPath: OnPhoneCallAnswered.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5336620429591724028, guid: b12f7b93802b3c446a9d0b88b024c9e3,
@@ -13198,6 +13316,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 2980255246112352151}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &3359836494176904190
 Transform:
   m_ObjectHideFlags: 0
@@ -14182,6 +14303,8 @@ MonoBehaviour:
   - rid: 7170432668072149002
   - rid: 75971392959152129
   - rid: 5361627232578043911
+  - rid: 7061773989317705735
+  - rid: 7061773989317705737
   - rid: 5361627232578043916
   - rid: 5361627232578043919
   - rid: 5361627232578043913
@@ -14190,7 +14313,9 @@ MonoBehaviour:
   - rid: 5471714211565142020
   - rid: 7170432668072149006
   - rid: 5361627232578043921
+  - rid: 7061773989317705739
   - rid: 5361627232578043923
+  - rid: 7061773989317705741
   - rid: 5361627232578043925
   - rid: 5361627232578043927
   - rid: 75971392959152142
@@ -14365,7 +14490,7 @@ MonoBehaviour:
         name: Answer phone prompt
         type: 1
         text: Swipe your phone to pick up
-        duration: 3
+        duration: 0
     - rid: 75971415428038677
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -14554,6 +14679,48 @@ MonoBehaviour:
             - m_Target: {fileID: 1301409476}
               m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
               m_MethodName: Play
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7061773989317705735
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: Teleport tutorial (until 1st tp)
+        type: 1
+        text: Look at the teleport circle on the ground and squeeze the Trigger when
+          it turns green to Teleport.
+        duration: 0
+    - rid: 7061773989317705737
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Show image showing which button to press
+        type: 6
+        gameObject: {fileID: 352309753}
+        active: 1
+    - rid: 7061773989317705739
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] Continue towards the sofa'
+        type: 1
+        text: Continue towards the sofa
+        duration: 0
+    - rid: 7061773989317705741
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Hide prompt
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 352309754}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
               m_Mode: 1
               m_Arguments:
                 m_ObjectArgument: {fileID: 0}

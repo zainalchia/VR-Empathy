@@ -2841,6 +2841,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &355501372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3979677160577860020, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 355501367}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &355501375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15679,6 +15685,7 @@ MonoBehaviour:
   - rid: 6176681889884798982
   - rid: 3636061383514914817
   - rid: 3636061403108868098
+  - rid: 7061773989317705733
   - rid: 6176681889884798985
   - rid: 9222563068242296833
   - rid: 7725293240241881089
@@ -15924,6 +15931,13 @@ MonoBehaviour:
         type: 1
         text: '[Freshen up with the items at the sink]'
         duration: 0
+    - rid: 7061773989317705733
+      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
+      data:
+        name: Show image showing which button to press
+        type: 6
+        gameObject: {fileID: 355501372}
+        active: 1
     - rid: 7170432663954915331
       type: {class: SequenceManager/SEvent_AddToLevelsPlayedList, ns: , asm: Assembly-CSharp}
       data:

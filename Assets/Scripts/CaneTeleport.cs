@@ -1,14 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 using System.Linq;
-using Oculus.Interaction;
+using UnityEngine;
 using UnityEngine.Events;
-using TMPro;
-using System.Diagnostics;
+using Oculus.Interaction;
 using Oculus.Interaction.HandGrab;
-using Unity.VisualScripting;
 
 public class CaneTeleport : MonoBehaviour
 {
@@ -25,6 +20,7 @@ public class CaneTeleport : MonoBehaviour
     [SerializeField] AudioSource playerAudio;
     [SerializeField] AudioClip[] maleSighAudio;
     [SerializeField] AudioClip[] femaleSighAudio;
+    public UnityEvent OnFirstTeleport;
     public UnityEvent OnLastTeleport;
 
     bool buttonPressed = false;
@@ -83,6 +79,9 @@ public class CaneTeleport : MonoBehaviour
             defaultTimeBeforeNextMove = 1.5f; // in general
 
             currentHotspotIndex += 1;
+
+            if (currentHotspotIndex == 0)
+                OnFirstTeleport.Invoke();
 
             PlaySighSound();
             

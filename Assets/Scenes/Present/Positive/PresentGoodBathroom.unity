@@ -2160,6 +2160,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 158791179}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 224849338}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &189618165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2617,6 +2632,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 224849335}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &224849338 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 224849335}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 224849337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8f1c478037cd9428aa5e4c63ee2ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &276327758
 GameObject:
   m_ObjectHideFlags: 0
@@ -3968,6 +3995,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 745914074}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 224849338}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &907918706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7743,6 +7785,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 224849338}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &1957188675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13399,6 +13456,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1078928964}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2073808581
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15498,6 +15558,7 @@ MonoBehaviour:
   - rid: 7170432663954915335
   - rid: 75971211654856710
   - rid: 75971211654856705
+  - rid: 7061773989317705745
   - rid: 75971211654856708
   - rid: 75971211654856712
   - rid: 75971234018885645
@@ -15622,7 +15683,7 @@ MonoBehaviour:
         name: Walking stick prompt
         type: 1
         text: '[Open the door and head to the sofa]'
-        duration: 3
+        duration: 0
     - rid: 75971234018885645
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -15839,6 +15900,13 @@ MonoBehaviour:
                 m_StringArgument: FadeOut
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7061773989317705745
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] Freshen up w items (until player grabs any item)'
+        type: 1
+        text: '[Freshen up with the items at the sink]'
+        duration: 0
     - rid: 7170432663954915335
       type: {class: SequenceManager/SEvent_AddToLevelsPlayedList, ns: , asm: Assembly-CSharp}
       data:
@@ -16845,6 +16913,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 6432067307027011969}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 224849338}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6432067307027011971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17647,6 +17730,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 224849338}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!33 &8241682730805645243
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -17882,6 +17980,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 224849338}
+        m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+        m_MethodName: HideAlert
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!23 &8778168820609154310
 MeshRenderer:
   m_ObjectHideFlags: 0

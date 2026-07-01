@@ -26,6 +26,7 @@ public class MobilePhone : MonoBehaviour
     [SerializeField] AudioSource playerAudioSource;
 
     public UnityEvent OnPickUpPhoneFirstTime;
+    public UnityEvent OnPhoneCallAnswered;
     public UnityEvent OnPhoneCallEnd;
 
     List<Material> materials = new List<Material>();
@@ -56,6 +57,7 @@ public class MobilePhone : MonoBehaviour
         videoPlayer.Stop();
         videoPlayer.clip = phoneAnswered;
         videoPlayer.Play();
+        OnPhoneCallAnswered?.Invoke();
     }
 
     public void SetPhoneHangUp()
