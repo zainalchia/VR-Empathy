@@ -7347,6 +7347,7 @@ MonoBehaviour:
   - rid: 7725293058360082441
   - rid: 9038714123265245185
   - rid: 7170432668072148992
+  - rid: 7061773986111160327
   - rid: 9038714123265245188
   - rid: 7725293058360082451
   - rid: 7725293058360082457
@@ -7386,18 +7387,22 @@ MonoBehaviour:
   - rid: 7725293062026690589
   - rid: 7725293062026690599
   - rid: 7725293062026690597
+  - rid: 7061773986111160329
   - rid: 7725293080440209440
   - rid: 7170432668072148993
   - rid: 7725293080440209441
   - rid: 7725293080440209434
   - rid: 7725293080440209447
   - rid: 7170432668072148994
+  - rid: 7061773986111160327
   - rid: 7725293080440209443
   - rid: 7725293080440209436
   - rid: 7725293062026690604
   - rid: 7170432668072148998
+  - rid: 7061773986111160331
   - rid: 7725293080440209450
   - rid: 7725293062026690609
+  - rid: 7061773986111160327
   - rid: 7725293062026690611
   - rid: 7725293062026690613
   - rid: 7725293062026690615
@@ -7423,6 +7428,40 @@ MonoBehaviour:
         name: Load next scenario
         type: 23
         debugText: {fileID: 0}
+    - rid: 7061773986111160327
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Hide prompt
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 2107390246}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7061773986111160329
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] take yo meds'
+        type: 1
+        text: Take your medication
+        duration: 0
+    - rid: 7061773986111160331
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] Pick up photo frame'
+        type: 1
+        text: Pick up the photo frame
+        duration: 0
     - rid: 7170432668072148992
       type: {class: SequenceManager/SEvent_WaitForFlag, ns: , asm: Assembly-CSharp}
       data:
@@ -7497,7 +7536,7 @@ MonoBehaviour:
         type: 1
         text: '[I have to take off my dentures and place in the cup. Grab your face
           area]'
-        duration: 3
+        duration: 0
     - rid: 7725293058360082451
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -7897,7 +7936,7 @@ MonoBehaviour:
     - rid: 7725293080440209440
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: Enable Pills to be picked up
+        name: Enable Pills to be picked up, outline pills
         type: 12
         unityEvent:
           m_PersistentCalls:
@@ -11324,6 +11363,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 533227415}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &1518123022
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17611,6 +17653,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2107390242}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2107390246 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807524503992098788, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 2107390242}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2107390245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f8f1c478037cd9428aa5e4c63ee2ea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2117732089
 GameObject:
   m_ObjectHideFlags: 0

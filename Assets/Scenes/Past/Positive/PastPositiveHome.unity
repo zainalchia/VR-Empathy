@@ -6905,7 +6905,7 @@ MonoBehaviour:
   PouredFood:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1156376158}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
         m_MethodName: PlayLightOFf
         m_Mode: 1
@@ -9004,7 +9004,7 @@ MonoBehaviour:
   OnGrab:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1156376158}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ScenarioManagerReneeTest, Assembly-CSharp
         m_MethodName: PlayFinalHome
         m_Mode: 1
@@ -11830,7 +11830,6 @@ GameObject:
   - component: {fileID: 1156376157}
   - component: {fileID: 1156376156}
   - component: {fileID: 1156376154}
-  - component: {fileID: 1156376158}
   - component: {fileID: 1156376159}
   m_Layer: 0
   m_Name: GameManager
@@ -11955,18 +11954,6 @@ Transform:
   - {fileID: 296962441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1156376158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1156376153}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37a84bb9d8a013045a4b0914bc772141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1156376159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11990,6 +11977,7 @@ MonoBehaviour:
   - rid: 154194441199157257
   - rid: 154194441199157259
   - rid: 7725293443409510403
+  - rid: 7061773986111160323
   - rid: 7725293443409510405
   - rid: 154195071710789635
   - rid: 154195071710789636
@@ -12003,6 +11991,7 @@ MonoBehaviour:
   - rid: 5361627003736293392
   - rid: 154195071710789646
   - rid: 154195071710789648
+  - rid: 7061773986111160323
   - rid: 354177140404781057
   - rid: 154195071710789663
   - rid: 7725293443409510410
@@ -12013,9 +12002,11 @@ MonoBehaviour:
   - rid: 154195071710789680
   - rid: 354177140404781059
   - rid: 154195071710789671
+  - rid: 7061773986111160323
   - rid: 154195071710789675
   - rid: 3636061403108868121
   - rid: 154195071710789673
+  - rid: 7061773986111160323
   - rid: 154195071710789677
   - rid: 154195071710789684
   - rid: 4897766071759798277
@@ -12028,6 +12019,7 @@ MonoBehaviour:
   - rid: 9222562903833444352
   - rid: 9222562903833444354
   - rid: 9222562903833444357
+  - rid: 7061773986111160323
   - rid: 6600812871027785733
   - rid: 9222562903833444359
   - rid: 3783327436181078019
@@ -12074,11 +12066,11 @@ MonoBehaviour:
         name: Prompt player to feed son
         type: 1
         text: Put food into your son's bowl.
-        duration: 2
+        duration: 0
     - rid: 154194441199157259
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to pick up ladle.
+        name: Wait for player to pick up ladle.
         type: 3
         interactable: {fileID: 156639211}
         outlineItem: 1
@@ -12276,7 +12268,7 @@ MonoBehaviour:
     - rid: 154195071710789648
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to pick up matchbox
+        name: Wait for player to pick up matchbox
         type: 3
         interactable: {fileID: 1093040539}
         outlineItem: 1
@@ -12489,28 +12481,28 @@ MonoBehaviour:
         type: 1
         text: Light the match by striking the matchstick in your hand against the
           matchbox in your other hand
-        duration: 4
+        duration: 0
     - rid: 3636061403108868119
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
         name: Matchbox prompt
         type: 1
         text: Grab the box of matches behind you.
-        duration: 3
+        duration: 0
     - rid: 3636061403108868121
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
         name: Match prompt
         type: 1
         text: Light the candle.
-        duration: 3
+        duration: 0
     - rid: 3636061403108868126
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
         name: Tissue prompt
         type: 1
         text: Pick up a piece of tissue paper and hand it to your son.
-        duration: 3
+        duration: 0
     - rid: 3783327436181078019
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -12588,6 +12580,26 @@ MonoBehaviour:
         currentMaterial:
         - {fileID: 2100000, guid: 854ffed1ec7173443b719de6d8d5ed3e, type: 2}
         newTexture: {fileID: 2800000, guid: 9e415798a3ff9c346b098e1acd49eafb, type: 3}
+    - rid: 7061773986111160323
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Hide prompt
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1012412484}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 7725293240241881099
       type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
       data:
@@ -12597,7 +12609,7 @@ MonoBehaviour:
     - rid: 7725293240241881101
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Wait
         type: 2
         waitTime: 5
     - rid: 7725293443409510403

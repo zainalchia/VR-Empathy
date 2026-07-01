@@ -9953,6 +9953,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 1936565573}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2009567518
 GameObject:
   m_ObjectHideFlags: 0
@@ -10077,6 +10080,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 354212914}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2036480232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16910,6 +16916,7 @@ MonoBehaviour:
   - rid: 75971234018885633
   - rid: 75971415428038691
   - rid: 75971234018885637
+  - rid: 7061773986111160325
   - rid: 75971234018885635
   - rid: 75971392959152134
   - rid: 7725293057836318720
@@ -17019,7 +17026,7 @@ MonoBehaviour:
         name: Walking stick prompt
         type: 1
         text: '[Take your walking stick behind you]'
-        duration: 3
+        duration: 0
     - rid: 75971234018885635
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
@@ -17258,6 +17265,26 @@ MonoBehaviour:
                 m_IntArgument: 0
                 m_FloatArgument: 0
                 m_StringArgument: FadeOut
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7061773986111160325
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Hide prompt
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 1054941296}
+              m_TargetAssemblyTypeName: AlertTextController, Assembly-CSharp
+              m_MethodName: HideAlert
+              m_Mode: 1
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
     - rid: 7170432663954915333
@@ -18091,6 +18118,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 8032421237078485443}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!65 &8032421237078485445
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18394,6 +18424,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 319927142}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!33 &8718233878095769979
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18621,6 +18654,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outline: {fileID: 0}
+  OnGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!23 &8778168820609154310
 MeshRenderer:
   m_ObjectHideFlags: 0
