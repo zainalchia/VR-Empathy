@@ -2537,11 +2537,13 @@ MonoBehaviour:
   - rid: 5471714462093017180
   - rid: 7725293352101085186
   - rid: 5471714462093017182
+  - rid: 7061773989317705747
   - rid: 7725293352101085199
   - rid: 5471714462093017186
   - rid: 7725293352101085196
   - rid: 5471714462093017189
   - rid: 5471714462093017198
+  - rid: 7061774008034263054
   - rid: 7725293352101085191
   - rid: 7061773989317705747
   - rid: 7725293352101085201
@@ -2577,9 +2579,9 @@ MonoBehaviour:
     - rid: 5471714462093017180
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Show vitamins prompt
+        name: '[Prompt] Show vitamins prompt'
         type: 1
-        text: I need to take my vitamins. [Put the vitamin to your face area]
+        text: I need to take my vitamins. [Pick up the bottle]
         duration: 0
     - rid: 5471714462093017182
       type: {class: SequenceManager/SEvent_WaitForItemPickup, ns: , asm: Assembly-CSharp}
@@ -2694,6 +2696,13 @@ MonoBehaviour:
         name: '[Prompt] pick up photo frame'
         type: 1
         text: Pick up the photo frame
+        duration: 0
+    - rid: 7061774008034263054
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] put vitamin to face'
+        type: 1
+        text: '[Put the vitamin in your other hand to your face area]'
         duration: 0
     - rid: 7170432668072149000
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}

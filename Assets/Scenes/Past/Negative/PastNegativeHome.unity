@@ -10684,8 +10684,8 @@ MonoBehaviour:
   - rid: 154194441199157255
   - rid: 154194441199157257
   - rid: 154194441199157259
-  - rid: 7061773985475461125
   - rid: 7725293265862000657
+  - rid: 7061773985475461125
   - rid: 7725293265862000659
   - rid: 154194441199157263
   - rid: 154194441199157265
@@ -10699,6 +10699,7 @@ MonoBehaviour:
   - rid: 154194441199157274
   - rid: 154194441199157282
   - rid: 154194754885124097
+  - rid: 7061774008034263041
   - rid: 154194754885124126
   - rid: 154194754885124119
   - rid: 154194754885124099
@@ -10713,6 +10714,7 @@ MonoBehaviour:
   - rid: 9222563320555896833
   - rid: 9222563320555896835
   - rid: 9222563320555896837
+  - rid: 7061773985475461125
   - rid: 4549856677127782403
   - rid: 9222563320555896839
   - rid: 3631777251340320769
@@ -11285,9 +11287,10 @@ MonoBehaviour:
     - rid: 4498990730211491841
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Prompt player to grab tissue (indefinitely until player gives son tissue)
+        name: '[Prompt] player to grab tissue (indefinitely until player gives son
+          tissue)'
         type: 1
-        text: Pick up the handkerchief and give it to your crying son.
+        text: Pick up the handkerchief and give it to your crying son
         duration: 0
     - rid: 4549856677127782403
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -11422,6 +11425,13 @@ MonoBehaviour:
                 m_StringArgument: 
                 m_BoolArgument: 0
               m_CallState: 2
+    - rid: 7061774008034263041
+      type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
+      data:
+        name: '[Prompt] Get the matches'
+        type: 1
+        text: Get the matches
+        duration: 0
     - rid: 7170432668072148996
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -11438,7 +11448,7 @@ MonoBehaviour:
     - rid: 7725293240241881098
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: 
+        name: Wait
         type: 2
         waitTime: 5
     - rid: 7725293265862000657
@@ -11494,10 +11504,10 @@ MonoBehaviour:
     - rid: 9222563320555896833
       type: {class: SequenceManager/SEvent_Text, ns: , asm: Assembly-CSharp}
       data:
-        name: Ask player to light candle
+        name: '[Prompt] Ask player to light candle'
         type: 1
         text: Light the candle
-        duration: 2
+        duration: 0
     - rid: 9222563320555896835
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
