@@ -2857,72 +2857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa8b20fed8ae9d4eac39c682473cb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveToLivingRoomHotspots: []
-  MoveToMainDoorHotspots: []
-  MoveToCheckersChairHotspots:
-  - {fileID: 1901481972}
-  MoveToKaraokeCornerHotspots:
-  - {fileID: 1253801748}
-  sceneToPlay: {fileID: 0}
-  MoveToToiletDoorHotspots: []
-  MoveToHawkerStallHotspots: []
-  MoveToJobPositionHotspots: []
-  MoveToTableHotspots: []
-  MoveToPastPositiveToiletDoorHotspots: []
-  MoveToPastPositiveHawkerHotspots: []
-  MoveToPastPositiveHouseHotspots: []
-  MoveToDiningTableHotspots: []
-  defaultTimeBeforeNextMove: 2
-  OnLastTeleport:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
-        m_MethodName: PlayCheckersTransition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLastTeleport2:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
-        m_MethodName: PlayKaraokeCornerTransition
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MovingToLivingRoom: 0
-  MovingToMainDoor: 0
-  MovingToCheckersChair: 0
-  MovingToKaraokeCorner: 0
-  MoveToToiletDoor: 0
-  MoveToHawkerStall: 0
-  MoveToTable: 0
-  MoveToSection: 0
-  hasPlacedCash: 0
-  teleportLocked: 0
-  DropFood: 0
-  GoToFirstAid: 0
-  GoToTray: 0
-  MoveToPastPositiveToiletDoor: 0
-  MoveToPastPositiveHawker: 0
-  MoveToPastPositiveHouse: 0
-  currentScene: 3
-  testPressTrigger: 0
-  scenarioManagerPresentGood: {fileID: 0}
-  scenarioManager: {fileID: 0}
 --- !u!1001 &169200027
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10521,10 +10455,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3760905033050359358, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5733402971437742045, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7390601826062759693, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016981637362243351, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10552,6 +10501,12 @@ GameObject:
 --- !u!1 &542993418 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4848855392656614273, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 542993414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &542993419 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7784750062831489816, guid: c5446b5edb5620e4ebda8642f07f0a96,
     type: 3}
   m_PrefabInstance: {fileID: 542993414}
   m_PrefabAsset: {fileID: 0}
@@ -21283,6 +21238,7 @@ MonoBehaviour:
   debugText: {fileID: 0}
   refreshEditor: 0
   events:
+  - rid: 5471714462093017099
   - rid: 7725293261248528409
   - rid: 7725293261248528407
   - rid: 7725293261248528412
@@ -21323,6 +21279,7 @@ MonoBehaviour:
   - rid: 5471714462093017148
   - rid: 5471714462093017157
   - rid: 5471714462093017161
+  - rid: 5471714462093017131
   - rid: 5471714462093017166
   - rid: 5471714462093017168
   references:
@@ -21352,7 +21309,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 542993419}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -21535,7 +21492,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 542993419}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -21571,7 +21528,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 542993419}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -21892,7 +21849,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 542993419}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -23532,12 +23489,6 @@ PrefabInstance:
 --- !u!4 &1253801747 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
-    type: 3}
-  m_PrefabInstance: {fileID: 1253801746}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1253801748 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 1253801746}
   m_PrefabAsset: {fileID: 0}

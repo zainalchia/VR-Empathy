@@ -7354,16 +7354,16 @@ MonoBehaviour:
   - rid: 7725293062026690567
   - rid: 7725293058360082459
   - rid: 1917700197041307656
-  - rid: 7725293062026690565
+  - rid: 7725293062026690587
   - rid: 7725293058360082454
   - rid: 7725293062026690569
   - rid: 7725293062026690571
   - rid: 7725293062026690574
   - rid: 7725293062026690576
   - rid: 7725293062026690578
-  - rid: 7725293062026690562
   - rid: 7725293080440209428
   - rid: 7725293062026690564
+  - rid: 7725293062026690562
   - rid: 7725293080440209409
   - rid: 7725293062026690580
   - rid: 7725293080440209456
@@ -7382,9 +7382,9 @@ MonoBehaviour:
   - rid: 7725293080440209421
   - rid: 7725293080440209424
   - rid: 7725293080440209425
+  - rid: 7725293062026690589
   - rid: 7725293062026690591
   - rid: 7725293062026690593
-  - rid: 7725293062026690589
   - rid: 7725293062026690599
   - rid: 7725293062026690597
   - rid: 7061773986111160329
@@ -7398,11 +7398,11 @@ MonoBehaviour:
   - rid: 7725293080440209443
   - rid: 7725293080440209436
   - rid: 7725293062026690604
-  - rid: 7170432668072148998
   - rid: 7061773986111160331
   - rid: 7725293080440209450
   - rid: 7725293062026690609
   - rid: 7061773986111160327
+  - rid: 7170432668072148998
   - rid: 7725293062026690611
   - rid: 7725293062026690613
   - rid: 7725293062026690615
@@ -7421,7 +7421,7 @@ MonoBehaviour:
       data:
         name: Wait for fade effect to switch on
         type: 2
-        waitTime: 0.9
+        waitTime: 4
     - rid: 1917700225704919041
       type: {class: SequenceManager/SEvent_GoToSecondScenario, ns: , asm: Assembly-CSharp}
       data:
@@ -7534,8 +7534,8 @@ MonoBehaviour:
       data:
         name: '[Prompt] Grab denture prompt'
         type: 1
-        text: '[I have to take off my dentures and place in the cup. Grab your face
-          area]'
+        text: I have to take off my dentures and place in the cup. [Grab your face
+          area]
         duration: 0
     - rid: 7725293058360082451
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
@@ -7562,7 +7562,7 @@ MonoBehaviour:
       data:
         name: Small delay
         type: 2
-        waitTime: 0.5
+        waitTime: 4
     - rid: 7725293058360082457
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
@@ -7582,9 +7582,9 @@ MonoBehaviour:
     - rid: 7725293062026690562
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: Wait
+        name: Wait for fade in
         type: 2
-        waitTime: 5
+        waitTime: 4
     - rid: 7725293062026690564
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -7593,7 +7593,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 2107390248}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -7605,13 +7605,6 @@ MonoBehaviour:
                 m_StringArgument: FadeIn
                 m_BoolArgument: 0
               m_CallState: 2
-    - rid: 7725293062026690565
-      type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
-      data:
-        name: Fade into white
-        type: 6
-        gameObject: {fileID: 0}
-        active: 1
     - rid: 7725293062026690567
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -7700,12 +7693,12 @@ MonoBehaviour:
     - rid: 7725293062026690587
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
-        name: Fade out
+        name: Fade out white
         type: 12
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 2107390248}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -7735,7 +7728,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 2107390248}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -7750,9 +7743,9 @@ MonoBehaviour:
     - rid: 7725293062026690593
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
-        name: Wait to take it in
+        name: Wait for fade in
         type: 2
-        waitTime: 5
+        waitTime: 4
     - rid: 7725293062026690597
       type: {class: SequenceManager/SEvent_PlayAudio, ns: , asm: Assembly-CSharp}
       data:
@@ -7806,7 +7799,7 @@ MonoBehaviour:
         unityEvent:
           m_PersistentCalls:
             m_Calls:
-            - m_Target: {fileID: 0}
+            - m_Target: {fileID: 2107390249}
               m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
               m_MethodName: SetTrigger
               m_Mode: 5
@@ -17625,6 +17618,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3760905033050359358, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7390601826062759693, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_Name
@@ -17665,6 +17663,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f8f1c478037cd9428aa5e4c63ee2ea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &2107390248 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7784750062831489816, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 2107390242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2107390249 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1838441162735669761, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 2107390242}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2117732089
 GameObject:
   m_ObjectHideFlags: 0
@@ -18015,6 +18025,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2693788740975733183, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
+        type: 3}
+      propertyPath: m_AllowDynamicResolution
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3032697143800122885, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
         type: 3}

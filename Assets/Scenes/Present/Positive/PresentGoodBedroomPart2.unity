@@ -1699,6 +1699,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 605433646}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &622061471 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7784750062831489816, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 3398744201635516357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &625699241
 GameObject:
   m_ObjectHideFlags: 0
@@ -2533,6 +2539,7 @@ MonoBehaviour:
   debugText: {fileID: 0}
   refreshEditor: 0
   events:
+  - rid: 7061774122985193475
   - rid: 5471714462093017178
   - rid: 5471714462093017180
   - rid: 7725293352101085186
@@ -2554,7 +2561,7 @@ MonoBehaviour:
   - rid: 7061773989317705747
   - rid: 7170432668072149000
   - rid: 5471714462093017208
-  - rid: 5471714462093017210
+  - rid: 7061774122985193480
   - rid: 5471714462093017212
   - rid: 1917700115382403072
   references:
@@ -2644,32 +2651,12 @@ MonoBehaviour:
         audioClipAlt: {fileID: 8300000, guid: ddcaa3ede19677b4f8148f43dc5752aa, type: 3}
         waitForEnd: 1
         loop: 0
-    - rid: 5471714462093017210
-      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
-      data:
-        name: Fade Out
-        type: 12
-        unityEvent:
-          m_PersistentCalls:
-            m_Calls:
-            - m_Target: {fileID: 0}
-              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-              m_MethodName: SetTrigger
-              m_Mode: 5
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: FadeOut
-                m_BoolArgument: 0
-              m_CallState: 2
     - rid: 5471714462093017212
       type: {class: SequenceManager/SEvent_WaitSeconds, ns: , asm: Assembly-CSharp}
       data:
         name: Wait
         type: 2
-        waitTime: 7
+        waitTime: 4
     - rid: 7061773989317705747
       type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
       data:
@@ -2704,6 +2691,46 @@ MonoBehaviour:
         type: 1
         text: '[Put the vitamin in your other hand to your face area]'
         duration: 0
+    - rid: 7061774122985193475
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade in from white
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 622061471}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeIn
+                m_BoolArgument: 0
+              m_CallState: 2
+    - rid: 7061774122985193480
+      type: {class: SequenceManager/SEvent_TriggerUnityEvent, ns: , asm: Assembly-CSharp}
+      data:
+        name: Fade Out
+        type: 12
+        unityEvent:
+          m_PersistentCalls:
+            m_Calls:
+            - m_Target: {fileID: 3398744201635516367}
+              m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+              m_MethodName: SetTrigger
+              m_Mode: 5
+              m_Arguments:
+                m_ObjectArgument: {fileID: 0}
+                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+                m_IntArgument: 0
+                m_FloatArgument: 0
+                m_StringArgument: FadeOut
+                m_BoolArgument: 0
+              m_CallState: 2
     - rid: 7170432668072149000
       type: {class: SequenceManager/SEvent_SetGameObjectActive, ns: , asm: Assembly-CSharp}
       data:
@@ -4336,70 +4363,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa8b20fed8ae9d4eac39c682473cb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveToLivingRoomHotspots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  MoveToMainDoorHotspots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  MoveToCheckersChairHotspots: []
-  MoveToKaraokeCornerHotspots: []
-  sceneToPlay: {fileID: 0}
-  MoveToToiletDoorHotspots: []
-  MoveToHawkerStallHotspots: []
-  MoveToJobPositionHotspots: []
-  MoveToTableHotspots: []
-  MoveToPastPositiveToiletDoorHotspots: []
-  MoveToPastPositiveHawkerHotspots: []
-  MoveToPastPositiveHouseHotspots: []
-  MoveToDiningTableHotspots: []
-  defaultTimeBeforeNextMove: 2
-  OnLastTeleport:
-    m_PersistentCalls:
-      m_Calls: []
-  OnLastTeleport2:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ScenarioManagerPresentGood, Assembly-CSharp
-        m_MethodName: PlaySegment1Part4
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  MovingToLivingRoom: 0
-  MovingToMainDoor: 0
-  MovingToCheckersChair: 0
-  MovingToKaraokeCorner: 0
-  MoveToToiletDoor: 0
-  MoveToHawkerStall: 0
-  MoveToTable: 0
-  MoveToSection: 0
-  hasPlacedCash: 0
-  teleportLocked: 0
-  DropFood: 0
-  GoToFirstAid: 0
-  GoToTray: 0
-  MoveToPastPositiveToiletDoor: 0
-  MoveToPastPositiveHawker: 0
-  MoveToPastPositiveHouse: 0
-  currentScene: 0
-  testPressTrigger: 0
-  scenarioManagerPresentGood: {fileID: 0}
-  scenarioManager: {fileID: 0}
 --- !u!4 &1368707509
 Transform:
   m_ObjectHideFlags: 0
@@ -9794,15 +9757,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3760905033050359358, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4549522048069955421, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5733402971437742045, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7390601826062759693, guid: c5446b5edb5620e4ebda8642f07f0a96,
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016981637362243351, guid: c5446b5edb5620e4ebda8642f07f0a96,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9836,6 +9814,12 @@ GameObject:
 --- !u!1 &3398744201635516362 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4848855392656614273, guid: c5446b5edb5620e4ebda8642f07f0a96,
+    type: 3}
+  m_PrefabInstance: {fileID: 3398744201635516357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &3398744201635516367 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1838441162735669761, guid: c5446b5edb5620e4ebda8642f07f0a96,
     type: 3}
   m_PrefabInstance: {fileID: 3398744201635516357}
   m_PrefabAsset: {fileID: 0}
