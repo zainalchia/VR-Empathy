@@ -484,12 +484,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 33689346}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &33689348 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
-    type: 3}
-  m_PrefabInstance: {fileID: 33689346}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &36729812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2739,12 +2733,6 @@ PrefabInstance:
 --- !u!4 &172641225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
-    type: 3}
-  m_PrefabInstance: {fileID: 172641224}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &172641226 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 172641224}
   m_PrefabAsset: {fileID: 0}
@@ -5074,12 +5062,6 @@ PrefabInstance:
 --- !u!4 &297416186 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
-    type: 3}
-  m_PrefabInstance: {fileID: 297416185}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &297416187 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 297416185}
   m_PrefabAsset: {fileID: 0}
@@ -9560,12 +9542,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 572046752}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &572046754 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
-    type: 3}
-  m_PrefabInstance: {fileID: 572046752}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &580941875
 GameObject:
   m_ObjectHideFlags: 0
@@ -10230,7 +10206,7 @@ MonoBehaviour:
   _oneGrabTransformer: {fileID: 0}
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
-  _maxGrabPoints: -1
+  _maxGrabPoints: 1
 --- !u!114 &620099842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12857,12 +12833,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 743383507}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &743383509 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
-    type: 3}
-  m_PrefabInstance: {fileID: 743383507}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &744337887
 GameObject:
   m_ObjectHideFlags: 0
@@ -14665,12 +14635,6 @@ PrefabInstance:
 --- !u!4 &854190469 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 813973729679255915, guid: a68f2979c28309f41a04d6fd4a96a807,
-    type: 3}
-  m_PrefabInstance: {fileID: 854190468}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &854190470 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
     type: 3}
   m_PrefabInstance: {fileID: 854190468}
   m_PrefabAsset: {fileID: 0}
@@ -18321,92 +18285,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aa8b20fed8ae9d4eac39c682473cb1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveToLivingRoomHotspots: []
-  MoveToMainDoorHotspots: []
-  MoveToCheckersChairHotspots: []
-  MoveToKaraokeCornerHotspots: []
-  sceneToPlay: {fileID: 1874118775}
-  MoveToToiletDoorHotspots: []
-  MoveToHawkerStallHotspots: []
-  MoveToJobPositionHotspots:
-  - {fileID: 1202423593}
-  - {fileID: 1949589123}
-  - {fileID: 533358067}
-  MoveToTableHotspots:
-  - {fileID: 743383509}
-  - {fileID: 297416187}
-  - {fileID: 854190470}
-  - {fileID: 33689348}
-  - {fileID: 1761344548}
-  - {fileID: 572046754}
-  - {fileID: 172641226}
-  MoveToPastPositiveToiletDoorHotspots: []
-  MoveToPastPositiveHawkerHotspots: []
-  MoveToPastPositiveHouseHotspots: []
-  MoveToDiningTableHotspots: []
-  defaultTimeBeforeNextMove: 1
-  OnLastTeleport:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1580138840}
-        m_TargetAssemblyTypeName: SmoothPivotRotator, Assembly-CSharp
-        m_MethodName: StartDefaultRotation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 837449615}
-        m_TargetAssemblyTypeName: SmoothPivotRotator, Assembly-CSharp
-        m_MethodName: StartDefaultRotation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 837449615}
-        m_TargetAssemblyTypeName: SmoothPivotRotator, Assembly-CSharp
-        m_MethodName: StartDefaultRotation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnLastTeleport2:
-    m_PersistentCalls:
-      m_Calls: []
-  MovingToLivingRoom: 0
-  MovingToMainDoor: 0
-  MovingToCheckersChair: 0
-  MovingToKaraokeCorner: 0
-  MoveToToiletDoor: 0
-  MoveToHawkerStall: 0
-  MoveToTable: 0
-  MoveToSection: 0
-  hasPlacedCash: 0
-  teleportLocked: 0
-  DropFood: 0
-  GoToFirstAid: 0
-  GoToTray: 0
-  MoveToPastPositiveToiletDoor: 0
-  MoveToPastPositiveHawker: 0
-  MoveToPastPositiveHouse: 0
-  currentScene: 0
-  testPressTrigger: 0
-  scenarioManagerPresentGood: {fileID: 0}
-  scenarioManager: {fileID: 0}
 --- !u!1001 &1158985798
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19768,7 +19646,7 @@ MonoBehaviour:
         name: Wait for tray pickup
         type: 3
         interactable: {fileID: 620099838}
-        outlineItem: 0
+        outlineItem: 1
         itemStaysGrabbed: 1
         forceEnableGrabbable: 1
     - rid: 4897765866541416451
@@ -19987,18 +19865,6 @@ MonoBehaviour:
                 m_FloatArgument: 0
                 m_StringArgument: 
                 m_BoolArgument: 0
-              m_CallState: 2
-            - m_Target: {fileID: 620099845}
-              m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
-              m_MethodName: set_enabled
-              m_Mode: 6
-              m_Arguments:
-                m_ObjectArgument: {fileID: 0}
-                m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-                m_IntArgument: 0
-                m_FloatArgument: 0
-                m_StringArgument: 
-                m_BoolArgument: 1
               m_CallState: 2
     - rid: 6176682073276809244
       type: {class: SequenceManager/SEvent_GoToScene, ns: , asm: Assembly-CSharp}
@@ -34278,12 +34144,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1761344546}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1761344548 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8652694774221415773, guid: a68f2979c28309f41a04d6fd4a96a807,
-    type: 3}
-  m_PrefabInstance: {fileID: 1761344546}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1770079627 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8531340850437012666, guid: bcbe46e9ef4196248b890ddfb00ac2ee,
@@ -34982,18 +34842,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1874118773}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1874118775 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 194581977973380604, guid: de2aa261b86273e41ae7b98704280be7,
-    type: 3}
-  m_PrefabInstance: {fileID: 1874118773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d05b1ea8b5537941a6035998830bf74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1887792793
 GameObject:
   m_ObjectHideFlags: 0
