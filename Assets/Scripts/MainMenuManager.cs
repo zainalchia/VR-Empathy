@@ -103,6 +103,13 @@ public class MainMenuManager : MonoBehaviour
     //dictonary for selected scenarios
     private Dictionary<string, bool> scenariosSelected = new Dictionary<string, bool>();
 
+    //tracks the order scenarios were clicked in, so playback follows the user's chosen order rather than a fixed A-B-C-D order
+    private List<string> scenarioSelectionOrder = new List<string>();
+    private static readonly string[] ScenarioKeysInDefaultOrder = { "ScenarioA", "ScenarioB", "ScenarioC", "ScenarioD" };
+
+    //number labels shown on top of each scenario checkbox, created at runtime
+    private TextMeshProUGUI orderLabelA, orderLabelB, orderLabelC, orderLabelD;
+
     public static bool enableSurvey = true;
     public static string pastLevelSelected = null;
     public static string presentLevelSelected = null;
@@ -214,8 +221,17 @@ public class MainMenuManager : MonoBehaviour
         scenariosSelected["ScenarioB"] = scenariosAvailable["ScenarioB"];
         scenariosSelected["ScenarioC"] = scenariosAvailable["ScenarioC"];
         scenariosSelected["ScenarioD"] = scenariosAvailable["ScenarioD"];
-        
 
+        //create the on-screen order number labels (1,2,3...) shown on top of each scenario checkbox
+        if (orderLabelA == null)
+        {
+            orderLabelA = CreateOrderNumberLabel(scenarioCheckboxA);
+            orderLabelB = CreateOrderNumberLabel(scenarioCheckboxB);
+            orderLabelC = CreateOrderNumberLabel(scenarioCheckboxC);
+            orderLabelD = CreateOrderNumberLabel(scenarioCheckboxD);
+        }
+
+        RebuildSelectionOrderFromSelectedDictionary();
 
         UpdateScenarioMenuScreen();
     }
@@ -434,6 +450,8 @@ public class MainMenuManager : MonoBehaviour
                 //set default values of the scenario selection menu
                 scenariosSelected[scenarios.Key] = scenarios.Value;
             }
+            //reset the click order back to defaults since availability may have changed
+            RebuildSelectionOrderFromSelectedDictionary();
             //including settingsToggled Dictionary
             PlayerPrefs.SetString("Randomise", enableSceneRandomizer.ToString());
             PlayerPrefs.SetString("SurveyEnabled", enableSurvey.ToString());
@@ -491,6 +509,19 @@ public class MainMenuManager : MonoBehaviour
         checkboxScript.ChangeColor();
         scenariosSelected[scenarioName] = checkboxScript.isChecked;
 
+        //record the click order: newly checked scenarios go to the back of the queue, unchecked ones are removed
+        if (checkboxScript.isChecked)
+        {
+            if (!scenarioSelectionOrder.Contains(scenarioName))
+            {
+                scenarioSelectionOrder.Add(scenarioName);
+            }
+        }
+        else
+        {
+            scenarioSelectionOrder.Remove(scenarioName);
+        }
+
         if (onePastOnePresent)
         {
             //disable or enable the other scenario button
@@ -503,7 +534,10 @@ public class MainMenuManager : MonoBehaviour
 
             otherCheckboxScript.isChecked = false;
             scenariosSelected[otherScenarioName] = false;
+            scenarioSelectionOrder.Remove(otherScenarioName);
         }
+
+        RefreshOrderNumbers();
     }
 
 
@@ -534,11 +568,67 @@ public class MainMenuManager : MonoBehaviour
         scenarioButton.enabled = true;
 
         scenariosSelected[scenarioName] = false;
+        scenarioSelectionOrder.Remove(scenarioName);
+        RefreshOrderNumbers();
     }
 
     public void printDebug(string log)
     {
         debugText.text = log;
+    }
+
+    //resets scenarioSelectionOrder back to a fixed A-B-C-D order, keeping only the scenarios currently marked as selected.
+    //used whenever selection state is reset in bulk (e.g. on Start, or leaving the secret menu) rather than clicked one at a time.
+    private void RebuildSelectionOrderFromSelectedDictionary()
+    {
+        scenarioSelectionOrder.Clear();
+        foreach (string scenarioKey in ScenarioKeysInDefaultOrder)
+        {
+            if (scenariosSelected[scenarioKey])
+            {
+                scenarioSelectionOrder.Add(scenarioKey);
+            }
+        }
+        RefreshOrderNumbers();
+    }
+
+    private void RefreshOrderNumbers()
+    {
+        SetOrderNumberText(orderLabelA, "ScenarioA");
+        SetOrderNumberText(orderLabelB, "ScenarioB");
+        SetOrderNumberText(orderLabelC, "ScenarioC");
+        SetOrderNumberText(orderLabelD, "ScenarioD");
+    }
+
+    private void SetOrderNumberText(TextMeshProUGUI label, string scenarioName)
+    {
+        if (label == null) return;
+
+        int index = scenarioSelectionOrder.IndexOf(scenarioName);
+        label.text = index >= 0 ? (index + 1).ToString() : "";
+    }
+
+    //creates a text label as a child of the checkbox, overlaid on top of it, to show the scenario's selection order number
+    private TextMeshProUGUI CreateOrderNumberLabel(GameObject checkbox)
+    {
+        GameObject labelObject = new GameObject("OrderNumberLabel");
+        labelObject.transform.SetParent(checkbox.transform, false);
+
+        RectTransform rectTransform = labelObject.AddComponent<RectTransform>();
+        rectTransform.anchorMin = Vector2.zero;
+        rectTransform.anchorMax = Vector2.one;
+        rectTransform.offsetMin = Vector2.zero;
+        rectTransform.offsetMax = Vector2.zero;
+
+        TextMeshProUGUI label = labelObject.AddComponent<TextMeshProUGUI>();
+        label.alignment = TextAlignmentOptions.Center;
+        label.fontSize = 48;
+        label.fontStyle = FontStyles.Bold;
+        label.color = Color.black;
+        label.raycastTarget = false;
+        label.text = "";
+
+        return label;
     }
 
     public void queueScenarios ()
@@ -607,13 +697,10 @@ public class MainMenuManager : MonoBehaviour
 
         } else
         {
-            //handle the non-randomised queuing
-            foreach(var scenario in scenariosSelected)
+            //handle the non-randomised queuing, in the order the scenarios were selected
+            foreach(var scenarioName in scenarioSelectionOrder)
             {
-                if (scenario.Value)
-                {
-                    scenariosQueued.Enqueue(scenario.Key);
-                }
+                scenariosQueued.Enqueue(scenarioName);
             }
         }
     }
