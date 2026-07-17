@@ -87,9 +87,9 @@ public class CapsuleScript: MonoBehaviour
         plaster.transform.rotation = targetPalm.rotation;
         plaster.transform.SetParent(targetPalm);
 
-        // Force grab with right hand only
+        // Force grab with the hand the pill was moved to
         var grabInteractable = plaster.GetComponent<GrabInteractable>();
-        GameManager.instance.grabInteractors[1].ForceSelect(grabInteractable);
+        GameManager.instance.grabInteractors[1 - handIndex].ForceSelect(grabInteractable);
         plasterCollider.enabled = true;
 
     }
