@@ -58,22 +58,24 @@ public class SurveyController : MonoBehaviour
 
     private void LoadDataFromCSV(string filename)
     {
+        string fileText;
         try
         {
-            string fileText = System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Application.persistentDataPath + "/" + filename));
-            string[] fileTextSplit = fileText.Split(new string[] { "\n" }, System.StringSplitOptions.None);
-            int tableSize = fileTextSplit.Length;
-            csvInputStrings = new string[fileTextSplit.Length];
-
-            for (int i = 0; i < tableSize; i++)
-            {
-                csvInputStrings[i] = fileTextSplit[i];
-            }
-
+            fileText = System.Text.Encoding.UTF8.GetString(File.ReadAllBytes(Application.persistentDataPath + "/" + filename));
         }
         catch (Exception e)
         {
-            Debug.Log("no file found at " + Application.persistentDataPath);
+            Debug.Log("no file found at " + Application.persistentDataPath + ". Defaulting to default survey questions.");
+            fileText = "13;36\nHow much did you feel involved in the scenes?;rating;Not at all;Extremely;5\nPlease rate your feelings/attitudes towards the elderly in Singapore.;rating;Unfavourable;Favourable;5\nOverall, how personally connected do you feel to the lives of elderly people in Singapore?;rating;I feel distant;I feel close;5\nI think it is important to interact with the elderly in the future.;rating;Strongly Disagree;Strongly Agree;5";
+        }
+        
+        string[] fileTextSplit = fileText.Split(new string[] { "\n" }, System.StringSplitOptions.None);
+        int tableSize = fileTextSplit.Length;
+        csvInputStrings = new string[fileTextSplit.Length];
+
+        for (int i = 0; i < tableSize; i++)
+        {
+            csvInputStrings[i] = fileTextSplit[i];
         }
     }
 
